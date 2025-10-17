@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: UncenteredPivotPointMesh.cpp 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_2d15d0715a2692171bd03ed14a4a79af.html">Unreal</a></li><li class="navelem"><a class="el" href="../../dir_d3c1db2570616bec48bf5a6dd06bce95.html">CarlaUE4</a></li><li class="navelem"><a class="el" href="../../dir_3538576148ac14151677be9b0aee6fcc.html">Plugins</a></li><li class="navelem"><a class="el" href="../../dir_fbda5b12374c683cbdca72abb2d51944.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_18937e8f6bde63367bf26837323a9508.html">Source</a></li><li class="navelem"><a class="el" href="../../dir_8fc34afb5f07a67966c78bf5319f94ae.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_3e9aec868781f29a05b56aecc37cd1a9.html">MapGen</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">UncenteredPivotPointMesh.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../db/d67/UncenteredPivotPointMesh_8cpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma de Barcelona (UAB).</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">// This work is licensed under the terms of the MIT license.</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">// 引入名为&quot;UncenteredPivotPointMesh.h&quot;的头文件，通常该头文件中包含了与当前类相关的类型定义、函数声明等内容</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="../../d1/d6f/UncenteredPivotPointMesh_8h.html">UncenteredPivotPointMesh.h</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="../../db/dd8/classAUncenteredPivotPointMesh.html#a19e52a9a1cac754bd21da169e74e0551">   10</a></span><a class="code hl_function" href="../../db/dd8/classAUncenteredPivotPointMesh.html#a19e52a9a1cac754bd21da169e74e0551">AUncenteredPivotPointMesh::AUncenteredPivotPointMesh</a>(<span class="keyword">const</span> FObjectInitializer&amp; ObjectInitializer)</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>  <span class="comment">// AUncenteredPivotPointMesh类的构造函数，接受一个FObjectInitializer对象用于初始化类成员</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>  <span class="comment">// 通过调用父类的构造函数，传入ObjectInitializer对象，以完成父类部分的初始化</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>  : Super(ObjectInitializer)</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>  <span class="comment">// 设置该Actor的Tick函数是否可被调用，这里设置为false，表示不需要每帧更新</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  PrimaryActorTick.bCanEverTick = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  <span class="comment">// 创建一个默认的场景组件作为根组件，并将其命名为&quot;SceneRoot&quot;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  RootComponent = CreateDefaultSubobject&lt;USceneComponent&gt;(TEXT(<span class="stringliteral">&quot;SceneRoot&quot;</span>));</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <span class="comment">// 创建一个默认的静态网格组件，并将其命名为&quot;StaticMeshComp&quot;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  <a class="code hl_variable" href="../../db/dd8/classAUncenteredPivotPointMesh.html#a6d7be14bd6198cf07d32b8606f6ccf11">SMComp</a> = CreateDefaultSubobject&lt;UStaticMeshComponent&gt;(TEXT(<span class="stringliteral">&quot;StaticMeshComp&quot;</span>));</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  <span class="comment">// 将创建的静态网格组件SMComp附加到根组件RootComponent上，建立父子关系</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  <a class="code hl_variable" href="../../db/dd8/classAUncenteredPivotPointMesh.html#a6d7be14bd6198cf07d32b8606f6ccf11">SMComp</a>-&gt;SetupAttachment(RootComponent);</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>}</div>
+<div class="ttc" id="aUncenteredPivotPointMesh_8h_html"><div class="ttname"><a href="../../d1/d6f/UncenteredPivotPointMesh_8h.html">UncenteredPivotPointMesh.h</a></div></div>
+<div class="ttc" id="aclassAUncenteredPivotPointMesh_html_a19e52a9a1cac754bd21da169e74e0551"><div class="ttname"><a href="../../db/dd8/classAUncenteredPivotPointMesh.html#a19e52a9a1cac754bd21da169e74e0551">AUncenteredPivotPointMesh::AUncenteredPivotPointMesh</a></div><div class="ttdeci">AUncenteredPivotPointMesh(const FObjectInitializer &amp;ObjectInitializer)</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d67/UncenteredPivotPointMesh_8cpp_source.html#l00010">UncenteredPivotPointMesh.cpp:10</a></div></div>
+<div class="ttc" id="aclassAUncenteredPivotPointMesh_html_a6d7be14bd6198cf07d32b8606f6ccf11"><div class="ttname"><a href="../../db/dd8/classAUncenteredPivotPointMesh.html#a6d7be14bd6198cf07d32b8606f6ccf11">AUncenteredPivotPointMesh::SMComp</a></div><div class="ttdeci">UStaticMeshComponent * SMComp</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d6f/UncenteredPivotPointMesh_8h_source.html#l00028">UncenteredPivotPointMesh.h:28</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

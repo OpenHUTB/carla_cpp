@@ -1,0 +1,386 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: FrameData.cpp 文件参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_2d15d0715a2692171bd03ed14a4a79af.html">Unreal</a></li><li class="navelem"><a class="el" href="../../dir_d3c1db2570616bec48bf5a6dd06bce95.html">CarlaUE4</a></li><li class="navelem"><a class="el" href="../../dir_3538576148ac14151677be9b0aee6fcc.html">Plugins</a></li><li class="navelem"><a class="el" href="../../dir_fbda5b12374c683cbdca72abb2d51944.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_18937e8f6bde63367bf26837323a9508.html">Source</a></li><li class="navelem"><a class="el" href="../../dir_8fc34afb5f07a67966c78bf5319f94ae.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_b708e75f0564cefaa95a07ef1c60fa1d.html">Game</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">FrameData.cpp 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="../../d2/df1/FrameData_8h_source.html">FrameData.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../de/db8/CarlaEpisode_8h_source.html">Carla/Game/CarlaEpisode.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../de/d36/CarlaActor_8h_source.html">Carla/Actor/CarlaActor.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d0/d11/CarlaEngine_8h_source.html">Carla/Game/CarlaEngine.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../dd/d67/TrafficLightController_8h_source.html">Carla/Traffic/TrafficLightController.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../de/da0/TrafficLightGroup_8h_source.html">Carla/Traffic/TrafficLightGroup.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d3/d30/LargeMapManager_8h_source.html">Carla/MapGen/LargeMapManager.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d9/dc8/CarlaStatics_8h_source.html">Carla/Game/CarlaStatics.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html">Carla/Settings/CarlaSettings.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d1/d0d/CarlaLightSubsystem_8h_source.html">Carla/Lights/CarlaLightSubsystem.h</a>&quot;</code><br />
+<code>#include &lt;<a class="el" href="../../d2/d02/disable-ue4-macros_8h_source.html">compiler/disable-ue4-macros.h</a>&gt;</code><br />
+<code>#include &quot;<a class="el" href="../../d8/d64/LibCarla_2source_2carla_2rpc_2VehicleLightState_8h_source.html">carla/rpc/VehicleLightState.h</a>&quot;</code><br />
+<code>#include &lt;<a class="el" href="../../d9/da2/enable-ue4-macros_8h_source.html">compiler/enable-ue4-macros.h</a>&gt;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> FrameData.cpp 的引用(Include)关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../dd/d80/FrameData_8cpp__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+</div>
+<p><a href="../../df/d8a/FrameData_8cpp_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a78784bec532ceb0750dd34ea125c7ac6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d8a/FrameData_8cpp.html#a78784bec532ceb0750dd34ea125c7ac6">for</a> (const <a class="el" href="../../db/d9f/structCarlaRecorderAnimBiker.html">CarlaRecorderAnimBiker</a> &amp;<a class="el" href="../../d9/d6a/CarlaRecorder_8h.html#a4c56233e0004f5c9ac481a933ab6b613ae7ad1388ad753ca35917172b7b5ec742">AnimBiker</a> :Bikers.GetBikers())</td></tr>
+<tr class="separator:a78784bec532ceb0750dd34ea125c7ac6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1435e2e7530329f0e8c7788dc7c7c7fe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d8a/FrameData_8cpp.html#a1435e2e7530329f0e8c7788dc7c7c7fe">for</a> (const <a class="el" href="../../d8/d88/structCarlaRecorderAnimVehicle.html">CarlaRecorderAnimVehicle</a> &amp;<a class="el" href="../../d9/d6a/CarlaRecorder_8h.html#a4c56233e0004f5c9ac481a933ab6b613af4c4d9aa57150b461e1329a65aba0d7b">AnimVehicle</a> :Vehicles.GetVehicles())</td></tr>
+<tr class="separator:a1435e2e7530329f0e8c7788dc7c7c7fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6dfd164ed795a1d5d180d6a4e78bdd42"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d8a/FrameData_8cpp.html#a6dfd164ed795a1d5d180d6a4e78bdd42">for</a> (const <a class="el" href="../../dc/dc8/structCarlaRecorderAnimWalker.html">CarlaRecorderAnimWalker</a> &amp;<a class="el" href="../../d9/d6a/CarlaRecorder_8h.html#a4c56233e0004f5c9ac481a933ab6b613a07d283fbd8836bf95d25faee43d7f28f">AnimWalker</a> :Walkers.GetWalkers())</td></tr>
+<tr class="separator:a6dfd164ed795a1d5d180d6a4e78bdd42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9217bb723f90d8d9b973fa9a83be3d31"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d8a/FrameData_8cpp.html#a9217bb723f90d8d9b973fa9a83be3d31">for</a> (const <a class="el" href="../../d0/de7/structCarlaRecorderAnimWheels.html">CarlaRecorderAnimWheels</a> &amp;AnimWheel :Wheels.GetVehicleWheels())</td></tr>
+<tr class="separator:a9217bb723f90d8d9b973fa9a83be3d31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7f3ae9871b517774df18eccaf04eda8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d8a/FrameData_8cpp.html#ac7f3ae9871b517774df18eccaf04eda8">for</a> (const <a class="el" href="../../d9/dfc/structCarlaRecorderEventAdd.html">CarlaRecorderEventAdd</a> &amp;<a class="el" href="../../d9/d6a/CarlaRecorder_8h.html#a4c56233e0004f5c9ac481a933ab6b613afe62766cc4edfcd86b758411e918f68a">EventAdd</a> :EventsAdd.GetEvents())</td></tr>
+<tr class="separator:ac7f3ae9871b517774df18eccaf04eda8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab329dc1a0c3e5f8a57e99a19045ecade"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d8a/FrameData_8cpp.html#ab329dc1a0c3e5f8a57e99a19045ecade">for</a> (const <a class="el" href="../../d1/d23/structCarlaRecorderEventDel.html">CarlaRecorderEventDel</a> &amp;<a class="el" href="../../d9/d6a/CarlaRecorder_8h.html#a4c56233e0004f5c9ac481a933ab6b613a372eadc9974c32dd0acd21dca7a978d0">EventDel</a> :EventsDel.GetEvents())</td></tr>
+<tr class="separator:ab329dc1a0c3e5f8a57e99a19045ecade"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae668ba5e639e99bd6b7a935e1e7c55e6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d8a/FrameData_8cpp.html#ae668ba5e639e99bd6b7a935e1e7c55e6">for</a> (const <a class="el" href="../../d0/db0/structCarlaRecorderLightScene.html">CarlaRecorderLightScene</a> &amp;Light :LightScenes.GetLights())</td></tr>
+<tr class="separator:ae668ba5e639e99bd6b7a935e1e7c55e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87bc5617cd95f6c969c4948b63bd6720"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d8a/FrameData_8cpp.html#a87bc5617cd95f6c969c4948b63bd6720">for</a> (const <a class="el" href="../../d8/d3b/structCarlaRecorderLightVehicle.html">CarlaRecorderLightVehicle</a> &amp;LightVehicle :LightVehicles.GetLightVehicles())</td></tr>
+<tr class="separator:a87bc5617cd95f6c969c4948b63bd6720"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa10fb07c422a4f16860f6b80c96a382"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d8a/FrameData_8cpp.html#afa10fb07c422a4f16860f6b80c96a382">for</a> (const <a class="el" href="../../d3/d16/structCarlaRecorderPosition.html">CarlaRecorderPosition</a> &amp;<a class="el" href="../../d9/d6a/CarlaRecorder_8h.html#a4c56233e0004f5c9ac481a933ab6b613a52f5e0bc3859bc5f5e25130b6c7e8881">Position</a> :Positions.GetPositions())</td></tr>
+<tr class="separator:afa10fb07c422a4f16860f6b80c96a382"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaeed9c0998cf418ab4644713e747ffea"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d8a/FrameData_8cpp.html#aaeed9c0998cf418ab4644713e747ffea">for</a> (const <a class="el" href="../../d1/dc9/structCarlaRecorderStateTrafficLight.html">CarlaRecorderStateTrafficLight</a> &amp;<a class="el" href="../../d9/d6a/CarlaRecorder_8h.html#a4c56233e0004f5c9ac481a933ab6b613a46a2a41cc6e552044816a2d04634545d">State</a> :States.GetStates())</td></tr>
+<tr class="separator:aaeed9c0998cf418ab4644713e747ffea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfa2c43e7ffd5bcefa52d6158e730bf9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d8a/FrameData_8cpp.html#acfa2c43e7ffd5bcefa52d6158e730bf9">SetFrameCounter</a> ()</td></tr>
+<tr class="separator:acfa2c43e7ffd5bcefa52d6158e730bf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">函数说明</h2>
+<a id="a78784bec532ceb0750dd34ea125c7ac6" name="a78784bec532ceb0750dd34ea125c7ac6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78784bec532ceb0750dd34ea125c7ac6">&#9670;&#160;</a></span>for() <span class="overload">[1/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">for </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../db/d9f/structCarlaRecorderAnimBiker.html">CarlaRecorderAnimBiker</a> &amp;<a class="el" href="../../d9/d6a/CarlaRecorder_8h.html#a4c56233e0004f5c9ac481a933ab6b613ae7ad1388ad753ca35917172b7b5ec742">AnimBiker</a> :Bikers.&#160;</td>
+          <td class="paramname"><em>GetBikers</em>()</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/d8a/FrameData_8cpp_source.html">FrameData.cpp</a> 第 <a class="el" href="../../df/d8a/FrameData_8cpp_source.html#l00170">170</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d9/d6a/CarlaRecorder_8h.html#a4c56233e0004f5c9ac481a933ab6b613ae7ad1388ad753ca35917172b7b5ec742">AnimBiker</a> , 以及 <a class="el" href="../../d6/dda/CarlaRecorderAnimBiker_8h_source.html#l00015">CarlaRecorderAnimBiker::DatabaseId</a>.</p>
+
+</div>
+</div>
+<a id="a1435e2e7530329f0e8c7788dc7c7c7fe" name="a1435e2e7530329f0e8c7788dc7c7c7fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1435e2e7530329f0e8c7788dc7c7c7fe">&#9670;&#160;</a></span>for() <span class="overload">[2/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">for </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d8/d88/structCarlaRecorderAnimVehicle.html">CarlaRecorderAnimVehicle</a> &amp;<a class="el" href="../../d9/d6a/CarlaRecorder_8h.html#a4c56233e0004f5c9ac481a933ab6b613af4c4d9aa57150b461e1329a65aba0d7b">AnimVehicle</a> :Vehicles.&#160;</td>
+          <td class="paramname"><em>GetVehicles</em>()</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/d8a/FrameData_8cpp_source.html">FrameData.cpp</a> 第 <a class="el" href="../../df/d8a/FrameData_8cpp_source.html#l00149">149</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d9/d6a/CarlaRecorder_8h.html#a4c56233e0004f5c9ac481a933ab6b613af4c4d9aa57150b461e1329a65aba0d7b">AnimVehicle</a> , 以及 <a class="el" href="../../d0/d01/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Util_2EnvironmentObject_8h_source.html#l00032">Vehicle</a>.</p>
+
+</div>
+</div>
+<a id="a6dfd164ed795a1d5d180d6a4e78bdd42" name="a6dfd164ed795a1d5d180d6a4e78bdd42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6dfd164ed795a1d5d180d6a4e78bdd42">&#9670;&#160;</a></span>for() <span class="overload">[3/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">for </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../dc/dc8/structCarlaRecorderAnimWalker.html">CarlaRecorderAnimWalker</a> &amp;<a class="el" href="../../d9/d6a/CarlaRecorder_8h.html#a4c56233e0004f5c9ac481a933ab6b613a07d283fbd8836bf95d25faee43d7f28f">AnimWalker</a> :Walkers.&#160;</td>
+          <td class="paramname"><em>GetWalkers</em>()</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/d8a/FrameData_8cpp_source.html">FrameData.cpp</a> 第 <a class="el" href="../../df/d8a/FrameData_8cpp_source.html#l00163">163</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d9/d6a/CarlaRecorder_8h.html#a4c56233e0004f5c9ac481a933ab6b613a07d283fbd8836bf95d25faee43d7f28f">AnimWalker</a> , 以及 <a class="el" href="../../d3/d60/CarlaRecorderAnimWalker_8h_source.html#l00015">CarlaRecorderAnimWalker::DatabaseId</a>.</p>
+
+</div>
+</div>
+<a id="a9217bb723f90d8d9b973fa9a83be3d31" name="a9217bb723f90d8d9b973fa9a83be3d31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9217bb723f90d8d9b973fa9a83be3d31">&#9670;&#160;</a></span>for() <span class="overload">[4/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">for </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/de7/structCarlaRecorderAnimWheels.html">CarlaRecorderAnimWheels</a> &amp;AnimWheel :Wheels.&#160;</td>
+          <td class="paramname"><em>GetVehicleWheels</em>()</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/d8a/FrameData_8cpp_source.html">FrameData.cpp</a> 第 <a class="el" href="../../df/d8a/FrameData_8cpp_source.html#l00156">156</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d5c/CarlaRecorderAnimVehicleWheels_8h_source.html#l00028">CarlaRecorderAnimWheels::DatabaseId</a>.</p>
+
+</div>
+</div>
+<a id="ac7f3ae9871b517774df18eccaf04eda8" name="ac7f3ae9871b517774df18eccaf04eda8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7f3ae9871b517774df18eccaf04eda8">&#9670;&#160;</a></span>for() <span class="overload">[5/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">for </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d9/dfc/structCarlaRecorderEventAdd.html">CarlaRecorderEventAdd</a> &amp;<a class="el" href="../../d9/d6a/CarlaRecorder_8h.html#a4c56233e0004f5c9ac481a933ab6b613afe62766cc4edfcd86b758411e918f68a">EventAdd</a> :EventsAdd.&#160;</td>
+          <td class="paramname"><em>GetEvents</em>()</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/d8a/FrameData_8cpp_source.html">FrameData.cpp</a> 第 <a class="el" href="../../df/d8a/FrameData_8cpp_source.html#l00090">90</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d9/d6a/CarlaRecorder_8h.html#a4c56233e0004f5c9ac481a933ab6b613afe62766cc4edfcd86b758411e918f68a">EventAdd</a> , 以及 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp.html#a69d0a7232310b5ebaa51abb2b9945184">UE_LOG()</a>.</p>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../df/d8a/FrameData_8cpp_ac7f3ae9871b517774df18eccaf04eda8_cgraph.svg" width="172" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ab329dc1a0c3e5f8a57e99a19045ecade" name="ab329dc1a0c3e5f8a57e99a19045ecade"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab329dc1a0c3e5f8a57e99a19045ecade">&#9670;&#160;</a></span>for() <span class="overload">[6/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">for </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d1/d23/structCarlaRecorderEventDel.html">CarlaRecorderEventDel</a> &amp;<a class="el" href="../../d9/d6a/CarlaRecorder_8h.html#a4c56233e0004f5c9ac481a933ab6b613a372eadc9974c32dd0acd21dca7a978d0">EventDel</a> :EventsDel.&#160;</td>
+          <td class="paramname"><em>GetEvents</em>()</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/d8a/FrameData_8cpp_source.html">FrameData.cpp</a> 第 <a class="el" href="../../df/d8a/FrameData_8cpp_source.html#l00125">125</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d9/d6a/CarlaRecorder_8h.html#a4c56233e0004f5c9ac481a933ab6b613a372eadc9974c32dd0acd21dca7a978d0">EventDel</a>.</p>
+
+</div>
+</div>
+<a id="ae668ba5e639e99bd6b7a935e1e7c55e6" name="ae668ba5e639e99bd6b7a935e1e7c55e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae668ba5e639e99bd6b7a935e1e7c55e6">&#9670;&#160;</a></span>for() <span class="overload">[7/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">for </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db0/structCarlaRecorderLightScene.html">CarlaRecorderLightScene</a> &amp;Light :LightScenes.&#160;</td>
+          <td class="paramname"><em>GetLights</em>()</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/d8a/FrameData_8cpp_source.html">FrameData.cpp</a> 第 <a class="el" href="../../df/d8a/FrameData_8cpp_source.html#l00184">184</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a87bc5617cd95f6c969c4948b63bd6720" name="a87bc5617cd95f6c969c4948b63bd6720"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87bc5617cd95f6c969c4948b63bd6720">&#9670;&#160;</a></span>for() <span class="overload">[8/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">for </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d8/d3b/structCarlaRecorderLightVehicle.html">CarlaRecorderLightVehicle</a> &amp;LightVehicle :LightVehicles.&#160;</td>
+          <td class="paramname"><em>GetLightVehicles</em>()</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/d8a/FrameData_8cpp_source.html">FrameData.cpp</a> 第 <a class="el" href="../../df/d8a/FrameData_8cpp_source.html#l00177">177</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/da8/CarlaRecorderLightVehicle_8h_source.html#l00019">CarlaRecorderLightVehicle::DatabaseId</a>.</p>
+
+</div>
+</div>
+<a id="afa10fb07c422a4f16860f6b80c96a382" name="afa10fb07c422a4f16860f6b80c96a382"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa10fb07c422a4f16860f6b80c96a382">&#9670;&#160;</a></span>for() <span class="overload">[9/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">for </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d3/d16/structCarlaRecorderPosition.html">CarlaRecorderPosition</a> &amp;<a class="el" href="../../d9/d6a/CarlaRecorder_8h.html#a4c56233e0004f5c9ac481a933ab6b613a52f5e0bc3859bc5f5e25130b6c7e8881">Position</a> :Positions.&#160;</td>
+          <td class="paramname"><em>GetPositions</em>()</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/d8a/FrameData_8cpp_source.html">FrameData.cpp</a> 第 <a class="el" href="../../df/d8a/FrameData_8cpp_source.html#l00131">131</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dc/d20/CarlaRecorderPosition_8h_source.html#l00015">CarlaRecorderPosition::DatabaseId</a> , 以及 <a class="el" href="../../d9/d6a/CarlaRecorder_8h.html#a4c56233e0004f5c9ac481a933ab6b613a52f5e0bc3859bc5f5e25130b6c7e8881">Position</a>.</p>
+
+</div>
+</div>
+<a id="aaeed9c0998cf418ab4644713e747ffea" name="aaeed9c0998cf418ab4644713e747ffea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaeed9c0998cf418ab4644713e747ffea">&#9670;&#160;</a></span>for() <span class="overload">[10/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">for </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d1/dc9/structCarlaRecorderStateTrafficLight.html">CarlaRecorderStateTrafficLight</a> &amp;<a class="el" href="../../d9/d6a/CarlaRecorder_8h.html#a4c56233e0004f5c9ac481a933ab6b613a46a2a41cc6e552044816a2d04634545d">State</a> :States.&#160;</td>
+          <td class="paramname"><em>GetStates</em>()</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/d8a/FrameData_8cpp_source.html">FrameData.cpp</a> 第 <a class="el" href="../../df/d8a/FrameData_8cpp_source.html#l00142">142</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../da/d32/CarlaRecorderState_8h_source.html#l00015">CarlaRecorderStateTrafficLight::DatabaseId</a> , 以及 <a class="el" href="../../d9/d6a/CarlaRecorder_8h.html#a4c56233e0004f5c9ac481a933ab6b613a46a2a41cc6e552044816a2d04634545d">State</a>.</p>
+
+</div>
+</div>
+<a id="acfa2c43e7ffd5bcefa52d6158e730bf9" name="acfa2c43e7ffd5bcefa52d6158e730bf9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfa2c43e7ffd5bcefa52d6158e730bf9">&#9670;&#160;</a></span>SetFrameCounter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SetFrameCounter </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

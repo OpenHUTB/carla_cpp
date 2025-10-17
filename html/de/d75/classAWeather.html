@@ -1,0 +1,583 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: AWeather类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="../../d3/d82/classAWeather-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">AWeather类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="../../d5/d65/Weather_8h_source.html">Weather.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 类 AWeather 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d5/db3/classAWeather__inherit__graph.svg" width="90" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> AWeather 的协作图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d6/d2a/classAWeather__coll__graph.svg" width="100%" height="591"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a68bfc749cd33e48219c3d7839cc8ddee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d75/classAWeather.html#a68bfc749cd33e48219c3d7839cc8ddee">ApplyWeather</a> (const <a class="el" href="../../dd/d9b/structFWeatherParameters.html">FWeatherParameters</a> &amp;WeatherParameters)</td></tr>
+<tr class="memdesc:a68bfc749cd33e48219c3d7839cc8ddee"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新天气参数并将其通知到蓝图的事件  <a href="../../de/d75/classAWeather.html#a68bfc749cd33e48219c3d7839cc8ddee">更多...</a><br /></td></tr>
+<tr class="separator:a68bfc749cd33e48219c3d7839cc8ddee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dcf56e3b0edf5433b53cc12130f3636"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d75/classAWeather.html#a9dcf56e3b0edf5433b53cc12130f3636">AWeather</a> (const FObjectInitializer &amp;ObjectInitializer)</td></tr>
+<tr class="separator:a9dcf56e3b0edf5433b53cc12130f3636"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb4e36445838b76fd98e2cc8188f4a04"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../dd/d9b/structFWeatherParameters.html">FWeatherParameters</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d75/classAWeather.html#aeb4e36445838b76fd98e2cc8188f4a04">GetCurrentWeather</a> () const</td></tr>
+<tr class="memdesc:aeb4e36445838b76fd98e2cc8188f4a04"><td class="mdescLeft">&#160;</td><td class="mdescRight">返回当前的 天气参数 WeatherParameters  <a href="../../de/d75/classAWeather.html#aeb4e36445838b76fd98e2cc8188f4a04">更多...</a><br /></td></tr>
+<tr class="separator:aeb4e36445838b76fd98e2cc8188f4a04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5ef9535e1dca2f2b65da87eec4ed65d"><td class="memItemLeft" align="right" valign="top">const bool &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d75/classAWeather.html#ae5ef9535e1dca2f2b65da87eec4ed65d">GetDayNightCycle</a> () const</td></tr>
+<tr class="memdesc:ae5ef9535e1dca2f2b65da87eec4ed65d"><td class="mdescLeft">&#160;</td><td class="mdescRight">返回昼夜循环是否有效（切换到夜间模式时自动 开/关 切换）  <a href="../../de/d75/classAWeather.html#ae5ef9535e1dca2f2b65da87eec4ed65d">更多...</a><br /></td></tr>
+<tr class="separator:ae5ef9535e1dca2f2b65da87eec4ed65d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f4a4457b661e01f69aa787457203e4d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d75/classAWeather.html#a9f4a4457b661e01f69aa787457203e4d">NotifyWeather</a> (<a class="el" href="../../d3/d01/classASensor.html">ASensor</a> *Sensor=nullptr)</td></tr>
+<tr class="memdesc:a9f4a4457b661e01f69aa787457203e4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">将天气通知到蓝图的事件  <a href="../../de/d75/classAWeather.html#a9f4a4457b661e01f69aa787457203e4d">更多...</a><br /></td></tr>
+<tr class="separator:a9f4a4457b661e01f69aa787457203e4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a316f91248d3f27b4afa43c65205757fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d75/classAWeather.html#a316f91248d3f27b4afa43c65205757fe">SetDayNightCycle</a> (const bool &amp;active)</td></tr>
+<tr class="memdesc:a316f91248d3f27b4afa43c65205757fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新昼夜周期  <a href="../../de/d75/classAWeather.html#a316f91248d3f27b4afa43c65205757fe">更多...</a><br /></td></tr>
+<tr class="separator:a316f91248d3f27b4afa43c65205757fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d5e23c1fd032babebd0a258aa555cdf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d75/classAWeather.html#a1d5e23c1fd032babebd0a258aa555cdf">SetWeather</a> (const <a class="el" href="../../dd/d9b/structFWeatherParameters.html">FWeatherParameters</a> &amp;WeatherParameters)</td></tr>
+<tr class="memdesc:a1d5e23c1fd032babebd0a258aa555cdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">在不通知蓝图事件的情况下更新天气参数  <a href="../../de/d75/classAWeather.html#a1d5e23c1fd032babebd0a258aa555cdf">更多...</a><br /></td></tr>
+<tr class="separator:a1d5e23c1fd032babebd0a258aa555cdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:abfa22fbe6e2940b283a6b186aec0cd60"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d75/classAWeather.html#abfa22fbe6e2940b283a6b186aec0cd60">RefreshWeather</a> (const <a class="el" href="../../dd/d9b/structFWeatherParameters.html">FWeatherParameters</a> &amp;WeatherParameters)</td></tr>
+<tr class="separator:abfa22fbe6e2940b283a6b186aec0cd60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:a924ac29b9a6ab92c8137da8661e2b35a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d75/classAWeather.html#a924ac29b9a6ab92c8137da8661e2b35a">CheckWeatherPostProcessEffects</a> ()</td></tr>
+<tr class="separator:a924ac29b9a6ab92c8137da8661e2b35a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:ae5dc05317b30c103c9651972d33cde8d"><td class="memItemLeft" align="right" valign="top">TMap&lt; UMaterial *, float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d75/classAWeather.html#ae5dc05317b30c103c9651972d33cde8d">ActiveBlendables</a></td></tr>
+<tr class="separator:ae5dc05317b30c103c9651972d33cde8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabe25e331c5321395f2a0e59f49fa2b8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d75/classAWeather.html#aabe25e331c5321395f2a0e59f49fa2b8">DayNightCycle</a> = <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp.html#a930920b2bc42824a5c03be681830f4b2">true</a></td></tr>
+<tr class="separator:aabe25e331c5321395f2a0e59f49fa2b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aafc400e075bfa13367fe6a3a10f116b9"><td class="memItemLeft" align="right" valign="top">UMaterial *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d75/classAWeather.html#aafc400e075bfa13367fe6a3a10f116b9">DustStormPostProcessMaterial</a></td></tr>
+<tr class="separator:aafc400e075bfa13367fe6a3a10f116b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a5eb0c33d29bbbddcb586227b2a0fa9"><td class="memItemLeft" align="right" valign="top">UMaterial *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d75/classAWeather.html#a7a5eb0c33d29bbbddcb586227b2a0fa9">PrecipitationPostProcessMaterial</a></td></tr>
+<tr class="separator:a7a5eb0c33d29bbbddcb586227b2a0fa9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a2c853133523a07237c5b17296266a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dd/d9b/structFWeatherParameters.html">FWeatherParameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d75/classAWeather.html#a2a2c853133523a07237c5b17296266a0">Weather</a></td></tr>
+<tr class="separator:a2a2c853133523a07237c5b17296266a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="../../d5/d65/Weather_8h_source.html">Weather.h</a> 第 <a class="el" href="../../d5/d65/Weather_8h_source.html#l00019">19</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a9dcf56e3b0edf5433b53cc12130f3636" name="a9dcf56e3b0edf5433b53cc12130f3636"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9dcf56e3b0edf5433b53cc12130f3636">&#9670;&#160;</a></span>AWeather()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AWeather::AWeather </td>
+          <td>(</td>
+          <td class="paramtype">const FObjectInitializer &amp;&#160;</td>
+          <td class="paramname"><em>ObjectInitializer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d2/d0f/Weather_8cpp_source.html">Weather.cpp</a> 第 <a class="el" href="../../d2/d0f/Weather_8cpp_source.html#l00015">15</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d5/d65/Weather_8h_source.html#l00076">DustStormPostProcessMaterial</a> , 以及 <a class="el" href="../../d5/d65/Weather_8h_source.html#l00073">PrecipitationPostProcessMaterial</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a68bfc749cd33e48219c3d7839cc8ddee" name="a68bfc749cd33e48219c3d7839cc8ddee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68bfc749cd33e48219c3d7839cc8ddee">&#9670;&#160;</a></span>ApplyWeather()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AWeather::ApplyWeather </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../dd/d9b/structFWeatherParameters.html">FWeatherParameters</a> &amp;&#160;</td>
+          <td class="paramname"><em>WeatherParameters</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>更新天气参数并将其通知到蓝图的事件 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d2/d0f/Weather_8cpp_source.html">Weather.cpp</a> 第 <a class="el" href="../../d2/d0f/Weather_8cpp_source.html#l00070">70</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d2/d0f/Weather_8cpp_source.html#l00035">CheckWeatherPostProcessEffects()</a>, <a class="el" href="../../dc/d22/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Weather_2WeatherParameters_8h_source.html#l00029">FWeatherParameters::Cloudiness</a>, <a class="el" href="../../dc/d22/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Weather_2WeatherParameters_8h_source.html#l00081">FWeatherParameters::DustStorm</a>, <a class="el" href="../../dc/d22/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Weather_2WeatherParameters_8h_source.html#l00053">FWeatherParameters::FogDensity</a>, <a class="el" href="../../dc/d22/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Weather_2WeatherParameters_8h_source.html#l00057">FWeatherParameters::FogDistance</a>, <a class="el" href="../../dc/d22/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Weather_2WeatherParameters_8h_source.html#l00061">FWeatherParameters::FogFalloff</a>, <a class="el" href="../../dc/d22/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Weather_2WeatherParameters_8h_source.html#l00073">FWeatherParameters::MieScatteringScale</a>, <a class="el" href="../../dc/d22/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Weather_2WeatherParameters_8h_source.html#l00033">FWeatherParameters::Precipitation</a>, <a class="el" href="../../dc/d22/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Weather_2WeatherParameters_8h_source.html#l00037">FWeatherParameters::PrecipitationDeposits</a>, <a class="el" href="../../dc/d22/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Weather_2WeatherParameters_8h_source.html#l00077">FWeatherParameters::RayleighScatteringScale</a>, <a class="el" href="../../de/d75/classAWeather.html#abfa22fbe6e2940b283a6b186aec0cd60">RefreshWeather()</a>, <a class="el" href="../../dc/d22/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Weather_2WeatherParameters_8h_source.html#l00069">FWeatherParameters::ScatteringIntensity</a>, <a class="el" href="../../d2/d0f/Weather_8cpp_source.html#l00111">SetWeather()</a>, <a class="el" href="../../dc/d22/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Weather_2WeatherParameters_8h_source.html#l00049">FWeatherParameters::SunAltitudeAngle</a>, <a class="el" href="../../dc/d22/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Weather_2WeatherParameters_8h_source.html#l00045">FWeatherParameters::SunAzimuthAngle</a>, <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp.html#a69d0a7232310b5ebaa51abb2b9945184">UE_LOG()</a>, <a class="el" href="../../d5/d65/Weather_8h_source.html#l00070">Weather</a>, <a class="el" href="../../dc/d22/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Weather_2WeatherParameters_8h_source.html#l00065">FWeatherParameters::Wetness</a> , 以及 <a class="el" href="../../dc/d22/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Weather_2WeatherParameters_8h_source.html#l00041">FWeatherParameters::WindIntensity</a>.</p>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../de/d75/classAWeather_a68bfc749cd33e48219c3d7839cc8ddee_cgraph.svg" width="646" height="200"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a924ac29b9a6ab92c8137da8661e2b35a" name="a924ac29b9a6ab92c8137da8661e2b35a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a924ac29b9a6ab92c8137da8661e2b35a">&#9670;&#160;</a></span>CheckWeatherPostProcessEffects()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AWeather::CheckWeatherPostProcessEffects </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d2/d0f/Weather_8cpp_source.html">Weather.cpp</a> 第 <a class="el" href="../../d2/d0f/Weather_8cpp_source.html#l00035">35</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d5/d65/Weather_8h_source.html#l00081">ActiveBlendables</a>, <a class="el" href="../../dc/d22/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Weather_2WeatherParameters_8h_source.html#l00081">FWeatherParameters::DustStorm</a>, <a class="el" href="../../d5/d65/Weather_8h_source.html#l00076">DustStormPostProcessMaterial</a>, <a class="el" href="../../d8/d95/SceneCaptureSensor_8h_source.html#l00385">ASceneCaptureSensor::GetCaptureComponent2D()</a>, <a class="el" href="../../dc/d22/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Weather_2WeatherParameters_8h_source.html#l00033">FWeatherParameters::Precipitation</a>, <a class="el" href="../../d5/d65/Weather_8h_source.html#l00073">PrecipitationPostProcessMaterial</a> , 以及 <a class="el" href="../../d5/d65/Weather_8h_source.html#l00070">Weather</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d2/d0f/Weather_8cpp_source.html#l00070">ApplyWeather()</a> , 以及 <a class="el" href="../../d2/d0f/Weather_8cpp_source.html#l00101">NotifyWeather()</a>.</p>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../de/d75/classAWeather_a924ac29b9a6ab92c8137da8661e2b35a_cgraph.svg" width="432" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../de/d75/classAWeather_a924ac29b9a6ab92c8137da8661e2b35a_icgraph.svg" width="423" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="aeb4e36445838b76fd98e2cc8188f4a04" name="aeb4e36445838b76fd98e2cc8188f4a04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb4e36445838b76fd98e2cc8188f4a04">&#9670;&#160;</a></span>GetCurrentWeather()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="../../dd/d9b/structFWeatherParameters.html">FWeatherParameters</a> &amp; AWeather::GetCurrentWeather </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>返回当前的 天气参数 WeatherParameters </p>
+
+<p class="definition">在文件 <a class="el" href="../../d5/d65/Weather_8h_source.html">Weather.h</a> 第 <a class="el" href="../../d5/d65/Weather_8h_source.html#l00040">40</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae5ef9535e1dca2f2b65da87eec4ed65d" name="ae5ef9535e1dca2f2b65da87eec4ed65d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5ef9535e1dca2f2b65da87eec4ed65d">&#9670;&#160;</a></span>GetDayNightCycle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool &amp; AWeather::GetDayNightCycle </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>返回昼夜循环是否有效（切换到夜间模式时自动 开/关 切换） </p>
+
+<p class="definition">在文件 <a class="el" href="../../d5/d65/Weather_8h_source.html">Weather.h</a> 第 <a class="el" href="../../d5/d65/Weather_8h_source.html#l00047">47</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9f4a4457b661e01f69aa787457203e4d" name="a9f4a4457b661e01f69aa787457203e4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f4a4457b661e01f69aa787457203e4d">&#9670;&#160;</a></span>NotifyWeather()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AWeather::NotifyWeather </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d3/d01/classASensor.html">ASensor</a> *&#160;</td>
+          <td class="paramname"><em>Sensor</em> = <code>nullptr</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>将天气通知到蓝图的事件 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d2/d0f/Weather_8cpp_source.html">Weather.cpp</a> 第 <a class="el" href="../../d2/d0f/Weather_8cpp_source.html#l00101">101</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d2/d0f/Weather_8cpp_source.html#l00035">CheckWeatherPostProcessEffects()</a>, <a class="el" href="../../de/d75/classAWeather.html#abfa22fbe6e2940b283a6b186aec0cd60">RefreshWeather()</a> , 以及 <a class="el" href="../../d5/d65/Weather_8h_source.html#l00070">Weather</a>.</p>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../de/d75/classAWeather_a9f4a4457b661e01f69aa787457203e4d_cgraph.svg" width="647" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="abfa22fbe6e2940b283a6b186aec0cd60" name="abfa22fbe6e2940b283a6b186aec0cd60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfa22fbe6e2940b283a6b186aec0cd60">&#9670;&#160;</a></span>RefreshWeather()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AWeather::RefreshWeather </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../dd/d9b/structFWeatherParameters.html">FWeatherParameters</a> &amp;&#160;</td>
+          <td class="paramname"><em>WeatherParameters</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d2/d0f/Weather_8cpp_source.html#l00070">ApplyWeather()</a> , 以及 <a class="el" href="../../d2/d0f/Weather_8cpp_source.html#l00101">NotifyWeather()</a>.</p>
+<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../de/d75/classAWeather_abfa22fbe6e2940b283a6b186aec0cd60_icgraph.svg" width="404" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a316f91248d3f27b4afa43c65205757fe" name="a316f91248d3f27b4afa43c65205757fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a316f91248d3f27b4afa43c65205757fe">&#9670;&#160;</a></span>SetDayNightCycle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AWeather::SetDayNightCycle </td>
+          <td>(</td>
+          <td class="paramtype">const bool &amp;&#160;</td>
+          <td class="paramname"><em>active</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>更新昼夜周期 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d2/d0f/Weather_8cpp_source.html">Weather.cpp</a> 第 <a class="el" href="../../d2/d0f/Weather_8cpp_source.html#l00117">117</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d5/d65/Weather_8h_source.html#l00086">DayNightCycle</a>.</p>
+
+</div>
+</div>
+<a id="a1d5e23c1fd032babebd0a258aa555cdf" name="a1d5e23c1fd032babebd0a258aa555cdf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d5e23c1fd032babebd0a258aa555cdf">&#9670;&#160;</a></span>SetWeather()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AWeather::SetWeather </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../dd/d9b/structFWeatherParameters.html">FWeatherParameters</a> &amp;&#160;</td>
+          <td class="paramname"><em>WeatherParameters</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>在不通知蓝图事件的情况下更新天气参数 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d2/d0f/Weather_8cpp_source.html">Weather.cpp</a> 第 <a class="el" href="../../d2/d0f/Weather_8cpp_source.html#l00111">111</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d5/d65/Weather_8h_source.html#l00070">Weather</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d2/d0f/Weather_8cpp_source.html#l00070">ApplyWeather()</a>.</p>
+<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../de/d75/classAWeather_a1d5e23c1fd032babebd0a258aa555cdf_icgraph.svg" width="378" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="ae5dc05317b30c103c9651972d33cde8d" name="ae5dc05317b30c103c9651972d33cde8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5dc05317b30c103c9651972d33cde8d">&#9670;&#160;</a></span>ActiveBlendables</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TMap&lt;UMaterial*, float&gt; AWeather::ActiveBlendables</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d5/d65/Weather_8h_source.html">Weather.h</a> 第 <a class="el" href="../../d5/d65/Weather_8h_source.html#l00081">81</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d2/d0f/Weather_8cpp_source.html#l00035">CheckWeatherPostProcessEffects()</a>.</p>
+
+</div>
+</div>
+<a id="aabe25e331c5321395f2a0e59f49fa2b8" name="aabe25e331c5321395f2a0e59f49fa2b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabe25e331c5321395f2a0e59f49fa2b8">&#9670;&#160;</a></span>DayNightCycle</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool AWeather::DayNightCycle = <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp.html#a930920b2bc42824a5c03be681830f4b2">true</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d5/d65/Weather_8h_source.html">Weather.h</a> 第 <a class="el" href="../../d5/d65/Weather_8h_source.html#l00086">86</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d2/d0f/Weather_8cpp_source.html#l00117">SetDayNightCycle()</a>.</p>
+
+</div>
+</div>
+<a id="aafc400e075bfa13367fe6a3a10f116b9" name="aafc400e075bfa13367fe6a3a10f116b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aafc400e075bfa13367fe6a3a10f116b9">&#9670;&#160;</a></span>DustStormPostProcessMaterial</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UMaterial* AWeather::DustStormPostProcessMaterial</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d5/d65/Weather_8h_source.html">Weather.h</a> 第 <a class="el" href="../../d5/d65/Weather_8h_source.html#l00076">76</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d2/d0f/Weather_8cpp_source.html#l00015">AWeather()</a> , 以及 <a class="el" href="../../d2/d0f/Weather_8cpp_source.html#l00035">CheckWeatherPostProcessEffects()</a>.</p>
+
+</div>
+</div>
+<a id="a7a5eb0c33d29bbbddcb586227b2a0fa9" name="a7a5eb0c33d29bbbddcb586227b2a0fa9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a5eb0c33d29bbbddcb586227b2a0fa9">&#9670;&#160;</a></span>PrecipitationPostProcessMaterial</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UMaterial* AWeather::PrecipitationPostProcessMaterial</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d5/d65/Weather_8h_source.html">Weather.h</a> 第 <a class="el" href="../../d5/d65/Weather_8h_source.html#l00073">73</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d2/d0f/Weather_8cpp_source.html#l00015">AWeather()</a> , 以及 <a class="el" href="../../d2/d0f/Weather_8cpp_source.html#l00035">CheckWeatherPostProcessEffects()</a>.</p>
+
+</div>
+</div>
+<a id="a2a2c853133523a07237c5b17296266a0" name="a2a2c853133523a07237c5b17296266a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a2c853133523a07237c5b17296266a0">&#9670;&#160;</a></span>Weather</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../dd/d9b/structFWeatherParameters.html">FWeatherParameters</a> AWeather::Weather</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d5/d65/Weather_8h_source.html">Weather.h</a> 第 <a class="el" href="../../d5/d65/Weather_8h_source.html#l00070">70</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d2/d0f/Weather_8cpp_source.html#l00070">ApplyWeather()</a>, <a class="el" href="../../d2/d0f/Weather_8cpp_source.html#l00035">CheckWeatherPostProcessEffects()</a>, <a class="el" href="../../d2/d0f/Weather_8cpp_source.html#l00101">NotifyWeather()</a> , 以及 <a class="el" href="../../d2/d0f/Weather_8cpp_source.html#l00111">SetWeather()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../d5/d65/Weather_8h_source.html">Weather.h</a></li>
+<li><a class="el" href="../../d2/d0f/Weather_8cpp_source.html">Weather.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

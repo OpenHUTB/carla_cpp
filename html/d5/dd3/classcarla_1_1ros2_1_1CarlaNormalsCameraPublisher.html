@@ -1,0 +1,1139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: carla::ros2::CarlaNormalsCameraPublisher类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../d9/d36/namespacecarla.html">carla</a></li><li class="navelem"><a class="el" href="../../d1/d4b/namespacecarla_1_1ros2.html">ros2</a></li><li class="navelem"><a class="el" href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html">CarlaNormalsCameraPublisher</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="../../d0/d27/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">carla::ros2::CarlaNormalsCameraPublisher类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="../../d1/d3c/CarlaNormalsCameraPublisher_8h_source.html">CarlaNormalsCameraPublisher.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 类 carla::ros2::CarlaNormalsCameraPublisher 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d6/de2/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher__inherit__graph.svg" width="182" height="124"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> carla::ros2::CarlaNormalsCameraPublisher 的协作图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../db/dc0/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher__coll__graph.svg" width="100%" height="469"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:ae53975f418165ec627508d6cbe277ac0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#ae53975f418165ec627508d6cbe277ac0">CarlaNormalsCameraPublisher</a> (<a class="el" href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html">CarlaNormalsCameraPublisher</a> &amp;&amp;)</td></tr>
+<tr class="memdesc:ae53975f418165ec627508d6cbe277ac0"><td class="mdescLeft">&#160;</td><td class="mdescRight">CarlaNormalsCameraPublisher的移动构造函数  <a href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#ae53975f418165ec627508d6cbe277ac0">更多...</a><br /></td></tr>
+<tr class="separator:ae53975f418165ec627508d6cbe277ac0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23b79c6703912dffaeead8442026790f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#a23b79c6703912dffaeead8442026790f">CarlaNormalsCameraPublisher</a> (const <a class="el" href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html">CarlaNormalsCameraPublisher</a> &amp;)</td></tr>
+<tr class="memdesc:a23b79c6703912dffaeead8442026790f"><td class="mdescLeft">&#160;</td><td class="mdescRight">CarlaNormalsCameraPublisher的拷贝构造函数  <a href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#a23b79c6703912dffaeead8442026790f">更多...</a><br /></td></tr>
+<tr class="separator:a23b79c6703912dffaeead8442026790f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33ce8fcd40527e87005f9040ca1d44d4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#a33ce8fcd40527e87005f9040ca1d44d4">CarlaNormalsCameraPublisher</a> (const char *ros_name=&quot;&quot;, const char *<a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a0f2175762993c5eec161b8f304c59bb5">parent</a>=&quot;&quot;)</td></tr>
+<tr class="memdesc:a33ce8fcd40527e87005f9040ca1d44d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">CarlaNormalsCameraPublisher的构造函数  <a href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#a33ce8fcd40527e87005f9040ca1d44d4">更多...</a><br /></td></tr>
+<tr class="separator:a33ce8fcd40527e87005f9040ca1d44d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c1c57ea59d32bb14546f4a536542dc2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#a4c1c57ea59d32bb14546f4a536542dc2">HasBeenInitialized</a> () const</td></tr>
+<tr class="memdesc:a4c1c57ea59d32bb14546f4a536542dc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查CarlaNormalsCameraPublisher是否已初始化。  <a href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#a4c1c57ea59d32bb14546f4a536542dc2">更多...</a><br /></td></tr>
+<tr class="separator:a4c1c57ea59d32bb14546f4a536542dc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a949995c73a6cbaf99f3dd7b4a770d8d5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#a949995c73a6cbaf99f3dd7b4a770d8d5">Init</a> ()</td></tr>
+<tr class="memdesc:a949995c73a6cbaf99f3dd7b4a770d8d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化CarlaNormalsCameraPublisher。  <a href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#a949995c73a6cbaf99f3dd7b4a770d8d5">更多...</a><br /></td></tr>
+<tr class="separator:a949995c73a6cbaf99f3dd7b4a770d8d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a327e0a6ef2c1215c0021548b3f2673a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#a327e0a6ef2c1215c0021548b3f2673a2">InitInfoData</a> (uint32_t x_offset, uint32_t y_offset, uint32_t height, uint32_t width, float fov, bool do_rectify)</td></tr>
+<tr class="memdesc:a327e0a6ef2c1215c0021548b3f2673a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化CameraInfo数据。  <a href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#a327e0a6ef2c1215c0021548b3f2673a2">更多...</a><br /></td></tr>
+<tr class="separator:a327e0a6ef2c1215c0021548b3f2673a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2ad38cf546506224c2315d61002fa53"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html">CarlaNormalsCameraPublisher</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#ae2ad38cf546506224c2315d61002fa53">operator=</a> (<a class="el" href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html">CarlaNormalsCameraPublisher</a> &amp;&amp;)</td></tr>
+<tr class="memdesc:ae2ad38cf546506224c2315d61002fa53"><td class="mdescLeft">&#160;</td><td class="mdescRight">移动赋值运算符重载  <a href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#ae2ad38cf546506224c2315d61002fa53">更多...</a><br /></td></tr>
+<tr class="separator:ae2ad38cf546506224c2315d61002fa53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c7bd4b89ac2380220f76b94c004e7b3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html">CarlaNormalsCameraPublisher</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#a7c7bd4b89ac2380220f76b94c004e7b3">operator=</a> (const <a class="el" href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html">CarlaNormalsCameraPublisher</a> &amp;)</td></tr>
+<tr class="memdesc:a7c7bd4b89ac2380220f76b94c004e7b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">赋值运算符重载  <a href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#a7c7bd4b89ac2380220f76b94c004e7b3">更多...</a><br /></td></tr>
+<tr class="separator:a7c7bd4b89ac2380220f76b94c004e7b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88fa721578fecf4bb29274c95d19ccfe"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#a88fa721578fecf4bb29274c95d19ccfe">Publish</a> ()</td></tr>
+<tr class="memdesc:a88fa721578fecf4bb29274c95d19ccfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">发布图像和相关信息  <a href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#a88fa721578fecf4bb29274c95d19ccfe">更多...</a><br /></td></tr>
+<tr class="separator:a88fa721578fecf4bb29274c95d19ccfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc9600030530d88d79c8f5eea3ca4089"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#acc9600030530d88d79c8f5eea3ca4089">SetCameraInfoData</a> (int32_t seconds, uint32_t nanoseconds)</td></tr>
+<tr class="memdesc:acc9600030530d88d79c8f5eea3ca4089"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置相机信息数据的时间戳  <a href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#acc9600030530d88d79c8f5eea3ca4089">更多...</a><br /></td></tr>
+<tr class="separator:acc9600030530d88d79c8f5eea3ca4089"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32b0bf05b6fae447681fc57bae5d5fb0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#a32b0bf05b6fae447681fc57bae5d5fb0">SetImageData</a> (int32_t seconds, uint32_t nanoseconds, <a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a> height, <a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a> width, const uint8_t *data)</td></tr>
+<tr class="memdesc:a32b0bf05b6fae447681fc57bae5d5fb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置图像数据  <a href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#a32b0bf05b6fae447681fc57bae5d5fb0">更多...</a><br /></td></tr>
+<tr class="separator:a32b0bf05b6fae447681fc57bae5d5fb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a272e93ae16b90cb4f48a540f9a5e6857"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#a272e93ae16b90cb4f48a540f9a5e6857">type</a> () const <a class="el" href="../../de/d7d/ActorData_8h.html#ad031bfd5a8a2ed7e66d03dafcc3b2858">override</a></td></tr>
+<tr class="separator:a272e93ae16b90cb4f48a540f9a5e6857"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae841d8c49990771edc94776861b9fa9c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#ae841d8c49990771edc94776861b9fa9c">~CarlaNormalsCameraPublisher</a> ()</td></tr>
+<tr class="memdesc:ae841d8c49990771edc94776861b9fa9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">CarlaNormalsCameraPublisher的析构函数  <a href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#ae841d8c49990771edc94776861b9fa9c">更多...</a><br /></td></tr>
+<tr class="separator:ae841d8c49990771edc94776861b9fa9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classcarla_1_1ros2_1_1CarlaPublisher')"><img src="../../closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html">carla::ros2::CarlaPublisher</a></td></tr>
+<tr class="memitem:a35f0eba9bdf0bf22524cc6dacf43f242 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a35f0eba9bdf0bf22524cc6dacf43f242">CarlaPublisher</a> ()=default</td></tr>
+<tr class="separator:a35f0eba9bdf0bf22524cc6dacf43f242 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77422f0594812a0371f8b04d70f19741 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a77422f0594812a0371f8b04d70f19741">frame_id</a> () const</td></tr>
+<tr class="separator:a77422f0594812a0371f8b04d70f19741 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9656d0fbe195ce57730f65ebb7e9e384 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a9656d0fbe195ce57730f65ebb7e9e384">frame_id</a> (std::string &amp;&amp;frame_id)</td></tr>
+<tr class="separator:a9656d0fbe195ce57730f65ebb7e9e384 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac81da28dc11b15e6ad27647887ef65bb inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#ac81da28dc11b15e6ad27647887ef65bb">name</a> () const</td></tr>
+<tr class="separator:ac81da28dc11b15e6ad27647887ef65bb inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53db6f09833e2dd625967218568f8ab4 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a53db6f09833e2dd625967218568f8ab4">name</a> (std::string &amp;&amp;name)</td></tr>
+<tr class="separator:a53db6f09833e2dd625967218568f8ab4 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f2175762993c5eec161b8f304c59bb5 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a0f2175762993c5eec161b8f304c59bb5">parent</a> () const</td></tr>
+<tr class="separator:a0f2175762993c5eec161b8f304c59bb5 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a49e93846cc2dff08ed65be07767b58 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a1a49e93846cc2dff08ed65be07767b58">parent</a> (std::string &amp;&amp;parent)</td></tr>
+<tr class="separator:a1a49e93846cc2dff08ed65be07767b58 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6448e2522e8b78dfe350aca123530089 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a6448e2522e8b78dfe350aca123530089">type</a> () const =0</td></tr>
+<tr class="separator:a6448e2522e8b78dfe350aca123530089 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52ddebcb6ae5afef2c9061bee7d6153a inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a52ddebcb6ae5afef2c9061bee7d6153a">~CarlaPublisher</a> ()=default</td></tr>
+<tr class="separator:a52ddebcb6ae5afef2c9061bee7d6153a inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:abdfcda10b0754f0a896a38b789b9458a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#abdfcda10b0754f0a896a38b789b9458a">InitImage</a> ()</td></tr>
+<tr class="memdesc:abdfcda10b0754f0a896a38b789b9458a"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化图像发布者。  <a href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#abdfcda10b0754f0a896a38b789b9458a">更多...</a><br /></td></tr>
+<tr class="separator:abdfcda10b0754f0a896a38b789b9458a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accf6790a74798e2b54779c77e4f2c6fe"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#accf6790a74798e2b54779c77e4f2c6fe">InitInfo</a> ()</td></tr>
+<tr class="memdesc:accf6790a74798e2b54779c77e4f2c6fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化CameraInfo发布者。  <a href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#accf6790a74798e2b54779c77e4f2c6fe">更多...</a><br /></td></tr>
+<tr class="separator:accf6790a74798e2b54779c77e4f2c6fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11fb52f0212407c653d30c1c0229ee72"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#a11fb52f0212407c653d30c1c0229ee72">PublishImage</a> ()</td></tr>
+<tr class="memdesc:a11fb52f0212407c653d30c1c0229ee72"><td class="mdescLeft">&#160;</td><td class="mdescRight">发布图像数据  <a href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#a11fb52f0212407c653d30c1c0229ee72">更多...</a><br /></td></tr>
+<tr class="separator:a11fb52f0212407c653d30c1c0229ee72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a893bc09b6c79d7abf387b12eca124281"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#a893bc09b6c79d7abf387b12eca124281">PublishInfo</a> ()</td></tr>
+<tr class="memdesc:a893bc09b6c79d7abf387b12eca124281"><td class="mdescLeft">&#160;</td><td class="mdescRight">发布图像信息  <a href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#a893bc09b6c79d7abf387b12eca124281">更多...</a><br /></td></tr>
+<tr class="separator:a893bc09b6c79d7abf387b12eca124281"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad25751176a86289daf32a5081fe5e900"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#ad25751176a86289daf32a5081fe5e900">SetData</a> (int32_t seconds, uint32_t nanoseconds, <a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a> height, <a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a> width, std::vector&lt; uint8_t &gt; &amp;&amp;data)</td></tr>
+<tr class="memdesc:ad25751176a86289daf32a5081fe5e900"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置图像数据  <a href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#ad25751176a86289daf32a5081fe5e900">更多...</a><br /></td></tr>
+<tr class="separator:ad25751176a86289daf32a5081fe5e900"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ce0e43da6c1622c2fffa63dd065f0c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#a3ce0e43da6c1622c2fffa63dd065f0c5">SetInfoRegionOfInterest</a> (uint32_t x_offset, uint32_t y_offset, uint32_t height, uint32_t width, bool do_rectify)</td></tr>
+<tr class="memdesc:a3ce0e43da6c1622c2fffa63dd065f0c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置感兴趣区域（Region of Interest, ROI）  <a href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#a3ce0e43da6c1622c2fffa63dd065f0c5">更多...</a><br /></td></tr>
+<tr class="separator:a3ce0e43da6c1622c2fffa63dd065f0c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:ae648a110cf279778f527578fb55d0b4f"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="../../df/d96/structcarla_1_1ros2_1_1CarlaNormalsCameraPublisherImpl.html">CarlaNormalsCameraPublisherImpl</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#ae648a110cf279778f527578fb55d0b4f">_impl</a></td></tr>
+<tr class="separator:ae648a110cf279778f527578fb55d0b4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afed521cf9ddc461079b5e23d54d4687b"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="../../d0/db3/structcarla_1_1ros2_1_1CarlaCameraInfoPublisherImpl.html">CarlaCameraInfoPublisherImpl</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#afed521cf9ddc461079b5e23d54d4687b">_impl_info</a></td></tr>
+<tr class="separator:afed521cf9ddc461079b5e23d54d4687b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher')"><img src="../../closed.png" alt="-"/>&#160;Protected 属性 继承自 <a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html">carla::ros2::CarlaPublisher</a></td></tr>
+<tr class="memitem:a611073f244645d4f6265a29b8a6e3b23 inherit pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a611073f244645d4f6265a29b8a6e3b23">_frame_id</a> = &quot;&quot;</td></tr>
+<tr class="separator:a611073f244645d4f6265a29b8a6e3b23 inherit pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26ab51e4d54b99c8c9347a3d245aac20 inherit pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a26ab51e4d54b99c8c9347a3d245aac20">_name</a> = &quot;&quot;</td></tr>
+<tr class="separator:a26ab51e4d54b99c8c9347a3d245aac20 inherit pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a284934d8f61aed2ddcb24c575240fb2f inherit pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a284934d8f61aed2ddcb24c575240fb2f">_parent</a> = &quot;&quot;</td></tr>
+<tr class="separator:a284934d8f61aed2ddcb24c575240fb2f inherit pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="../../d1/d3c/CarlaNormalsCameraPublisher_8h_source.html">CarlaNormalsCameraPublisher.h</a> 第 <a class="el" href="../../d1/d3c/CarlaNormalsCameraPublisher_8h_source.html#l00015">15</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a33ce8fcd40527e87005f9040ca1d44d4" name="a33ce8fcd40527e87005f9040ca1d44d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33ce8fcd40527e87005f9040ca1d44d4">&#9670;&#160;</a></span>CarlaNormalsCameraPublisher() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::ros2::CarlaNormalsCameraPublisher::CarlaNormalsCameraPublisher </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>ros_name</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>CarlaNormalsCameraPublisher的构造函数 </p>
+<p >初始化CarlaNormalsCameraPublisher对象，包括内部实现对象和相机信息对象。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ros_name</td><td>ROS节点名称 </td></tr>
+    <tr><td class="paramname">parent</td><td>父节点名称 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html">CarlaNormalsCameraPublisher.cpp</a> 第 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00494">494</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00031">carla::ros2::CarlaPublisher::_name</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00032">carla::ros2::CarlaPublisher::_parent</a> , 以及 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00017">carla::ros2::CarlaPublisher::parent()</a>.</p>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher_a33ce8fcd40527e87005f9040ca1d44d4_cgraph.svg" width="480" height="66"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ae841d8c49990771edc94776861b9fa9c" name="ae841d8c49990771edc94776861b9fa9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae841d8c49990771edc94776861b9fa9c">&#9670;&#160;</a></span>~CarlaNormalsCameraPublisher()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::ros2::CarlaNormalsCameraPublisher::~CarlaNormalsCameraPublisher </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>CarlaNormalsCameraPublisher的析构函数 </p>
+<p >清理资源，包括删除数据写入器、发布者、主题和参与者。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html">CarlaNormalsCameraPublisher.cpp</a> 第 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00505">505</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d1/d3c/CarlaNormalsCameraPublisher_8h_source.html#l00053">_impl</a> , 以及 <a class="el" href="../../d1/d3c/CarlaNormalsCameraPublisher_8h_source.html#l00054">_impl_info</a>.</p>
+
+</div>
+</div>
+<a id="a23b79c6703912dffaeead8442026790f" name="a23b79c6703912dffaeead8442026790f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23b79c6703912dffaeead8442026790f">&#9670;&#160;</a></span>CarlaNormalsCameraPublisher() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::ros2::CarlaNormalsCameraPublisher::CarlaNormalsCameraPublisher </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html">CarlaNormalsCameraPublisher</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>CarlaNormalsCameraPublisher的拷贝构造函数 </p>
+<p >创建一个新的CarlaNormalsCameraPublisher对象，并复制另一个对象的数据。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>要复制的CarlaNormalsCameraPublisher对象 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html">CarlaNormalsCameraPublisher.cpp</a> 第 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00543">543</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00030">carla::ros2::CarlaPublisher::_frame_id</a>, <a class="el" href="../../d1/d3c/CarlaNormalsCameraPublisher_8h_source.html#l00053">_impl</a>, <a class="el" href="../../d1/d3c/CarlaNormalsCameraPublisher_8h_source.html#l00054">_impl_info</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00031">carla::ros2::CarlaPublisher::_name</a> , 以及 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00032">carla::ros2::CarlaPublisher::_parent</a>.</p>
+
+</div>
+</div>
+<a id="ae53975f418165ec627508d6cbe277ac0" name="ae53975f418165ec627508d6cbe277ac0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae53975f418165ec627508d6cbe277ac0">&#9670;&#160;</a></span>CarlaNormalsCameraPublisher() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::ros2::CarlaNormalsCameraPublisher::CarlaNormalsCameraPublisher </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html">CarlaNormalsCameraPublisher</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>CarlaNormalsCameraPublisher的移动构造函数 </p>
+<p >创建一个新的CarlaNormalsCameraPublisher对象，并移动另一个对象的数据。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>要移动的CarlaNormalsCameraPublisher对象 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html">CarlaNormalsCameraPublisher.cpp</a> 第 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00574">574</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00030">carla::ros2::CarlaPublisher::_frame_id</a>, <a class="el" href="../../d1/d3c/CarlaNormalsCameraPublisher_8h_source.html#l00053">_impl</a>, <a class="el" href="../../d1/d3c/CarlaNormalsCameraPublisher_8h_source.html#l00054">_impl_info</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00031">carla::ros2::CarlaPublisher::_name</a> , 以及 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00032">carla::ros2::CarlaPublisher::_parent</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a4c1c57ea59d32bb14546f4a536542dc2" name="a4c1c57ea59d32bb14546f4a536542dc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c1c57ea59d32bb14546f4a536542dc2">&#9670;&#160;</a></span>HasBeenInitialized()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::ros2::CarlaNormalsCameraPublisher::HasBeenInitialized </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>检查CarlaNormalsCameraPublisher是否已初始化。 </p>
+<dl class="section return"><dt>返回</dt><dd>true 如果已初始化，否则返回false。 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html">CarlaNormalsCameraPublisher.cpp</a> 第 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00120">120</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d1/d3c/CarlaNormalsCameraPublisher_8h_source.html#l00054">_impl_info</a>.</p>
+
+</div>
+</div>
+<a id="a949995c73a6cbaf99f3dd7b4a770d8d5" name="a949995c73a6cbaf99f3dd7b4a770d8d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a949995c73a6cbaf99f3dd7b4a770d8d5">&#9670;&#160;</a></span>Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::ros2::CarlaNormalsCameraPublisher::Init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>初始化CarlaNormalsCameraPublisher。 </p>
+<dl class="section return"><dt>返回</dt><dd>true 如果初始化成功，否则返回false。 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html">CarlaNormalsCameraPublisher.cpp</a> 第 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00143">143</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00151">InitImage()</a> , 以及 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00206">InitInfo()</a>.</p>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher_a949995c73a6cbaf99f3dd7b4a770d8d5_cgraph.svg" width="407" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="abdfcda10b0754f0a896a38b789b9458a" name="abdfcda10b0754f0a896a38b789b9458a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abdfcda10b0754f0a896a38b789b9458a">&#9670;&#160;</a></span>InitImage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::ros2::CarlaNormalsCameraPublisher::InitImage </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>初始化图像发布者。 </p>
+<dl class="section return"><dt>返回</dt><dd>true 如果初始化成功，否则返回false。 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html">CarlaNormalsCameraPublisher.cpp</a> 第 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00151">151</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00030">carla::ros2::CarlaPublisher::_frame_id</a>, <a class="el" href="../../d1/d3c/CarlaNormalsCameraPublisher_8h_source.html#l00053">_impl</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00031">carla::ros2::CarlaPublisher::_name</a> , 以及 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00032">carla::ros2::CarlaPublisher::_parent</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00143">Init()</a>.</p>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher_abdfcda10b0754f0a896a38b789b9458a_icgraph.svg" width="407" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="accf6790a74798e2b54779c77e4f2c6fe" name="accf6790a74798e2b54779c77e4f2c6fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#accf6790a74798e2b54779c77e4f2c6fe">&#9670;&#160;</a></span>InitInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::ros2::CarlaNormalsCameraPublisher::InitInfo </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>初始化CameraInfo发布者。 </p>
+<dl class="section return"><dt>返回</dt><dd>true 如果初始化成功，否则返回false。 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html">CarlaNormalsCameraPublisher.cpp</a> 第 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00206">206</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00030">carla::ros2::CarlaPublisher::_frame_id</a>, <a class="el" href="../../d1/d3c/CarlaNormalsCameraPublisher_8h_source.html#l00054">_impl_info</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00031">carla::ros2::CarlaPublisher::_name</a> , 以及 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00032">carla::ros2::CarlaPublisher::_parent</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00143">Init()</a>.</p>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher_accf6790a74798e2b54779c77e4f2c6fe_icgraph.svg" width="392" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a327e0a6ef2c1215c0021548b3f2673a2" name="a327e0a6ef2c1215c0021548b3f2673a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a327e0a6ef2c1215c0021548b3f2673a2">&#9670;&#160;</a></span>InitInfoData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::ros2::CarlaNormalsCameraPublisher::InitInfoData </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>x_offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>y_offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>fov</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>do_rectify</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>初始化CameraInfo数据。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x_offset</td><td>X轴偏移量。 </td></tr>
+    <tr><td class="paramname">y_offset</td><td>Y轴偏移量。 </td></tr>
+    <tr><td class="paramname">height</td><td>图像高度。 </td></tr>
+    <tr><td class="paramname">width</td><td>图像宽度。 </td></tr>
+    <tr><td class="paramname">fov</td><td>视野角度。 </td></tr>
+    <tr><td class="paramname">do_rectify</td><td>是否进行校正。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html">CarlaNormalsCameraPublisher.cpp</a> 第 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00133">133</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d1/d3c/CarlaNormalsCameraPublisher_8h_source.html#l00054">_impl_info</a> , 以及 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00431">SetInfoRegionOfInterest()</a>.</p>
+<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher_a327e0a6ef2c1215c0021548b3f2673a2_cgraph.svg" width="100%" height="530"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ae2ad38cf546506224c2315d61002fa53" name="ae2ad38cf546506224c2315d61002fa53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2ad38cf546506224c2315d61002fa53">&#9670;&#160;</a></span>operator=() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html">CarlaNormalsCameraPublisher</a> &amp; carla::ros2::CarlaNormalsCameraPublisher::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html">CarlaNormalsCameraPublisher</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>移动赋值运算符重载 </p>
+<p >将另一个CarlaNormalsCameraPublisher对象的数据移动到当前对象。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>要移动的CarlaNormalsCameraPublisher对象 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>引用当前对象 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html">CarlaNormalsCameraPublisher.cpp</a> 第 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00590">590</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00030">carla::ros2::CarlaPublisher::_frame_id</a>, <a class="el" href="../../d1/d3c/CarlaNormalsCameraPublisher_8h_source.html#l00053">_impl</a>, <a class="el" href="../../d1/d3c/CarlaNormalsCameraPublisher_8h_source.html#l00054">_impl_info</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00031">carla::ros2::CarlaPublisher::_name</a> , 以及 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00032">carla::ros2::CarlaPublisher::_parent</a>.</p>
+
+</div>
+</div>
+<a id="a7c7bd4b89ac2380220f76b94c004e7b3" name="a7c7bd4b89ac2380220f76b94c004e7b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c7bd4b89ac2380220f76b94c004e7b3">&#9670;&#160;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html">CarlaNormalsCameraPublisher</a> &amp; carla::ros2::CarlaNormalsCameraPublisher::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html">CarlaNormalsCameraPublisher</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>赋值运算符重载 </p>
+<p >将另一个CarlaNormalsCameraPublisher对象的数据复制到当前对象。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>要复制的CarlaNormalsCameraPublisher对象 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>引用当前对象 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html">CarlaNormalsCameraPublisher.cpp</a> 第 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00558">558</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00030">carla::ros2::CarlaPublisher::_frame_id</a>, <a class="el" href="../../d1/d3c/CarlaNormalsCameraPublisher_8h_source.html#l00053">_impl</a>, <a class="el" href="../../d1/d3c/CarlaNormalsCameraPublisher_8h_source.html#l00054">_impl_info</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00031">carla::ros2::CarlaPublisher::_name</a> , 以及 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00032">carla::ros2::CarlaPublisher::_parent</a>.</p>
+
+</div>
+</div>
+<a id="a88fa721578fecf4bb29274c95d19ccfe" name="a88fa721578fecf4bb29274c95d19ccfe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88fa721578fecf4bb29274c95d19ccfe">&#9670;&#160;</a></span>Publish()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::ros2::CarlaNormalsCameraPublisher::Publish </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>发布图像和相关信息 </p>
+<p >该函数负责发布图像数据以及相关的图像信息。它首先尝试发布图像数据， 然后尝试发布图像信息。如果两者都成功发布，则返回true；否则返回false。</p>
+<dl class="section return"><dt>返回</dt><dd>bool 如果图像和相关信息都成功发布，则返回true；否则返回false。 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html">CarlaNormalsCameraPublisher.cpp</a> 第 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00262">262</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00273">PublishImage()</a> , 以及 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00342">PublishInfo()</a>.</p>
+<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher_a88fa721578fecf4bb29274c95d19ccfe_cgraph.svg" width="436" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a11fb52f0212407c653d30c1c0229ee72" name="a11fb52f0212407c653d30c1c0229ee72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11fb52f0212407c653d30c1c0229ee72">&#9670;&#160;</a></span>PublishImage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::ros2::CarlaNormalsCameraPublisher::PublishImage </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>发布图像数据 </p>
+<p >该函数尝试通过Fast-RTPS发布图像数据。根据返回码（rcode）判断发布是否成功， 并输出相应的错误信息。如果发布成功，返回true；否则返回false。</p>
+<dl class="section return"><dt>返回</dt><dd>bool 如果图像数据成功发布，则返回true；否则返回false。 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html">CarlaNormalsCameraPublisher.cpp</a> 第 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00273">273</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d1/d3c/CarlaNormalsCameraPublisher_8h_source.html#l00053">_impl</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00262">Publish()</a>.</p>
+<div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher_a11fb52f0212407c653d30c1c0229ee72_icgraph.svg" width="436" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a893bc09b6c79d7abf387b12eca124281" name="a893bc09b6c79d7abf387b12eca124281"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a893bc09b6c79d7abf387b12eca124281">&#9670;&#160;</a></span>PublishInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::ros2::CarlaNormalsCameraPublisher::PublishInfo </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>发布图像信息 </p>
+<p >该函数尝试通过Fast-RTPS发布图像信息。根据返回码（rcode）判断发布是否成功， 并输出相应的错误信息。如果发布成功，返回true；否则返回false。</p>
+<dl class="section return"><dt>返回</dt><dd>bool 如果图像信息成功发布，则返回true；否则返回false。 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html">CarlaNormalsCameraPublisher.cpp</a> 第 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00342">342</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d1/d3c/CarlaNormalsCameraPublisher_8h_source.html#l00054">_impl_info</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00262">Publish()</a>.</p>
+<div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher_a893bc09b6c79d7abf387b12eca124281_icgraph.svg" width="422" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="acc9600030530d88d79c8f5eea3ca4089" name="acc9600030530d88d79c8f5eea3ca4089"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc9600030530d88d79c8f5eea3ca4089">&#9670;&#160;</a></span>SetCameraInfoData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::ros2::CarlaNormalsCameraPublisher::SetCameraInfoData </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>seconds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>nanoseconds</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置相机信息数据的时间戳 </p>
+<p >设置相机信息的时间戳和帧ID。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">seconds</td><td>时间戳的秒部分 </td></tr>
+    <tr><td class="paramname">nanoseconds</td><td>时间戳的纳秒部分 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html">CarlaNormalsCameraPublisher.cpp</a> 第 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00476">476</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00030">carla::ros2::CarlaPublisher::_frame_id</a>, <a class="el" href="../../d1/d3c/CarlaNormalsCameraPublisher_8h_source.html#l00054">_impl_info</a>, <a class="el" href="../../d8/d38/Time_8cpp_source.html#l00183">builtin_interfaces::msg::Time::nanosec()</a> , 以及 <a class="el" href="../../d8/d38/Time_8cpp_source.html#l00152">builtin_interfaces::msg::Time::sec()</a>.</p>
+<div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher_acc9600030530d88d79c8f5eea3ca4089_cgraph.svg" width="443" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ad25751176a86289daf32a5081fe5e900" name="ad25751176a86289daf32a5081fe5e900"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad25751176a86289daf32a5081fe5e900">&#9670;&#160;</a></span>SetData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::ros2::CarlaNormalsCameraPublisher::SetData </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>seconds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>nanoseconds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a>&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a>&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; uint8_t &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置图像数据 </p>
+<p >设置图像的时间戳、帧ID、尺寸、编码和数据。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">seconds</td><td>时间戳的秒部分 </td></tr>
+    <tr><td class="paramname">nanoseconds</td><td>时间戳的纳秒部分 </td></tr>
+    <tr><td class="paramname">height</td><td>图像的高度 </td></tr>
+    <tr><td class="paramname">width</td><td>图像的宽度 </td></tr>
+    <tr><td class="paramname">data</td><td>图像数据的vector </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html">CarlaNormalsCameraPublisher.cpp</a> 第 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00451">451</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00030">carla::ros2::CarlaPublisher::_frame_id</a>, <a class="el" href="../../d1/d3c/CarlaNormalsCameraPublisher_8h_source.html#l00053">_impl</a>, <a class="el" href="../../d8/d38/Time_8cpp_source.html#l00183">builtin_interfaces::msg::Time::nanosec()</a> , 以及 <a class="el" href="../../d8/d38/Time_8cpp_source.html#l00152">builtin_interfaces::msg::Time::sec()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00414">SetImageData()</a>.</p>
+<div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher_ad25751176a86289daf32a5081fe5e900_cgraph.svg" width="376" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-12-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-12-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher_ad25751176a86289daf32a5081fe5e900_icgraph.svg" width="444" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a32b0bf05b6fae447681fc57bae5d5fb0" name="a32b0bf05b6fae447681fc57bae5d5fb0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32b0bf05b6fae447681fc57bae5d5fb0">&#9670;&#160;</a></span>SetImageData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::ros2::CarlaNormalsCameraPublisher::SetImageData </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>seconds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>nanoseconds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a>&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a>&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置图像数据 </p>
+<p >将传入的图像数据复制到内部存储，并调用SetData方法设置图像数据。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">seconds</td><td>时间戳的秒部分 </td></tr>
+    <tr><td class="paramname">nanoseconds</td><td>时间戳的纳秒部分 </td></tr>
+    <tr><td class="paramname">height</td><td>图像的高度 </td></tr>
+    <tr><td class="paramname">width</td><td>图像的宽度 </td></tr>
+    <tr><td class="paramname">data</td><td>指向图像数据的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html">CarlaNormalsCameraPublisher.cpp</a> 第 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00414">414</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00451">SetData()</a>.</p>
+<div id="dynsection-13" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-13-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-13-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-13-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher_a32b0bf05b6fae447681fc57bae5d5fb0_cgraph.svg" width="635" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a3ce0e43da6c1622c2fffa63dd065f0c5" name="a3ce0e43da6c1622c2fffa63dd065f0c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ce0e43da6c1622c2fffa63dd065f0c5">&#9670;&#160;</a></span>SetInfoRegionOfInterest()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::ros2::CarlaNormalsCameraPublisher::SetInfoRegionOfInterest </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>x_offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>y_offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>do_rectify</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置感兴趣区域（Region of Interest, ROI） </p>
+<p >设置图像的感兴趣区域，包括偏移量和尺寸，以及是否进行校正。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x_offset</td><td>ROI的X轴偏移量 </td></tr>
+    <tr><td class="paramname">y_offset</td><td>ROI的Y轴偏移量 </td></tr>
+    <tr><td class="paramname">height</td><td>ROI的高度 </td></tr>
+    <tr><td class="paramname">width</td><td>ROI的宽度 </td></tr>
+    <tr><td class="paramname">do_rectify</td><td>是否对ROI进行校正 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html">CarlaNormalsCameraPublisher.cpp</a> 第 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00431">431</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d1/d3c/CarlaNormalsCameraPublisher_8h_source.html#l00054">_impl_info</a>, <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00294">sensor_msgs::msg::RegionOfInterest::do_rectify()</a>, <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00238">sensor_msgs::msg::RegionOfInterest::height()</a>, <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00266">sensor_msgs::msg::RegionOfInterest::width()</a>, <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00182">sensor_msgs::msg::RegionOfInterest::x_offset()</a> , 以及 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00210">sensor_msgs::msg::RegionOfInterest::y_offset()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00133">InitInfoData()</a>.</p>
+<div id="dynsection-14" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-14-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-14-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-14-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher_a3ce0e43da6c1622c2fffa63dd065f0c5_cgraph.svg" width="446" height="307"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-15" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-15-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-15-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-15-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher_a3ce0e43da6c1622c2fffa63dd065f0c5_icgraph.svg" width="463" height="66"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a272e93ae16b90cb4f48a540f9a5e6857" name="a272e93ae16b90cb4f48a540f9a5e6857"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a272e93ae16b90cb4f48a540f9a5e6857">&#9670;&#160;</a></span>type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * carla::ros2::CarlaNormalsCameraPublisher::type </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a6448e2522e8b78dfe350aca123530089">carla::ros2::CarlaPublisher</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="../../d1/d3c/CarlaNormalsCameraPublisher_8h_source.html">CarlaNormalsCameraPublisher.h</a> 第 <a class="el" href="../../d1/d3c/CarlaNormalsCameraPublisher_8h_source.html#l00039">39</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="ae648a110cf279778f527578fb55d0b4f" name="ae648a110cf279778f527578fb55d0b4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae648a110cf279778f527578fb55d0b4f">&#9670;&#160;</a></span>_impl</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="../../df/d96/structcarla_1_1ros2_1_1CarlaNormalsCameraPublisherImpl.html">CarlaNormalsCameraPublisherImpl</a>&gt; carla::ros2::CarlaNormalsCameraPublisher::_impl</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/d3c/CarlaNormalsCameraPublisher_8h_source.html">CarlaNormalsCameraPublisher.h</a> 第 <a class="el" href="../../d1/d3c/CarlaNormalsCameraPublisher_8h_source.html#l00053">53</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00543">CarlaNormalsCameraPublisher()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00151">InitImage()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00558">operator=()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00273">PublishImage()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00451">SetData()</a> , 以及 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00505">~CarlaNormalsCameraPublisher()</a>.</p>
+
+</div>
+</div>
+<a id="afed521cf9ddc461079b5e23d54d4687b" name="afed521cf9ddc461079b5e23d54d4687b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afed521cf9ddc461079b5e23d54d4687b">&#9670;&#160;</a></span>_impl_info</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="../../d0/db3/structcarla_1_1ros2_1_1CarlaCameraInfoPublisherImpl.html">CarlaCameraInfoPublisherImpl</a>&gt; carla::ros2::CarlaNormalsCameraPublisher::_impl_info</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/d3c/CarlaNormalsCameraPublisher_8h_source.html">CarlaNormalsCameraPublisher.h</a> 第 <a class="el" href="../../d1/d3c/CarlaNormalsCameraPublisher_8h_source.html#l00054">54</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00543">CarlaNormalsCameraPublisher()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00120">HasBeenInitialized()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00206">InitInfo()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00133">InitInfoData()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00558">operator=()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00342">PublishInfo()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00476">SetCameraInfoData()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00431">SetInfoRegionOfInterest()</a> , 以及 <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00505">~CarlaNormalsCameraPublisher()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../d1/d3c/CarlaNormalsCameraPublisher_8h_source.html">CarlaNormalsCameraPublisher.h</a></li>
+<li><a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html">CarlaNormalsCameraPublisher.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

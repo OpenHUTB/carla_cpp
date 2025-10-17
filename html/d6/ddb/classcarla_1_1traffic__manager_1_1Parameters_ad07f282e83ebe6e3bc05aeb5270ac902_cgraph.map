@@ -1,0 +1,6 @@
+<map id="carla::traffic_manager::Parameters::SetPercentageSpeedDifference" name="carla::traffic_manager::Parameters::SetPercentageSpeedDifference">
+<area shape="rect" id="node1" title="设置车辆相对于速度限制的速度降低百分比 如果小于0，则表示速度增加百分比" alt="" coords="5,62,229,117"/>
+<area shape="rect" id="node2" href="$d7/d02/classcarla_1_1traffic__manager_1_1AtomicMap.html#aca33e055f34df3291e1e438db4b6ee95" title="添加或更新键值对。" alt="" coords="290,5,442,45"/>
+<area shape="rect" id="node3" href="$d7/d02/classcarla_1_1traffic__manager_1_1AtomicMap.html#a8225c0bae4d9cfecae85b18f1381d951" title="检查映射是否包含指定的键。" alt="" coords="291,69,441,109"/>
+<area shape="rect" id="node4" href="$d7/d02/classcarla_1_1traffic__manager_1_1AtomicMap.html#a450dd65aa7fda58fb16d265d355bc8c9" title="从映射中移除指定的键及其对应的值。" alt="" coords="277,133,455,173"/>
+</map>

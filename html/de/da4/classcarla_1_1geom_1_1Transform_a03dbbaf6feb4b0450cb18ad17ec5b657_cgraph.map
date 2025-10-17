@@ -1,0 +1,4 @@
+<map id="carla::geom::Transform::GetMatrix" name="carla::geom::Transform::GetMatrix">
+<area shape="rect" id="node1" title="计算变换的 4 矩阵形式 通过当前的旋转角度（偏航、俯仰、翻滚）以及位置信息，按照特定的数学变换规则计算出一个 4x4 的变换矩阵，用于更通用的线性变换操作表示" alt="" coords="5,5,159,45"/>
+<area shape="rect" id="node2" href="$d0/dea/classcarla_1_1geom_1_1Math.html#a2bd79912876dfbab9354c0bb841320e4" title=" " alt="" coords="207,5,336,45"/>
+</map>

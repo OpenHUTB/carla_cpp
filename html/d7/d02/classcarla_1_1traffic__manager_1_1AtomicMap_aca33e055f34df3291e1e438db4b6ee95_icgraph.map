@@ -1,0 +1,26 @@
+<map id="carla::traffic_manager::AtomicMap::AddEntry" name="carla::traffic_manager::AtomicMap::AddEntry">
+<area shape="rect" id="node1" title="添加或更新键值对。" alt="" coords="1408,556,1560,596"/>
+<area shape="rect" id="node2" href="$d6/ddb/classcarla_1_1traffic__manager_1_1Parameters.html#aad0a812ea7f565c835159d7687f89ae7" title="启用/禁用车辆的自动换道功能" alt="" coords="1118,5,1339,45"/>
+<area shape="rect" id="node3" href="$d6/ddb/classcarla_1_1traffic__manager_1_1Parameters.html#a7d31632e1429a4a14b52195c8fa92094" title="设置自定义路径的方法" alt="" coords="1132,69,1325,109"/>
+<area shape="rect" id="node4" href="$d6/ddb/classcarla_1_1traffic__manager_1_1Parameters.html#ab39a1c157b48086f38ab30d5b0a00c81" title="设置车辆的精确期望速度" alt="" coords="1127,133,1330,173"/>
+<area shape="rect" id="node5" href="$d6/ddb/classcarla_1_1traffic__manager_1_1Parameters.html#a6f4586e467eb640eea0d63b666601265" title="设置车辆应保持与前车距离的方法" alt="" coords="1112,198,1345,253"/>
+<area shape="rect" id="node6" href="$d6/ddb/classcarla_1_1traffic__manager_1_1Parameters.html#a1d4346fb57e3cabb66fd75a3073021a8" title="设置自定义路线的方法" alt="" coords="1125,277,1332,317"/>
+<area shape="rect" id="node7" href="$d6/ddb/classcarla_1_1traffic__manager_1_1Parameters.html#a8dc29e47a853c490a84cae27c37b6ed7" title="设置强制靠右行驶的概率的方法" alt="" coords="1105,341,1352,381"/>
+<area shape="rect" id="node8" href="$d6/ddb/classcarla_1_1traffic__manager_1_1Parameters.html#a16162b659f5fc0d607ca25fe3b21a562" title="设置车道偏移量，从中心线开始的位移 正值表示向右偏移，负值表示向左偏移" alt="" coords="1136,405,1321,445"/>
+<area shape="rect" id="node9" href="$d6/ddb/classcarla_1_1traffic__manager_1_1Parameters.html#a8d91e04f3a7d0573a4353cf965c5a125" title="设置无视其他车辆的概率的方法" alt="" coords="1117,470,1340,525"/>
+<area shape="rect" id="node10" href="$d6/ddb/classcarla_1_1traffic__manager_1_1Parameters.html#ac57276ad6c8ff5e6031b20538e3635a6" title="设置无视其他车辆的概率的方法" alt="" coords="1117,549,1340,603"/>
+<area shape="rect" id="node11" href="$d6/ddb/classcarla_1_1traffic__manager_1_1Parameters.html#a9efdf2f11d719f067f10a7d75d993f86" title="设置无视交通信号灯的概率的方法" alt="" coords="1097,628,1360,668"/>
+<area shape="rect" id="node12" href="$d6/ddb/classcarla_1_1traffic__manager_1_1Parameters.html#a79df28590f02d816384a62c92ebb309a" title="设置无视交通标志的概率的方法" alt="" coords="1099,692,1359,732"/>
+<area shape="rect" id="node13" href="$d6/ddb/classcarla_1_1traffic__manager_1_1Parameters.html#ad07f282e83ebe6e3bc05aeb5270ac902" title="设置车辆相对于速度限制的速度降低百分比 如果小于0，则表示速度增加百分比" alt="" coords="1117,757,1341,811"/>
+<area shape="rect" id="node14" href="$d6/ddb/classcarla_1_1traffic__manager_1_1Parameters.html#a4bfce47af58fe9b58898dc55e0737748" title="设置随机向左换道的概率的方法" alt="" coords="1118,835,1339,890"/>
+<area shape="rect" id="node15" href="$d6/ddb/classcarla_1_1traffic__manager_1_1Parameters.html#ad032c66eaacc9eb9bc2f166f6ed68b71" title="设置随机向右换道的概率的方法" alt="" coords="1129,914,1328,969"/>
+<area shape="rect" id="node16" href="$d6/ddb/classcarla_1_1traffic__manager_1_1Parameters.html#af4949e35394c740a36509dcf52e1f33a" title="设置是否自动更新车辆灯光状态的方法" alt="" coords="1125,993,1332,1047"/>
+<area shape="rect" id="node17" href="$d6/ddb/classcarla_1_1traffic__manager_1_1Parameters.html#a5d3d88964cd7b988585d3276e692cfa2" title="更新已设置路线的方法" alt="" coords="1115,1072,1343,1112"/>
+<area shape="rect" id="node23" href="$d6/ddb/classcarla_1_1traffic__manager_1_1Parameters.html#a4390412aa0025680771e33f4737d007b" title="更新已设置的点列表的方法" alt="" coords="1123,1136,1334,1176"/>
+<area shape="rect" id="node18" href="$d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#a22a54c0476fface2f2838a56a75fbc90" title=" " alt="" coords="841,1072,1049,1112"/>
+<area shape="rect" id="node19" href="$d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#acf066b922ba5c21c6b6ee23d35731d91" title="更新方法。" alt="" coords="615,1104,793,1144"/>
+<area shape="rect" id="node20" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a6d67cce3d0e5a48056645270364fe637" title="启动线程以顺序运行交通管理器 &#160;&#160;此方法将创建一个新线程（如果尚未创建），并在该线程中顺序运行交通管理器的逻辑" alt="" coords="392,1104,567,1144"/>
+<area shape="rect" id="node21" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a1ffbdb0bed64f385437d2820a90286d0" title="启动交通管理器 &#160;&#160;此方法用于启动TrafficManagerLocal，开始其管理交通的功能" alt="" coords="199,1097,344,1151"/>
+<area shape="rect" id="node22" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a75976d36f4213ab24e79e3ea2dcd280a" title="私有构造函数，用于单例生命周期管理" alt="" coords="5,1097,151,1151"/>
+<area shape="rect" id="node24" href="$d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#a4cce09a8116d4faf0f718fb24d1c3191" title=" " alt="" coords="845,1136,1046,1176"/>
+</map>

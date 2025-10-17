@@ -1,0 +1,52 @@
+<map id="carla::Buffer::begin" name="carla::Buffer::begin">
+<area shape="rect" id="node1" title=" " alt="" coords="1189,785,1316,811"/>
+<area shape="rect" id="node2" href="$d3/da0/classcarla_1_1sensor_1_1RawData.html#ad29c6a9698aa66f593286f5e6fc601ea" title="指向传感器生成的数据的开始迭代器。" alt="" coords="987,721,1141,761"/>
+<area shape="rect" id="node49" href="$d0/d0a/classcarla_1_1Buffer.html#ae66cddd62d01d0663827010305f2ffb3" title=" " alt="" coords="1005,785,1123,811"/>
+<area shape="rect" id="node50" href="$d9/d36/namespacecarla.html#aed73873636da4f0dc2943cf87e24ecb1" title=" " alt="" coords="1005,835,1123,860"/>
+<area shape="rect" id="node3" href="$d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html#ad4106c884d01f339c75bf33f480da7d2" title=" " alt="" coords="782,481,909,521"/>
+<area shape="rect" id="node12" href="$d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html#a402615b6d9b50f138f8925fb12d92697" title=" " alt="" coords="782,585,909,625"/>
+<area shape="rect" id="node16" href="$d3/da0/classcarla_1_1sensor_1_1RawData.html#a9387ab968d74b0c67e6c71610d61fca9" title="检索指向包含传感器生成的数据的内存的指针。" alt="" coords="768,649,923,689"/>
+<area shape="rect" id="node17" href="$db/ddd/classcarla_1_1sensor_1_1s11n_1_1DVSEventArraySerializer.html#a2ec616399df6f265a6371c30f8ebde6d" title=" " alt="" coords="760,713,931,768"/>
+<area shape="rect" id="node22" href="$d8/da1/classcarla_1_1sensor_1_1s11n_1_1GBufferFloatSerializer.html#a816110e356749956dad377d40b94e71f" title=" " alt="" coords="768,792,923,847"/>
+<area shape="rect" id="node23" href="$d9/d9a/classcarla_1_1sensor_1_1s11n_1_1GBufferUint8Serializer.html#a18dfeb895871e5e9ee046af43004f8dc" title=" " alt="" coords="767,871,923,925"/>
+<area shape="rect" id="node24" href="$db/dba/classcarla_1_1sensor_1_1s11n_1_1ImageSerializer.html#aa3fdfba42660f9865b1967194a34b755" title=" " alt="" coords="752,949,939,1004"/>
+<area shape="rect" id="node29" href="$dc/d6a/classcarla_1_1sensor_1_1s11n_1_1LidarSerializer.html#ae5a49baca70ce28ef427df4e6a9c9be1" title=" " alt="" coords="756,1028,935,1083"/>
+<area shape="rect" id="node35" href="$d6/dcb/classcarla_1_1sensor_1_1s11n_1_1NormalsImageSerializer.html#a269fcbb305cc4e0c7a3d663cdd4a5f6a" title=" " alt="" coords="762,1107,929,1161"/>
+<area shape="rect" id="node36" href="$d1/d0f/classcarla_1_1sensor_1_1s11n_1_1OpticalFlowImageSerializer.html#adabbff9dbd476a4b3d0670d3b9562c20" title=" " alt="" coords="752,1185,939,1240"/>
+<area shape="rect" id="node37" href="$d2/ddd/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarSerializer.html#ab68ae9b756e680f15b810a9300b79d74" title=" " alt="" coords="763,1264,928,1319"/>
+<area shape="rect" id="node40" href="$da/d5d/classcarla_1_1sensor_1_1s11n_1_1EpisodeStateSerializer.html#ab34ec071fbffbe3786858ca8e02eff3a" title=" " alt="" coords="766,1355,925,1409"/>
+<area shape="rect" id="node42" href="$da/de4/classcarla_1_1sensor_1_1s11n_1_1CollisionEventSerializer.html#a371a9104f135008ece300eaf69f41934" title=" " alt="" coords="512,5,675,60"/>
+<area shape="rect" id="node43" href="$d0/d49/classcarla_1_1sensor_1_1s11n_1_1GnssSerializer.html#af954d847f754091fb560deab43dd85c4" title=" " alt="" coords="503,84,684,139"/>
+<area shape="rect" id="node45" href="$dc/da1/classcarla_1_1sensor_1_1s11n_1_1IMUSerializer.html#ad393288dca1aba7bb57c55dff16b24b5" title=" " alt="" coords="506,163,681,217"/>
+<area shape="rect" id="node46" href="$d9/d82/classcarla_1_1sensor_1_1s11n_1_1ObstacleDetectionEventSerializer.html#aaf400069620524e3367aa7bdb51dc0ee" title=" " alt="" coords="483,241,704,296"/>
+<area shape="rect" id="node48" href="$d3/da0/classcarla_1_1sensor_1_1RawData.html#ae79dc5e8f8cee2257efa411c4490e5ff" title="传感器生成的数据的字节大小。" alt="" coords="768,243,923,283"/>
+<area shape="rect" id="node4" href="$d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html#a0bbb02616c862c8969d94feac57dc8fd" title=" " alt="" coords="530,321,657,361"/>
+<area shape="rect" id="node5" href="$d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html#aaba8587c9e8b3bfab47ab14b92fe2c11" title=" " alt="" coords="530,513,657,553"/>
+<area shape="rect" id="node8" href="$d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html#a45922732dcb2e5735e430eb0927ba1b2" title=" " alt="" coords="530,385,657,425"/>
+<area shape="rect" id="node9" href="$d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html#ae81805629a78702b2ff0992fd3b97419" title=" " alt="" coords="530,449,657,489"/>
+<area shape="rect" id="node10" href="$d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html#aa74c92285dda9ebeba4094ef12b6f50b" title=" " alt="" coords="530,577,657,617"/>
+<area shape="rect" id="node6" href="$d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html#a6da385e09a9a25e1bc70f415af353e24" title=" " alt="" coords="244,458,371,498"/>
+<area shape="rect" id="node7" href="$d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html#ac5afe29e1647fd161dfafe6f3aed9508" title=" " alt="" coords="5,519,132,559"/>
+<area shape="rect" id="node11" href="$d5/dbf/classcarla_1_1client_1_1detail_1_1EpisodeState.html#a176983fe6d1cb512c433fcd4167fd0f6" title=" " alt="" coords="213,522,401,562"/>
+<area shape="rect" id="node13" href="$d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html#a49be88916960e7a74f84c11fe6a55008" title=" " alt="" coords="530,641,657,681"/>
+<area shape="rect" id="node14" href="$d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html#a577c4ef3bd76c1bf0014583d3fee2456" title=" " alt="" coords="530,705,657,745"/>
+<area shape="rect" id="node15" href="$d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html#a5a945846c5fc30209f87704750c09a74" title=" " alt="" coords="244,637,371,677"/>
+<area shape="rect" id="node18" href="$df/dc1/classcarla_1_1sensor_1_1data_1_1DVSEventArray.html#a1570b7b009d7024ba0e1eb3bbdb91864" title=" " alt="" coords="500,769,687,809"/>
+<area shape="rect" id="node19" href="$df/dc1/classcarla_1_1sensor_1_1data_1_1DVSEventArray.html#aec6b812c9d3fd541d7cb1361ef4935d6" title="获取图像的水平视野角度（以度为单位）" alt="" coords="205,701,410,741"/>
+<area shape="rect" id="node20" href="$df/dc1/classcarla_1_1sensor_1_1data_1_1DVSEventArray.html#aabe2886c6aa8e629f4f41e312099791b" title="获取图像的高度（以像素为单位）" alt="" coords="216,765,399,805"/>
+<area shape="rect" id="node21" href="$df/dc1/classcarla_1_1sensor_1_1data_1_1DVSEventArray.html#aee582abd82970258bc69dbdc0c9bffc4" title="获取图像的宽度（以像素为单位）" alt="" coords="218,829,397,869"/>
+<area shape="rect" id="node25" href="$df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#afdc0f33247d9775258c2cf82a64d8d33" title=" " alt="" coords="512,957,675,997"/>
+<area shape="rect" id="node26" href="$df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#a4532cc15de5d50006dd3d90d14dfca8a" title="Get horizontal field of view of the image in degrees." alt="" coords="217,893,397,933"/>
+<area shape="rect" id="node27" href="$df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#a9862785df08e15410044833f9b5e9d1e" title="Get image height in pixels." alt="" coords="228,957,387,997"/>
+<area shape="rect" id="node28" href="$df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#a882f2a8224953695857c2aab3d26dc7d" title="Get image width in pixels." alt="" coords="231,1021,384,1061"/>
+<area shape="rect" id="node30" href="$df/d8d/classcarla_1_1sensor_1_1data_1_1LidarMeasurement.html#ac6874dd8456f4ad5d9c0bb19a1f411c8" title=" " alt="" coords="522,1072,665,1127"/>
+<area shape="rect" id="node34" href="$dc/d6a/classcarla_1_1sensor_1_1s11n_1_1LidarSerializer.html#ae69b82b5fb55ff03e29e98ba2d7fd149" title=" " alt="" coords="504,1151,683,1205"/>
+<area shape="rect" id="node31" href="$df/d8d/classcarla_1_1sensor_1_1data_1_1LidarMeasurement.html#a1fb1199206f56c0c0a0930a430062a42" title="Number of channels of the Lidar." alt="" coords="236,1085,379,1140"/>
+<area shape="rect" id="node32" href="$df/d8d/classcarla_1_1sensor_1_1data_1_1LidarMeasurement.html#a1996c9cfc5aa0b983dc0934332153824" title="Horizontal angle of the Lidar at the time of the measurement." alt="" coords="236,1164,379,1219"/>
+<area shape="rect" id="node33" href="$df/d8d/classcarla_1_1sensor_1_1data_1_1LidarMeasurement.html#a14bf4bcfe4c08d2940f65a217adf6e9f" title="Retrieve the number of points that channel generated." alt="" coords="236,1243,379,1297"/>
+<area shape="rect" id="node38" href="$d0/dd5/classcarla_1_1sensor_1_1data_1_1SemanticLidarMeasurement.html#a2aac891ee4484400a8ecca70c7236d2f" title=" " alt="" coords="498,1229,689,1284"/>
+<area shape="rect" id="node39" href="$d2/ddd/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarSerializer.html#aa62f50268366605137597a22efc437fa" title=" " alt="" coords="511,1308,676,1363"/>
+<area shape="rect" id="node41" href="$d4/d68/classcarla_1_1sensor_1_1data_1_1RawEpisodeState.html#a41c627f3fa5914603df00ae7c2acb82e" title=" " alt="" coords="493,1387,693,1427"/>
+<area shape="rect" id="node44" href="$d2/ddb/classcarla_1_1sensor_1_1data_1_1GnssMeasurement.html#a6216a0e4b8b495ae05f1b946ef0a5a13" title=" " alt="" coords="180,91,435,131"/>
+<area shape="rect" id="node47" href="$d3/d28/classcarla_1_1sensor_1_1data_1_1ObstacleDetectionEvent.html#adde998de0188eb44d081865d9e2f4257" title=" " alt="" coords="223,241,391,296"/>
+</map>

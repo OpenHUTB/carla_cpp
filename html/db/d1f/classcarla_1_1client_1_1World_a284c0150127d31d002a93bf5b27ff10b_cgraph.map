@@ -1,0 +1,4 @@
+<map id="carla::client::World::ResetAllTrafficLights" name="carla::client::World::ResetAllTrafficLights">
+<area shape="rect" id="node1" title="根据OpenDRIVE标志ID获取对应的交通灯的智能指针。 重置所有交通信号灯的状态，可能将其恢复到初始默认状态或者按照一定规则重新初始化状态， 用于在模拟过程中重新调整交通灯的整体情况，比如模拟交通拥..." alt="" coords="5,5,153,45"/>
+<area shape="rect" id="node2" href="$d1/dd3/classcarla_1_1client_1_1detail_1_1EpisodeProxyImpl.html#aaca857645fbeb6546b4a03a663bb65af" title="与 TryLock 相同，但永远不会返回 nullptr。" alt="" coords="201,5,368,45"/>
+</map>

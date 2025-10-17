@@ -1,0 +1,282 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: ThreadPool.h 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">ThreadPool.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d3/d43/ThreadPool_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// de Barcelona (UAB).</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// This work is licensed under the terms of the MIT license.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//这段代码定义了一个名为 ThreadPool 的类，它实现了基于 Boost.Asio 的线程池。ThreadPool 类的主要功能是通过 Boost.Asio 提供的 io_context 来管理任务的异步执行。</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="../../d5/db3/MoveHandler_8h.html">carla/MoveHandler.h</a>&quot;</span>   <span class="comment">// 引入 MoveHandler，用于在 Boost.Asio 中包装任务</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="../../d4/dd8/LibCarla_2source_2carla_2NonCopyable_8h.html">carla/NonCopyable.h</a>&quot;</span>   <span class="comment">// 引入 NonCopyable 类，确保 ThreadPool 不可拷贝</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="../../d6/d99/ThreadGroup_8h.html">carla/ThreadGroup.h</a>&quot;</span>   <span class="comment">// 引入 ThreadGroup，用于管理工作线程</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="../../d2/d33/Time_8h.html">carla/Time.h</a>&quot;</span>          <span class="comment">// 引入 Time 类，用于时间相关操作</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;boost/asio/io_context.hpp&gt;</span>   <span class="comment">// 引入 Boost.Asio 的 io_context 类，用于调度异步任务</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;boost/asio/post.hpp&gt;</span>    <span class="comment">// 引入 Boost.Asio 的 post 函数，用于将任务发布到 io_context</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;future&gt;</span>    <span class="comment">// 引入 future，用于支持异步任务的结果获取</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;thread&gt;</span>    <span class="comment">// 引入 thread，用于获取硬件并发线程数</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;type_traits&gt;</span>   <span class="comment">// 引入 type_traits，用于类型推断和 SFINAE</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d9/d36/namespacecarla.html">carla</a> {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment"></span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">  /// 基于Boost.Asio的上下文 </span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="../../da/d72/classcarla_1_1ThreadPool.html">   24</a></span><span class="comment"></span>  <span class="keyword">class </span><a class="code hl_class" href="../../da/d72/classcarla_1_1ThreadPool.html">ThreadPool</a> : <span class="keyword">private</span> <a class="code hl_class" href="../../d4/d8b/classcarla_1_1NonCopyable.html">NonCopyable</a> {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="../../da/d72/classcarla_1_1ThreadPool.html#a2a6dcd33b07967b3dc2c8a823a9d8ad6">   27</a></span>    <a class="code hl_function" href="../../da/d72/classcarla_1_1ThreadPool.html#a2a6dcd33b07967b3dc2c8a823a9d8ad6">ThreadPool</a>() : <a class="code hl_variable" href="../../da/d72/classcarla_1_1ThreadPool.html#a04772cafdb55b67048c1b38b9a8b17e0">_work_to_do</a>(<a class="code hl_variable" href="../../da/d72/classcarla_1_1ThreadPool.html#aaaff3d89b08fca1c2762a3957c8da21c">_io_context</a>) {}</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment"></span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment">    /// 停止线程池ThreadPool并合并所有线程</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="../../da/d72/classcarla_1_1ThreadPool.html#a4f819c54f8883d7f8b2cda45a625904d">   30</a></span><span class="comment"></span>    <a class="code hl_function" href="../../da/d72/classcarla_1_1ThreadPool.html#a4f819c54f8883d7f8b2cda45a625904d">~ThreadPool</a>() {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>      <a class="code hl_function" href="../../da/d72/classcarla_1_1ThreadPool.html#a1f30458f6c2521335acf4c775a8c94f1">Stop</a>();</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    }</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="comment">// 返回底层的 Boost.Asio io_context 对象</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="../../da/d72/classcarla_1_1ThreadPool.html#ae592d7d2cdf960a5d9d15f64c2c09605">   35</a></span>    <span class="keyword">auto</span> &amp;<a class="code hl_function" href="../../da/d72/classcarla_1_1ThreadPool.html#ae592d7d2cdf960a5d9d15f64c2c09605">io_context</a>() {</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="../../da/d72/classcarla_1_1ThreadPool.html#aaaff3d89b08fca1c2762a3957c8da21c">_io_context</a>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    }</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="comment">// 模板函数，向线程池中发布一个任务</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="comment">// FunctorT 是可调用对象类型，ResultT 是该可调用对象的返回值类型</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> FunctorT, <span class="keyword">typename</span> ResultT = <span class="keyword">typename</span> std::result_of&lt;FunctorT()&gt;::type&gt;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="../../da/d72/classcarla_1_1ThreadPool.html#afb8a9f8ad708d7a3519c1b5346ac8995">   41</a></span>    std::future&lt;ResultT&gt; <a class="code hl_function" href="../../da/d72/classcarla_1_1ThreadPool.html#afb8a9f8ad708d7a3519c1b5346ac8995">Post</a>(<a class="code hl_class" href="../../d5/d37/classFunctorT.html">FunctorT</a> &amp;&amp;functor) {</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment">// 定义一个模板函数Post，它接受一个可调用对象FunctorT作为参数。</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">// ResultT是默认模板参数，通过std::result_of&lt;FunctorT()&gt;::type推导得到，表示FunctorT()调用的返回类型。</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment">// 注意：C++17及以后版本推荐使用std::invoke_result&lt;FunctorT()&gt;代替std::result_of&lt;FunctorT()&gt;，因为std::result_of已被弃用。</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>      <span class="keyword">auto</span> task = std::packaged_task&lt;ResultT()&gt;(std::forward&lt;FunctorT&gt;(functor)); </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  <span class="comment">// 创建一个std::packaged_task对象，该对象封装了传入的可调用对象functor。</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  <span class="comment">// std::packaged_task&lt;ResultT()&gt;表示这是一个不接受参数并返回ResultT类型结果的任务。</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>      <span class="keyword">auto</span> future = task.get_future();</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="comment">// 通过task.get_future()获取一个与task关联的std::future对象。</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  <span class="comment">// 这个future对象将用于获取task执行的结果。</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>      boost::asio::post(<a class="code hl_variable" href="../../da/d72/classcarla_1_1ThreadPool.html#aaaff3d89b08fca1c2762a3957c8da21c">_io_context</a>, <a class="code hl_function" href="../../d9/d36/namespacecarla.html#acd3cdf36e0ce00b21de5747a97581094">carla::MoveHandler</a>(task));</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <span class="comment">// 使用boost::asio的post函数将task（封装在carla::MoveHandler中）异步地提交到_io_context中执行。</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  <span class="comment">// _io_context是一个事件循环，用于管理异步任务的执行。</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <span class="comment">// carla::MoveHandler可能是一个适配器，用于确保task可以被boost::asio正确处理。</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  <span class="comment">// 注意：_io_context是Post函数外部定义的一个成员变量或全局变量，这里假设它已经被正确初始化。</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>      <span class="keywordflow">return</span> future;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  <span class="comment">// 返回与task关联的future对象，允许调用者在未来某个时间点获取执行结果。</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    }</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="comment">// 启动线程以异步运行任务，可以指定线程数量</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="comment">// 如果没有指定数量，则使用硬件的并发线程数</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="../../da/d72/classcarla_1_1ThreadPool.html#a44af52924b5a2dbd0699808a4394f30f">   62</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../da/d72/classcarla_1_1ThreadPool.html#a44af52924b5a2dbd0699808a4394f30f">AsyncRun</a>(<span class="keywordtype">size_t</span> worker_threads) {</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>      <span class="comment">// 定义一个成员函数AsyncRun，它接受一个size_t类型的参数worker_threads。</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>      <span class="comment">// 这个参数指定了要创建并用于异步运行Run方法的工作线程数量。</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>      <a class="code hl_variable" href="../../da/d72/classcarla_1_1ThreadPool.html#a10535faf463219bd5d2dd8bf0b9c465a">_workers</a>.<a class="code hl_function" href="../../db/d71/classcarla_1_1ThreadGroup.html#a7c76ec6db944947c149985627442434b">CreateThreads</a>(worker_threads, [<span class="keyword">this</span>]() { <a class="code hl_function" href="../../da/d72/classcarla_1_1ThreadPool.html#a75cacb83795788d41db12ebf27a25ee3">Run</a>(); });</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>   <span class="comment">// 使用_workers成员变量（可能是一个管理线程池的对象）的CreateThreads方法来创建指定数量的工作线程。</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="comment">// CreateThreads方法接受两个参数：一个是线程数量，另一个是每个线程要执行的函数或可调用对象。</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  <span class="comment">// 在这里，使用了一个lambda表达式作为第二个参数，这个lambda表达式捕获了当前对象（通过this指针），并调用了Run方法。</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    }</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  <span class="comment">// 注意：这个注释假设_workers是一个已经定义并初始化的成员变量，它提供了创建和管理线程的功能。</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  <span class="comment">// 同时，也假设Run是当前类的一个成员函数，它将被异步地在工作线程中执行。</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  <span class="comment">// 此外，由于使用了[this]捕获列表，这个lambda表达式能够访问当前对象的成员变量和方法。</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  <span class="comment">// 当CreateThreads方法被调用时，它会启动指定数量的线程，并且每个线程都会执行提供的lambda表达式，</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  <span class="comment">// 进而调用Run方法。这样，Run方法就会在多个线程中异步地执行。</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>   <span class="comment">// 调用 AsyncRun 函数，不指定线程数量，默认使用硬件并发线程数</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="../../da/d72/classcarla_1_1ThreadPool.html#a28fc2c843786b588aeed931eb4072f47">   77</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../da/d72/classcarla_1_1ThreadPool.html#a28fc2c843786b588aeed931eb4072f47">AsyncRun</a>() {</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> <span class="comment">// 定义一个无参成员函数AsyncRun。</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="comment">// 这个函数的目的是启动异步操作，但不需要调用者指定线程数量。</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="comment">// 相反，它会使用std::thread::hardware_concurrency()来获取系统的硬件并发级别（通常是CPU核心的数量），</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="comment">// 并以此作为线程数量来调用另一个AsyncRun重载版本。</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>      <a class="code hl_function" href="../../da/d72/classcarla_1_1ThreadPool.html#a28fc2c843786b588aeed931eb4072f47">AsyncRun</a>(std::thread::hardware_concurrency());</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    }  </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  <span class="comment">// 调用重载的AsyncRun函数，传入std::thread::hardware_concurrency()作为线程数量参数。</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  <span class="comment">// std::thread::hardware_concurrency()返回一个unsigned int值，表示系统建议的并发线程数。</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>  <span class="comment">// 这个值通常等于CPU的物理核心数，但在某些情况下可能不同（例如，在具有超线程技术的CPU上）。</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> <span class="comment">// 注意：这里的注释假设已经定义了一个接受size_t类型参数的AsyncRun重载版本，</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  <span class="comment">// 并且该版本函数会根据提供的线程数量来异步执行某些操作。</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>  <span class="comment">// 此外，还假设std::thread::hardware_concurrency()的返回值是合理的，</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>  <span class="comment">// 即不为0，因为传入0可能导致未定义的行为（取决于AsyncRun重载版本的具体实现）。</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>  </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  <span class="comment">// 在实际应用中，使用std::thread::hardware_concurrency()作为线程数量是一种常见做法，</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>  <span class="comment">// 因为它可以根据系统的硬件能力来优化并行任务的执行。</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>  <span class="comment">// 然而，开发者也应该注意，这个值只是一个建议，并且可能不适合所有情况。</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>  <span class="comment">// 在某些情况下，可能需要手动调整线程数量以达到最佳性能。</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>  <span class="comment">// 在当前线程中运行任务，会阻塞当前线程直到线程池停止</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="../../da/d72/classcarla_1_1ThreadPool.html#a75cacb83795788d41db12ebf27a25ee3">   97</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../da/d72/classcarla_1_1ThreadPool.html#a75cacb83795788d41db12ebf27a25ee3">Run</a>() {</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="comment">// 定义一个成员函数Run，它不接受任何参数。</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="comment">// 这个函数的目的是启动_io_context的事件循环或I/O服务，并让它一直运行，直到它被显式停止（例如，通过调用某个停止方法）或所有已提交的任务都已完成。</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>      <a class="code hl_variable" href="../../da/d72/classcarla_1_1ThreadPool.html#aaaff3d89b08fca1c2762a3957c8da21c">_io_context</a>.run();</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  <span class="comment">// 调用_io_context的run方法。</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>  <span class="comment">// run方法会启动事件循环，允许异步任务在这个循环中执行。</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>  <span class="comment">// 一旦run方法被调用，它将一直阻塞当前线程，直到事件循环被显式停止或所有任务都已完成。</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    }</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>  <span class="comment">// 注意：这里的注释基于一些合理的假设，因为_io_context的具体类型没有在代码片段中给出。</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>  <span class="comment">// 在实际代码中，_io_context可能是一个封装了事件循环或I/O服务功能的对象，它提供了运行、停止和管理异步任务的能力。</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>  <span class="comment">// 例如，在Boost.Asio库中，_io_context可能是一个boost::asio::io_context对象，它的run方法用于启动异步操作的事件循环。</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>  </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>  <span class="comment">// 当run方法被调用时，它会启动_io_context的事件循环，并允许异步任务（如网络I/O操作、定时器回调等）在这个循环中执行。</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>  <span class="comment">// 事件循环会一直运行，直到它被显式停止（例如，通过调用_io_context的stop方法）或所有已提交的任务都已完成。</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  <span class="comment">// 这使得Run函数成为启动和管理异步操作的关键部分。</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>  <span class="comment">// 在当前线程中运行任务一段时间，如果在指定时间内没有停止，则退出</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="../../da/d72/classcarla_1_1ThreadPool.html#a7588fc07ff0c5ae8dfd85b353b58f81a">  114</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../da/d72/classcarla_1_1ThreadPool.html#a7588fc07ff0c5ae8dfd85b353b58f81a">RunFor</a>(<a class="code hl_class" href="../../d2/d2e/classcarla_1_1time__duration.html">time_duration</a> duration) {</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="comment">// 定义一个成员函数RunFor，它接受一个time_duration类型的参数duration。</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="comment">// 这个参数指定了_io_context应该运行的时间长度。</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="comment">// 假设time_duration是一个封装了时间长度信息的自定义类型，它提供了to_chrono()方法以转换为标准库的时间点或时间间隔类型。</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>      <a class="code hl_variable" href="../../da/d72/classcarla_1_1ThreadPool.html#aaaff3d89b08fca1c2762a3957c8da21c">_io_context</a>.run_for(duration.<a class="code hl_function" href="../../d2/d2e/classcarla_1_1time__duration.html#af66703163258b65c0ca8a0ef071e3b73">to_chrono</a>());</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>   <span class="comment">// 调用_io_context的run_for方法，并传入duration.to_chrono()作为参数。</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>  <span class="comment">// run_for方法会让_io_context运行，直到指定的时间间隔结束或所有任务都已完成。</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>  <span class="comment">// duration.to_chrono()应该返回一个std::chrono库中的时间间隔类型，如std::chrono::milliseconds、std::chrono::seconds等。</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    }</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>  <span class="comment">// 注意：这里的注释基于一些合理的假设，因为time_duration和_io_context的具体类型没有在代码片段中给出。</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>  <span class="comment">// 在实际代码中，_io_context可能是一个封装了事件循环或I/O服务功能的对象，它提供了运行、停止和管理异步任务的能力。</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>  <span class="comment">// time_duration可能是一个自定义类型，用于表示时间长度，它应该提供了与std::chrono库互操作的能力。</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>  </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>  <span class="comment">// 当run_for方法被调用时，它会启动_io_context的事件循环，并允许异步任务在这个循环中执行。</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>  <span class="comment">// 事件循环会一直运行，直到指定的时间间隔结束，或者所有已提交的任务都已完成（以先到者为准）。</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>  <span class="comment">// 这可以用于限制异步操作的最大执行时间，或者在需要定期执行某些操作时提供一个时间窗口。</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>  <span class="comment">// 停止线程池并合并所有线程</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="../../da/d72/classcarla_1_1ThreadPool.html#a1f30458f6c2521335acf4c775a8c94f1">  132</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../da/d72/classcarla_1_1ThreadPool.html#a1f30458f6c2521335acf4c775a8c94f1">Stop</a>() {</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="comment">// 构造函数可能在这里被省略了，但它应该初始化_io_context、_work_to_do和_workers成员。</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="comment">// 特别是，_work_to_do可能需要与_io_context关联，以保持事件循环的运行，</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="comment">// 而_workers可能需要启动一定数量的工作线程。</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="comment">// 停止异步I/O操作并等待所有工作线程完成。</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>      <a class="code hl_variable" href="../../da/d72/classcarla_1_1ThreadPool.html#aaaff3d89b08fca1c2762a3957c8da21c">_io_context</a>.stop();</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>        <span class="comment">// 调用_io_context的stop方法，请求停止事件循环。</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>        <span class="comment">// 这通常会导致run方法返回，但已经提交的任务可能仍然会执行完成。</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>      <a class="code hl_variable" href="../../da/d72/classcarla_1_1ThreadPool.html#a10535faf463219bd5d2dd8bf0b9c465a">_workers</a>.<a class="code hl_function" href="../../db/d71/classcarla_1_1ThreadGroup.html#a6283adfc17891f20fb1e2ceed79606dd">JoinAll</a>();</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>        <span class="comment">// 调用_workers的JoinAll方法，等待所有工作线程完成。</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>        <span class="comment">// 这确保了所有线程在Stop方法返回之前都已经结束执行。</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>        <span class="comment">// 注意：JoinAll方法的具体实现和行为取决于ThreadGroup类的定义。</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    }</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>        <span class="comment">// 可能还有其他成员函数，如启动异步操作、添加任务等，但在这里没有给出。</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno"><a class="line" href="../../da/d72/classcarla_1_1ThreadPool.html#aaaff3d89b08fca1c2762a3957c8da21c">  150</a></span>    boost::asio::io_context <a class="code hl_variable" href="../../da/d72/classcarla_1_1ThreadPool.html#aaaff3d89b08fca1c2762a3957c8da21c">_io_context</a>;</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span><span class="comment">// Boost.Asio库中的io_context对象，用于管理异步I/O操作和事件循环。</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="../../da/d72/classcarla_1_1ThreadPool.html#a04772cafdb55b67048c1b38b9a8b17e0">  152</a></span>    boost::asio::io_context::work <a class="code hl_variable" href="../../da/d72/classcarla_1_1ThreadPool.html#a04772cafdb55b67048c1b38b9a8b17e0">_work_to_do</a>;</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span><span class="comment">// 与_io_context关联的工作对象，用于保持事件循环的运行。</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="comment">// 当_work_to_do存在时，即使没有其他显式任务，_io_context的run方法也会继续运行。</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="comment">// 这通常用于确保在异步操作完成之前事件循环不会退出。</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="../../da/d72/classcarla_1_1ThreadPool.html#a10535faf463219bd5d2dd8bf0b9c465a">  156</a></span>    <a class="code hl_class" href="../../db/d71/classcarla_1_1ThreadGroup.html">ThreadGroup</a> <a class="code hl_variable" href="../../da/d72/classcarla_1_1ThreadPool.html#a10535faf463219bd5d2dd8bf0b9c465a">_workers</a>;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="comment">// 自定义的ThreadGroup类型，用于管理一组工作线程。</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="comment">// 这些线程可能用于执行与_io_context关联的异步任务。</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="comment">// ThreadGroup的具体实现和行为取决于其定义，但通常它会提供启动、停止和等待线程完成的方法。</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>  };</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="comment">// 注意：这里的代码片段是一个类的部分定义，并且假设了一些外部类型和成员函数的存在。</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="comment">// 特别是，ThreadGroup类型没有在代码片段中定义，因此它的具体实现和行为是未知的。</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="comment">// 同样，构造函数和其他可能的成员函数也没有在代码片段中给出。</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>} <span class="comment">// namespace carla</span></div>
+<div class="ttc" id="aLibCarla_2source_2carla_2NonCopyable_8h_html"><div class="ttname"><a href="../../d4/dd8/LibCarla_2source_2carla_2NonCopyable_8h.html">NonCopyable.h</a></div></div>
+<div class="ttc" id="aMoveHandler_8h_html"><div class="ttname"><a href="../../d5/db3/MoveHandler_8h.html">MoveHandler.h</a></div></div>
+<div class="ttc" id="aThreadGroup_8h_html"><div class="ttname"><a href="../../d6/d99/ThreadGroup_8h.html">ThreadGroup.h</a></div></div>
+<div class="ttc" id="aTime_8h_html"><div class="ttname"><a href="../../d2/d33/Time_8h.html">Time.h</a></div></div>
+<div class="ttc" id="aclassFunctorT_html"><div class="ttname"><a href="../../d5/d37/classFunctorT.html">FunctorT</a></div></div>
+<div class="ttc" id="aclasscarla_1_1NonCopyable_html"><div class="ttname"><a href="../../d4/d8b/classcarla_1_1NonCopyable.html">carla::NonCopyable</a></div><div class="ttdoc">这个类用于禁止拷贝和移动构造函数及赋值操作</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/dd8/LibCarla_2source_2carla_2NonCopyable_8h_source.html#l00012">LibCarla/source/carla/NonCopyable.h:12</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ThreadGroup_html"><div class="ttname"><a href="../../db/d71/classcarla_1_1ThreadGroup.html">carla::ThreadGroup</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d99/ThreadGroup_8h_source.html#l00018">ThreadGroup.h:18</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ThreadGroup_html_a6283adfc17891f20fb1e2ceed79606dd"><div class="ttname"><a href="../../db/d71/classcarla_1_1ThreadGroup.html#a6283adfc17891f20fb1e2ceed79606dd">carla::ThreadGroup::JoinAll</a></div><div class="ttdeci">void JoinAll()</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d99/ThreadGroup_8h_source.html#l00044">ThreadGroup.h:44</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ThreadGroup_html_a7c76ec6db944947c149985627442434b"><div class="ttname"><a href="../../db/d71/classcarla_1_1ThreadGroup.html#a7c76ec6db944947c149985627442434b">carla::ThreadGroup::CreateThreads</a></div><div class="ttdeci">void CreateThreads(size_t count, F functor)</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d99/ThreadGroup_8h_source.html#l00036">ThreadGroup.h:36</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ThreadPool_html"><div class="ttname"><a href="../../da/d72/classcarla_1_1ThreadPool.html">carla::ThreadPool</a></div><div class="ttdoc">基于Boost.Asio的上下文</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d43/ThreadPool_8h_source.html#l00024">ThreadPool.h:24</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ThreadPool_html_a04772cafdb55b67048c1b38b9a8b17e0"><div class="ttname"><a href="../../da/d72/classcarla_1_1ThreadPool.html#a04772cafdb55b67048c1b38b9a8b17e0">carla::ThreadPool::_work_to_do</a></div><div class="ttdeci">boost::asio::io_context::work _work_to_do</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d43/ThreadPool_8h_source.html#l00152">ThreadPool.h:152</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ThreadPool_html_a10535faf463219bd5d2dd8bf0b9c465a"><div class="ttname"><a href="../../da/d72/classcarla_1_1ThreadPool.html#a10535faf463219bd5d2dd8bf0b9c465a">carla::ThreadPool::_workers</a></div><div class="ttdeci">ThreadGroup _workers</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d43/ThreadPool_8h_source.html#l00156">ThreadPool.h:156</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ThreadPool_html_a1f30458f6c2521335acf4c775a8c94f1"><div class="ttname"><a href="../../da/d72/classcarla_1_1ThreadPool.html#a1f30458f6c2521335acf4c775a8c94f1">carla::ThreadPool::Stop</a></div><div class="ttdeci">void Stop()</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d43/ThreadPool_8h_source.html#l00132">ThreadPool.h:132</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ThreadPool_html_a28fc2c843786b588aeed931eb4072f47"><div class="ttname"><a href="../../da/d72/classcarla_1_1ThreadPool.html#a28fc2c843786b588aeed931eb4072f47">carla::ThreadPool::AsyncRun</a></div><div class="ttdeci">void AsyncRun()</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d43/ThreadPool_8h_source.html#l00077">ThreadPool.h:77</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ThreadPool_html_a2a6dcd33b07967b3dc2c8a823a9d8ad6"><div class="ttname"><a href="../../da/d72/classcarla_1_1ThreadPool.html#a2a6dcd33b07967b3dc2c8a823a9d8ad6">carla::ThreadPool::ThreadPool</a></div><div class="ttdeci">ThreadPool()</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d43/ThreadPool_8h_source.html#l00027">ThreadPool.h:27</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ThreadPool_html_a44af52924b5a2dbd0699808a4394f30f"><div class="ttname"><a href="../../da/d72/classcarla_1_1ThreadPool.html#a44af52924b5a2dbd0699808a4394f30f">carla::ThreadPool::AsyncRun</a></div><div class="ttdeci">void AsyncRun(size_t worker_threads)</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d43/ThreadPool_8h_source.html#l00062">ThreadPool.h:62</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ThreadPool_html_a4f819c54f8883d7f8b2cda45a625904d"><div class="ttname"><a href="../../da/d72/classcarla_1_1ThreadPool.html#a4f819c54f8883d7f8b2cda45a625904d">carla::ThreadPool::~ThreadPool</a></div><div class="ttdeci">~ThreadPool()</div><div class="ttdoc">停止线程池ThreadPool并合并所有线程</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d43/ThreadPool_8h_source.html#l00030">ThreadPool.h:30</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ThreadPool_html_a7588fc07ff0c5ae8dfd85b353b58f81a"><div class="ttname"><a href="../../da/d72/classcarla_1_1ThreadPool.html#a7588fc07ff0c5ae8dfd85b353b58f81a">carla::ThreadPool::RunFor</a></div><div class="ttdeci">void RunFor(time_duration duration)</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d43/ThreadPool_8h_source.html#l00114">ThreadPool.h:114</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ThreadPool_html_a75cacb83795788d41db12ebf27a25ee3"><div class="ttname"><a href="../../da/d72/classcarla_1_1ThreadPool.html#a75cacb83795788d41db12ebf27a25ee3">carla::ThreadPool::Run</a></div><div class="ttdeci">void Run()</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d43/ThreadPool_8h_source.html#l00097">ThreadPool.h:97</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ThreadPool_html_aaaff3d89b08fca1c2762a3957c8da21c"><div class="ttname"><a href="../../da/d72/classcarla_1_1ThreadPool.html#aaaff3d89b08fca1c2762a3957c8da21c">carla::ThreadPool::_io_context</a></div><div class="ttdeci">boost::asio::io_context _io_context</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d43/ThreadPool_8h_source.html#l00150">ThreadPool.h:150</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ThreadPool_html_ae592d7d2cdf960a5d9d15f64c2c09605"><div class="ttname"><a href="../../da/d72/classcarla_1_1ThreadPool.html#ae592d7d2cdf960a5d9d15f64c2c09605">carla::ThreadPool::io_context</a></div><div class="ttdeci">auto &amp; io_context()</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d43/ThreadPool_8h_source.html#l00035">ThreadPool.h:35</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ThreadPool_html_afb8a9f8ad708d7a3519c1b5346ac8995"><div class="ttname"><a href="../../da/d72/classcarla_1_1ThreadPool.html#afb8a9f8ad708d7a3519c1b5346ac8995">carla::ThreadPool::Post</a></div><div class="ttdeci">std::future&lt; ResultT &gt; Post(FunctorT &amp;&amp;functor)</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d43/ThreadPool_8h_source.html#l00041">ThreadPool.h:41</a></div></div>
+<div class="ttc" id="aclasscarla_1_1time__duration_html"><div class="ttname"><a href="../../d2/d2e/classcarla_1_1time__duration.html">carla::time_duration</a></div><div class="ttdoc">Positive time duration up to milliseconds resolution.</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d33/Time_8h_source.html#l00019">Time.h:19</a></div></div>
+<div class="ttc" id="aclasscarla_1_1time__duration_html_af66703163258b65c0ca8a0ef071e3b73"><div class="ttname"><a href="../../d2/d2e/classcarla_1_1time__duration.html#af66703163258b65c0ca8a0ef071e3b73">carla::time_duration::to_chrono</a></div><div class="ttdeci">constexpr auto to_chrono() const</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d33/Time_8h_source.html#l00052">Time.h:52</a></div></div>
+<div class="ttc" id="anamespacecarla_html"><div class="ttname"><a href="../../d9/d36/namespacecarla.html">carla</a></div><div class="ttdoc">CARLA模拟器的主命名空间。</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d4f/Carla_8cpp_source.html#l00139">Carla.cpp:139</a></div></div>
+<div class="ttc" id="anamespacecarla_html_acd3cdf36e0ce00b21de5747a97581094"><div class="ttname"><a href="../../d9/d36/namespacecarla.html#acd3cdf36e0ce00b21de5747a97581094">carla::MoveHandler</a></div><div class="ttdeci">auto MoveHandler(FunctorT &amp;&amp;func)</div><div class="ttdoc">下面是一种hack，用于绕过Asio库的限制，使其能够接受仅可移动的处理程序。 如果Asio试图复制一个仅可移动的处理程序，那么编译时可能不会立即报错</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/db3/MoveHandler_8h_source.html#l00034">MoveHandler.h:34</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

@@ -1,0 +1,1576 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: moodycamel::ConcurrentQueue&lt; T, Traits &gt; 模板类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../db/dc8/namespacemoodycamel.html">moodycamel</a></li><li class="navelem"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">ConcurrentQueue</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public 类型</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-static-attribs">静态 Public 属性</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="../../d7/d3c/classmoodycamel_1_1ConcurrentQueue-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">moodycamel::ConcurrentQueue&lt; T, Traits &gt; 模板类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 类 moodycamel::ConcurrentQueue&lt; T, Traits &gt; 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d4/dc2/classmoodycamel_1_1ConcurrentQueue__inherit__graph.svg" width="214" height="154"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> moodycamel::ConcurrentQueue&lt; T, Traits &gt; 的协作图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d7/d71/classmoodycamel_1_1ConcurrentQueue__coll__graph.svg" width="526" height="271"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public 类型</h2></td></tr>
+<tr class="memitem:acbd2c9d220d40f51177cfad5754aa7b5"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../de/deb/structmoodycamel_1_1ConsumerToken.html">::moodycamel::ConsumerToken</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#acbd2c9d220d40f51177cfad5754aa7b5">consumer_token_t</a></td></tr>
+<tr class="separator:acbd2c9d220d40f51177cfad5754aa7b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad68d536c896de4e839dd95225e7deea3"><td class="memItemLeft" align="right" valign="top">typedef Traits::index_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ad68d536c896de4e839dd95225e7deea3">index_t</a></td></tr>
+<tr class="separator:ad68d536c896de4e839dd95225e7deea3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a741ef2316bcd1e8cbdeafdc36ad90d83"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../d1/dbb/structmoodycamel_1_1ProducerToken.html">::moodycamel::ProducerToken</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a741ef2316bcd1e8cbdeafdc36ad90d83">producer_token_t</a></td></tr>
+<tr class="separator:a741ef2316bcd1e8cbdeafdc36ad90d83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0b73313ed107d313b55c8a77be19b28"><td class="memItemLeft" align="right" valign="top">typedef Traits::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a></td></tr>
+<tr class="separator:ac0b73313ed107d313b55c8a77be19b28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:ae908c026d0eb0591ca6f8f5518f7ffdf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ae908c026d0eb0591ca6f8f5518f7ffdf">ConcurrentQueue</a> (<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">ConcurrentQueue</a> &amp;&amp;other) <a class="el" href="../../de/dad/ConcurrentQueue_8h.html#a144c527b7ec41a7a3f64e8f4d3852ad5">MOODYCAMEL_NOEXCEPT</a></td></tr>
+<tr class="separator:ae908c026d0eb0591ca6f8f5518f7ffdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b4b08c6b6db7bf0df041619d133171c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a1b4b08c6b6db7bf0df041619d133171c">ConcurrentQueue</a> (<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">ConcurrentQueue</a> const &amp;) <a class="el" href="../../de/dad/ConcurrentQueue_8h.html#a967f46a809b842ffccc5058223140ca0">MOODYCAMEL_DELETE_FUNCTION</a></td></tr>
+<tr class="separator:a1b4b08c6b6db7bf0df041619d133171c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c07fb51a9cd1baaec9d0f1a079d83cd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a2c07fb51a9cd1baaec9d0f1a079d83cd">ConcurrentQueue</a> (<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a> capacity=6 *<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ae555aae96010307e7991b1028b41cfb8">BLOCK_SIZE</a>)</td></tr>
+<tr class="separator:a2c07fb51a9cd1baaec9d0f1a079d83cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad327feb7a7e861051d1dfd61e2ffa1df"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ad327feb7a7e861051d1dfd61e2ffa1df">ConcurrentQueue</a> (<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a> minCapacity, <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a> maxExplicitProducers, <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a> maxImplicitProducers)</td></tr>
+<tr class="separator:ad327feb7a7e861051d1dfd61e2ffa1df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e27b67c2aa7b4fc2eb0777fa6bd7cbc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a0e27b67c2aa7b4fc2eb0777fa6bd7cbc">enqueue</a> (<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a741ef2316bcd1e8cbdeafdc36ad90d83">producer_token_t</a> const &amp;token, T &amp;&amp;item)</td></tr>
+<tr class="separator:a0e27b67c2aa7b4fc2eb0777fa6bd7cbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b5882e6e7a053e27427709f11094dae"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a0b5882e6e7a053e27427709f11094dae">enqueue</a> (<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a741ef2316bcd1e8cbdeafdc36ad90d83">producer_token_t</a> const &amp;token, T const &amp;item)</td></tr>
+<tr class="separator:a0b5882e6e7a053e27427709f11094dae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a36bd689aeaffd635416a4279566198"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a4a36bd689aeaffd635416a4279566198">enqueue</a> (T &amp;&amp;item)</td></tr>
+<tr class="separator:a4a36bd689aeaffd635416a4279566198"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aceaa7271014aa901829e3ed1b1005d65"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#aceaa7271014aa901829e3ed1b1005d65">enqueue</a> (T const &amp;item)</td></tr>
+<tr class="separator:aceaa7271014aa901829e3ed1b1005d65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57b0aa33a19538a7c97d839fbf0d8459"><td class="memTemplParams" colspan="2">template&lt;typename It &gt; </td></tr>
+<tr class="memitem:a57b0aa33a19538a7c97d839fbf0d8459"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a57b0aa33a19538a7c97d839fbf0d8459">enqueue_bulk</a> (It itemFirst, <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a> count)</td></tr>
+<tr class="separator:a57b0aa33a19538a7c97d839fbf0d8459"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61a4b16a77535cc57fa3c76fb5ee3fba"><td class="memTemplParams" colspan="2">template&lt;typename It &gt; </td></tr>
+<tr class="memitem:a61a4b16a77535cc57fa3c76fb5ee3fba"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a61a4b16a77535cc57fa3c76fb5ee3fba">enqueue_bulk</a> (<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a741ef2316bcd1e8cbdeafdc36ad90d83">producer_token_t</a> const &amp;token, It itemFirst, <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a> count)</td></tr>
+<tr class="separator:a61a4b16a77535cc57fa3c76fb5ee3fba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abce8e204950aa2f7668c0cb4af2cdfd8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">ConcurrentQueue</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#abce8e204950aa2f7668c0cb4af2cdfd8">operator=</a> (<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">ConcurrentQueue</a> &amp;&amp;other) <a class="el" href="../../de/dad/ConcurrentQueue_8h.html#a144c527b7ec41a7a3f64e8f4d3852ad5">MOODYCAMEL_NOEXCEPT</a></td></tr>
+<tr class="separator:abce8e204950aa2f7668c0cb4af2cdfd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a378eb0bbe9ed755db54f93bd316d6c51"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">ConcurrentQueue</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a378eb0bbe9ed755db54f93bd316d6c51">operator=</a> (<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">ConcurrentQueue</a> const &amp;) <a class="el" href="../../de/dad/ConcurrentQueue_8h.html#a967f46a809b842ffccc5058223140ca0">MOODYCAMEL_DELETE_FUNCTION</a></td></tr>
+<tr class="separator:a378eb0bbe9ed755db54f93bd316d6c51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c1c42c76a8218896a4d76efed142b2c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a7c1c42c76a8218896a4d76efed142b2c">swap</a> (<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">ConcurrentQueue</a> &amp;other) <a class="el" href="../../de/dad/ConcurrentQueue_8h.html#a144c527b7ec41a7a3f64e8f4d3852ad5">MOODYCAMEL_NOEXCEPT</a></td></tr>
+<tr class="separator:a7c1c42c76a8218896a4d76efed142b2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67d5a2377539808015044acbb34216d1"><td class="memTemplParams" colspan="2">template&lt;typename U &gt; </td></tr>
+<tr class="memitem:a67d5a2377539808015044acbb34216d1"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a67d5a2377539808015044acbb34216d1">try_dequeue</a> (<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#acbd2c9d220d40f51177cfad5754aa7b5">consumer_token_t</a> &amp;token, U &amp;item)</td></tr>
+<tr class="separator:a67d5a2377539808015044acbb34216d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1895c8a6120aef578fe01db53879517b"><td class="memTemplParams" colspan="2">template&lt;typename U &gt; </td></tr>
+<tr class="memitem:a1895c8a6120aef578fe01db53879517b"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a1895c8a6120aef578fe01db53879517b">try_dequeue</a> (U &amp;item)</td></tr>
+<tr class="separator:a1895c8a6120aef578fe01db53879517b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57e6b02051baed9cc1b3fb5e46743c03"><td class="memTemplParams" colspan="2">template&lt;typename It &gt; </td></tr>
+<tr class="memitem:a57e6b02051baed9cc1b3fb5e46743c03"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a57e6b02051baed9cc1b3fb5e46743c03">try_dequeue_bulk</a> (<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#acbd2c9d220d40f51177cfad5754aa7b5">consumer_token_t</a> &amp;token, It itemFirst, <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a> max)</td></tr>
+<tr class="separator:a57e6b02051baed9cc1b3fb5e46743c03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a816450a4b774c374ef8ee0234e7c4518"><td class="memTemplParams" colspan="2">template&lt;typename It &gt; </td></tr>
+<tr class="memitem:a816450a4b774c374ef8ee0234e7c4518"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a816450a4b774c374ef8ee0234e7c4518">try_dequeue_bulk</a> (It itemFirst, <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a> max)</td></tr>
+<tr class="separator:a816450a4b774c374ef8ee0234e7c4518"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a609358c281fb44c88088f229c47e424d"><td class="memTemplParams" colspan="2">template&lt;typename U &gt; </td></tr>
+<tr class="memitem:a609358c281fb44c88088f229c47e424d"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a609358c281fb44c88088f229c47e424d">try_dequeue_from_producer</a> (<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a741ef2316bcd1e8cbdeafdc36ad90d83">producer_token_t</a> const &amp;producer, U &amp;item)</td></tr>
+<tr class="separator:a609358c281fb44c88088f229c47e424d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9f25d247543755bdc1b477f2678455f"><td class="memTemplParams" colspan="2">template&lt;typename U &gt; </td></tr>
+<tr class="memitem:ad9f25d247543755bdc1b477f2678455f"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ad9f25d247543755bdc1b477f2678455f">try_dequeue_non_interleaved</a> (U &amp;item)</td></tr>
+<tr class="separator:ad9f25d247543755bdc1b477f2678455f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a049a33d4127c66a614b717cf20bba330"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a049a33d4127c66a614b717cf20bba330">try_enqueue</a> (<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a741ef2316bcd1e8cbdeafdc36ad90d83">producer_token_t</a> const &amp;token, T &amp;&amp;item)</td></tr>
+<tr class="separator:a049a33d4127c66a614b717cf20bba330"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad04237577ca981e18e23190773cf1644"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ad04237577ca981e18e23190773cf1644">try_enqueue</a> (<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a741ef2316bcd1e8cbdeafdc36ad90d83">producer_token_t</a> const &amp;token, T const &amp;item)</td></tr>
+<tr class="separator:ad04237577ca981e18e23190773cf1644"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af63a4f51a8b8b6c59ea883ed97fff7a2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#af63a4f51a8b8b6c59ea883ed97fff7a2">try_enqueue</a> (T &amp;&amp;item)</td></tr>
+<tr class="separator:af63a4f51a8b8b6c59ea883ed97fff7a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaab76643a98e1094cecdd213fbb6e75d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#aaab76643a98e1094cecdd213fbb6e75d">try_enqueue</a> (T const &amp;item)</td></tr>
+<tr class="separator:aaab76643a98e1094cecdd213fbb6e75d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecbe38c03c23ea980d1bc1f9445d26c2"><td class="memTemplParams" colspan="2">template&lt;typename It &gt; </td></tr>
+<tr class="memitem:aecbe38c03c23ea980d1bc1f9445d26c2"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#aecbe38c03c23ea980d1bc1f9445d26c2">try_enqueue_bulk</a> (It itemFirst, <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a> count)</td></tr>
+<tr class="separator:aecbe38c03c23ea980d1bc1f9445d26c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a359380c0d6952e61f3ef4811808eb573"><td class="memTemplParams" colspan="2">template&lt;typename It &gt; </td></tr>
+<tr class="memitem:a359380c0d6952e61f3ef4811808eb573"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a359380c0d6952e61f3ef4811808eb573">try_enqueue_bulk</a> (<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a741ef2316bcd1e8cbdeafdc36ad90d83">producer_token_t</a> const &amp;token, It itemFirst, <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a> count)</td></tr>
+<tr class="separator:a359380c0d6952e61f3ef4811808eb573"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add203e2137970f317f16cf347471b2f7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#add203e2137970f317f16cf347471b2f7">~ConcurrentQueue</a> ()</td></tr>
+<tr class="separator:add203e2137970f317f16cf347471b2f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+静态 Public 属性</h2></td></tr>
+<tr class="memitem:ae555aae96010307e7991b1028b41cfb8"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ae555aae96010307e7991b1028b41cfb8">BLOCK_SIZE</a> = static_cast&lt;<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&gt;(Traits::BLOCK_SIZE)</td></tr>
+<tr class="separator:ae555aae96010307e7991b1028b41cfb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaadd55fc6ac80c277225977fe9bdecee"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#aaadd55fc6ac80c277225977fe9bdecee">EXPLICIT_BLOCK_EMPTY_COUNTER_THRESHOLD</a> = static_cast&lt;<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&gt;(Traits::EXPLICIT_BLOCK_EMPTY_COUNTER_THRESHOLD)</td></tr>
+<tr class="separator:aaadd55fc6ac80c277225977fe9bdecee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8593fb32003144c034323c8fe353c359"><td class="memItemLeft" align="right" valign="top">static const std::uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a8593fb32003144c034323c8fe353c359">EXPLICIT_CONSUMER_CONSUMPTION_QUOTA_BEFORE_ROTATE</a> = static_cast&lt;std::uint32_t&gt;(Traits::EXPLICIT_CONSUMER_CONSUMPTION_QUOTA_BEFORE_ROTATE)</td></tr>
+<tr class="separator:a8593fb32003144c034323c8fe353c359"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae29231222f904afacd0c9ed55d67cd09"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ae29231222f904afacd0c9ed55d67cd09">EXPLICIT_INITIAL_INDEX_SIZE</a> = static_cast&lt;<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&gt;(Traits::EXPLICIT_INITIAL_INDEX_SIZE)</td></tr>
+<tr class="separator:ae29231222f904afacd0c9ed55d67cd09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a25b761a75bd2c3cd1f58037f9da89f"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a9a25b761a75bd2c3cd1f58037f9da89f">IMPLICIT_INITIAL_INDEX_SIZE</a> = static_cast&lt;<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&gt;(Traits::IMPLICIT_INITIAL_INDEX_SIZE)</td></tr>
+<tr class="separator:a9a25b761a75bd2c3cd1f58037f9da89f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52f4615c06da9bca3be093123c7cc160"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a52f4615c06da9bca3be093123c7cc160">INITIAL_IMPLICIT_PRODUCER_HASH_SIZE</a> = static_cast&lt;<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&gt;(Traits::INITIAL_IMPLICIT_PRODUCER_HASH_SIZE)</td></tr>
+<tr class="separator:a52f4615c06da9bca3be093123c7cc160"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2302943ed9b7579ec9b9f6863c57f10a"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a2302943ed9b7579ec9b9f6863c57f10a">MAX_SUBQUEUE_SIZE</a> = (<a class="el" href="../../d8/d7d/structmoodycamel_1_1details_1_1const__numeric__max.html">details::const_numeric_max</a>&lt;<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&gt;::value - static_cast&lt;<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&gt;(Traits::MAX_SUBQUEUE_SIZE) &lt; <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ae555aae96010307e7991b1028b41cfb8">BLOCK_SIZE</a>) ? <a class="el" href="../../d8/d7d/structmoodycamel_1_1details_1_1const__numeric__max.html">details::const_numeric_max</a>&lt;<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&gt;::value : ((static_cast&lt;<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&gt;(Traits::MAX_SUBQUEUE_SIZE) + (<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ae555aae96010307e7991b1028b41cfb8">BLOCK_SIZE</a> - 1)) / <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ae555aae96010307e7991b1028b41cfb8">BLOCK_SIZE</a> * <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ae555aae96010307e7991b1028b41cfb8">BLOCK_SIZE</a>)</td></tr>
+<tr class="separator:a2302943ed9b7579ec9b9f6863c57f10a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:a0b4852a8dda94c727c11c02c00d5c4c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">ConcurrentQueue</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a0b4852a8dda94c727c11c02c00d5c4c2">swap_internal</a> (<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">ConcurrentQueue</a> &amp;other)</td></tr>
+<tr class="separator:a0b4852a8dda94c727c11c02c00d5c4c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename T, typename Traits = ConcurrentQueueDefaultTraits&gt;<br />
+class moodycamel::ConcurrentQueue&lt; T, Traits &gt;</div>
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00749">749</a> 行定义.</p>
+</div><h2 class="groupheader">成员类型定义说明</h2>
+<a id="acbd2c9d220d40f51177cfad5754aa7b5" name="acbd2c9d220d40f51177cfad5754aa7b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbd2c9d220d40f51177cfad5754aa7b5">&#9670;&#160;</a></span>consumer_token_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="../../de/deb/structmoodycamel_1_1ConsumerToken.html">::moodycamel::ConsumerToken</a> <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;<a class="el" href="../../de/dad/ConcurrentQueue_8h.html#a24630581182599c4f5722e7428a92140">::consumer_token_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00755">755</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad68d536c896de4e839dd95225e7deea3" name="ad68d536c896de4e839dd95225e7deea3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad68d536c896de4e839dd95225e7deea3">&#9670;&#160;</a></span>index_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef Traits::index_t <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;<a class="el" href="../../de/dad/ConcurrentQueue_8h.html#a656e6096177885ab3cd0e3e8e0a0c12f">::index_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00757">757</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a741ef2316bcd1e8cbdeafdc36ad90d83" name="a741ef2316bcd1e8cbdeafdc36ad90d83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a741ef2316bcd1e8cbdeafdc36ad90d83">&#9670;&#160;</a></span>producer_token_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="../../d1/dbb/structmoodycamel_1_1ProducerToken.html">::moodycamel::ProducerToken</a> <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;<a class="el" href="../../de/dad/ConcurrentQueue_8h.html#aeb6415b63f147c16e38fd6963b331bf9">::producer_token_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00753">753</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac0b73313ed107d313b55c8a77be19b28" name="ac0b73313ed107d313b55c8a77be19b28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0b73313ed107d313b55c8a77be19b28">&#9670;&#160;</a></span>size_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef Traits::size_t <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;<a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">::size_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00759">759</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a2c07fb51a9cd1baaec9d0f1a079d83cd" name="a2c07fb51a9cd1baaec9d0f1a079d83cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c07fb51a9cd1baaec9d0f1a079d83cd">&#9670;&#160;</a></span>ConcurrentQueue() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;::ConcurrentQueue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&#160;</td>
+          <td class="paramname"><em>capacity</em> = <code>6&#160;*&#160;<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ae555aae96010307e7991b1028b41cfb8">BLOCK_SIZE</a></code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00815">815</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00762">moodycamel::ConcurrentQueue&lt; T, Traits &gt;::BLOCK_SIZE</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03703">moodycamel::implicitProducerHashResizeInProgress</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03058">moodycamel::populate_initial_block_list()</a> , 以及 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03389">moodycamel::populate_initial_implicit_producer_hash()</a>.</p>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue_a2c07fb51a9cd1baaec9d0f1a079d83cd_cgraph.svg" width="460" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ad327feb7a7e861051d1dfd61e2ffa1df" name="ad327feb7a7e861051d1dfd61e2ffa1df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad327feb7a7e861051d1dfd61e2ffa1df">&#9670;&#160;</a></span>ConcurrentQueue() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;::ConcurrentQueue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&#160;</td>
+          <td class="paramname"><em>minCapacity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&#160;</td>
+          <td class="paramname"><em>maxExplicitProducers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&#160;</td>
+          <td class="paramname"><em>maxImplicitProducers</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00839">839</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00762">moodycamel::ConcurrentQueue&lt; T, Traits &gt;::BLOCK_SIZE</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03703">moodycamel::implicitProducerHashResizeInProgress</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03058">moodycamel::populate_initial_block_list()</a> , 以及 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03389">moodycamel::populate_initial_implicit_producer_hash()</a>.</p>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue_ad327feb7a7e861051d1dfd61e2ffa1df_cgraph.svg" width="460" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="add203e2137970f317f16cf347471b2f7" name="add203e2137970f317f16cf347471b2f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add203e2137970f317f16cf347471b2f7">&#9670;&#160;</a></span>~ConcurrentQueue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;::~<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">ConcurrentQueue</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00870">870</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03677">moodycamel::destroy()</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03651">moodycamel::destroy_array()</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03694">moodycamel::freeList</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03699">moodycamel::implicitProducerHash</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00770">moodycamel::ConcurrentQueue&lt; T, Traits &gt;::INITIAL_IMPLICIT_PRODUCER_HASH_SIZE</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03690">moodycamel::initialBlockPool</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03691">moodycamel::initialBlockPoolSize</a> , 以及 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03686">moodycamel::producerListTail</a>.</p>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue_add203e2137970f317f16cf347471b2f7_cgraph.svg" width="404" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a1b4b08c6b6db7bf0df041619d133171c" name="a1b4b08c6b6db7bf0df041619d133171c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b4b08c6b6db7bf0df041619d133171c">&#9670;&#160;</a></span>ConcurrentQueue() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;::ConcurrentQueue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">ConcurrentQueue</a>&lt; T, Traits &gt; const &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae908c026d0eb0591ca6f8f5518f7ffdf" name="ae908c026d0eb0591ca6f8f5518f7ffdf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae908c026d0eb0591ca6f8f5518f7ffdf">&#9670;&#160;</a></span>ConcurrentQueue() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;::ConcurrentQueue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">ConcurrentQueue</a>&lt; T, Traits &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00921">921</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03703">moodycamel::implicitProducerHashResizeInProgress</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03389">moodycamel::populate_initial_implicit_producer_hash()</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03337">moodycamel::reown_producers()</a> , 以及 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03404">moodycamel::swap_implicit_producer_hashes()</a>.</p>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue_ae908c026d0eb0591ca6f8f5518f7ffdf_cgraph.svg" width="648" height="166"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a0e27b67c2aa7b4fc2eb0777fa6bd7cbc" name="a0e27b67c2aa7b4fc2eb0777fa6bd7cbc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e27b67c2aa7b4fc2eb0777fa6bd7cbc">&#9670;&#160;</a></span>enqueue() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;::enqueue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a741ef2316bcd1e8cbdeafdc36ad90d83">producer_token_t</a> const &amp;&#160;</td>
+          <td class="paramname"><em>token</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T &amp;&amp;&#160;</td>
+          <td class="paramname"><em>item</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01036">1036</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0b5882e6e7a053e27427709f11094dae" name="a0b5882e6e7a053e27427709f11094dae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b5882e6e7a053e27427709f11094dae">&#9670;&#160;</a></span>enqueue() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;::enqueue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a741ef2316bcd1e8cbdeafdc36ad90d83">producer_token_t</a> const &amp;&#160;</td>
+          <td class="paramname"><em>token</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T const &amp;&#160;</td>
+          <td class="paramname"><em>item</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01027">1027</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4a36bd689aeaffd635416a4279566198" name="a4a36bd689aeaffd635416a4279566198"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a36bd689aeaffd635416a4279566198">&#9670;&#160;</a></span>enqueue() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;::enqueue </td>
+          <td>(</td>
+          <td class="paramtype">T &amp;&amp;&#160;</td>
+          <td class="paramname"><em>item</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01017">1017</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00770">moodycamel::ConcurrentQueue&lt; T, Traits &gt;::INITIAL_IMPLICIT_PRODUCER_HASH_SIZE</a>.</p>
+
+</div>
+</div>
+<a id="aceaa7271014aa901829e3ed1b1005d65" name="aceaa7271014aa901829e3ed1b1005d65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aceaa7271014aa901829e3ed1b1005d65">&#9670;&#160;</a></span>enqueue() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;::enqueue </td>
+          <td>(</td>
+          <td class="paramtype">T const &amp;&#160;</td>
+          <td class="paramname"><em>item</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01006">1006</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00770">moodycamel::ConcurrentQueue&lt; T, Traits &gt;::INITIAL_IMPLICIT_PRODUCER_HASH_SIZE</a>.</p>
+
+</div>
+</div>
+<a id="a57b0aa33a19538a7c97d839fbf0d8459" name="a57b0aa33a19538a7c97d839fbf0d8459"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57b0aa33a19538a7c97d839fbf0d8459">&#9670;&#160;</a></span>enqueue_bulk() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+<div class="memtemplate">
+template&lt;typename It &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;::enqueue_bulk </td>
+          <td>(</td>
+          <td class="paramtype">It&#160;</td>
+          <td class="paramname"><em>itemFirst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01047">1047</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00770">moodycamel::ConcurrentQueue&lt; T, Traits &gt;::INITIAL_IMPLICIT_PRODUCER_HASH_SIZE</a>.</p>
+
+</div>
+</div>
+<a id="a61a4b16a77535cc57fa3c76fb5ee3fba" name="a61a4b16a77535cc57fa3c76fb5ee3fba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61a4b16a77535cc57fa3c76fb5ee3fba">&#9670;&#160;</a></span>enqueue_bulk() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+<div class="memtemplate">
+template&lt;typename It &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;::enqueue_bulk </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a741ef2316bcd1e8cbdeafdc36ad90d83">producer_token_t</a> const &amp;&#160;</td>
+          <td class="paramname"><em>token</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">It&#160;</td>
+          <td class="paramname"><em>itemFirst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01060">1060</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abce8e204950aa2f7668c0cb4af2cdfd8" name="abce8e204950aa2f7668c0cb4af2cdfd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abce8e204950aa2f7668c0cb4af2cdfd8">&#9670;&#160;</a></span>operator=() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">ConcurrentQueue</a> &amp; <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">ConcurrentQueue</a>&lt; T, Traits &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00955">955</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00971">moodycamel::ConcurrentQueue&lt; T, Traits &gt;::swap_internal()</a>.</p>
+<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue_abce8e204950aa2f7668c0cb4af2cdfd8_cgraph.svg" width="100%" height="398"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a378eb0bbe9ed755db54f93bd316d6c51" name="a378eb0bbe9ed755db54f93bd316d6c51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a378eb0bbe9ed755db54f93bd316d6c51">&#9670;&#160;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">ConcurrentQueue</a> &amp; <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">ConcurrentQueue</a>&lt; T, Traits &gt; const &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7c1c42c76a8218896a4d76efed142b2c" name="a7c1c42c76a8218896a4d76efed142b2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c1c42c76a8218896a4d76efed142b2c">&#9670;&#160;</a></span>swap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;::swap </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">ConcurrentQueue</a>&lt; T, Traits &gt; &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00965">965</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00971">moodycamel::ConcurrentQueue&lt; T, Traits &gt;::swap_internal()</a>.</p>
+<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue_a7c1c42c76a8218896a4d76efed142b2c_cgraph.svg" width="100%" height="398"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a0b4852a8dda94c727c11c02c00d5c4c2" name="a0b4852a8dda94c727c11c02c00d5c4c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b4852a8dda94c727c11c02c00d5c4c2">&#9670;&#160;</a></span>swap_internal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">ConcurrentQueue</a> &amp; <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;::swap_internal </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">ConcurrentQueue</a>&lt; T, Traits &gt; &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00971">971</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03694">moodycamel::freeList</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03706">moodycamel::globalExplicitConsumerOffset</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03690">moodycamel::initialBlockPool</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03689">moodycamel::initialBlockPoolIndex</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03691">moodycamel::initialBlockPoolSize</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03705">moodycamel::nextExplicitConsumerId</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03687">moodycamel::producerCount</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03686">moodycamel::producerListTail</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03337">moodycamel::reown_producers()</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03404">moodycamel::swap_implicit_producer_hashes()</a> , 以及 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00475">moodycamel::details::swap_relaxed()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00955">moodycamel::ConcurrentQueue&lt; T, Traits &gt;::operator=()</a> , 以及 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00965">moodycamel::ConcurrentQueue&lt; T, Traits &gt;::swap()</a>.</p>
+<div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue_a0b4852a8dda94c727c11c02c00d5c4c2_cgraph.svg" width="648" height="131"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue_a0b4852a8dda94c727c11c02c00d5c4c2_icgraph.svg" width="464" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a67d5a2377539808015044acbb34216d1" name="a67d5a2377539808015044acbb34216d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67d5a2377539808015044acbb34216d1">&#9670;&#160;</a></span>try_dequeue() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+<div class="memtemplate">
+template&lt;typename U &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;::try_dequeue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#acbd2c9d220d40f51177cfad5754aa7b5">consumer_token_t</a> &amp;&#160;</td>
+          <td class="paramname"><em>token</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">U &amp;&#160;</td>
+          <td class="paramname"><em>item</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01189">1189</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00736">moodycamel::ConsumerToken::currentProducer</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01763">moodycamel::ProducerBase::dequeue()</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00737">moodycamel::ConsumerToken::desiredProducer</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00772">moodycamel::ConcurrentQueue&lt; T, Traits &gt;::EXPLICIT_CONSUMER_CONSUMPTION_QUOTA_BEFORE_ROTATE</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03706">moodycamel::globalExplicitConsumerOffset</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00735">moodycamel::ConsumerToken::itemsConsumedFromCurrent</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00734">moodycamel::ConsumerToken::lastKnownGlobalOffset</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03686">moodycamel::producerListTail</a> , 以及 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01429">moodycamel::update_current_producer_after_rotation()</a>.</p>
+<div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue_a67d5a2377539808015044acbb34216d1_cgraph.svg" width="631" height="155"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a1895c8a6120aef578fe01db53879517b" name="a1895c8a6120aef578fe01db53879517b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1895c8a6120aef578fe01db53879517b">&#9670;&#160;</a></span>try_dequeue() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+<div class="memtemplate">
+template&lt;typename U &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;::try_dequeue </td>
+          <td>(</td>
+          <td class="paramtype">U &amp;&#160;</td>
+          <td class="paramname"><em>item</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01134">1134</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01763">moodycamel::ProducerBase::dequeue()</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00241">moodycamel::details::likely()</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03686">moodycamel::producerListTail</a> , 以及 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01786">moodycamel::ProducerBase::size_approx()</a>.</p>
+<div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue_a1895c8a6120aef578fe01db53879517b_cgraph.svg" width="631" height="203"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a57e6b02051baed9cc1b3fb5e46743c03" name="a57e6b02051baed9cc1b3fb5e46743c03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57e6b02051baed9cc1b3fb5e46743c03">&#9670;&#160;</a></span>try_dequeue_bulk() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+<div class="memtemplate">
+template&lt;typename It &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a> <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;::try_dequeue_bulk </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#acbd2c9d220d40f51177cfad5754aa7b5">consumer_token_t</a> &amp;&#160;</td>
+          <td class="paramname"><em>token</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">It&#160;</td>
+          <td class="paramname"><em>itemFirst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&#160;</td>
+          <td class="paramname"><em>max</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01253">1253</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00736">moodycamel::ConsumerToken::currentProducer</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01774">moodycamel::ProducerBase::dequeue_bulk()</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00737">moodycamel::ConsumerToken::desiredProducer</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00772">moodycamel::ConcurrentQueue&lt; T, Traits &gt;::EXPLICIT_CONSUMER_CONSUMPTION_QUOTA_BEFORE_ROTATE</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03706">moodycamel::globalExplicitConsumerOffset</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00735">moodycamel::ConsumerToken::itemsConsumedFromCurrent</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00734">moodycamel::ConsumerToken::lastKnownGlobalOffset</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03686">moodycamel::producerListTail</a> , 以及 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01429">moodycamel::update_current_producer_after_rotation()</a>.</p>
+<div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-12-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-12-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue_a57e6b02051baed9cc1b3fb5e46743c03_cgraph.svg" width="631" height="131"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a816450a4b774c374ef8ee0234e7c4518" name="a816450a4b774c374ef8ee0234e7c4518"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a816450a4b774c374ef8ee0234e7c4518">&#9670;&#160;</a></span>try_dequeue_bulk() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+<div class="memtemplate">
+template&lt;typename It &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a> <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;::try_dequeue_bulk </td>
+          <td>(</td>
+          <td class="paramtype">It&#160;</td>
+          <td class="paramname"><em>itemFirst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&#160;</td>
+          <td class="paramname"><em>max</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01235">1235</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03686">moodycamel::producerListTail</a>.</p>
+
+</div>
+</div>
+<a id="a609358c281fb44c88088f229c47e424d" name="a609358c281fb44c88088f229c47e424d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a609358c281fb44c88088f229c47e424d">&#9670;&#160;</a></span>try_dequeue_from_producer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+<div class="memtemplate">
+template&lt;typename U &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;::try_dequeue_from_producer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a741ef2316bcd1e8cbdeafdc36ad90d83">producer_token_t</a> const &amp;&#160;</td>
+          <td class="paramname"><em>producer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">U &amp;&#160;</td>
+          <td class="paramname"><em>item</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01323">1323</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00687">moodycamel::ProducerToken::producer</a>.</p>
+
+</div>
+</div>
+<a id="ad9f25d247543755bdc1b477f2678455f" name="ad9f25d247543755bdc1b477f2678455f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9f25d247543755bdc1b477f2678455f">&#9670;&#160;</a></span>try_dequeue_non_interleaved()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+<div class="memtemplate">
+template&lt;typename U &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;::try_dequeue_non_interleaved </td>
+          <td>(</td>
+          <td class="paramtype">U &amp;&#160;</td>
+          <td class="paramname"><em>item</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01174">1174</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03686">moodycamel::producerListTail</a>.</p>
+
+</div>
+</div>
+<a id="a049a33d4127c66a614b717cf20bba330" name="a049a33d4127c66a614b717cf20bba330"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a049a33d4127c66a614b717cf20bba330">&#9670;&#160;</a></span>try_enqueue() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;::try_enqueue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a741ef2316bcd1e8cbdeafdc36ad90d83">producer_token_t</a> const &amp;&#160;</td>
+          <td class="paramname"><em>token</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T &amp;&amp;&#160;</td>
+          <td class="paramname"><em>item</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01098">1098</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad04237577ca981e18e23190773cf1644" name="ad04237577ca981e18e23190773cf1644"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad04237577ca981e18e23190773cf1644">&#9670;&#160;</a></span>try_enqueue() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;::try_enqueue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a741ef2316bcd1e8cbdeafdc36ad90d83">producer_token_t</a> const &amp;&#160;</td>
+          <td class="paramname"><em>token</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T const &amp;&#160;</td>
+          <td class="paramname"><em>item</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01090">1090</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af63a4f51a8b8b6c59ea883ed97fff7a2" name="af63a4f51a8b8b6c59ea883ed97fff7a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af63a4f51a8b8b6c59ea883ed97fff7a2">&#9670;&#160;</a></span>try_enqueue() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;::try_enqueue </td>
+          <td>(</td>
+          <td class="paramtype">T &amp;&amp;&#160;</td>
+          <td class="paramname"><em>item</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01081">1081</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00770">moodycamel::ConcurrentQueue&lt; T, Traits &gt;::INITIAL_IMPLICIT_PRODUCER_HASH_SIZE</a>.</p>
+
+</div>
+</div>
+<a id="aaab76643a98e1094cecdd213fbb6e75d" name="aaab76643a98e1094cecdd213fbb6e75d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaab76643a98e1094cecdd213fbb6e75d">&#9670;&#160;</a></span>try_enqueue() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;::try_enqueue </td>
+          <td>(</td>
+          <td class="paramtype">T const &amp;&#160;</td>
+          <td class="paramname"><em>item</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01070">1070</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00770">moodycamel::ConcurrentQueue&lt; T, Traits &gt;::INITIAL_IMPLICIT_PRODUCER_HASH_SIZE</a>.</p>
+
+</div>
+</div>
+<a id="aecbe38c03c23ea980d1bc1f9445d26c2" name="aecbe38c03c23ea980d1bc1f9445d26c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecbe38c03c23ea980d1bc1f9445d26c2">&#9670;&#160;</a></span>try_enqueue_bulk() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+<div class="memtemplate">
+template&lt;typename It &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;::try_enqueue_bulk </td>
+          <td>(</td>
+          <td class="paramtype">It&#160;</td>
+          <td class="paramname"><em>itemFirst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01111">1111</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00770">moodycamel::ConcurrentQueue&lt; T, Traits &gt;::INITIAL_IMPLICIT_PRODUCER_HASH_SIZE</a>.</p>
+
+</div>
+</div>
+<a id="a359380c0d6952e61f3ef4811808eb573" name="a359380c0d6952e61f3ef4811808eb573"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a359380c0d6952e61f3ef4811808eb573">&#9670;&#160;</a></span>try_enqueue_bulk() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+<div class="memtemplate">
+template&lt;typename It &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;::try_enqueue_bulk </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#a741ef2316bcd1e8cbdeafdc36ad90d83">producer_token_t</a> const &amp;&#160;</td>
+          <td class="paramname"><em>token</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">It&#160;</td>
+          <td class="paramname"><em>itemFirst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01123">1123</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="ae555aae96010307e7991b1028b41cfb8" name="ae555aae96010307e7991b1028b41cfb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae555aae96010307e7991b1028b41cfb8">&#9670;&#160;</a></span>BLOCK_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a> <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;::BLOCK_SIZE = static_cast&lt;<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&gt;(Traits::BLOCK_SIZE)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00762">762</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00815">moodycamel::ConcurrentQueue&lt; T, Traits &gt;::ConcurrentQueue()</a>.</p>
+
+</div>
+</div>
+<a id="aaadd55fc6ac80c277225977fe9bdecee" name="aaadd55fc6ac80c277225977fe9bdecee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaadd55fc6ac80c277225977fe9bdecee">&#9670;&#160;</a></span>EXPLICIT_BLOCK_EMPTY_COUNTER_THRESHOLD</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a> <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;::EXPLICIT_BLOCK_EMPTY_COUNTER_THRESHOLD = static_cast&lt;<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&gt;(Traits::EXPLICIT_BLOCK_EMPTY_COUNTER_THRESHOLD)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00764">764</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8593fb32003144c034323c8fe353c359" name="a8593fb32003144c034323c8fe353c359"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8593fb32003144c034323c8fe353c359">&#9670;&#160;</a></span>EXPLICIT_CONSUMER_CONSUMPTION_QUOTA_BEFORE_ROTATE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::uint32_t <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;::EXPLICIT_CONSUMER_CONSUMPTION_QUOTA_BEFORE_ROTATE = static_cast&lt;std::uint32_t&gt;(Traits::EXPLICIT_CONSUMER_CONSUMPTION_QUOTA_BEFORE_ROTATE)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00772">772</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01189">moodycamel::ConcurrentQueue&lt; T, Traits &gt;::try_dequeue()</a> , 以及 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01253">moodycamel::ConcurrentQueue&lt; T, Traits &gt;::try_dequeue_bulk()</a>.</p>
+
+</div>
+</div>
+<a id="ae29231222f904afacd0c9ed55d67cd09" name="ae29231222f904afacd0c9ed55d67cd09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae29231222f904afacd0c9ed55d67cd09">&#9670;&#160;</a></span>EXPLICIT_INITIAL_INDEX_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a> <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;::EXPLICIT_INITIAL_INDEX_SIZE = static_cast&lt;<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&gt;(Traits::EXPLICIT_INITIAL_INDEX_SIZE)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00766">766</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9a25b761a75bd2c3cd1f58037f9da89f" name="a9a25b761a75bd2c3cd1f58037f9da89f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a25b761a75bd2c3cd1f58037f9da89f">&#9670;&#160;</a></span>IMPLICIT_INITIAL_INDEX_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a> <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;::IMPLICIT_INITIAL_INDEX_SIZE = static_cast&lt;<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&gt;(Traits::IMPLICIT_INITIAL_INDEX_SIZE)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00768">768</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a52f4615c06da9bca3be093123c7cc160" name="a52f4615c06da9bca3be093123c7cc160"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52f4615c06da9bca3be093123c7cc160">&#9670;&#160;</a></span>INITIAL_IMPLICIT_PRODUCER_HASH_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a> <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;::INITIAL_IMPLICIT_PRODUCER_HASH_SIZE = static_cast&lt;<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&gt;(Traits::INITIAL_IMPLICIT_PRODUCER_HASH_SIZE)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00770">770</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01006">moodycamel::ConcurrentQueue&lt; T, Traits &gt;::enqueue()</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01047">moodycamel::ConcurrentQueue&lt; T, Traits &gt;::enqueue_bulk()</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01070">moodycamel::ConcurrentQueue&lt; T, Traits &gt;::try_enqueue()</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01111">moodycamel::ConcurrentQueue&lt; T, Traits &gt;::try_enqueue_bulk()</a> , 以及 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00870">moodycamel::ConcurrentQueue&lt; T, Traits &gt;::~ConcurrentQueue()</a>.</p>
+
+</div>
+</div>
+<a id="a2302943ed9b7579ec9b9f6863c57f10a" name="a2302943ed9b7579ec9b9f6863c57f10a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2302943ed9b7579ec9b9f6863c57f10a">&#9670;&#160;</a></span>MAX_SUBQUEUE_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Traits  = ConcurrentQueueDefaultTraits&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a> <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; T, Traits &gt;::MAX_SUBQUEUE_SIZE = (<a class="el" href="../../d8/d7d/structmoodycamel_1_1details_1_1const__numeric__max.html">details::const_numeric_max</a>&lt;<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&gt;::value - static_cast&lt;<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&gt;(Traits::MAX_SUBQUEUE_SIZE) &lt; <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ae555aae96010307e7991b1028b41cfb8">BLOCK_SIZE</a>) ? <a class="el" href="../../d8/d7d/structmoodycamel_1_1details_1_1const__numeric__max.html">details::const_numeric_max</a>&lt;<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&gt;::value : ((static_cast&lt;<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ac0b73313ed107d313b55c8a77be19b28">size_t</a>&gt;(Traits::MAX_SUBQUEUE_SIZE) + (<a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ae555aae96010307e7991b1028b41cfb8">BLOCK_SIZE</a> - 1)) / <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ae555aae96010307e7991b1028b41cfb8">BLOCK_SIZE</a> * <a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html#ae555aae96010307e7991b1028b41cfb8">BLOCK_SIZE</a>)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00779">779</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

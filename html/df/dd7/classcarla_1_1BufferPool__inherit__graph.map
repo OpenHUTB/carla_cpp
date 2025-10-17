@@ -1,0 +1,4 @@
+<map id="carla::BufferPool" name="carla::BufferPool">
+<area shape="rect" id="node1" title="一个缓冲区池。 从这个池中弹出的缓冲区在销毁时会自动返回到池中， 这样分配的内存可以被重用。" alt="" coords="30,93,146,119"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,171,45"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="carla::streaming::detail::Stream::operator&lt;&lt;" name="carla::streaming::detail::Stream::operator&lt;&lt;">
+<area shape="rect" id="node1" title="复制 data 并将其刷新到流中。" alt="" coords="5,37,156,77"/>
+<area shape="rect" id="node2" href="$d2/dea/classcarla_1_1streaming_1_1detail_1_1Stream.html#ad9222c820016dba806bb55ec490a89d9" title="从与此流关联的缓冲池中获取一个缓冲区。被丢弃的缓冲区将被重用以避免内存分配。" alt="" coords="204,5,355,45"/>
+<area shape="rect" id="node3" href="$d2/dea/classcarla_1_1streaming_1_1detail_1_1Stream.html#ac3461ab05492791b40d4dd784d65d1dd" title="将 buffers 刷新到流中。不会进行复制。" alt="" coords="204,69,355,109"/>
+</map>

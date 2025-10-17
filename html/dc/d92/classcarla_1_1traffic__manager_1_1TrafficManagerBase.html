@@ -1,0 +1,2542 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: carla::traffic_manager::TrafficManagerBase类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../d9/d36/namespacecarla.html">carla</a></li><li class="navelem"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html">traffic_manager</a></li><li class="navelem"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html">TrafficManagerBase</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="../../d3/d0a/classcarla_1_1traffic__manager_1_1TrafficManagerBase-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">carla::traffic_manager::TrafficManagerBase类 参考<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>/ * / *  
+ <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../d0/d55/TrafficManagerBase_8h_source.html">TrafficManagerBase.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 类 carla::traffic_manager::TrafficManagerBase 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d6f/classcarla_1_1traffic__manager_1_1TrafficManagerBase__inherit__graph.svg" width="362" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a76345cb22f2708134dee54f2a773d629"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae3077a5917d65549595f2ccdfc98570b">ActionBuffer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a76345cb22f2708134dee54f2a773d629">GetActionBuffer</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> &amp;actor_id)=0</td></tr>
+<tr class="memdesc:a76345cb22f2708134dee54f2a773d629"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取车辆的动作缓冲区。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a76345cb22f2708134dee54f2a773d629">更多...</a><br /></td></tr>
+<tr class="separator:a76345cb22f2708134dee54f2a773d629"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27c85c42d9659f781cb8d2d85dfc1b48"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../d8/dcd/namespacecarla_1_1client_1_1detail.html#a73fc4fabc24f68be175250c73e1da2fc">carla::client::detail::EpisodeProxy</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a27c85c42d9659f781cb8d2d85dfc1b48">GetEpisodeProxy</a> ()=0</td></tr>
+<tr class="memdesc:a27c85c42d9659f781cb8d2d85dfc1b48"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取CARLA场景信息代理。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a27c85c42d9659f781cb8d2d85dfc1b48">更多...</a><br /></td></tr>
+<tr class="separator:a27c85c42d9659f781cb8d2d85dfc1b48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61caab3b08f4e1fd4e8600139d111b75"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ab5fe609686732a36b1ec4ead7d4a1d39">Action</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a61caab3b08f4e1fd4e8600139d111b75">GetNextAction</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> &amp;actor_id)=0</td></tr>
+<tr class="memdesc:a61caab3b08f4e1fd4e8600139d111b75"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取车辆的下一个动作。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a61caab3b08f4e1fd4e8600139d111b75">更多...</a><br /></td></tr>
+<tr class="separator:a61caab3b08f4e1fd4e8600139d111b75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e6696dfe8fab9c35470583673ac0243"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a4e6696dfe8fab9c35470583673ac0243">RegisterVehicles</a> (const std::vector&lt; <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &gt; &amp;actor_list)=0</td></tr>
+<tr class="memdesc:a4e6696dfe8fab9c35470583673ac0243"><td class="mdescLeft">&#160;</td><td class="mdescRight">此方法向交通管理器注册车辆。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a4e6696dfe8fab9c35470583673ac0243">更多...</a><br /></td></tr>
+<tr class="separator:a4e6696dfe8fab9c35470583673ac0243"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30dcb98397acc50c3dc0a04b8c037e03"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a30dcb98397acc50c3dc0a04b8c037e03">Release</a> ()=0</td></tr>
+<tr class="memdesc:a30dcb98397acc50c3dc0a04b8c037e03"><td class="mdescLeft">&#160;</td><td class="mdescRight">释放交通管理器。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a30dcb98397acc50c3dc0a04b8c037e03">更多...</a><br /></td></tr>
+<tr class="separator:a30dcb98397acc50c3dc0a04b8c037e03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f20907bcd1a3805e35070b8d3242a38"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a9f20907bcd1a3805e35070b8d3242a38">RemoveImportedRoute</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> &amp;actor_id, const bool remove_path)=0</td></tr>
+<tr class="memdesc:a9f20907bcd1a3805e35070b8d3242a38"><td class="mdescLeft">&#160;</td><td class="mdescRight">移除路线。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a9f20907bcd1a3805e35070b8d3242a38">更多...</a><br /></td></tr>
+<tr class="separator:a9f20907bcd1a3805e35070b8d3242a38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab36848fb527cb70dcf8f20a3b672a647"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#ab36848fb527cb70dcf8f20a3b672a647">RemoveUploadPath</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> &amp;actor_id, const bool remove_path)=0</td></tr>
+<tr class="memdesc:ab36848fb527cb70dcf8f20a3b672a647"><td class="mdescLeft">&#160;</td><td class="mdescRight">移除路径。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#ab36848fb527cb70dcf8f20a3b672a647">更多...</a><br /></td></tr>
+<tr class="separator:ab36848fb527cb70dcf8f20a3b672a647"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a702ced807deac81cdb15c3054280a8b5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a702ced807deac81cdb15c3054280a8b5">Reset</a> ()=0</td></tr>
+<tr class="memdesc:a702ced807deac81cdb15c3054280a8b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">重置交通管理器。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a702ced807deac81cdb15c3054280a8b5">更多...</a><br /></td></tr>
+<tr class="separator:a702ced807deac81cdb15c3054280a8b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a695fd687ec876ec5a4d99ada7f631e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a4a695fd687ec876ec5a4d99ada7f631e">SetAutoLaneChange</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;actor, const bool enable)=0</td></tr>
+<tr class="memdesc:a4a695fd687ec876ec5a4d99ada7f631e"><td class="mdescLeft">&#160;</td><td class="mdescRight">启用/禁用车辆的自动换道。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a4a695fd687ec876ec5a4d99ada7f631e">更多...</a><br /></td></tr>
+<tr class="separator:a4a695fd687ec876ec5a4d99ada7f631e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cf2fe281872d1e4989900b6bffb6bbe"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a1cf2fe281872d1e4989900b6bffb6bbe">SetBoundariesRespawnDormantVehicles</a> (const float lower_bound, const float upper_bound)=0</td></tr>
+<tr class="memdesc:a1cf2fe281872d1e4989900b6bffb6bbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置重生车辆的范围。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a1cf2fe281872d1e4989900b6bffb6bbe">更多...</a><br /></td></tr>
+<tr class="separator:a1cf2fe281872d1e4989900b6bffb6bbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d629eb66838586269dc05f9bdab158f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a4d629eb66838586269dc05f9bdab158f">SetCollisionDetection</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;reference_actor, const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;other_actor, const bool detect_collision)=0</td></tr>
+<tr class="memdesc:a4d629eb66838586269dc05f9bdab158f"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置车辆之间的碰撞检测规则。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a4d629eb66838586269dc05f9bdab158f">更多...</a><br /></td></tr>
+<tr class="separator:a4d629eb66838586269dc05f9bdab158f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2ad4554a9cdaf1f8eab49e205820b3c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#ab2ad4554a9cdaf1f8eab49e205820b3c">SetCustomPath</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;actor, const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a7c7f959da28bee9cf0ea48f61b9a6bb2">Path</a> path, const bool empty_buffer)=0</td></tr>
+<tr class="memdesc:ab2ad4554a9cdaf1f8eab49e205820b3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置自定义导入路径。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#ab2ad4554a9cdaf1f8eab49e205820b3c">更多...</a><br /></td></tr>
+<tr class="separator:ab2ad4554a9cdaf1f8eab49e205820b3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab38ebac6fb25b1b3171f0e24150b186f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#ab38ebac6fb25b1b3171f0e24150b186f">SetDesiredSpeed</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;actor, const float value)=0</td></tr>
+<tr class="memdesc:ab38ebac6fb25b1b3171f0e24150b186f"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置车辆的精确期望速度。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#ab38ebac6fb25b1b3171f0e24150b186f">更多...</a><br /></td></tr>
+<tr class="separator:ab38ebac6fb25b1b3171f0e24150b186f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed9d8169bc3309a4064d283a6d2d0dc2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#aed9d8169bc3309a4064d283a6d2d0dc2">SetDistanceToLeadingVehicle</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;actor, const float distance)=0</td></tr>
+<tr class="memdesc:aed9d8169bc3309a4064d283a6d2d0dc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置车辆与前车应保持的距离。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#aed9d8169bc3309a4064d283a6d2d0dc2">更多...</a><br /></td></tr>
+<tr class="separator:aed9d8169bc3309a4064d283a6d2d0dc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f73349eb3e0ed3569e61f09797d3070"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a6f73349eb3e0ed3569e61f09797d3070">SetForceLaneChange</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;actor, const bool direction)=0</td></tr>
+<tr class="memdesc:a6f73349eb3e0ed3569e61f09797d3070"><td class="mdescLeft">&#160;</td><td class="mdescRight">强制车辆换道。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a6f73349eb3e0ed3569e61f09797d3070">更多...</a><br /></td></tr>
+<tr class="separator:a6f73349eb3e0ed3569e61f09797d3070"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af19fc0f04dc995000477cbd23fd37d88"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#af19fc0f04dc995000477cbd23fd37d88">SetGlobalDistanceToLeadingVehicle</a> (const float dist)=0</td></tr>
+<tr class="memdesc:af19fc0f04dc995000477cbd23fd37d88"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置全局前车距离。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#af19fc0f04dc995000477cbd23fd37d88">更多...</a><br /></td></tr>
+<tr class="separator:af19fc0f04dc995000477cbd23fd37d88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cabe7f21f693097e6d5e7abca17b3d0"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a3cabe7f21f693097e6d5e7abca17b3d0">SetGlobalLaneOffset</a> (float const offset)=0</td></tr>
+<tr class="memdesc:a3cabe7f21f693097e6d5e7abca17b3d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置全局相对于中心线的车道偏移量。 正值表示向右偏移，负值表示向左偏移。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a3cabe7f21f693097e6d5e7abca17b3d0">更多...</a><br /></td></tr>
+<tr class="separator:a3cabe7f21f693097e6d5e7abca17b3d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe4258a086d5b71bf02ed231d894bbf1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#afe4258a086d5b71bf02ed231d894bbf1">SetGlobalPercentageSpeedDifference</a> (float const percentage)=0</td></tr>
+<tr class="memdesc:afe4258a086d5b71bf02ed231d894bbf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置全局相对于限速的速度百分比降低。 如果小于0，则表示百分比增加。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#afe4258a086d5b71bf02ed231d894bbf1">更多...</a><br /></td></tr>
+<tr class="separator:afe4258a086d5b71bf02ed231d894bbf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf561445433ad0b5f709e54651501b48"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#aaf561445433ad0b5f709e54651501b48">SetHybridPhysicsMode</a> (const bool mode_switch)=0</td></tr>
+<tr class="memdesc:aaf561445433ad0b5f709e54651501b48"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置混合物理模式。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#aaf561445433ad0b5f709e54651501b48">更多...</a><br /></td></tr>
+<tr class="separator:aaf561445433ad0b5f709e54651501b48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63af723241bb5eb8f08d1beb864d8fa6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a63af723241bb5eb8f08d1beb864d8fa6">SetHybridPhysicsRadius</a> (const float radius)=0</td></tr>
+<tr class="memdesc:a63af723241bb5eb8f08d1beb864d8fa6"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置混合物理半径。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a63af723241bb5eb8f08d1beb864d8fa6">更多...</a><br /></td></tr>
+<tr class="separator:a63af723241bb5eb8f08d1beb864d8fa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbe7ec4d1a021a86cd53733ed108fb27"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#afbe7ec4d1a021a86cd53733ed108fb27">SetImportedRoute</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;actor, const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a58761158ed79d767d06d0d36bf373bd1">Route</a> route, const bool empty_buffer)=0</td></tr>
+<tr class="memdesc:afbe7ec4d1a021a86cd53733ed108fb27"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置自定义导入路线。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#afbe7ec4d1a021a86cd53733ed108fb27">更多...</a><br /></td></tr>
+<tr class="separator:afbe7ec4d1a021a86cd53733ed108fb27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7403e90dcd62c6c1598cb32268f8c100"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a7403e90dcd62c6c1598cb32268f8c100">SetKeepRightPercentage</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;actor, const float percentage)=0</td></tr>
+<tr class="memdesc:a7403e90dcd62c6c1598cb32268f8c100"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置保持在右车道的百分比。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a7403e90dcd62c6c1598cb32268f8c100">更多...</a><br /></td></tr>
+<tr class="separator:a7403e90dcd62c6c1598cb32268f8c100"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b800a6a92530c0f7bb83862cecb63d3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a7b800a6a92530c0f7bb83862cecb63d3">SetLaneOffset</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;actor, const float offset)=0</td></tr>
+<tr class="memdesc:a7b800a6a92530c0f7bb83862cecb63d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置车辆相对于中心线的车道偏移量。 正值表示向右偏移，负值表示向左偏移。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a7b800a6a92530c0f7bb83862cecb63d3">更多...</a><br /></td></tr>
+<tr class="separator:a7b800a6a92530c0f7bb83862cecb63d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5503aa619db33133f2871057e7b375ca"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a5503aa619db33133f2871057e7b375ca">SetMaxBoundaries</a> (const float lower, const float upper)=0</td></tr>
+<tr class="memdesc:a5503aa619db33133f2871057e7b375ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置范围限制。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a5503aa619db33133f2871057e7b375ca">更多...</a><br /></td></tr>
+<tr class="separator:a5503aa619db33133f2871057e7b375ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fc254632e04e26911b12f7f89ece46f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a4fc254632e04e26911b12f7f89ece46f">SetOSMMode</a> (const bool mode_switch)=0</td></tr>
+<tr class="memdesc:a4fc254632e04e26911b12f7f89ece46f"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置Open Street Map模式。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a4fc254632e04e26911b12f7f89ece46f">更多...</a><br /></td></tr>
+<tr class="separator:a4fc254632e04e26911b12f7f89ece46f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60d8821c0f9a3f841b9bf7f03b0b3c8b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a60d8821c0f9a3f841b9bf7f03b0b3c8b">SetPercentageIgnoreVehicles</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;actor, const float perc)=0</td></tr>
+<tr class="memdesc:a60d8821c0f9a3f841b9bf7f03b0b3c8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置车辆忽略其他车辆的碰撞概率。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a60d8821c0f9a3f841b9bf7f03b0b3c8b">更多...</a><br /></td></tr>
+<tr class="separator:a60d8821c0f9a3f841b9bf7f03b0b3c8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2181f9357eb2e2a3a29ba693627267f8"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a2181f9357eb2e2a3a29ba693627267f8">SetPercentageIgnoreWalkers</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;actor, const float perc)=0</td></tr>
+<tr class="memdesc:a2181f9357eb2e2a3a29ba693627267f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置车辆忽略行人的碰撞概率。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a2181f9357eb2e2a3a29ba693627267f8">更多...</a><br /></td></tr>
+<tr class="separator:a2181f9357eb2e2a3a29ba693627267f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae51db5a72bc6412a224bc90faa9712a9"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#ae51db5a72bc6412a224bc90faa9712a9">SetPercentageRunningLight</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;actor, const float perc)=0</td></tr>
+<tr class="memdesc:ae51db5a72bc6412a224bc90faa9712a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置车辆闯红灯的概率。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#ae51db5a72bc6412a224bc90faa9712a9">更多...</a><br /></td></tr>
+<tr class="separator:ae51db5a72bc6412a224bc90faa9712a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a233159121daff8735aab83288c28d467"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a233159121daff8735aab83288c28d467">SetPercentageRunningSign</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;actor, const float perc)=0</td></tr>
+<tr class="memdesc:a233159121daff8735aab83288c28d467"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置车辆无视交通标志的概率。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a233159121daff8735aab83288c28d467">更多...</a><br /></td></tr>
+<tr class="separator:a233159121daff8735aab83288c28d467"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24df2b483c6d88d8db67fdec53dadaf7"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a24df2b483c6d88d8db67fdec53dadaf7">SetPercentageSpeedDifference</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;actor, const float percentage)=0</td></tr>
+<tr class="memdesc:a24df2b483c6d88d8db67fdec53dadaf7"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置车辆相对于限速的速度百分比降低。 如果小于0，则表示百分比增加。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a24df2b483c6d88d8db67fdec53dadaf7">更多...</a><br /></td></tr>
+<tr class="separator:a24df2b483c6d88d8db67fdec53dadaf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a079f2a2aa8926597d751900e3e9e8577"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a079f2a2aa8926597d751900e3e9e8577">SetRandomDeviceSeed</a> (const uint64_t seed)=0</td></tr>
+<tr class="memdesc:a079f2a2aa8926597d751900e3e9e8577"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置随机化种子。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a079f2a2aa8926597d751900e3e9e8577">更多...</a><br /></td></tr>
+<tr class="separator:a079f2a2aa8926597d751900e3e9e8577"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bc714030dc8b9752aeb64b3a80eff70"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a1bc714030dc8b9752aeb64b3a80eff70">SetRandomLeftLaneChangePercentage</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;actor, const float percentage)=0</td></tr>
+<tr class="memdesc:a1bc714030dc8b9752aeb64b3a80eff70"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置随机左变道的百分比。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a1bc714030dc8b9752aeb64b3a80eff70">更多...</a><br /></td></tr>
+<tr class="separator:a1bc714030dc8b9752aeb64b3a80eff70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cf1956e3fa366564848c7424349e82c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a7cf1956e3fa366564848c7424349e82c">SetRandomRightLaneChangePercentage</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;actor, const float percentage)=0</td></tr>
+<tr class="memdesc:a7cf1956e3fa366564848c7424349e82c"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置随机右变道的百分比。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a7cf1956e3fa366564848c7424349e82c">更多...</a><br /></td></tr>
+<tr class="separator:a7cf1956e3fa366564848c7424349e82c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89a20179757d9cae506c816c787146c5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a89a20179757d9cae506c816c787146c5">SetRespawnDormantVehicles</a> (const bool mode_switch)=0</td></tr>
+<tr class="memdesc:a89a20179757d9cae506c816c787146c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置休眠车辆的自动重生。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a89a20179757d9cae506c816c787146c5">更多...</a><br /></td></tr>
+<tr class="separator:a89a20179757d9cae506c816c787146c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a750c963a93172f125a7e103b8240fd00"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a750c963a93172f125a7e103b8240fd00">SetSynchronousMode</a> (bool mode)=0</td></tr>
+<tr class="memdesc:a750c963a93172f125a7e103b8240fd00"><td class="mdescLeft">&#160;</td><td class="mdescRight">将交通管理器切换到同步执行模式。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a750c963a93172f125a7e103b8240fd00">更多...</a><br /></td></tr>
+<tr class="separator:a750c963a93172f125a7e103b8240fd00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f201e70ddf58a872ebd1b892f8f8972"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a7f201e70ddf58a872ebd1b892f8f8972">SetSynchronousModeTimeOutInMiliSecond</a> (double time)=0</td></tr>
+<tr class="memdesc:a7f201e70ddf58a872ebd1b892f8f8972"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置同步执行模式的Tick超时时间。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a7f201e70ddf58a872ebd1b892f8f8972">更多...</a><br /></td></tr>
+<tr class="separator:a7f201e70ddf58a872ebd1b892f8f8972"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf56542127fd147bc901ba1bad317620"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#adf56542127fd147bc901ba1bad317620">SetUpdateVehicleLights</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;actor, const bool do_update)=0</td></tr>
+<tr class="memdesc:adf56542127fd147bc901ba1bad317620"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置车辆灯光的自动管理。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#adf56542127fd147bc901ba1bad317620">更多...</a><br /></td></tr>
+<tr class="separator:adf56542127fd147bc901ba1bad317620"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba74767752d7ce1dc80b68bd6b8412c5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#aba74767752d7ce1dc80b68bd6b8412c5">ShutDown</a> ()=0</td></tr>
+<tr class="memdesc:aba74767752d7ce1dc80b68bd6b8412c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">关闭系统。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#aba74767752d7ce1dc80b68bd6b8412c5">更多...</a><br /></td></tr>
+<tr class="separator:aba74767752d7ce1dc80b68bd6b8412c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab64585e7f79de4170ef6e5f9f218157d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#ab64585e7f79de4170ef6e5f9f218157d">Start</a> ()=0</td></tr>
+<tr class="memdesc:ab64585e7f79de4170ef6e5f9f218157d"><td class="mdescLeft">&#160;</td><td class="mdescRight">启动交通管理器。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#ab64585e7f79de4170ef6e5f9f218157d">更多...</a><br /></td></tr>
+<tr class="separator:ab64585e7f79de4170ef6e5f9f218157d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5da2b17e2cae6cd29afbb78069e036e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#ab5da2b17e2cae6cd29afbb78069e036e">Stop</a> ()=0</td></tr>
+<tr class="memdesc:ab5da2b17e2cae6cd29afbb78069e036e"><td class="mdescLeft">&#160;</td><td class="mdescRight">停止交通管理器。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#ab5da2b17e2cae6cd29afbb78069e036e">更多...</a><br /></td></tr>
+<tr class="separator:ab5da2b17e2cae6cd29afbb78069e036e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a398fdf8d332454879becdbdf8d19a13a"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a398fdf8d332454879becdbdf8d19a13a">SynchronousTick</a> ()=0</td></tr>
+<tr class="memdesc:a398fdf8d332454879becdbdf8d19a13a"><td class="mdescLeft">&#160;</td><td class="mdescRight">提供同步Tick。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a398fdf8d332454879becdbdf8d19a13a">更多...</a><br /></td></tr>
+<tr class="separator:a398fdf8d332454879becdbdf8d19a13a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c70f72c3e7b7802e2a846151d8b93be"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a5c70f72c3e7b7802e2a846151d8b93be">TrafficManagerBase</a> ()</td></tr>
+<tr class="memdesc:a5c70f72c3e7b7802e2a846151d8b93be"><td class="mdescLeft">&#160;</td><td class="mdescRight">单例生命周期管理的受保护构造函数。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a5c70f72c3e7b7802e2a846151d8b93be">更多...</a><br /></td></tr>
+<tr class="separator:a5c70f72c3e7b7802e2a846151d8b93be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed1acc65dd9ad3eaa025a678377a4851"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#aed1acc65dd9ad3eaa025a678377a4851">UnregisterVehicles</a> (const std::vector&lt; <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &gt; &amp;actor_list)=0</td></tr>
+<tr class="memdesc:aed1acc65dd9ad3eaa025a678377a4851"><td class="mdescLeft">&#160;</td><td class="mdescRight">此方法从交通管理器注销车辆。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#aed1acc65dd9ad3eaa025a678377a4851">更多...</a><br /></td></tr>
+<tr class="separator:aed1acc65dd9ad3eaa025a678377a4851"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38ccf5175fb2d0c3428fb584b69e3340"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a38ccf5175fb2d0c3428fb584b69e3340">UpdateImportedRoute</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> &amp;actor_id, const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a58761158ed79d767d06d0d36bf373bd1">Route</a> route)=0</td></tr>
+<tr class="memdesc:a38ccf5175fb2d0c3428fb584b69e3340"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新已设置的路线。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a38ccf5175fb2d0c3428fb584b69e3340">更多...</a><br /></td></tr>
+<tr class="separator:a38ccf5175fb2d0c3428fb584b69e3340"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af825210053a07f354b3d81f1cb052bce"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#af825210053a07f354b3d81f1cb052bce">UpdateUploadPath</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> &amp;actor_id, const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a7c7f959da28bee9cf0ea48f61b9a6bb2">Path</a> path)=0</td></tr>
+<tr class="memdesc:af825210053a07f354b3d81f1cb052bce"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新已设置的路径。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#af825210053a07f354b3d81f1cb052bce">更多...</a><br /></td></tr>
+<tr class="separator:af825210053a07f354b3d81f1cb052bce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada757f928c46a5d67fc2b67d9b666f32"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#ada757f928c46a5d67fc2b67d9b666f32">~TrafficManagerBase</a> ()</td></tr>
+<tr class="memdesc:ada757f928c46a5d67fc2b67d9b666f32"><td class="mdescLeft">&#160;</td><td class="mdescRight">析构函数。  <a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#ada757f928c46a5d67fc2b67d9b666f32">更多...</a><br /></td></tr>
+<tr class="separator:ada757f928c46a5d67fc2b67d9b666f32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p >/ * / * </p>
+<p >此类的功能是通过消息传递机制适当地整合交通管理器的各个阶段。 / <br  />
+ </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/d55/TrafficManagerBase_8h_source.html">TrafficManagerBase.h</a> 第 <a class="el" href="../../d0/d55/TrafficManagerBase_8h_source.html#l00054">54</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a5c70f72c3e7b7802e2a846151d8b93be" name="a5c70f72c3e7b7802e2a846151d8b93be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c70f72c3e7b7802e2a846151d8b93be">&#9670;&#160;</a></span>TrafficManagerBase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::traffic_manager::TrafficManagerBase::TrafficManagerBase </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>单例生命周期管理的受保护构造函数。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/d55/TrafficManagerBase_8h_source.html">TrafficManagerBase.h</a> 第 <a class="el" href="../../d0/d55/TrafficManagerBase_8h_source.html#l00080">80</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ada757f928c46a5d67fc2b67d9b666f32" name="ada757f928c46a5d67fc2b67d9b666f32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada757f928c46a5d67fc2b67d9b666f32">&#9670;&#160;</a></span>~TrafficManagerBase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual carla::traffic_manager::TrafficManagerBase::~TrafficManagerBase </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>析构函数。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/d55/TrafficManagerBase_8h_source.html">TrafficManagerBase.h</a> 第 <a class="el" href="../../d0/d55/TrafficManagerBase_8h_source.html#l00085">85</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a76345cb22f2708134dee54f2a773d629" name="a76345cb22f2708134dee54f2a773d629"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76345cb22f2708134dee54f2a773d629">&#9670;&#160;</a></span>GetActionBuffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae3077a5917d65549595f2ccdfc98570b">ActionBuffer</a> carla::traffic_manager::TrafficManagerBase::GetActionBuffer </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> &amp;&#160;</td>
+          <td class="paramname"><em>actor_id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取车辆的动作缓冲区。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actor_id</td><td>车辆ID。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>车辆的动作缓冲区。 </dd></dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a9cba15c7b1e38f0e035eb33489c1805c">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#aacd7d3740b73702fb2dc03c51813f935">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00433">carla::traffic_manager::TrafficManager::GetActionBuffer()</a> , 以及 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_a76345cb22f2708134dee54f2a773d629_icgraph.svg" width="419" height="131"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a27c85c42d9659f781cb8d2d85dfc1b48" name="a27c85c42d9659f781cb8d2d85dfc1b48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27c85c42d9659f781cb8d2d85dfc1b48">&#9670;&#160;</a></span>GetEpisodeProxy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="../../d8/dcd/namespacecarla_1_1client_1_1detail.html#a73fc4fabc24f68be175250c73e1da2fc">carla::client::detail::EpisodeProxy</a> &amp; carla::traffic_manager::TrafficManagerBase::GetEpisodeProxy </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取CARLA场景信息代理。 </p>
+<dl class="section return"><dt>返回</dt><dd>返回CARLA场景信息代理的引用。 </dd></dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a82be7bafeca7efb1423b36d124560987">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#a0cbb38fa694cc44d3460b14b834c4c0e">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_a27c85c42d9659f781cb8d2d85dfc1b48_icgraph.svg" width="359" height="66"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a61caab3b08f4e1fd4e8600139d111b75" name="a61caab3b08f4e1fd4e8600139d111b75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61caab3b08f4e1fd4e8600139d111b75">&#9670;&#160;</a></span>GetNextAction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ab5fe609686732a36b1ec4ead7d4a1d39">Action</a> carla::traffic_manager::TrafficManagerBase::GetNextAction </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> &amp;&#160;</td>
+          <td class="paramname"><em>actor_id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取车辆的下一个动作。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actor_id</td><td>车辆ID。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>车辆的下一个动作。 </dd></dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#ad1149e70bba26404d8d93bc4e8115bda">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#a8dc223800e47bf8226ff496f2c0c0623">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00420">carla::traffic_manager::TrafficManager::GetNextAction()</a> , 以及 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_a61caab3b08f4e1fd4e8600139d111b75_icgraph.svg" width="412" height="131"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a4e6696dfe8fab9c35470583673ac0243" name="a4e6696dfe8fab9c35470583673ac0243"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e6696dfe8fab9c35470583673ac0243">&#9670;&#160;</a></span>RegisterVehicles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::RegisterVehicles </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>actor_list</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>此方法向交通管理器注册车辆。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actor_list</td><td>车辆列表。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a4f4c3bdd52bcfdfe45b3e71115a78cdf">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#a3c4580ffe1b610495facf8ff7215dcc7">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00189">carla::traffic_manager::TrafficManager::RegisterVehicles()</a> , 以及 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_a4e6696dfe8fab9c35470583673ac0243_icgraph.svg" width="610" height="131"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a30dcb98397acc50c3dc0a04b8c037e03" name="a30dcb98397acc50c3dc0a04b8c037e03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30dcb98397acc50c3dc0a04b8c037e03">&#9670;&#160;</a></span>Release()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::Release </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>释放交通管理器。 </p>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#abf80af039a566b0e406328feebaf0ef4">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#afaf586e01bf418a558dcd9e83cefed93">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_a30dcb98397acc50c3dc0a04b8c037e03_icgraph.svg" width="359" height="66"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a9f20907bcd1a3805e35070b8d3242a38" name="a9f20907bcd1a3805e35070b8d3242a38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f20907bcd1a3805e35070b8d3242a38">&#9670;&#160;</a></span>RemoveImportedRoute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::RemoveImportedRoute </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> &amp;&#160;</td>
+          <td class="paramname"><em>actor_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>remove_path</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>移除路线。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actor_id</td><td>车辆ID。 </td></tr>
+    <tr><td class="paramname">remove_path</td><td>是否移除路线。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#ae78c0069901c0a09c152f5d3cba6d2e8">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#a37af6c5756413447c0833a2c11c63b68">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00120">carla::traffic_manager::TrafficManager::RemoveImportedRoute()</a> , 以及 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_a9f20907bcd1a3805e35070b8d3242a38_icgraph.svg" width="466" height="131"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ab36848fb527cb70dcf8f20a3b672a647" name="ab36848fb527cb70dcf8f20a3b672a647"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab36848fb527cb70dcf8f20a3b672a647">&#9670;&#160;</a></span>RemoveUploadPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::RemoveUploadPath </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> &amp;&#160;</td>
+          <td class="paramname"><em>actor_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>remove_path</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>移除路径。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actor_id</td><td>车辆ID。 </td></tr>
+    <tr><td class="paramname">remove_path</td><td>是否移除路径。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#af4f340b56772b631f5e9c9ffc8587535">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#a14405bf703e38fadc383fcb891ec7dab">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00089">carla::traffic_manager::TrafficManager::RemoveUploadPath()</a> , 以及 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_ab36848fb527cb70dcf8f20a3b672a647_icgraph.svg" width="443" height="131"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a702ced807deac81cdb15c3054280a8b5" name="a702ced807deac81cdb15c3054280a8b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a702ced807deac81cdb15c3054280a8b5">&#9670;&#160;</a></span>Reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::Reset </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重置交通管理器。 </p>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a7d3dcbd5cb0a9a05ba79afdae0e21a8d">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#aae904652df885a0d0334361d41cee301">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+</div>
+</div>
+<a id="a4a695fd687ec876ec5a4d99ada7f631e" name="a4a695fd687ec876ec5a4d99ada7f631e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a695fd687ec876ec5a4d99ada7f631e">&#9670;&#160;</a></span>SetAutoLaneChange()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::SetAutoLaneChange </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;&#160;</td>
+          <td class="paramname"><em>actor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>enable</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>启用/禁用车辆的自动换道。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actor</td><td>车辆指针。 </td></tr>
+    <tr><td class="paramname">enable</td><td>是否启用自动换道。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a66a3dd38c6b65cca9c35c566b710888c">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#a71cca418a461c15ff366ec95a6d117e4">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00284">carla::traffic_manager::TrafficManager::SetAutoLaneChange()</a> , 以及 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_a4a695fd687ec876ec5a4d99ada7f631e_icgraph.svg" width="403" height="144"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a1cf2fe281872d1e4989900b6bffb6bbe" name="a1cf2fe281872d1e4989900b6bffb6bbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cf2fe281872d1e4989900b6bffb6bbe">&#9670;&#160;</a></span>SetBoundariesRespawnDormantVehicles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::SetBoundariesRespawnDormantVehicles </td>
+          <td>(</td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>lower_bound</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>upper_bound</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置重生车辆的范围。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lower_bound</td><td>范围下限。 </td></tr>
+    <tr><td class="paramname">upper_bound</td><td>范围上限。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a835cddc7b10dc27ebfcaffccf491267b">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#a73d0a85a8467a1bde1e2f8c4c90f83bd">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00148">carla::traffic_manager::TrafficManager::SetBoundariesRespawnDormantVehicles()</a> , 以及 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_a1cf2fe281872d1e4989900b6bffb6bbe_icgraph.svg" width="523" height="144"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a4d629eb66838586269dc05f9bdab158f" name="a4d629eb66838586269dc05f9bdab158f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d629eb66838586269dc05f9bdab158f">&#9670;&#160;</a></span>SetCollisionDetection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::SetCollisionDetection </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;&#160;</td>
+          <td class="paramname"><em>reference_actor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;&#160;</td>
+          <td class="paramname"><em>other_actor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>detect_collision</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置车辆之间的碰撞检测规则。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">reference_actor</td><td>参考车辆指针。 </td></tr>
+    <tr><td class="paramname">other_actor</td><td>其他车辆指针。 </td></tr>
+    <tr><td class="paramname">detect_collision</td><td>是否检测碰撞。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#ab4a67bd50d83ba2ea6cac7aabb82e74a">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#a1b06b17acd15479b1d0226232283b138">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00267">carla::traffic_manager::TrafficManager::SetCollisionDetection()</a> , 以及 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_a4d629eb66838586269dc05f9bdab158f_icgraph.svg" width="396" height="144"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ab2ad4554a9cdaf1f8eab49e205820b3c" name="ab2ad4554a9cdaf1f8eab49e205820b3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2ad4554a9cdaf1f8eab49e205820b3c">&#9670;&#160;</a></span>SetCustomPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::SetCustomPath </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;&#160;</td>
+          <td class="paramname"><em>actor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a7c7f959da28bee9cf0ea48f61b9a6bb2">Path</a>&#160;</td>
+          <td class="paramname"><em>path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>empty_buffer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置自定义导入路径。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actor</td><td>车辆指针。 </td></tr>
+    <tr><td class="paramname">path</td><td>自定义路径。 </td></tr>
+    <tr><td class="paramname">empty_buffer</td><td>是否清空缓冲区。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#ab914ac98983145f454961c20611c5c1b">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#a40d73e96450a2d7eb14d4a7239a51637">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00079">carla::traffic_manager::TrafficManager::SetCustomPath()</a> , 以及 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_ab2ad4554a9cdaf1f8eab49e205820b3c_icgraph.svg" width="419" height="131"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ab38ebac6fb25b1b3171f0e24150b186f" name="ab38ebac6fb25b1b3171f0e24150b186f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab38ebac6fb25b1b3171f0e24150b186f">&#9670;&#160;</a></span>SetDesiredSpeed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::SetDesiredSpeed </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;&#160;</td>
+          <td class="paramname"><em>actor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置车辆的精确期望速度。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actor</td><td>车辆指针。 </td></tr>
+    <tr><td class="paramname">value</td><td>速度值。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#aba2952814b59d19475922906c48eec52">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#a42b60b6e0e8c430283878f355b96a47d">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00232">carla::traffic_manager::TrafficManager::SetDesiredSpeed()</a> , 以及 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-12-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-12-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_ab38ebac6fb25b1b3171f0e24150b186f_icgraph.svg" width="428" height="131"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="aed9d8169bc3309a4064d283a6d2d0dc2" name="aed9d8169bc3309a4064d283a6d2d0dc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed9d8169bc3309a4064d283a6d2d0dc2">&#9670;&#160;</a></span>SetDistanceToLeadingVehicle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::SetDistanceToLeadingVehicle </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;&#160;</td>
+          <td class="paramname"><em>actor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>distance</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置车辆与前车应保持的距离。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actor</td><td>车辆指针。 </td></tr>
+    <tr><td class="paramname">distance</td><td>应保持的距离。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a2d3809bb4d6fc0cc655b68abd77a4c4c">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#ad74c573b6bcd3c7bf06f782aa34f4efd">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00292">carla::traffic_manager::TrafficManager::SetDistanceToLeadingVehicle()</a> , 以及 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-13" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-13-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-13-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-13-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_aed9d8169bc3309a4064d283a6d2d0dc2_icgraph.svg" width="447" height="144"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a6f73349eb3e0ed3569e61f09797d3070" name="a6f73349eb3e0ed3569e61f09797d3070"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f73349eb3e0ed3569e61f09797d3070">&#9670;&#160;</a></span>SetForceLaneChange()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::SetForceLaneChange </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;&#160;</td>
+          <td class="paramname"><em>actor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>direction</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>强制车辆换道。 </p>
+<p >方向标志可以设置为true表示向左换道，false表示向右换道。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actor</td><td>车辆指针。 </td></tr>
+    <tr><td class="paramname">direction</td><td>换道方向。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#ab7a145c382ea9cac815c5a43e0a68ee7">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#af64a5321894dd93831c42d4c2fcb82ad">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00276">carla::traffic_manager::TrafficManager::SetForceLaneChange()</a> , 以及 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-14" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-14-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-14-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-14-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_a6f73349eb3e0ed3569e61f09797d3070_icgraph.svg" width="410" height="144"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="af19fc0f04dc995000477cbd23fd37d88" name="af19fc0f04dc995000477cbd23fd37d88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af19fc0f04dc995000477cbd23fd37d88">&#9670;&#160;</a></span>SetGlobalDistanceToLeadingVehicle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::SetGlobalDistanceToLeadingVehicle </td>
+          <td>(</td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>dist</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置全局前车距离。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dist</td><td>前车距离。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#aa53d70c67528897186415f8f58a732fe">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#a605fead774def3100b2de26419566558">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00369">carla::traffic_manager::TrafficManager::SetGlobalDistanceToLeadingVehicle()</a> , 以及 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-15" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-15-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-15-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-15-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_af19fc0f04dc995000477cbd23fd37d88_icgraph.svg" width="520" height="144"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a3cabe7f21f693097e6d5e7abca17b3d0" name="a3cabe7f21f693097e6d5e7abca17b3d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cabe7f21f693097e6d5e7abca17b3d0">&#9670;&#160;</a></span>SetGlobalLaneOffset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::SetGlobalLaneOffset </td>
+          <td>(</td>
+          <td class="paramtype">float const&#160;</td>
+          <td class="paramname"><em>offset</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置全局相对于中心线的车道偏移量。 正值表示向右偏移，负值表示向左偏移。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">offset</td><td>偏移量。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#aa555489b97a2364fc8df722ce7c9f966">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#a2030c5c40b4ba9dd4248e55ea823dc0f">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00251">carla::traffic_manager::TrafficManager::SetGlobalLaneOffset()</a> , 以及 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-16" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-16-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-16-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-16-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_a3cabe7f21f693097e6d5e7abca17b3d0_icgraph.svg" width="414" height="144"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="afe4258a086d5b71bf02ed231d894bbf1" name="afe4258a086d5b71bf02ed231d894bbf1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe4258a086d5b71bf02ed231d894bbf1">&#9670;&#160;</a></span>SetGlobalPercentageSpeedDifference()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::SetGlobalPercentageSpeedDifference </td>
+          <td>(</td>
+          <td class="paramtype">float const&#160;</td>
+          <td class="paramname"><em>percentage</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置全局相对于限速的速度百分比降低。 如果小于0，则表示百分比增加。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">percentage</td><td>百分比值。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a30ddde11881582788fcdcf51e3aa92c0">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#a12ad050dfa9529ddb1dd354626fe32a8">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00242">carla::traffic_manager::TrafficManager::SetGlobalPercentageSpeedDifference()</a> , 以及 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-17" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-17-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-17-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-17-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_afe4258a086d5b71bf02ed231d894bbf1_icgraph.svg" width="542" height="144"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="aaf561445433ad0b5f709e54651501b48" name="aaf561445433ad0b5f709e54651501b48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf561445433ad0b5f709e54651501b48">&#9670;&#160;</a></span>SetHybridPhysicsMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::SetHybridPhysicsMode </td>
+          <td>(</td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>mode_switch</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置混合物理模式。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mode_switch</td><td>是否启用混合物理模式。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a76c15a711dd9da13e2051a11a2a22f84">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#a2b7ec420f947bb500d543b76dc6c4c31">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00169">carla::traffic_manager::TrafficManager::SetHybridPhysicsMode()</a> , 以及 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-18" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-18-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-18-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-18-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_aaf561445433ad0b5f709e54651501b48_icgraph.svg" width="471" height="131"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a63af723241bb5eb8f08d1beb864d8fa6" name="a63af723241bb5eb8f08d1beb864d8fa6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63af723241bb5eb8f08d1beb864d8fa6">&#9670;&#160;</a></span>SetHybridPhysicsRadius()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::SetHybridPhysicsRadius </td>
+          <td>(</td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>radius</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置混合物理半径。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">radius</td><td>混合物理半径。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a0b6e6cd5a2b9614ec472a6c79ff614bb">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#af7700e08d7a67a2333a35bdd65611cd4">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00179">carla::traffic_manager::TrafficManager::SetHybridPhysicsRadius()</a> , 以及 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-19" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-19-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-19-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-19-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_a63af723241bb5eb8f08d1beb864d8fa6_icgraph.svg" width="447" height="144"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="afbe7ec4d1a021a86cd53733ed108fb27" name="afbe7ec4d1a021a86cd53733ed108fb27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbe7ec4d1a021a86cd53733ed108fb27">&#9670;&#160;</a></span>SetImportedRoute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::SetImportedRoute </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;&#160;</td>
+          <td class="paramname"><em>actor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a58761158ed79d767d06d0d36bf373bd1">Route</a>&#160;</td>
+          <td class="paramname"><em>route</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>empty_buffer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置自定义导入路线。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actor</td><td>车辆指针。 </td></tr>
+    <tr><td class="paramname">route</td><td>自定义路线。 </td></tr>
+    <tr><td class="paramname">empty_buffer</td><td>是否清空缓冲区。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#adb1eb49b03ba366d937baccb877dc91b">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#a8470659ca53d29e3566a3df7e90bd8f3">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00110">carla::traffic_manager::TrafficManager::SetImportedRoute()</a> , 以及 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-20" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-20-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-20-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-20-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_afbe7ec4d1a021a86cd53733ed108fb27_icgraph.svg" width="432" height="131"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a7403e90dcd62c6c1598cb32268f8c100" name="a7403e90dcd62c6c1598cb32268f8c100"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7403e90dcd62c6c1598cb32268f8c100">&#9670;&#160;</a></span>SetKeepRightPercentage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::SetKeepRightPercentage </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;&#160;</td>
+          <td class="paramname"><em>actor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>percentage</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置保持在右车道的百分比。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actor</td><td>车辆指针。 </td></tr>
+    <tr><td class="paramname">percentage</td><td>保持在右车道的百分比。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a8e8a3062b5d5bf5b2c3e76153bd278e1">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#a1cf1f981642e1b5f8e1ee981dadf6a81">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00379">carla::traffic_manager::TrafficManager::SetKeepRightPercentage()</a> , 以及 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-21" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-21-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-21-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-21-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_a7403e90dcd62c6c1598cb32268f8c100_icgraph.svg" width="426" height="144"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a7b800a6a92530c0f7bb83862cecb63d3" name="a7b800a6a92530c0f7bb83862cecb63d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b800a6a92530c0f7bb83862cecb63d3">&#9670;&#160;</a></span>SetLaneOffset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::SetLaneOffset </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;&#160;</td>
+          <td class="paramname"><em>actor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>offset</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置车辆相对于中心线的车道偏移量。 正值表示向右偏移，负值表示向左偏移。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actor</td><td>车辆指针。 </td></tr>
+    <tr><td class="paramname">offset</td><td>偏移量。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a3b0a9643b29cd8c54f92b1702953c0b0">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#a51b44aead031e7fcceaf4810c80338f0">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00221">carla::traffic_manager::TrafficManager::SetLaneOffset()</a> , 以及 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-22" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-22-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-22-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-22-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_a7b800a6a92530c0f7bb83862cecb63d3_icgraph.svg" width="411" height="131"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a5503aa619db33133f2871057e7b375ca" name="a5503aa619db33133f2871057e7b375ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5503aa619db33133f2871057e7b375ca">&#9670;&#160;</a></span>SetMaxBoundaries()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::SetMaxBoundaries </td>
+          <td>(</td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>lower</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>upper</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置范围限制。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lower</td><td>范围下限。 </td></tr>
+    <tr><td class="paramname">upper</td><td>范围上限。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a2ce99c128c0a264545cb7afea0a6ca87">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#afe95874a32334d9f732f3460877ee948">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00159">carla::traffic_manager::TrafficManager::SetMaxBoundaries()</a>.</p>
+<div id="dynsection-23" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-23-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-23-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-23-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_a5503aa619db33133f2871057e7b375ca_icgraph.svg" width="436" height="66"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a4fc254632e04e26911b12f7f89ece46f" name="a4fc254632e04e26911b12f7f89ece46f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fc254632e04e26911b12f7f89ece46f">&#9670;&#160;</a></span>SetOSMMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::SetOSMMode </td>
+          <td>(</td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>mode_switch</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置Open Street Map模式。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mode_switch</td><td>是否启用Open Street Map模式。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#aefc4acf97c02c1f0c8392a8bdaa74fc1">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#a51c1450921ec325f1e284f5240346f2f">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00068">carla::traffic_manager::TrafficManager::SetOSMMode()</a> , 以及 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-24" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-24-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-24-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-24-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_a4fc254632e04e26911b12f7f89ece46f_icgraph.svg" width="410" height="131"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a60d8821c0f9a3f841b9bf7f03b0b3c8b" name="a60d8821c0f9a3f841b9bf7f03b0b3c8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60d8821c0f9a3f841b9bf7f03b0b3c8b">&#9670;&#160;</a></span>SetPercentageIgnoreVehicles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::SetPercentageIgnoreVehicles </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;&#160;</td>
+          <td class="paramname"><em>actor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>perc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置车辆忽略其他车辆的碰撞概率。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actor</td><td>车辆指针。 </td></tr>
+    <tr><td class="paramname">perc</td><td>忽略其他车辆的碰撞概率。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a69f4363dda298d5a82917fb55ad774d2">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#a0168df6f599c3c2723e6d4826e0bc4da">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00312">carla::traffic_manager::TrafficManager::SetPercentageIgnoreVehicles()</a> , 以及 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-25" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-25-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-25-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-25-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_a60d8821c0f9a3f841b9bf7f03b0b3c8b_icgraph.svg" width="459" height="144"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a2181f9357eb2e2a3a29ba693627267f8" name="a2181f9357eb2e2a3a29ba693627267f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2181f9357eb2e2a3a29ba693627267f8">&#9670;&#160;</a></span>SetPercentageIgnoreWalkers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::SetPercentageIgnoreWalkers </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;&#160;</td>
+          <td class="paramname"><em>actor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>perc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置车辆忽略行人的碰撞概率。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actor</td><td>车辆指针。 </td></tr>
+    <tr><td class="paramname">perc</td><td>忽略行人的碰撞概率。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#af9d4ab12a31b35f5d141f98029e47530">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#a8c8f03425a684dadc558fe36e34c4e37">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00302">carla::traffic_manager::TrafficManager::SetPercentageIgnoreWalkers()</a> , 以及 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-26" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-26-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-26-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-26-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_a2181f9357eb2e2a3a29ba693627267f8_icgraph.svg" width="455" height="144"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ae51db5a72bc6412a224bc90faa9712a9" name="ae51db5a72bc6412a224bc90faa9712a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae51db5a72bc6412a224bc90faa9712a9">&#9670;&#160;</a></span>SetPercentageRunningLight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::SetPercentageRunningLight </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;&#160;</td>
+          <td class="paramname"><em>actor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>perc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置车辆闯红灯的概率。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actor</td><td>车辆指针。 </td></tr>
+    <tr><td class="paramname">perc</td><td>闯红灯的概率。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a0b9bbb035fa74cfaf8ea26a5d105b378">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#a9007901b5ffc404c1feab3338975a8f6">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00332">carla::traffic_manager::TrafficManager::SetPercentageRunningLight()</a> , 以及 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-27" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-27-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-27-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-27-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_ae51db5a72bc6412a224bc90faa9712a9_icgraph.svg" width="448" height="144"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a233159121daff8735aab83288c28d467" name="a233159121daff8735aab83288c28d467"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a233159121daff8735aab83288c28d467">&#9670;&#160;</a></span>SetPercentageRunningSign()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::SetPercentageRunningSign </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;&#160;</td>
+          <td class="paramname"><em>actor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>perc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置车辆无视交通标志的概率。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actor</td><td>车辆指针。 </td></tr>
+    <tr><td class="paramname">perc</td><td>无视交通标志的概率。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a9436a93c66e72e55d05ac95249a507dc">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#ade724385160307135b4d24298276620d">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00322">carla::traffic_manager::TrafficManager::SetPercentageRunningSign()</a> , 以及 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-28" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-28-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-28-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-28-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_a233159121daff8735aab83288c28d467_icgraph.svg" width="446" height="144"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a24df2b483c6d88d8db67fdec53dadaf7" name="a24df2b483c6d88d8db67fdec53dadaf7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24df2b483c6d88d8db67fdec53dadaf7">&#9670;&#160;</a></span>SetPercentageSpeedDifference()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::SetPercentageSpeedDifference </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;&#160;</td>
+          <td class="paramname"><em>actor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>percentage</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置车辆相对于限速的速度百分比降低。 如果小于0，则表示百分比增加。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actor</td><td>车辆指针。 </td></tr>
+    <tr><td class="paramname">percentage</td><td>百分比值。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a2948f048fc8db6bff9b266b18e351fb9">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#ac9237723ffce4ce4b0cf9b7ee0636e9c">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00210">carla::traffic_manager::TrafficManager::SetPercentageSpeedDifference()</a> , 以及 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-29" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-29-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-29-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-29-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_a24df2b483c6d88d8db67fdec53dadaf7_icgraph.svg" width="467" height="144"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a079f2a2aa8926597d751900e3e9e8577" name="a079f2a2aa8926597d751900e3e9e8577"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a079f2a2aa8926597d751900e3e9e8577">&#9670;&#160;</a></span>SetRandomDeviceSeed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::SetRandomDeviceSeed </td>
+          <td>(</td>
+          <td class="paramtype">const uint64_t&#160;</td>
+          <td class="paramname"><em>seed</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置随机化种子。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">seed</td><td>随机化种子。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a32e791744665306c576d589f81658e3e">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#a57e9ca5231ad5747c6dc9d505cad2b71">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00408">carla::traffic_manager::TrafficManager::SetRandomDeviceSeed()</a> , 以及 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-30" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-30-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-30-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-30-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_a079f2a2aa8926597d751900e3e9e8577_icgraph.svg" width="476" height="131"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a1bc714030dc8b9752aeb64b3a80eff70" name="a1bc714030dc8b9752aeb64b3a80eff70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bc714030dc8b9752aeb64b3a80eff70">&#9670;&#160;</a></span>SetRandomLeftLaneChangePercentage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::SetRandomLeftLaneChangePercentage </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;&#160;</td>
+          <td class="paramname"><em>actor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>percentage</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置随机左变道的百分比。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actor</td><td>车辆指针。 </td></tr>
+    <tr><td class="paramname">percentage</td><td>随机左变道的百分比。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#adb9981380d6fc23a5fddd4b2adacac23">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#abfefa945d38e09a355df1d87f7401c36">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00389">carla::traffic_manager::TrafficManager::SetRandomLeftLaneChangePercentage()</a> , 以及 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-31" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-31-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-31-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-31-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_a1bc714030dc8b9752aeb64b3a80eff70_icgraph.svg" width="522" height="144"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a7cf1956e3fa366564848c7424349e82c" name="a7cf1956e3fa366564848c7424349e82c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cf1956e3fa366564848c7424349e82c">&#9670;&#160;</a></span>SetRandomRightLaneChangePercentage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::SetRandomRightLaneChangePercentage </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;&#160;</td>
+          <td class="paramname"><em>actor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>percentage</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置随机右变道的百分比。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actor</td><td>车辆指针。 </td></tr>
+    <tr><td class="paramname">percentage</td><td>随机右变道的百分比。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a7ebde0c86adb009c4c5ba97727361995">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#a6387648f37bb36ef7ad5d0694b4906e1">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00399">carla::traffic_manager::TrafficManager::SetRandomRightLaneChangePercentage()</a> , 以及 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-32" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-32-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-32-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-32-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_a7cf1956e3fa366564848c7424349e82c_icgraph.svg" width="535" height="144"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a89a20179757d9cae506c816c787146c5" name="a89a20179757d9cae506c816c787146c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89a20179757d9cae506c816c787146c5">&#9670;&#160;</a></span>SetRespawnDormantVehicles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::SetRespawnDormantVehicles </td>
+          <td>(</td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>mode_switch</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置休眠车辆的自动重生。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mode_switch</td><td>是否启用休眠车辆的自动重生。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a6746a19e86d24665eb07da60ca03cdac">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#a6ec4078a6e7ce4070135f92738ce55d4">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00139">carla::traffic_manager::TrafficManager::SetRespawnDormantVehicles()</a> , 以及 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-33" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-33-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-33-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-33-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_a89a20179757d9cae506c816c787146c5_icgraph.svg" width="447" height="144"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a750c963a93172f125a7e103b8240fd00" name="a750c963a93172f125a7e103b8240fd00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a750c963a93172f125a7e103b8240fd00">&#9670;&#160;</a></span>SetSynchronousMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::SetSynchronousMode </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>mode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>将交通管理器切换到同步执行模式。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mode</td><td>是否启用同步模式。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a56da22d30340c61281fd9e2d6cdcdc77">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#ae8069120bcc27ac4e50946a30bbd54f4">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00341">carla::traffic_manager::TrafficManager::SetSynchronousMode()</a> , 以及 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-34" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-34-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-34-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-34-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_a750c963a93172f125a7e103b8240fd00_icgraph.svg" width="455" height="131"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a7f201e70ddf58a872ebd1b892f8f8972" name="a7f201e70ddf58a872ebd1b892f8f8972"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f201e70ddf58a872ebd1b892f8f8972">&#9670;&#160;</a></span>SetSynchronousModeTimeOutInMiliSecond()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::SetSynchronousModeTimeOutInMiliSecond </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>time</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置同步执行模式的Tick超时时间。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">time</td><td>Tick超时时间（毫秒）。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a4d7fa81deb8ce674c53af9a4b4afd423">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#aa9d65e2e31540c88c9fcbfb925538f5b">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00350">carla::traffic_manager::TrafficManager::SetSynchronousModeTimeOutInMiliSecond()</a> , 以及 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-35" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-35-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-35-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-35-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_a7f201e70ddf58a872ebd1b892f8f8972_icgraph.svg" width="504" height="144"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="adf56542127fd147bc901ba1bad317620" name="adf56542127fd147bc901ba1bad317620"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf56542127fd147bc901ba1bad317620">&#9670;&#160;</a></span>SetUpdateVehicleLights()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::SetUpdateVehicleLights </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &amp;&#160;</td>
+          <td class="paramname"><em>actor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>do_update</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置车辆灯光的自动管理。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actor</td><td>车辆指针。 </td></tr>
+    <tr><td class="paramname">do_update</td><td>是否更新灯光管理。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#aaec3e85dc493f04f652da481c87309b0">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#a0cce8e23d9644355e429c25e5c6f6155">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00259">carla::traffic_manager::TrafficManager::SetUpdateVehicleLights()</a> , 以及 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-36" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-36-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-36-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-36-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_adf56542127fd147bc901ba1bad317620_icgraph.svg" width="446" height="144"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="aba74767752d7ce1dc80b68bd6b8412c5" name="aba74767752d7ce1dc80b68bd6b8412c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba74767752d7ce1dc80b68bd6b8412c5">&#9670;&#160;</a></span>ShutDown()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::ShutDown </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>关闭系统。 </p>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#ae0b41ab86162d7c72b12bb73d717850b">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#ae058aa9268ff031ee2b743d869e1a351">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d04/TrafficManager_8cpp_source.html#l00078">carla::traffic_manager::TrafficManager::ShutDown()</a>.</p>
+<div id="dynsection-37" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-37-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-37-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-37-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_aba74767752d7ce1dc80b68bd6b8412c5_icgraph.svg" width="387" height="66"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ab64585e7f79de4170ef6e5f9f218157d" name="ab64585e7f79de4170ef6e5f9f218157d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab64585e7f79de4170ef6e5f9f218157d">&#9670;&#160;</a></span>Start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::Start </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>启动交通管理器。 </p>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a1ffbdb0bed64f385437d2820a90286d0">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#a118cb803dfe221ed617bdbe07ada8ff1">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+</div>
+</div>
+<a id="ab5da2b17e2cae6cd29afbb78069e036e" name="ab5da2b17e2cae6cd29afbb78069e036e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5da2b17e2cae6cd29afbb78069e036e">&#9670;&#160;</a></span>Stop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::Stop </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>停止交通管理器。 </p>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#ad2b17f923adfa432e90f5d88cbce7d17">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#a5524cfcdd972983027c6ecaa20e99cd0">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+</div>
+</div>
+<a id="a398fdf8d332454879becdbdf8d19a13a" name="a398fdf8d332454879becdbdf8d19a13a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a398fdf8d332454879becdbdf8d19a13a">&#9670;&#160;</a></span>SynchronousTick()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool carla::traffic_manager::TrafficManagerBase::SynchronousTick </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>提供同步Tick。 </p>
+<dl class="section return"><dt>返回</dt><dd>如果成功提供同步Tick，则返回true；否则返回false。 </dd></dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a94043366fbfc809256e8698edc010727">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#a1d4200a7715a8ba47d93b1fc8f9c4aae">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00359">carla::traffic_manager::TrafficManager::SynchronousTick()</a> , 以及 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a>.</p>
+<div id="dynsection-38" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-38-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-38-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-38-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_a398fdf8d332454879becdbdf8d19a13a_icgraph.svg" width="427" height="131"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="aed1acc65dd9ad3eaa025a678377a4851" name="aed1acc65dd9ad3eaa025a678377a4851"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed1acc65dd9ad3eaa025a678377a4851">&#9670;&#160;</a></span>UnregisterVehicles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::UnregisterVehicles </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>actor_list</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>此方法从交通管理器注销车辆。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actor_list</td><td>车辆列表。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#ab9c936996f7a8b2894ea8e7b3ccd19f8">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#a239a5d8d5b1d08bd71f8dbdf23ac226d">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a> , 以及 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00199">carla::traffic_manager::TrafficManager::UnregisterVehicles()</a>.</p>
+<div id="dynsection-39" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-39-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-39-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-39-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_aed1acc65dd9ad3eaa025a678377a4851_icgraph.svg" width="571" height="144"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a38ccf5175fb2d0c3428fb584b69e3340" name="a38ccf5175fb2d0c3428fb584b69e3340"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38ccf5175fb2d0c3428fb584b69e3340">&#9670;&#160;</a></span>UpdateImportedRoute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::UpdateImportedRoute </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> &amp;&#160;</td>
+          <td class="paramname"><em>actor_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a58761158ed79d767d06d0d36bf373bd1">Route</a>&#160;</td>
+          <td class="paramname"><em>route</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>更新已设置的路线。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actor_id</td><td>车辆ID。 </td></tr>
+    <tr><td class="paramname">route</td><td>更新后的路线。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a56571cb3d6a45afb07e9da04eadd1cb2">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#a5be7373d6495780e609c3e449a339084">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a> , 以及 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00130">carla::traffic_manager::TrafficManager::UpdateImportedRoute()</a>.</p>
+<div id="dynsection-40" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-40-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-40-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-40-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_a38ccf5175fb2d0c3428fb584b69e3340_icgraph.svg" width="455" height="131"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="af825210053a07f354b3d81f1cb052bce" name="af825210053a07f354b3d81f1cb052bce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af825210053a07f354b3d81f1cb052bce">&#9670;&#160;</a></span>UpdateUploadPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::traffic_manager::TrafficManagerBase::UpdateUploadPath </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> &amp;&#160;</td>
+          <td class="paramname"><em>actor_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a7c7f959da28bee9cf0ea48f61b9a6bb2">Path</a>&#160;</td>
+          <td class="paramname"><em>path</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>更新已设置的路径。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actor_id</td><td>车辆ID。 </td></tr>
+    <tr><td class="paramname">path</td><td>更新后的路径。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在 <a class="el" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a3a3f4fa1af185f66b973fff1635a8b47">carla::traffic_manager::TrafficManagerLocal</a> , 以及 <a class="el" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#a1f93c2718453a04fe3a76b562ee200fe">carla::traffic_manager::TrafficManagerRemote</a> 内被实现.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/da0/TrafficManagerServer_8h_source.html#l00096">carla::traffic_manager::TrafficManagerServer::TrafficManagerServer()</a> , 以及 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00099">carla::traffic_manager::TrafficManager::UpdateUploadPath()</a>.</p>
+<div id="dynsection-41" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-41-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-41-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-41-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase_af825210053a07f354b3d81f1cb052bce_icgraph.svg" width="438" height="131"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../d0/d55/TrafficManagerBase_8h_source.html">TrafficManagerBase.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

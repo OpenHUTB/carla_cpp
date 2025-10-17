@@ -1,0 +1,4 @@
+<map id="FDataStreamTmpl&lt; T &gt;" name="FDataStreamTmpl&lt; T &gt;">
+<area shape="rect" id="node1" title="用于将传感器数据发送到客户端的流式处理通道。每个传感器 都有自己的 FDataStream。但请注意，此类不提供 send 函数。 为了发送数据，需要使用 “MakeAsyncDataStream” 函..." alt="" coords="5,93,164,119"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,164,31"/>
+</map>

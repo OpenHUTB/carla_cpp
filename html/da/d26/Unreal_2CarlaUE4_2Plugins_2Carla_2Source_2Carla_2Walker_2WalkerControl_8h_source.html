@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: WalkerControl.h 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_2d15d0715a2692171bd03ed14a4a79af.html">Unreal</a></li><li class="navelem"><a class="el" href="../../dir_d3c1db2570616bec48bf5a6dd06bce95.html">CarlaUE4</a></li><li class="navelem"><a class="el" href="../../dir_3538576148ac14151677be9b0aee6fcc.html">Plugins</a></li><li class="navelem"><a class="el" href="../../dir_fbda5b12374c683cbdca72abb2d51944.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_18937e8f6bde63367bf26837323a9508.html">Source</a></li><li class="navelem"><a class="el" href="../../dir_8fc34afb5f07a67966c78bf5319f94ae.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_7a44753a182d2dd0cd15cfa7be7c0c89.html">Walker</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Walker/WalkerControl.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../da/d26/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Walker_2WalkerControl_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// de Barcelona (UAB).</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// 版权声明部分，表明这段代码的版权归属以及其遵循的开源许可协议情况。此代码受 MIT 许可证条款的许可，若需要查看许可证的具体内容，可以通过对应的网址进行访问。</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">// 预处理指令，用于保证该头文件在一个编译单元中只会被包含一次，避免重复定义等编译错误。</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">// 包含 &quot;WalkerControl.generated.h&quot; 头文件，这通常是基于虚幻引擎等使用代码生成机制时所需要包含的头文件，它会包含一些自动生成代码相关的内容，比如用于支持反射等功能的代码，使得定义的结构体等类型能在蓝图系统等环境中正常使用。</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;WalkerControl.generated.h&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">// 使用 USTRUCT 宏定义结构体 FWalkerControl，同时指定其具有 BlueprintType 属性，意味着这个结构体可以在虚幻引擎的蓝图系统中使用，方便进行可视化编程和数据传递等操作。</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>USTRUCT(BlueprintType)</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="../../db/dc0/structFWalkerControl.html">   15</a></span>struct CARLA_API <a class="code hl_struct" href="../../db/dc0/structFWalkerControl.html">FWalkerControl</a></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>{</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    GENERATED_BODY()</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="comment">// 使用 UPROPERTY 宏声明结构体的成员变量 Direction，将其归类到 &quot;Walker Control&quot; 类别下，在虚幻引擎的编辑器中，通过这个类别可以对相关属性进行组织管理。</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="comment">// EditAnywhere 表示该属性可以在编辑器的各种编辑模式下（比如蓝图编辑、细节面板编辑等）进行修改。</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="comment">// BlueprintReadWrite 表示该属性在蓝图系统中既能被读取也能被写入，即可以在蓝图中获取其值也可以对其值进行设置。</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="comment">// 该属性类型为 FVector，是虚幻引擎中表示三维向量的类型，这里初始化为 {1.0f, 0.0f, 0.0f}，表示在 X 轴正方向上的一个单位向量，可能用于表示行走者（Walker）的移动方向等含义。</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    UPROPERTY(Category = <span class="stringliteral">&quot;Walker Control&quot;</span>, EditAnywhere, BlueprintReadWrite)</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="../../db/dc0/structFWalkerControl.html#ab3b71aa5892b0e6dea6bfa23e51d2f8a">   24</a></span>    FVector Direction = {1.0f, 0.0f, 0.0f};</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="comment">// 同样使用 UPROPERTY 宏声明结构体的成员变量 Speed，归类在 &quot;Walker Control&quot; 类别下，可在编辑器各处修改，在蓝图中可读可写。</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="comment">// 其类型为 float，用于表示速度，初始值为 0.0f，可能代表行走者的移动速度，单位或许根据具体游戏场景或模拟环境而定。</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    UPROPERTY(Category = <span class="stringliteral">&quot;Walker Control&quot;</span>, EditAnywhere, BlueprintReadWrite)</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="../../db/dc0/structFWalkerControl.html#a9a43a62bfa5af55bc249530fa4bcff38">   29</a></span>    float Speed = 0.0f;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="comment">// 使用 UPROPERTY 宏声明结构体的成员变量 Jump，归类在 &quot;Walker Control&quot; 类别下，可在编辑器各处修改，在蓝图中可读可写。</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="comment">// 其类型为 bool，用于表示是否跳跃的状态，初始值为 false，即默认情况下行走者不处于跳跃状态。</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    UPROPERTY(Category = &quot;Walker <a class="code hl_variable" href="../../de/d7d/ActorData_8h.html#a7d9383aec02ed02f84751cc5a6892d38">Control</a>&quot;, EditAnywhere, BlueprintReadWrite)</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="../../db/dc0/structFWalkerControl.html#ac078ff7ea2c3d6f55e7c7e10998d6682">   34</a></span>    <span class="keywordtype">bool</span> Jump = false;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>};</div>
+<div class="ttc" id="aActorData_8h_html_a7d9383aec02ed02f84751cc5a6892d38"><div class="ttname"><a href="../../de/d7d/ActorData_8h.html#a7d9383aec02ed02f84751cc5a6892d38">Control</a></div><div class="ttdeci">FVehicleControl Control</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d7d/ActorData_8h_source.html#l00119">ActorData.h:119</a></div></div>
+<div class="ttc" id="astructFWalkerControl_html"><div class="ttname"><a href="../../db/dc0/structFWalkerControl.html">FWalkerControl</a></div><div class="ttdef"><b>Definition:</b> <a href="../../da/d26/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Walker_2WalkerControl_8h_source.html#l00015">Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Walker/WalkerControl.h:16</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

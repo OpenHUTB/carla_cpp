@@ -1,0 +1,17 @@
+<map id="carla::client::Actor" name="carla::client::Actor">
+<area shape="rect" id="node1" title="表示模拟中的一个行为体（Actor）。" alt="" coords="441,217,565,242"/>
+<area shape="rect" id="node6" href="$da/dec/classcarla_1_1client_1_1Sensor.html" title="传感器基类，继承自Actor类。" alt="" coords="647,86,781,111"/>
+<area shape="rect" id="node11" href="$dc/d5c/classcarla_1_1client_1_1TrafficSign.html" title=" " alt="" coords="637,167,791,193"/>
+<area shape="rect" id="node13" href="$d9/dc6/classcarla_1_1client_1_1Vehicle.html" title="车辆类的前向声明，用于在LaneInvasionSensor类中可能的引用。" alt="" coords="646,217,782,242"/>
+<area shape="rect" id="node14" href="$de/d2b/classcarla_1_1client_1_1Walker.html" title="行人角色类，继承自Actor类。" alt="" coords="647,266,781,291"/>
+<area shape="rect" id="node15" href="$d0/d52/classcarla_1_1client_1_1WalkerAIController.html" title=" " alt="" coords="613,315,815,341"/>
+<area shape="rect" id="node2" href="$da/d05/classEnableSharedFromThis.html" title=" " alt="" coords="236,145,393,185"/>
+<area shape="rect" id="node3" href="$df/d3e/classcarla_1_1profiler_1_1LifetimeProfiled.html" title=" " alt="" coords="241,209,388,249"/>
+<area shape="rect" id="node4" href="$d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html" title="参与者的内部状态" alt="" coords="253,273,377,313"/>
+<area shape="rect" id="node5" href="$d7/d55/classcarla_1_1MovableNonCopyable.html" title="这个类用于禁止拷贝构造函数和赋值操作，但允许移动构造函数和赋值操作" alt="" coords="5,281,188,306"/>
+<area shape="rect" id="node7" href="$da/d2e/classcarla_1_1client_1_1ClientSideSensor.html" title=" " alt="" coords="865,5,1017,45"/>
+<area shape="rect" id="node9" href="$d7/db6/classcarla_1_1client_1_1RssSensor.html" title="实现carla::client::Sensor接口的RSS传感器类 这个类是RssCheck类的代理" alt="" coords="863,70,1020,95"/>
+<area shape="rect" id="node10" href="$de/d68/classcarla_1_1client_1_1ServerSideSensor.html" title=" " alt="" coords="863,120,1020,160"/>
+<area shape="rect" id="node8" href="$dc/d47/classcarla_1_1client_1_1LaneInvasionSensor.html" title="LaneInvasionSensor类是一个检测车辆压线的传感器，继承自ClientSideSensor。" alt="" coords="1068,5,1239,45"/>
+<area shape="rect" id="node12" href="$df/def/classcarla_1_1client_1_1TrafficLight.html" title=" " alt="" coords="863,185,1020,210"/>
+</map>

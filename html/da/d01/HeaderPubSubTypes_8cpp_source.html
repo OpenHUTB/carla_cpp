@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: HeaderPubSubTypes.cpp 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_087ce8304d10c4897e4acbeac1a6fcc8.html">ros2</a></li><li class="navelem"><a class="el" href="../../dir_4ea2d91c13d1361ac1a1dbc78466282d.html">types</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">HeaderPubSubTypes.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../da/d01/HeaderPubSubTypes_8cpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &lt;fastcdr/FastBuffer.h&gt;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;fastcdr/Cdr.h&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="../../d0/dda/HeaderPubSubTypes_8h.html">HeaderPubSubTypes.h</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// 定义SerializedPayload_t类型别名，用于表示序列化后的负载数据类型</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="../../da/d01/HeaderPubSubTypes_8cpp.html#ae7818c4670abc053fbadaed455b07b1f">    6</a></span><span class="keyword">using </span><a class="code hl_typedef" href="../../d6/d4c/CameraInfoPubSubTypes_8cpp.html#ae7818c4670abc053fbadaed455b07b1f">SerializedPayload_t</a> = eprosima::fastrtps::rtps::SerializedPayload_t;</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">// 定义InstanceHandle_t类型别名，用于表示实例句柄类型</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="../../da/d01/HeaderPubSubTypes_8cpp.html#a894129904d0a4f471bea9c0440bb3ddd">    8</a></span><span class="keyword">using </span><a class="code hl_typedef" href="../../d6/d4c/CameraInfoPubSubTypes_8cpp.html#a894129904d0a4f471bea9c0440bb3ddd">InstanceHandle_t</a> = eprosima::fastrtps::rtps::InstanceHandle_t;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d6/d9d/namespacestd__msgs.html">std_msgs</a> {</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <span class="keyword">namespace </span>msg {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">// HeaderPubSubType类的构造函数，用于初始化与消息类型相关的属性</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#adc4e866e8b3f1941a478ef383371c83e">   13</a></span>        <a class="code hl_function" href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#adc4e866e8b3f1941a478ef383371c83e">HeaderPubSubType::HeaderPubSubType</a>()</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>        {<span class="comment">// 设置消息类型的名称</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>            setName(<span class="stringliteral">&quot;std_msgs::msg::dds_::Header_&quot;</span>);</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>            <span class="comment">// 获取Header类型的最大CDR序列化大小</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>            <span class="keyword">auto</span> type_size = Header::getMaxCdrSerializedSize();</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>            <span class="comment">// 根据可能的子消息对齐要求，对类型大小进行对齐调整</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>            type_size += eprosima::fastcdr::Cdr::alignment(type_size, 4);</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>            <span class="comment">// 计算最终的类型大小，加上4字节用于封装</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>            m_typeSize = <span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(type_size) + 4;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>            <span class="comment">// 判断Header类型是否定义了键（用于标识等用途）</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>            m_isGetKeyDefined = Header::isKeyDefined();</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>            <span class="comment">// 根据Header类型的最大键序列化大小来确定键缓冲区的长度，取较大值</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>            <span class="keywordtype">size_t</span> keyLength = Header::getKeyMaxCdrSerializedSize() &gt; 16 ?</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>                    Header::getKeyMaxCdrSerializedSize() : 16;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>            <span class="comment">// 分配键缓冲区内存</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>            <a class="code hl_variable" href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#a0edeeccc6a433caf42757af23e73ffdd">m_keyBuffer</a> = <span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(malloc(keyLength));</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>            <span class="comment">// 初始化键缓冲区内存为0</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>            memset(<a class="code hl_variable" href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#a0edeeccc6a433caf42757af23e73ffdd">m_keyBuffer</a>, 0, keyLength);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        }</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment">// HeaderPubSubType类的析构函数，用于释放键缓冲区内存</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#ae65d314b4f6e1ed32dd3faa69b1af28e">   33</a></span>        <a class="code hl_function" href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#ae65d314b4f6e1ed32dd3faa69b1af28e">HeaderPubSubType::~HeaderPubSubType</a>()</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        {</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>            <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#a0edeeccc6a433caf42757af23e73ffdd">m_keyBuffer</a> != <span class="keyword">nullptr</span>)</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>            {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>                free(<a class="code hl_variable" href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#a0edeeccc6a433caf42757af23e73ffdd">m_keyBuffer</a>);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>            }</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        }</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment">// 序列化函数，将给定的数据对象（这里是Header类型）序列化为SerializedPayload_t格式</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#ac0f52083602f71d96191a21449d57ae9">   41</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#ac0f52083602f71d96191a21449d57ae9">HeaderPubSubType::serialize</a>(</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>                <span class="keywordtype">void</span>* data,</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>                <a class="code hl_typedef" href="../../d6/d4c/CameraInfoPubSubTypes_8cpp.html#ae7818c4670abc053fbadaed455b07b1f">SerializedPayload_t</a>* payload)</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        {<span class="comment">// 将传入的void*类型数据转换为Header*类型指针，以便后续操作</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            Header* p_type = <span class="keyword">static_cast&lt;</span>Header*<span class="keyword">&gt;</span>(data);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>            <span class="comment">// 创建一个FastBuffer对象，用于管理原始缓冲区，它包装了payload的data指针和最大可用大小</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>            eprosima::fastcdr::FastBuffer fastbuffer(<span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(payload-&gt;data), payload-&gt;max_size);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>             <span class="comment">// 创建一个Cdr对象，用于实际的数据序列化操作，指定了缓冲区、字节序（默认字节序）以及采用DDS_CDR模式</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>            eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>            <span class="comment">// 根据序列化对象的字节序设置负载的封装字节序标识（大端序或小端序）</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            payload-&gt;encapsulation = ser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS ? CDR_BE : CDR_LE;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            <span class="comment">// 先序列化封装相关的信息（具体内容由Cdr实现决定）</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            ser.serialize_encapsulation();</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            <span class="comment">// 调用Header对象的序列化函数，将实际的数据内容序列化到Cdr对象中</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            p_type-&gt;serialize(ser);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            <span class="comment">// 获取序列化后的数据长度，并设置到负载结构体的length成员中</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>            payload-&gt;length = <span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(ser.getSerializedDataLength());</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        }</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">// 反序列化函数，将SerializedPayload_t格式的数据反序列化为对应的数据对象（Header类型）</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#aa29259a0ad7196347ea27c68da454cf1">   62</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#aa29259a0ad7196347ea27c68da454cf1">HeaderPubSubType::deserialize</a>(</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>                <a class="code hl_typedef" href="../../d6/d4c/CameraInfoPubSubTypes_8cpp.html#ae7818c4670abc053fbadaed455b07b1f">SerializedPayload_t</a>* payload,</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                <span class="keywordtype">void</span>* data)</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>            <span class="comment">// 将传入的void*类型数据转换为Header*类型指针，以便后续操作</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>            Header* p_type = <span class="keyword">static_cast&lt;</span>Header*<span class="keyword">&gt;</span>(data);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>            <span class="comment">// 创建一个FastBuffer对象，用于管理原始缓冲区，根据传入负载的实际长度来设置缓冲区大小</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>            eprosima::fastcdr::FastBuffer fastbuffer(<span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(payload-&gt;data), payload-&gt;length);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>            <span class="comment">// 创建一个Cdr对象，用于实际的数据反序列化操作，指定了缓冲区、字节序（默认字节序）以及采用DDS_CDR模式</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            eprosima::fastcdr::Cdr deser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>            <span class="comment">// 先反序列化封装相关的信息（例如字节序等相关的封装标识）</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>            deser.read_encapsulation();</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>            <span class="comment">// 根据反序列化对象的字节序设置负载的封装字节序标识（大端序或小端序）</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>            payload-&gt;encapsulation = deser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS ? CDR_BE : CDR_LE;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>            <span class="comment">// 调用Header对象的反序列化函数，从Cdr对象中还原出实际的数据内容</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>            p_type-&gt;deserialize(deser);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        }</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="comment">// 返回一个函数对象，该函数对象用于获取给定数据（Header类型）序列化后的大小</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#a8d7c341bdb9eee2b1f307bdc837f3f25">   85</a></span>        std::function&lt;uint32_t()&gt; <a class="code hl_function" href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#a8d7c341bdb9eee2b1f307bdc837f3f25">HeaderPubSubType::getSerializedSizeProvider</a>(</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>                <span class="keywordtype">void</span>* data)</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        {</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>            <span class="keywordflow">return</span> [data]() -&gt; uint32_t</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>                   {<span class="comment">// 计算并返回包含封装部分的序列化大小，先获取Header类型的CDR序列化大小，再加上4字节封装大小</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>                       <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(type::getCdrSerializedSize(*<span class="keyword">static_cast&lt;</span>Header*<span class="keyword">&gt;</span>(data))) +</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>                              4u;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>                   };</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        }</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="comment">// 创建一个新的Header类型的数据对象，并返回其void*指针表示</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#a2410064bc0d60e492c63e1065a7c1b1d">   95</a></span>        <span class="keywordtype">void</span>* <a class="code hl_function" href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#a2410064bc0d60e492c63e1065a7c1b1d">HeaderPubSubType::createData</a>()</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        {</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>            <span class="keywordflow">return</span> <span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">void</span>*<span class="keyword">&gt;</span>(<span class="keyword">new</span> Header());</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        }</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="comment">// 删除给定的Header类型的数据对象（释放内存）</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#ac1ace66183d177ae4c9e5ca9cf9820fe">  100</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#ac1ace66183d177ae4c9e5ca9cf9820fe">HeaderPubSubType::deleteData</a>(</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>                <span class="keywordtype">void</span>* data)</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        {</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>            <span class="keyword">delete</span>(<span class="keyword">reinterpret_cast&lt;</span>Header*<span class="keyword">&gt;</span>(data));</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        }</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="comment">// 获取给定数据（Header类型）对应的键值，用于实例标识等用途，填充到InstanceHandle_t结构体中</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#a1e5b51110d7877696cb894addc3b11b6">  106</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#a1e5b51110d7877696cb894addc3b11b6">HeaderPubSubType::getKey</a>(</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>                <span class="keywordtype">void</span>* data,</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>                <a class="code hl_typedef" href="../../d6/d4c/CameraInfoPubSubTypes_8cpp.html#a894129904d0a4f471bea9c0440bb3ddd">InstanceHandle_t</a>* handle,</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>                <span class="keywordtype">bool</span> force_md5)</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        {</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>            <span class="keywordflow">if</span> (!m_isGetKeyDefined)</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>            {</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>            }</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>            Header* p_type = <span class="keyword">static_cast&lt;</span>Header*<span class="keyword">&gt;</span>(data);</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>            <span class="comment">// 创建一个FastBuffer对象，用于管理键缓冲区，大小根据Header类型的最大键序列化大小确定</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>            eprosima::fastcdr::FastBuffer fastbuffer(<span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(<a class="code hl_variable" href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#a0edeeccc6a433caf42757af23e73ffdd">m_keyBuffer</a>),</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>                    Header::getKeyMaxCdrSerializedSize());</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>            <span class="comment">// 创建一个Cdr对象，用于序列化键数据，指定为大端序</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>            eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::BIG_ENDIANNESS);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>            <span class="comment">// 调用Header对象的键序列化函数，将键相关的数据序列化到Cdr对象对应的缓冲区中</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>            p_type-&gt;serializeKey(ser);</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>            <span class="keywordflow">if</span> (force_md5 || Header::getKeyMaxCdrSerializedSize() &gt; 16)</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>            {<span class="comment">// 如果需要强制使用MD5（可能用于更安全的标识等情况）或者键序列化大小大于16字节</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>                <a class="code hl_variable" href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#a18c6e3dd6c9583ef2d559eb102e09704">m_md5</a>.init();</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>                <a class="code hl_variable" href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#a18c6e3dd6c9583ef2d559eb102e09704">m_md5</a>.update(<a class="code hl_variable" href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#a0edeeccc6a433caf42757af23e73ffdd">m_keyBuffer</a>, <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">int</span><span class="keyword">&gt;</span>(ser.getSerializedDataLength()));</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>                <a class="code hl_variable" href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#a18c6e3dd6c9583ef2d559eb102e09704">m_md5</a>.finalize();</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>                <span class="keywordflow">for</span> (uint8_t i = 0; i &lt; 16; ++i)</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>                {</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>                    handle-&gt;value[i] = <a class="code hl_variable" href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#a18c6e3dd6c9583ef2d559eb102e09704">m_md5</a>.digest[i];</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>                }</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>            }</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>            <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>            {<span class="comment">// 如果不需要MD5且键序列化大小小于等于16字节，直接将键缓冲区的数据复制到实例句柄的value数组中</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>                <span class="keywordflow">for</span> (uint8_t i = 0; i &lt; 16; ++i)</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>                {</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>                    handle-&gt;value[i] = <a class="code hl_variable" href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#a0edeeccc6a433caf42757af23e73ffdd">m_keyBuffer</a>[i];</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>                }</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>            }</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>        }</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    }</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>}</div>
+<div class="ttc" id="aCameraInfoPubSubTypes_8cpp_html_a894129904d0a4f471bea9c0440bb3ddd"><div class="ttname"><a href="../../d6/d4c/CameraInfoPubSubTypes_8cpp.html#a894129904d0a4f471bea9c0440bb3ddd">InstanceHandle_t</a></div><div class="ttdeci">eprosima::fastrtps::rtps::InstanceHandle_t InstanceHandle_t</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d4c/CameraInfoPubSubTypes_8cpp_source.html#l00029">CameraInfoPubSubTypes.cpp:29</a></div></div>
+<div class="ttc" id="aCameraInfoPubSubTypes_8cpp_html_ae7818c4670abc053fbadaed455b07b1f"><div class="ttname"><a href="../../d6/d4c/CameraInfoPubSubTypes_8cpp.html#ae7818c4670abc053fbadaed455b07b1f">SerializedPayload_t</a></div><div class="ttdeci">eprosima::fastrtps::rtps::SerializedPayload_t SerializedPayload_t</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d4c/CameraInfoPubSubTypes_8cpp_source.html#l00027">CameraInfoPubSubTypes.cpp:27</a></div></div>
+<div class="ttc" id="aHeaderPubSubTypes_8h_html"><div class="ttname"><a href="../../d0/dda/HeaderPubSubTypes_8h.html">HeaderPubSubTypes.h</a></div></div>
+<div class="ttc" id="aclassstd__msgs_1_1msg_1_1HeaderPubSubType_html_a0edeeccc6a433caf42757af23e73ffdd"><div class="ttname"><a href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#a0edeeccc6a433caf42757af23e73ffdd">std_msgs::msg::HeaderPubSubType::m_keyBuffer</a></div><div class="ttdeci">unsigned char * m_keyBuffer</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/dda/HeaderPubSubTypes_8h_source.html#l00111">HeaderPubSubTypes.h:111</a></div></div>
+<div class="ttc" id="aclassstd__msgs_1_1msg_1_1HeaderPubSubType_html_a18c6e3dd6c9583ef2d559eb102e09704"><div class="ttname"><a href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#a18c6e3dd6c9583ef2d559eb102e09704">std_msgs::msg::HeaderPubSubType::m_md5</a></div><div class="ttdeci">MD5 m_md5</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/dda/HeaderPubSubTypes_8h_source.html#l00109">HeaderPubSubTypes.h:109</a></div></div>
+<div class="ttc" id="aclassstd__msgs_1_1msg_1_1HeaderPubSubType_html_a1e5b51110d7877696cb894addc3b11b6"><div class="ttname"><a href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#a1e5b51110d7877696cb894addc3b11b6">std_msgs::msg::HeaderPubSubType::getKey</a></div><div class="ttdeci">virtual eProsima_user_DllExport bool getKey(void *data, eprosima::fastrtps::rtps::InstanceHandle_t *ihandle, bool force_md5=false) override</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d01/HeaderPubSubTypes_8cpp_source.html#l00106">HeaderPubSubTypes.cpp:106</a></div></div>
+<div class="ttc" id="aclassstd__msgs_1_1msg_1_1HeaderPubSubType_html_a2410064bc0d60e492c63e1065a7c1b1d"><div class="ttname"><a href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#a2410064bc0d60e492c63e1065a7c1b1d">std_msgs::msg::HeaderPubSubType::createData</a></div><div class="ttdeci">virtual eProsima_user_DllExport void * createData() override</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d01/HeaderPubSubTypes_8cpp_source.html#l00095">HeaderPubSubTypes.cpp:95</a></div></div>
+<div class="ttc" id="aclassstd__msgs_1_1msg_1_1HeaderPubSubType_html_a8d7c341bdb9eee2b1f307bdc837f3f25"><div class="ttname"><a href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#a8d7c341bdb9eee2b1f307bdc837f3f25">std_msgs::msg::HeaderPubSubType::getSerializedSizeProvider</a></div><div class="ttdeci">virtual eProsima_user_DllExport std::function&lt; uint32_t()&gt; getSerializedSizeProvider(void *data) override</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d01/HeaderPubSubTypes_8cpp_source.html#l00085">HeaderPubSubTypes.cpp:85</a></div></div>
+<div class="ttc" id="aclassstd__msgs_1_1msg_1_1HeaderPubSubType_html_aa29259a0ad7196347ea27c68da454cf1"><div class="ttname"><a href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#aa29259a0ad7196347ea27c68da454cf1">std_msgs::msg::HeaderPubSubType::deserialize</a></div><div class="ttdeci">virtual eProsima_user_DllExport bool deserialize(eprosima::fastrtps::rtps::SerializedPayload_t *payload, void *data) override</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d01/HeaderPubSubTypes_8cpp_source.html#l00062">HeaderPubSubTypes.cpp:62</a></div></div>
+<div class="ttc" id="aclassstd__msgs_1_1msg_1_1HeaderPubSubType_html_ac0f52083602f71d96191a21449d57ae9"><div class="ttname"><a href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#ac0f52083602f71d96191a21449d57ae9">std_msgs::msg::HeaderPubSubType::serialize</a></div><div class="ttdeci">virtual eProsima_user_DllExport bool serialize(void *data, eprosima::fastrtps::rtps::SerializedPayload_t *payload) override</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d01/HeaderPubSubTypes_8cpp_source.html#l00041">HeaderPubSubTypes.cpp:41</a></div></div>
+<div class="ttc" id="aclassstd__msgs_1_1msg_1_1HeaderPubSubType_html_ac1ace66183d177ae4c9e5ca9cf9820fe"><div class="ttname"><a href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#ac1ace66183d177ae4c9e5ca9cf9820fe">std_msgs::msg::HeaderPubSubType::deleteData</a></div><div class="ttdeci">virtual eProsima_user_DllExport void deleteData(void *data) override</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d01/HeaderPubSubTypes_8cpp_source.html#l00100">HeaderPubSubTypes.cpp:100</a></div></div>
+<div class="ttc" id="aclassstd__msgs_1_1msg_1_1HeaderPubSubType_html_adc4e866e8b3f1941a478ef383371c83e"><div class="ttname"><a href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#adc4e866e8b3f1941a478ef383371c83e">std_msgs::msg::HeaderPubSubType::HeaderPubSubType</a></div><div class="ttdeci">eProsima_user_DllExport HeaderPubSubType()</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d01/HeaderPubSubTypes_8cpp_source.html#l00013">HeaderPubSubTypes.cpp:13</a></div></div>
+<div class="ttc" id="aclassstd__msgs_1_1msg_1_1HeaderPubSubType_html_ae65d314b4f6e1ed32dd3faa69b1af28e"><div class="ttname"><a href="../../d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#ae65d314b4f6e1ed32dd3faa69b1af28e">std_msgs::msg::HeaderPubSubType::~HeaderPubSubType</a></div><div class="ttdeci">virtual eProsima_user_DllExport ~HeaderPubSubType() override</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d01/HeaderPubSubTypes_8cpp_source.html#l00033">HeaderPubSubTypes.cpp:33</a></div></div>
+<div class="ttc" id="anamespacestd__msgs_html"><div class="ttname"><a href="../../d6/d9d/namespacestd__msgs.html">std_msgs</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d65/Float32_8h_source.html#l00064">Float32.h:64</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

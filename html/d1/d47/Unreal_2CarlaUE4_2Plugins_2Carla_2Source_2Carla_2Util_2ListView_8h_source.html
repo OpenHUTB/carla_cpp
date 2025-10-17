@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: ListView.h 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_2d15d0715a2692171bd03ed14a4a79af.html">Unreal</a></li><li class="navelem"><a class="el" href="../../dir_d3c1db2570616bec48bf5a6dd06bce95.html">CarlaUE4</a></li><li class="navelem"><a class="el" href="../../dir_3538576148ac14151677be9b0aee6fcc.html">Plugins</a></li><li class="navelem"><a class="el" href="../../dir_fbda5b12374c683cbdca72abb2d51944.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_18937e8f6bde63367bf26837323a9508.html">Source</a></li><li class="navelem"><a class="el" href="../../dir_8fc34afb5f07a67966c78bf5319f94ae.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_c0211e659583c36c301432102f960843.html">Util</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Util/ListView.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d1/d47/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Util_2ListView_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// de Barcelona (UAB).</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// This work is licensed under the terms of the MIT license.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">// 预处理指令，确保该头文件在整个编译过程中只会被包含一次，避免重复包含引发的编译错误</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> IT&gt;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">// 定义一个模板，模板参数为 IT，它可以是任意类型，后续类的定义会基于这个类型参数进行泛型编程</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="../../d5/d90/classListView.html">   13</a></span><span class="keyword">class </span><a class="code hl_class" href="../../d5/d90/classListView.html">ListView</a></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">// 类的公有部分，外部可访问</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="../../d5/d90/classListView.html#a75ca0da433126178f3072397793266ac">   18</a></span>  <span class="keyword">using </span><a class="code hl_typedef" href="../../d5/d90/classListView.html#a75ca0da433126178f3072397793266ac">iterator</a> = IT;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment">// 使用 using 关键字为类型 IT 创建一个别名 iterator，方便后续代码中使用更具语义的名称来指代这个类型，使代码可读性更好</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="../../d5/d90/classListView.html#abd39c49171052198b09e482de6a5e019">   21</a></span>  <span class="keyword">explicit</span> <a class="code hl_function" href="../../d5/d90/classListView.html#abd39c49171052198b09e482de6a5e019">ListView</a>(<a class="code hl_typedef" href="../../d5/d90/classListView.html#a75ca0da433126178f3072397793266ac">iterator</a> <a class="code hl_function" href="../../d5/d90/classListView.html#ae8301bdd6c0296dc34c2713e139b6a17">begin</a>, <a class="code hl_typedef" href="../../d5/d90/classListView.html#a75ca0da433126178f3072397793266ac">iterator</a> <a class="code hl_function" href="../../d5/d90/classListView.html#a08d296c9e09c36212fc1ad860845dd4c">end</a>) : <a class="code hl_variable" href="../../d5/d90/classListView.html#a2c50bd685dd3d0b697fd18950582a9b6">Begin</a>(<a class="code hl_function" href="../../d5/d90/classListView.html#ae8301bdd6c0296dc34c2713e139b6a17">begin</a>), <a class="code hl_variable" href="../../d5/d90/classListView.html#ab56f7d26140a388d75a5eebc4c73f9df">End</a>(<a class="code hl_function" href="../../d5/d90/classListView.html#a08d296c9e09c36212fc1ad860845dd4c">end</a>) {}</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> <span class="comment">// 定义一个显式的构造函数，接受两个类型为 iterator（也就是 IT 类型）的参数，分别表示范围的起始迭代器和结束迭代器，</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="comment">// 并使用成员初始化列表来初始化类中的私有成员变量 Begin 和 End</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> STL_CONTAINER&gt;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> <span class="comment">// 定义一个模板函数，模板参数为 STL_CONTAINER，它可以是任意符合要求的标准模板库（STL）容器类型</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="../../d5/d90/classListView.html#aad3484602725574321d797b0dd4e144a">   27</a></span>  <span class="keyword">explicit</span> <a class="code hl_function" href="../../d5/d90/classListView.html#aad3484602725574321d797b0dd4e144a">ListView</a>(STL_CONTAINER &amp;StlContainer) :</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <a class="code hl_variable" href="../../d5/d90/classListView.html#a2c50bd685dd3d0b697fd18950582a9b6">Begin</a>(<a class="code hl_typedef" href="../../d5/d90/classListView.html#a75ca0da433126178f3072397793266ac">iterator</a>(StlContainer.<a class="code hl_function" href="../../d5/d90/classListView.html#ae8301bdd6c0296dc34c2713e139b6a17">begin</a>())),</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <a class="code hl_variable" href="../../d5/d90/classListView.html#ab56f7d26140a388d75a5eebc4c73f9df">End</a>(<a class="code hl_typedef" href="../../d5/d90/classListView.html#a75ca0da433126178f3072397793266ac">iterator</a>(StlContainer.<a class="code hl_function" href="../../d5/d90/classListView.html#a08d296c9e09c36212fc1ad860845dd4c">end</a>())) {}</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> <span class="comment">// 另一个显式构造函数，它接受一个 STL_CONTAINER 类型的引用作为参数，通过调用该容器的 begin() 和 end() 成员函数来获取其迭代器范围，</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="comment">// 并将获取到的起始迭代器和结束迭代器分别转换为 IT 类型（通过 iterator 别名对应的类型进行转换）后，使用成员初始化列表初始化类中的私有成员变量 Begin 和 End</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="../../d5/d90/classListView.html#a24de6a3775b9eb38698f39d1a4da9e1d">   33</a></span>  <a class="code hl_function" href="../../d5/d90/classListView.html#a24de6a3775b9eb38698f39d1a4da9e1d">ListView</a>(<span class="keyword">const</span> <a class="code hl_class" href="../../d5/d90/classListView.html">ListView</a> &amp;) = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment">// 使用 = default 显式指示编译器自动生成默认的拷贝构造函数，即按成员逐一进行拷贝初始化，行为和编译器默认生成的一致</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="../../d5/d90/classListView.html#ac3dfcf193a8626629bc93b98b6ff3020">   35</a></span>  <a class="code hl_class" href="../../d5/d90/classListView.html">ListView</a> &amp;<a class="code hl_function" href="../../d5/d90/classListView.html#ac3dfcf193a8626629bc93b98b6ff3020">operator=</a>(<span class="keyword">const</span> <a class="code hl_class" href="../../d5/d90/classListView.html">ListView</a> &amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment">// 使用 = delete 显式指示编译器禁止生成默认的赋值运算符重载函数，意味着该类的对象不允许进行赋值操作</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="../../d5/d90/classListView.html#ae8301bdd6c0296dc34c2713e139b6a17">   39</a></span>  <a class="code hl_typedef" href="../../d5/d90/classListView.html#a75ca0da433126178f3072397793266ac">iterator</a> <a class="code hl_function" href="../../d5/d90/classListView.html#ae8301bdd6c0296dc34c2713e139b6a17">begin</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d5/d90/classListView.html#a2c50bd685dd3d0b697fd18950582a9b6">Begin</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  }</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment">// 定义成员函数 begin()，它返回表示范围起始位置的迭代器，const 修饰表示该函数不会修改类的成员变量，符合 STL 中容器相关的迭代器获取规范</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="../../d5/d90/classListView.html#a08d296c9e09c36212fc1ad860845dd4c">   44</a></span>  <a class="code hl_typedef" href="../../d5/d90/classListView.html#a75ca0da433126178f3072397793266ac">iterator</a> <a class="code hl_function" href="../../d5/d90/classListView.html#a08d296c9e09c36212fc1ad860845dd4c">end</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d5/d90/classListView.html#ab56f7d26140a388d75a5eebc4c73f9df">End</a>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  }</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> <span class="comment">// 定义成员函数 end()，它返回表示范围结束位置的迭代器（注意，这个迭代器指向的是范围末尾的下一个位置，符合 STL 迭代器区间的习惯表示），const 修饰表示不会修改成员变量</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="../../d5/d90/classListView.html#a5402443cd918ea4f1c3b5de6c80c57fc">   49</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d5/d90/classListView.html#a5402443cd918ea4f1c3b5de6c80c57fc">empty</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d5/d90/classListView.html#a2c50bd685dd3d0b697fd18950582a9b6">Begin</a> == <a class="code hl_variable" href="../../d5/d90/classListView.html#ab56f7d26140a388d75a5eebc4c73f9df">End</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  }</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment">// 定义成员函数 empty()，用于判断当前表示的范围是否为空，通过比较起始迭代器和结束迭代器是否相等来判断，如果相等则表示范围为空，返回 true，否则返回 false，const 修饰表示不会修改成员变量</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> <span class="comment">// 类的私有部分，外部不可访问</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="../../d5/d90/classListView.html#a2c50bd685dd3d0b697fd18950582a9b6">   57</a></span>  <span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d90/classListView.html#a75ca0da433126178f3072397793266ac">iterator</a> <a class="code hl_variable" href="../../d5/d90/classListView.html#a2c50bd685dd3d0b697fd18950582a9b6">Begin</a>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="comment">// 声明一个私有常量成员变量 Begin，类型为 iterator（也就是 IT 类型），用于记录所表示范围的起始迭代器</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="../../d5/d90/classListView.html#ab56f7d26140a388d75a5eebc4c73f9df">   60</a></span>  <span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d90/classListView.html#a75ca0da433126178f3072397793266ac">iterator</a> <a class="code hl_variable" href="../../d5/d90/classListView.html#ab56f7d26140a388d75a5eebc4c73f9df">End</a>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">// 声明一个私有常量成员变量 End，类型为 iterator（也就是 IT 类型），用于记录所表示范围的结束迭代器</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>};</div>
+<div class="ttc" id="aclassListView_html"><div class="ttname"><a href="../../d5/d90/classListView.html">ListView</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d47/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Util_2ListView_8h_source.html#l00013">Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Util/ListView.h:14</a></div></div>
+<div class="ttc" id="aclassListView_html_a08d296c9e09c36212fc1ad860845dd4c"><div class="ttname"><a href="../../d5/d90/classListView.html#a08d296c9e09c36212fc1ad860845dd4c">ListView::end</a></div><div class="ttdeci">iterator end() const</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d47/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Util_2ListView_8h_source.html#l00044">Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Util/ListView.h:44</a></div></div>
+<div class="ttc" id="aclassListView_html_a24de6a3775b9eb38698f39d1a4da9e1d"><div class="ttname"><a href="../../d5/d90/classListView.html#a24de6a3775b9eb38698f39d1a4da9e1d">ListView::ListView</a></div><div class="ttdeci">ListView(const ListView &amp;)=default</div></div>
+<div class="ttc" id="aclassListView_html_a2c50bd685dd3d0b697fd18950582a9b6"><div class="ttname"><a href="../../d5/d90/classListView.html#a2c50bd685dd3d0b697fd18950582a9b6">ListView::Begin</a></div><div class="ttdeci">const iterator Begin</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d47/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Util_2ListView_8h_source.html#l00057">Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Util/ListView.h:57</a></div></div>
+<div class="ttc" id="aclassListView_html_a5402443cd918ea4f1c3b5de6c80c57fc"><div class="ttname"><a href="../../d5/d90/classListView.html#a5402443cd918ea4f1c3b5de6c80c57fc">ListView::empty</a></div><div class="ttdeci">bool empty() const</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d47/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Util_2ListView_8h_source.html#l00049">Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Util/ListView.h:49</a></div></div>
+<div class="ttc" id="aclassListView_html_a75ca0da433126178f3072397793266ac"><div class="ttname"><a href="../../d5/d90/classListView.html#a75ca0da433126178f3072397793266ac">ListView::iterator</a></div><div class="ttdeci">IT iterator</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d47/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Util_2ListView_8h_source.html#l00018">Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Util/ListView.h:18</a></div></div>
+<div class="ttc" id="aclassListView_html_aad3484602725574321d797b0dd4e144a"><div class="ttname"><a href="../../d5/d90/classListView.html#aad3484602725574321d797b0dd4e144a">ListView::ListView</a></div><div class="ttdeci">ListView(STL_CONTAINER &amp;StlContainer)</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d47/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Util_2ListView_8h_source.html#l00027">Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Util/ListView.h:27</a></div></div>
+<div class="ttc" id="aclassListView_html_ab56f7d26140a388d75a5eebc4c73f9df"><div class="ttname"><a href="../../d5/d90/classListView.html#ab56f7d26140a388d75a5eebc4c73f9df">ListView::End</a></div><div class="ttdeci">const iterator End</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d47/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Util_2ListView_8h_source.html#l00060">Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Util/ListView.h:60</a></div></div>
+<div class="ttc" id="aclassListView_html_abd39c49171052198b09e482de6a5e019"><div class="ttname"><a href="../../d5/d90/classListView.html#abd39c49171052198b09e482de6a5e019">ListView::ListView</a></div><div class="ttdeci">ListView(iterator begin, iterator end)</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d47/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Util_2ListView_8h_source.html#l00021">Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Util/ListView.h:21</a></div></div>
+<div class="ttc" id="aclassListView_html_ac3dfcf193a8626629bc93b98b6ff3020"><div class="ttname"><a href="../../d5/d90/classListView.html#ac3dfcf193a8626629bc93b98b6ff3020">ListView::operator=</a></div><div class="ttdeci">ListView &amp; operator=(const ListView &amp;)=delete</div></div>
+<div class="ttc" id="aclassListView_html_ae8301bdd6c0296dc34c2713e139b6a17"><div class="ttname"><a href="../../d5/d90/classListView.html#ae8301bdd6c0296dc34c2713e139b6a17">ListView::begin</a></div><div class="ttdeci">iterator begin() const</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d47/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Util_2ListView_8h_source.html#l00039">Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Util/ListView.h:39</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

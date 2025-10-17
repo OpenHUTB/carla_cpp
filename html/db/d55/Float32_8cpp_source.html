@@ -1,0 +1,322 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: Float32.cpp 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_087ce8304d10c4897e4acbeac1a6fcc8.html">ros2</a></li><li class="navelem"><a class="el" href="../../dir_4ea2d91c13d1361ac1a1dbc78466282d.html">types</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">Float32.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../db/d55/Float32_8cpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright 2016 Proyectos y Sistemas de Mantenimiento SL (eProsima).</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// you may not use this file except in compliance with the License.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// You may obtain a copy of the License at</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//     http://www.apache.org/licenses/LICENSE-2.0</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">// Unless required by applicable law or agreed to in writing, software</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">// See the License for the specific language governing permissions and</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">// limitations under the License.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment"></span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">/*!</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment"> * @file Float32.cpp</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment"> * This source file contains the definition of the described types in the IDL file.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment"> * This file was generated by the tool gen.</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#ifdef _WIN32</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">// Remove linker warning LNK4221 on Visual Studio</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">namespace </span>{</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keywordtype">char</span> dummy;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>}  <span class="comment">// namespace</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#endif  </span><span class="comment">// _WIN32</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &quot;<a class="code" href="../../d4/d65/Float32_8h.html">Float32.h</a>&quot;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &lt;fastcdr/Cdr.h&gt;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#include &lt;fastcdr/exceptions/BadParamException.h&gt;</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">using namespace </span>eprosima::fastcdr::exception;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &lt;utility&gt;</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="../../db/d55/Float32_8cpp.html#a8278d1c09b4234002d3ebdcaeb2fd283">   37</a></span><span class="preprocessor">#define std_msgs_msg_Float32_max_cdr_typesize 4ULL;</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="../../db/d55/Float32_8cpp.html#a9ae3e6bfc449db975b890ecebc961aca">   38</a></span><span class="preprocessor">#define std_msgs_msg_Float32_max_key_cdr_typesize 0ULL;</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment">// 定义std_msgs::msg::Float32类型的默认构造函数</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment">// 它会将成员变量m_data初始化为0.0</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#aad996d5869b57af8248040511897a65c">   42</a></span><a class="code hl_function" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#aad996d5869b57af8248040511897a65c">std_msgs::msg::Float32::Float32</a>()</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>{</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <a class="code hl_variable" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a82ba5b2de043b9f2cacff90ff14cc668">m_data</a> = 0.0;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>}</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">// 定义std_msgs::msg::Float32类型的析构函数，这里析构函数体为空，</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="comment">// 通常如果类中没有动态分配的资源需要释放等操作，析构函数可以为空</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a02f7c505bbaca85bfacf32a0bedc2695">   49</a></span><a class="code hl_function" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a02f7c505bbaca85bfacf32a0bedc2695">std_msgs::msg::Float32::~Float32</a>()</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>{</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>}</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="comment">// 定义std_msgs::msg::Float32类型的拷贝构造函数</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="comment">// 它接受一个同类型的常量引用x作为参数，</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="comment">// 作用是用传入对象x的成员变量m_data的值来初始化当前正在构造的对象的m_data成员变量，</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="comment">// 实现将一个已有对象的数据复制到新创建的同类型对象中</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#ada81680a31549d8cf5b1e0bf056c8708">   57</a></span><a class="code hl_function" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#aad996d5869b57af8248040511897a65c">std_msgs::msg::Float32::Float32</a>(</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="keyword">const</span> <a class="code hl_class" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html">Float32</a>&amp; x)</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>{</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    m_data = x.<a class="code hl_variable" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a82ba5b2de043b9f2cacff90ff14cc668">m_data</a>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>}</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">// 定义std_msgs::msg::Float32类型的移动构造函数</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment">// 它接受一个同类型的右值引用x作为参数，且声明为noexcept（表示不会抛出异常），</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="comment">// 作用也是将传入对象x的成员变量m_data的值赋给当前正在构造的对象的m_data成员变量，</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="comment">// 移动构造函数常用于优化对象资源的转移，比如当涉及到临时对象资源的高效获取时会用到</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a893c884873cb860146fced63b11c734f">   67</a></span><a class="code hl_function" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#aad996d5869b57af8248040511897a65c">std_msgs::msg::Float32::Float32</a>(</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <a class="code hl_class" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html">Float32</a>&amp;&amp; x) <span class="keyword">noexcept</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>{</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    m_data = x.m_data;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>}</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="comment">// 定义std_msgs::msg::Float32类型的赋值运算符重载函数</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="comment">// 它接受一个同类型的常量引用x作为参数，</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="comment">// 作用是将当前对象的成员变量m_data赋值为传入对象x的m_data的值，</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="comment">// 然后返回当前对象的引用，以便支持连续赋值操作，例如 a = b = c这种形式</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a179446f67fe20ca01a89ac08dba10d6f">   77</a></span><a class="code hl_class" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html">std_msgs::msg::Float32</a>&amp; <a class="code hl_function" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a179446f67fe20ca01a89ac08dba10d6f">std_msgs::msg::Float32::operator =</a>(</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        <span class="keyword">const</span> <a class="code hl_class" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html">Float32</a>&amp; x)</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>{</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    m_data = x.<a class="code hl_variable" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a82ba5b2de043b9f2cacff90ff14cc668">m_data</a>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>}</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="comment">//这是另一个赋值运算符重载函数，不过这里是针对右值引用的情况</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="comment">//定义了Float32类的一个右值引用的赋值运算符重载函数，函数返回Float32类的引用并且标记为noexcept，表示这个函数不会抛出异常</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#ab9686e8791a39575d3c6bae335cab0b6">   86</a></span><a class="code hl_class" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html">std_msgs::msg::Float32</a>&amp; <a class="code hl_function" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a179446f67fe20ca01a89ac08dba10d6f">std_msgs::msg::Float32::operator =</a>(</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        <a class="code hl_class" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html">Float32</a>&amp;&amp; x) <span class="keyword">noexcept</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>{</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="comment">//将右值对象x的m_data成员的值赋给当前对象的m_data成员</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    m_data = x.<a class="code hl_variable" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a82ba5b2de043b9f2cacff90ff14cc668">m_data</a>;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="comment">//为了支持链式赋值操作</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>}</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="comment">//这是一个相等比较运算符（==）的重载函数</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="comment">//定义了Float32类的相等比较运算符重载函数，函数接受一个const引用的Float32对象x，并且函数本身也是const的，表示不会修改当前对象的状态</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a224ef097c897151a4cdd53d59f9b765b">   97</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a224ef097c897151a4cdd53d59f9b765b">std_msgs::msg::Float32::operator ==</a>(</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <span class="keyword">const</span> <a class="code hl_class" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html">Float32</a>&amp; x)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="comment">//比较当前对象的m_data成员和传入对象x的m_data成员是否相等，如果相等则返回true，否则返回false</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keywordflow">return</span> (m_data == x.<a class="code hl_variable" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a82ba5b2de043b9f2cacff90ff14cc668">m_data</a>);</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>}</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="comment">//这是一个不等比较运算符（!=）的重载函数</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a7c1ac41638a6e6931c4eccd4ea7f17cb">  105</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a7c1ac41638a6e6931c4eccd4ea7f17cb">std_msgs::msg::Float32::operator !=</a>(</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        <span class="keyword">const</span> <a class="code hl_class" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html">Float32</a>&amp; x)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="comment">//通过调用前面定义的==运算符重载函数取反来实现!=运算符的功能，如果==返回true，则!=返回false，反之亦然</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keywordflow">return</span> !(*<span class="keyword">this</span> == x);</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>}</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="comment">//函数接受一个size_t类型的参数current_alignment，函数的目的可能是获取最大的CDR序列化大小</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#abd6c37ad0572836fb23312e4fb66170d">  113</a></span><span class="keywordtype">size_t</span> <a class="code hl_function" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#abd6c37ad0572836fb23312e4fb66170d">std_msgs::msg::Float32::getMaxCdrSerializedSize</a>(</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        <span class="keywordtype">size_t</span> <a class="code hl_variable" href="../../db/db2/PoseWithCovariance_8cpp.html#ab0622670d2b449ae43c500e168400292">current_alignment</a>)</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>{</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="comment">//将current_alignment转换为void类型，可能是为了在函数中表明虽然接收了这个参数，但在当前函数体中暂时不需要使用它</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keyword">static_cast&lt;</span><span class="keywordtype">void</span><span class="keyword">&gt;</span>(<a class="code hl_variable" href="../../db/db2/PoseWithCovariance_8cpp.html#ab0622670d2b449ae43c500e168400292">current_alignment</a>);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="comment">//返回一个名为std_msgs_msg_Float32_max_cdr_typesize的值，这个值应该是预先定义好的，表示Float32类的最大CDR序列化大小。</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keywordflow">return</span> <a class="code hl_define" href="../../db/d55/Float32_8cpp.html#a8278d1c09b4234002d3ebdcaeb2fd283">std_msgs_msg_Float32_max_cdr_typesize</a>;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>}</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="comment">//接受一个const引用的Float32对象data和一个size_t类型的current_alignment参数，目的可能是获取给定Float32对象的CDR序列化大小</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a5eb326c9ffba3b0285bae8371b4dcac6">  123</a></span><span class="keywordtype">size_t</span> <a class="code hl_function" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a5eb326c9ffba3b0285bae8371b4dcac6">std_msgs::msg::Float32::getCdrSerializedSize</a>(</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        <span class="keyword">const</span> <a class="code hl_class" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html">std_msgs::msg::Float32</a>&amp; data,</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        <span class="comment">//创建一个局部变量initial_alignment并初始化为current_alignment的值。</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        <span class="keywordtype">size_t</span> <a class="code hl_variable" href="../../db/db2/PoseWithCovariance_8cpp.html#ab0622670d2b449ae43c500e168400292">current_alignment</a>)</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>{</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    (void)data;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="comment">//一个函数，用于计算与Cdr相关的对齐值</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keywordtype">size_t</span> <a class="code hl_variable" href="../../db/db2/PoseWithCovariance_8cpp.html#a7d42068ec3b034c764f7db0421128810">initial_alignment</a> = <a class="code hl_variable" href="../../db/db2/PoseWithCovariance_8cpp.html#ab0622670d2b449ae43c500e168400292">current_alignment</a>;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <a class="code hl_variable" href="../../db/db2/PoseWithCovariance_8cpp.html#ab0622670d2b449ae43c500e168400292">current_alignment</a> += 4 + eprosima::fastcdr::Cdr::alignment(<a class="code hl_variable" href="../../db/db2/PoseWithCovariance_8cpp.html#ab0622670d2b449ae43c500e168400292">current_alignment</a>, 4);</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="comment">//返回计算后的current_alignment与初始initial_alignment的差值，这个差值可能就是Float32对象的CDR序列化大小</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="../../db/db2/PoseWithCovariance_8cpp.html#ab0622670d2b449ae43c500e168400292">current_alignment</a> - <a class="code hl_variable" href="../../db/db2/PoseWithCovariance_8cpp.html#a7d42068ec3b034c764f7db0421128810">initial_alignment</a>;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>}</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="comment">//接受一个eprosima::fastcdr::Cdr类型的引用_scdr，目的可能是将Float32类的对象序列化为Cdr格式</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a62c4588f28bbcd2cfd6da9185ce6ac51">  137</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a62c4588f28bbcd2cfd6da9185ce6ac51">std_msgs::msg::Float32::serialize</a>(</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>        eprosima::fastcdr::Cdr&amp; scdr)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <span class="comment">//将m_data成员的值写入到_scdr对象中，实现序列化操作</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    scdr &lt;&lt; m_data;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>}</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span><span class="comment">//函数的目的是从eprosima::fastcdr::Cdr对象dcdr中反序列化数据到m_data成员变量</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a071a999807f6a0bbb5ed3543a9c72fbe">  145</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a071a999807f6a0bbb5ed3543a9c72fbe">std_msgs::msg::Float32::deserialize</a>(</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>        eprosima::fastcdr::Cdr&amp; dcdr)</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>{</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <span class="comment">//从dcdr对象中读取数据并存储到m_data中 用于从Cdr对象中提取数据并赋给m_data</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    dcdr &gt;&gt; m_data;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>}</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span><span class="comment"></span> </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span><span class="comment">/*!</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span><span class="comment"> * @brief This function sets a value in member data</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="comment"> * @param _data New value for member data</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="comment">//这是一个设置m_data成员变量值的函数</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno"><a class="line" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#abe4ecba27d846c8606b954e89f29c713">  157</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#acab736d567cd7122b1f663264a6cbfe6">std_msgs::msg::Float32::data</a>(</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        <span class="keywordtype">float</span> _data)</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>{</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="comment">//将传入的参数_data的值赋给m_data成员变量。这个函数提供了一种修改m_data值的途径</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    m_data = _data;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>}</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="comment"></span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="comment">/*!</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span><span class="comment"> * @brief This function returns the value of member data</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="comment"> * @return Value of member data</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span><span class="comment">// 这个函数的目的是获取m_data成员变量的值</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno"><a class="line" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#acab736d567cd7122b1f663264a6cbfe6">  169</a></span><span class="keywordtype">float</span> <a class="code hl_function" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#acab736d567cd7122b1f663264a6cbfe6">std_msgs::msg::Float32::data</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    <span class="comment">//返回m_data的引用 返回引用可以用于在函数外部直接操作m_data，而不需要进行值的拷贝</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="keywordflow">return</span> m_data;</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>}</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span><span class="comment"></span> </div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span><span class="comment">/*!</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span><span class="comment"> * @brief This function returns a reference to member data</span></div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span><span class="comment"> * @return Reference to member data</span></div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="comment">//函数的目的是返回类中的成员变量m_data的引用</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno"><a class="line" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a76e6d82075a724d082738d5ddcee392e">  180</a></span><span class="keywordtype">float</span>&amp; <a class="code hl_function" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#acab736d567cd7122b1f663264a6cbfe6">std_msgs::msg::Float32::data</a>()</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>{</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    <span class="keywordflow">return</span> m_data;</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>}</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span><span class="comment">//函数接受一个size_t类型的参数current_alignment</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno"><a class="line" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a50f2639dfc6a678e216a387625b7e3bd">  186</a></span><span class="keywordtype">size_t</span> <a class="code hl_function" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a50f2639dfc6a678e216a387625b7e3bd">std_msgs::msg::Float32::getKeyMaxCdrSerializedSize</a>(</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>        <span class="keywordtype">size_t</span> <a class="code hl_variable" href="../../db/db2/PoseWithCovariance_8cpp.html#ab0622670d2b449ae43c500e168400292">current_alignment</a>)</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>{</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <span class="comment">//将current_alignment的值转换为void类型</span></div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <span class="comment">//这是一种抑制编译器警告的方式，表明在这个函数中虽然传入了这个参数，但实际上并没有使用它</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <span class="keyword">static_cast&lt;</span><span class="keywordtype">void</span><span class="keyword">&gt;</span>(<a class="code hl_variable" href="../../db/db2/PoseWithCovariance_8cpp.html#ab0622670d2b449ae43c500e168400292">current_alignment</a>);</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    <span class="comment">//函数返回一个名为std_msgs_msg_Float32_max_key_cdr_typesize的值</span></div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="comment">//这个值表示Float32类型在特定序列化（可能是与eprosima::fastcdr相关的序列化）时的最大键（key）的CDR序列化大小</span></div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    <span class="keywordflow">return</span> <a class="code hl_define" href="../../db/d55/Float32_8cpp.html#a9ae3e6bfc449db975b890ecebc961aca">std_msgs_msg_Float32_max_key_cdr_typesize</a>;</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>}</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span> </div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span><span class="comment">//表示函数将返回一个布尔值（true或者false）</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno"><a class="line" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a5f385a9f7e1b16b5614f9fced8a0b8eb">  198</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a5f385a9f7e1b16b5614f9fced8a0b8eb">std_msgs::msg::Float32::isKeyDefined</a>()</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>{</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>}</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span><span class="comment">//void表示函数没有返回值</span></div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span><span class="comment">//函数接受一个eprosima::fastcdr::Cdr&amp;类型的参数scdr</span></div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span><span class="comment">//这里&amp;表示引用，意味着函数将直接操作传入的scdr对象，而不是创建它的副本。const关键字表示这个函数是一个常量成员函数，即这个函数不会修改类中的成员变量</span></div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno"><a class="line" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#aa656fdafc5ce488fea9870a73d8b0836">  205</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#aa656fdafc5ce488fea9870a73d8b0836">std_msgs::msg::Float32::serializeKey</a>(</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>        eprosima::fastcdr::Cdr&amp; scdr)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <span class="comment">//将scdr转换为void类型</span></div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    <span class="comment">//目的是抑制编译器警告，表示虽然传入了scdr这个参数，但在这个函数中没有实际使用它</span></div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    (void) scdr;</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>}</div>
+<div class="ttc" id="aFloat32_8cpp_html_a8278d1c09b4234002d3ebdcaeb2fd283"><div class="ttname"><a href="../../db/d55/Float32_8cpp.html#a8278d1c09b4234002d3ebdcaeb2fd283">std_msgs_msg_Float32_max_cdr_typesize</a></div><div class="ttdeci">#define std_msgs_msg_Float32_max_cdr_typesize</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d55/Float32_8cpp_source.html#l00037">Float32.cpp:37</a></div></div>
+<div class="ttc" id="aFloat32_8cpp_html_a9ae3e6bfc449db975b890ecebc961aca"><div class="ttname"><a href="../../db/d55/Float32_8cpp.html#a9ae3e6bfc449db975b890ecebc961aca">std_msgs_msg_Float32_max_key_cdr_typesize</a></div><div class="ttdeci">#define std_msgs_msg_Float32_max_key_cdr_typesize</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d55/Float32_8cpp_source.html#l00038">Float32.cpp:38</a></div></div>
+<div class="ttc" id="aFloat32_8h_html"><div class="ttname"><a href="../../d4/d65/Float32_8h.html">Float32.h</a></div></div>
+<div class="ttc" id="aPoseWithCovariance_8cpp_html_a7d42068ec3b034c764f7db0421128810"><div class="ttname"><a href="../../db/db2/PoseWithCovariance_8cpp.html#a7d42068ec3b034c764f7db0421128810">initial_alignment</a></div><div class="ttdeci">return current_alignment initial_alignment</div><div class="ttdef"><b>Definition:</b> <a href="../../db/db2/PoseWithCovariance_8cpp_source.html#l00169">PoseWithCovariance.cpp:169</a></div></div>
+<div class="ttc" id="aPoseWithCovariance_8cpp_html_ab0622670d2b449ae43c500e168400292"><div class="ttname"><a href="../../db/db2/PoseWithCovariance_8cpp.html#ab0622670d2b449ae43c500e168400292">current_alignment</a></div><div class="ttdeci">current_alignment</div><div class="ttdef"><b>Definition:</b> <a href="../../db/db2/PoseWithCovariance_8cpp_source.html#l00162">PoseWithCovariance.cpp:162</a></div></div>
+<div class="ttc" id="aclassstd__msgs_1_1msg_1_1Float32_html"><div class="ttname"><a href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html">std_msgs::msg::Float32</a></div><div class="ttdoc">这个类表示用户在IDL文件中定义的Float32结构。</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d65/Float32_8h_source.html#l00071">Float32.h:72</a></div></div>
+<div class="ttc" id="aclassstd__msgs_1_1msg_1_1Float32_html_a02f7c505bbaca85bfacf32a0bedc2695"><div class="ttname"><a href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a02f7c505bbaca85bfacf32a0bedc2695">std_msgs::msg::Float32::~Float32</a></div><div class="ttdeci">eProsima_user_DllExport ~Float32()</div><div class="ttdoc">默认析构函数。</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d55/Float32_8cpp_source.html#l00049">Float32.cpp:49</a></div></div>
+<div class="ttc" id="aclassstd__msgs_1_1msg_1_1Float32_html_a071a999807f6a0bbb5ed3543a9c72fbe"><div class="ttname"><a href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a071a999807f6a0bbb5ed3543a9c72fbe">std_msgs::msg::Float32::deserialize</a></div><div class="ttdeci">eProsima_user_DllExport void deserialize(eprosima::fastcdr::Cdr &amp;cdr)</div><div class="ttdoc">使用CDR反序列化对象。</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d55/Float32_8cpp_source.html#l00145">Float32.cpp:145</a></div></div>
+<div class="ttc" id="aclassstd__msgs_1_1msg_1_1Float32_html_a179446f67fe20ca01a89ac08dba10d6f"><div class="ttname"><a href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a179446f67fe20ca01a89ac08dba10d6f">std_msgs::msg::Float32::operator=</a></div><div class="ttdeci">eProsima_user_DllExport Float32 &amp; operator=(const Float32 &amp;x)</div><div class="ttdoc">拷贝赋值操作符。</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d55/Float32_8cpp_source.html#l00077">Float32.cpp:77</a></div></div>
+<div class="ttc" id="aclassstd__msgs_1_1msg_1_1Float32_html_a224ef097c897151a4cdd53d59f9b765b"><div class="ttname"><a href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a224ef097c897151a4cdd53d59f9b765b">std_msgs::msg::Float32::operator==</a></div><div class="ttdeci">eProsima_user_DllExport bool operator==(const Float32 &amp;x) const</div><div class="ttdoc">比较操作符。</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d55/Float32_8cpp_source.html#l00097">Float32.cpp:97</a></div></div>
+<div class="ttc" id="aclassstd__msgs_1_1msg_1_1Float32_html_a50f2639dfc6a678e216a387625b7e3bd"><div class="ttname"><a href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a50f2639dfc6a678e216a387625b7e3bd">std_msgs::msg::Float32::getKeyMaxCdrSerializedSize</a></div><div class="ttdeci">static eProsima_user_DllExport size_t getKeyMaxCdrSerializedSize(size_t current_alignment=0)</div><div class="ttdoc">返回对象的Key的最大序列化大小，取决于缓冲区对齐。</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d55/Float32_8cpp_source.html#l00186">Float32.cpp:186</a></div></div>
+<div class="ttc" id="aclassstd__msgs_1_1msg_1_1Float32_html_a5eb326c9ffba3b0285bae8371b4dcac6"><div class="ttname"><a href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a5eb326c9ffba3b0285bae8371b4dcac6">std_msgs::msg::Float32::getCdrSerializedSize</a></div><div class="ttdeci">static eProsima_user_DllExport size_t getCdrSerializedSize(const std_msgs::msg::Float32 &amp;data, size_t current_alignment=0)</div><div class="ttdoc">返回数据的序列化大小，取决于缓冲区对齐。</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d55/Float32_8cpp_source.html#l00123">Float32.cpp:123</a></div></div>
+<div class="ttc" id="aclassstd__msgs_1_1msg_1_1Float32_html_a5f385a9f7e1b16b5614f9fced8a0b8eb"><div class="ttname"><a href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a5f385a9f7e1b16b5614f9fced8a0b8eb">std_msgs::msg::Float32::isKeyDefined</a></div><div class="ttdeci">static eProsima_user_DllExport bool isKeyDefined()</div><div class="ttdoc">告诉你是否为这种类型定义了Key。</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d55/Float32_8cpp_source.html#l00198">Float32.cpp:198</a></div></div>
+<div class="ttc" id="aclassstd__msgs_1_1msg_1_1Float32_html_a62c4588f28bbcd2cfd6da9185ce6ac51"><div class="ttname"><a href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a62c4588f28bbcd2cfd6da9185ce6ac51">std_msgs::msg::Float32::serialize</a></div><div class="ttdeci">eProsima_user_DllExport void serialize(eprosima::fastcdr::Cdr &amp;cdr) const</div><div class="ttdoc">使用CDR序列化对象。</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d55/Float32_8cpp_source.html#l00137">Float32.cpp:137</a></div></div>
+<div class="ttc" id="aclassstd__msgs_1_1msg_1_1Float32_html_a7c1ac41638a6e6931c4eccd4ea7f17cb"><div class="ttname"><a href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a7c1ac41638a6e6931c4eccd4ea7f17cb">std_msgs::msg::Float32::operator!=</a></div><div class="ttdeci">eProsima_user_DllExport bool operator!=(const Float32 &amp;x) const</div><div class="ttdoc">比较操作符。</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d55/Float32_8cpp_source.html#l00105">Float32.cpp:105</a></div></div>
+<div class="ttc" id="aclassstd__msgs_1_1msg_1_1Float32_html_a82ba5b2de043b9f2cacff90ff14cc668"><div class="ttname"><a href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#a82ba5b2de043b9f2cacff90ff14cc668">std_msgs::msg::Float32::m_data</a></div><div class="ttdeci">float m_data</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d65/Float32_8h_source.html#l00198">Float32.h:198</a></div></div>
+<div class="ttc" id="aclassstd__msgs_1_1msg_1_1Float32_html_aa656fdafc5ce488fea9870a73d8b0836"><div class="ttname"><a href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#aa656fdafc5ce488fea9870a73d8b0836">std_msgs::msg::Float32::serializeKey</a></div><div class="ttdeci">eProsima_user_DllExport void serializeKey(eprosima::fastcdr::Cdr &amp;cdr) const</div><div class="ttdoc">使用CDR序列化对象的Key成员。</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d55/Float32_8cpp_source.html#l00205">Float32.cpp:205</a></div></div>
+<div class="ttc" id="aclassstd__msgs_1_1msg_1_1Float32_html_aad996d5869b57af8248040511897a65c"><div class="ttname"><a href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#aad996d5869b57af8248040511897a65c">std_msgs::msg::Float32::Float32</a></div><div class="ttdeci">eProsima_user_DllExport Float32()</div><div class="ttdoc">默认构造函数。</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d55/Float32_8cpp_source.html#l00042">Float32.cpp:42</a></div></div>
+<div class="ttc" id="aclassstd__msgs_1_1msg_1_1Float32_html_abd6c37ad0572836fb23312e4fb66170d"><div class="ttname"><a href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#abd6c37ad0572836fb23312e4fb66170d">std_msgs::msg::Float32::getMaxCdrSerializedSize</a></div><div class="ttdeci">static eProsima_user_DllExport size_t getMaxCdrSerializedSize(size_t current_alignment=0)</div><div class="ttdoc">返回对象的最大序列化大小，取决于缓冲区对齐。</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d55/Float32_8cpp_source.html#l00113">Float32.cpp:113</a></div></div>
+<div class="ttc" id="aclassstd__msgs_1_1msg_1_1Float32_html_acab736d567cd7122b1f663264a6cbfe6"><div class="ttname"><a href="../../d8/dc6/classstd__msgs_1_1msg_1_1Float32.html#acab736d567cd7122b1f663264a6cbfe6">std_msgs::msg::Float32::data</a></div><div class="ttdeci">eProsima_user_DllExport float data() const</div><div class="ttdoc">获取成员data的值。</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d55/Float32_8cpp_source.html#l00169">Float32.cpp:169</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

@@ -1,0 +1,6 @@
+<map id="carla::client::Waypoint::GetPreviousUntilLaneStart" name="carla::client::Waypoint::GetPreviousUntilLaneStart">
+<area shape="rect" id="node1" title="获取从当前位置开始，沿车道反方向直到道路起点的路径点列表。" alt="" coords="5,69,189,109"/>
+<area shape="rect" id="node2" href="$dd/dff/classcarla_1_1client_1_1Waypoint.html#abf58b083c118f59ddda6b9cf64377c8a" title="获取沿车道的距离（s值）。" alt="" coords="237,5,384,45"/>
+<area shape="rect" id="node3" href="$dd/dff/classcarla_1_1client_1_1Waypoint.html#ab72859cf2d4dd542de939d12ef5773d4" title="获取指定距离内的上一个路径点列表。" alt="" coords="237,69,384,109"/>
+<area shape="rect" id="node4" href="$dd/dff/classcarla_1_1client_1_1Waypoint.html#aa38f802a840dd5cc13097a9aecfdd72a" title="获取道路ID。" alt="" coords="237,133,384,173"/>
+</map>

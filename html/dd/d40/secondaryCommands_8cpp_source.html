@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: secondaryCommands.cpp 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_a2af28fa3ae0e0a62585ff5a8c898ebe.html">multigpu</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">secondaryCommands.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../dd/d40/secondaryCommands_8cpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2022 Computer Vision Center (CVC) at the Universitat Autonoma</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// de Barcelona (UAB).</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// This work is licensed under the terms of the MIT license.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">// #include &quot;carla/Logging.h&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="../../d6/d9a/secondaryCommands_8h.html">carla/multigpu/secondaryCommands.h</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">// #include &quot;carla/streaming/detail/tcp/Message.h&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d9/d36/namespacecarla.html">carla</a> {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace </span>multigpu {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">// 设置SecondaryCommands实例中的_secondary成员变量</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">// 参数：secondary - 一个指向Secondary类实例的智能指针</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="../../d6/dd9/classcarla_1_1multigpu_1_1SecondaryCommands.html#a1609bcd0a6b6a0e4245ae20e17e671e0">   16</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d6/dd9/classcarla_1_1multigpu_1_1SecondaryCommands.html#a1609bcd0a6b6a0e4245ae20e17e671e0">SecondaryCommands::set_secondary</a>(std::shared_ptr&lt;Secondary&gt; secondary) {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  <a class="code hl_variable" href="../../d6/dd9/classcarla_1_1multigpu_1_1SecondaryCommands.html#a580daaa333bcc2ed2637177cfc40f562">_secondary</a> = secondary;  <span class="comment">// 将传入的智能指针赋值给_secondary成员变量</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>}</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment">// 设置一个回调函数，当处理命令时会被调用</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment">// 参数：callback - 一个函数指针或可调用对象，接受命令ID和Buffer作为参数</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="../../d6/dd9/classcarla_1_1multigpu_1_1SecondaryCommands.html#a8711308b26d9e3f2d214c79e1e04d478">   22</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d6/dd9/classcarla_1_1multigpu_1_1SecondaryCommands.html#a8711308b26d9e3f2d214c79e1e04d478">SecondaryCommands::set_callback</a>(<a class="code hl_typedef" href="../../d6/dd9/classcarla_1_1multigpu_1_1SecondaryCommands.html#a0375a1771fc7a559c98b6a9594452066">callback_type</a> callback) {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  <a class="code hl_variable" href="../../d6/dd9/classcarla_1_1multigpu_1_1SecondaryCommands.html#a129c3857bdc41301a062ca0a9c38cb31">_callback</a> = callback;  <span class="comment">// 将传入的回调函数赋值给_callback成员变量</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  <span class="comment">// 注意：callback_type是一个未在代码段中定义的类型，它可能是一个函数指针类型或std::function等</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>}</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="comment">// 处理一个命令，从Buffer中提取命令头，然后调用设置的回调函数</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment">// 参数：buffer - 包含命令数据的Buffer对象</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="../../d6/dd9/classcarla_1_1multigpu_1_1SecondaryCommands.html#a934e4b08c0cd7aa16c52a4d7cbd65ca7">   29</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d6/dd9/classcarla_1_1multigpu_1_1SecondaryCommands.html#a934e4b08c0cd7aa16c52a4d7cbd65ca7">SecondaryCommands::process_command</a>(<a class="code hl_class" href="../../d0/d0a/classcarla_1_1Buffer.html">Buffer</a> buffer) {</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <span class="comment">// 从Buffer中提取命令头</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <span class="comment">// 假设CommandHeader是一个结构体，包含了命令的ID和大小等信息</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <a class="code hl_struct" href="../../d8/d32/structcarla_1_1multigpu_1_1CommandHeader.html">CommandHeader</a> *header;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  header = <span class="keyword">reinterpret_cast&lt;</span><a class="code hl_struct" href="../../d8/d32/structcarla_1_1multigpu_1_1CommandHeader.html">CommandHeader</a> *<span class="keyword">&gt;</span>(buffer.<a class="code hl_function" href="../../d0/d0a/classcarla_1_1Buffer.html#a10680a1dd5dd8718b8e871b631022cdf">data</a>());  <span class="comment">// 将Buffer的数据指针转换为CommandHeader指针</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <span class="comment">// 创建一个新的Buffer对象，用于存储命令数据（不包括命令头）</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  <span class="comment">// 如果header-&gt;size确实包含了命令头的大小，那么下面的代码将正确地跳过命令头</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <a class="code hl_class" href="../../d0/d0a/classcarla_1_1Buffer.html">Buffer</a> data(buffer.<a class="code hl_function" href="../../d0/d0a/classcarla_1_1Buffer.html#a10680a1dd5dd8718b8e871b631022cdf">data</a>() + <span class="keyword">sizeof</span>(<a class="code hl_struct" href="../../d8/d32/structcarla_1_1multigpu_1_1CommandHeader.html">CommandHeader</a>), header-&gt;<a class="code hl_variable" href="../../d8/d32/structcarla_1_1multigpu_1_1CommandHeader.html#a65853050ff111b7a326a29dfba32ba36">size</a>);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="comment">// 调用之前设置的回调函数，传递命令ID和命令数据</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <a class="code hl_variable" href="../../d6/dd9/classcarla_1_1multigpu_1_1SecondaryCommands.html#a129c3857bdc41301a062ca0a9c38cb31">_callback</a>(header-&gt;<a class="code hl_variable" href="../../d8/d32/structcarla_1_1multigpu_1_1CommandHeader.html#ac5b1f437733f43361e8879b30b2f763e">id</a>, std::move(data));  <span class="comment">// 使用std::move是为了避免不必要的拷贝</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="comment">// 下面的日志语句被注释掉了，如果取消注释，它将输出一条日志信息</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="comment">// log_info(&quot;Secondary got a command to process&quot;);  // 假设log_info是一个用于输出日志信息的函数</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>}</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">// 这些类型和类可能是在其他地方定义的，用于支持SecondaryCommands类的功能</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>}</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>}  <span class="comment">// 命名空间结束</span></div>
+<div class="ttc" id="aclasscarla_1_1Buffer_html"><div class="ttname"><a href="../../d0/d0a/classcarla_1_1Buffer.html">carla::Buffer</a></div><div class="ttdoc">一块原始数据。 请注意，如果需要更多容量，则会分配一个新的内存块，并 删除旧的内存块。这意味着默认情况下，缓冲区只能增长。要释放内存，使用 clear 或 pop。</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/dda/carla_2Buffer_8h_source.html#l00052">carla/Buffer.h:52</a></div></div>
+<div class="ttc" id="aclasscarla_1_1Buffer_html_a10680a1dd5dd8718b8e871b631022cdf"><div class="ttname"><a href="../../d0/d0a/classcarla_1_1Buffer.html#a10680a1dd5dd8718b8e871b631022cdf">carla::Buffer::data</a></div><div class="ttdeci">const value_type * data() const noexcept</div><div class="ttdoc">直接访问分配的内存，如果没有分配内存则返回 nullptr。</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/dda/carla_2Buffer_8h_source.html#l00193">carla/Buffer.h:193</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1SecondaryCommands_html_a0375a1771fc7a559c98b6a9594452066"><div class="ttname"><a href="../../d6/dd9/classcarla_1_1multigpu_1_1SecondaryCommands.html#a0375a1771fc7a559c98b6a9594452066">carla::multigpu::SecondaryCommands::callback_type</a></div><div class="ttdeci">std::function&lt; void(MultiGPUCommand, carla::Buffer)&gt; callback_type</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d9a/secondaryCommands_8h_source.html#l00027">secondaryCommands.h:27</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1SecondaryCommands_html_a129c3857bdc41301a062ca0a9c38cb31"><div class="ttname"><a href="../../d6/dd9/classcarla_1_1multigpu_1_1SecondaryCommands.html#a129c3857bdc41301a062ca0a9c38cb31">carla::multigpu::SecondaryCommands::_callback</a></div><div class="ttdeci">callback_type _callback</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d9a/secondaryCommands_8h_source.html#l00047">secondaryCommands.h:47</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1SecondaryCommands_html_a1609bcd0a6b6a0e4245ae20e17e671e0"><div class="ttname"><a href="../../d6/dd9/classcarla_1_1multigpu_1_1SecondaryCommands.html#a1609bcd0a6b6a0e4245ae20e17e671e0">carla::multigpu::SecondaryCommands::set_secondary</a></div><div class="ttdeci">void set_secondary(std::shared_ptr&lt; Secondary &gt; secondary)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d40/secondaryCommands_8cpp_source.html#l00016">secondaryCommands.cpp:16</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1SecondaryCommands_html_a580daaa333bcc2ed2637177cfc40f562"><div class="ttname"><a href="../../d6/dd9/classcarla_1_1multigpu_1_1SecondaryCommands.html#a580daaa333bcc2ed2637177cfc40f562">carla::multigpu::SecondaryCommands::_secondary</a></div><div class="ttdeci">std::shared_ptr&lt; Secondary &gt; _secondary</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d9a/secondaryCommands_8h_source.html#l00043">secondaryCommands.h:43</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1SecondaryCommands_html_a8711308b26d9e3f2d214c79e1e04d478"><div class="ttname"><a href="../../d6/dd9/classcarla_1_1multigpu_1_1SecondaryCommands.html#a8711308b26d9e3f2d214c79e1e04d478">carla::multigpu::SecondaryCommands::set_callback</a></div><div class="ttdeci">void set_callback(callback_type callback)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d40/secondaryCommands_8cpp_source.html#l00022">secondaryCommands.cpp:22</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1SecondaryCommands_html_a934e4b08c0cd7aa16c52a4d7cbd65ca7"><div class="ttname"><a href="../../d6/dd9/classcarla_1_1multigpu_1_1SecondaryCommands.html#a934e4b08c0cd7aa16c52a4d7cbd65ca7">carla::multigpu::SecondaryCommands::process_command</a></div><div class="ttdeci">void process_command(carla::Buffer buffer)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d40/secondaryCommands_8cpp_source.html#l00029">secondaryCommands.cpp:29</a></div></div>
+<div class="ttc" id="anamespacecarla_html"><div class="ttname"><a href="../../d9/d36/namespacecarla.html">carla</a></div><div class="ttdoc">CARLA模拟器的主命名空间。</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d4f/Carla_8cpp_source.html#l00139">Carla.cpp:139</a></div></div>
+<div class="ttc" id="asecondaryCommands_8h_html"><div class="ttname"><a href="../../d6/d9a/secondaryCommands_8h.html">secondaryCommands.h</a></div></div>
+<div class="ttc" id="astructcarla_1_1multigpu_1_1CommandHeader_html"><div class="ttname"><a href="../../d8/d32/structcarla_1_1multigpu_1_1CommandHeader.html">carla::multigpu::CommandHeader</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d5/d90/commands_8h_source.html#l00025">commands.h:25</a></div></div>
+<div class="ttc" id="astructcarla_1_1multigpu_1_1CommandHeader_html_a65853050ff111b7a326a29dfba32ba36"><div class="ttname"><a href="../../d8/d32/structcarla_1_1multigpu_1_1CommandHeader.html#a65853050ff111b7a326a29dfba32ba36">carla::multigpu::CommandHeader::size</a></div><div class="ttdeci">uint32_t size</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/d90/commands_8h_source.html#l00027">commands.h:27</a></div></div>
+<div class="ttc" id="astructcarla_1_1multigpu_1_1CommandHeader_html_ac5b1f437733f43361e8879b30b2f763e"><div class="ttname"><a href="../../d8/d32/structcarla_1_1multigpu_1_1CommandHeader.html#ac5b1f437733f43361e8879b30b2f763e">carla::multigpu::CommandHeader::id</a></div><div class="ttdeci">MultiGPUCommand id</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/d90/commands_8h_source.html#l00026">commands.h:26</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

@@ -1,0 +1,674 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: FAsyncDataStreamTmpl类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public 类型</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="#friends">友元</a> &#124;
+<a href="../../dc/dbd/classFAsyncDataStreamTmpl-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">FAsyncDataStreamTmpl类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>异步数据。“发送”功能发送的数据被传递给 序列化程序在carla:：sensor:SensorRegistry上注册了传感器 被顺流而下。  
+ <a href="../../dc/db5/classFAsyncDataStreamTmpl.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html">AsyncDataStream.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> FAsyncDataStreamTmpl 的协作图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../da/dc6/classFAsyncDataStreamTmpl__coll__graph.svg" width="490" height="227"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public 类型</h2></td></tr>
+<tr class="memitem:a3a2ce10642cf8173534cbfa3406f4a60"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/db5/classFAsyncDataStreamTmpl.html#a3a2ce10642cf8173534cbfa3406f4a60">StreamType</a> = T</td></tr>
+<tr class="separator:a3a2ce10642cf8173534cbfa3406f4a60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a49bdb11b4790786c6709808a69421ee9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/db5/classFAsyncDataStreamTmpl.html#a49bdb11b4790786c6709808a69421ee9">FAsyncDataStreamTmpl</a> (<a class="el" href="../../dc/db5/classFAsyncDataStreamTmpl.html">FAsyncDataStreamTmpl</a> &amp;&amp;)=default</td></tr>
+<tr class="separator:a49bdb11b4790786c6709808a69421ee9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7caeb0333beecac53c52ac98fd27bc5b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/db5/classFAsyncDataStreamTmpl.html#a7caeb0333beecac53c52ac98fd27bc5b">GetSensorTimestamp</a> ()</td></tr>
+<tr class="memdesc:a7caeb0333beecac53c52ac98fd27bc5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">返回传感器的时间戳  <a href="../../dc/db5/classFAsyncDataStreamTmpl.html#a7caeb0333beecac53c52ac98fd27bc5b">更多...</a><br /></td></tr>
+<tr class="separator:a7caeb0333beecac53c52ac98fd27bc5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c5d17ff4d85de678cda1edb1c02055d"><td class="memItemLeft" align="right" valign="top">FTransform&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/db5/classFAsyncDataStreamTmpl.html#a8c5d17ff4d85de678cda1edb1c02055d">GetSensorTransform</a> ()</td></tr>
+<tr class="memdesc:a8c5d17ff4d85de678cda1edb1c02055d"><td class="mdescLeft">&#160;</td><td class="mdescRight">返回传感器的变换  <a href="../../dc/db5/classFAsyncDataStreamTmpl.html#a8c5d17ff4d85de678cda1edb1c02055d">更多...</a><br /></td></tr>
+<tr class="separator:a8c5d17ff4d85de678cda1edb1c02055d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4828faad881f36bae657a68afc329b9"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/db5/classFAsyncDataStreamTmpl.html#af4828faad881f36bae657a68afc329b9">GetSensorType</a> ()</td></tr>
+<tr class="memdesc:af4828faad881f36bae657a68afc329b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">返回此流的传感器类型  <a href="../../dc/db5/classFAsyncDataStreamTmpl.html#af4828faad881f36bae657a68afc329b9">更多...</a><br /></td></tr>
+<tr class="separator:af4828faad881f36bae657a68afc329b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95cbe60a209bdc1c3eed102b23a89130"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/db5/classFAsyncDataStreamTmpl.html#a95cbe60a209bdc1c3eed102b23a89130">GetToken</a> () const</td></tr>
+<tr class="memdesc:a95cbe60a209bdc1c3eed102b23a89130"><td class="mdescLeft">&#160;</td><td class="mdescRight">返回允许订阅此流的令牌。  <a href="../../dc/db5/classFAsyncDataStreamTmpl.html#a95cbe60a209bdc1c3eed102b23a89130">更多...</a><br /></td></tr>
+<tr class="separator:a95cbe60a209bdc1c3eed102b23a89130"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d81525735b780cbeb90e0bbcf2d137f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/d0a/classcarla_1_1Buffer.html">carla::Buffer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/db5/classFAsyncDataStreamTmpl.html#a6d81525735b780cbeb90e0bbcf2d137f">PopBufferFromPool</a> ()</td></tr>
+<tr class="memdesc:a6d81525735b780cbeb90e0bbcf2d137f"><td class="mdescLeft">&#160;</td><td class="mdescRight">从池中弹出缓冲区。池中的缓冲区可以重用以前消息分配的内存，从而显著提高大消息的性能。  <a href="../../dc/db5/classFAsyncDataStreamTmpl.html#a6d81525735b780cbeb90e0bbcf2d137f">更多...</a><br /></td></tr>
+<tr class="separator:a6d81525735b780cbeb90e0bbcf2d137f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81a34f4012c3aa26efd6f317852077e9"><td class="memTemplParams" colspan="2">template&lt;typename SensorT , typename... ArgsT&gt; </td></tr>
+<tr class="memitem:a81a34f4012c3aa26efd6f317852077e9"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../dc/db5/classFAsyncDataStreamTmpl.html#a81a34f4012c3aa26efd6f317852077e9">Send</a> (SensorT &amp;Sensor, ArgsT &amp;&amp;... Args)</td></tr>
+<tr class="memdesc:a81a34f4012c3aa26efd6f317852077e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">向下游发送一些数据。  <a href="../../dc/db5/classFAsyncDataStreamTmpl.html#a81a34f4012c3aa26efd6f317852077e9">更多...</a><br /></td></tr>
+<tr class="separator:a81a34f4012c3aa26efd6f317852077e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd2a1874b005866c992d1db4f0396b1f"><td class="memTemplParams" colspan="2">template&lt;typename SensorT , typename... ArgsT&gt; </td></tr>
+<tr class="memitem:abd2a1874b005866c992d1db4f0396b1f"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../dc/db5/classFAsyncDataStreamTmpl.html#abd2a1874b005866c992d1db4f0396b1f">SerializeAndSend</a> (SensorT &amp;Sensor, ArgsT &amp;&amp;... Args)</td></tr>
+<tr class="separator:abd2a1874b005866c992d1db4f0396b1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a355564c65c4e1fa0162f1fb20055d430"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/db5/classFAsyncDataStreamTmpl.html#a355564c65c4e1fa0162f1fb20055d430">SetFrameNumber</a> (uint64_t FrameNumber)</td></tr>
+<tr class="memdesc:a355564c65c4e1fa0162f1fb20055d430"><td class="mdescLeft">&#160;</td><td class="mdescRight">允许更改标头的帧号  <a href="../../dc/db5/classFAsyncDataStreamTmpl.html#a355564c65c4e1fa0162f1fb20055d430">更多...</a><br /></td></tr>
+<tr class="separator:a355564c65c4e1fa0162f1fb20055d430"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:ade60da30290df8247b33c48a12e29e0e"><td class="memTemplParams" colspan="2">template&lt;typename SensorT &gt; </td></tr>
+<tr class="memitem:ade60da30290df8247b33c48a12e29e0e"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../dc/db5/classFAsyncDataStreamTmpl.html#ade60da30290df8247b33c48a12e29e0e">FAsyncDataStreamTmpl</a> (const SensorT &amp;InSensor, double Timestamp, <a class="el" href="../../dc/db5/classFAsyncDataStreamTmpl.html#a3a2ce10642cf8173534cbfa3406f4a60">StreamType</a> InStream)</td></tr>
+<tr class="memdesc:ade60da30290df8247b33c48a12e29e0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">@这个函数需要在游戏线程中调用。  <a href="../../dc/db5/classFAsyncDataStreamTmpl.html#ade60da30290df8247b33c48a12e29e0e">更多...</a><br /></td></tr>
+<tr class="separator:ade60da30290df8247b33c48a12e29e0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a793c9522dbb3f1ce6e843f1e1cb7e5fb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/d0a/classcarla_1_1Buffer.html">carla::Buffer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/db5/classFAsyncDataStreamTmpl.html#a793c9522dbb3f1ce6e843f1e1cb7e5fb">Header</a></td></tr>
+<tr class="separator:a793c9522dbb3f1ce6e843f1e1cb7e5fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d5ffd7eb052cba43cf4283c86aabfd2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dc/db5/classFAsyncDataStreamTmpl.html#a3a2ce10642cf8173534cbfa3406f4a60">StreamType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/db5/classFAsyncDataStreamTmpl.html#a3d5ffd7eb052cba43cf4283c86aabfd2">Stream</a></td></tr>
+<tr class="separator:a3d5ffd7eb052cba43cf4283c86aabfd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
+友元</h2></td></tr>
+<tr class="memitem:af1a0f9f9c883acf0356042b933197f0f"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/db5/classFAsyncDataStreamTmpl.html#af1a0f9f9c883acf0356042b933197f0f">FDataStreamTmpl&lt; T &gt;</a></td></tr>
+<tr class="separator:af1a0f9f9c883acf0356042b933197f0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p >异步数据。“发送”功能发送的数据被传递给 序列化程序在carla:：sensor:SensorRegistry上注册了传感器 被顺流而下。 </p>
+<dl class="section warning"><dt>警告</dt><dd>这是一个一次性对象，需要为每个对象创建一个新对象 新消息。</dd></dl>
+<p>FAsyncDataStream还有一个carla:：Buffer池，允许重用 分配内存，尽可能使用它。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html">AsyncDataStream.h</a> 第 <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html#l00034">34</a> 行定义.</p>
+</div><h2 class="groupheader">成员类型定义说明</h2>
+<a id="a3a2ce10642cf8173534cbfa3406f4a60" name="a3a2ce10642cf8173534cbfa3406f4a60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a2ce10642cf8173534cbfa3406f4a60">&#9670;&#160;</a></span>StreamType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="../../dc/db5/classFAsyncDataStreamTmpl.html#a3a2ce10642cf8173534cbfa3406f4a60">FAsyncDataStreamTmpl::StreamType</a> =  T</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html">AsyncDataStream.h</a> 第 <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html#l00038">38</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a49bdb11b4790786c6709808a69421ee9" name="a49bdb11b4790786c6709808a69421ee9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49bdb11b4790786c6709808a69421ee9">&#9670;&#160;</a></span>FAsyncDataStreamTmpl() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FAsyncDataStreamTmpl::FAsyncDataStreamTmpl </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../dc/db5/classFAsyncDataStreamTmpl.html">FAsyncDataStreamTmpl</a> &amp;&amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ade60da30290df8247b33c48a12e29e0e" name="ade60da30290df8247b33c48a12e29e0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade60da30290df8247b33c48a12e29e0e">&#9670;&#160;</a></span>FAsyncDataStreamTmpl() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SensorT &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FAsyncDataStreamTmpl::FAsyncDataStreamTmpl </td>
+          <td>(</td>
+          <td class="paramtype">const SensorT &amp;&#160;</td>
+          <td class="paramname"><em>InSensor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Timestamp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../dc/db5/classFAsyncDataStreamTmpl.html#a3a2ce10642cf8173534cbfa3406f4a60">StreamType</a>&#160;</td>
+          <td class="paramname"><em>InStream</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>@这个函数需要在游戏线程中调用。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/d17/AsyncDataStreamImpl_8h_source.html">AsyncDataStreamImpl.h</a> 第 <a class="el" href="../../d0/d17/AsyncDataStreamImpl_8h_source.html#l00018">18</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d11/CarlaEngine_8h_source.html#l00068">FCarlaEngine::GetFrameCounter()</a>.</p>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/db5/classFAsyncDataStreamTmpl_ade60da30290df8247b33c48a12e29e0e_cgraph.svg" width="438" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a7caeb0333beecac53c52ac98fd27bc5b" name="a7caeb0333beecac53c52ac98fd27bc5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7caeb0333beecac53c52ac98fd27bc5b">&#9670;&#160;</a></span>GetSensorTimestamp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double FAsyncDataStreamTmpl::GetSensorTimestamp </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>返回传感器的时间戳 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html">AsyncDataStream.h</a> 第 <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html#l00101">101</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8c5d17ff4d85de678cda1edb1c02055d" name="a8c5d17ff4d85de678cda1edb1c02055d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c5d17ff4d85de678cda1edb1c02055d">&#9670;&#160;</a></span>GetSensorTransform()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FTransform FAsyncDataStreamTmpl::GetSensorTransform </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>返回传感器的变换 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html">AsyncDataStream.h</a> 第 <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html#l00089">89</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d2/dda/carla_2Buffer_8h_source.html#l00193">carla::Buffer::data()</a>, <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html#l00125">Header</a> , 以及 <a class="el" href="../../dd/da9/SensorHeaderSerializer_8h_source.html#l00027">carla::sensor::s11n::SensorHeaderSerializer::Header::sensor_transform</a>.</p>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/db5/classFAsyncDataStreamTmpl_a8c5d17ff4d85de678cda1edb1c02055d_cgraph.svg" width="344" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="af4828faad881f36bae657a68afc329b9" name="af4828faad881f36bae657a68afc329b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4828faad881f36bae657a68afc329b9">&#9670;&#160;</a></span>GetSensorType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t FAsyncDataStreamTmpl::GetSensorType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>返回此流的传感器类型 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html">AsyncDataStream.h</a> 第 <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html#l00077">77</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d2/dda/carla_2Buffer_8h_source.html#l00193">carla::Buffer::data()</a>, <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html#l00125">Header</a> , 以及 <a class="el" href="../../dd/da9/SensorHeaderSerializer_8h_source.html#l00024">carla::sensor::s11n::SensorHeaderSerializer::Header::sensor_type</a>.</p>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/db5/classFAsyncDataStreamTmpl_af4828faad881f36bae657a68afc329b9_cgraph.svg" width="344" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a95cbe60a209bdc1c3eed102b23a89130" name="a95cbe60a209bdc1c3eed102b23a89130"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95cbe60a209bdc1c3eed102b23a89130">&#9670;&#160;</a></span>GetToken()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto FAsyncDataStreamTmpl::GetToken </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>返回允许订阅此流的令牌。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html">AsyncDataStream.h</a> 第 <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html#l00043">43</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html#l00123">Stream</a>.</p>
+
+</div>
+</div>
+<a id="a6d81525735b780cbeb90e0bbcf2d137f" name="a6d81525735b780cbeb90e0bbcf2d137f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d81525735b780cbeb90e0bbcf2d137f">&#9670;&#160;</a></span>PopBufferFromPool()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d0/d0a/classcarla_1_1Buffer.html">carla::Buffer</a> FAsyncDataStreamTmpl::PopBufferFromPool </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>从池中弹出缓冲区。池中的缓冲区可以重用以前消息分配的内存，从而显著提高大消息的性能。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html">AsyncDataStream.h</a> 第 <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html#l00049">49</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html#l00123">Stream</a>.</p>
+
+</div>
+</div>
+<a id="a81a34f4012c3aa26efd6f317852077e9" name="a81a34f4012c3aa26efd6f317852077e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81a34f4012c3aa26efd6f317852077e9">&#9670;&#160;</a></span>Send()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SensorT , typename... ArgsT&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FAsyncDataStreamTmpl::Send </td>
+          <td>(</td>
+          <td class="paramtype">SensorT &amp;&#160;</td>
+          <td class="paramname"><em>Sensor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ArgsT &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>Args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>向下游发送一些数据。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html">AsyncDataStream.h</a> 第 <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html#l00157">157</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d8/dee/BufferView_8h_source.html#l00060">carla::BufferView::CreateFrom()</a> , 以及 <a class="el" href="../../da/dd9/DataStream_8h_source.html#l00072">FDataStreamTmpl&lt; T &gt;::Stream</a>.</p>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../dc/db5/classFAsyncDataStreamTmpl_a81a34f4012c3aa26efd6f317852077e9_cgraph.svg" width="100%" height="400"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="abd2a1874b005866c992d1db4f0396b1f" name="abd2a1874b005866c992d1db4f0396b1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd2a1874b005866c992d1db4f0396b1f">&#9670;&#160;</a></span>SerializeAndSend()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SensorT , typename... ArgsT&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FAsyncDataStreamTmpl::SerializeAndSend </td>
+          <td>(</td>
+          <td class="paramtype">SensorT &amp;&#160;</td>
+          <td class="paramname"><em>Sensor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ArgsT &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>Args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html">AsyncDataStream.h</a> 第 <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html#l00142">142</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d8/dee/BufferView_8h_source.html#l00060">carla::BufferView::CreateFrom()</a>, <a class="el" href="../../d0/dc9/CompositeSerializer_8h_source.html#l00082">carla::sensor::CompositeSerializer&lt; Items &gt;::Serialize()</a> , 以及 <a class="el" href="../../da/dd9/DataStream_8h_source.html#l00072">FDataStreamTmpl&lt; T &gt;::Stream</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/df0/CollisionSensor_8cpp_source.html#l00080">ACollisionSensor::OnCollisionEvent()</a>.</p>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../dc/db5/classFAsyncDataStreamTmpl_abd2a1874b005866c992d1db4f0396b1f_cgraph.svg" width="100%" height="424"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../dc/db5/classFAsyncDataStreamTmpl_abd2a1874b005866c992d1db4f0396b1f_icgraph.svg" width="100%" height="386"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a355564c65c4e1fa0162f1fb20055d430" name="a355564c65c4e1fa0162f1fb20055d430"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a355564c65c4e1fa0162f1fb20055d430">&#9670;&#160;</a></span>SetFrameNumber()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FAsyncDataStreamTmpl::SetFrameNumber </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>FrameNumber</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>允许更改标头的帧号 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html">AsyncDataStream.h</a> 第 <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html#l00062">62</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d2/dda/carla_2Buffer_8h_source.html#l00193">carla::Buffer::data()</a>, <a class="el" href="../../dd/da9/SensorHeaderSerializer_8h_source.html#l00025">carla::sensor::s11n::SensorHeaderSerializer::Header::frame</a>, <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html#l00125">Header</a>, <a class="el" href="../../de/d87/Logging_8h_source.html#l00086">carla::log_info()</a> , 以及 <a class="el" href="../../dd/da9/SensorHeaderSerializer_8h_source.html#l00024">carla::sensor::s11n::SensorHeaderSerializer::Header::sensor_type</a>.</p>
+<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/db5/classFAsyncDataStreamTmpl_a355564c65c4e1fa0162f1fb20055d430_cgraph.svg" width="523" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">友元及相关函数文档</h2>
+<a id="af1a0f9f9c883acf0356042b933197f0f" name="af1a0f9f9c883acf0356042b933197f0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1a0f9f9c883acf0356042b933197f0f">&#9670;&#160;</a></span>FDataStreamTmpl&lt; T &gt;</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend class <a class="el" href="../../d4/d9c/classFDataStreamTmpl.html">FDataStreamTmpl</a>&lt; T &gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html">AsyncDataStream.h</a> 第 <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html#l00101">101</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a793c9522dbb3f1ce6e843f1e1cb7e5fb" name="a793c9522dbb3f1ce6e843f1e1cb7e5fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a793c9522dbb3f1ce6e843f1e1cb7e5fb">&#9670;&#160;</a></span>Header</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d0/d0a/classcarla_1_1Buffer.html">carla::Buffer</a> FAsyncDataStreamTmpl::Header</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html">AsyncDataStream.h</a> 第 <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html#l00125">125</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html#l00089">GetSensorTransform()</a>, <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html#l00077">GetSensorType()</a> , 以及 <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html#l00062">SetFrameNumber()</a>.</p>
+
+</div>
+</div>
+<a id="a3d5ffd7eb052cba43cf4283c86aabfd2" name="a3d5ffd7eb052cba43cf4283c86aabfd2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d5ffd7eb052cba43cf4283c86aabfd2">&#9670;&#160;</a></span>Stream</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../dc/db5/classFAsyncDataStreamTmpl.html#a3a2ce10642cf8173534cbfa3406f4a60">StreamType</a> FAsyncDataStreamTmpl::Stream</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html">AsyncDataStream.h</a> 第 <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html#l00123">123</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html#l00043">GetToken()</a> , 以及 <a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html#l00049">PopBufferFromPool()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../d9/d4d/AsyncDataStream_8h_source.html">AsyncDataStream.h</a></li>
+<li><a class="el" href="../../d0/d17/AsyncDataStreamImpl_8h_source.html">AsyncDataStreamImpl.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

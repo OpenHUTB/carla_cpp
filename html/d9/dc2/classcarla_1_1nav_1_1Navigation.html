@@ -1,0 +1,1970 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: carla::nav::Navigation类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../d9/d36/namespacecarla.html">carla</a></li><li class="navelem"><a class="el" href="../../db/dcc/namespacecarla_1_1nav.html">nav</a></li><li class="navelem"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html">Navigation</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="../../d0/d07/classcarla_1_1nav_1_1Navigation-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">carla::nav::Navigation类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>管理行人导航，使用 Recast &amp; Detour 库进行低层计算。  
+ <a href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../d0/d36/Navigation_8h_source.html">Navigation.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 类 carla::nav::Navigation 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d3/d45/classcarla_1_1nav_1_1Navigation__inherit__graph.svg" width="156" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> carla::nav::Navigation 的协作图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d2/d46/classcarla_1_1nav_1_1Navigation__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:af4c5eadbe143c3a583b26cb351396029"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#af4c5eadbe143c3a583b26cb351396029">AddOrUpdateVehicle</a> (<a class="el" href="../../d4/d66/structcarla_1_1nav_1_1VehicleCollisionInfo.html">VehicleCollisionInfo</a> &amp;vehicle)</td></tr>
+<tr class="memdesc:af4c5eadbe143c3a583b26cb351396029"><td class="mdescLeft">&#160;</td><td class="mdescRight">在人群中创造一辆新的车辆，让行人避开  <a href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#af4c5eadbe143c3a583b26cb351396029">更多...</a><br /></td></tr>
+<tr class="separator:af4c5eadbe143c3a583b26cb351396029"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade1fb877d94268b4c21bf2b865e94883"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#ade1fb877d94268b4c21bf2b865e94883">AddWalker</a> (<a class="el" href="../../d9/d36/namespacecarla.html#a624ab69c9ebee0e2fb8fda9a12bc061b">ActorId</a> id, <a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">carla::geom::Location</a> from)</td></tr>
+<tr class="memdesc:ade1fb877d94268b4c21bf2b865e94883"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建新的行人  <a href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#ade1fb877d94268b4c21bf2b865e94883">更多...</a><br /></td></tr>
+<tr class="separator:ade1fb877d94268b4c21bf2b865e94883"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8bd3bb45077603e908d8608cba9f3be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#ae8bd3bb45077603e908d8608cba9f3be">CreateCrowd</a> (void)</td></tr>
+<tr class="memdesc:ae8bd3bb45077603e908d8608cba9f3be"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建人群对象  <a href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#ae8bd3bb45077603e908d8608cba9f3be">更多...</a><br /></td></tr>
+<tr class="separator:ae8bd3bb45077603e908d8608cba9f3be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6a2bfe90b344fc1d026ffb555675942"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#aa6a2bfe90b344fc1d026ffb555675942">GetAgentRoute</a> (<a class="el" href="../../d9/d36/namespacecarla.html#a624ab69c9ebee0e2fb8fda9a12bc061b">ActorId</a> id, <a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">carla::geom::Location</a> from, <a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">carla::geom::Location</a> to, std::vector&lt; <a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">carla::geom::Location</a> &gt; &amp;path, std::vector&lt; unsigned char &gt; &amp;area)</td></tr>
+<tr class="separator:aa6a2bfe90b344fc1d026ffb555675942"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcead7bb9bd7ef89f99feb2e7b6126ec"><td class="memItemLeft" align="right" valign="top">dtCrowd *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#afcead7bb9bd7ef89f99feb2e7b6126ec">GetCrowd</a> ()</td></tr>
+<tr class="separator:afcead7bb9bd7ef89f99feb2e7b6126ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae106d983ba5a0fd7fa79200034ccb25a"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#ae106d983ba5a0fd7fa79200034ccb25a">GetDeltaSeconds</a> ()</td></tr>
+<tr class="memdesc:ae106d983ba5a0fd7fa79200034ccb25a"><td class="mdescLeft">&#160;</td><td class="mdescRight">返回最后增量秒数  <a href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#ae106d983ba5a0fd7fa79200034ccb25a">更多...</a><br /></td></tr>
+<tr class="separator:ae106d983ba5a0fd7fa79200034ccb25a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08ef87ef3a73b1c9ecdd02d29526c615"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a08ef87ef3a73b1c9ecdd02d29526c615">GetPath</a> (<a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">carla::geom::Location</a> from, <a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">carla::geom::Location</a> to, dtQueryFilter *filter, std::vector&lt; <a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">carla::geom::Location</a> &gt; &amp;path, std::vector&lt; unsigned char &gt; &amp;area)</td></tr>
+<tr class="memdesc:a08ef87ef3a73b1c9ecdd02d29526c615"><td class="mdescLeft">&#160;</td><td class="mdescRight">返回从一个位置到另一个位置的路径点  <a href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a08ef87ef3a73b1c9ecdd02d29526c615">更多...</a><br /></td></tr>
+<tr class="separator:a08ef87ef3a73b1c9ecdd02d29526c615"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e1766ff5a14515d4ed290a2ca26f53d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a8e1766ff5a14515d4ed290a2ca26f53d">GetRandomLocation</a> (<a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">carla::geom::Location</a> &amp;location, dtQueryFilter *filter=nullptr) const</td></tr>
+<tr class="memdesc:a8e1766ff5a14515d4ed290a2ca26f53d"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取导航的随机位置  <a href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a8e1766ff5a14515d4ed290a2ca26f53d">更多...</a><br /></td></tr>
+<tr class="separator:a8e1766ff5a14515d4ed290a2ca26f53d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49293cd1fc268ff1e38469a8332a4971"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a49293cd1fc268ff1e38469a8332a4971">GetWalkerPosition</a> (<a class="el" href="../../d9/d36/namespacecarla.html#a624ab69c9ebee0e2fb8fda9a12bc061b">ActorId</a> id, <a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">carla::geom::Location</a> &amp;location)</td></tr>
+<tr class="memdesc:a49293cd1fc268ff1e38469a8332a4971"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取行人的当前位置  <a href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a49293cd1fc268ff1e38469a8332a4971">更多...</a><br /></td></tr>
+<tr class="separator:a49293cd1fc268ff1e38469a8332a4971"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a8a746b69580f75f9063913bea81f01"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a4a8a746b69580f75f9063913bea81f01">GetWalkerSpeed</a> (<a class="el" href="../../d9/d36/namespacecarla.html#a624ab69c9ebee0e2fb8fda9a12bc061b">ActorId</a> id)</td></tr>
+<tr class="memdesc:a4a8a746b69580f75f9063913bea81f01"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取步行人速度  <a href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a4a8a746b69580f75f9063913bea81f01">更多...</a><br /></td></tr>
+<tr class="separator:a4a8a746b69580f75f9063913bea81f01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c60e625f45f8ece08a850c51f712cd1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a8c60e625f45f8ece08a850c51f712cd1">GetWalkerTransform</a> (<a class="el" href="../../d9/d36/namespacecarla.html#a624ab69c9ebee0e2fb8fda9a12bc061b">ActorId</a> id, <a class="el" href="../../de/da4/classcarla_1_1geom_1_1Transform.html">carla::geom::Transform</a> &amp;trans)</td></tr>
+<tr class="memdesc:a8c60e625f45f8ece08a850c51f712cd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取步行人当前变换  <a href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a8c60e625f45f8ece08a850c51f712cd1">更多...</a><br /></td></tr>
+<tr class="separator:a8c60e625f45f8ece08a850c51f712cd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a897f061cbddafd59ccedd41c70edb915"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a897f061cbddafd59ccedd41c70edb915">HasVehicleNear</a> (<a class="el" href="../../d9/d36/namespacecarla.html#a624ab69c9ebee0e2fb8fda9a12bc061b">ActorId</a> id, float distance, <a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">carla::geom::Location</a> direction)</td></tr>
+<tr class="memdesc:a897f061cbddafd59ccedd41c70edb915"><td class="mdescLeft">&#160;</td><td class="mdescRight">如果代理在附近有车辆（作为邻居），则返回  <a href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a897f061cbddafd59ccedd41c70edb915">更多...</a><br /></td></tr>
+<tr class="separator:a897f061cbddafd59ccedd41c70edb915"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9acf1f53d9b10e17a1a733e9906bf788"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a9acf1f53d9b10e17a1a733e9906bf788">IsWalkerAlive</a> (<a class="el" href="../../d9/d36/namespacecarla.html#a624ab69c9ebee0e2fb8fda9a12bc061b">ActorId</a> id, bool &amp;alive)</td></tr>
+<tr class="memdesc:a9acf1f53d9b10e17a1a733e9906bf788"><td class="mdescLeft">&#160;</td><td class="mdescRight">如果行人代理被车辆撞死，则返回  <a href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a9acf1f53d9b10e17a1a733e9906bf788">更多...</a><br /></td></tr>
+<tr class="separator:a9acf1f53d9b10e17a1a733e9906bf788"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ecc15f086fa09804d5b7edff58b8de8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a4ecc15f086fa09804d5b7edff58b8de8">Load</a> (const std::string &amp;filename)</td></tr>
+<tr class="memdesc:a4ecc15f086fa09804d5b7edff58b8de8"><td class="mdescLeft">&#160;</td><td class="mdescRight">从磁盘中加载导航数据  <a href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a4ecc15f086fa09804d5b7edff58b8de8">更多...</a><br /></td></tr>
+<tr class="separator:a4ecc15f086fa09804d5b7edff58b8de8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae637d6ba7789ff580f760ca5cdc7e559"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#ae637d6ba7789ff580f760ca5cdc7e559">Load</a> (std::vector&lt; uint8_t &gt; content)</td></tr>
+<tr class="memdesc:ae637d6ba7789ff580f760ca5cdc7e559"><td class="mdescLeft">&#160;</td><td class="mdescRight">从内存中加载导航数据  <a href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#ae637d6ba7789ff580f760ca5cdc7e559">更多...</a><br /></td></tr>
+<tr class="separator:ae637d6ba7789ff580f760ca5cdc7e559"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87692a703f6ba85c54cf1a32d52cfb4e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a87692a703f6ba85c54cf1a32d52cfb4e">Navigation</a> ()</td></tr>
+<tr class="separator:a87692a703f6ba85c54cf1a32d52cfb4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a854f9b2a9fe9abfb4941b7bca8e13202"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a854f9b2a9fe9abfb4941b7bca8e13202">PauseAgent</a> (<a class="el" href="../../d9/d36/namespacecarla.html#a624ab69c9ebee0e2fb8fda9a12bc061b">ActorId</a> id, bool pause)</td></tr>
+<tr class="memdesc:a854f9b2a9fe9abfb4941b7bca8e13202"><td class="mdescLeft">&#160;</td><td class="mdescRight">将人群中的代理设置为暂停  <a href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a854f9b2a9fe9abfb4941b7bca8e13202">更多...</a><br /></td></tr>
+<tr class="separator:a854f9b2a9fe9abfb4941b7bca8e13202"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a273cfd565ff7a8376f165105a192e2e1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a273cfd565ff7a8376f165105a192e2e1">RemoveAgent</a> (<a class="el" href="../../d9/d36/namespacecarla.html#a624ab69c9ebee0e2fb8fda9a12bc061b">ActorId</a> id)</td></tr>
+<tr class="memdesc:a273cfd565ff7a8376f165105a192e2e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">移除代理  <a href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a273cfd565ff7a8376f165105a192e2e1">更多...</a><br /></td></tr>
+<tr class="separator:a273cfd565ff7a8376f165105a192e2e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab34cc28dc0db9feeccecc9b758f1f2d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#ab34cc28dc0db9feeccecc9b758f1f2d6">SetPedestriansCrossFactor</a> (float percentage)</td></tr>
+<tr class="memdesc:ab34cc28dc0db9feeccecc9b758f1f2d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置行人代理在路径跟随过程中穿过马路的概率  <a href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#ab34cc28dc0db9feeccecc9b758f1f2d6">更多...</a><br /></td></tr>
+<tr class="separator:ab34cc28dc0db9feeccecc9b758f1f2d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65223961b5513512e8e77bc8eb916e07"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a65223961b5513512e8e77bc8eb916e07">SetSeed</a> (unsigned int seed)</td></tr>
+<tr class="memdesc:a65223961b5513512e8e77bc8eb916e07"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置随机数种子  <a href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a65223961b5513512e8e77bc8eb916e07">更多...</a><br /></td></tr>
+<tr class="separator:a65223961b5513512e8e77bc8eb916e07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2deb4c21530d4feafb7f4da45920ece"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#ae2deb4c21530d4feafb7f4da45920ece">SetSimulator</a> (std::weak_ptr&lt; <a class="el" href="../../df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html">carla::client::detail::Simulator</a> &gt; simulator)</td></tr>
+<tr class="memdesc:ae2deb4c21530d4feafb7f4da45920ece"><td class="mdescLeft">&#160;</td><td class="mdescRight">引用模拟器来访问API函数  <a href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#ae2deb4c21530d4feafb7f4da45920ece">更多...</a><br /></td></tr>
+<tr class="separator:ae2deb4c21530d4feafb7f4da45920ece"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72b64873269d3f1e837d2451d22de294"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a72b64873269d3f1e837d2451d22de294">SetWalkerDirectTarget</a> (<a class="el" href="../../d9/d36/namespacecarla.html#a624ab69c9ebee0e2fb8fda9a12bc061b">ActorId</a> id, <a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">carla::geom::Location</a> to)</td></tr>
+<tr class="separator:a72b64873269d3f1e837d2451d22de294"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae139233b47920386d4b63dd4df452a95"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#ae139233b47920386d4b63dd4df452a95">SetWalkerDirectTargetIndex</a> (int index, <a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">carla::geom::Location</a> to)</td></tr>
+<tr class="separator:ae139233b47920386d4b63dd4df452a95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ddcd8c0da056bf059266e2b806feacb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a7ddcd8c0da056bf059266e2b806feacb">SetWalkerLookAt</a> (<a class="el" href="../../d9/d36/namespacecarla.html#a624ab69c9ebee0e2fb8fda9a12bc061b">ActorId</a> id, <a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">carla::geom::Location</a> location)</td></tr>
+<tr class="memdesc:a7ddcd8c0da056bf059266e2b806feacb"><td class="mdescLeft">&#160;</td><td class="mdescRight">让代理查看某个位置  <a href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a7ddcd8c0da056bf059266e2b806feacb">更多...</a><br /></td></tr>
+<tr class="separator:a7ddcd8c0da056bf059266e2b806feacb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a046b54b9f272bf46c0f1b7b8f770dd87"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a046b54b9f272bf46c0f1b7b8f770dd87">SetWalkerMaxSpeed</a> (<a class="el" href="../../d9/d36/namespacecarla.html#a624ab69c9ebee0e2fb8fda9a12bc061b">ActorId</a> id, float max_speed)</td></tr>
+<tr class="memdesc:a046b54b9f272bf46c0f1b7b8f770dd87"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置新的最大速度  <a href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a046b54b9f272bf46c0f1b7b8f770dd87">更多...</a><br /></td></tr>
+<tr class="separator:a046b54b9f272bf46c0f1b7b8f770dd87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50ef321f7e1fe5de2b33c851788fdce6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a50ef321f7e1fe5de2b33c851788fdce6">SetWalkerTarget</a> (<a class="el" href="../../d9/d36/namespacecarla.html#a624ab69c9ebee0e2fb8fda9a12bc061b">ActorId</a> id, <a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">carla::geom::Location</a> to)</td></tr>
+<tr class="memdesc:a50ef321f7e1fe5de2b33c851788fdce6"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置新的目标点以通过有事件的路线  <a href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a50ef321f7e1fe5de2b33c851788fdce6">更多...</a><br /></td></tr>
+<tr class="separator:a50ef321f7e1fe5de2b33c851788fdce6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a080cc11c843ef94c29a1537b2af62091"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a080cc11c843ef94c29a1537b2af62091">UpdateCrowd</a> (const <a class="el" href="../../d5/dbf/classcarla_1_1client_1_1detail_1_1EpisodeState.html">client::detail::EpisodeState</a> &amp;state)</td></tr>
+<tr class="memdesc:a080cc11c843ef94c29a1537b2af62091"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新人群中的所有步行者  <a href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a080cc11c843ef94c29a1537b2af62091">更多...</a><br /></td></tr>
+<tr class="separator:a080cc11c843ef94c29a1537b2af62091"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b7d72d6c0d11bd88a5b9fae3e230ed2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a6b7d72d6c0d11bd88a5b9fae3e230ed2">UpdateVehicles</a> (std::vector&lt; <a class="el" href="../../d4/d66/structcarla_1_1nav_1_1VehicleCollisionInfo.html">VehicleCollisionInfo</a> &gt; vehicles)</td></tr>
+<tr class="memdesc:a6b7d72d6c0d11bd88a5b9fae3e230ed2"><td class="mdescLeft">&#160;</td><td class="mdescRight">在人群中添加/更新/删除车辆  <a href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a6b7d72d6c0d11bd88a5b9fae3e230ed2">更多...</a><br /></td></tr>
+<tr class="separator:a6b7d72d6c0d11bd88a5b9fae3e230ed2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77efb568b67e6506ca6f968fd1433e3e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a77efb568b67e6506ca6f968fd1433e3e">~Navigation</a> ()</td></tr>
+<tr class="separator:a77efb568b67e6506ca6f968fd1433e3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:a0a04bcd0a2e4aea78c11eb21cb9ba5a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a0a04bcd0a2e4aea78c11eb21cb9ba5a3">SetAgentFilter</a> (int agent_index, int filter_index)</td></tr>
+<tr class="memdesc:a0a04bcd0a2e4aea78c11eb21cb9ba5a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">为代理分配过滤索引  <a href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a0a04bcd0a2e4aea78c11eb21cb9ba5a3">更多...</a><br /></td></tr>
+<tr class="separator:a0a04bcd0a2e4aea78c11eb21cb9ba5a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classcarla_1_1NonCopyable"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classcarla_1_1NonCopyable')"><img src="../../closed.png" alt="-"/>&#160;Private 成员函数 继承自 <a class="el" href="../../d4/d8b/classcarla_1_1NonCopyable.html">carla::NonCopyable</a></td></tr>
+<tr class="memitem:a3df80d9f9bef73b6b6acaf2c2fc983de inherit pub_methods_classcarla_1_1NonCopyable"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d8b/classcarla_1_1NonCopyable.html#a3df80d9f9bef73b6b6acaf2c2fc983de">NonCopyable</a> ()=default</td></tr>
+<tr class="separator:a3df80d9f9bef73b6b6acaf2c2fc983de inherit pub_methods_classcarla_1_1NonCopyable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa221c837b0190bcd85ed3fa4b6d8f99 inherit pub_methods_classcarla_1_1NonCopyable"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d8b/classcarla_1_1NonCopyable.html#aaa221c837b0190bcd85ed3fa4b6d8f99">NonCopyable</a> (const <a class="el" href="../../d4/d8b/classcarla_1_1NonCopyable.html">NonCopyable</a> &amp;)=delete</td></tr>
+<tr class="separator:aaa221c837b0190bcd85ed3fa4b6d8f99 inherit pub_methods_classcarla_1_1NonCopyable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c81bd149900ee480aca973cd7780467 inherit pub_methods_classcarla_1_1NonCopyable"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d8b/classcarla_1_1NonCopyable.html#a2c81bd149900ee480aca973cd7780467">NonCopyable</a> (<a class="el" href="../../d4/d8b/classcarla_1_1NonCopyable.html">NonCopyable</a> &amp;&amp;)=delete</td></tr>
+<tr class="separator:a2c81bd149900ee480aca973cd7780467 inherit pub_methods_classcarla_1_1NonCopyable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf98f0be313b83cdb04292b02b20c448 inherit pub_methods_classcarla_1_1NonCopyable"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/d8b/classcarla_1_1NonCopyable.html">NonCopyable</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d8b/classcarla_1_1NonCopyable.html#aaf98f0be313b83cdb04292b02b20c448">operator=</a> (const <a class="el" href="../../d4/d8b/classcarla_1_1NonCopyable.html">NonCopyable</a> &amp;)=delete</td></tr>
+<tr class="separator:aaf98f0be313b83cdb04292b02b20c448 inherit pub_methods_classcarla_1_1NonCopyable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a893b2a417b7cf3d5c02099b35c84d4b9 inherit pub_methods_classcarla_1_1NonCopyable"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/d8b/classcarla_1_1NonCopyable.html">NonCopyable</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d8b/classcarla_1_1NonCopyable.html#a893b2a417b7cf3d5c02099b35c84d4b9">operator=</a> (<a class="el" href="../../d4/d8b/classcarla_1_1NonCopyable.html">NonCopyable</a> &amp;&amp;)=delete</td></tr>
+<tr class="separator:a893b2a417b7cf3d5c02099b35c84d4b9 inherit pub_methods_classcarla_1_1NonCopyable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:ae0fe704e3622ba00350a346b2e696554"><td class="memItemLeft" align="right" valign="top">std::vector&lt; uint8_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#ae0fe704e3622ba00350a346b2e696554">_binary_mesh</a></td></tr>
+<tr class="separator:ae0fe704e3622ba00350a346b2e696554"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf23c1b810279c5e7758132b7837acb7"><td class="memItemLeft" align="right" valign="top">dtCrowd *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#acf23c1b810279c5e7758132b7837acb7">_crowd</a> { nullptr }</td></tr>
+<tr class="memdesc:acf23c1b810279c5e7758132b7837acb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">crowd  <a href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#acf23c1b810279c5e7758132b7837acb7">更多...</a><br /></td></tr>
+<tr class="separator:acf23c1b810279c5e7758132b7837acb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a139a007dc8dd8033ffdbb650f34667f5"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a139a007dc8dd8033ffdbb650f34667f5">_delta_seconds</a> { 0.0 }</td></tr>
+<tr class="separator:a139a007dc8dd8033ffdbb650f34667f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cff622f2aea387d3f2c825b4bb327a3"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; int, <a class="el" href="../../d9/d36/namespacecarla.html#a624ab69c9ebee0e2fb8fda9a12bc061b">ActorId</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a6cff622f2aea387d3f2c825b4bb327a3">_mapped_by_index</a></td></tr>
+<tr class="separator:a6cff622f2aea387d3f2c825b4bb327a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12912982d64f9f83b7d4847471dfba92"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; <a class="el" href="../../d9/d36/namespacecarla.html#a624ab69c9ebee0e2fb8fda9a12bc061b">ActorId</a>, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a12912982d64f9f83b7d4847471dfba92">_mapped_vehicles_id</a></td></tr>
+<tr class="separator:a12912982d64f9f83b7d4847471dfba92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ada1f23ce0d898e232620eb75e0601d"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; <a class="el" href="../../d9/d36/namespacecarla.html#a624ab69c9ebee0e2fb8fda9a12bc061b">ActorId</a>, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a1ada1f23ce0d898e232620eb75e0601d">_mapped_walkers_id</a></td></tr>
+<tr class="memdesc:a1ada1f23ce0d898e232620eb75e0601d"><td class="mdescLeft">&#160;</td><td class="mdescRight">mapping Id  <a href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a1ada1f23ce0d898e232620eb75e0601d">更多...</a><br /></td></tr>
+<tr class="separator:a1ada1f23ce0d898e232620eb75e0601d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6eb6dd07acf82d544dcee0b0f25e8f5"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#ad6eb6dd07acf82d544dcee0b0f25e8f5">_mutex</a></td></tr>
+<tr class="separator:ad6eb6dd07acf82d544dcee0b0f25e8f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a692585c95c5436edc7d6652dc041eb17"><td class="memItemLeft" align="right" valign="top">dtNavMesh *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a692585c95c5436edc7d6652dc041eb17">_nav_mesh</a> { nullptr }</td></tr>
+<tr class="memdesc:a692585c95c5436edc7d6652dc041eb17"><td class="mdescLeft">&#160;</td><td class="mdescRight">网格  <a href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a692585c95c5436edc7d6652dc041eb17">更多...</a><br /></td></tr>
+<tr class="separator:a692585c95c5436edc7d6652dc041eb17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3669d77412d1edfb77d1dd3036f2167"><td class="memItemLeft" align="right" valign="top">dtNavMeshQuery *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#ae3669d77412d1edfb77d1dd3036f2167">_nav_query</a> { nullptr }</td></tr>
+<tr class="separator:ae3669d77412d1edfb77d1dd3036f2167"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9cb08e1fdc6ba4093a50293f45cfefa"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#af9cb08e1fdc6ba4093a50293f45cfefa">_probability_crossing</a> { 0.0f }</td></tr>
+<tr class="separator:af9cb08e1fdc6ba4093a50293f45cfefa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab36487bb69e5198f69b587a533b124c7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#ab36487bb69e5198f69b587a533b124c7">_ready</a> { false }</td></tr>
+<tr class="separator:ab36487bb69e5198f69b587a533b124c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32e8ebf247fe1d39a113828c73f3d991"><td class="memItemLeft" align="right" valign="top">std::weak_ptr&lt; <a class="el" href="../../df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html">carla::client::detail::Simulator</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#a32e8ebf247fe1d39a113828c73f3d991">_simulator</a></td></tr>
+<tr class="separator:a32e8ebf247fe1d39a113828c73f3d991"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6c23ffb866b0c0487f25eeb93ebb1b7"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#ad6c23ffb866b0c0487f25eeb93ebb1b7">_time_to_unblock</a> { 0.0 }</td></tr>
+<tr class="separator:ad6c23ffb866b0c0487f25eeb93ebb1b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3937e582d76175d8b23b012f5463c9c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dd/d5b/classcarla_1_1nav_1_1WalkerManager.html">WalkerManager</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#aa3937e582d76175d8b23b012f5463c9c">_walker_manager</a></td></tr>
+<tr class="memdesc:aa3937e582d76175d8b23b012f5463c9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">行人管理器负责带事件的路线规划  <a href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#aa3937e582d76175d8b23b012f5463c9c">更多...</a><br /></td></tr>
+<tr class="separator:aa3937e582d76175d8b23b012f5463c9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff2dc668d19b4294ae828be016f0bdd2"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; int, <a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">carla::geom::Vector3D</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#aff2dc668d19b4294ae828be016f0bdd2">_walkers_blocked_position</a></td></tr>
+<tr class="memdesc:aff2dc668d19b4294ae828be016f0bdd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">每隔一段时间保存每个参与者的位置，并检查是否有参与者被阻挡  <a href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#aff2dc668d19b4294ae828be016f0bdd2">更多...</a><br /></td></tr>
+<tr class="separator:aff2dc668d19b4294ae828be016f0bdd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2b40cef3cdd7683e8e2a586c62c6d88"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; <a class="el" href="../../d9/d36/namespacecarla.html#a624ab69c9ebee0e2fb8fda9a12bc061b">ActorId</a>, float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#ac2b40cef3cdd7683e8e2a586c62c6d88">_yaw_walkers</a></td></tr>
+<tr class="memdesc:ac2b40cef3cdd7683e8e2a586c62c6d88"><td class="mdescLeft">&#160;</td><td class="mdescRight">存储上一个节拍的行人偏航角  <a href="../../d9/dc2/classcarla_1_1nav_1_1Navigation.html#ac2b40cef3cdd7683e8e2a586c62c6d88">更多...</a><br /></td></tr>
+<tr class="separator:ac2b40cef3cdd7683e8e2a586c62c6d88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p >管理行人导航，使用 Recast &amp; Detour 库进行低层计算。 </p>
+<p >该类从服务器获取地图的二进制内容，这是查找路径所必需的。然后，这个类可以添加或删除行人，并为每个行人设置目标步行点。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/d36/Navigation_8h_source.html">Navigation.h</a> 第 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00086">86</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a87692a703f6ba85c54cf1a32d52cfb4e" name="a87692a703f6ba85c54cf1a32d52cfb4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87692a703f6ba85c54cf1a32d52cfb4e">&#9670;&#160;</a></span>Navigation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::nav::Navigation::Navigation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html">Navigation.cpp</a> 第 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00050">50</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00208">_walker_manager</a> , 以及 <a class="el" href="../../d2/dbb/WalkerManager_8cpp_source.html#l00027">carla::nav::WalkerManager::SetNav()</a>.</p>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_a87692a703f6ba85c54cf1a32d52cfb4e_cgraph.svg" width="378" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a77efb568b67e6506ca6f968fd1433e3e" name="a77efb568b67e6506ca6f968fd1433e3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77efb568b67e6506ca6f968fd1433e3e">&#9670;&#160;</a></span>~Navigation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::nav::Navigation::~Navigation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html">Navigation.cpp</a> 第 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00055">55</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00189">_binary_mesh</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00195">_crowd</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00200">_mapped_by_index</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00198">_mapped_vehicles_id</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00197">_mapped_walkers_id</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00192">_nav_mesh</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00193">_nav_query</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00188">_ready</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00205">_time_to_unblock</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00204">_walkers_blocked_position</a> , 以及 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00202">_yaw_walkers</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="af4c5eadbe143c3a583b26cb351396029" name="af4c5eadbe143c3a583b26cb351396029"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4c5eadbe143c3a583b26cb351396029">&#9670;&#160;</a></span>AddOrUpdateVehicle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::nav::Navigation::AddOrUpdateVehicle </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d4/d66/structcarla_1_1nav_1_1VehicleCollisionInfo.html">VehicleCollisionInfo</a> &amp;&#160;</td>
+          <td class="paramname"><em>vehicle</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>在人群中创造一辆新的车辆，让行人避开 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html">Navigation.cpp</a> 第 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00563">563</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00195">_crowd</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00200">_mapped_by_index</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00198">_mapped_vehicles_id</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00212">_mutex</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00188">_ready</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00035">carla::nav::AGENT_HEIGHT</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00080">carla::nav::VehicleCollisionInfo::bounding</a>, <a class="el" href="../../d4/deb/Debug_8h_source.html#l00068">DEBUG_ASSERT</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00026">carla::nav::DT_CROWD_SEPARATION</a>, <a class="el" href="../../d2/dfe/LibCarla_2source_2carla_2geom_2BoundingBox_8h_source.html#l00061">carla::geom::BoundingBox::extent</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00078">carla::nav::VehicleCollisionInfo::id</a>, <a class="el" href="../../de/d17/geom_2Transform_8h_source.html#l00034">carla::geom::Transform::location</a>, <a class="el" href="../../de/d87/Logging_8h_source.html#l00061">carla::logging::log()</a>, <a class="el" href="../../de/d17/geom_2Transform_8h_source.html#l00036">carla::geom::Transform::rotation</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00079">carla::nav::VehicleCollisionInfo::transform</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00024">carla::geom::Vector3D::x</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00026">carla::geom::Vector3D::y</a>, <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00038">carla::geom::Rotation::yaw</a> , 以及 <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00028">carla::geom::Vector3D::z</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00738">UpdateVehicles()</a>.</p>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_af4c5eadbe143c3a583b26cb351396029_cgraph.svg" width="508" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_af4c5eadbe143c3a583b26cb351396029_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ade1fb877d94268b4c21bf2b865e94883" name="ade1fb877d94268b4c21bf2b865e94883"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade1fb877d94268b4c21bf2b865e94883">&#9670;&#160;</a></span>AddWalker()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::nav::Navigation::AddWalker </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/d36/namespacecarla.html#a624ab69c9ebee0e2fb8fda9a12bc061b">ActorId</a>&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">carla::geom::Location</a>&#160;</td>
+          <td class="paramname"><em>from</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>创建新的行人 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html">Navigation.cpp</a> 第 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00503">503</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00195">_crowd</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00200">_mapped_by_index</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00197">_mapped_walkers_id</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00212">_mutex</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00214">_probability_crossing</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00188">_ready</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00208">_walker_manager</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00202">_yaw_walkers</a>, <a class="el" href="../../d2/dbb/WalkerManager_8cpp_source.html#l00037">carla::nav::WalkerManager::AddWalker()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00035">carla::nav::AGENT_HEIGHT</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00036">carla::nav::AGENT_RADIUS</a>, <a class="el" href="../../d4/deb/Debug_8h_source.html#l00068">DEBUG_ASSERT</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00024">carla::nav::DT_CROWD_ANTICIPATE_TURNS</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00025">carla::nav::DT_CROWD_OBSTACLE_AVOIDANCE</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00026">carla::nav::DT_CROWD_SEPARATION</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00046">carla::nav::frand()</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00024">carla::geom::Vector3D::x</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00026">carla::geom::Vector3D::y</a> , 以及 <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00028">carla::geom::Vector3D::z</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/d09/WalkerNavigation_8h_source.html#l00054">carla::client::detail::WalkerNavigation::AddWalker()</a>.</p>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_ade1fb877d94268b4c21bf2b865e94883_cgraph.svg" width="100%" height="376"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_ade1fb877d94268b4c21bf2b865e94883_icgraph.svg" width="403" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ae8bd3bb45077603e908d8608cba9f3be" name="ae8bd3bb45077603e908d8608cba9f3be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8bd3bb45077603e908d8608cba9f3be">&#9670;&#160;</a></span>CreateCrowd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::nav::Navigation::CreateCrowd </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>创建人群对象 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html">Navigation.cpp</a> 第 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00220">220</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00195">_crowd</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00192">_nav_mesh</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00188">_ready</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00036">carla::nav::AGENT_RADIUS</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00042">carla::nav::AREA_GRASS_COST</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00043">carla::nav::AREA_ROAD_COST</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00051">carla::nav::CARLA_AREA_GRASS</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00050">carla::nav::CARLA_AREA_ROAD</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00057">carla::nav::CARLA_TYPE_NONE</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00063">carla::nav::CARLA_TYPE_ROAD</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00071">carla::nav::CARLA_TYPE_WALKABLE</a>, <a class="el" href="../../d4/deb/Debug_8h_source.html#l00068">DEBUG_ASSERT</a>, <a class="el" href="../../de/d87/Logging_8h_source.html#l00061">carla::logging::log()</a> , 以及 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00033">carla::nav::MAX_AGENTS</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00105">Load()</a>.</p>
+<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_ae8bd3bb45077603e908d8608cba9f3be_cgraph.svg" width="503" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_ae8bd3bb45077603e908d8608cba9f3be_icgraph.svg" width="350" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="aa6a2bfe90b344fc1d026ffb555675942" name="aa6a2bfe90b344fc1d026ffb555675942"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6a2bfe90b344fc1d026ffb555675942">&#9670;&#160;</a></span>GetAgentRoute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::nav::Navigation::GetAgentRoute </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/d36/namespacecarla.html#a624ab69c9ebee0e2fb8fda9a12bc061b">ActorId</a>&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">carla::geom::Location</a>&#160;</td>
+          <td class="paramname"><em>from</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">carla::geom::Location</a>&#160;</td>
+          <td class="paramname"><em>to</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">carla::geom::Location</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; unsigned char &gt; &amp;&#160;</td>
+          <td class="paramname"><em>area</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html">Navigation.cpp</a> 第 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00393">393</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00195">_crowd</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00197">_mapped_walkers_id</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00212">_mutex</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00192">_nav_mesh</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00193">_nav_query</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00188">_ready</a>, <a class="el" href="../../d4/deb/Debug_8h_source.html#l00068">DEBUG_ASSERT</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00032">carla::nav::MAX_POLYS</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00024">carla::geom::Vector3D::x</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00026">carla::geom::Vector3D::y</a> , 以及 <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00028">carla::geom::Vector3D::z</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d2/dbb/WalkerManager_8cpp_source.html#l00128">carla::nav::WalkerManager::SetWalkerRoute()</a>.</p>
+<div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_aa6a2bfe90b344fc1d026ffb555675942_icgraph.svg" width="378" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="afcead7bb9bd7ef89f99feb2e7b6126ec" name="afcead7bb9bd7ef89f99feb2e7b6126ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afcead7bb9bd7ef89f99feb2e7b6126ec">&#9670;&#160;</a></span>GetCrowd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">dtCrowd * carla::nav::Navigation::GetCrowd </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d36/Navigation_8h_source.html">Navigation.h</a> 第 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00181">181</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00195">_crowd</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/d84/WalkerNavigation_8cpp_source.html#l00104">carla::client::detail::WalkerNavigation::UpdateVehiclesInCrowd()</a>.</p>
+<div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_afcead7bb9bd7ef89f99feb2e7b6126ec_icgraph.svg" width="642" height="66"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ae106d983ba5a0fd7fa79200034ccb25a" name="ae106d983ba5a0fd7fa79200034ccb25a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae106d983ba5a0fd7fa79200034ccb25a">&#9670;&#160;</a></span>GetDeltaSeconds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double carla::nav::Navigation::GetDeltaSeconds </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>返回最后增量秒数 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/d36/Navigation_8h_source.html">Navigation.h</a> 第 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00184">184</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00190">_delta_seconds</a>.</p>
+
+</div>
+</div>
+<a id="a08ef87ef3a73b1c9ecdd02d29526c615" name="a08ef87ef3a73b1c9ecdd02d29526c615"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08ef87ef3a73b1c9ecdd02d29526c615">&#9670;&#160;</a></span>GetPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::nav::Navigation::GetPath </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">carla::geom::Location</a>&#160;</td>
+          <td class="paramname"><em>from</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">carla::geom::Location</a>&#160;</td>
+          <td class="paramname"><em>to</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dtQueryFilter *&#160;</td>
+          <td class="paramname"><em>filter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">carla::geom::Location</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; unsigned char &gt; &amp;&#160;</td>
+          <td class="paramname"><em>area</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>返回从一个位置到另一个位置的路径点 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html">Navigation.cpp</a> 第 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00287">287</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00212">_mutex</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00192">_nav_mesh</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00193">_nav_query</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00188">_ready</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00042">carla::nav::AREA_GRASS_COST</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00043">carla::nav::AREA_ROAD_COST</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00051">carla::nav::CARLA_AREA_GRASS</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00050">carla::nav::CARLA_AREA_ROAD</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00057">carla::nav::CARLA_TYPE_NONE</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00071">carla::nav::CARLA_TYPE_WALKABLE</a>, <a class="el" href="../../d4/deb/Debug_8h_source.html#l00068">DEBUG_ASSERT</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00032">carla::nav::MAX_POLYS</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00024">carla::geom::Vector3D::x</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00026">carla::geom::Vector3D::y</a> , 以及 <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00028">carla::geom::Vector3D::z</a>.</p>
+
+</div>
+</div>
+<a id="a8e1766ff5a14515d4ed290a2ca26f53d" name="a8e1766ff5a14515d4ed290a2ca26f53d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e1766ff5a14515d4ed290a2ca26f53d">&#9670;&#160;</a></span>GetRandomLocation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::nav::Navigation::GetRandomLocation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">carla::geom::Location</a> &amp;&#160;</td>
+          <td class="paramname"><em>location</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dtQueryFilter *&#160;</td>
+          <td class="paramname"><em>filter</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取导航的随机位置 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html">Navigation.cpp</a> 第 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01091">1091</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00212">_mutex</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00193">_nav_query</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00188">_ready</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00057">carla::nav::CARLA_TYPE_NONE</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00059">carla::nav::CARLA_TYPE_SIDEWALK</a>, <a class="el" href="../../d4/deb/Debug_8h_source.html#l00068">DEBUG_ASSERT</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00046">carla::nav::frand()</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00024">carla::geom::Vector3D::x</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00026">carla::geom::Vector3D::y</a> , 以及 <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00028">carla::geom::Vector3D::z</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/d09/WalkerNavigation_8h_source.html#l00061">carla::client::detail::WalkerNavigation::GetRandomLocation()</a>, <a class="el" href="../../d2/dbb/WalkerManager_8cpp_source.html#l00114">carla::nav::WalkerManager::SetWalkerRoute()</a> , 以及 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00863">UpdateCrowd()</a>.</p>
+<div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_a8e1766ff5a14515d4ed290a2ca26f53d_cgraph.svg" width="318" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-12-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-12-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_a8e1766ff5a14515d4ed290a2ca26f53d_icgraph.svg" width="100%" height="521"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a49293cd1fc268ff1e38469a8332a4971" name="a49293cd1fc268ff1e38469a8332a4971"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49293cd1fc268ff1e38469a8332a4971">&#9670;&#160;</a></span>GetWalkerPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::nav::Navigation::GetWalkerPosition </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/d36/namespacecarla.html#a624ab69c9ebee0e2fb8fda9a12bc061b">ActorId</a>&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">carla::geom::Location</a> &amp;&#160;</td>
+          <td class="paramname"><em>location</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取行人的当前位置 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html">Navigation.cpp</a> 第 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01016">1016</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00195">_crowd</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00197">_mapped_walkers_id</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00212">_mutex</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00188">_ready</a>, <a class="el" href="../../d4/deb/Debug_8h_source.html#l00068">DEBUG_ASSERT</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00024">carla::geom::Vector3D::x</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00026">carla::geom::Vector3D::y</a> , 以及 <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00028">carla::geom::Vector3D::z</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/db9/WalkerEvent_8cpp_source.html#l00037">carla::nav::WalkerEventVisitor::operator()()</a>, <a class="el" href="../../d2/dbb/WalkerManager_8cpp_source.html#l00128">carla::nav::WalkerManager::SetWalkerRoute()</a> , 以及 <a class="el" href="../../d2/dbb/WalkerManager_8cpp_source.html#l00061">carla::nav::WalkerManager::Update()</a>.</p>
+<div id="dynsection-13" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-13-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-13-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-13-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_a49293cd1fc268ff1e38469a8332a4971_icgraph.svg" width="100%" height="434"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a4a8a746b69580f75f9063913bea81f01" name="a4a8a746b69580f75f9063913bea81f01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a8a746b69580f75f9063913bea81f01">&#9670;&#160;</a></span>GetWalkerSpeed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float carla::nav::Navigation::GetWalkerSpeed </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/d36/namespacecarla.html#a624ab69c9ebee0e2fb8fda9a12bc061b">ActorId</a>&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取步行人速度 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html">Navigation.cpp</a> 第 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01057">1057</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00195">_crowd</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00197">_mapped_walkers_id</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00212">_mutex</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00188">_ready</a> , 以及 <a class="el" href="../../d4/deb/Debug_8h_source.html#l00068">DEBUG_ASSERT</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/d84/WalkerNavigation_8cpp_source.html#l00033">carla::client::detail::WalkerNavigation::Tick()</a>.</p>
+<div id="dynsection-14" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-14-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-14-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-14-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_a4a8a746b69580f75f9063913bea81f01_icgraph.svg" width="366" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a8c60e625f45f8ece08a850c51f712cd1" name="a8c60e625f45f8ece08a850c51f712cd1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c60e625f45f8ece08a850c51f712cd1">&#9670;&#160;</a></span>GetWalkerTransform()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::nav::Navigation::GetWalkerTransform </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/d36/namespacecarla.html#a624ab69c9ebee0e2fb8fda9a12bc061b">ActorId</a>&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/da4/classcarla_1_1geom_1_1Transform.html">carla::geom::Transform</a> &amp;&#160;</td>
+          <td class="paramname"><em>trans</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取步行人当前变换 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html">Navigation.cpp</a> 第 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00952">952</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00195">_crowd</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00190">_delta_seconds</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00197">_mapped_walkers_id</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00212">_mutex</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00188">_ready</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00202">_yaw_walkers</a>, <a class="el" href="../../d4/deb/Debug_8h_source.html#l00068">DEBUG_ASSERT</a>, <a class="el" href="../../de/d17/geom_2Transform_8h_source.html#l00034">carla::geom::Transform::location</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00591">min()</a>, <a class="el" href="../../de/d17/geom_2Transform_8h_source.html#l00036">carla::geom::Transform::rotation</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00024">carla::geom::Vector3D::x</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00026">carla::geom::Vector3D::y</a>, <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00038">carla::geom::Rotation::yaw</a> , 以及 <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00028">carla::geom::Vector3D::z</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/d84/WalkerNavigation_8cpp_source.html#l00033">carla::client::detail::WalkerNavigation::Tick()</a>.</p>
+<div id="dynsection-15" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-15-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-15-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-15-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_a8c60e625f45f8ece08a850c51f712cd1_cgraph.svg" width="250" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-16" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-16-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-16-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-16-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_a8c60e625f45f8ece08a850c51f712cd1_icgraph.svg" width="368" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a897f061cbddafd59ccedd41c70edb915" name="a897f061cbddafd59ccedd41c70edb915"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a897f061cbddafd59ccedd41c70edb915">&#9670;&#160;</a></span>HasVehicleNear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::nav::Navigation::HasVehicleNear </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/d36/namespacecarla.html#a624ab69c9ebee0e2fb8fda9a12bc061b">ActorId</a>&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>distance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">carla::geom::Location</a>&#160;</td>
+          <td class="paramname"><em>direction</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>如果代理在附近有车辆（作为邻居），则返回 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html">Navigation.cpp</a> 第 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01185">1185</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00195">_crowd</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00198">_mapped_vehicles_id</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00197">_mapped_walkers_id</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00212">_mutex</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00024">carla::geom::Vector3D::x</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00026">carla::geom::Vector3D::y</a> , 以及 <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00028">carla::geom::Vector3D::z</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/db9/WalkerEvent_8cpp_source.html#l00037">carla::nav::WalkerEventVisitor::operator()()</a>.</p>
+<div id="dynsection-17" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-17-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-17-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-17-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_a897f061cbddafd59ccedd41c70edb915_icgraph.svg" width="398" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a9acf1f53d9b10e17a1a733e9906bf788" name="a9acf1f53d9b10e17a1a733e9906bf788"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9acf1f53d9b10e17a1a733e9906bf788">&#9670;&#160;</a></span>IsWalkerAlive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::nav::Navigation::IsWalkerAlive </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/d36/namespacecarla.html#a624ab69c9ebee0e2fb8fda9a12bc061b">ActorId</a>&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &amp;&#160;</td>
+          <td class="paramname"><em>alive</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>如果行人代理被车辆撞死，则返回 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html">Navigation.cpp</a> 第 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01242">1242</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00195">_crowd</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00197">_mapped_walkers_id</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00212">_mutex</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00188">_ready</a> , 以及 <a class="el" href="../../d4/deb/Debug_8h_source.html#l00068">DEBUG_ASSERT</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/d84/WalkerNavigation_8cpp_source.html#l00033">carla::client::detail::WalkerNavigation::Tick()</a>.</p>
+<div id="dynsection-18" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-18-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-18-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-18-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_a9acf1f53d9b10e17a1a733e9906bf788_icgraph.svg" width="366" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a4ecc15f086fa09804d5b7edff58b8de8" name="a4ecc15f086fa09804d5b7edff58b8de8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ecc15f086fa09804d5b7edff58b8de8">&#9670;&#160;</a></span>Load() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::nav::Navigation::Load </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>filename</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>从磁盘中加载导航数据 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html">Navigation.cpp</a> 第 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00086">86</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../da/de4/ActorRegistry_8h_source.html#l00096">end()</a> , 以及 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00086">Load()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00086">Load()</a> , 以及 <a class="el" href="../../de/d84/WalkerNavigation_8cpp_source.html#l00024">carla::client::detail::WalkerNavigation::WalkerNavigation()</a>.</p>
+<div id="dynsection-19" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-19-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-19-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-19-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_a4ecc15f086fa09804d5b7edff58b8de8_cgraph.svg" width="247" height="75"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-20" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-20-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-20-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-20-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_a4ecc15f086fa09804d5b7edff58b8de8_icgraph.svg" width="443" height="75"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ae637d6ba7789ff580f760ca5cdc7e559" name="ae637d6ba7789ff580f760ca5cdc7e559"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae637d6ba7789ff580f760ca5cdc7e559">&#9670;&#160;</a></span>Load() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::nav::Navigation::Load </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; uint8_t &gt;&#160;</td>
+          <td class="paramname"><em>content</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>从内存中加载导航数据 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html">Navigation.cpp</a> 第 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00105">105</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00189">_binary_mesh</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00192">_nav_mesh</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00193">_nav_query</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00188">_ready</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00220">CreateCrowd()</a>, <a class="el" href="../../de/d87/Logging_8h_source.html#l00061">carla::logging::log()</a> , 以及 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00034">carla::nav::MAX_QUERY_SEARCH_NODES</a>.</p>
+<div id="dynsection-21" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-21-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-21-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-21-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_ae637d6ba7789ff580f760ca5cdc7e559_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a854f9b2a9fe9abfb4941b7bca8e13202" name="a854f9b2a9fe9abfb4941b7bca8e13202"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a854f9b2a9fe9abfb4941b7bca8e13202">&#9670;&#160;</a></span>PauseAgent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::nav::Navigation::PauseAgent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/d36/namespacecarla.html#a624ab69c9ebee0e2fb8fda9a12bc061b">ActorId</a>&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>pause</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>将人群中的代理设置为暂停 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html">Navigation.cpp</a> 第 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01153">1153</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00195">_crowd</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00197">_mapped_walkers_id</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00212">_mutex</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00188">_ready</a> , 以及 <a class="el" href="../../d4/deb/Debug_8h_source.html#l00068">DEBUG_ASSERT</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/db9/WalkerEvent_8cpp_source.html#l00037">carla::nav::WalkerEventVisitor::operator()()</a> , 以及 <a class="el" href="../../d2/dbb/WalkerManager_8cpp_source.html#l00184">carla::nav::WalkerManager::SetWalkerNextPoint()</a>.</p>
+<div id="dynsection-22" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-22-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-22-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-22-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_a854f9b2a9fe9abfb4941b7bca8e13202_icgraph.svg" width="100%" height="410"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a273cfd565ff7a8376f165105a192e2e1" name="a273cfd565ff7a8376f165105a192e2e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a273cfd565ff7a8376f165105a192e2e1">&#9670;&#160;</a></span>RemoveAgent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::nav::Navigation::RemoveAgent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/d36/namespacecarla.html#a624ab69c9ebee0e2fb8fda9a12bc061b">ActorId</a>&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>移除代理 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html">Navigation.cpp</a> 第 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00692">692</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00195">_crowd</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00200">_mapped_by_index</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00198">_mapped_vehicles_id</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00197">_mapped_walkers_id</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00212">_mutex</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00188">_ready</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00208">_walker_manager</a>, <a class="el" href="../../d4/deb/Debug_8h_source.html#l00068">DEBUG_ASSERT</a> , 以及 <a class="el" href="../../d2/dbb/WalkerManager_8cpp_source.html#l00050">carla::nav::WalkerManager::RemoveWalker()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/d84/WalkerNavigation_8cpp_source.html#l00083">carla::client::detail::WalkerNavigation::CheckIfWalkerExist()</a>, <a class="el" href="../../d5/d09/WalkerNavigation_8h_source.html#l00050">carla::client::detail::WalkerNavigation::RemoveWalker()</a>, <a class="el" href="../../de/d84/WalkerNavigation_8cpp_source.html#l00033">carla::client::detail::WalkerNavigation::Tick()</a> , 以及 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00738">UpdateVehicles()</a>.</p>
+<div id="dynsection-23" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-23-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-23-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-23-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_a273cfd565ff7a8376f165105a192e2e1_cgraph.svg" width="378" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-24" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-24-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-24-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-24-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_a273cfd565ff7a8376f165105a192e2e1_icgraph.svg" width="100%" height="484"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a0a04bcd0a2e4aea78c11eb21cb9ba5a3" name="a0a04bcd0a2e4aea78c11eb21cb9ba5a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a04bcd0a2e4aea78c11eb21cb9ba5a3">&#9670;&#160;</a></span>SetAgentFilter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::nav::Navigation::SetAgentFilter </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>agent_index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>filter_index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>为代理分配过滤索引 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html">Navigation.cpp</a> 第 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01132">1132</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00195">_crowd</a> , 以及 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00212">_mutex</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00863">UpdateCrowd()</a>.</p>
+<div id="dynsection-25" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-25-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-25-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-25-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_a0a04bcd0a2e4aea78c11eb21cb9ba5a3_icgraph.svg" width="559" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ab34cc28dc0db9feeccecc9b758f1f2d6" name="ab34cc28dc0db9feeccecc9b758f1f2d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab34cc28dc0db9feeccecc9b758f1f2d6">&#9670;&#160;</a></span>SetPedestriansCrossFactor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::nav::Navigation::SetPedestriansCrossFactor </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>percentage</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置行人代理在路径跟随过程中穿过马路的概率 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html">Navigation.cpp</a> 第 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01147">1147</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00214">_probability_crossing</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/d09/WalkerNavigation_8h_source.html#l00080">carla::client::detail::WalkerNavigation::SetPedestriansCrossFactor()</a>.</p>
+<div id="dynsection-26" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-26-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-26-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-26-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_ab34cc28dc0db9feeccecc9b758f1f2d6_icgraph.svg" width="472" height="66"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a65223961b5513512e8e77bc8eb916e07" name="a65223961b5513512e8e77bc8eb916e07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65223961b5513512e8e77bc8eb916e07">&#9670;&#160;</a></span>SetSeed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::nav::Navigation::SetSeed </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>seed</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置随机数种子 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html">Navigation.cpp</a> 第 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00080">80</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/d09/WalkerNavigation_8h_source.html#l00084">carla::client::detail::WalkerNavigation::SetPedestriansSeed()</a>.</p>
+<div id="dynsection-27" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-27-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-27-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-27-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_a65223961b5513512e8e77bc8eb916e07_icgraph.svg" width="459" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ae2deb4c21530d4feafb7f4da45920ece" name="ae2deb4c21530d4feafb7f4da45920ece"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2deb4c21530d4feafb7f4da45920ece">&#9670;&#160;</a></span>SetSimulator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::nav::Navigation::SetSimulator </td>
+          <td>(</td>
+          <td class="paramtype">std::weak_ptr&lt; <a class="el" href="../../df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html">carla::client::detail::Simulator</a> &gt;&#160;</td>
+          <td class="paramname"><em>simulator</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>引用模拟器来访问API函数 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html">Navigation.cpp</a> 第 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00070">70</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00210">_simulator</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00208">_walker_manager</a> , 以及 <a class="el" href="../../d2/dbb/WalkerManager_8cpp_source.html#l00032">carla::nav::WalkerManager::SetSimulator()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/d84/WalkerNavigation_8cpp_source.html#l00024">carla::client::detail::WalkerNavigation::WalkerNavigation()</a>.</p>
+<div id="dynsection-28" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-28-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-28-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-28-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_ae2deb4c21530d4feafb7f4da45920ece_cgraph.svg" width="378" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-29" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-29-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-29-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-29-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_ae2deb4c21530d4feafb7f4da45920ece_icgraph.svg" width="443" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a72b64873269d3f1e837d2451d22de294" name="a72b64873269d3f1e837d2451d22de294"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72b64873269d3f1e837d2451d22de294">&#9670;&#160;</a></span>SetWalkerDirectTarget()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::nav::Navigation::SetWalkerDirectTarget </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/d36/namespacecarla.html#a624ab69c9ebee0e2fb8fda9a12bc061b">ActorId</a>&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">carla::geom::Location</a>&#160;</td>
+          <td class="paramname"><em>to</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html">Navigation.cpp</a> 第 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00811">811</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00197">_mapped_walkers_id</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00188">_ready</a> , 以及 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00828">SetWalkerDirectTargetIndex()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d2/dbb/WalkerManager_8cpp_source.html#l00184">carla::nav::WalkerManager::SetWalkerNextPoint()</a>.</p>
+<div id="dynsection-30" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-30-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-30-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-30-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_a72b64873269d3f1e837d2451d22de294_cgraph.svg" width="408" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-31" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-31-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-31-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-31-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_a72b64873269d3f1e837d2451d22de294_icgraph.svg" width="100%" height="386"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ae139233b47920386d4b63dd4df452a95" name="ae139233b47920386d4b63dd4df452a95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae139233b47920386d4b63dd4df452a95">&#9670;&#160;</a></span>SetWalkerDirectTargetIndex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::nav::Navigation::SetWalkerDirectTargetIndex </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">carla::geom::Location</a>&#160;</td>
+          <td class="paramname"><em>to</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html">Navigation.cpp</a> 第 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00828">828</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00195">_crowd</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00212">_mutex</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00193">_nav_query</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00188">_ready</a>, <a class="el" href="../../d4/deb/Debug_8h_source.html#l00068">DEBUG_ASSERT</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00024">carla::geom::Vector3D::x</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00026">carla::geom::Vector3D::y</a> , 以及 <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00028">carla::geom::Vector3D::z</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00811">SetWalkerDirectTarget()</a>.</p>
+<div id="dynsection-32" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-32-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-32-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-32-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_ae139233b47920386d4b63dd4df452a95_icgraph.svg" width="100%" height="386"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a7ddcd8c0da056bf059266e2b806feacb" name="a7ddcd8c0da056bf059266e2b806feacb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ddcd8c0da056bf059266e2b806feacb">&#9670;&#160;</a></span>SetWalkerLookAt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::nav::Navigation::SetWalkerLookAt </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/d36/namespacecarla.html#a624ab69c9ebee0e2fb8fda9a12bc061b">ActorId</a>&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">carla::geom::Location</a>&#160;</td>
+          <td class="paramname"><em>location</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>让代理查看某个位置 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html">Navigation.cpp</a> 第 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01206">1206</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00195">_crowd</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00198">_mapped_vehicles_id</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00197">_mapped_walkers_id</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00212">_mutex</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00024">carla::geom::Vector3D::x</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00026">carla::geom::Vector3D::y</a> , 以及 <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00028">carla::geom::Vector3D::z</a>.</p>
+
+</div>
+</div>
+<a id="a046b54b9f272bf46c0f1b7b8f770dd87" name="a046b54b9f272bf46c0f1b7b8f770dd87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a046b54b9f272bf46c0f1b7b8f770dd87">&#9670;&#160;</a></span>SetWalkerMaxSpeed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::nav::Navigation::SetWalkerMaxSpeed </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/d36/namespacecarla.html#a624ab69c9ebee0e2fb8fda9a12bc061b">ActorId</a>&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>max_speed</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置新的最大速度 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html">Navigation.cpp</a> 第 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00764">764</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00195">_crowd</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00197">_mapped_walkers_id</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00212">_mutex</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00188">_ready</a> , 以及 <a class="el" href="../../d4/deb/Debug_8h_source.html#l00068">DEBUG_ASSERT</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/d09/WalkerNavigation_8h_source.html#l00075">carla::client::detail::WalkerNavigation::SetWalkerMaxSpeed()</a>.</p>
+<div id="dynsection-33" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-33-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-33-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-33-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_a046b54b9f272bf46c0f1b7b8f770dd87_icgraph.svg" width="404" height="66"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a50ef321f7e1fe5de2b33c851788fdce6" name="a50ef321f7e1fe5de2b33c851788fdce6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50ef321f7e1fe5de2b33c851788fdce6">&#9670;&#160;</a></span>SetWalkerTarget()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::nav::Navigation::SetWalkerTarget </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/d36/namespacecarla.html#a624ab69c9ebee0e2fb8fda9a12bc061b">ActorId</a>&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">carla::geom::Location</a>&#160;</td>
+          <td class="paramname"><em>to</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置新的目标点以通过有事件的路线 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html">Navigation.cpp</a> 第 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00794">794</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00197">_mapped_walkers_id</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00188">_ready</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00208">_walker_manager</a> , 以及 <a class="el" href="../../d2/dbb/WalkerManager_8cpp_source.html#l00114">carla::nav::WalkerManager::SetWalkerRoute()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/d09/WalkerNavigation_8h_source.html#l00070">carla::client::detail::WalkerNavigation::SetWalkerTarget()</a>.</p>
+<div id="dynsection-34" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-34-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-34-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-34-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_a50ef321f7e1fe5de2b33c851788fdce6_cgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<div id="dynsection-35" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-35-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-35-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-35-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_a50ef321f7e1fe5de2b33c851788fdce6_icgraph.svg" width="400" height="66"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a080cc11c843ef94c29a1537b2af62091" name="a080cc11c843ef94c29a1537b2af62091"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a080cc11c843ef94c29a1537b2af62091">&#9670;&#160;</a></span>UpdateCrowd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::nav::Navigation::UpdateCrowd </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d5/dbf/classcarla_1_1client_1_1detail_1_1EpisodeState.html">client::detail::EpisodeState</a> &amp;&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>更新人群中的所有步行者 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html">Navigation.cpp</a> 第 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00863">863</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00195">_crowd</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00190">_delta_seconds</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00200">_mapped_by_index</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00212">_mutex</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00214">_probability_crossing</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00188">_ready</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00205">_time_to_unblock</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00208">_walker_manager</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00204">_walkers_blocked_position</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00039">carla::nav::AGENT_UNBLOCK_DISTANCE_SQUARED</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00040">carla::nav::AGENT_UNBLOCK_TIME</a>, <a class="el" href="../../d4/deb/Debug_8h_source.html#l00068">DEBUG_ASSERT</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00046">carla::nav::frand()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01091">GetRandomLocation()</a>, <a class="el" href="../../d7/df2/EpisodeState_8h_source.html#l00052">carla::client::detail::EpisodeState::GetTimestamp()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01132">SetAgentFilter()</a>, <a class="el" href="../../d2/dbb/WalkerManager_8cpp_source.html#l00114">carla::nav::WalkerManager::SetWalkerRoute()</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00048">carla::geom::Vector3D::SquaredLength()</a> , 以及 <a class="el" href="../../d2/dbb/WalkerManager_8cpp_source.html#l00061">carla::nav::WalkerManager::Update()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/d84/WalkerNavigation_8cpp_source.html#l00033">carla::client::detail::WalkerNavigation::Tick()</a>.</p>
+<div id="dynsection-36" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-36-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-36-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-36-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_a080cc11c843ef94c29a1537b2af62091_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<div id="dynsection-37" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-37-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-37-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-37-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_a080cc11c843ef94c29a1537b2af62091_icgraph.svg" width="366" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a6b7d72d6c0d11bd88a5b9fae3e230ed2" name="a6b7d72d6c0d11bd88a5b9fae3e230ed2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b7d72d6c0d11bd88a5b9fae3e230ed2">&#9670;&#160;</a></span>UpdateVehicles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::nav::Navigation::UpdateVehicles </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="../../d4/d66/structcarla_1_1nav_1_1VehicleCollisionInfo.html">VehicleCollisionInfo</a> &gt;&#160;</td>
+          <td class="paramname"><em>vehicles</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>在人群中添加/更新/删除车辆 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html">Navigation.cpp</a> 第 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00738">738</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00198">_mapped_vehicles_id</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00563">AddOrUpdateVehicle()</a> , 以及 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00692">RemoveAgent()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/d84/WalkerNavigation_8cpp_source.html#l00104">carla::client::detail::WalkerNavigation::UpdateVehiclesInCrowd()</a>.</p>
+<div id="dynsection-38" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-38-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-38-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-38-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_a6b7d72d6c0d11bd88a5b9fae3e230ed2_cgraph.svg" width="100%" height="386"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<div id="dynsection-39" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-39-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-39-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-39-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d9/dc2/classcarla_1_1nav_1_1Navigation_a6b7d72d6c0d11bd88a5b9fae3e230ed2_icgraph.svg" width="642" height="66"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="ae0fe704e3622ba00350a346b2e696554" name="ae0fe704e3622ba00350a346b2e696554"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0fe704e3622ba00350a346b2e696554">&#9670;&#160;</a></span>_binary_mesh</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;uint8_t&gt; carla::nav::Navigation::_binary_mesh</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d36/Navigation_8h_source.html">Navigation.h</a> 第 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00189">189</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00105">Load()</a> , 以及 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00055">~Navigation()</a>.</p>
+
+</div>
+</div>
+<a id="acf23c1b810279c5e7758132b7837acb7" name="acf23c1b810279c5e7758132b7837acb7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf23c1b810279c5e7758132b7837acb7">&#9670;&#160;</a></span>_crowd</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">dtCrowd* carla::nav::Navigation::_crowd { nullptr }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>crowd </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/d36/Navigation_8h_source.html">Navigation.h</a> 第 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00195">195</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00563">AddOrUpdateVehicle()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00503">AddWalker()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00220">CreateCrowd()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00393">GetAgentRoute()</a>, <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00181">GetCrowd()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01016">GetWalkerPosition()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01057">GetWalkerSpeed()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00952">GetWalkerTransform()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01185">HasVehicleNear()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01242">IsWalkerAlive()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01153">PauseAgent()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00692">RemoveAgent()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01132">SetAgentFilter()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00828">SetWalkerDirectTargetIndex()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01206">SetWalkerLookAt()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00764">SetWalkerMaxSpeed()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00863">UpdateCrowd()</a> , 以及 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00055">~Navigation()</a>.</p>
+
+</div>
+</div>
+<a id="a139a007dc8dd8033ffdbb650f34667f5" name="a139a007dc8dd8033ffdbb650f34667f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a139a007dc8dd8033ffdbb650f34667f5">&#9670;&#160;</a></span>_delta_seconds</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double carla::nav::Navigation::_delta_seconds { 0.0 }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d36/Navigation_8h_source.html">Navigation.h</a> 第 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00190">190</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00184">GetDeltaSeconds()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00952">GetWalkerTransform()</a> , 以及 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00863">UpdateCrowd()</a>.</p>
+
+</div>
+</div>
+<a id="a6cff622f2aea387d3f2c825b4bb327a3" name="a6cff622f2aea387d3f2c825b4bb327a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cff622f2aea387d3f2c825b4bb327a3">&#9670;&#160;</a></span>_mapped_by_index</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unordered_map&lt;int, <a class="el" href="../../d9/d36/namespacecarla.html#a624ab69c9ebee0e2fb8fda9a12bc061b">ActorId</a>&gt; carla::nav::Navigation::_mapped_by_index</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d36/Navigation_8h_source.html">Navigation.h</a> 第 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00200">200</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00563">AddOrUpdateVehicle()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00503">AddWalker()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00692">RemoveAgent()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00863">UpdateCrowd()</a> , 以及 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00055">~Navigation()</a>.</p>
+
+</div>
+</div>
+<a id="a12912982d64f9f83b7d4847471dfba92" name="a12912982d64f9f83b7d4847471dfba92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12912982d64f9f83b7d4847471dfba92">&#9670;&#160;</a></span>_mapped_vehicles_id</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unordered_map&lt;<a class="el" href="../../d9/d36/namespacecarla.html#a624ab69c9ebee0e2fb8fda9a12bc061b">ActorId</a>, int&gt; carla::nav::Navigation::_mapped_vehicles_id</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d36/Navigation_8h_source.html">Navigation.h</a> 第 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00198">198</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00563">AddOrUpdateVehicle()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01185">HasVehicleNear()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00692">RemoveAgent()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01206">SetWalkerLookAt()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00738">UpdateVehicles()</a> , 以及 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00055">~Navigation()</a>.</p>
+
+</div>
+</div>
+<a id="a1ada1f23ce0d898e232620eb75e0601d" name="a1ada1f23ce0d898e232620eb75e0601d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ada1f23ce0d898e232620eb75e0601d">&#9670;&#160;</a></span>_mapped_walkers_id</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unordered_map&lt;<a class="el" href="../../d9/d36/namespacecarla.html#a624ab69c9ebee0e2fb8fda9a12bc061b">ActorId</a>, int&gt; carla::nav::Navigation::_mapped_walkers_id</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>mapping Id </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/d36/Navigation_8h_source.html">Navigation.h</a> 第 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00197">197</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00503">AddWalker()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00393">GetAgentRoute()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01016">GetWalkerPosition()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01057">GetWalkerSpeed()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00952">GetWalkerTransform()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01185">HasVehicleNear()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01242">IsWalkerAlive()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01153">PauseAgent()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00692">RemoveAgent()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00811">SetWalkerDirectTarget()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01206">SetWalkerLookAt()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00764">SetWalkerMaxSpeed()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00794">SetWalkerTarget()</a> , 以及 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00055">~Navigation()</a>.</p>
+
+</div>
+</div>
+<a id="ad6eb6dd07acf82d544dcee0b0f25e8f5" name="ad6eb6dd07acf82d544dcee0b0f25e8f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6eb6dd07acf82d544dcee0b0f25e8f5">&#9670;&#160;</a></span>_mutex</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::mutex carla::nav::Navigation::_mutex</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">mutable</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d36/Navigation_8h_source.html">Navigation.h</a> 第 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00212">212</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00563">AddOrUpdateVehicle()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00503">AddWalker()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00393">GetAgentRoute()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00287">GetPath()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01091">GetRandomLocation()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01016">GetWalkerPosition()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01057">GetWalkerSpeed()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00952">GetWalkerTransform()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01185">HasVehicleNear()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01242">IsWalkerAlive()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01153">PauseAgent()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00692">RemoveAgent()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01132">SetAgentFilter()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00828">SetWalkerDirectTargetIndex()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01206">SetWalkerLookAt()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00764">SetWalkerMaxSpeed()</a> , 以及 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00863">UpdateCrowd()</a>.</p>
+
+</div>
+</div>
+<a id="a692585c95c5436edc7d6652dc041eb17" name="a692585c95c5436edc7d6652dc041eb17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a692585c95c5436edc7d6652dc041eb17">&#9670;&#160;</a></span>_nav_mesh</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">dtNavMesh* carla::nav::Navigation::_nav_mesh { nullptr }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>网格 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/d36/Navigation_8h_source.html">Navigation.h</a> 第 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00192">192</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00220">CreateCrowd()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00393">GetAgentRoute()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00287">GetPath()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00105">Load()</a> , 以及 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00055">~Navigation()</a>.</p>
+
+</div>
+</div>
+<a id="ae3669d77412d1edfb77d1dd3036f2167" name="ae3669d77412d1edfb77d1dd3036f2167"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3669d77412d1edfb77d1dd3036f2167">&#9670;&#160;</a></span>_nav_query</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">dtNavMeshQuery* carla::nav::Navigation::_nav_query { nullptr }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d36/Navigation_8h_source.html">Navigation.h</a> 第 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00193">193</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00393">GetAgentRoute()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00287">GetPath()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01091">GetRandomLocation()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00105">Load()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00828">SetWalkerDirectTargetIndex()</a> , 以及 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00055">~Navigation()</a>.</p>
+
+</div>
+</div>
+<a id="af9cb08e1fdc6ba4093a50293f45cfefa" name="af9cb08e1fdc6ba4093a50293f45cfefa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9cb08e1fdc6ba4093a50293f45cfefa">&#9670;&#160;</a></span>_probability_crossing</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float carla::nav::Navigation::_probability_crossing { 0.0f }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d36/Navigation_8h_source.html">Navigation.h</a> 第 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00214">214</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00503">AddWalker()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01147">SetPedestriansCrossFactor()</a> , 以及 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00863">UpdateCrowd()</a>.</p>
+
+</div>
+</div>
+<a id="ab36487bb69e5198f69b587a533b124c7" name="ab36487bb69e5198f69b587a533b124c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab36487bb69e5198f69b587a533b124c7">&#9670;&#160;</a></span>_ready</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::nav::Navigation::_ready { false }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d36/Navigation_8h_source.html">Navigation.h</a> 第 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00188">188</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00563">AddOrUpdateVehicle()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00503">AddWalker()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00220">CreateCrowd()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00393">GetAgentRoute()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00287">GetPath()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01091">GetRandomLocation()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01016">GetWalkerPosition()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01057">GetWalkerSpeed()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00952">GetWalkerTransform()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01242">IsWalkerAlive()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00105">Load()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l01153">PauseAgent()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00692">RemoveAgent()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00811">SetWalkerDirectTarget()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00828">SetWalkerDirectTargetIndex()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00764">SetWalkerMaxSpeed()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00794">SetWalkerTarget()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00863">UpdateCrowd()</a> , 以及 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00055">~Navigation()</a>.</p>
+
+</div>
+</div>
+<a id="a32e8ebf247fe1d39a113828c73f3d991" name="a32e8ebf247fe1d39a113828c73f3d991"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32e8ebf247fe1d39a113828c73f3d991">&#9670;&#160;</a></span>_simulator</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::weak_ptr&lt;<a class="el" href="../../df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html">carla::client::detail::Simulator</a>&gt; carla::nav::Navigation::_simulator</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d36/Navigation_8h_source.html">Navigation.h</a> 第 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00210">210</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00070">SetSimulator()</a>.</p>
+
+</div>
+</div>
+<a id="ad6c23ffb866b0c0487f25eeb93ebb1b7" name="ad6c23ffb866b0c0487f25eeb93ebb1b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6c23ffb866b0c0487f25eeb93ebb1b7">&#9670;&#160;</a></span>_time_to_unblock</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double carla::nav::Navigation::_time_to_unblock { 0.0 }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d36/Navigation_8h_source.html">Navigation.h</a> 第 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00205">205</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00863">UpdateCrowd()</a> , 以及 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00055">~Navigation()</a>.</p>
+
+</div>
+</div>
+<a id="aa3937e582d76175d8b23b012f5463c9c" name="aa3937e582d76175d8b23b012f5463c9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3937e582d76175d8b23b012f5463c9c">&#9670;&#160;</a></span>_walker_manager</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../dd/d5b/classcarla_1_1nav_1_1WalkerManager.html">WalkerManager</a> carla::nav::Navigation::_walker_manager</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>行人管理器负责带事件的路线规划 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/d36/Navigation_8h_source.html">Navigation.h</a> 第 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00208">208</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00503">AddWalker()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00050">Navigation()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00692">RemoveAgent()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00070">SetSimulator()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00794">SetWalkerTarget()</a> , 以及 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00863">UpdateCrowd()</a>.</p>
+
+</div>
+</div>
+<a id="aff2dc668d19b4294ae828be016f0bdd2" name="aff2dc668d19b4294ae828be016f0bdd2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff2dc668d19b4294ae828be016f0bdd2">&#9670;&#160;</a></span>_walkers_blocked_position</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unordered_map&lt;int, <a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">carla::geom::Vector3D</a>&gt; carla::nav::Navigation::_walkers_blocked_position</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>每隔一段时间保存每个参与者的位置，并检查是否有参与者被阻挡 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/d36/Navigation_8h_source.html">Navigation.h</a> 第 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00204">204</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00863">UpdateCrowd()</a> , 以及 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00055">~Navigation()</a>.</p>
+
+</div>
+</div>
+<a id="ac2b40cef3cdd7683e8e2a586c62c6d88" name="ac2b40cef3cdd7683e8e2a586c62c6d88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2b40cef3cdd7683e8e2a586c62c6d88">&#9670;&#160;</a></span>_yaw_walkers</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unordered_map&lt;<a class="el" href="../../d9/d36/namespacecarla.html#a624ab69c9ebee0e2fb8fda9a12bc061b">ActorId</a>, float&gt; carla::nav::Navigation::_yaw_walkers</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>存储上一个节拍的行人偏航角 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/d36/Navigation_8h_source.html">Navigation.h</a> 第 <a class="el" href="../../d0/d36/Navigation_8h_source.html#l00202">202</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00503">AddWalker()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00952">GetWalkerTransform()</a> , 以及 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00055">~Navigation()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../d0/d36/Navigation_8h_source.html">Navigation.h</a></li>
+<li><a class="el" href="../../d5/d9c/Navigation_8cpp_source.html">Navigation.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

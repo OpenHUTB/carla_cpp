@@ -1,0 +1,12 @@
+<map id="carla::geom::Rotation::RotateVector" name="carla::geom::Rotation::RotateVector">
+<area shape="rect" id="node1" title=" " alt="" coords="545,127,688,167"/>
+<area shape="rect" id="node2" href="$d8/d68/classcarla_1_1geom_1_1BoundingBox.html#a858af2968614ab6cad088aeb9f9d02ee" title="返回边界框在本地空间中的8个顶点的位置。" alt="" coords="327,31,497,71"/>
+<area shape="rect" id="node5" href="$d8/dba/classcarla_1_1geom_1_1Rotation.html#a1ce6d71b431ea93b5a13cf764467fe1c" title=" " alt="" coords="341,95,483,135"/>
+<area shape="rect" id="node6" href="$de/da4/classcarla_1_1geom_1_1Transform.html#a3cc49b5e9c8293dec0c89a1cac2ceae8" title="将此变换应用于 in_point（先平移然后旋转）。 具体操作是先根据当前的旋转信息对输入点进行旋转操作，然后再根据当前的位置信息进行平移操作，最终将结果赋值回输入点" alt="" coords="335,159,489,199"/>
+<area shape="rect" id="node10" href="$de/da4/classcarla_1_1geom_1_1Transform.html#a2f3ddb328045ed66d37c22679fb9bf35" title="将此转换应用于 in_vector（仅旋转）。 即只根据当前的旋转信息对输入向量进行旋转操作，然后将旋转后的结果赋值回输入向量" alt="" coords="335,223,489,263"/>
+<area shape="rect" id="node3" href="$d8/d68/classcarla_1_1geom_1_1BoundingBox.html#ae79d81bd427678144a5bd3d704fc7a71" title="返回边界框在世界空间中的8个顶点的位置。" alt="" coords="108,5,279,45"/>
+<area shape="rect" id="node4" href="$d6/dd9/test__geom_8cpp.html#af19ccf43393a04631a4ad7e305673fdb" title=" " alt="" coords="5,42,60,67"/>
+<area shape="rect" id="node7" href="$df/def/classcarla_1_1client_1_1TrafficLight.html#ae658ff882df9b877a9730c879c028ba9" title=" " alt="" coords="115,127,272,167"/>
+<area shape="rect" id="node8" href="$d6/dd9/test__geom_8cpp.html#a147a9b02e2e1830ff8e51ce9091b48ac" title=" " alt="" coords="166,191,221,217"/>
+<area shape="rect" id="node9" href="$d6/dd9/test__geom_8cpp.html#a4c4e7eb15fe04d55f337f192a13c69e5" title=" " alt="" coords="5,191,60,217"/>
+</map>

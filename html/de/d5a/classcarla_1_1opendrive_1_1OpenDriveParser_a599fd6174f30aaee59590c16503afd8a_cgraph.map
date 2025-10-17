@@ -1,0 +1,52 @@
+<map id="carla::opendrive::OpenDriveParser::Load" name="carla::opendrive::OpenDriveParser::Load">
+<area shape="rect" id="node1" title=" " alt="" coords="5,827,184,867"/>
+<area shape="rect" id="node2" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#a7b0bb12125e15fd246924aee12327e7e" title=" " alt="" coords="251,429,403,469"/>
+<area shape="rect" id="node3" href="$d8/d8d/classpugi_1_1xml__document.html#a706a276ee3d5010f2bb8c7eacb75a891" title=" " alt="" coords="259,493,395,533"/>
+<area shape="rect" id="node5" href="$d9/d36/namespacecarla.html#a7673dfc76e17f5856b798de6d0384b56" title=" " alt="" coords="273,609,380,634"/>
+<area shape="rect" id="node7" href="$df/dbe/classcarla_1_1opendrive_1_1parser_1_1ControllerParser.html#ad8c8dafcbbfac40ca1fd43ca6ef70412" title="�âÎöXMLÎĵ���ʹÓÃÌṩ�ÄMapBuilder�����Øͼ" alt="" coords="470,551,631,591"/>
+<area shape="rect" id="node15" href="$d6/d8f/classcarla_1_1opendrive_1_1parser_1_1GeometryParser.html#a28543d57f8d9234660d95cbb29e7ea2a" title="解析XML文档中的几何信息并构建道路地图" alt="" coords="469,372,632,412"/>
+<area shape="rect" id="node25" href="$d1/dae/classcarla_1_1opendrive_1_1parser_1_1GeoReferenceParser.html#abbd0edc0b3507042c5a0af753473192b" title="解析XML文档中的地理参考信息并构建道路地图 该函数读取XML文档中的地理参考数据，如坐标系统、投影信息 并使用这些信息来构建或更新道路地图" alt="" coords="232,709,421,749"/>
+<area shape="rect" id="node29" href="$d3/d54/classcarla_1_1opendrive_1_1parser_1_1JunctionParser.html#a06739ef56781f9e25211ab5ca3ee9357" title="解析XML文档中的交叉路口信息，并构建道路地图中的交叉路口部分 该函数读取XML文档中的交叉路口数据，如连接点、车道信息等 并使用这些数据来构建或更新道路地图中的交叉路口部分" alt="" coords="473,1652,628,1692"/>
+<area shape="rect" id="node34" href="$df/d2f/classcarla_1_1opendrive_1_1parser_1_1LaneParser.html#a941e9b363786a64eb59479b046a9e501" title="解析XML文档中的车道信息，并构建道路地图中的车道部分 该函数读取XML文档中的车道数据，如车道宽度、车道类型、车道方向等 并使用这些数据来构建或更新道路地图中的车道部分" alt="" coords="249,884,404,924"/>
+<area shape="rect" id="node37" href="$d3/df6/classcarla_1_1opendrive_1_1parser_1_1ObjectParser.html#ae273ad3cc015c32d8f1a91b405fed709" title="解析XML文档中的道路对象信息，并将其添加到道路地图中 该函数读取XML文档中的道路对象数据，如位置、类型、属性等 &#160;&#160;并使用这些数据来构建或更新道路地图中的道路对象部分" alt="" coords="473,1137,628,1177"/>
+<area shape="rect" id="node41" href="$db/de4/classcarla_1_1opendrive_1_1parser_1_1ProfilesParser.html#a55f58629cedd4804c79bf31cea68627e" title="解析XML文档中的道路设计配置文件信息，并将其用于构建道路地图 该函数读取XML文档中的道路设计配置文件数据，如道路的水平和垂直曲线信息 并使用这些数据来构建或更新道路地图中的道路设计配置文件部分" alt="" coords="473,1023,628,1063"/>
+<area shape="rect" id="node43" href="$df/d67/classcarla_1_1opendrive_1_1parser_1_1RoadParser.html#acda6f347c0f6db06c24144b491bae905" title="解析XML文档中的道路信息，并将其用于构建道路地图 该函数读取XML文档中的道路数据，如道路几何形状、车道信息、交叉口等 并使用这些数据来构建或更新道路地图" alt="" coords="473,1264,628,1304"/>
+<area shape="rect" id="node49" href="$dd/d61/classcarla_1_1opendrive_1_1parser_1_1SignalParser.html#a715780b50d4cd22256482e1d1dd590ef" title="解析XML文档中的交通信号信息，并将其用于构建道路地图。 &#160;&#160;该函数读取XML文档中的交通信号数据，如信号灯的位置、类型和控制逻辑， &#160;&#160;并使用这些数据来构建或更新道路地图中的交通信号部分。" alt="" coords="473,857,628,897"/>
+<area shape="rect" id="node50" href="$d8/d46/classcarla_1_1opendrive_1_1parser_1_1TrafficGroupParser.html#a1f8040a6a96040f4be70a7c498ac4368" title="解析XML文档中的交通群组信息，并将其用于构建道路地图 &#160;&#160;该函数读取XML文档中的交通群组数据，如群组内的交通信号、车辆类型限制等 &#160;&#160;并使用这些数据来构建或更新道路地图中的交通群组部分" alt="" coords="239,1151,415,1191"/>
+<area shape="rect" id="node4" href="$d8/d8d/classpugi_1_1xml__document.html#ab29840790e26b2166a395c63a2b2d9bd" title=" " alt="" coords="483,308,619,348"/>
+<area shape="rect" id="node6" href="$d2/d8c/namespacecarla_1_1logging.html#a4193666236852fb6a6977299a31445d8" title=" " alt="" coords="935,459,1065,499"/>
+<area shape="rect" id="node8" href="$db/d65/classpugi_1_1xml__node.html#ac0234bad0db50690f5bc97d0788303ad" title=" " alt="" coords="703,734,863,759"/>
+<area shape="rect" id="node9" href="$db/d65/classpugi_1_1xml__node.html#a1e23e9720c90ef764197f1e0c71aa287" title=" " alt="" coords="713,913,853,938"/>
+<area shape="rect" id="node10" href="$db/d65/classpugi_1_1xml__node.html#a3dd84eaeb958e8262f3edb7bda013101" title=" " alt="" coords="704,962,863,987"/>
+<area shape="rect" id="node11" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#a1431466dd1dff00318a1de6ee3fa2e6f" title=" " alt="" coords="707,541,859,581"/>
+<area shape="rect" id="node12" href="$d9/d36/namespacecarla.html#afb6ca911605d1ec35bdf563de2814dba" title=" " alt="" coords="726,491,841,517"/>
+<area shape="rect" id="node13" href="$db/d65/classpugi_1_1xml__node.html#a41ea1bf7356f01d9fa8fe6b168f638ca" title=" " alt="" coords="715,669,852,709"/>
+<area shape="rect" id="node14" href="$de/d7c/classpugi_1_1xml__attribute.html#affe352ea96e4e82e52bb8a8313c3def0" title=" " alt="" coords="720,605,847,645"/>
+<area shape="rect" id="node16" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#a082a04a1e6e5f896b5acf13c075c3fba" title=" " alt="" coords="705,120,862,160"/>
+<area shape="rect" id="node17" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#af6ed1543d744e5674f4421f8278991ba" title=" " alt="" coords="702,184,865,224"/>
+<area shape="rect" id="node18" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#a9ab60d9b8784f35b90893fbc32f703d2" title=" " alt="" coords="680,248,887,288"/>
+<area shape="rect" id="node19" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#ac11b2606c1d84fb1a606aba760cf93e6" title=" " alt="" coords="699,312,868,352"/>
+<area shape="rect" id="node20" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#af435a180c70620b9d7ddc9f3f921356b" title=" " alt="" coords="698,376,869,416"/>
+<area shape="rect" id="node21" href="$de/d7c/classpugi_1_1xml__attribute.html#ad419c797deda65f8369bfcdebb82ef46" title=" " alt="" coords="720,784,847,824"/>
+<area shape="rect" id="node22" href="$db/d65/classpugi_1_1xml__node.html#a2ef913095d09fb9828465a796fc93b04" title=" " alt="" coords="716,5,851,45"/>
+<area shape="rect" id="node23" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#ae78c5880d7bd9edde4764d054037164d" title=" " alt="" coords="707,848,859,888"/>
+<area shape="rect" id="node24" href="$db/d65/classpugi_1_1xml__node.html#ac07ca987449e720eab11434427810fb2" title=" " alt="" coords="711,70,856,95"/>
+<area shape="rect" id="node26" href="$db/d65/classpugi_1_1xml__node.html#a9c2581317b217e618f682c74a9154f0d" title=" " alt="" coords="481,615,621,655"/>
+<area shape="rect" id="node27" href="$db/dd5/namespacecarla_1_1opendrive_1_1parser.html#a8dad6b9e5e958cdeca4463f6c94d6c24" title=" " alt="" coords="473,487,628,527"/>
+<area shape="rect" id="node28" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#a75d300f0ca8924c2dc23370f1448dbe6" title=" " alt="" coords="475,679,627,719"/>
+<area shape="rect" id="node30" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#aca70ccf621b7b40053014478bb934410" title=" " alt="" coords="707,1652,859,1692"/>
+<area shape="rect" id="node31" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#a7ca3a4005f3f53fdca75465b7782696b" title=" " alt="" coords="707,1716,859,1756"/>
+<area shape="rect" id="node32" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#a43256ab478dc6251af976c7b466b0c45" title=" " alt="" coords="706,1780,861,1820"/>
+<area shape="rect" id="node33" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#a8a75b8af56314c29891cb5c91a7fd00d" title=" " alt="" coords="707,1844,859,1884"/>
+<area shape="rect" id="node35" href="$de/d7c/classpugi_1_1xml__attribute.html#af7a05c041c45bce9bf89ee2a957362ec" title=" " alt="" coords="720,1268,847,1308"/>
+<area shape="rect" id="node36" href="$db/dd5/namespacecarla_1_1opendrive_1_1parser.html#ac2f5766b57ed54b7e6b78b13aeeab215" title=" " alt="" coords="473,793,628,833"/>
+<area shape="rect" id="node38" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#a5484346171a02a134007986113c30379" title=" " alt="" coords="693,1140,873,1180"/>
+<area shape="rect" id="node39" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#ace2456563cabdf60c2c2e601c189bce5" title=" " alt="" coords="707,1012,859,1052"/>
+<area shape="rect" id="node40" href="$de/d7c/classpugi_1_1xml__attribute.html#a1af9c3ce8d69411c40f92fa446aa9f06" title=" " alt="" coords="720,1204,847,1244"/>
+<area shape="rect" id="node42" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#a76ee768c427a5d1c0c7023a88c966f9e" title=" " alt="" coords="698,1076,869,1116"/>
+<area shape="rect" id="node44" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#a3bd8ae2f59e33c89d34144f003bd8e7b" title=" " alt="" coords="707,1588,859,1628"/>
+<area shape="rect" id="node45" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#a4c51ad576d6a0f4078594d571b64a4d4" title=" " alt="" coords="707,1332,859,1372"/>
+<area shape="rect" id="node46" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#a1484f5063da0a24cdc1e3d1f9560186d" title=" " alt="" coords="706,1396,861,1436"/>
+<area shape="rect" id="node47" href="$de/d7c/classpugi_1_1xml__attribute.html#a4f67c7bffc69055c9dfc36bd212f6fa6" title=" " alt="" coords="720,1460,847,1500"/>
+<area shape="rect" id="node48" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#a290e593d53d5a58895c542e3db1012f6" title=" " alt="" coords="707,1524,859,1564"/>
+</map>

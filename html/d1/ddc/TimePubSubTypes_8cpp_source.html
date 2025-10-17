@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: TimePubSubTypes.cpp 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_087ce8304d10c4897e4acbeac1a6fcc8.html">ros2</a></li><li class="navelem"><a class="el" href="../../dir_4ea2d91c13d1361ac1a1dbc78466282d.html">types</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">TimePubSubTypes.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d1/ddc/TimePubSubTypes_8cpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &lt;fastcdr/FastBuffer.h&gt;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;fastcdr/Cdr.h&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="../../df/d5e/TimePubSubTypes_8h.html">TimePubSubTypes.h</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="../../d1/ddc/TimePubSubTypes_8cpp.html#ae7818c4670abc053fbadaed455b07b1f">    6</a></span><span class="keyword">using </span><a class="code hl_typedef" href="../../d6/d4c/CameraInfoPubSubTypes_8cpp.html#ae7818c4670abc053fbadaed455b07b1f">SerializedPayload_t</a> = eprosima::fastrtps::rtps::SerializedPayload_t;</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="../../d1/ddc/TimePubSubTypes_8cpp.html#a894129904d0a4f471bea9c0440bb3ddd">    7</a></span><span class="keyword">using </span><a class="code hl_typedef" href="../../d6/d4c/CameraInfoPubSubTypes_8cpp.html#a894129904d0a4f471bea9c0440bb3ddd">InstanceHandle_t</a> = eprosima::fastrtps::rtps::InstanceHandle_t;</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">// 定义在 builtin_interfaces::msg 命名空间下的 TimePubSubType 类</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d6/d61/namespacebuiltin__interfaces.html">builtin_interfaces</a> {</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <span class="keyword">namespace </span>msg {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>        <span class="comment">// TimePubSubType 类的构造函数</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#ab50e8c9b217814d11c12a4569afef53d">   13</a></span>        <a class="code hl_function" href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#ab50e8c9b217814d11c12a4569afef53d">TimePubSubType::TimePubSubType</a>()</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>        {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>            <span class="comment">// 设置类型名称，用于标识该数据类型在 DDS（Data Distribution Service）中的名称</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>            setName(<span class="stringliteral">&quot;builtin_interfaces::msg::dds_::Time_&quot;</span>);</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>            <span class="comment">// 获取 Time 类型的最大 CDR（Common Data Representation）序列化大小</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>            <span class="keyword">auto</span> type_size = <a class="code hl_function" href="../../da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html#a7b03caf17fa174a94e055f3f4908f3a0">Time::getMaxCdrSerializedSize</a>();</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>            <span class="comment">// 根据可能的子消息对齐要求，对类型大小进行对齐调整（按 4 字节对齐）</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>            type_size += eprosima::fastcdr::Cdr::alignment(type_size, 4); <span class="comment">/* possible submessage alignment */</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>            <span class="comment">// 计算最终的类型大小，加上 4 字节用于封装（encapsulation）相关信息</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>            m_typeSize = <span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(type_size) + 4; <span class="comment">/*encapsulation*/</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>            <span class="comment">// 判断 Time 类型是否定义了获取键（Key）的操作</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>            m_isGetKeyDefined = <a class="code hl_function" href="../../da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html#a12acc6169ede4a1530c8163979ace479">Time::isKeyDefined</a>();</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>            <span class="comment">// 根据 Time 类型获取键的最大 CDR 序列化大小来确定键缓冲区的长度</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>            <span class="comment">// 如果大于 16 字节则使用实际的最大键序列化大小，否则使用 16 字节</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>            <span class="keywordtype">size_t</span> keyLength = <a class="code hl_function" href="../../da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html#ab3678ce87e1cc923812e73f75e123bf4">Time::getKeyMaxCdrSerializedSize</a>() &gt; 16?</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>                    <a class="code hl_function" href="../../da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html#ab3678ce87e1cc923812e73f75e123bf4">Time::getKeyMaxCdrSerializedSize</a>() : 16;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>            <span class="comment">// 分配键缓冲区的内存空间</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>            <a class="code hl_variable" href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#a6e6eb9bd363509b84841ecb43bc4d7df">m_keyBuffer</a> = <span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(malloc(keyLength));</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>            <span class="comment">// 将键缓冲区的内存初始化为 0</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>            memset(<a class="code hl_variable" href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#a6e6eb9bd363509b84841ecb43bc4d7df">m_keyBuffer</a>, 0, keyLength);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        }</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="comment">// TimePubSubType 类的析构函数，用于释放键缓冲区的内存</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#a3c89fbafad5cd9287501e4c5bf675ee4">   36</a></span>        <a class="code hl_function" href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#a3c89fbafad5cd9287501e4c5bf675ee4">TimePubSubType::~TimePubSubType</a>()</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        {</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>            <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#a6e6eb9bd363509b84841ecb43bc4d7df">m_keyBuffer</a>!= <span class="keyword">nullptr</span>)</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>            {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>                free(<a class="code hl_variable" href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#a6e6eb9bd363509b84841ecb43bc4d7df">m_keyBuffer</a>);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>            }</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        }</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="comment">// 序列化函数，将给定的数据对象（Time 类型）序列化为 SerializedPayload_t 格式</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#affa5446738c6a49fdde6f793196c2a37">   45</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#affa5446738c6a49fdde6f793196c2a37">TimePubSubType::serialize</a>(</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>                <span class="keywordtype">void</span>* data,</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>                <a class="code hl_typedef" href="../../d6/d4c/CameraInfoPubSubTypes_8cpp.html#ae7818c4670abc053fbadaed455b07b1f">SerializedPayload_t</a>* payload)</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        {</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>            <span class="comment">// 将传入的 void* 类型数据转换为 Time* 类型指针，方便后续操作</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>            <a class="code hl_class" href="../../da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html">Time</a>* p_type = <span class="keyword">static_cast&lt;</span><a class="code hl_class" href="../../da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html">Time</a>*<span class="keyword">&gt;</span>(data);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            <span class="comment">// 创建一个 FastBuffer 对象，用于管理原始缓冲区（指向 payload-&gt;data），其大小为 payload-&gt;max_size</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            eprosima::fastcdr::FastBuffer fastbuffer(<span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(payload-&gt;data), payload-&gt;max_size);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            <span class="comment">// 创建一个 Cdr 对象，用于执行序列化操作，设置了字节序（默认字节序）和 DDS CDR 相关模式</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            <span class="comment">// 根据序列化对象的字节序设置 payload 的封装字节序标识（CDR_BE 表示大端序，CDR_LE 表示小端序）</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            payload-&gt;encapsulation = ser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS? CDR_BE : CDR_LE;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>            <span class="comment">// 序列化封装相关的头部信息（比如可能的长度等元数据）</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>            ser.serialize_encapsulation();</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            <span class="comment">// 调用 Time 对象的 serialize 方法，将具体的 Time 数据序列化到 Cdr 对象中</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            p_type-&gt;<a class="code hl_function" href="../../da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html#a39d7bd3898adf02f1096cfff0428a06a">serialize</a>(ser);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            <span class="comment">// 获取序列化后的数据长度，并设置到 payload 的 length 成员中</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>            payload-&gt;length = <span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(ser.getSerializedDataLength());</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        }</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="comment">// 反序列化函数，将 SerializedPayload_t 格式的数据反序列化为 Time 类型对象</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#a68b99aa3c3b623a7c03557d132e69d15">   68</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#a68b99aa3c3b623a7c03557d132e69d15">TimePubSubType::deserialize</a>(</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>                <a class="code hl_typedef" href="../../d6/d4c/CameraInfoPubSubTypes_8cpp.html#ae7818c4670abc053fbadaed455b07b1f">SerializedPayload_t</a>* payload,</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>                <span class="keywordtype">void</span>* data)</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>            <span class="comment">// 将传入的 void* 类型数据转换为 Time* 类型指针，方便后续操作</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            <a class="code hl_class" href="../../da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html">Time</a>* p_type = <span class="keyword">static_cast&lt;</span><a class="code hl_class" href="../../da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html">Time</a>*<span class="keyword">&gt;</span>(data);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>            <span class="comment">// 创建一个 FastBuffer 对象，用于管理原始缓冲区（指向 payload-&gt;data），其大小为 payload-&gt;length（实际数据长度）</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>            eprosima::fastcdr::FastBuffer fastbuffer(<span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(payload-&gt;data), payload-&gt;length);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>            <span class="comment">// 创建一个 Cdr 对象，用于执行反序列化操作，设置了字节序（默认字节序）和 DDS CDR 相关模式</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>            eprosima::fastcdr::Cdr deser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>            <span class="comment">// 反序列化封装相关的头部信息（比如读取长度等元数据）</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>            deser.read_encapsulation();</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>            <span class="comment">// 根据反序列化对象的字节序设置 payload 的封装字节序标识（CDR_BE 表示大端序，CDR_LE 表示小端序）</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>            payload-&gt;encapsulation = deser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS? CDR_BE : CDR_LE;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>            <span class="comment">// 调用 Time 对象的 deserialize 方法，从 Cdr 对象中反序列化出具体的 Time 数据</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>            p_type-&gt;<a class="code hl_function" href="../../da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html#acfbec04774c60afa3d41748db8ed80b7">deserialize</a>(deser);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        }</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        <span class="comment">// 返回一个函数对象，该函数对象用于获取给定 Time 数据对象序列化后的大小（包含封装部分）</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#a291b6a45892fa6bf7b60f79a643e65f7">   93</a></span>        std::function&lt;uint32_t()&gt; <a class="code hl_function" href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#a291b6a45892fa6bf7b60f79a643e65f7">TimePubSubType::getSerializedSizeProvider</a>(</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>                <span class="keywordtype">void</span>* data)</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        {</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>            <span class="keywordflow">return</span> [data]() -&gt; uint32_t</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>                   {</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>                       <span class="comment">// 计算并返回 Time 数据对象的 CDR 序列化大小（包含封装部分，额外加 4 字节）</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>                       <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(<a class="code hl_function" href="../../da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html#abdf1cc0285c53ceeb6c4eae36acd3c0f">type::getCdrSerializedSize</a>(*<span class="keyword">static_cast&lt;</span><a class="code hl_class" href="../../da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html">Time</a>*<span class="keyword">&gt;</span>(data))) +</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>                              4u <span class="comment">/*encapsulation*/</span>;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>                   };</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        }</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        <span class="comment">// 创建一个 Time 类型的数据对象，并返回其 void* 指针表示（用于后续操作，比如序列化等）</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#ae5dcdbc2d47a93bbc684f9936f415435">  105</a></span>        <span class="keywordtype">void</span>* <a class="code hl_function" href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#ae5dcdbc2d47a93bbc684f9936f415435">TimePubSubType::createData</a>()</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        {</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>            <span class="keywordflow">return</span> <span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">void</span>*<span class="keyword">&gt;</span>(<span class="keyword">new</span> <a class="code hl_class" href="../../da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html">Time</a>());</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        }</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        <span class="comment">// 删除之前通过 createData 创建的 Time 类型数据对象，释放内存</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#a43036af98b8b1379fc0254086f89f5b3">  111</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#a43036af98b8b1379fc0254086f89f5b3">TimePubSubType::deleteData</a>(</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>                <span class="keywordtype">void</span>* data)</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        {</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>            <span class="keyword">delete</span>(<span class="keyword">reinterpret_cast&lt;</span><a class="code hl_class" href="../../da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html">Time</a>*<span class="keyword">&gt;</span>(data));</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        }</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        <span class="comment">// 获取给定 Time 数据对象的键（Key）信息，用于在 DDS 等场景中标识该对象实例</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#a1e4d5b8a9a94014bfac31dd9004416bc">  118</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#a1e4d5b8a9a94014bfac31dd9004416bc">TimePubSubType::getKey</a>(</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>                <span class="keywordtype">void</span>* data,</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>                <a class="code hl_typedef" href="../../d6/d4c/CameraInfoPubSubTypes_8cpp.html#a894129904d0a4f471bea9c0440bb3ddd">InstanceHandle_t</a>* handle,</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>                <span class="keywordtype">bool</span> force_md5)</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        {</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>            <span class="keywordflow">if</span> (!m_isGetKeyDefined)</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>            {</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>            }</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>            <a class="code hl_class" href="../../da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html">Time</a>* p_type = <span class="keyword">static_cast&lt;</span><a class="code hl_class" href="../../da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html">Time</a>*<span class="keyword">&gt;</span>(data);</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>            <span class="comment">// 创建一个 FastBuffer 对象，用于管理键缓冲区（指向 m_keyBuffer），其大小为 Time 类型获取键的最大 CDR 序列化大小</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>            eprosima::fastcdr::FastBuffer fastbuffer(<span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(<a class="code hl_variable" href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#a6e6eb9bd363509b84841ecb43bc4d7df">m_keyBuffer</a>),</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>                    <a class="code hl_function" href="../../da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html#ab3678ce87e1cc923812e73f75e123bf4">Time::getKeyMaxCdrSerializedSize</a>());</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>            <span class="comment">// 创建一个 Cdr 对象，用于将 Time 数据对象的键信息序列化到键缓冲区中，设置为大端序</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>            eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::BIG_ENDIANNESS);</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>            p_type-&gt;<a class="code hl_function" href="../../da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html#ae783caabe9aee93713a14421cf98ac88">serializeKey</a>(ser);</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>            <span class="keywordflow">if</span> (force_md5 || <a class="code hl_function" href="../../da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html#ab3678ce87e1cc923812e73f75e123bf4">Time::getKeyMaxCdrSerializedSize</a>() &gt; 16)</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>            {</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>                <span class="comment">// 如果需要强制使用 MD5 或者键序列化大小大于 16 字节，则进行 MD5 计算相关操作</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>                <a class="code hl_variable" href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#a6a68ae9920e8efac19118b2f6161a0e0">m_md5</a>.init();</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>                <a class="code hl_variable" href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#a6a68ae9920e8efac19118b2f6161a0e0">m_md5</a>.update(<a class="code hl_variable" href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#a6e6eb9bd363509b84841ecb43bc4d7df">m_keyBuffer</a>, <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">int</span><span class="keyword">&gt;</span>(ser.getSerializedDataLength()));</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>                <a class="code hl_variable" href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#a6a68ae9920e8efac19118b2f6161a0e0">m_md5</a>.finalize();</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>                <span class="keywordflow">for</span> (uint8_t i = 0; i &lt; 16; ++i)</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>                {</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>                    handle-&gt;value[i] = <a class="code hl_variable" href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#a6a68ae9920e8efac19118b2f6161a0e0">m_md5</a>.digest[i];</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>                }</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>            }</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>            <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>            {</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>                <span class="comment">// 如果不需要 MD5 计算，直接将键缓冲区的前 16 字节内容复制到 InstanceHandle_t 的 value 数组中</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>                <span class="keywordflow">for</span> (uint8_t i = 0; i &lt; 16; ++i)</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>                {</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>                    handle-&gt;value[i] = <a class="code hl_variable" href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#a6e6eb9bd363509b84841ecb43bc4d7df">m_keyBuffer</a>[i];</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>                }</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>            }</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        }</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    }</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>}</div>
+<div class="ttc" id="aCameraInfoPubSubTypes_8cpp_html_a894129904d0a4f471bea9c0440bb3ddd"><div class="ttname"><a href="../../d6/d4c/CameraInfoPubSubTypes_8cpp.html#a894129904d0a4f471bea9c0440bb3ddd">InstanceHandle_t</a></div><div class="ttdeci">eprosima::fastrtps::rtps::InstanceHandle_t InstanceHandle_t</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d4c/CameraInfoPubSubTypes_8cpp_source.html#l00029">CameraInfoPubSubTypes.cpp:29</a></div></div>
+<div class="ttc" id="aCameraInfoPubSubTypes_8cpp_html_ae7818c4670abc053fbadaed455b07b1f"><div class="ttname"><a href="../../d6/d4c/CameraInfoPubSubTypes_8cpp.html#ae7818c4670abc053fbadaed455b07b1f">SerializedPayload_t</a></div><div class="ttdeci">eprosima::fastrtps::rtps::SerializedPayload_t SerializedPayload_t</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d4c/CameraInfoPubSubTypes_8cpp_source.html#l00027">CameraInfoPubSubTypes.cpp:27</a></div></div>
+<div class="ttc" id="aTimePubSubTypes_8h_html"><div class="ttname"><a href="../../df/d5e/TimePubSubTypes_8h.html">TimePubSubTypes.h</a></div></div>
+<div class="ttc" id="aclassbuiltin__interfaces_1_1msg_1_1TimePubSubType_html_a1e4d5b8a9a94014bfac31dd9004416bc"><div class="ttname"><a href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#a1e4d5b8a9a94014bfac31dd9004416bc">builtin_interfaces::msg::TimePubSubType::getKey</a></div><div class="ttdeci">virtual eProsima_user_DllExport bool getKey(void *data, eprosima::fastrtps::rtps::InstanceHandle_t *ihandle, bool force_md5=false) override</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/ddc/TimePubSubTypes_8cpp_source.html#l00118">TimePubSubTypes.cpp:118</a></div></div>
+<div class="ttc" id="aclassbuiltin__interfaces_1_1msg_1_1TimePubSubType_html_a291b6a45892fa6bf7b60f79a643e65f7"><div class="ttname"><a href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#a291b6a45892fa6bf7b60f79a643e65f7">builtin_interfaces::msg::TimePubSubType::getSerializedSizeProvider</a></div><div class="ttdeci">virtual eProsima_user_DllExport std::function&lt; uint32_t()&gt; getSerializedSizeProvider(void *data) override</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/ddc/TimePubSubTypes_8cpp_source.html#l00093">TimePubSubTypes.cpp:93</a></div></div>
+<div class="ttc" id="aclassbuiltin__interfaces_1_1msg_1_1TimePubSubType_html_a3c89fbafad5cd9287501e4c5bf675ee4"><div class="ttname"><a href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#a3c89fbafad5cd9287501e4c5bf675ee4">builtin_interfaces::msg::TimePubSubType::~TimePubSubType</a></div><div class="ttdeci">virtual eProsima_user_DllExport ~TimePubSubType() override</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/ddc/TimePubSubTypes_8cpp_source.html#l00036">TimePubSubTypes.cpp:36</a></div></div>
+<div class="ttc" id="aclassbuiltin__interfaces_1_1msg_1_1TimePubSubType_html_a43036af98b8b1379fc0254086f89f5b3"><div class="ttname"><a href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#a43036af98b8b1379fc0254086f89f5b3">builtin_interfaces::msg::TimePubSubType::deleteData</a></div><div class="ttdeci">virtual eProsima_user_DllExport void deleteData(void *data) override</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/ddc/TimePubSubTypes_8cpp_source.html#l00111">TimePubSubTypes.cpp:111</a></div></div>
+<div class="ttc" id="aclassbuiltin__interfaces_1_1msg_1_1TimePubSubType_html_a68b99aa3c3b623a7c03557d132e69d15"><div class="ttname"><a href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#a68b99aa3c3b623a7c03557d132e69d15">builtin_interfaces::msg::TimePubSubType::deserialize</a></div><div class="ttdeci">virtual eProsima_user_DllExport bool deserialize(eprosima::fastrtps::rtps::SerializedPayload_t *payload, void *data) override</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/ddc/TimePubSubTypes_8cpp_source.html#l00068">TimePubSubTypes.cpp:68</a></div></div>
+<div class="ttc" id="aclassbuiltin__interfaces_1_1msg_1_1TimePubSubType_html_a6a68ae9920e8efac19118b2f6161a0e0"><div class="ttname"><a href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#a6a68ae9920e8efac19118b2f6161a0e0">builtin_interfaces::msg::TimePubSubType::m_md5</a></div><div class="ttdeci">MD5 m_md5</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d5e/TimePubSubTypes_8h_source.html#l00124">TimePubSubTypes.h:124</a></div></div>
+<div class="ttc" id="aclassbuiltin__interfaces_1_1msg_1_1TimePubSubType_html_a6e6eb9bd363509b84841ecb43bc4d7df"><div class="ttname"><a href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#a6e6eb9bd363509b84841ecb43bc4d7df">builtin_interfaces::msg::TimePubSubType::m_keyBuffer</a></div><div class="ttdeci">unsigned char * m_keyBuffer</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d5e/TimePubSubTypes_8h_source.html#l00127">TimePubSubTypes.h:127</a></div></div>
+<div class="ttc" id="aclassbuiltin__interfaces_1_1msg_1_1TimePubSubType_html_ab50e8c9b217814d11c12a4569afef53d"><div class="ttname"><a href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#ab50e8c9b217814d11c12a4569afef53d">builtin_interfaces::msg::TimePubSubType::TimePubSubType</a></div><div class="ttdeci">eProsima_user_DllExport TimePubSubType()</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/ddc/TimePubSubTypes_8cpp_source.html#l00013">TimePubSubTypes.cpp:13</a></div></div>
+<div class="ttc" id="aclassbuiltin__interfaces_1_1msg_1_1TimePubSubType_html_ae5dcdbc2d47a93bbc684f9936f415435"><div class="ttname"><a href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#ae5dcdbc2d47a93bbc684f9936f415435">builtin_interfaces::msg::TimePubSubType::createData</a></div><div class="ttdeci">virtual eProsima_user_DllExport void * createData() override</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/ddc/TimePubSubTypes_8cpp_source.html#l00105">TimePubSubTypes.cpp:105</a></div></div>
+<div class="ttc" id="aclassbuiltin__interfaces_1_1msg_1_1TimePubSubType_html_affa5446738c6a49fdde6f793196c2a37"><div class="ttname"><a href="../../d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#affa5446738c6a49fdde6f793196c2a37">builtin_interfaces::msg::TimePubSubType::serialize</a></div><div class="ttdeci">virtual eProsima_user_DllExport bool serialize(void *data, eprosima::fastrtps::rtps::SerializedPayload_t *payload) override</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/ddc/TimePubSubTypes_8cpp_source.html#l00045">TimePubSubTypes.cpp:45</a></div></div>
+<div class="ttc" id="aclassbuiltin__interfaces_1_1msg_1_1Time_html"><div class="ttname"><a href="../../da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html">builtin_interfaces::msg::Time</a></div><div class="ttdoc">此类表示用户在IDL文件中定义的Time结构。</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d3d/ros2_2types_2Time_8h_source.html#l00094">ros2/types/Time.h:95</a></div></div>
+<div class="ttc" id="aclassbuiltin__interfaces_1_1msg_1_1Time_html_a12acc6169ede4a1530c8163979ace479"><div class="ttname"><a href="../../da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html#a12acc6169ede4a1530c8163979ace479">builtin_interfaces::msg::Time::isKeyDefined</a></div><div class="ttdeci">static eProsima_user_DllExport bool isKeyDefined()</div><div class="ttdoc">此函数告知是否为此类型定义了键。</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d38/Time_8cpp_source.html#l00218">Time.cpp:218</a></div></div>
+<div class="ttc" id="aclassbuiltin__interfaces_1_1msg_1_1Time_html_a39d7bd3898adf02f1096cfff0428a06a"><div class="ttname"><a href="../../da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html#a39d7bd3898adf02f1096cfff0428a06a">builtin_interfaces::msg::Time::serialize</a></div><div class="ttdeci">eProsima_user_DllExport void serialize(eprosima::fastcdr::Cdr &amp;cdr) const</div><div class="ttdoc">此函数使用CDR序列化方式序列化对象。</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d38/Time_8cpp_source.html#l00132">Time.cpp:132</a></div></div>
+<div class="ttc" id="aclassbuiltin__interfaces_1_1msg_1_1Time_html_a7b03caf17fa174a94e055f3f4908f3a0"><div class="ttname"><a href="../../da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html#a7b03caf17fa174a94e055f3f4908f3a0">builtin_interfaces::msg::Time::getMaxCdrSerializedSize</a></div><div class="ttdeci">static eProsima_user_DllExport size_t getMaxCdrSerializedSize(size_t current_alignment=0)</div><div class="ttdoc">此函数根据缓冲区对齐方式返回对象的最大序列化大小。</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d38/Time_8cpp_source.html#l00111">Time.cpp:111</a></div></div>
+<div class="ttc" id="aclassbuiltin__interfaces_1_1msg_1_1Time_html_ab3678ce87e1cc923812e73f75e123bf4"><div class="ttname"><a href="../../da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html#ab3678ce87e1cc923812e73f75e123bf4">builtin_interfaces::msg::Time::getKeyMaxCdrSerializedSize</a></div><div class="ttdeci">static eProsima_user_DllExport size_t getKeyMaxCdrSerializedSize(size_t current_alignment=0)</div><div class="ttdoc">此函数根据缓冲区对齐方式返回对象键的最大序列化大小。</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d38/Time_8cpp_source.html#l00210">Time.cpp:210</a></div></div>
+<div class="ttc" id="aclassbuiltin__interfaces_1_1msg_1_1Time_html_abdf1cc0285c53ceeb6c4eae36acd3c0f"><div class="ttname"><a href="../../da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html#abdf1cc0285c53ceeb6c4eae36acd3c0f">builtin_interfaces::msg::Time::getCdrSerializedSize</a></div><div class="ttdeci">static eProsima_user_DllExport size_t getCdrSerializedSize(const builtin_interfaces::msg::Time &amp;data, size_t current_alignment=0)</div><div class="ttdoc">此函数根据缓冲区对齐方式返回数据的序列化大小。</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d38/Time_8cpp_source.html#l00119">Time.cpp:119</a></div></div>
+<div class="ttc" id="aclassbuiltin__interfaces_1_1msg_1_1Time_html_acfbec04774c60afa3d41748db8ed80b7"><div class="ttname"><a href="../../da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html#acfbec04774c60afa3d41748db8ed80b7">builtin_interfaces::msg::Time::deserialize</a></div><div class="ttdeci">eProsima_user_DllExport void deserialize(eprosima::fastcdr::Cdr &amp;cdr)</div><div class="ttdoc">此函数使用CDR序列化方式反序列化对象。</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d38/Time_8cpp_source.html#l00140">Time.cpp:140</a></div></div>
+<div class="ttc" id="aclassbuiltin__interfaces_1_1msg_1_1Time_html_ae783caabe9aee93713a14421cf98ac88"><div class="ttname"><a href="../../da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html#ae783caabe9aee93713a14421cf98ac88">builtin_interfaces::msg::Time::serializeKey</a></div><div class="ttdeci">eProsima_user_DllExport void serializeKey(eprosima::fastcdr::Cdr &amp;cdr) const</div><div class="ttdoc">此函数使用CDR序列化方式序列化对象的键成员。</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d38/Time_8cpp_source.html#l00224">Time.cpp:224</a></div></div>
+<div class="ttc" id="anamespacebuiltin__interfaces_html"><div class="ttname"><a href="../../d6/d61/namespacebuiltin__interfaces.html">builtin_interfaces</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d3d/ros2_2types_2Time_8h_source.html#l00087">ros2/types/Time.h:87</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

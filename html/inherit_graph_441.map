@@ -1,0 +1,32 @@
+<map id="类继承关系图" name="类继承关系图">
+<area shape="rect" id="node1" title=" " alt="" coords="5,901,141,941"/>
+<area shape="rect" id="node2" href="$d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html" title="This class represents the TopicDataType of the type Time defined by the user in the IDL file." alt="" coords="221,5,383,45"/>
+<area shape="rect" id="node3" href="$d8/db8/classcarla__msgs_1_1msg_1_1CarlaCollisionEventPubSubType.html" title="此类代表了用户在 IDL 文件中定义的 CarlaCollisionEvent 类型的主题数据类型（TopicDataType）。" alt="" coords="199,69,405,109"/>
+<area shape="rect" id="node4" href="$d2/d09/classcarla__msgs_1_1msg_1_1CarlaEgoVehicleControlPubSubType.html" title="此类表示用户在 IDL 文件中定义的类型 CarlaEgoVehicleControl 的 TopicDataType。 &#160;&#160;&lt;&gt;" alt="" coords="212,133,392,173"/>
+<area shape="rect" id="node5" href="$da/df3/classcarla__msgs_1_1msg_1_1LaneInvasionEventPubSubType.html" title=" " alt="" coords="200,197,404,237"/>
+<area shape="rect" id="node6" href="$d8/dab/classgeometry__msgs_1_1msg_1_1Point32PubSubType.html" title="This class represents the TopicDataType of the type Point32 defined by the user in the IDL file." alt="" coords="229,261,375,301"/>
+<area shape="rect" id="node7" href="$df/d78/classgeometry__msgs_1_1msg_1_1PointPubSubType.html" title="此类表示用户在 IDL 文件中定义的 Point 类型的 TopicDataType。 &#160;&#160;&lt;&gt;" alt="" coords="229,325,375,365"/>
+<area shape="rect" id="node8" href="$d1/dc0/classgeometry__msgs_1_1msg_1_1PosePubSubType.html" title="This class represents the TopicDataType of the type Pose defined by the user in the IDL file." alt="" coords="229,389,375,429"/>
+<area shape="rect" id="node9" href="$dd/d2f/classgeometry__msgs_1_1msg_1_1PoseWithCovariancePubSubType.html" title="This class represents the TopicDataType of the type PoseWithCovariance defined by the user in the IDL..." alt="" coords="191,453,413,493"/>
+<area shape="rect" id="node10" href="$d5/d1a/classgeometry__msgs_1_1msg_1_1QuaternionPubSubType.html" title=" " alt="" coords="219,517,385,557"/>
+<area shape="rect" id="node11" href="$d7/d54/classgeometry__msgs_1_1msg_1_1TransformPubSubType.html" title="This class represents the TopicDataType of the type Transform defined by the user in the IDL file." alt="" coords="221,581,383,621"/>
+<area shape="rect" id="node12" href="$d0/d21/classgeometry__msgs_1_1msg_1_1TransformStampedPubSubType.html" title="This class represents the TopicDataType of the type TransformStamped defined by the user in the IDL f..." alt="" coords="195,645,409,685"/>
+<area shape="rect" id="node13" href="$d1/d91/classgeometry__msgs_1_1msg_1_1TwistPubSubType.html" title="此类表示用户在 IDL 文件中定义的类型 Twist 的 TopicDataType。 &#160;&#160;&lt;&gt;" alt="" coords="229,709,375,749"/>
+<area shape="rect" id="node14" href="$d7/d1f/classgeometry__msgs_1_1msg_1_1TwistWithCovariancePubSubType.html" title="此类表示用户在 IDL 文件中定义的 TwistWithCovariance 的 TopicDataType。 &#160;&#160;&lt;&gt;" alt="" coords="189,773,415,813"/>
+<area shape="rect" id="node15" href="$d8/d74/classgeometry__msgs_1_1msg_1_1Vector3PubSubType.html" title="此类表示用户在 IDL 文件中定义的 Vector3 类型的 TopicDataType。 &#160;&#160;&lt;&gt;" alt="" coords="229,837,375,877"/>
+<area shape="rect" id="node16" href="$dc/dc5/classnav__msgs_1_1msg_1_1OdometryPubSubType.html" title="This class represents the TopicDataType of the type Odometry defined by the user in the IDL file." alt="" coords="203,901,401,941"/>
+<area shape="rect" id="node17" href="$d4/df0/classrosgraph_1_1msg_1_1ClockPubSubType.html" title="此类表示用户在 IDL 文件中定义的类型 Clock 的 TopicDataType。 &#160;&#160;&lt;&gt;" alt="" coords="194,966,410,991"/>
+<area shape="rect" id="node18" href="$d4/d4d/classsensor__msgs_1_1msg_1_1CameraInfoPubSubType.html" title="此类表示用户在 IDL 文件中定义的 CameraInfo 类型的 TopicDataType。 &#160;&#160;&lt;&gt;" alt="" coords="211,1016,393,1056"/>
+<area shape="rect" id="node19" href="$d2/d1e/classsensor__msgs_1_1msg_1_1ImagePubSubType.html" title="此类表示用户在IDL文件中定义的Image类型的主题数据类型。" alt="" coords="204,1080,400,1120"/>
+<area shape="rect" id="node20" href="$d5/dcf/classsensor__msgs_1_1msg_1_1ImuPubSubType.html" title="This class represents the TopicDataType of the type Imu defined by the user in the IDL file." alt="" coords="211,1144,393,1184"/>
+<area shape="rect" id="node21" href="$d9/dc9/classsensor__msgs_1_1msg_1_1NavSatFixPubSubType.html" title="This class represents the TopicDataType of the type NavSatFix defined by the user in the IDL file." alt="" coords="211,1208,393,1248"/>
+<area shape="rect" id="node22" href="$d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html" title="This class represents the TopicDataType of the type NavSatStatus defined by the user in the IDL file." alt="" coords="211,1272,393,1312"/>
+<area shape="rect" id="node23" href="$d8/dd0/classsensor__msgs_1_1msg_1_1PointCloud2PubSubType.html" title="This class represents the TopicDataType of the type PointCloud2 defined by the user in the IDL file." alt="" coords="199,1336,405,1376"/>
+<area shape="rect" id="node24" href="$d9/d30/classsensor__msgs_1_1msg_1_1PointFieldPubSubType.html" title="This class represents the TopicDataType of the type PointField defined by the user in the IDL file." alt="" coords="205,1400,399,1440"/>
+<area shape="rect" id="node25" href="$d3/d0b/classsensor__msgs_1_1msg_1_1RegionOfInterestPubSubType.html" title="此类表示用户在 IDL 文件中定义的 RegionOfInterest 类型的 TopicDataType。 &#160;&#160;&lt;&gt;" alt="" coords="213,1464,391,1504"/>
+<area shape="rect" id="node26" href="$d4/d19/classstd__msgs_1_1msg_1_1Float32PubSubType.html" title="此类表示由用户在 IDL 文件中定义的 Float32 类型的主题数据类型（TopicDataType）。它继承自 eprosima::fastdds::dds::TopicDataType，意味着需要..." alt="" coords="211,1528,393,1568"/>
+<area shape="rect" id="node27" href="$d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html" title=" " alt="" coords="211,1592,393,1632"/>
+<area shape="rect" id="node28" href="$d4/d50/classstd__msgs_1_1msg_1_1StringPubSubType.html" title="This class represents the TopicDataType of the type String defined by the user in the IDL file." alt="" coords="215,1656,389,1696"/>
+<area shape="rect" id="node29" href="$d5/da0/classtf2__msgs_1_1msg_1_1TF2ErrorPubSubType.html" title=" " alt="" coords="209,1720,395,1760"/>
+<area shape="rect" id="node30" href="$d4/d71/classtf2__msgs_1_1msg_1_1TFMessagePubSubType.html" title="This class represents the TopicDataType of the type TFMessage defined by the user in the IDL file." alt="" coords="211,1784,393,1824"/>
+</map>

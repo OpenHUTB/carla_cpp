@@ -1,0 +1,5 @@
+<map id="carla::client::TrafficLight::GetPoleIndex" name="carla::client::TrafficLight::GetPoleIndex">
+<area shape="rect" id="node1" title="返回交通信号灯组中灯杆的索引 // 获取交通信号灯组中灯杆的索引值的函数，返回一个uint32_t类型的索引值，用于标识交通灯在所属灯组中的具体位置等相关信息" alt="" coords="5,37,163,77"/>
+<area shape="rect" id="node2" href="$d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#a520d5ef7284ded86a1d96a346f3516aa" title=" " alt="" coords="213,5,375,45"/>
+<area shape="rect" id="node3" href="$d1/dd3/classcarla_1_1client_1_1detail_1_1EpisodeProxyImpl.html#aaca857645fbeb6546b4a03a663bb65af" title="与 TryLock 相同，但永远不会返回 nullptr。" alt="" coords="211,69,377,109"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="carla::client::detail::ActorState::GetWorld" name="carla::client::detail::ActorState::GetWorld">
+<area shape="rect" id="node1" title=" " alt="" coords="211,101,361,141"/>
+<area shape="rect" id="node2" href="$df/def/classcarla_1_1client_1_1TrafficLight.html#a87df8506179eda17a5502ce9364b3970" title="返回该交通灯所属组中的所有交通灯。" alt="" coords="5,5,163,45"/>
+<area shape="rect" id="node3" href="$d9/dc6/classcarla_1_1client_1_1Vehicle.html#a7588c922c248118e1bcaac619df9ac83" title="检索当前影响该车辆的交通灯." alt="" coords="16,69,152,109"/>
+<area shape="rect" id="node4" href="$d7/db6/classcarla_1_1client_1_1RssSensor.html#af2dcc2b1ee4a52dbc8e1e7727e3653c4" title="注册一个回调函数，每次接收到新的测量数据时都会执行该函数。" alt="" coords="5,133,163,173"/>
+<area shape="rect" id="node5" href="$d7/db6/classcarla_1_1client_1_1RssSensor.html#a8c7f3e09bcf07520a2af441a7de06092" title="传感器滴答（tick，可以理解为周期性触发的操作）回调函数，实际执行传感器相关逻辑的函数" alt="" coords="5,197,163,237"/>
+</map>

@@ -1,0 +1,10 @@
+<map id="ACarlaActorFactory" name="ACarlaActorFactory">
+<area shape="rect" id="node1" title=" " alt="" coords="116,129,251,155"/>
+<area shape="rect" id="node3" href="$db/d37/classAAIControllerFactory.html" title=" " alt="" coords="321,5,463,31"/>
+<area shape="rect" id="node4" href="$d3/ddb/classACarlaActorFactoryBlueprint.html" title="用于实现 ACarlaActorFactory 接口的蓝图基类 期望从此类派生的蓝图进行重写 GetDefinitions 和 SpawnActor 函数" alt="" coords="299,55,485,80"/>
+<area shape="rect" id="node5" href="$df/d9e/classASensorFactory.html" title="工厂负责生成传感器。此工厂能够生成在 carla：：sensor：：SensorRegistry 中注册的每个传感器。" alt="" coords="335,104,449,129"/>
+<area shape="rect" id="node6" href="$da/d98/classAStaticMeshFactory.html" title=" " alt="" coords="322,153,462,179"/>
+<area shape="rect" id="node7" href="$d0/df9/classATriggerFactory.html" title="负责制造传感器的工厂。这个工厂能够生成在 carla::sensor::SensorRegistry 中注册的每个传感器。" alt="" coords="335,203,449,228"/>
+<area shape="rect" id="node8" href="$d7/de9/classAUtilActorFactory.html" title="负责生成静态网格体的工厂。该工厂能够生成 内容中的任何网格" alt="" coords="329,252,455,277"/>
+<area shape="rect" id="node2" href="$d1/da4/classAActor.html" title=" " alt="" coords="5,129,68,155"/>
+</map>

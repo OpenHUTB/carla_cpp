@@ -1,0 +1,8 @@
+<map id="carla::client::TrafficSign::GetSignId" name="carla::client::TrafficSign::GetSignId">
+<area shape="rect" id="node1" title=" " alt="" coords="517,69,672,109"/>
+<area shape="rect" id="node2" href="$db/d1f/classcarla_1_1client_1_1World.html#a4772c8468347fcee02678a9a6a8396d1" title="根据提供的地标（Landmark）获取对应的交通信号灯（TrafficLight）的智能指针。 与获取交通标志类似，通过地标来查找对应的交通信号灯对象，以便获取信号灯状态、控制信号灯等相关操作，模拟交通..." alt="" coords="299,5,426,45"/>
+<area shape="rect" id="node4" href="$db/d1f/classcarla_1_1client_1_1World.html#ae95977f3a764f0d7e669e84630565447" title="根据OpenDRIVE标志ID获取对应的交通灯的智能指针。 OpenDRIVE是一种用于描述道路网络等信息的标准格式，利用其中的标志ID可以准确地在模拟世界中找到对应的交通灯对象，" alt="" coords="256,69,469,109"/>
+<area shape="rect" id="node6" href="$db/d1f/classcarla_1_1client_1_1World.html#ad6366a7909dc11fc8ebb883a3434a551" title="根据提供的地标（Landmark）获取对应的交通标志（TrafficSign）的智能指针。 地标通常代表地图中的特定位置，通过它可以定位和获取对应的交通标志对象，用于查询交通规则相关的指示信息等。" alt="" coords="299,133,426,173"/>
+<area shape="rect" id="node3" href="$db/d1f/classcarla_1_1client_1_1World.html#a965fcaf99f563c9634c40f3b8e2910b5" title=" " alt="" coords="5,5,208,45"/>
+<area shape="rect" id="node5" href="$db/d1f/classcarla_1_1client_1_1World.html#a82a6e3a2fe7a3d8ccd5de3aa95049788" title=" " alt="" coords="17,69,197,109"/>
+</map>

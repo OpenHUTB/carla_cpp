@@ -1,0 +1,4 @@
+<map id="carla::client::World::GetActors" name="carla::client::World::GetActors">
+<area shape="rect" id="node1" title="返回一个包含当前世界上所有存在的参与者（actor）的列表。 获取整个模拟世界中所有参与者的集合，便于进行批量操作、统计或者遍历所有实体执行某些通用的操作等。" alt="" coords="5,5,132,45"/>
+<area shape="rect" id="node2" href="$d1/dd3/classcarla_1_1client_1_1detail_1_1EpisodeProxyImpl.html#aaca857645fbeb6546b4a03a663bb65af" title="与 TryLock 相同，但永远不会返回 nullptr。" alt="" coords="180,5,347,45"/>
+</map>

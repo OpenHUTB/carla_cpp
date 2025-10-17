@@ -1,0 +1,268 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: RecurrentSharedFuture.h 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">RecurrentSharedFuture.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d7/de1/RecurrentSharedFuture_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// de Barcelona (UAB).</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// This work is licensed under the terms of the MIT license.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#pragma once  </span><span class="comment">// 防止头文件被重复包含</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="../../d8/d8a/Exception_8h.html">carla/Exception.h</a>&quot;</span>  <span class="comment">// 引入CARLA项目中的异常处理头文件 </span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="../../d2/d33/Time_8h.html">carla/Time.h</a>&quot;</span>   <span class="comment">// 引入CARLA项目中的时间处理头文件</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;boost/optional.hpp&gt;</span>  <span class="comment">// 引入 Boost 库中的 optional 头文件，用于表示可选的值</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#ifdef _MSC_VER  </span><span class="comment">// 如果是在 Microsoft Visual C++ (MSVC) 环境下编译</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#pragma warning(push)  </span><span class="comment">// 保存当前的警告状态，以便之后恢复 </span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#pragma warning(disable:4583)  </span><span class="comment">// 禁用特定于 MSVC 的警告 4583，这个警告通常与编译器如何处理模板实例化有关</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#pragma warning(disable:4582)  </span><span class="comment">// 禁用特定于 MSVC 的警告 4582，这个警告涉及构造函数或析构函数的隐式转换</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;boost/variant2/variant.hpp&gt;</span> <span class="comment">// 引入 Boost 库中的 variant2 头文件，variant2 是 Boost.Variant 的后续版本，提供了更灵活和强大的类型安全联合体</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#pragma warning(pop) </span><span class="comment">// 恢复之前保存的警告状态</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;boost/variant2/variant.hpp&gt;</span> <span class="comment">// 如果不是在 MSVC 环境下，直接引入 Boost.Variant2</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;condition_variable&gt;</span> <span class="comment">// 引入 C++ 标准库中的条件变量头文件，用于同步操作，如等待某个条件成立 </span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;exception&gt;</span> <span class="comment">// 引入 C++ 标准库中的异常处理头文件</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;map&gt;</span> <span class="comment">// 引入 C++ 标准库中的 map 头文件，map 是一个关联容器，存储的元素是键值对 </span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;mutex&gt;</span> <span class="comment">// 引入 C++ 标准库中的互斥锁头文件，用于提供互斥锁，以保护共享数据的同步访问 </span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d9/d36/namespacecarla.html">carla</a> {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">namespace </span>detail {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <span class="keyword">class </span>SharedException; <span class="comment">// 定义一个异常类，用于在文件中共享和传递异常信息</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>} <span class="comment">// namespace detail</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  <span class="comment">// ===========================================================================</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="comment">// -- 并发共享未来 RecurrentSharedFuture ------------------------------------</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="comment">// ===========================================================================</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment"></span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment">  /// 这个类类似于共享未来（shared future）的使用方式，但是它的值可以被设置任意次数的值。</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment">  /// 未来设计模式的核心思想是异步调用。</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment">  /// Future接口象征着异步执行任务的结果即执行一个耗时任务完全可以另起一个线程执行，然后此时我们可以去做其他事情，做完其他事情我们再调用Future.get()方法获取结果即可。</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">  /// 对于未来模式来说，它无法立即返回你需要的数据，但是它会返回一个契约，将来你可以凭借这个契约去获取你需要的信息。</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment">  /// 服务程序并不等数据处理完成便立即返回客户端一个伪造的数据（如：商品的订单，而不是商品本身）；</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">  /// 在完成其他业务处理后，最后再使用返回比较慢的Future数据。</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment">  /// 参考：https://blog.csdn.net/weixin_43816711/article/details/125664746</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment"></span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="../../d0/df9/classcarla_1_1RecurrentSharedFuture.html">   48</a></span>  <span class="keyword">class </span><a class="code hl_class" href="../../d0/df9/classcarla_1_1RecurrentSharedFuture.html">RecurrentSharedFuture</a> {</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="../../d0/df9/classcarla_1_1RecurrentSharedFuture.html#a629e025b17a88d0a7a579d2aaebfe700">   51</a></span>    <span class="keyword">using </span><a class="code hl_class" href="../../da/d82/classcarla_1_1detail_1_1SharedException.html">SharedException</a> = <a class="code hl_class" href="../../da/d82/classcarla_1_1detail_1_1SharedException.html">detail::SharedException</a>; <span class="comment">// 使用detail命名空间下的SharedException类型，作为此模板类的一部分 </span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment"></span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="comment">    ///等待直到下一个值被设置。任意数量的线程可以同时等待。</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="comment">    /// </span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="comment">    /// @return 如果达到超时时间timeout仍然未获得结果，则返回空的 boost::optional</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="comment">    /// boost::optional 即可选返回值，是函数的返回值，可能并不总是返回结果。</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="../../d0/df9/classcarla_1_1RecurrentSharedFuture.html#a6fd4f82e6139340524a9d5a16f3aec3c">   57</a></span><span class="comment"></span>    boost::optional&lt;T&gt; <a class="code hl_function" href="../../d0/df9/classcarla_1_1RecurrentSharedFuture.html#a6fd4f82e6139340524a9d5a16f3aec3c">WaitFor</a>(<a class="code hl_class" href="../../d2/d2e/classcarla_1_1time__duration.html">time_duration</a> timeout);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="comment"></span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="comment">    /// 设置值并通知所有等待的线程</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment"></span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T2&gt;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="../../d0/df9/classcarla_1_1RecurrentSharedFuture.html#a61519521a78716763d47c0c9e0614cee">   61</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d0/df9/classcarla_1_1RecurrentSharedFuture.html#a61519521a78716763d47c0c9e0614cee">SetValue</a>(<span class="keyword">const</span> T2 &amp;value);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment"></span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">    /// 设置一个异常，这个异常将会被抛给所有正在等待的线程</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment">    ///</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="comment">    /// @note The @a exception 将被存储在一个名为 SharedException 的共享对象上，并且会作为这样的异常被抛出</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="comment"></span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ExceptionT&gt; <span class="comment">/// 定义一个模板类，该类可以处理并存储特定类型的异常</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="../../d0/df9/classcarla_1_1RecurrentSharedFuture.html#a176d97a50a478a500dc49b9bc94b0376">   67</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d0/df9/classcarla_1_1RecurrentSharedFuture.html#a176d97a50a478a500dc49b9bc94b0376">SetException</a>(ExceptionT &amp;&amp;exception);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>      <span class="comment">// 互斥量：可以确保一次只有一个线程可以访问共享资源，避免竞争条件的发生</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="../../d0/df9/classcarla_1_1RecurrentSharedFuture.html#a67e67ffe9a6a57c3c04387bcdab63ba0">   71</a></span>    std::mutex <a class="code hl_variable" href="../../d0/df9/classcarla_1_1RecurrentSharedFuture.html#a67e67ffe9a6a57c3c04387bcdab63ba0">_mutex</a>;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>      <span class="comment">// 条件变量是c++中提供的一种多线程同步机制，它允许一个或多个线程等待另一个消除发出通知，以便能够有效地进行线程同步</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="../../d0/df9/classcarla_1_1RecurrentSharedFuture.html#a7794e6d82f94cbb36bcd0270035fa2d8">   73</a></span>    std::condition_variable <a class="code hl_variable" href="../../d0/df9/classcarla_1_1RecurrentSharedFuture.html#a7794e6d82f94cbb36bcd0270035fa2d8">_cv</a>;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>      <span class="comment">// 定义一个结构体，用于映射键（const char*）到值和等待状态 </span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="../../d0/d90/structcarla_1_1RecurrentSharedFuture_1_1mapped__type.html">   75</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="../../d0/d90/structcarla_1_1RecurrentSharedFuture_1_1mapped__type.html">mapped_type</a> {</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="../../d0/d90/structcarla_1_1RecurrentSharedFuture_1_1mapped__type.html#a379a57ddce2b37c0420f22d9599fbc12">   76</a></span>      <span class="keywordtype">bool</span> <a class="code hl_variable" href="../../d0/d90/structcarla_1_1RecurrentSharedFuture_1_1mapped__type.html#a379a57ddce2b37c0420f22d9599fbc12">should_wait</a>;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="../../d0/d90/structcarla_1_1RecurrentSharedFuture_1_1mapped__type.html#ac46e88278eb90b2fd3889a77849ce112">   77</a></span>      boost::variant2::variant&lt;SharedException, T&gt; <a class="code hl_variable" href="../../d0/d90/structcarla_1_1RecurrentSharedFuture_1_1mapped__type.html#ac46e88278eb90b2fd3889a77849ce112">value</a>;  <span class="comment">// boost::variant2实现类型转换</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    };</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="../../d0/df9/classcarla_1_1RecurrentSharedFuture.html#a0b52e2c7101f6335eb6926f3f45efabc">   80</a></span>    std::map&lt;const char *, mapped_type&gt; <a class="code hl_variable" href="../../d0/df9/classcarla_1_1RecurrentSharedFuture.html#a0b52e2c7101f6335eb6926f3f45efabc">_map</a>;  <span class="comment">// 所有线程构成的map</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  };</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  <span class="comment">// ===========================================================================</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  <span class="comment">// -- RecurrentSharedFuture 实现 ---------------------------------------------</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  <span class="comment">// ===========================================================================</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="comment">// 定义了一个名为 detail 的命名空间</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="keyword">namespace </span>detail {<span class="comment"></span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="comment">//// 定义一个线程局部的静态常量字符变量，用于标识或标记当前线程，其值默认为空字符（&#39;\0&#39;）</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="../../d0/d58/namespacecarla_1_1detail.html#ae0d9105523af1cfd2e4549361e769be1">   89</a></span><span class="comment"></span>  <span class="keyword">static</span> <span class="keyword">thread_local</span> <span class="keyword">const</span> <span class="keywordtype">char</span> <a class="code hl_variable" href="../../d0/d58/namespacecarla_1_1detail.html#ae0d9105523af1cfd2e4549361e769be1">thread_tag</a>{};</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="../../da/d82/classcarla_1_1detail_1_1SharedException.html">   91</a></span>  <span class="keyword">class </span><a class="code hl_class" href="../../da/d82/classcarla_1_1detail_1_1SharedException.html">SharedException</a> : <span class="keyword">public</span> std::exception {</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="../../da/d82/classcarla_1_1detail_1_1SharedException.html#acfe4187a38849283c5923c6af0b773db">   94</a></span>    <a class="code hl_function" href="../../da/d82/classcarla_1_1detail_1_1SharedException.html#acfe4187a38849283c5923c6af0b773db">SharedException</a>()</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>      : <a class="code hl_variable" href="../../da/d82/classcarla_1_1detail_1_1SharedException.html#abff36c6c4a5b3a49975b09736a2692a6">_exception</a>(<a class="code hl_namespace" href="../../d8/dcc/namespacestd.html">std</a>::make_shared&lt;<a class="code hl_namespace" href="../../d8/dcc/namespacestd.html">std</a>::runtime_error&gt;(<span class="stringliteral">&quot;uninitialized SharedException&quot;</span>)) {}</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="../../da/d82/classcarla_1_1detail_1_1SharedException.html#a6aae9c61469eed65767bd1fb1fe488cb">   97</a></span>    <a class="code hl_function" href="../../da/d82/classcarla_1_1detail_1_1SharedException.html#a6aae9c61469eed65767bd1fb1fe488cb">SharedException</a>(std::shared_ptr&lt;std::exception&gt; e)</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>      : <a class="code hl_variable" href="../../da/d82/classcarla_1_1detail_1_1SharedException.html#abff36c6c4a5b3a49975b09736a2692a6">_exception</a>(<a class="code hl_namespace" href="../../d8/dcc/namespacestd.html">std</a>::move(e)) {}</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="../../da/d82/classcarla_1_1detail_1_1SharedException.html#a49bb37864710a3c5c0966c350b98c5ef">  100</a></span>    <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_function" href="../../da/d82/classcarla_1_1detail_1_1SharedException.html#a49bb37864710a3c5c0966c350b98c5ef">what</a>() const noexcept<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="../../da/d82/classcarla_1_1detail_1_1SharedException.html#abff36c6c4a5b3a49975b09736a2692a6">_exception</a>-&gt;what();</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    }</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="../../da/d82/classcarla_1_1detail_1_1SharedException.html#a76ee2d6cfbaa2f68db930106b9f7af73">  104</a></span>    std::shared_ptr&lt;std::exception&gt; <a class="code hl_function" href="../../da/d82/classcarla_1_1detail_1_1SharedException.html#a76ee2d6cfbaa2f68db930106b9f7af73">GetException</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="../../da/d82/classcarla_1_1detail_1_1SharedException.html#abff36c6c4a5b3a49975b09736a2692a6">_exception</a>;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    }</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="../../da/d82/classcarla_1_1detail_1_1SharedException.html#abff36c6c4a5b3a49975b09736a2692a6">  110</a></span>    std::shared_ptr&lt;std::exception&gt; <a class="code hl_variable" href="../../da/d82/classcarla_1_1detail_1_1SharedException.html#abff36c6c4a5b3a49975b09736a2692a6">_exception</a>;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  };</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>} <span class="comment">// namespace detail</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>  <span class="comment">//  如果达到超时时间timeout仍然未获得结果，则返回空的 boost::optional</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="../../d0/df9/classcarla_1_1RecurrentSharedFuture.html#a6fd4f82e6139340524a9d5a16f3aec3c">  117</a></span>  boost::optional&lt;T&gt; <a class="code hl_function" href="../../d0/df9/classcarla_1_1RecurrentSharedFuture.html#a6fd4f82e6139340524a9d5a16f3aec3c">RecurrentSharedFuture&lt;T&gt;::WaitFor</a>(<a class="code hl_class" href="../../d2/d2e/classcarla_1_1time__duration.html">time_duration</a> timeout) {</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="comment">// std::mutex提供的lock()和unlock()方法，用于在需要访问共享资源时加锁和解锁。</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="comment">// 当一个线程获得了锁之后，其他线程会被阻塞直到锁被释放。</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="comment">// 这样可以保证同一时刻只有一个线程可以访问共享资源，从而确保数据的一致性和正确性。</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    std::unique_lock&lt;std::mutex&gt; lock(_mutex);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="keyword">auto</span> &amp;r = _map[&amp;<a class="code hl_variable" href="../../d0/d58/namespacecarla_1_1detail.html#ae0d9105523af1cfd2e4549361e769be1">detail::thread_tag</a>];</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    r.should_wait = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="comment">// wait_for() 函数用于阻塞线程并等待唤醒，它可以设置一个超时时间 timeout.to_chrono()。</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <span class="keywordflow">if</span> (!_cv.wait_for(lock, timeout.<a class="code hl_function" href="../../d2/d2e/classcarla_1_1time__duration.html#af66703163258b65c0ca8a0ef071e3b73">to_chrono</a>(), [&amp;]() { return !r.should_wait; })) {</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>      <span class="keywordflow">return</span> {};</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    }</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="keywordflow">if</span> (r.value.index() == 0) {</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>      <a class="code hl_function" href="../../d9/d36/namespacecarla.html#a23602ab663165210a7757d6108f6b3cd">throw_exception</a>(boost::variant2::get&lt;SharedException&gt;(r.value));</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    }</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keywordflow">return</span> boost::variant2::get&lt;T&gt;(std::move(r.value));</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>  }</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>  <span class="comment">// /// 设置值并通知所有等待的线程</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T2&gt;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="../../d0/df9/classcarla_1_1RecurrentSharedFuture.html#a61519521a78716763d47c0c9e0614cee">  137</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="../../d0/df9/classcarla_1_1RecurrentSharedFuture.html#a61519521a78716763d47c0c9e0614cee">RecurrentSharedFuture&lt;T&gt;::SetValue</a>(<span class="keyword">const</span> T2 &amp;value) {</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    std::lock_guard&lt;std::mutex&gt; lock(_mutex);</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;pair : _map) {</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>      pair.second.should_wait = <span class="keyword">false</span>;  <span class="comment">// 将每个线程设置为不需要等待</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>      pair.second.value = value;        <span class="comment">// 设置值</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    }</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    _cv.notify_all();  <span class="comment">// 通知所有线程</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>  }</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> <span class="comment">// 设置一个异常，并通知所有等待的线程</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ExceptionT&gt;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno"><a class="line" href="../../d0/df9/classcarla_1_1RecurrentSharedFuture.html#a176d97a50a478a500dc49b9bc94b0376">  148</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="../../d0/df9/classcarla_1_1RecurrentSharedFuture.html#a176d97a50a478a500dc49b9bc94b0376">RecurrentSharedFuture&lt;T&gt;::SetException</a>(ExceptionT &amp;&amp;e) {</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>  <span class="comment">// 将异常封装为一个共享指针，并将其设置为当前值</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    SetValue(<a class="code hl_class" href="../../da/d82/classcarla_1_1detail_1_1SharedException.html">SharedException</a>(std::make_shared&lt;ExceptionT&gt;(std::forward&lt;ExceptionT&gt;(e))));</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>  }</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>} <span class="comment">// namespace carla</span></div>
+<div class="ttc" id="aException_8h_html"><div class="ttname"><a href="../../d8/d8a/Exception_8h.html">Exception.h</a></div></div>
+<div class="ttc" id="aTime_8h_html"><div class="ttname"><a href="../../d2/d33/Time_8h.html">Time.h</a></div></div>
+<div class="ttc" id="aclasscarla_1_1RecurrentSharedFuture_html"><div class="ttname"><a href="../../d0/df9/classcarla_1_1RecurrentSharedFuture.html">carla::RecurrentSharedFuture</a></div><div class="ttdoc">这个类类似于共享未来（shared future）的使用方式，但是它的值可以被设置任意次数的值。 未来设计模式的核心思想是异步调用。 Future接口象征着异步执行任务的结果即执行一个耗时任务完全可以另...</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/de1/RecurrentSharedFuture_8h_source.html#l00048">RecurrentSharedFuture.h:48</a></div></div>
+<div class="ttc" id="aclasscarla_1_1RecurrentSharedFuture_html_a0b52e2c7101f6335eb6926f3f45efabc"><div class="ttname"><a href="../../d0/df9/classcarla_1_1RecurrentSharedFuture.html#a0b52e2c7101f6335eb6926f3f45efabc">carla::RecurrentSharedFuture::_map</a></div><div class="ttdeci">std::map&lt; const char *, mapped_type &gt; _map</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/de1/RecurrentSharedFuture_8h_source.html#l00080">RecurrentSharedFuture.h:80</a></div></div>
+<div class="ttc" id="aclasscarla_1_1RecurrentSharedFuture_html_a176d97a50a478a500dc49b9bc94b0376"><div class="ttname"><a href="../../d0/df9/classcarla_1_1RecurrentSharedFuture.html#a176d97a50a478a500dc49b9bc94b0376">carla::RecurrentSharedFuture::SetException</a></div><div class="ttdeci">void SetException(ExceptionT &amp;&amp;exception)</div><div class="ttdoc">设置一个异常，这个异常将会被抛给所有正在等待的线程</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/de1/RecurrentSharedFuture_8h_source.html#l00148">RecurrentSharedFuture.h:148</a></div></div>
+<div class="ttc" id="aclasscarla_1_1RecurrentSharedFuture_html_a61519521a78716763d47c0c9e0614cee"><div class="ttname"><a href="../../d0/df9/classcarla_1_1RecurrentSharedFuture.html#a61519521a78716763d47c0c9e0614cee">carla::RecurrentSharedFuture::SetValue</a></div><div class="ttdeci">void SetValue(const T2 &amp;value)</div><div class="ttdoc">设置值并通知所有等待的线程</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/de1/RecurrentSharedFuture_8h_source.html#l00137">RecurrentSharedFuture.h:137</a></div></div>
+<div class="ttc" id="aclasscarla_1_1RecurrentSharedFuture_html_a67e67ffe9a6a57c3c04387bcdab63ba0"><div class="ttname"><a href="../../d0/df9/classcarla_1_1RecurrentSharedFuture.html#a67e67ffe9a6a57c3c04387bcdab63ba0">carla::RecurrentSharedFuture::_mutex</a></div><div class="ttdeci">std::mutex _mutex</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/de1/RecurrentSharedFuture_8h_source.html#l00071">RecurrentSharedFuture.h:71</a></div></div>
+<div class="ttc" id="aclasscarla_1_1RecurrentSharedFuture_html_a6fd4f82e6139340524a9d5a16f3aec3c"><div class="ttname"><a href="../../d0/df9/classcarla_1_1RecurrentSharedFuture.html#a6fd4f82e6139340524a9d5a16f3aec3c">carla::RecurrentSharedFuture::WaitFor</a></div><div class="ttdeci">boost::optional&lt; T &gt; WaitFor(time_duration timeout)</div><div class="ttdoc">等待直到下一个值被设置。任意数量的线程可以同时等待。</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/de1/RecurrentSharedFuture_8h_source.html#l00117">RecurrentSharedFuture.h:117</a></div></div>
+<div class="ttc" id="aclasscarla_1_1RecurrentSharedFuture_html_a7794e6d82f94cbb36bcd0270035fa2d8"><div class="ttname"><a href="../../d0/df9/classcarla_1_1RecurrentSharedFuture.html#a7794e6d82f94cbb36bcd0270035fa2d8">carla::RecurrentSharedFuture::_cv</a></div><div class="ttdeci">std::condition_variable _cv</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/de1/RecurrentSharedFuture_8h_source.html#l00073">RecurrentSharedFuture.h:73</a></div></div>
+<div class="ttc" id="aclasscarla_1_1detail_1_1SharedException_html"><div class="ttname"><a href="../../da/d82/classcarla_1_1detail_1_1SharedException.html">carla::detail::SharedException</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d7/de1/RecurrentSharedFuture_8h_source.html#l00091">RecurrentSharedFuture.h:91</a></div></div>
+<div class="ttc" id="aclasscarla_1_1detail_1_1SharedException_html_a49bb37864710a3c5c0966c350b98c5ef"><div class="ttname"><a href="../../da/d82/classcarla_1_1detail_1_1SharedException.html#a49bb37864710a3c5c0966c350b98c5ef">carla::detail::SharedException::what</a></div><div class="ttdeci">const char * what() const noexcept override</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/de1/RecurrentSharedFuture_8h_source.html#l00100">RecurrentSharedFuture.h:100</a></div></div>
+<div class="ttc" id="aclasscarla_1_1detail_1_1SharedException_html_a6aae9c61469eed65767bd1fb1fe488cb"><div class="ttname"><a href="../../da/d82/classcarla_1_1detail_1_1SharedException.html#a6aae9c61469eed65767bd1fb1fe488cb">carla::detail::SharedException::SharedException</a></div><div class="ttdeci">SharedException(std::shared_ptr&lt; std::exception &gt; e)</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/de1/RecurrentSharedFuture_8h_source.html#l00097">RecurrentSharedFuture.h:97</a></div></div>
+<div class="ttc" id="aclasscarla_1_1detail_1_1SharedException_html_a76ee2d6cfbaa2f68db930106b9f7af73"><div class="ttname"><a href="../../da/d82/classcarla_1_1detail_1_1SharedException.html#a76ee2d6cfbaa2f68db930106b9f7af73">carla::detail::SharedException::GetException</a></div><div class="ttdeci">std::shared_ptr&lt; std::exception &gt; GetException() const</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/de1/RecurrentSharedFuture_8h_source.html#l00104">RecurrentSharedFuture.h:104</a></div></div>
+<div class="ttc" id="aclasscarla_1_1detail_1_1SharedException_html_abff36c6c4a5b3a49975b09736a2692a6"><div class="ttname"><a href="../../da/d82/classcarla_1_1detail_1_1SharedException.html#abff36c6c4a5b3a49975b09736a2692a6">carla::detail::SharedException::_exception</a></div><div class="ttdeci">std::shared_ptr&lt; std::exception &gt; _exception</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/de1/RecurrentSharedFuture_8h_source.html#l00110">RecurrentSharedFuture.h:110</a></div></div>
+<div class="ttc" id="aclasscarla_1_1detail_1_1SharedException_html_acfe4187a38849283c5923c6af0b773db"><div class="ttname"><a href="../../da/d82/classcarla_1_1detail_1_1SharedException.html#acfe4187a38849283c5923c6af0b773db">carla::detail::SharedException::SharedException</a></div><div class="ttdeci">SharedException()</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/de1/RecurrentSharedFuture_8h_source.html#l00094">RecurrentSharedFuture.h:94</a></div></div>
+<div class="ttc" id="aclasscarla_1_1time__duration_html"><div class="ttname"><a href="../../d2/d2e/classcarla_1_1time__duration.html">carla::time_duration</a></div><div class="ttdoc">Positive time duration up to milliseconds resolution.</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d33/Time_8h_source.html#l00019">Time.h:19</a></div></div>
+<div class="ttc" id="aclasscarla_1_1time__duration_html_af66703163258b65c0ca8a0ef071e3b73"><div class="ttname"><a href="../../d2/d2e/classcarla_1_1time__duration.html#af66703163258b65c0ca8a0ef071e3b73">carla::time_duration::to_chrono</a></div><div class="ttdeci">constexpr auto to_chrono() const</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d33/Time_8h_source.html#l00052">Time.h:52</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1detail_html_ae0d9105523af1cfd2e4549361e769be1"><div class="ttname"><a href="../../d0/d58/namespacecarla_1_1detail.html#ae0d9105523af1cfd2e4549361e769be1">carla::detail::thread_tag</a></div><div class="ttdeci">static thread_local const char thread_tag</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/de1/RecurrentSharedFuture_8h_source.html#l00089">RecurrentSharedFuture.h:89</a></div></div>
+<div class="ttc" id="anamespacecarla_html"><div class="ttname"><a href="../../d9/d36/namespacecarla.html">carla</a></div><div class="ttdoc">CARLA模拟器的主命名空间。</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d4f/Carla_8cpp_source.html#l00139">Carla.cpp:139</a></div></div>
+<div class="ttc" id="anamespacecarla_html_a23602ab663165210a7757d6108f6b3cd"><div class="ttname"><a href="../../d9/d36/namespacecarla.html#a23602ab663165210a7757d6108f6b3cd">carla::throw_exception</a></div><div class="ttdeci">void throw_exception(const std::exception &amp;e)</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d4f/Carla_8cpp_source.html#l00142">Carla.cpp:142</a></div></div>
+<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="../../d8/dcc/namespacestd.html">std</a></div><div class="ttdef"><b>Definition:</b> <a href="../../df/d06/CarlaRecorderCollision_8h_source.html#l00030">CarlaRecorderCollision.h:31</a></div></div>
+<div class="ttc" id="astructcarla_1_1RecurrentSharedFuture_1_1mapped__type_html"><div class="ttname"><a href="../../d0/d90/structcarla_1_1RecurrentSharedFuture_1_1mapped__type.html">carla::RecurrentSharedFuture::mapped_type</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d7/de1/RecurrentSharedFuture_8h_source.html#l00075">RecurrentSharedFuture.h:75</a></div></div>
+<div class="ttc" id="astructcarla_1_1RecurrentSharedFuture_1_1mapped__type_html_a379a57ddce2b37c0420f22d9599fbc12"><div class="ttname"><a href="../../d0/d90/structcarla_1_1RecurrentSharedFuture_1_1mapped__type.html#a379a57ddce2b37c0420f22d9599fbc12">carla::RecurrentSharedFuture::mapped_type::should_wait</a></div><div class="ttdeci">bool should_wait</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/de1/RecurrentSharedFuture_8h_source.html#l00076">RecurrentSharedFuture.h:76</a></div></div>
+<div class="ttc" id="astructcarla_1_1RecurrentSharedFuture_1_1mapped__type_html_ac46e88278eb90b2fd3889a77849ce112"><div class="ttname"><a href="../../d0/d90/structcarla_1_1RecurrentSharedFuture_1_1mapped__type.html#ac46e88278eb90b2fd3889a77849ce112">carla::RecurrentSharedFuture::mapped_type::value</a></div><div class="ttdeci">boost::variant2::variant&lt; SharedException, T &gt; value</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/de1/RecurrentSharedFuture_8h_source.html#l00077">RecurrentSharedFuture.h:77</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

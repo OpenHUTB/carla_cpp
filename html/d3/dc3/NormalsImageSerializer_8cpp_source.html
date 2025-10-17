@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: NormalsImageSerializer.cpp 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_8b842c0ad24262c95de16c440fd51527.html">sensor</a></li><li class="navelem"><a class="el" href="../../dir_b71b58631e6fc4802964ac57c42fdaac.html">s11n</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">NormalsImageSerializer.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d3/dc3/NormalsImageSerializer_8cpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// Created by flo on 09.11.20.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="../../dd/d9f/NormalsImageSerializer_8h.html">NormalsImageSerializer.h</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="../../dd/d9f/NormalsImageSerializer_8h.html">carla/sensor/s11n/NormalsImageSerializer.h</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="../../da/d9b/sensor_2data_2Image_8h.html">carla/sensor/data/Image.h</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d9/d36/namespacecarla.html">carla</a> {</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>  <span class="keyword">namespace </span>sensor {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="keyword">namespace </span>s11n {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>      <span class="comment">// NormalsImageSerializer类的Deserialize函数定义，该函数接收一个右值引用类型的RawData参数，用于反序列化操作。</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>      <span class="comment">// 其作用可能是将传入的原始数据（RawData）转换为对应的传感器数据结构（这里推测是和法线图像相关的数据结构）。</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>     SharedPtr&lt;SensorData&gt; <a class="code hl_function" href="../../d6/dcb/classcarla_1_1sensor_1_1s11n_1_1NormalsImageSerializer.html#a5bfc621483a2f0ea22dc534668229935">NormalsImageSerializer::Deserialize</a>(RawData &amp;&amp;data) {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        <span class="comment">// 创建一个指向data::NormalsImage类型对象的智能指针（SharedPtr），通过移动构造函数将传入的原始数据（data）传递给data::NormalsImage的构造函数来初始化该对象。</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="comment">// 这里的data::NormalsImage应该是一种表示法线图像数据的自定义类型，它接受移动进来的原始数据来构造自身。</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        <span class="keyword">auto</span> image = SharedPtr&lt;data::NormalsImage&gt;(<span class="keyword">new</span> <a class="code hl_typedef" href="../../db/de4/namespacecarla_1_1sensor_1_1data.html#a902d0a1f33dcd0111ffe361a0664a7fe">data::NormalsImage</a>{std::move(data)});</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <span class="comment">// 将创建好的代表法线图像数据的智能指针（image）作为函数返回值返回，意味着该函数返回经过反序列化操作后得到的法线图像相关的传感器数据。</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <span class="keywordflow">return</span> image;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    } <span class="comment">// namespace s11n</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  } <span class="comment">// namespace sensor</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>} <span class="comment">// namespace carla</span></div>
+<div class="ttc" id="aNormalsImageSerializer_8h_html"><div class="ttname"><a href="../../dd/d9f/NormalsImageSerializer_8h.html">NormalsImageSerializer.h</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1s11n_1_1NormalsImageSerializer_html_a5bfc621483a2f0ea22dc534668229935"><div class="ttname"><a href="../../d6/dcb/classcarla_1_1sensor_1_1s11n_1_1NormalsImageSerializer.html#a5bfc621483a2f0ea22dc534668229935">carla::sensor::s11n::NormalsImageSerializer::Deserialize</a></div><div class="ttdeci">static SharedPtr&lt; SensorData &gt; Deserialize(RawData &amp;&amp;data)</div></div>
+<div class="ttc" id="anamespacecarla_1_1sensor_1_1data_html_a902d0a1f33dcd0111ffe361a0664a7fe"><div class="ttname"><a href="../../db/de4/namespacecarla_1_1sensor_1_1data.html#a902d0a1f33dcd0111ffe361a0664a7fe">carla::sensor::data::NormalsImage</a></div><div class="ttdeci">ImageTmpl&lt; Color &gt; NormalsImage</div><div class="ttdoc">定义32位BGRA颜色的图像，用于法线图</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d9b/sensor_2data_2Image_8h_source.html#l00026">sensor/data/Image.h:26</a></div></div>
+<div class="ttc" id="anamespacecarla_html"><div class="ttname"><a href="../../d9/d36/namespacecarla.html">carla</a></div><div class="ttdoc">CARLA模拟器的主命名空间。</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d4f/Carla_8cpp_source.html#l00139">Carla.cpp:139</a></div></div>
+<div class="ttc" id="asensor_2data_2Image_8h_html"><div class="ttname"><a href="../../da/d9b/sensor_2data_2Image_8h.html">Image.h</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<map id="nav_msgs::msg::OdometryPubSubType::getSerializedSizeProvider" name="nav_msgs::msg::OdometryPubSubType::getSerializedSizeProvider">
+<area shape="rect" id="node1" title=" " alt="" coords="5,192,232,232"/>
+<area shape="rect" id="node2" href="$d3/d69/classnav__msgs_1_1msg_1_1Odometry.html#abeb384ad22595b0a91148a24a52bdc6e" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="280,192,455,232"/>
+<area shape="rect" id="node3" href="$d3/d69/classnav__msgs_1_1msg_1_1Odometry.html#ac52009b4cb700298c649bee22719f94b" title="This function copies the value in member child_frame_id" alt="" coords="503,5,677,45"/>
+<area shape="rect" id="node4" href="$df/d34/classgeometry__msgs_1_1msg_1_1PoseWithCovariance.html#ace476365ef1389542fa3ceb4ff5f6067" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="515,70,665,125"/>
+<area shape="rect" id="node5" href="$d2/d2f/classgeometry__msgs_1_1msg_1_1TwistWithCovariance.html#ae69e0ab3d6d949df7d8ad7ea644b3361" title="返回数据的序列化大小（取决于缓冲区对齐）。" alt="" coords="515,149,665,203"/>
+<area shape="rect" id="node11" href="$d3/d69/classnav__msgs_1_1msg_1_1Odometry.html#aa73f2cd2beab316ecb2e5b1f329d9c90" title="This function copies the value in member header" alt="" coords="503,228,677,268"/>
+<area shape="rect" id="node12" href="$d3/d69/classnav__msgs_1_1msg_1_1Odometry.html#a179d205eb22829c5499681fe5338893b" title="This function copies the value in member pose" alt="" coords="503,292,677,332"/>
+<area shape="rect" id="node13" href="$d3/d69/classnav__msgs_1_1msg_1_1Odometry.html#a93cf87b360f9c06ce00bd4e7c60efe92" title="This function copies the value in member twist" alt="" coords="503,356,677,396"/>
+<area shape="rect" id="node6" href="$d0/d19/classgeometry__msgs_1_1msg_1_1Twist.html#a8d53a43431d10642ea8f337aea881c5d" title=" " alt="" coords="725,120,911,160"/>
+<area shape="rect" id="node10" href="$d2/d2f/classgeometry__msgs_1_1msg_1_1TwistWithCovariance.html#af2a6d7529b881ceefd87993f0967a411" title="复制成员变量 twist 的值。" alt="" coords="743,185,893,239"/>
+<area shape="rect" id="node7" href="$d0/d19/classgeometry__msgs_1_1msg_1_1Twist.html#a1d1544d42efef9cd548f4558a891fcf2" title="此函数复制成员 angular 的值" alt="" coords="985,56,1131,96"/>
+<area shape="rect" id="node8" href="$df/d66/classgeometry__msgs_1_1msg_1_1Vector3.html#a3f4f6b078e23dd8bbd3a400a1c8a6209" title="此函数返回数据的序列化大小 &#160;&#160;取决于缓冲区对齐。" alt="" coords="959,120,1157,160"/>
+<area shape="rect" id="node9" href="$d0/d19/classgeometry__msgs_1_1msg_1_1Twist.html#ab53b6861bb43ddc103b6608d1eb9c255" title=" " alt="" coords="985,184,1131,224"/>
+</map>

@@ -1,0 +1,461 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: LoadAssetMaterialsCommandlet.cpp 文件参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_2d15d0715a2692171bd03ed14a4a79af.html">Unreal</a></li><li class="navelem"><a class="el" href="../../dir_d3c1db2570616bec48bf5a6dd06bce95.html">CarlaUE4</a></li><li class="navelem"><a class="el" href="../../dir_3538576148ac14151677be9b0aee6fcc.html">Plugins</a></li><li class="navelem"><a class="el" href="../../dir_fbda5b12374c683cbdca72abb2d51944.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_18937e8f6bde63367bf26837323a9508.html">Source</a></li><li class="navelem"><a class="el" href="../../dir_8fc34afb5f07a67966c78bf5319f94ae.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_b73fafeaa93af49306e77afd3c0d0eef.html">Commandlet</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">函数</a> &#124;
+<a href="#var-members">变量</a>  </div>
+  <div class="headertitle"><div class="title">LoadAssetMaterialsCommandlet.cpp 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="../../d9/d9c/LoadAssetMaterialsCommandlet_8h_source.html">LoadAssetMaterialsCommandlet.h</a>&quot;</code><br />
+<code>#include &quot;Misc/FileHelper.h&quot;</code><br />
+<code>#include &quot;JsonObject.h&quot;</code><br />
+<code>#include &quot;JsonSerializer.h&quot;</code><br />
+<code>#include &quot;UObject/ConstructorHelpers.h&quot;</code><br />
+<code>#include &quot;Runtime/Engine/Classes/Kismet/GameplayStatics.h&quot;</code><br />
+<code>#include &quot;Engine/StreamableManager.h&quot;</code><br />
+<code>#include &quot;Engine/StaticMeshActor.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d1/d9b/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2OpenDrive_2OpenDrive_8h_source.html">Carla/OpenDrive/OpenDrive.h</a>&quot;</code><br />
+<code>#include &quot;Engine/DecalActor.h&quot;</code><br />
+<code>#include &quot;Components/DecalComponent.h&quot;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> LoadAssetMaterialsCommandlet.cpp 的引用(Include)关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d0/da1/LoadAssetMaterialsCommandlet_8cpp__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+</div>
+<p><a href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a875e814b56a1cf7c1d1ad5532ddc1439"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#a875e814b56a1cf7c1d1ad5532ddc1439">for</a> (int32 i=0;i&lt; DecalsProperties.DecalMaterials.Num();++i)</td></tr>
+<tr class="separator:a875e814b56a1cf7c1d1ad5532ddc1439"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac7e3f538dd48134c8fece9a23935328"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#aac7e3f538dd48134c8fece9a23935328">if</a> (ReadConfigFile==<a class="el" href="../../d0/d6a/ActorDispatcher_8cpp.html#a930920b2bc42824a5c03be681830f4b2">true</a>)</td></tr>
+<tr class="separator:aac7e3f538dd48134c8fece9a23935328"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+变量</h2></td></tr>
+<tr class="memitem:af532f0062c7d68a5b0965882ac3ad2d1"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#af532f0062c7d68a5b0965882ac3ad2d1">CenterOfTileX</a> = <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#a26b3803f385a47dda4fb312382d7e10d">FirstTileWorldLocationX</a> + (XIndex * <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#a4ff592db816d9a97a59cc1289e932bbb">TileSizeCm</a>)</td></tr>
+<tr class="separator:af532f0062c7d68a5b0965882ac3ad2d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71de70dd93ee39ee6dfc134a0fa547b3"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#a71de70dd93ee39ee6dfc134a0fa547b3">CenterOfTileY</a> = <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#a33ada6535514aa6699c22e6dd91f16c7">FirstTileWorldLocationY</a> - (YIndex * <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#a4ff592db816d9a97a59cc1289e932bbb">TileSizeCm</a>)</td></tr>
+<tr class="separator:a71de70dd93ee39ee6dfc134a0fa547b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18a3be6f892ae280a94499f0892cae3e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">carla::geom::Location</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#a18a3be6f892ae280a94499f0892cae3e">DecalLocation</a></td></tr>
+<tr class="separator:a18a3be6f892ae280a94499f0892cae3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26b3803f385a47dda4fb312382d7e10d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#a26b3803f385a47dda4fb312382d7e10d">FirstTileWorldLocationX</a> = TileData.FirstTileCenterX * 100.0f</td></tr>
+<tr class="separator:a26b3803f385a47dda4fb312382d7e10d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33ada6535514aa6699c22e6dd91f16c7"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#a33ada6535514aa6699c22e6dd91f16c7">FirstTileWorldLocationY</a> = TileData.FirstTileCenterY * 100.0f</td></tr>
+<tr class="separator:a33ada6535514aa6699c22e6dd91f16c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff5026276330e974e3917a180ade18bc"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#aff5026276330e974e3917a180ade18bc">HalfSize</a> = TileData.Size / 2.0f</td></tr>
+<tr class="separator:aff5026276330e974e3917a180ade18bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab09e2c56667fe919a3d491682d2084e8"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#ab09e2c56667fe919a3d491682d2084e8">MaxXSize</a> = (TilePosition.X + <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#aff5026276330e974e3917a180ade18bc">HalfSize</a>)</td></tr>
+<tr class="separator:ab09e2c56667fe919a3d491682d2084e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaee0fbb979843c1f0e7e1ecffad147a8"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#aaee0fbb979843c1f0e7e1ecffad147a8">MaxXSizeCm</a> = <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#ab09e2c56667fe919a3d491682d2084e8">MaxXSize</a> * 100.0f</td></tr>
+<tr class="separator:aaee0fbb979843c1f0e7e1ecffad147a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4054e4f71f58f708cd79cb41166bb832"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#a4054e4f71f58f708cd79cb41166bb832">MaxYSize</a> = (TilePosition.Y + <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#aff5026276330e974e3917a180ade18bc">HalfSize</a>)</td></tr>
+<tr class="separator:a4054e4f71f58f708cd79cb41166bb832"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68b524cf6a63d061ae990b42b8504c52"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#a68b524cf6a63d061ae990b42b8504c52">MaxYSizeCm</a> = <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#a4054e4f71f58f708cd79cb41166bb832">MaxYSize</a> * 100.0f</td></tr>
+<tr class="separator:a68b524cf6a63d061ae990b42b8504c52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d8845392d74d03d02243ea5d2a7a46b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#a4d8845392d74d03d02243ea5d2a7a46b">MinXSize</a> = (TilePosition.X - <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#aff5026276330e974e3917a180ade18bc">HalfSize</a>)</td></tr>
+<tr class="separator:a4d8845392d74d03d02243ea5d2a7a46b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab62b216f712be30d5b6dd5464f53f3a3"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#ab62b216f712be30d5b6dd5464f53f3a3">MinXSizeCm</a> = <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#a4d8845392d74d03d02243ea5d2a7a46b">MinXSize</a> * 100.0f</td></tr>
+<tr class="separator:ab62b216f712be30d5b6dd5464f53f3a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41bbf37a583f988859f342aa9d3d98e2"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#a41bbf37a583f988859f342aa9d3d98e2">MinYSize</a> = (TilePosition.Y - <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#aff5026276330e974e3917a180ade18bc">HalfSize</a>)</td></tr>
+<tr class="separator:a41bbf37a583f988859f342aa9d3d98e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8000f3d0f7e0e58519b17eca3c8cf947"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#a8000f3d0f7e0e58519b17eca3c8cf947">MinYSizeCm</a> = <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#a41bbf37a583f988859f342aa9d3d98e2">MinYSize</a> * 100.0f</td></tr>
+<tr class="separator:a8000f3d0f7e0e58519b17eca3c8cf947"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ff592db816d9a97a59cc1289e932bbb"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#a4ff592db816d9a97a59cc1289e932bbb">TileSizeCm</a> = TileData.Size * 100.0f</td></tr>
+<tr class="separator:a4ff592db816d9a97a59cc1289e932bbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">函数说明</h2>
+<a id="a875e814b56a1cf7c1d1ad5532ddc1439" name="a875e814b56a1cf7c1d1ad5532ddc1439"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a875e814b56a1cf7c1d1ad5532ddc1439">&#9670;&#160;</a></span>for()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">for </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html">LoadAssetMaterialsCommandlet.cpp</a> 第 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00224">224</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00221">CenterOfTileX</a>, <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00222">CenterOfTileY</a>, <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00209">DecalLocation</a>, <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00198">MaxXSize</a>, <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00213">MaxXSizeCm</a>, <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00201">MaxYSize</a>, <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00215">MaxYSizeCm</a>, <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00197">MinXSize</a>, <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00212">MinXSizeCm</a>, <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00200">MinYSize</a>, <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00214">MinYSizeCm</a>, <a class="el" href="../../d3/d43/CarlaActor_8cpp_source.html#l00083">World</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00024">carla::geom::Vector3D::x</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00026">carla::geom::Vector3D::y</a> , 以及 <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00028">carla::geom::Vector3D::z</a>.</p>
+
+</div>
+</div>
+<a id="aac7e3f538dd48134c8fece9a23935328" name="aac7e3f538dd48134c8fece9a23935328"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac7e3f538dd48134c8fece9a23935328">&#9670;&#160;</a></span>if()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">if </td>
+          <td>(</td>
+          <td class="paramtype">ReadConfigFile&#160;</td>
+          <td class="paramname"> = <code>=&#160;<a class="el" href="../../d0/d6a/ActorDispatcher_8cpp.html#a930920b2bc42824a5c03be681830f4b2">true</a></code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html">LoadAssetMaterialsCommandlet.cpp</a> 第 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00203">203</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">变量说明</h2>
+<a id="af532f0062c7d68a5b0965882ac3ad2d1" name="af532f0062c7d68a5b0965882ac3ad2d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af532f0062c7d68a5b0965882ac3ad2d1">&#9670;&#160;</a></span>CenterOfTileX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float CenterOfTileX = <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#a26b3803f385a47dda4fb312382d7e10d">FirstTileWorldLocationX</a> + (XIndex * <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#a4ff592db816d9a97a59cc1289e932bbb">TileSizeCm</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html">LoadAssetMaterialsCommandlet.cpp</a> 第 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00221">221</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00224">for()</a>.</p>
+
+</div>
+</div>
+<a id="a71de70dd93ee39ee6dfc134a0fa547b3" name="a71de70dd93ee39ee6dfc134a0fa547b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71de70dd93ee39ee6dfc134a0fa547b3">&#9670;&#160;</a></span>CenterOfTileY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float CenterOfTileY = <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#a33ada6535514aa6699c22e6dd91f16c7">FirstTileWorldLocationY</a> - (YIndex * <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#a4ff592db816d9a97a59cc1289e932bbb">TileSizeCm</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html">LoadAssetMaterialsCommandlet.cpp</a> 第 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00222">222</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00224">for()</a>.</p>
+
+</div>
+</div>
+<a id="a18a3be6f892ae280a94499f0892cae3e" name="a18a3be6f892ae280a94499f0892cae3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18a3be6f892ae280a94499f0892cae3e">&#9670;&#160;</a></span>DecalLocation</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">carla::geom::Location</a> DecalLocation</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html">LoadAssetMaterialsCommandlet.cpp</a> 第 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00209">209</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00224">for()</a>.</p>
+
+</div>
+</div>
+<a id="a26b3803f385a47dda4fb312382d7e10d" name="a26b3803f385a47dda4fb312382d7e10d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26b3803f385a47dda4fb312382d7e10d">&#9670;&#160;</a></span>FirstTileWorldLocationX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float FirstTileWorldLocationX = TileData.FirstTileCenterX * 100.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html">LoadAssetMaterialsCommandlet.cpp</a> 第 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00218">218</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a33ada6535514aa6699c22e6dd91f16c7" name="a33ada6535514aa6699c22e6dd91f16c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33ada6535514aa6699c22e6dd91f16c7">&#9670;&#160;</a></span>FirstTileWorldLocationY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float FirstTileWorldLocationY = TileData.FirstTileCenterY * 100.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html">LoadAssetMaterialsCommandlet.cpp</a> 第 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00219">219</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aff5026276330e974e3917a180ade18bc" name="aff5026276330e974e3917a180ade18bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff5026276330e974e3917a180ade18bc">&#9670;&#160;</a></span>HalfSize</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float HalfSize = TileData.Size / 2.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html">LoadAssetMaterialsCommandlet.cpp</a> 第 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00195">195</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab09e2c56667fe919a3d491682d2084e8" name="ab09e2c56667fe919a3d491682d2084e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab09e2c56667fe919a3d491682d2084e8">&#9670;&#160;</a></span>MaxXSize</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float MaxXSize = (TilePosition.X + <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#aff5026276330e974e3917a180ade18bc">HalfSize</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html">LoadAssetMaterialsCommandlet.cpp</a> 第 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00198">198</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00224">for()</a>.</p>
+
+</div>
+</div>
+<a id="aaee0fbb979843c1f0e7e1ecffad147a8" name="aaee0fbb979843c1f0e7e1ecffad147a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaee0fbb979843c1f0e7e1ecffad147a8">&#9670;&#160;</a></span>MaxXSizeCm</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float MaxXSizeCm = <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#ab09e2c56667fe919a3d491682d2084e8">MaxXSize</a> * 100.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html">LoadAssetMaterialsCommandlet.cpp</a> 第 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00213">213</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00224">for()</a>.</p>
+
+</div>
+</div>
+<a id="a4054e4f71f58f708cd79cb41166bb832" name="a4054e4f71f58f708cd79cb41166bb832"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4054e4f71f58f708cd79cb41166bb832">&#9670;&#160;</a></span>MaxYSize</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float MaxYSize = (TilePosition.Y + <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#aff5026276330e974e3917a180ade18bc">HalfSize</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html">LoadAssetMaterialsCommandlet.cpp</a> 第 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00201">201</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00224">for()</a>.</p>
+
+</div>
+</div>
+<a id="a68b524cf6a63d061ae990b42b8504c52" name="a68b524cf6a63d061ae990b42b8504c52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68b524cf6a63d061ae990b42b8504c52">&#9670;&#160;</a></span>MaxYSizeCm</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float MaxYSizeCm = <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#a4054e4f71f58f708cd79cb41166bb832">MaxYSize</a> * 100.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html">LoadAssetMaterialsCommandlet.cpp</a> 第 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00215">215</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00224">for()</a>.</p>
+
+</div>
+</div>
+<a id="a4d8845392d74d03d02243ea5d2a7a46b" name="a4d8845392d74d03d02243ea5d2a7a46b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d8845392d74d03d02243ea5d2a7a46b">&#9670;&#160;</a></span>MinXSize</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float MinXSize = (TilePosition.X - <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#aff5026276330e974e3917a180ade18bc">HalfSize</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html">LoadAssetMaterialsCommandlet.cpp</a> 第 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00197">197</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00224">for()</a>.</p>
+
+</div>
+</div>
+<a id="ab62b216f712be30d5b6dd5464f53f3a3" name="ab62b216f712be30d5b6dd5464f53f3a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab62b216f712be30d5b6dd5464f53f3a3">&#9670;&#160;</a></span>MinXSizeCm</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float MinXSizeCm = <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#a4d8845392d74d03d02243ea5d2a7a46b">MinXSize</a> * 100.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html">LoadAssetMaterialsCommandlet.cpp</a> 第 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00212">212</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00224">for()</a>.</p>
+
+</div>
+</div>
+<a id="a41bbf37a583f988859f342aa9d3d98e2" name="a41bbf37a583f988859f342aa9d3d98e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41bbf37a583f988859f342aa9d3d98e2">&#9670;&#160;</a></span>MinYSize</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float MinYSize = (TilePosition.Y - <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#aff5026276330e974e3917a180ade18bc">HalfSize</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html">LoadAssetMaterialsCommandlet.cpp</a> 第 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00200">200</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00224">for()</a>.</p>
+
+</div>
+</div>
+<a id="a8000f3d0f7e0e58519b17eca3c8cf947" name="a8000f3d0f7e0e58519b17eca3c8cf947"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8000f3d0f7e0e58519b17eca3c8cf947">&#9670;&#160;</a></span>MinYSizeCm</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float MinYSizeCm = <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp.html#a41bbf37a583f988859f342aa9d3d98e2">MinYSize</a> * 100.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html">LoadAssetMaterialsCommandlet.cpp</a> 第 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00214">214</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00224">for()</a>.</p>
+
+</div>
+</div>
+<a id="a4ff592db816d9a97a59cc1289e932bbb" name="a4ff592db816d9a97a59cc1289e932bbb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ff592db816d9a97a59cc1289e932bbb">&#9670;&#160;</a></span>TileSizeCm</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float TileSizeCm = TileData.Size * 100.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html">LoadAssetMaterialsCommandlet.cpp</a> 第 <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00217">217</a> 行定义.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

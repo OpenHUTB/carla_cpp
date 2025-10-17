@@ -1,0 +1,5 @@
+<map id="carla::road::element::RoadInfoLaneWidth" name="carla::road::element::RoadInfoLaneWidth">
+<area shape="rect" id="node1" title="车道宽度记录：道路上每个交叉部分的车道可以提供多个宽度条目。 每个车道至少必须定义一个条目，除了按照惯例中心车道宽度为零。 每个条目在定义新条目之前都是有效的。如果为一个车道定义了多个条目， 它们必须按..." alt="" coords="5,167,148,207"/>
+<area shape="rect" id="node2" href="$d6/d0f/classcarla_1_1road_1_1element_1_1RoadInfo.html" title=" " alt="" coords="10,79,143,119"/>
+<area shape="rect" id="node3" href="$d4/d8b/classcarla_1_1NonCopyable.html" title="这个类用于禁止拷贝和移动构造函数及赋值操作" alt="" coords="10,5,143,31"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="carla::Buffer::resize" name="carla::Buffer::resize">
+<area shape="rect" id="node1" title="调整缓冲区的大小。如果容量不足，将分配一个新的大小为 size的内存块，并复制数据。" alt="" coords="5,104,136,129"/>
+<area shape="rect" id="node2" href="$d0/d0a/classcarla_1_1Buffer.html#a58ec7fcf4a9a2f70edb139f9671ebd00" title="将 source复制到此缓冲区。如果需要，则分配内存。" alt="" coords="184,29,340,55"/>
+<area shape="rect" id="node3" href="$d0/d0a/classcarla_1_1Buffer.html#a10680a1dd5dd8718b8e871b631022cdf" title="直接访问分配的内存，如果没有分配内存则返回 nullptr。" alt="" coords="201,79,323,104"/>
+<area shape="rect" id="node4" href="$d0/d0a/classcarla_1_1Buffer.html#a23578a522b5ce30a6e821255a8f0ff5e" title="重置缓冲区的大小。如果容量不足，当前内存将被丢弃，并分配一个新的大小为 size的内存块。 allocated." alt="" coords="199,128,325,153"/>
+<area shape="rect" id="node7" href="$d0/d0a/classcarla_1_1Buffer.html#a3edea2e44a05d9806312e5f9e52315e4" title=" " alt="" coords="388,177,507,203"/>
+<area shape="rect" id="node5" href="$d9/d36/namespacecarla.html#afb6ca911605d1ec35bdf563de2814dba" title=" " alt="" coords="390,128,505,153"/>
+<area shape="rect" id="node6" href="$d2/d8c/namespacecarla_1_1logging.html#a4193666236852fb6a6977299a31445d8" title=" " alt="" coords="555,121,685,161"/>
+</map>

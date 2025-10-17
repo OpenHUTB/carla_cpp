@@ -1,0 +1,1675 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: carla::rss::RssCheck类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../d9/d36/namespacecarla.html">carla</a></li><li class="navelem"><a class="el" href="../../db/d85/namespacecarla_1_1rss.html">rss</a></li><li class="navelem"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html">RssCheck</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">类</a> &#124;
+<a href="#pub-types">Public 类型</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="#friends">友元</a> &#124;
+<a href="../../df/dcd/classcarla_1_1rss_1_1RssCheck-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">carla::rss::RssCheck类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>class implementing the actual RSS checks based on CARLA world description  
+ <a href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../d8/dab/RssCheck_8h_source.html">RssCheck.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> carla::rss::RssCheck 的协作图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d0/d2a/classcarla_1_1rss_1_1RssCheck__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d03/structcarla_1_1rss_1_1RssCheck_1_1CarlaRssState.html">CarlaRssState</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">struct collecting the rss states required  <a href="../../d0/d03/structcarla_1_1rss_1_1RssCheck_1_1CarlaRssState.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dcd/classcarla_1_1rss_1_1RssCheck_1_1RssObjectChecker.html">RssObjectChecker</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public 类型</h2></td></tr>
+<tr class="memitem:ab510f4eb0faad4ed797bcde4f6e65324"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#ab510f4eb0faad4ed797bcde4f6e65324">ActorConstellationCallbackFunctionType</a> = std::function&lt;<a class="el" href="../../db/d50/structcarla_1_1rss_1_1ActorConstellationResult.html">::carla::rss::ActorConstellationResult</a>(<a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">carla::SharedPtr</a>&lt; <a class="el" href="../../d3/dcf/structcarla_1_1rss_1_1ActorConstellationData.html">ActorConstellationData</a> &gt;)&gt;</td></tr>
+<tr class="separator:ab510f4eb0faad4ed797bcde4f6e65324"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a8d2ebedc410a598ca89295bc3c39189b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#a8d2ebedc410a598ca89295bc3c39189b">AppendRoutingTarget</a> (const <a class="el" href="../../de/da4/classcarla_1_1geom_1_1Transform.html">::carla::geom::Transform</a> &amp;routing_target)</td></tr>
+<tr class="memdesc:a8d2ebedc410a598ca89295bc3c39189b"><td class="mdescLeft">&#160;</td><td class="mdescRight">appends a routing target to the current routing target list (  <a href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#a8d2ebedc410a598ca89295bc3c39189b">更多...</a><br /></td></tr>
+<tr class="separator:a8d2ebedc410a598ca89295bc3c39189b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ddb47aaeb4d941c95e5b2fce91186b7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#a7ddb47aaeb4d941c95e5b2fce91186b7">CheckObjects</a> (<a class="el" href="../../df/d2c/classcarla_1_1client_1_1Timestamp.html">carla::client::Timestamp</a> const &amp;timestamp, <a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">carla::SharedPtr</a>&lt; <a class="el" href="../../da/d51/classcarla_1_1client_1_1ActorList.html">carla::client::ActorList</a> &gt; const &amp;actors, <a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">carla::SharedPtr</a>&lt; <a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">carla::client::Actor</a> &gt; const &amp;carla_ego_actor, ::ad::rss::state::ProperResponse &amp;output_response, ::ad::rss::state::RssStateSnapshot &amp;output_rss_state_snapshot, ::ad::rss::situation::SituationSnapshot &amp;output_situation_snapshot, ::ad::rss::world::WorldModel &amp;output_world_model, <a class="el" href="../../d1/d1b/structcarla_1_1rss_1_1EgoDynamicsOnRoute.html">EgoDynamicsOnRoute</a> &amp;output_rss_ego_dynamics_on_route)</td></tr>
+<tr class="memdesc:a7ddb47aaeb4d941c95e5b2fce91186b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">main function to trigger the RSS check at a certain point in time  <a href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#a7ddb47aaeb4d941c95e5b2fce91186b7">更多...</a><br /></td></tr>
+<tr class="separator:a7ddb47aaeb4d941c95e5b2fce91186b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd7e97540e3d4e7bbce5dce1c70deeef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#acd7e97540e3d4e7bbce5dce1c70deeef">DropRoute</a> ()</td></tr>
+<tr class="memdesc:acd7e97540e3d4e7bbce5dce1c70deeef"><td class="mdescLeft">&#160;</td><td class="mdescRight">drop the current route  <a href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#acd7e97540e3d4e7bbce5dce1c70deeef">更多...</a><br /></td></tr>
+<tr class="separator:acd7e97540e3d4e7bbce5dce1c70deeef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae3666f963027c6279d77970bbc9f5ea"><td class="memItemLeft" align="right" valign="top">const ::ad::rss::world::RssDynamics &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#aae3666f963027c6279d77970bbc9f5ea">GetDefaultActorConstellationCallbackEgoVehicleDynamics</a> () const</td></tr>
+<tr class="separator:aae3666f963027c6279d77970bbc9f5ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39fabbe9d25e0b3988213c2c1a1f8dda"><td class="memItemLeft" align="right" valign="top">const ::ad::rss::world::RssDynamics &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#a39fabbe9d25e0b3988213c2c1a1f8dda">GetDefaultActorConstellationCallbackOtherVehicleDynamics</a> () const</td></tr>
+<tr class="separator:a39fabbe9d25e0b3988213c2c1a1f8dda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae382df77b739e742a8a1090ee4005571"><td class="memItemLeft" align="right" valign="top">const ::ad::rss::world::RssDynamics &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#ae382df77b739e742a8a1090ee4005571">GetDefaultActorConstellationCallbackPedestrianDynamics</a> () const</td></tr>
+<tr class="separator:ae382df77b739e742a8a1090ee4005571"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa25d93f5a82393313d3d2a090a3a2726"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; spdlog::logger &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#aa25d93f5a82393313d3d2a090a3a2726">GetLogger</a> ()</td></tr>
+<tr class="memdesc:aa25d93f5a82393313d3d2a090a3a2726"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the logger of this  <a href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#aa25d93f5a82393313d3d2a090a3a2726">更多...</a><br /></td></tr>
+<tr class="separator:aa25d93f5a82393313d3d2a090a3a2726"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4803100df5986fe1a088ff0036b1663"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../db/d85/namespacecarla_1_1rss.html#a28d7e06be0ca33af00c6e19c5c36a671">::carla::rss::RoadBoundariesMode</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#af4803100df5986fe1a088ff0036b1663">GetRoadBoundariesMode</a> () const</td></tr>
+<tr class="separator:af4803100df5986fe1a088ff0036b1663"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45f372ac2bc64bbed26562e08455e1cc"><td class="memItemLeft" align="right" valign="top">const std::vector&lt;<a class="el" href="../../de/da4/classcarla_1_1geom_1_1Transform.html">::carla::geom::Transform</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#a45f372ac2bc64bbed26562e08455e1cc">GetRoutingTargets</a> () const</td></tr>
+<tr class="separator:a45f372ac2bc64bbed26562e08455e1cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4d09790884e50c9d959356091646ded"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#ab4d09790884e50c9d959356091646ded">ResetRoutingTargets</a> ()</td></tr>
+<tr class="memdesc:ab4d09790884e50c9d959356091646ded"><td class="mdescLeft">&#160;</td><td class="mdescRight">resets the current routing targets (  <a href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#ab4d09790884e50c9d959356091646ded">更多...</a><br /></td></tr>
+<tr class="separator:ab4d09790884e50c9d959356091646ded"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65ed15e5c2d160f84d6ae5872f8cf878"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#a65ed15e5c2d160f84d6ae5872f8cf878">RssCheck</a> (float max_steering_angle)</td></tr>
+<tr class="memdesc:a65ed15e5c2d160f84d6ae5872f8cf878"><td class="mdescLeft">&#160;</td><td class="mdescRight">default constructor with default internal default actor constellation callback  <a href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#a65ed15e5c2d160f84d6ae5872f8cf878">更多...</a><br /></td></tr>
+<tr class="separator:a65ed15e5c2d160f84d6ae5872f8cf878"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af684d20f22eb3929c92b2beb4d6e1e0f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#af684d20f22eb3929c92b2beb4d6e1e0f">RssCheck</a> (float max_steering_angle, <a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#ab510f4eb0faad4ed797bcde4f6e65324">ActorConstellationCallbackFunctionType</a> rss_actor_constellation_callback, <a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">carla::SharedPtr</a>&lt; <a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">carla::client::Actor</a> &gt; const &amp;carla_ego_actor)</td></tr>
+<tr class="memdesc:af684d20f22eb3929c92b2beb4d6e1e0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">constructor with actor constellation callback  <a href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#af684d20f22eb3929c92b2beb4d6e1e0f">更多...</a><br /></td></tr>
+<tr class="separator:af684d20f22eb3929c92b2beb4d6e1e0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9530cc2ab675bbbf3debd71b9a5ed4d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#a9530cc2ab675bbbf3debd71b9a5ed4d2">SetDefaultActorConstellationCallbackEgoVehicleDynamics</a> (const ::ad::rss::world::RssDynamics &amp;ego_vehicle_dynamics)</td></tr>
+<tr class="memdesc:a9530cc2ab675bbbf3debd71b9a5ed4d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the vehicle dynamics to be used for the ego vehicle  <a href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#a9530cc2ab675bbbf3debd71b9a5ed4d2">更多...</a><br /></td></tr>
+<tr class="separator:a9530cc2ab675bbbf3debd71b9a5ed4d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae86c4cda4323905c3042ac044fbc829"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#aae86c4cda4323905c3042ac044fbc829">SetDefaultActorConstellationCallbackOtherVehicleDynamics</a> (const ::ad::rss::world::RssDynamics &amp;other_vehicle_dynamics)</td></tr>
+<tr class="memdesc:aae86c4cda4323905c3042ac044fbc829"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the vehicle dynamics to be used for other vehicles  <a href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#aae86c4cda4323905c3042ac044fbc829">更多...</a><br /></td></tr>
+<tr class="separator:aae86c4cda4323905c3042ac044fbc829"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af659681333c9ad550633d4e0a75b8d4d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#af659681333c9ad550633d4e0a75b8d4d">SetDefaultActorConstellationCallbackPedestrianDynamics</a> (const ::ad::rss::world::RssDynamics &amp;pedestrian_dynamics)</td></tr>
+<tr class="memdesc:af659681333c9ad550633d4e0a75b8d4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the dynamics to be used for pedestrians  <a href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#af659681333c9ad550633d4e0a75b8d4d">更多...</a><br /></td></tr>
+<tr class="separator:af659681333c9ad550633d4e0a75b8d4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b41598940f7ddfea0276e0e1472a1ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#a8b41598940f7ddfea0276e0e1472a1ea">SetLogLevel</a> (const spdlog::level::level_enum &amp;log_level)</td></tr>
+<tr class="memdesc:a8b41598940f7ddfea0276e0e1472a1ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the current log level  <a href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#a8b41598940f7ddfea0276e0e1472a1ea">更多...</a><br /></td></tr>
+<tr class="separator:a8b41598940f7ddfea0276e0e1472a1ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe127250ae759782cff841b9095382bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#abe127250ae759782cff841b9095382bb">SetMapLogLevel</a> (const spdlog::level::level_enum &amp;map_log_level)</td></tr>
+<tr class="memdesc:abe127250ae759782cff841b9095382bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the current log level  <a href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#abe127250ae759782cff841b9095382bb">更多...</a><br /></td></tr>
+<tr class="separator:abe127250ae759782cff841b9095382bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada255c046751b348aa23a96b15c30fbd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#ada255c046751b348aa23a96b15c30fbd">SetRoadBoundariesMode</a> (const <a class="el" href="../../db/d85/namespacecarla_1_1rss.html#a28d7e06be0ca33af00c6e19c5c36a671">::carla::rss::RoadBoundariesMode</a> &amp;road_boundaries_mode)</td></tr>
+<tr class="memdesc:ada255c046751b348aa23a96b15c30fbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the current mode for respecting the road boundaries (  <a href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#ada255c046751b348aa23a96b15c30fbd">更多...</a><br /></td></tr>
+<tr class="separator:ada255c046751b348aa23a96b15c30fbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5770e1956a7688e1b6ba89595b57bbe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#ac5770e1956a7688e1b6ba89595b57bbe">~RssCheck</a> ()</td></tr>
+<tr class="memdesc:ac5770e1956a7688e1b6ba89595b57bbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">destructor  <a href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#ac5770e1956a7688e1b6ba89595b57bbe">更多...</a><br /></td></tr>
+<tr class="separator:ac5770e1956a7688e1b6ba89595b57bbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr class="memitem:ab1cdff96841a3e32821c38eb592dd119"><td class="memItemLeft" align="right" valign="top">::ad::rss::world::RssDynamics&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#ab1cdff96841a3e32821c38eb592dd119">GetDefaultPedestrianDynamics</a> ()</td></tr>
+<tr class="separator:ab1cdff96841a3e32821c38eb592dd119"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad41bd0e7d6b30cdfb44aabc4abc0c21"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../db/d85/namespacecarla_1_1rss.html#a28d7e06be0ca33af00c6e19c5c36a671">RoadBoundariesMode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#aad41bd0e7d6b30cdfb44aabc4abc0c21">GetDefaultRoadBoundariesMode</a> ()</td></tr>
+<tr class="separator:aad41bd0e7d6b30cdfb44aabc4abc0c21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1caf4493e0eca6b46dd4105ae868f9de"><td class="memItemLeft" align="right" valign="top">::ad::rss::world::RssDynamics&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#a1caf4493e0eca6b46dd4105ae868f9de">GetDefaultVehicleDynamics</a> ()</td></tr>
+<tr class="separator:a1caf4493e0eca6b46dd4105ae868f9de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:aaaf0a0f73759f525137e227af98f5074"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/d1b/structcarla_1_1rss_1_1EgoDynamicsOnRoute.html">EgoDynamicsOnRoute</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#aaaf0a0f73759f525137e227af98f5074">CalculateEgoDynamicsOnRoute</a> (<a class="el" href="../../df/d2c/classcarla_1_1client_1_1Timestamp.html">carla::client::Timestamp</a> const &amp;current_timestamp, double const &amp;time_since_epoch_check_start_ms, <a class="el" href="../../d9/dc6/classcarla_1_1client_1_1Vehicle.html">carla::client::Vehicle</a> const &amp;carla_vehicle, ::ad::map::match::Object match_object, ::ad::map::route::FullRoute const &amp;route, ::ad::rss::world::RssDynamics const &amp;default_ego_vehicle_dynamics, <a class="el" href="../../d1/d1b/structcarla_1_1rss_1_1EgoDynamicsOnRoute.html">EgoDynamicsOnRoute</a> const &amp;last_dynamics) const</td></tr>
+<tr class="memdesc:aaaf0a0f73759f525137e227af98f5074"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculate ego vehicle dynamics on the route  <a href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#aaaf0a0f73759f525137e227af98f5074">更多...</a><br /></td></tr>
+<tr class="separator:aaaf0a0f73759f525137e227af98f5074"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25f1eac0cc58d2c2c0b409832b59960a"><td class="memItemLeft" align="right" valign="top">::ad::physics::AngularVelocity&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#a25f1eac0cc58d2c2c0b409832b59960a">GetHeadingChange</a> (<a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">carla::client::Actor</a> const &amp;actor) const</td></tr>
+<tr class="memdesc:a25f1eac0cc58d2c2c0b409832b59960a"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculate the heading change from the actor  <a href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#a25f1eac0cc58d2c2c0b409832b59960a">更多...</a><br /></td></tr>
+<tr class="separator:a25f1eac0cc58d2c2c0b409832b59960a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3b645959ac8e39bcea3ac5bc503e984"><td class="memItemLeft" align="right" valign="top">::ad::map::match::Object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#ad3b645959ac8e39bcea3ac5bc503e984">GetMatchObject</a> (<a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">carla::SharedPtr</a>&lt; <a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">carla::client::Actor</a> &gt; const &amp;actor, ::ad::physics::Distance const &amp;sampling_distance) const</td></tr>
+<tr class="memdesc:ad3b645959ac8e39bcea3ac5bc503e984"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculate the map matched object from the actor  <a href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#ad3b645959ac8e39bcea3ac5bc503e984">更多...</a><br /></td></tr>
+<tr class="separator:ad3b645959ac8e39bcea3ac5bc503e984"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a076f17bcb321e9536ca59ee06bfab858"><td class="memItemLeft" align="right" valign="top">::ad::physics::Speed&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#a076f17bcb321e9536ca59ee06bfab858">GetSpeed</a> (<a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">carla::client::Actor</a> const &amp;actor) const</td></tr>
+<tr class="memdesc:a076f17bcb321e9536ca59ee06bfab858"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculate the speed from the actor  <a href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#a076f17bcb321e9536ca59ee06bfab858">更多...</a><br /></td></tr>
+<tr class="separator:a076f17bcb321e9536ca59ee06bfab858"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65e61e10af7c201cf90f4960335d58c2"><td class="memItemLeft" align="right" valign="top">::ad::physics::Angle&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#a65e61e10af7c201cf90f4960335d58c2">GetSteeringAngle</a> (<a class="el" href="../../d9/dc6/classcarla_1_1client_1_1Vehicle.html">carla::client::Vehicle</a> const &amp;actor) const</td></tr>
+<tr class="memdesc:a65e61e10af7c201cf90f4960335d58c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculate the steering angle from the actor  <a href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#a65e61e10af7c201cf90f4960335d58c2">更多...</a><br /></td></tr>
+<tr class="separator:a65e61e10af7c201cf90f4960335d58c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5f3f5dcadacba5f1974de32474838a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#af5f3f5dcadacba5f1974de32474838a2">UpdateDefaultRssDynamics</a> (<a class="el" href="../../d0/d03/structcarla_1_1rss_1_1RssCheck_1_1CarlaRssState.html">CarlaRssState</a> &amp;carla_rss_state)</td></tr>
+<tr class="separator:af5f3f5dcadacba5f1974de32474838a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b5193c0633fca116bcbbd468c900ea9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#a9b5193c0633fca116bcbbd468c900ea9">UpdateRoute</a> (<a class="el" href="../../d0/d03/structcarla_1_1rss_1_1RssCheck_1_1CarlaRssState.html">CarlaRssState</a> &amp;carla_rss_state)</td></tr>
+<tr class="memdesc:a9b5193c0633fca116bcbbd468c900ea9"><td class="mdescLeft">&#160;</td><td class="mdescRight">update the desired ego vehicle route  <a href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#a9b5193c0633fca116bcbbd468c900ea9">更多...</a><br /></td></tr>
+<tr class="separator:a9b5193c0633fca116bcbbd468c900ea9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:ab6433353c4fb95e0752092d1e195647f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#ab510f4eb0faad4ed797bcde4f6e65324">ActorConstellationCallbackFunctionType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#ab6433353c4fb95e0752092d1e195647f">_actor_constellation_callback</a></td></tr>
+<tr class="memdesc:ab6433353c4fb95e0752092d1e195647f"><td class="mdescLeft">&#160;</td><td class="mdescRight">the current actor constellation callback  <a href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#ab6433353c4fb95e0752092d1e195647f">更多...</a><br /></td></tr>
+<tr class="separator:ab6433353c4fb95e0752092d1e195647f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9a502c9d995506670fa3db48feae83f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/d03/structcarla_1_1rss_1_1RssCheck_1_1CarlaRssState.html">CarlaRssState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#ac9a502c9d995506670fa3db48feae83f">_carla_rss_state</a></td></tr>
+<tr class="memdesc:ac9a502c9d995506670fa3db48feae83f"><td class="mdescLeft">&#160;</td><td class="mdescRight">the current state of the ego vehicle  <a href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#ac9a502c9d995506670fa3db48feae83f">更多...</a><br /></td></tr>
+<tr class="separator:ac9a502c9d995506670fa3db48feae83f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a498175cef363160e7de143ab0e744daf"><td class="memItemLeft" align="right" valign="top">::ad::rss::world::RssDynamics&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#a498175cef363160e7de143ab0e744daf">_default_actor_constellation_callback_ego_vehicle_dynamics</a></td></tr>
+<tr class="memdesc:a498175cef363160e7de143ab0e744daf"><td class="mdescLeft">&#160;</td><td class="mdescRight">current used vehicle dynamics for ego vehicle by the default actor constellation callback  <a href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#a498175cef363160e7de143ab0e744daf">更多...</a><br /></td></tr>
+<tr class="separator:a498175cef363160e7de143ab0e744daf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fba3ec6e80cad11dedfb2e4e2810b74"><td class="memItemLeft" align="right" valign="top">::ad::rss::world::RssDynamics&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#a7fba3ec6e80cad11dedfb2e4e2810b74">_default_actor_constellation_callback_other_vehicle_dynamics</a></td></tr>
+<tr class="memdesc:a7fba3ec6e80cad11dedfb2e4e2810b74"><td class="mdescLeft">&#160;</td><td class="mdescRight">current used vehicle dynamics for other vehicle by the default actor constellation callback  <a href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#a7fba3ec6e80cad11dedfb2e4e2810b74">更多...</a><br /></td></tr>
+<tr class="separator:a7fba3ec6e80cad11dedfb2e4e2810b74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2a00b664bb664fa3dc062d5af3491b1"><td class="memItemLeft" align="right" valign="top">::ad::rss::world::RssDynamics&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#aa2a00b664bb664fa3dc062d5af3491b1">_default_actor_constellation_callback_pedestrian_dynamics</a></td></tr>
+<tr class="memdesc:aa2a00b664bb664fa3dc062d5af3491b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">current used vehicle dynamics for pedestrians by the default actor constellation callback  <a href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#aa2a00b664bb664fa3dc062d5af3491b1">更多...</a><br /></td></tr>
+<tr class="separator:aa2a00b664bb664fa3dc062d5af3491b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef1cad1fea56c1d37a87c8530711fbd2"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; spdlog::logger &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#aef1cad1fea56c1d37a87c8530711fbd2">_logger</a></td></tr>
+<tr class="memdesc:aef1cad1fea56c1d37a87c8530711fbd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">standard logger  <a href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#aef1cad1fea56c1d37a87c8530711fbd2">更多...</a><br /></td></tr>
+<tr class="separator:aef1cad1fea56c1d37a87c8530711fbd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63cc4678d3f80e27e254828af61f3dd2"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#a63cc4678d3f80e27e254828af61f3dd2">_maximum_steering_angle</a></td></tr>
+<tr class="memdesc:a63cc4678d3f80e27e254828af61f3dd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">maximum steering angle  <a href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#a63cc4678d3f80e27e254828af61f3dd2">更多...</a><br /></td></tr>
+<tr class="separator:a63cc4678d3f80e27e254828af61f3dd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ae81219919311c2d276c270e11066c9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d85/namespacecarla_1_1rss.html#a28d7e06be0ca33af00c6e19c5c36a671">::carla::rss::RoadBoundariesMode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#a7ae81219919311c2d276c270e11066c9">_road_boundaries_mode</a></td></tr>
+<tr class="memdesc:a7ae81219919311c2d276c270e11066c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">current used road boundaries mode  <a href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#a7ae81219919311c2d276c270e11066c9">更多...</a><br /></td></tr>
+<tr class="separator:a7ae81219919311c2d276c270e11066c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8640b3ebddacd66bf2f27733129cda39"><td class="memItemLeft" align="right" valign="top">std::vector&lt;::ad::map::point::ENUPoint &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#a8640b3ebddacd66bf2f27733129cda39">_routing_targets</a></td></tr>
+<tr class="memdesc:a8640b3ebddacd66bf2f27733129cda39"><td class="mdescLeft">&#160;</td><td class="mdescRight">current used routing targets  <a href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#a8640b3ebddacd66bf2f27733129cda39">更多...</a><br /></td></tr>
+<tr class="separator:a8640b3ebddacd66bf2f27733129cda39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee6a5c9b13654804794a5aaa9a6b1892"><td class="memItemLeft" align="right" valign="top">std::vector&lt;::ad::map::point::ENUPoint &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#aee6a5c9b13654804794a5aaa9a6b1892">_routing_targets_to_append</a></td></tr>
+<tr class="memdesc:aee6a5c9b13654804794a5aaa9a6b1892"><td class="mdescLeft">&#160;</td><td class="mdescRight">routing targets to be appended next run  <a href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#aee6a5c9b13654804794a5aaa9a6b1892">更多...</a><br /></td></tr>
+<tr class="separator:aee6a5c9b13654804794a5aaa9a6b1892"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aced8b6be3a633137478d2cef6e14533a"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; spdlog::logger &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#aced8b6be3a633137478d2cef6e14533a">_timing_logger</a></td></tr>
+<tr class="memdesc:aced8b6be3a633137478d2cef6e14533a"><td class="mdescLeft">&#160;</td><td class="mdescRight">logger for timing log messages  <a href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#aced8b6be3a633137478d2cef6e14533a">更多...</a><br /></td></tr>
+<tr class="separator:aced8b6be3a633137478d2cef6e14533a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
+友元</h2></td></tr>
+<tr class="memitem:a7b291b7f42c4626bef9973eefa14445d"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#a7b291b7f42c4626bef9973eefa14445d">RssObjectChecker</a></td></tr>
+<tr class="separator:a7b291b7f42c4626bef9973eefa14445d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p >class implementing the actual RSS checks based on CARLA world description </p>
+
+<p class="definition">在文件 <a class="el" href="../../d8/dab/RssCheck_8h_source.html">RssCheck.h</a> 第 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00152">152</a> 行定义.</p>
+</div><h2 class="groupheader">成员类型定义说明</h2>
+<a id="ab510f4eb0faad4ed797bcde4f6e65324" name="ab510f4eb0faad4ed797bcde4f6e65324"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab510f4eb0faad4ed797bcde4f6e65324">&#9670;&#160;</a></span>ActorConstellationCallbackFunctionType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#ab510f4eb0faad4ed797bcde4f6e65324">carla::rss::RssCheck::ActorConstellationCallbackFunctionType</a> =  std::function&lt;<a class="el" href="../../db/d50/structcarla_1_1rss_1_1ActorConstellationResult.html">::carla::rss::ActorConstellationResult</a>(<a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">carla::SharedPtr</a>&lt;<a class="el" href="../../d3/dcf/structcarla_1_1rss_1_1ActorConstellationData.html">ActorConstellationData</a>&gt;)&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d8/dab/RssCheck_8h_source.html">RssCheck.h</a> 第 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00154">154</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a65ed15e5c2d160f84d6ae5872f8cf878" name="a65ed15e5c2d160f84d6ae5872f8cf878"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65ed15e5c2d160f84d6ae5872f8cf878">&#9670;&#160;</a></span>RssCheck() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::rss::RssCheck::RssCheck </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>max_steering_angle</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>default constructor with default internal default actor constellation callback </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html">RssCheck.cpp</a> 第 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00181">181</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00281">_actor_constellation_callback</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00370">_carla_rss_state</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00271">_default_actor_constellation_callback_ego_vehicle_dynamics</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00273">_default_actor_constellation_callback_other_vehicle_dynamics</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00275">_default_actor_constellation_callback_pedestrian_dynamics</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00257">_logger</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00261">_timing_logger</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00127">carla::rss::ActorConstellationResult::actor_dynamics</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00124">carla::rss::ActorConstellationResult::actor_object_type</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00317">carla::rss::RssCheck::CarlaRssState::default_ego_vehicle_dynamics</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00121">carla::rss::ActorConstellationResult::ego_vehicle_dynamics</a>, <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00147">GetDefaultPedestrianDynamics()</a>, <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00114">GetDefaultVehicleDynamics()</a>, <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00104">carla::rss::getLogger()</a>, <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00559">GetSpeed()</a>, <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00109">carla::rss::getTimingLogger()</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00117">carla::rss::ActorConstellationResult::restrict_speed_limit_mode</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00114">carla::rss::ActorConstellationResult::rss_calculation_mode</a>, <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00289">SetLogLevel()</a> , 以及 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00294">SetMapLogLevel()</a>.</p>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../dc/d07/classcarla_1_1rss_1_1RssCheck_a65ed15e5c2d160f84d6ae5872f8cf878_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="af684d20f22eb3929c92b2beb4d6e1e0f" name="af684d20f22eb3929c92b2beb4d6e1e0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af684d20f22eb3929c92b2beb4d6e1e0f">&#9670;&#160;</a></span>RssCheck() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::rss::RssCheck::RssCheck </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>max_steering_angle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#ab510f4eb0faad4ed797bcde4f6e65324">ActorConstellationCallbackFunctionType</a>&#160;</td>
+          <td class="paramname"><em>rss_actor_constellation_callback</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">carla::SharedPtr</a>&lt; <a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">carla::client::Actor</a> &gt; const &amp;&#160;</td>
+          <td class="paramname"><em>carla_ego_actor</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>constructor with actor constellation callback </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html">RssCheck.cpp</a> 第 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00263">263</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00370">_carla_rss_state</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00257">_logger</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00261">_timing_logger</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00304">carla::rss::RssCheck::CarlaRssState::ego_match_object</a>, <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00104">carla::rss::getLogger()</a>, <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00509">GetMatchObject()</a>, <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00109">carla::rss::getTimingLogger()</a>, <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00289">SetLogLevel()</a>, <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00294">SetMapLogLevel()</a> , 以及 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00876">UpdateDefaultRssDynamics()</a>.</p>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d07/classcarla_1_1rss_1_1RssCheck_af684d20f22eb3929c92b2beb4d6e1e0f_cgraph.svg" width="390" height="344"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ac5770e1956a7688e1b6ba89595b57bbe" name="ac5770e1956a7688e1b6ba89595b57bbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5770e1956a7688e1b6ba89595b57bbe">&#9670;&#160;</a></span>~RssCheck()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::rss::RssCheck::~RssCheck </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>destructor </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html">RssCheck.cpp</a> 第 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00287">287</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a8d2ebedc410a598ca89295bc3c39189b" name="a8d2ebedc410a598ca89295bc3c39189b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d2ebedc410a598ca89295bc3c39189b">&#9670;&#160;</a></span>AppendRoutingTarget()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::rss::RssCheck::AppendRoutingTarget </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../de/da4/classcarla_1_1geom_1_1Transform.html">::carla::geom::Transform</a> &amp;&#160;</td>
+          <td class="paramname"><em>routing_target</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>appends a routing target to the current routing target list ( </p>
+<dl class="section see"><dt>参见</dt><dd>also RssSensor::AppendRoutingTargets()) </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html">RssCheck.cpp</a> 第 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00334">334</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00292">_routing_targets_to_append</a>, <a class="el" href="../../de/d17/geom_2Transform_8h_source.html#l00034">carla::geom::Transform::location</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00024">carla::geom::Vector3D::x</a> , 以及 <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00026">carla::geom::Vector3D::y</a>.</p>
+
+</div>
+</div>
+<a id="aaaf0a0f73759f525137e227af98f5074" name="aaaf0a0f73759f525137e227af98f5074"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaaf0a0f73759f525137e227af98f5074">&#9670;&#160;</a></span>CalculateEgoDynamicsOnRoute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d1/d1b/structcarla_1_1rss_1_1EgoDynamicsOnRoute.html">EgoDynamicsOnRoute</a> carla::rss::RssCheck::CalculateEgoDynamicsOnRoute </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../df/d2c/classcarla_1_1client_1_1Timestamp.html">carla::client::Timestamp</a> const &amp;&#160;</td>
+          <td class="paramname"><em>current_timestamp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double const &amp;&#160;</td>
+          <td class="paramname"><em>time_since_epoch_check_start_ms</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/dc6/classcarla_1_1client_1_1Vehicle.html">carla::client::Vehicle</a> const &amp;&#160;</td>
+          <td class="paramname"><em>carla_vehicle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">::ad::map::match::Object&#160;</td>
+          <td class="paramname"><em>match_object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">::ad::map::route::FullRoute const &amp;&#160;</td>
+          <td class="paramname"><em>route</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">::ad::rss::world::RssDynamics const &amp;&#160;</td>
+          <td class="paramname"><em>default_ego_vehicle_dynamics</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d1/d1b/structcarla_1_1rss_1_1EgoDynamicsOnRoute.html">EgoDynamicsOnRoute</a> const &amp;&#160;</td>
+          <td class="paramname"><em>last_dynamics</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>calculate ego vehicle dynamics on the route </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html">RssCheck.cpp</a> 第 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00726">726</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00257">_logger</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00098">carla::rss::EgoDynamicsOnRoute::avg_route_accel_lat</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00103">carla::rss::EgoDynamicsOnRoute::avg_route_accel_lon</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00074">carla::rss::EgoDynamicsOnRoute::crossing_border</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00061">carla::rss::EgoDynamicsOnRoute::ego_center</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00069">carla::rss::EgoDynamicsOnRoute::ego_center_within_route</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00063">carla::rss::EgoDynamicsOnRoute::ego_heading</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00065">carla::rss::EgoDynamicsOnRoute::ego_heading_change</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00057">carla::rss::EgoDynamicsOnRoute::ego_speed</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00067">carla::rss::EgoDynamicsOnRoute::ego_steering_angle</a>, <a class="el" href="../../d7/d66/Timestamp_8h_source.html#l00040">carla::client::Timestamp::elapsed_seconds</a>, <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00576">GetHeadingChange()</a>, <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00559">GetSpeed()</a>, <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00582">GetSteeringAngle()</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00083">carla::rss::EgoDynamicsOnRoute::heading_diff</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00059">carla::rss::EgoDynamicsOnRoute::min_stopping_distance</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00093">carla::rss::EgoDynamicsOnRoute::route_accel_lat</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00095">carla::rss::EgoDynamicsOnRoute::route_accel_lon</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00078">carla::rss::EgoDynamicsOnRoute::route_heading</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00081">carla::rss::EgoDynamicsOnRoute::route_nominal_center</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00087">carla::rss::EgoDynamicsOnRoute::route_speed_lat</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00090">carla::rss::EgoDynamicsOnRoute::route_speed_lon</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00053">carla::rss::EgoDynamicsOnRoute::time_since_epoch_check_start_ms</a> , 以及 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00051">carla::rss::EgoDynamicsOnRoute::timestamp</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00375">CheckObjects()</a>.</p>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../dc/d07/classcarla_1_1rss_1_1RssCheck_aaaf0a0f73759f525137e227af98f5074_cgraph.svg" width="100%" height="578"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d07/classcarla_1_1rss_1_1RssCheck_aaaf0a0f73759f525137e227af98f5074_icgraph.svg" width="411" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a7ddb47aaeb4d941c95e5b2fce91186b7" name="a7ddb47aaeb4d941c95e5b2fce91186b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ddb47aaeb4d941c95e5b2fce91186b7">&#9670;&#160;</a></span>CheckObjects()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::rss::RssCheck::CheckObjects </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../df/d2c/classcarla_1_1client_1_1Timestamp.html">carla::client::Timestamp</a> const &amp;&#160;</td>
+          <td class="paramname"><em>timestamp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">carla::SharedPtr</a>&lt; <a class="el" href="../../da/d51/classcarla_1_1client_1_1ActorList.html">carla::client::ActorList</a> &gt; const &amp;&#160;</td>
+          <td class="paramname"><em>actors</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">carla::SharedPtr</a>&lt; <a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">carla::client::Actor</a> &gt; const &amp;&#160;</td>
+          <td class="paramname"><em>carla_ego_actor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">::ad::rss::state::ProperResponse &amp;&#160;</td>
+          <td class="paramname"><em>output_response</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">::ad::rss::state::RssStateSnapshot &amp;&#160;</td>
+          <td class="paramname"><em>output_rss_state_snapshot</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">::ad::rss::situation::SituationSnapshot &amp;&#160;</td>
+          <td class="paramname"><em>output_situation_snapshot</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">::ad::rss::world::WorldModel &amp;&#160;</td>
+          <td class="paramname"><em>output_world_model</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d1/d1b/structcarla_1_1rss_1_1EgoDynamicsOnRoute.html">EgoDynamicsOnRoute</a> &amp;&#160;</td>
+          <td class="paramname"><em>output_rss_ego_dynamics_on_route</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>main function to trigger the RSS check at a certain point in time </p>
+<p >This function has to be called cyclic with increasing timestamps to ensure proper RSS evaluation. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html">RssCheck.cpp</a> 第 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00375">375</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00370">_carla_rss_state</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00257">_logger</a>, <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00726">CalculateEgoDynamicsOnRoute()</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00332">carla::rss::RssCheck::CarlaRssState::dangerous_state</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00317">carla::rss::RssCheck::CarlaRssState::default_ego_vehicle_dynamics</a>, <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00360">DropRoute()</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00312">carla::rss::RssCheck::CarlaRssState::ego_dynamics_on_route</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00304">carla::rss::RssCheck::CarlaRssState::ego_match_object</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00307">carla::rss::RssCheck::CarlaRssState::ego_route</a>, <a class="el" href="../../d7/d66/Timestamp_8h_source.html#l00040">carla::client::Timestamp::elapsed_seconds</a>, <a class="el" href="../../d7/d66/Timestamp_8h_source.html#l00037">carla::client::Timestamp::frame</a>, <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00509">GetMatchObject()</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00329">carla::rss::RssCheck::CarlaRssState::proper_response</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00325">carla::rss::RssCheck::CarlaRssState::rss_state_snapshot</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00323">carla::rss::RssCheck::CarlaRssState::situation_snapshot</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00055">carla::rss::EgoDynamicsOnRoute::time_since_epoch_check_end_ms</a>, <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00876">UpdateDefaultRssDynamics()</a>, <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00588">UpdateRoute()</a> , 以及 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00320">carla::rss::RssCheck::CarlaRssState::world_model</a>.</p>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../dc/d07/classcarla_1_1rss_1_1RssCheck_a7ddb47aaeb4d941c95e5b2fce91186b7_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="acd7e97540e3d4e7bbce5dce1c70deeef" name="acd7e97540e3d4e7bbce5dce1c70deeef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd7e97540e3d4e7bbce5dce1c70deeef">&#9670;&#160;</a></span>DropRoute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::rss::RssCheck::DropRoute </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>drop the current route </p>
+<p >Afterwards a new route is selected randomly (if multiple routes are possible). </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html">RssCheck.cpp</a> 第 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00360">360</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00370">_carla_rss_state</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00257">_logger</a> , 以及 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00307">carla::rss::RssCheck::CarlaRssState::ego_route</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00375">CheckObjects()</a>.</p>
+<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d07/classcarla_1_1rss_1_1RssCheck_acd7e97540e3d4e7bbce5dce1c70deeef_icgraph.svg" width="339" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="aae3666f963027c6279d77970bbc9f5ea" name="aae3666f963027c6279d77970bbc9f5ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae3666f963027c6279d77970bbc9f5ea">&#9670;&#160;</a></span>GetDefaultActorConstellationCallbackEgoVehicleDynamics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const ::ad::rss::world::RssDynamics &amp; carla::rss::RssCheck::GetDefaultActorConstellationCallbackEgoVehicleDynamics </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>返回</dt><dd>the used vehicle dynamics for ego vehicle </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html">RssCheck.cpp</a> 第 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00299">299</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00271">_default_actor_constellation_callback_ego_vehicle_dynamics</a>.</p>
+
+</div>
+</div>
+<a id="a39fabbe9d25e0b3988213c2c1a1f8dda" name="a39fabbe9d25e0b3988213c2c1a1f8dda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39fabbe9d25e0b3988213c2c1a1f8dda">&#9670;&#160;</a></span>GetDefaultActorConstellationCallbackOtherVehicleDynamics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const ::ad::rss::world::RssDynamics &amp; carla::rss::RssCheck::GetDefaultActorConstellationCallbackOtherVehicleDynamics </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>返回</dt><dd>the used vehicle dynamics for other vehicles </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html">RssCheck.cpp</a> 第 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00308">308</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00273">_default_actor_constellation_callback_other_vehicle_dynamics</a>.</p>
+
+</div>
+</div>
+<a id="ae382df77b739e742a8a1090ee4005571" name="ae382df77b739e742a8a1090ee4005571"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae382df77b739e742a8a1090ee4005571">&#9670;&#160;</a></span>GetDefaultActorConstellationCallbackPedestrianDynamics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const ::ad::rss::world::RssDynamics &amp; carla::rss::RssCheck::GetDefaultActorConstellationCallbackPedestrianDynamics </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>返回</dt><dd>the used vehicle dynamics for pedestrians </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html">RssCheck.cpp</a> 第 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00317">317</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00275">_default_actor_constellation_callback_pedestrian_dynamics</a>.</p>
+
+</div>
+</div>
+<a id="ab1cdff96841a3e32821c38eb592dd119" name="ab1cdff96841a3e32821c38eb592dd119"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1cdff96841a3e32821c38eb592dd119">&#9670;&#160;</a></span>GetDefaultPedestrianDynamics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ad::rss::world::RssDynamics carla::rss::RssCheck::GetDefaultPedestrianDynamics </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>返回</dt><dd>the default pedestrian dynamics </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html">RssCheck.cpp</a> 第 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00147">147</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d8/d77/LibCarla_2source_2carla_2rss_2RssSensor_8cpp_source.html#l00210">carla::client::RssSensor::GetPedestrianDynamics()</a> , 以及 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00181">RssCheck()</a>.</p>
+<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d07/classcarla_1_1rss_1_1RssCheck_ab1cdff96841a3e32821c38eb592dd119_icgraph.svg" width="436" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="aad41bd0e7d6b30cdfb44aabc4abc0c21" name="aad41bd0e7d6b30cdfb44aabc4abc0c21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad41bd0e7d6b30cdfb44aabc4abc0c21">&#9670;&#160;</a></span>GetDefaultRoadBoundariesMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="../../db/d85/namespacecarla_1_1rss.html#a28d7e06be0ca33af00c6e19c5c36a671">RoadBoundariesMode</a> carla::rss::RssCheck::GetDefaultRoadBoundariesMode </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>返回</dt><dd>the default road boundaries mode </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d8/dab/RssCheck_8h_source.html">RssCheck.h</a> 第 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00249">249</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d85/namespacecarla_1_1rss.html#a28d7e06be0ca33af00c6e19c5c36a671ad15305d7a4e34e02489c74a5ef542f36">carla::rss::Off</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d8/d77/LibCarla_2source_2carla_2rss_2RssSensor_8cpp_source.html#l00239">carla::client::RssSensor::GetRoadBoundariesMode()</a>.</p>
+<div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d07/classcarla_1_1rss_1_1RssCheck_aad41bd0e7d6b30cdfb44aabc4abc0c21_icgraph.svg" width="452" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a1caf4493e0eca6b46dd4105ae868f9de" name="a1caf4493e0eca6b46dd4105ae868f9de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1caf4493e0eca6b46dd4105ae868f9de">&#9670;&#160;</a></span>GetDefaultVehicleDynamics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ad::rss::world::RssDynamics carla::rss::RssCheck::GetDefaultVehicleDynamics </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>返回</dt><dd>the default vehicle dynamics </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html">RssCheck.cpp</a> 第 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00114">114</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d8/d77/LibCarla_2source_2carla_2rss_2RssSensor_8cpp_source.html#l00152">carla::client::RssSensor::GetEgoVehicleDynamics()</a>, <a class="el" href="../../d8/d77/LibCarla_2source_2carla_2rss_2RssSensor_8cpp_source.html#l00181">carla::client::RssSensor::GetOtherVehicleDynamics()</a> , 以及 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00181">RssCheck()</a>.</p>
+<div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d07/classcarla_1_1rss_1_1RssCheck_a1caf4493e0eca6b46dd4105ae868f9de_icgraph.svg" width="431" height="179"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a25f1eac0cc58d2c2c0b409832b59960a" name="a25f1eac0cc58d2c2c0b409832b59960a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25f1eac0cc58d2c2c0b409832b59960a">&#9670;&#160;</a></span>GetHeadingChange()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ad::physics::AngularVelocity carla::rss::RssCheck::GetHeadingChange </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">carla::client::Actor</a> const &amp;&#160;</td>
+          <td class="paramname"><em>actor</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>calculate the heading change from the actor </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html">RssCheck.cpp</a> 第 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00576">576</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#a92e136a99a6e8a24ffe66bf984eab769">carla::client::Actor::GetAngularVelocity()</a> , 以及 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00077">carla::rss::to_radians</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00726">CalculateEgoDynamicsOnRoute()</a>.</p>
+<div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d07/classcarla_1_1rss_1_1RssCheck_a25f1eac0cc58d2c2c0b409832b59960a_cgraph.svg" width="339" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d07/classcarla_1_1rss_1_1RssCheck_a25f1eac0cc58d2c2c0b409832b59960a_icgraph.svg" width="600" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="aa25d93f5a82393313d3d2a090a3a2726" name="aa25d93f5a82393313d3d2a090a3a2726"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa25d93f5a82393313d3d2a090a3a2726">&#9670;&#160;</a></span>GetLogger()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; spdlog::logger &gt; carla::rss::RssCheck::GetLogger </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>get the logger of this </p>
+
+<p class="definition">在文件 <a class="el" href="../../d8/dab/RssCheck_8h_source.html">RssCheck.h</a> 第 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00172">172</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00257">_logger</a>.</p>
+
+</div>
+</div>
+<a id="ad3b645959ac8e39bcea3ac5bc503e984" name="ad3b645959ac8e39bcea3ac5bc503e984"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3b645959ac8e39bcea3ac5bc503e984">&#9670;&#160;</a></span>GetMatchObject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ad::map::match::Object carla::rss::RssCheck::GetMatchObject </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">carla::SharedPtr</a>&lt; <a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">carla::client::Actor</a> &gt; const &amp;&#160;</td>
+          <td class="paramname"><em>actor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">::ad::physics::Distance const &amp;&#160;</td>
+          <td class="paramname"><em>sampling_distance</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>calculate the map matched object from the actor </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html">RssCheck.cpp</a> 第 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00509">509</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00257">_logger</a> , 以及 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00077">carla::rss::to_radians</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00375">CheckObjects()</a> , 以及 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00263">RssCheck()</a>.</p>
+<div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-12-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-12-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d07/classcarla_1_1rss_1_1RssCheck_ad3b645959ac8e39bcea3ac5bc503e984_icgraph.svg" width="339" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="af4803100df5986fe1a088ff0036b1663" name="af4803100df5986fe1a088ff0036b1663"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4803100df5986fe1a088ff0036b1663">&#9670;&#160;</a></span>GetRoadBoundariesMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="../../db/d85/namespacecarla_1_1rss.html#a28d7e06be0ca33af00c6e19c5c36a671">::carla::rss::RoadBoundariesMode</a> &amp; carla::rss::RssCheck::GetRoadBoundariesMode </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>返回</dt><dd>the current mode for respecting the road boundaries (</dd></dl>
+<dl class="section see"><dt>参见</dt><dd>also RssSensor::GetRoadBoundariesMode()) </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html">RssCheck.cpp</a> 第 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00326">326</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00286">_road_boundaries_mode</a>.</p>
+
+</div>
+</div>
+<a id="a45f372ac2bc64bbed26562e08455e1cc" name="a45f372ac2bc64bbed26562e08455e1cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45f372ac2bc64bbed26562e08455e1cc">&#9670;&#160;</a></span>GetRoutingTargets()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::vector&lt;<a class="el" href="../../de/da4/classcarla_1_1geom_1_1Transform.html">::carla::geom::Transform</a> &gt; carla::rss::RssCheck::GetRoutingTargets </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>返回</dt><dd>the current routing targets (</dd></dl>
+<dl class="section see"><dt>参见</dt><dd>also RssSensor::GetRoutingTargets()) </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html">RssCheck.cpp</a> 第 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00340">340</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00288">_routing_targets</a>, <a class="el" href="../../de/d17/geom_2Transform_8h_source.html#l00034">carla::geom::Transform::location</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00024">carla::geom::Vector3D::x</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00026">carla::geom::Vector3D::y</a> , 以及 <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00028">carla::geom::Vector3D::z</a>.</p>
+
+</div>
+</div>
+<a id="a076f17bcb321e9536ca59ee06bfab858" name="a076f17bcb321e9536ca59ee06bfab858"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a076f17bcb321e9536ca59ee06bfab858">&#9670;&#160;</a></span>GetSpeed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ad::physics::Speed carla::rss::RssCheck::GetSpeed </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">carla::client::Actor</a> const &amp;&#160;</td>
+          <td class="paramname"><em>actor</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>calculate the speed from the actor </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html">RssCheck.cpp</a> 第 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00559">559</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#ab5c7de9cefbe7d189c97a429ab052115">carla::client::Actor::GetTransform()</a>, <a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#a77affb99965a3c4a127fc9f3737b2734">carla::client::Actor::GetVelocity()</a>, <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00124">carla::geom::Rotation::InverseRotateVector()</a> , 以及 <a class="el" href="../../de/d17/geom_2Transform_8h_source.html#l00036">carla::geom::Transform::rotation</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00726">CalculateEgoDynamicsOnRoute()</a> , 以及 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00181">RssCheck()</a>.</p>
+<div id="dynsection-13" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-13-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-13-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-13-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d07/classcarla_1_1rss_1_1RssCheck_a076f17bcb321e9536ca59ee06bfab858_cgraph.svg" width="523" height="179"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-14" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-14-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-14-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-14-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d07/classcarla_1_1rss_1_1RssCheck_a076f17bcb321e9536ca59ee06bfab858_icgraph.svg" width="599" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a65e61e10af7c201cf90f4960335d58c2" name="a65e61e10af7c201cf90f4960335d58c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65e61e10af7c201cf90f4960335d58c2">&#9670;&#160;</a></span>GetSteeringAngle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ad::physics::Angle carla::rss::RssCheck::GetSteeringAngle </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/dc6/classcarla_1_1client_1_1Vehicle.html">carla::client::Vehicle</a> const &amp;&#160;</td>
+          <td class="paramname"><em>actor</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>calculate the steering angle from the actor </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html">RssCheck.cpp</a> 第 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00582">582</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00266">_maximum_steering_angle</a>, <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html#l00119">carla::client::Vehicle::GetControl()</a> , 以及 <a class="el" href="../../dd/d28/LibCarla_2source_2carla_2rpc_2VehicleControl_8h_source.html#l00044">carla::rpc::VehicleControl::steer</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00726">CalculateEgoDynamicsOnRoute()</a>.</p>
+<div id="dynsection-15" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-15-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-15-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-15-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d07/classcarla_1_1rss_1_1RssCheck_a65e61e10af7c201cf90f4960335d58c2_cgraph.svg" width="550" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-16" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-16-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-16-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-16-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d07/classcarla_1_1rss_1_1RssCheck_a65e61e10af7c201cf90f4960335d58c2_icgraph.svg" width="599" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ab4d09790884e50c9d959356091646ded" name="ab4d09790884e50c9d959356091646ded"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4d09790884e50c9d959356091646ded">&#9670;&#160;</a></span>ResetRoutingTargets()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::rss::RssCheck::ResetRoutingTargets </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>resets the current routing targets ( </p>
+<dl class="section see"><dt>参见</dt><dd>also RssSensor::ResetRoutingTargets()) </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html">RssCheck.cpp</a> 第 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00355">355</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00288">_routing_targets</a> , 以及 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00292">_routing_targets_to_append</a>.</p>
+
+</div>
+</div>
+<a id="a9530cc2ab675bbbf3debd71b9a5ed4d2" name="a9530cc2ab675bbbf3debd71b9a5ed4d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9530cc2ab675bbbf3debd71b9a5ed4d2">&#9670;&#160;</a></span>SetDefaultActorConstellationCallbackEgoVehicleDynamics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::rss::RssCheck::SetDefaultActorConstellationCallbackEgoVehicleDynamics </td>
+          <td>(</td>
+          <td class="paramtype">const ::ad::rss::world::RssDynamics &amp;&#160;</td>
+          <td class="paramname"><em>ego_vehicle_dynamics</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>sets the vehicle dynamics to be used for the ego vehicle </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html">RssCheck.cpp</a> 第 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00303">303</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00271">_default_actor_constellation_callback_ego_vehicle_dynamics</a>.</p>
+
+</div>
+</div>
+<a id="aae86c4cda4323905c3042ac044fbc829" name="aae86c4cda4323905c3042ac044fbc829"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae86c4cda4323905c3042ac044fbc829">&#9670;&#160;</a></span>SetDefaultActorConstellationCallbackOtherVehicleDynamics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::rss::RssCheck::SetDefaultActorConstellationCallbackOtherVehicleDynamics </td>
+          <td>(</td>
+          <td class="paramtype">const ::ad::rss::world::RssDynamics &amp;&#160;</td>
+          <td class="paramname"><em>other_vehicle_dynamics</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>sets the vehicle dynamics to be used for other vehicles </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html">RssCheck.cpp</a> 第 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00312">312</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00273">_default_actor_constellation_callback_other_vehicle_dynamics</a>.</p>
+
+</div>
+</div>
+<a id="af659681333c9ad550633d4e0a75b8d4d" name="af659681333c9ad550633d4e0a75b8d4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af659681333c9ad550633d4e0a75b8d4d">&#9670;&#160;</a></span>SetDefaultActorConstellationCallbackPedestrianDynamics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::rss::RssCheck::SetDefaultActorConstellationCallbackPedestrianDynamics </td>
+          <td>(</td>
+          <td class="paramtype">const ::ad::rss::world::RssDynamics &amp;&#160;</td>
+          <td class="paramname"><em>pedestrian_dynamics</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>sets the dynamics to be used for pedestrians </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html">RssCheck.cpp</a> 第 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00321">321</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00275">_default_actor_constellation_callback_pedestrian_dynamics</a>.</p>
+
+</div>
+</div>
+<a id="a8b41598940f7ddfea0276e0e1472a1ea" name="a8b41598940f7ddfea0276e0e1472a1ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b41598940f7ddfea0276e0e1472a1ea">&#9670;&#160;</a></span>SetLogLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::rss::RssCheck::SetLogLevel </td>
+          <td>(</td>
+          <td class="paramtype">const spdlog::level::level_enum &amp;&#160;</td>
+          <td class="paramname"><em>log_level</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>sets the current log level </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html">RssCheck.cpp</a> 第 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00289">289</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00257">_logger</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00181">RssCheck()</a>.</p>
+<div id="dynsection-17" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-17-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-17-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-17-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d07/classcarla_1_1rss_1_1RssCheck_a8b41598940f7ddfea0276e0e1472a1ea_icgraph.svg" width="339" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="abe127250ae759782cff841b9095382bb" name="abe127250ae759782cff841b9095382bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe127250ae759782cff841b9095382bb">&#9670;&#160;</a></span>SetMapLogLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::rss::RssCheck::SetMapLogLevel </td>
+          <td>(</td>
+          <td class="paramtype">const spdlog::level::level_enum &amp;&#160;</td>
+          <td class="paramname"><em>map_log_level</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>sets the current log level </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html">RssCheck.cpp</a> 第 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00294">294</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00181">RssCheck()</a>.</p>
+<div id="dynsection-18" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-18-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-18-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-18-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d07/classcarla_1_1rss_1_1RssCheck_abe127250ae759782cff841b9095382bb_icgraph.svg" width="339" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ada255c046751b348aa23a96b15c30fbd" name="ada255c046751b348aa23a96b15c30fbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada255c046751b348aa23a96b15c30fbd">&#9670;&#160;</a></span>SetRoadBoundariesMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::rss::RssCheck::SetRoadBoundariesMode </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../db/d85/namespacecarla_1_1rss.html#a28d7e06be0ca33af00c6e19c5c36a671">::carla::rss::RoadBoundariesMode</a> &amp;&#160;</td>
+          <td class="paramname"><em>road_boundaries_mode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>sets the current mode for respecting the road boundaries ( </p>
+<dl class="section see"><dt>参见</dt><dd>also RssSensor::SetRoadBoundariesMode()) </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html">RssCheck.cpp</a> 第 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00330">330</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00286">_road_boundaries_mode</a>.</p>
+
+</div>
+</div>
+<a id="af5f3f5dcadacba5f1974de32474838a2" name="af5f3f5dcadacba5f1974de32474838a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5f3f5dcadacba5f1974de32474838a2">&#9670;&#160;</a></span>UpdateDefaultRssDynamics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::rss::RssCheck::UpdateDefaultRssDynamics </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d0/d03/structcarla_1_1rss_1_1RssCheck_1_1CarlaRssState.html">CarlaRssState</a> &amp;&#160;</td>
+          <td class="paramname"><em>carla_rss_state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html">RssCheck.cpp</a> 第 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00876">876</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00281">_actor_constellation_callback</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00317">carla::rss::RssCheck::CarlaRssState::default_ego_vehicle_dynamics</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00312">carla::rss::RssCheck::CarlaRssState::ego_dynamics_on_route</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00304">carla::rss::RssCheck::CarlaRssState::ego_match_object</a> , 以及 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00307">carla::rss::RssCheck::CarlaRssState::ego_route</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00375">CheckObjects()</a> , 以及 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00263">RssCheck()</a>.</p>
+<div id="dynsection-19" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-19-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-19-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-19-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d07/classcarla_1_1rss_1_1RssCheck_af5f3f5dcadacba5f1974de32474838a2_icgraph.svg" width="390" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a9b5193c0633fca116bcbbd468c900ea9" name="a9b5193c0633fca116bcbbd468c900ea9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b5193c0633fca116bcbbd468c900ea9">&#9670;&#160;</a></span>UpdateRoute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::rss::RssCheck::UpdateRoute </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d0/d03/structcarla_1_1rss_1_1RssCheck_1_1CarlaRssState.html">CarlaRssState</a> &amp;&#160;</td>
+          <td class="paramname"><em>carla_rss_state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>update the desired ego vehicle route </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html">RssCheck.cpp</a> 第 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00588">588</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00257">_logger</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00288">_routing_targets</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00292">_routing_targets_to_append</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00304">carla::rss::RssCheck::CarlaRssState::ego_match_object</a> , 以及 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00307">carla::rss::RssCheck::CarlaRssState::ego_route</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00375">CheckObjects()</a>.</p>
+<div id="dynsection-20" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-20-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-20-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-20-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d07/classcarla_1_1rss_1_1RssCheck_a9b5193c0633fca116bcbbd468c900ea9_icgraph.svg" width="339" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">友元及相关函数文档</h2>
+<a id="a7b291b7f42c4626bef9973eefa14445d" name="a7b291b7f42c4626bef9973eefa14445d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b291b7f42c4626bef9973eefa14445d">&#9670;&#160;</a></span>RssObjectChecker</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend class <a class="el" href="../../d3/dcd/classcarla_1_1rss_1_1RssCheck_1_1RssObjectChecker.html">RssObjectChecker</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d8/dab/RssCheck_8h_source.html">RssCheck.h</a> 第 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00366">366</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="ab6433353c4fb95e0752092d1e195647f" name="ab6433353c4fb95e0752092d1e195647f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6433353c4fb95e0752092d1e195647f">&#9670;&#160;</a></span>_actor_constellation_callback</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../dc/d07/classcarla_1_1rss_1_1RssCheck.html#ab510f4eb0faad4ed797bcde4f6e65324">ActorConstellationCallbackFunctionType</a> carla::rss::RssCheck::_actor_constellation_callback</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>the current actor constellation callback </p>
+
+<p class="definition">在文件 <a class="el" href="../../d8/dab/RssCheck_8h_source.html">RssCheck.h</a> 第 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00281">281</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00181">RssCheck()</a> , 以及 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00876">UpdateDefaultRssDynamics()</a>.</p>
+
+</div>
+</div>
+<a id="ac9a502c9d995506670fa3db48feae83f" name="ac9a502c9d995506670fa3db48feae83f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9a502c9d995506670fa3db48feae83f">&#9670;&#160;</a></span>_carla_rss_state</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d0/d03/structcarla_1_1rss_1_1RssCheck_1_1CarlaRssState.html">CarlaRssState</a> carla::rss::RssCheck::_carla_rss_state</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>the current state of the ego vehicle </p>
+
+<p class="definition">在文件 <a class="el" href="../../d8/dab/RssCheck_8h_source.html">RssCheck.h</a> 第 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00370">370</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00375">CheckObjects()</a>, <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00360">DropRoute()</a>, <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00975">carla::rss::RssCheck::RssObjectChecker::operator()()</a> , 以及 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00181">RssCheck()</a>.</p>
+
+</div>
+</div>
+<a id="a498175cef363160e7de143ab0e744daf" name="a498175cef363160e7de143ab0e744daf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a498175cef363160e7de143ab0e744daf">&#9670;&#160;</a></span>_default_actor_constellation_callback_ego_vehicle_dynamics</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">::ad::rss::world::RssDynamics carla::rss::RssCheck::_default_actor_constellation_callback_ego_vehicle_dynamics</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>current used vehicle dynamics for ego vehicle by the default actor constellation callback </p>
+
+<p class="definition">在文件 <a class="el" href="../../d8/dab/RssCheck_8h_source.html">RssCheck.h</a> 第 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00271">271</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00299">GetDefaultActorConstellationCallbackEgoVehicleDynamics()</a>, <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00181">RssCheck()</a> , 以及 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00303">SetDefaultActorConstellationCallbackEgoVehicleDynamics()</a>.</p>
+
+</div>
+</div>
+<a id="a7fba3ec6e80cad11dedfb2e4e2810b74" name="a7fba3ec6e80cad11dedfb2e4e2810b74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fba3ec6e80cad11dedfb2e4e2810b74">&#9670;&#160;</a></span>_default_actor_constellation_callback_other_vehicle_dynamics</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">::ad::rss::world::RssDynamics carla::rss::RssCheck::_default_actor_constellation_callback_other_vehicle_dynamics</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>current used vehicle dynamics for other vehicle by the default actor constellation callback </p>
+
+<p class="definition">在文件 <a class="el" href="../../d8/dab/RssCheck_8h_source.html">RssCheck.h</a> 第 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00273">273</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00308">GetDefaultActorConstellationCallbackOtherVehicleDynamics()</a>, <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00181">RssCheck()</a> , 以及 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00312">SetDefaultActorConstellationCallbackOtherVehicleDynamics()</a>.</p>
+
+</div>
+</div>
+<a id="aa2a00b664bb664fa3dc062d5af3491b1" name="aa2a00b664bb664fa3dc062d5af3491b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2a00b664bb664fa3dc062d5af3491b1">&#9670;&#160;</a></span>_default_actor_constellation_callback_pedestrian_dynamics</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">::ad::rss::world::RssDynamics carla::rss::RssCheck::_default_actor_constellation_callback_pedestrian_dynamics</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>current used vehicle dynamics for pedestrians by the default actor constellation callback </p>
+
+<p class="definition">在文件 <a class="el" href="../../d8/dab/RssCheck_8h_source.html">RssCheck.h</a> 第 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00275">275</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00317">GetDefaultActorConstellationCallbackPedestrianDynamics()</a>, <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00181">RssCheck()</a> , 以及 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00321">SetDefaultActorConstellationCallbackPedestrianDynamics()</a>.</p>
+
+</div>
+</div>
+<a id="aef1cad1fea56c1d37a87c8530711fbd2" name="aef1cad1fea56c1d37a87c8530711fbd2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef1cad1fea56c1d37a87c8530711fbd2">&#9670;&#160;</a></span>_logger</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt;spdlog::logger&gt; carla::rss::RssCheck::_logger</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>standard logger </p>
+
+<p class="definition">在文件 <a class="el" href="../../d8/dab/RssCheck_8h_source.html">RssCheck.h</a> 第 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00257">257</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00726">CalculateEgoDynamicsOnRoute()</a>, <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00375">CheckObjects()</a>, <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00360">DropRoute()</a>, <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00172">GetLogger()</a>, <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00509">GetMatchObject()</a>, <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00181">RssCheck()</a>, <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00289">SetLogLevel()</a> , 以及 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00588">UpdateRoute()</a>.</p>
+
+</div>
+</div>
+<a id="a63cc4678d3f80e27e254828af61f3dd2" name="a63cc4678d3f80e27e254828af61f3dd2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63cc4678d3f80e27e254828af61f3dd2">&#9670;&#160;</a></span>_maximum_steering_angle</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float carla::rss::RssCheck::_maximum_steering_angle</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>maximum steering angle </p>
+
+<p class="definition">在文件 <a class="el" href="../../d8/dab/RssCheck_8h_source.html">RssCheck.h</a> 第 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00266">266</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00582">GetSteeringAngle()</a>.</p>
+
+</div>
+</div>
+<a id="a7ae81219919311c2d276c270e11066c9" name="a7ae81219919311c2d276c270e11066c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ae81219919311c2d276c270e11066c9">&#9670;&#160;</a></span>_road_boundaries_mode</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/d85/namespacecarla_1_1rss.html#a28d7e06be0ca33af00c6e19c5c36a671">::carla::rss::RoadBoundariesMode</a> carla::rss::RssCheck::_road_boundaries_mode</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>current used road boundaries mode </p>
+
+<p class="definition">在文件 <a class="el" href="../../d8/dab/RssCheck_8h_source.html">RssCheck.h</a> 第 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00286">286</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00326">GetRoadBoundariesMode()</a> , 以及 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00330">SetRoadBoundariesMode()</a>.</p>
+
+</div>
+</div>
+<a id="a8640b3ebddacd66bf2f27733129cda39" name="a8640b3ebddacd66bf2f27733129cda39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8640b3ebddacd66bf2f27733129cda39">&#9670;&#160;</a></span>_routing_targets</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;::ad::map::point::ENUPoint&gt; carla::rss::RssCheck::_routing_targets</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>current used routing targets </p>
+
+<p class="definition">在文件 <a class="el" href="../../d8/dab/RssCheck_8h_source.html">RssCheck.h</a> 第 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00288">288</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00340">GetRoutingTargets()</a>, <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00355">ResetRoutingTargets()</a> , 以及 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00588">UpdateRoute()</a>.</p>
+
+</div>
+</div>
+<a id="aee6a5c9b13654804794a5aaa9a6b1892" name="aee6a5c9b13654804794a5aaa9a6b1892"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee6a5c9b13654804794a5aaa9a6b1892">&#9670;&#160;</a></span>_routing_targets_to_append</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;::ad::map::point::ENUPoint&gt; carla::rss::RssCheck::_routing_targets_to_append</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>routing targets to be appended next run </p>
+
+<p class="definition">在文件 <a class="el" href="../../d8/dab/RssCheck_8h_source.html">RssCheck.h</a> 第 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00292">292</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00334">AppendRoutingTarget()</a>, <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00355">ResetRoutingTargets()</a> , 以及 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00588">UpdateRoute()</a>.</p>
+
+</div>
+</div>
+<a id="aced8b6be3a633137478d2cef6e14533a" name="aced8b6be3a633137478d2cef6e14533a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aced8b6be3a633137478d2cef6e14533a">&#9670;&#160;</a></span>_timing_logger</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt;spdlog::logger&gt; carla::rss::RssCheck::_timing_logger</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>logger for timing log messages </p>
+
+<p class="definition">在文件 <a class="el" href="../../d8/dab/RssCheck_8h_source.html">RssCheck.h</a> 第 <a class="el" href="../../d8/dab/RssCheck_8h_source.html#l00261">261</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00181">RssCheck()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../d8/dab/RssCheck_8h_source.html">RssCheck.h</a></li>
+<li><a class="el" href="../../d0/dce/RssCheck_8cpp_source.html">RssCheck.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

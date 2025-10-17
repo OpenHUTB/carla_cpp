@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: CarlaEgoVehicleControlSubscriber.h 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_087ce8304d10c4897e4acbeac1a6fcc8.html">ros2</a></li><li class="navelem"><a class="el" href="../../dir_37fec08f03daa57e0d7b77a86e539548.html">subscribers</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">CarlaEgoVehicleControlSubscriber.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../de/d54/CarlaEgoVehicleControlSubscriber_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2022 Computer Vision Center (CVC) at the Universitat Autonoma de Barcelona (UAB).</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// This work is licensed under the terms of the MIT license.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">// For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="../../de/d54/CarlaEgoVehicleControlSubscriber_8h.html#acbf3245277a73b810032219100559ae2">    6</a></span><span class="preprocessor">#define _GLIBCXX_USE_CXX11_ABI 0</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="../../d9/de5/CarlaSubscriber_8h.html">CarlaSubscriber.h</a>&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="../../d2/d6c/ROS2CallbackData_8h.html">carla/ros2/ROS2CallbackData.h</a>&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d9/d36/namespacecarla.html">carla</a> {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d8/dc9/namespaceros2.html">ros2</a> {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment"></span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">    /// CarlaEgoVehicleControlSubscriber的内部实现结构，用于隐藏实现细节。</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment"></span>  <span class="keyword">struct </span>CarlaEgoVehicleControlSubscriberImpl;<span class="comment"></span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment">  /// CarlaEgoVehicleControlSubscriber类，用于订阅并处理来自ROS2的自动驾驶车辆控制消息</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html">   20</a></span><span class="comment"></span>  <span class="keyword">class </span><a class="code hl_class" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html">CarlaEgoVehicleControlSubscriber</a> : <span class="keyword">public</span> <a class="code hl_class" href="../../de/dd4/classcarla_1_1ros2_1_1CarlaSubscriber.html">CarlaSubscriber</a> {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">public</span>:<span class="comment"></span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment">        /// 构造函数，初始化用户并关联到指定的车辆。</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">      /// @param vehicle 指向车辆实例的指针。</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment">      /// @param ros_name ROS2节点的名称，默认为空字符串。</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">      /// @param parent 父节点的名称，默认为空字符串。</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment"></span>      <a class="code hl_class" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html">CarlaEgoVehicleControlSubscriber</a>(<span class="keywordtype">void</span>* vehicle, <span class="keyword">const</span> <span class="keywordtype">char</span>* ros_name = <span class="stringliteral">&quot;&quot;</span>, <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="../../de/dd4/classcarla_1_1ros2_1_1CarlaSubscriber.html#af8043d4ca1cc5caf53fea7b04550c833">parent</a> = <span class="stringliteral">&quot;&quot;</span>);<span class="comment"></span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="comment">      /// 析构函数，清理资源并销毁用户。</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment"></span>      <a class="code hl_function" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a985d6e1ae0583dcc4994a993e6119e4b">~CarlaEgoVehicleControlSubscriber</a>();<span class="comment"></span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment">      /// 拷贝构造函数，创建当前对象的深拷贝。</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment"></span>      <a class="code hl_class" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html">CarlaEgoVehicleControlSubscriber</a>(<span class="keyword">const</span> <a class="code hl_class" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html">CarlaEgoVehicleControlSubscriber</a>&amp;);<span class="comment"></span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">      /// 拷贝赋值运算符，用于深拷贝赋值。</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment"></span>      <a class="code hl_class" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html">CarlaEgoVehicleControlSubscriber</a>&amp; <a class="code hl_function" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a4327c426abf441359a749e09f2a45077">operator=</a>(<span class="keyword">const</span> <a class="code hl_class" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html">CarlaEgoVehicleControlSubscriber</a>&amp;);<span class="comment"></span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment">      /// 移动构造函数，创建当前对象的移动拷贝。</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment"></span>      <a class="code hl_class" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html">CarlaEgoVehicleControlSubscriber</a>(<a class="code hl_class" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html">CarlaEgoVehicleControlSubscriber</a>&amp;&amp;);<span class="comment"></span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment">      /// 移动赋值运算符，用于移动赋值。</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment"></span>      <a class="code hl_class" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html">CarlaEgoVehicleControlSubscriber</a>&amp; <a class="code hl_function" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a4327c426abf441359a749e09f2a45077">operator=</a>(<a class="code hl_class" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html">CarlaEgoVehicleControlSubscriber</a>&amp;&amp;);<span class="comment"></span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment">      /// 检查是否有新的控制消息到达。</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment">      /// @return 如果有新消息，则返回true；否则返回false。</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment"></span>      <span class="keywordtype">bool</span> <a class="code hl_function" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#ab265625d0cd4b7102f05bd513e661ed5">HasNewMessage</a>();<span class="comment"></span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment">      /// 检查用户是否仍然活跃。</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment">      /// @return 如果用户活跃，则返回true；否则返回false</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment"></span>      <span class="keywordtype">bool</span> <a class="code hl_function" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a3a857889fe93ed24c05605aa4fdf98d0">IsAlive</a>();<span class="comment"></span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">      /// 获取最新的车辆控制消息。</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment">      /// @return 包含控制指令的VehicleControl对象。</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment"></span>      <a class="code hl_struct" href="../../de/d61/structcarla_1_1ros2_1_1VehicleControl.html">VehicleControl</a> <a class="code hl_function" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a74b7a8454f98a9373a1fc9f28600d610">GetMessage</a>();<span class="comment"></span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment">      /// 获取与用户关联的车辆实例的指针。</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">     /// @return 指向车辆实例的指针。</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="comment"></span>      <span class="keywordtype">void</span>* <a class="code hl_function" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a24224f43a255489f229669114e2554fc">GetVehicle</a>();<span class="comment"></span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="comment">      /// 初始化用户。</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment">      /// @return 如果初始化成功，则返回true；否则返回false。</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="comment"></span>      <span class="keywordtype">bool</span> <a class="code hl_function" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#ab2428261bf05e0347a430652e62dcf44">Init</a>();<span class="comment"></span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment">      /// 读取并处理新的控制消息。</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="comment">      /// @return 如果读取成功，则返回true；否则返回false。</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="comment"></span>      <span class="keywordtype">bool</span> <a class="code hl_function" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a6ca736e4e32295973abf4970e99f01f8">Read</a>();<span class="comment"></span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="comment">      /// 返回用户的类型名称。</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="comment">      /// @return 类型为&quot;Ego vehicle control&quot;的字符串。</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a08d9d86f38bcb02a5034264213bfcea5">   57</a></span><span class="comment"></span>      <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a08d9d86f38bcb02a5034264213bfcea5">type</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <span class="stringliteral">&quot;Ego vehicle control&quot;</span>; }</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="comment"></span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="comment">      /// （内部使用）将控制消息转发给内部处理函数。</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment">      /// @param control 包含控制指令的VehicleControl对象。</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">      /// @warning 此方法仅供内部使用，外部调用可能会导致未定义行为。</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment"></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#ab3969fae771594ee1880ac546e808417">ForwardMessage</a>(<a class="code hl_struct" href="../../de/d61/structcarla_1_1ros2_1_1VehicleControl.html">VehicleControl</a> control);<span class="comment"></span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">      /// 销毁用户并释放相关资源。</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment"></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#ad86aa5ed0f179bea0727b4badbb5aee7">DestroySubscriber</a>();</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keyword">private</span>:<span class="comment"></span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="comment">        /// 设置内部数据，包括时间戳、车辆ID和控制数据。</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment">      /// @param seconds 时间戳的秒部分。</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment">      /// @param nanoseconds 时间戳的纳秒部分。</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment">      /// @param actor_id 车辆ID。</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment">      /// @param data 控制指令的浮点数数组。</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a0079a2e9a9ae7b30ba61f174b8bde997">   71</a></span><span class="comment"></span>      <span class="keywordtype">void</span> <a class="code hl_function" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a0079a2e9a9ae7b30ba61f174b8bde997">SetData</a>(int32_t seconds, uint32_t nanoseconds, uint32_t actor_id, std::vector&lt;float&gt;&amp;&amp; data);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keyword">private</span>:<span class="comment"></span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="comment">        /// 指向内部实现结构的智能指针，用于隐藏实现细节。</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#aaa13dbd203e6546893344f0a1a11f61f">   75</a></span><span class="comment"></span>      std::shared_ptr&lt;CarlaEgoVehicleControlSubscriberImpl&gt; <a class="code hl_variable" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#aaa13dbd203e6546893344f0a1a11f61f">_impl</a>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  };</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>}</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>}</div>
+<div class="ttc" id="aCarlaSubscriber_8h_html"><div class="ttname"><a href="../../d9/de5/CarlaSubscriber_8h.html">CarlaSubscriber.h</a></div></div>
+<div class="ttc" id="aROS2CallbackData_8h_html"><div class="ttname"><a href="../../d2/d6c/ROS2CallbackData_8h.html">ROS2CallbackData.h</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber_html"><div class="ttname"><a href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html">carla::ros2::CarlaEgoVehicleControlSubscriber</a></div><div class="ttdoc">CarlaEgoVehicleControlSubscriber类，用于订阅并处理来自ROS2的自动驾驶车辆控制消息</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d54/CarlaEgoVehicleControlSubscriber_8h_source.html#l00020">CarlaEgoVehicleControlSubscriber.h:20</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber_html_a0079a2e9a9ae7b30ba61f174b8bde997"><div class="ttname"><a href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a0079a2e9a9ae7b30ba61f174b8bde997">carla::ros2::CarlaEgoVehicleControlSubscriber::SetData</a></div><div class="ttdeci">void SetData(int32_t seconds, uint32_t nanoseconds, uint32_t actor_id, std::vector&lt; float &gt; &amp;&amp;data)</div><div class="ttdoc">设置内部数据，包括时间戳、车辆ID和控制数据。</div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber_html_a08d9d86f38bcb02a5034264213bfcea5"><div class="ttname"><a href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a08d9d86f38bcb02a5034264213bfcea5">carla::ros2::CarlaEgoVehicleControlSubscriber::type</a></div><div class="ttdeci">const char * type() const override</div><div class="ttdoc">返回用户的类型名称。</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d54/CarlaEgoVehicleControlSubscriber_8h_source.html#l00057">CarlaEgoVehicleControlSubscriber.h:57</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber_html_a24224f43a255489f229669114e2554fc"><div class="ttname"><a href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a24224f43a255489f229669114e2554fc">carla::ros2::CarlaEgoVehicleControlSubscriber::GetVehicle</a></div><div class="ttdeci">void * GetVehicle()</div><div class="ttdoc">获取与用户关联的车辆实例的指针。</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00302">CarlaEgoVehicleControlSubscriber.cpp:302</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber_html_a3a857889fe93ed24c05605aa4fdf98d0"><div class="ttname"><a href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a3a857889fe93ed24c05605aa4fdf98d0">carla::ros2::CarlaEgoVehicleControlSubscriber::IsAlive</a></div><div class="ttdeci">bool IsAlive()</div><div class="ttdoc">检查用户是否仍然活跃。</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00282">CarlaEgoVehicleControlSubscriber.cpp:282</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber_html_a4327c426abf441359a749e09f2a45077"><div class="ttname"><a href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a4327c426abf441359a749e09f2a45077">carla::ros2::CarlaEgoVehicleControlSubscriber::operator=</a></div><div class="ttdeci">CarlaEgoVehicleControlSubscriber &amp; operator=(const CarlaEgoVehicleControlSubscriber &amp;)</div><div class="ttdoc">拷贝赋值运算符，用于深拷贝赋值。</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00367">CarlaEgoVehicleControlSubscriber.cpp:367</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber_html_a6ca736e4e32295973abf4970e99f01f8"><div class="ttname"><a href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a6ca736e4e32295973abf4970e99f01f8">carla::ros2::CarlaEgoVehicleControlSubscriber::Read</a></div><div class="ttdeci">bool Read()</div><div class="ttdoc">读取并处理新的控制消息。</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00165">CarlaEgoVehicleControlSubscriber.cpp:165</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber_html_a74b7a8454f98a9373a1fc9f28600d610"><div class="ttname"><a href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a74b7a8454f98a9373a1fc9f28600d610">carla::ros2::CarlaEgoVehicleControlSubscriber::GetMessage</a></div><div class="ttdeci">VehicleControl GetMessage()</div><div class="ttdoc">获取最新的车辆控制消息。</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00271">CarlaEgoVehicleControlSubscriber.cpp:271</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber_html_a985d6e1ae0583dcc4994a993e6119e4b"><div class="ttname"><a href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a985d6e1ae0583dcc4994a993e6119e4b">carla::ros2::CarlaEgoVehicleControlSubscriber::~CarlaEgoVehicleControlSubscriber</a></div><div class="ttdeci">~CarlaEgoVehicleControlSubscriber()</div><div class="ttdoc">析构函数，清理资源并销毁用户。</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00327">CarlaEgoVehicleControlSubscriber.cpp:327</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber_html_aaa13dbd203e6546893344f0a1a11f61f"><div class="ttname"><a href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#aaa13dbd203e6546893344f0a1a11f61f">carla::ros2::CarlaEgoVehicleControlSubscriber::_impl</a></div><div class="ttdeci">std::shared_ptr&lt; CarlaEgoVehicleControlSubscriberImpl &gt; _impl</div><div class="ttdoc">指向内部实现结构的智能指针，用于隐藏实现细节。</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d54/CarlaEgoVehicleControlSubscriber_8h_source.html#l00075">CarlaEgoVehicleControlSubscriber.h:75</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber_html_ab2428261bf05e0347a430652e62dcf44"><div class="ttname"><a href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#ab2428261bf05e0347a430652e62dcf44">carla::ros2::CarlaEgoVehicleControlSubscriber::Init</a></div><div class="ttdeci">bool Init()</div><div class="ttdoc">初始化用户。</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00097">CarlaEgoVehicleControlSubscriber.cpp:97</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber_html_ab265625d0cd4b7102f05bd513e661ed5"><div class="ttname"><a href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#ab265625d0cd4b7102f05bd513e661ed5">carla::ros2::CarlaEgoVehicleControlSubscriber::HasNewMessage</a></div><div class="ttdeci">bool HasNewMessage()</div><div class="ttdoc">检查是否有新的控制消息到达。</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00292">CarlaEgoVehicleControlSubscriber.cpp:292</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber_html_ab3969fae771594ee1880ac546e808417"><div class="ttname"><a href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#ab3969fae771594ee1880ac546e808417">carla::ros2::CarlaEgoVehicleControlSubscriber::ForwardMessage</a></div><div class="ttdeci">void ForwardMessage(VehicleControl control)</div><div class="ttdoc">（内部使用）将控制消息转发给内部处理函数。</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00251">CarlaEgoVehicleControlSubscriber.cpp:251</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber_html_ad86aa5ed0f179bea0727b4badbb5aee7"><div class="ttname"><a href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#ad86aa5ed0f179bea0727b4badbb5aee7">carla::ros2::CarlaEgoVehicleControlSubscriber::DestroySubscriber</a></div><div class="ttdeci">void DestroySubscriber()</div><div class="ttdoc">销毁用户并释放相关资源。</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00260">CarlaEgoVehicleControlSubscriber.cpp:260</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaSubscriber_html"><div class="ttname"><a href="../../de/dd4/classcarla_1_1ros2_1_1CarlaSubscriber.html">carla::ros2::CarlaSubscriber</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d9/de5/CarlaSubscriber_8h_source.html#l00013">CarlaSubscriber.h:13</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaSubscriber_html_af8043d4ca1cc5caf53fea7b04550c833"><div class="ttname"><a href="../../de/dd4/classcarla_1_1ros2_1_1CarlaSubscriber.html#af8043d4ca1cc5caf53fea7b04550c833">carla::ros2::CarlaSubscriber::parent</a></div><div class="ttdeci">const std::string &amp; parent() const</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/de5/CarlaSubscriber_8h_source.html#l00017">CarlaSubscriber.h:17</a></div></div>
+<div class="ttc" id="anamespacecarla_html"><div class="ttname"><a href="../../d9/d36/namespacecarla.html">carla</a></div><div class="ttdoc">CARLA模拟器的主命名空间。</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d4f/Carla_8cpp_source.html#l00139">Carla.cpp:139</a></div></div>
+<div class="ttc" id="anamespaceros2_html"><div class="ttname"><a href="../../d8/dc9/namespaceros2.html">ros2</a></div></div>
+<div class="ttc" id="astructcarla_1_1ros2_1_1VehicleControl_html"><div class="ttname"><a href="../../de/d61/structcarla_1_1ros2_1_1VehicleControl.html">carla::ros2::VehicleControl</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d6c/ROS2CallbackData_8h_source.html#l00022">ROS2CallbackData.h:23</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: InstanceSegmentationCamera.cpp 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_2d15d0715a2692171bd03ed14a4a79af.html">Unreal</a></li><li class="navelem"><a class="el" href="../../dir_d3c1db2570616bec48bf5a6dd06bce95.html">CarlaUE4</a></li><li class="navelem"><a class="el" href="../../dir_3538576148ac14151677be9b0aee6fcc.html">Plugins</a></li><li class="navelem"><a class="el" href="../../dir_fbda5b12374c683cbdca72abb2d51944.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_18937e8f6bde63367bf26837323a9508.html">Source</a></li><li class="navelem"><a class="el" href="../../dir_8fc34afb5f07a67966c78bf5319f94ae.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_32df69f29a08a23c97cd630e5cd47b2e.html">Sensor</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">InstanceSegmentationCamera.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d6/dcd/InstanceSegmentationCamera_8cpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// de Barcelona (UAB).</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// This work is licensed under the terms of the MIT license.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">// 引入Carla相关的主头文件，可能包含了整个项目的一些基础定义、类型等信息</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="../../d7/d7d/Carla_8h.html">Carla.h</a>&quot;</span>  </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">// 引入实例分割相机相关的头文件，应该定义了与实例分割相机功能相关的类等内容</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="../../d4/d34/InstanceSegmentationCamera_8h.html">Carla/Sensor/InstanceSegmentationCamera.h</a>&quot;</span>  </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">// 引入带有标签组件相关的头文件，可能用于处理游戏中带有特定标签的组件相关功能</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="../../de/d95/TaggedComponent_8h.html">Carla/Game/TaggedComponent.h</a>&quot;</span>  </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">// 引入用于在Actor蓝图中操作函数库的头文件，方便进行与Actor蓝图相关的一些操作，比如创建定义等</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="../../d7/dda/ActorBlueprintFunctionLibrary_8h.html">Carla/Actor/ActorBlueprintFunctionLibrary.h</a>&quot;</span>  </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">// 引入像素读取相关的头文件，可能用于处理从传感器等获取的像素数据相关操作</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="../../df/d2e/PixelReader_8h.html">Carla/Sensor/PixelReader.h</a>&quot;</span>  </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">// 引入二维场景捕获组件相关的头文件，用于在场景中捕获相关画面等操作</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &quot;Components/SceneCaptureComponent2D.h&quot;</span>  </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment">// 定义函数AInstanceSegmentationCamera::GetSensorDefinition，用于获取实例分割相机的传感器定义</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment">// 该函数返回一个FActorDefinition类型的定义信息，大概率是用于描述该相机传感器在整个系统中的相关属性定义</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="../../d9/d25/classAInstanceSegmentationCamera.html#ab9759eb45e495805478387c97210f797">   22</a></span><a class="code hl_struct" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> <a class="code hl_function" href="../../d9/d25/classAInstanceSegmentationCamera.html#ab9759eb45e495805478387c97210f797">AInstanceSegmentationCamera::GetSensorDefinition</a>()</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>{</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  <span class="comment">// 通过调用UActorBlueprintFunctionLibrary中的MakeCameraDefinition函数来创建并返回相机的定义信息</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <span class="comment">// 传入的参数&quot;instance_segmentation&quot;可能是用于标识该相机是实例分割相机的特定字符串，用于区分不同类型的相机定义</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <span class="keywordflow">return</span> <a class="code hl_function" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a73179ac899a1f87c07ab2ae222f0a9ec">UActorBlueprintFunctionLibrary::MakeCameraDefinition</a>(TEXT(<span class="stringliteral">&quot;instance_segmentation&quot;</span>));</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>}</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment">// AInstanceSegmentationCamera类的构造函数，接受一个FObjectInitializer类型的参数用于初始化对象</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment">// 该参数通常包含了创建对象时所需的各种初始化设置信息</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="../../d9/d25/classAInstanceSegmentationCamera.html#afd87f6f940bd74abc6fb3b952f41be6a">   31</a></span><a class="code hl_function" href="../../d9/d25/classAInstanceSegmentationCamera.html#afd87f6f940bd74abc6fb3b952f41be6a">AInstanceSegmentationCamera::AInstanceSegmentationCamera</a>(</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">const</span> FObjectInitializer &amp;ObjectInitializer)</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  : Super(ObjectInitializer)</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>{</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <span class="comment">// 调用AddPostProcessingMaterial函数添加一个后处理材质，传入的字符串是材质的路径</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  <span class="comment">// 这里添加的材质路径对应的材质用于物理镜头畸变相关的后处理效果（具体功能取决于材质本身实现）</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <a class="code hl_function" href="../../da/dd3/classAShaderBasedSensor.html#abcae85884ed3ba78e13bc132a351709b">AddPostProcessingMaterial</a>(TEXT(<span class="stringliteral">&quot;Material&#39;/Carla/PostProcessingMaterials/PhysicLensDistortion.PhysicLensDistortion&#39;&quot;</span>));</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="comment">// TODO注释表示此处有待办事项，计划是设置OnActorSpawnHandler，目的是能够在有Actor生成时刷新相关组件</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="comment">// 目前这行代码被注释掉了，可能还未完成相关功能的实现或者暂时不需要此功能开启</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="comment">// World-&gt;AddOnActorSpawnedHandler(FOnActorSpawned::FDelegate::CreateRaw(this, &amp;AInstanceSegmentationCamera::OnActorSpawned));</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>}</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment">// 函数用于设置二维场景捕获组件（SceneCapture）的相关属性和配置</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="../../d9/d25/classAInstanceSegmentationCamera.html#a221d0ada8233ef69c00563b22102e69f">   45</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d9/d25/classAInstanceSegmentationCamera.html#a221d0ada8233ef69c00563b22102e69f">AInstanceSegmentationCamera::SetUpSceneCaptureComponent</a>(<a class="code hl_class" href="../../d3/db8/classUSceneCaptureComponent2D.html">USceneCaptureComponent2D</a> &amp;SceneCapture)</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>{</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  <span class="comment">// 调用父类的SetUpSceneCaptureComponent函数，先执行父类中关于场景捕获组件设置的通用逻辑</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  Super::SetUpSceneCaptureComponent(SceneCapture);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  <span class="comment">// 应用视图模式，传入的参数VMI_Unlit表示无光照视图模式，后面两个参数表示是否强制应用以及对应的显示标志（ShowFlags）</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  <span class="comment">// 这行代码的作用是将场景捕获组件设置为无光照的视图模式</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  ApplyViewMode(VMI_Unlit, <span class="keyword">true</span>, SceneCapture.ShowFlags);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <span class="comment">// 设置显示标志（ShowFlags），让带有标签的组件（TaggedComponent）能够被绘制（默认是不绘制的情况）</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  <span class="comment">// 这里的TaggedComponent应该会检测到这个设置并根据情况设置代理材质的视图相关性</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  SceneCapture.ShowFlags.SetNotDrawTaggedComponents(<span class="keyword">false</span>); </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  <span class="comment">// 设置显示标志（ShowFlags），关闭大气效果显示，意味着在该场景捕获中不会渲染大气相关的视觉效果</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  SceneCapture.ShowFlags.SetAtmosphere(<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  <span class="comment">// 设置场景捕获组件的原始渲染模式，这里设置为使用仅显示列表（PRM_UseShowOnlyList）的模式</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  <span class="comment">// 表示只会渲染在显示列表中的组件，具体显示列表的内容后续应该会进行设置</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>  SceneCapture.PrimitiveRenderMode = ESceneCapturePrimitiveRenderMode::PRM_UseShowOnlyList;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>  </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  <span class="comment">// 创建一个UObject类型的数组，用于存储带有标签的组件（TaggedComponents）</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  TArray&lt;UObject *&gt; TaggedComponents;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="comment">// 通过调用GetObjectsOfClass函数获取所有类型为UTaggedComponent的对象，并存储到TaggedComponents数组中</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  <span class="comment">// 参数中的false表示不包含子类对象，后面的参数分别是对象标志和内部对象标志，用于更精确地筛选对象</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  GetObjectsOfClass(UTaggedComponent::StaticClass(), TaggedComponents, <span class="keyword">false</span>, EObjectFlags::RF_ClassDefaultObject, EInternalObjectFlags::AllFlags);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  <span class="comment">// 创建一个UPrimitiveComponent类型的数组，用于存储要显示的组件（ShowOnlyComponents）</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  TArray&lt;UPrimitiveComponent *&gt; ShowOnlyComponents;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  <span class="comment">// 遍历获取到的带有标签的组件（TaggedComponents）</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  <span class="keywordflow">for</span> (<a class="code hl_class" href="../../df/def/classUObject.html">UObject</a> *Object : TaggedComponents) {</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="comment">// 将UObject类型的对象尝试转换为UPrimitiveComponent类型，如果转换成功则进行后续操作</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <a class="code hl_class" href="../../d9/d6d/classUPrimitiveComponent.html">UPrimitiveComponent</a> *Component = Cast&lt;UPrimitiveComponent&gt;(Object);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="comment">// 将转换成功的组件添加到要显示的组件列表（ShowOnlyComponents）中，用于后续场景捕获组件按此列表进行渲染显示</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    SceneCapture.ShowOnlyComponents.Emplace(Component);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  }</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>}</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="comment">// 函数在物理模拟更新后的每帧（Tick）被调用，用于执行一些与实例分割相机相关的每帧更新操作</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="comment">// 参数World表示当前的游戏世界，TickType表示当前的关卡Tick类型，DeltaSeconds表示自上一帧经过的时间</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="../../d9/d25/classAInstanceSegmentationCamera.html#aca0256b23dfc2b60b577ecfba9c67ad4">   84</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d9/d25/classAInstanceSegmentationCamera.html#aca0256b23dfc2b60b577ecfba9c67ad4">AInstanceSegmentationCamera::PostPhysTick</a>(UWorld *<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#a7900ed61793880e7e50eaf1142aa6dd2">World</a>, ELevelTick TickType, <span class="keywordtype">float</span> DeltaSeconds)</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>{</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>  <span class="comment">// 使用TRACE_CPUPROFILER_EVENT_SCOPE宏定义一个CPU性能分析的事件范围，用于标记该函数执行的范围，方便性能分析工具进行分析</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  TRACE_CPUPROFILER_EVENT_SCOPE(<a class="code hl_function" href="../../d9/d25/classAInstanceSegmentationCamera.html#aca0256b23dfc2b60b577ecfba9c67ad4">AInstanceSegmentationCamera::PostPhysTick</a>);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>  <span class="comment">// 获取二维场景捕获组件的指针，如果获取成功则后续可以对其进行相关操作</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>  <a class="code hl_class" href="../../d3/db8/classUSceneCaptureComponent2D.html">USceneCaptureComponent2D</a>* SceneCapture = <a class="code hl_function" href="../../d4/d60/classASceneCaptureSensor.html#a6abb372aa02dac0b573a671ccc74714d">GetCaptureComponent2D</a>();</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>  <span class="comment">// 创建一个UObject类型的数组，用于存储带有标签的组件（TaggedComponents）</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  TArray&lt;UObject *&gt; TaggedComponents;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>  <span class="comment">// 通过调用GetObjectsOfClass函数获取所有类型为UTaggedComponent的对象，并存储到TaggedComponents数组中</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>  <span class="comment">// 参数含义与前面类似，用于筛选出特定类型的对象</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>  GetObjectsOfClass(UTaggedComponent::StaticClass(), TaggedComponents, <span class="keyword">false</span>, EObjectFlags::RF_ClassDefaultObject, EInternalObjectFlags::AllFlags);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>  </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>  <span class="comment">// 清空场景捕获组件的显示列表（ShowOnlyComponents），为重新设置要显示的组件做准备</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  SceneCapture-&gt;ClearShowOnlyComponents();</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>  <span class="comment">// 再次遍历获取到的带有标签的组件（TaggedComponents）</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>  <span class="keywordflow">for</span> (<a class="code hl_class" href="../../df/def/classUObject.html">UObject</a> *Object : TaggedComponents) {</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="comment">// 将UObject类型的对象尝试转换为UPrimitiveComponent类型，如果转换成功则进行后续操作</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <a class="code hl_class" href="../../d9/d6d/classUPrimitiveComponent.html">UPrimitiveComponent</a> *Component = Cast&lt;UPrimitiveComponent&gt;(Object);</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="comment">// 将转换成功的组件添加到场景捕获组件的显示列表（ShowOnlyComponents）中，用于本帧的渲染显示</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    SceneCapture-&gt;ShowOnlyComponents.Emplace(Component);</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>  }</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>  </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>  <span class="comment">// 通过FPixelReader模板函数，在渲染线程中发送像素数据，这里指定了发送的数据类型为FColor（颜色相关的数据类型）</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>  <span class="comment">// 具体发送的像素数据来源以及发送的目的等逻辑依赖于FPixelReader类和相关函数的实现</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>  FPixelReader::SendPixelsInRenderThread&lt;AInstanceSegmentationCamera, FColor&gt;(*<span class="keyword">this</span>);</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>}</div>
+<div class="ttc" id="aActorBlueprintFunctionLibrary_8h_html"><div class="ttname"><a href="../../d7/dda/ActorBlueprintFunctionLibrary_8h.html">ActorBlueprintFunctionLibrary.h</a></div></div>
+<div class="ttc" id="aCarlaActor_8cpp_html_a7900ed61793880e7e50eaf1142aa6dd2"><div class="ttname"><a href="../../d3/d43/CarlaActor_8cpp.html#a7900ed61793880e7e50eaf1142aa6dd2">World</a></div><div class="ttdeci">TSharedPtr&lt; const FActorInfo &gt; carla::rpc::ActorState UWorld * World</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d43/CarlaActor_8cpp_source.html#l00082">CarlaActor.cpp:83</a></div></div>
+<div class="ttc" id="aCarla_8h_html"><div class="ttname"><a href="../../d7/d7d/Carla_8h.html">Carla.h</a></div></div>
+<div class="ttc" id="aInstanceSegmentationCamera_8h_html"><div class="ttname"><a href="../../d4/d34/InstanceSegmentationCamera_8h.html">InstanceSegmentationCamera.h</a></div></div>
+<div class="ttc" id="aPixelReader_8h_html"><div class="ttname"><a href="../../df/d2e/PixelReader_8h.html">PixelReader.h</a></div></div>
+<div class="ttc" id="aTaggedComponent_8h_html"><div class="ttname"><a href="../../de/d95/TaggedComponent_8h.html">TaggedComponent.h</a></div></div>
+<div class="ttc" id="aclassAInstanceSegmentationCamera_html_a221d0ada8233ef69c00563b22102e69f"><div class="ttname"><a href="../../d9/d25/classAInstanceSegmentationCamera.html#a221d0ada8233ef69c00563b22102e69f">AInstanceSegmentationCamera::SetUpSceneCaptureComponent</a></div><div class="ttdeci">void SetUpSceneCaptureComponent(USceneCaptureComponent2D &amp;SceneCapture) override</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/dcd/InstanceSegmentationCamera_8cpp_source.html#l00045">InstanceSegmentationCamera.cpp:45</a></div></div>
+<div class="ttc" id="aclassAInstanceSegmentationCamera_html_ab9759eb45e495805478387c97210f797"><div class="ttname"><a href="../../d9/d25/classAInstanceSegmentationCamera.html#ab9759eb45e495805478387c97210f797">AInstanceSegmentationCamera::GetSensorDefinition</a></div><div class="ttdeci">static FActorDefinition GetSensorDefinition()</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/dcd/InstanceSegmentationCamera_8cpp_source.html#l00022">InstanceSegmentationCamera.cpp:22</a></div></div>
+<div class="ttc" id="aclassAInstanceSegmentationCamera_html_aca0256b23dfc2b60b577ecfba9c67ad4"><div class="ttname"><a href="../../d9/d25/classAInstanceSegmentationCamera.html#aca0256b23dfc2b60b577ecfba9c67ad4">AInstanceSegmentationCamera::PostPhysTick</a></div><div class="ttdeci">void PostPhysTick(UWorld *World, ELevelTick TickType, float DeltaSeconds) override</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/dcd/InstanceSegmentationCamera_8cpp_source.html#l00084">InstanceSegmentationCamera.cpp:84</a></div></div>
+<div class="ttc" id="aclassAInstanceSegmentationCamera_html_afd87f6f940bd74abc6fb3b952f41be6a"><div class="ttname"><a href="../../d9/d25/classAInstanceSegmentationCamera.html#afd87f6f940bd74abc6fb3b952f41be6a">AInstanceSegmentationCamera::AInstanceSegmentationCamera</a></div><div class="ttdeci">AInstanceSegmentationCamera(const FObjectInitializer &amp;ObjectInitializer)</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/dcd/InstanceSegmentationCamera_8cpp_source.html#l00031">InstanceSegmentationCamera.cpp:31</a></div></div>
+<div class="ttc" id="aclassASceneCaptureSensor_html_a6abb372aa02dac0b573a671ccc74714d"><div class="ttname"><a href="../../d4/d60/classASceneCaptureSensor.html#a6abb372aa02dac0b573a671ccc74714d">ASceneCaptureSensor::GetCaptureComponent2D</a></div><div class="ttdeci">USceneCaptureComponent2D * GetCaptureComponent2D()</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d95/SceneCaptureSensor_8h_source.html#l00385">SceneCaptureSensor.h:385</a></div></div>
+<div class="ttc" id="aclassAShaderBasedSensor_html_abcae85884ed3ba78e13bc132a351709b"><div class="ttname"><a href="../../da/dd3/classAShaderBasedSensor.html#abcae85884ed3ba78e13bc132a351709b">AShaderBasedSensor::AddPostProcessingMaterial</a></div><div class="ttdeci">bool AddPostProcessingMaterial(const FString &amp;Path)</div><div class="ttdoc">Load the UMaterialInstanceDynamic at the given Path and append it to the list of shaders with Weight.</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d96/ShaderBasedSensor_8cpp_source.html#l00016">ShaderBasedSensor.cpp:16</a></div></div>
+<div class="ttc" id="aclassUActorBlueprintFunctionLibrary_html_a73179ac899a1f87c07ab2ae222f0a9ec"><div class="ttname"><a href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a73179ac899a1f87c07ab2ae222f0a9ec">UActorBlueprintFunctionLibrary::MakeCameraDefinition</a></div><div class="ttdeci">static FActorDefinition MakeCameraDefinition(const FString &amp;Id, bool bEnableModifyingPostProcessEffects=false)</div><div class="ttdoc">创建一个相机参与者定义。</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00470">ActorBlueprintFunctionLibrary.cpp:470</a></div></div>
+<div class="ttc" id="aclassUObject_html"><div class="ttname"><a href="../../df/def/classUObject.html">UObject</a></div></div>
+<div class="ttc" id="aclassUPrimitiveComponent_html"><div class="ttname"><a href="../../d9/d6d/classUPrimitiveComponent.html">UPrimitiveComponent</a></div></div>
+<div class="ttc" id="aclassUSceneCaptureComponent2D_html"><div class="ttname"><a href="../../d3/db8/classUSceneCaptureComponent2D.html">USceneCaptureComponent2D</a></div></div>
+<div class="ttc" id="astructFActorDefinition_html"><div class="ttname"><a href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d65/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDefinition_8h_source.html#l00017">Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Actor/ActorDefinition.h:18</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

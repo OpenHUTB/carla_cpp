@@ -1,0 +1,547 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: carla::ros2::CarlaGNSSPublisher类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../d9/d36/namespacecarla.html">carla</a></li><li class="navelem"><a class="el" href="../../d1/d4b/namespacecarla_1_1ros2.html">ros2</a></li><li class="navelem"><a class="el" href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html">CarlaGNSSPublisher</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="../../df/d90/classcarla_1_1ros2_1_1CarlaGNSSPublisher-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">carla::ros2::CarlaGNSSPublisher类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>用于在ROS 2中发布CARLA的GNSS（全球导航卫星系统）数据的类。 <br  />
+ 继承自CarlaPublisher类，专门用于初始化、设置和发布GNSS数据。 <br  />
+  
+ <a href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../dd/d28/CarlaGNSSPublisher_8h_source.html">CarlaGNSSPublisher.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 类 carla::ros2::CarlaGNSSPublisher 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d6/dcf/classcarla_1_1ros2_1_1CarlaGNSSPublisher__inherit__graph.svg" width="220" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> carla::ros2::CarlaGNSSPublisher 的协作图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d2/d04/classcarla_1_1ros2_1_1CarlaGNSSPublisher__coll__graph.svg" width="416" height="256"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a2ce9aa1c6bed794da6f069fe5c43b0c4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html#a2ce9aa1c6bed794da6f069fe5c43b0c4">CarlaGNSSPublisher</a> (<a class="el" href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html">CarlaGNSSPublisher</a> &amp;&amp;)</td></tr>
+<tr class="memdesc:a2ce9aa1c6bed794da6f069fe5c43b0c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">移动构造函数，用于创建当前对象的移动拷贝，避免不必要的深拷贝。  <a href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html#a2ce9aa1c6bed794da6f069fe5c43b0c4">更多...</a><br /></td></tr>
+<tr class="separator:a2ce9aa1c6bed794da6f069fe5c43b0c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad48fe64390386aac7d5cfbb9fb43939d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html#ad48fe64390386aac7d5cfbb9fb43939d">CarlaGNSSPublisher</a> (const <a class="el" href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html">CarlaGNSSPublisher</a> &amp;)</td></tr>
+<tr class="memdesc:ad48fe64390386aac7d5cfbb9fb43939d"><td class="mdescLeft">&#160;</td><td class="mdescRight">拷贝构造函数，用于创建当前对象的深拷贝。  <a href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html#ad48fe64390386aac7d5cfbb9fb43939d">更多...</a><br /></td></tr>
+<tr class="separator:ad48fe64390386aac7d5cfbb9fb43939d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ef5e78f3e2c394d26996a7e3521598c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html#a6ef5e78f3e2c394d26996a7e3521598c">CarlaGNSSPublisher</a> (const char *ros_name=&quot;&quot;, const char *<a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a0f2175762993c5eec161b8f304c59bb5">parent</a>=&quot;&quot;)</td></tr>
+<tr class="memdesc:a6ef5e78f3e2c394d26996a7e3521598c"><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数，用于创建CarlaGNSSPublisher对象。 <br  />
+  <a href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html#a6ef5e78f3e2c394d26996a7e3521598c">更多...</a><br /></td></tr>
+<tr class="separator:a6ef5e78f3e2c394d26996a7e3521598c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a088b58734f0c03a8280375805a5255b9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html#a088b58734f0c03a8280375805a5255b9">Init</a> ()</td></tr>
+<tr class="memdesc:a088b58734f0c03a8280375805a5255b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化函数，用于设置ROS节点和发布者。 <br  />
+  <a href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html#a088b58734f0c03a8280375805a5255b9">更多...</a><br /></td></tr>
+<tr class="separator:a088b58734f0c03a8280375805a5255b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad054a1129e07d07e358c929efc5b8939"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html">CarlaGNSSPublisher</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html#ad054a1129e07d07e358c929efc5b8939">operator=</a> (<a class="el" href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html">CarlaGNSSPublisher</a> &amp;&amp;)</td></tr>
+<tr class="memdesc:ad054a1129e07d07e358c929efc5b8939"><td class="mdescLeft">&#160;</td><td class="mdescRight">移动赋值运算符，用于将当前对象的状态移动到另一个同类型的对象中。  <a href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html#ad054a1129e07d07e358c929efc5b8939">更多...</a><br /></td></tr>
+<tr class="separator:ad054a1129e07d07e358c929efc5b8939"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab031a8d734c00b99f7cd25301a746dc0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html">CarlaGNSSPublisher</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html#ab031a8d734c00b99f7cd25301a746dc0">operator=</a> (const <a class="el" href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html">CarlaGNSSPublisher</a> &amp;)</td></tr>
+<tr class="memdesc:ab031a8d734c00b99f7cd25301a746dc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">拷贝赋值运算符，用于将当前对象的状态复制到另一个同类型的对象中。  <a href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html#ab031a8d734c00b99f7cd25301a746dc0">更多...</a><br /></td></tr>
+<tr class="separator:ab031a8d734c00b99f7cd25301a746dc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9037f07815f63a6ef76bcb0634980dd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html#ae9037f07815f63a6ef76bcb0634980dd">Publish</a> ()</td></tr>
+<tr class="memdesc:ae9037f07815f63a6ef76bcb0634980dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">发布GNSS数据。 <br  />
+  <a href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html#ae9037f07815f63a6ef76bcb0634980dd">更多...</a><br /></td></tr>
+<tr class="separator:ae9037f07815f63a6ef76bcb0634980dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f4963c26cf98ae397ec41a4d154c7f7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html#a3f4963c26cf98ae397ec41a4d154c7f7">SetData</a> (int32_t seconds, uint32_t nanoseconds, const double *data)</td></tr>
+<tr class="memdesc:a3f4963c26cf98ae397ec41a4d154c7f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置GNSS数据。 <br  />
+  <a href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html#a3f4963c26cf98ae397ec41a4d154c7f7">更多...</a><br /></td></tr>
+<tr class="separator:a3f4963c26cf98ae397ec41a4d154c7f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1eb94d972a940a9d79e916fdaf391ffb"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html#a1eb94d972a940a9d79e916fdaf391ffb">type</a> () const <a class="el" href="../../de/d7d/ActorData_8h.html#ad031bfd5a8a2ed7e66d03dafcc3b2858">override</a></td></tr>
+<tr class="memdesc:a1eb94d972a940a9d79e916fdaf391ffb"><td class="mdescLeft">&#160;</td><td class="mdescRight">返回发布者的类型名称。 <br  />
+  <a href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html#a1eb94d972a940a9d79e916fdaf391ffb">更多...</a><br /></td></tr>
+<tr class="separator:a1eb94d972a940a9d79e916fdaf391ffb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c980c56ede39f0b35a82da9a636cbbb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html#a1c980c56ede39f0b35a82da9a636cbbb">~CarlaGNSSPublisher</a> ()</td></tr>
+<tr class="memdesc:a1c980c56ede39f0b35a82da9a636cbbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">析构函数，用于销毁CarlaGNSSPublisher对象。  <a href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html#a1c980c56ede39f0b35a82da9a636cbbb">更多...</a><br /></td></tr>
+<tr class="separator:a1c980c56ede39f0b35a82da9a636cbbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classcarla_1_1ros2_1_1CarlaPublisher')"><img src="../../closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html">carla::ros2::CarlaPublisher</a></td></tr>
+<tr class="memitem:a35f0eba9bdf0bf22524cc6dacf43f242 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a35f0eba9bdf0bf22524cc6dacf43f242">CarlaPublisher</a> ()=default</td></tr>
+<tr class="separator:a35f0eba9bdf0bf22524cc6dacf43f242 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77422f0594812a0371f8b04d70f19741 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a77422f0594812a0371f8b04d70f19741">frame_id</a> () const</td></tr>
+<tr class="separator:a77422f0594812a0371f8b04d70f19741 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9656d0fbe195ce57730f65ebb7e9e384 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a9656d0fbe195ce57730f65ebb7e9e384">frame_id</a> (std::string &amp;&amp;frame_id)</td></tr>
+<tr class="separator:a9656d0fbe195ce57730f65ebb7e9e384 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac81da28dc11b15e6ad27647887ef65bb inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#ac81da28dc11b15e6ad27647887ef65bb">name</a> () const</td></tr>
+<tr class="separator:ac81da28dc11b15e6ad27647887ef65bb inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53db6f09833e2dd625967218568f8ab4 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a53db6f09833e2dd625967218568f8ab4">name</a> (std::string &amp;&amp;name)</td></tr>
+<tr class="separator:a53db6f09833e2dd625967218568f8ab4 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f2175762993c5eec161b8f304c59bb5 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a0f2175762993c5eec161b8f304c59bb5">parent</a> () const</td></tr>
+<tr class="separator:a0f2175762993c5eec161b8f304c59bb5 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a49e93846cc2dff08ed65be07767b58 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a1a49e93846cc2dff08ed65be07767b58">parent</a> (std::string &amp;&amp;parent)</td></tr>
+<tr class="separator:a1a49e93846cc2dff08ed65be07767b58 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6448e2522e8b78dfe350aca123530089 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a6448e2522e8b78dfe350aca123530089">type</a> () const =0</td></tr>
+<tr class="separator:a6448e2522e8b78dfe350aca123530089 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52ddebcb6ae5afef2c9061bee7d6153a inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a52ddebcb6ae5afef2c9061bee7d6153a">~CarlaPublisher</a> ()=default</td></tr>
+<tr class="separator:a52ddebcb6ae5afef2c9061bee7d6153a inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a6854a1373ef7fb369a51532b140ed83c"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="../../d0/df2/structcarla_1_1ros2_1_1CarlaGNSSPublisherImpl.html">CarlaGNSSPublisherImpl</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html#a6854a1373ef7fb369a51532b140ed83c">_impl</a></td></tr>
+<tr class="memdesc:a6854a1373ef7fb369a51532b140ed83c"><td class="mdescLeft">&#160;</td><td class="mdescRight">指向CarlaGNSSPublisherImpl的智能指针，用于隐藏实现细节。  <a href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html#a6854a1373ef7fb369a51532b140ed83c">更多...</a><br /></td></tr>
+<tr class="separator:a6854a1373ef7fb369a51532b140ed83c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher')"><img src="../../closed.png" alt="-"/>&#160;Protected 属性 继承自 <a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html">carla::ros2::CarlaPublisher</a></td></tr>
+<tr class="memitem:a611073f244645d4f6265a29b8a6e3b23 inherit pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a611073f244645d4f6265a29b8a6e3b23">_frame_id</a> = &quot;&quot;</td></tr>
+<tr class="separator:a611073f244645d4f6265a29b8a6e3b23 inherit pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26ab51e4d54b99c8c9347a3d245aac20 inherit pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a26ab51e4d54b99c8c9347a3d245aac20">_name</a> = &quot;&quot;</td></tr>
+<tr class="separator:a26ab51e4d54b99c8c9347a3d245aac20 inherit pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a284934d8f61aed2ddcb24c575240fb2f inherit pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a284934d8f61aed2ddcb24c575240fb2f">_parent</a> = &quot;&quot;</td></tr>
+<tr class="separator:a284934d8f61aed2ddcb24c575240fb2f inherit pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p >用于在ROS 2中发布CARLA的GNSS（全球导航卫星系统）数据的类。 <br  />
+ 继承自CarlaPublisher类，专门用于初始化、设置和发布GNSS数据。 <br  />
+ </p>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d28/CarlaGNSSPublisher_8h_source.html">CarlaGNSSPublisher.h</a> 第 <a class="el" href="../../dd/d28/CarlaGNSSPublisher_8h_source.html#l00024">24</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a6ef5e78f3e2c394d26996a7e3521598c" name="a6ef5e78f3e2c394d26996a7e3521598c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ef5e78f3e2c394d26996a7e3521598c">&#9670;&#160;</a></span>CarlaGNSSPublisher() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::ros2::CarlaGNSSPublisher::CarlaGNSSPublisher </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>ros_name</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>构造函数，用于创建CarlaGNSSPublisher对象。 <br  />
+ </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ros_name</td><td>ROS节点的名称（可选），默认为空字符串。 <br  />
+ </td></tr>
+    <tr><td class="paramname">parent</td><td>父节点的名称（可选），默认为空字符串。 <br  />
+ </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html">CarlaGNSSPublisher.cpp</a> 第 <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html#l00192">192</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00031">carla::ros2::CarlaPublisher::_name</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00032">carla::ros2::CarlaPublisher::_parent</a> , 以及 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00017">carla::ros2::CarlaPublisher::parent()</a>.</p>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher_a6ef5e78f3e2c394d26996a7e3521598c_cgraph.svg" width="439" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a1c980c56ede39f0b35a82da9a636cbbb" name="a1c980c56ede39f0b35a82da9a636cbbb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c980c56ede39f0b35a82da9a636cbbb">&#9670;&#160;</a></span>~CarlaGNSSPublisher()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::ros2::CarlaGNSSPublisher::~CarlaGNSSPublisher </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>析构函数，用于销毁CarlaGNSSPublisher对象。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html">CarlaGNSSPublisher.cpp</a> 第 <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html#l00198">198</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d28/CarlaGNSSPublisher_8h_source.html#l00057">_impl</a>.</p>
+
+</div>
+</div>
+<a id="ad48fe64390386aac7d5cfbb9fb43939d" name="ad48fe64390386aac7d5cfbb9fb43939d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad48fe64390386aac7d5cfbb9fb43939d">&#9670;&#160;</a></span>CarlaGNSSPublisher() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::ros2::CarlaGNSSPublisher::CarlaGNSSPublisher </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html">CarlaGNSSPublisher</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>拷贝构造函数，用于创建当前对象的深拷贝。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html">CarlaGNSSPublisher.cpp</a> 第 <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html#l00216">216</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00030">carla::ros2::CarlaPublisher::_frame_id</a>, <a class="el" href="../../dd/d28/CarlaGNSSPublisher_8h_source.html#l00057">_impl</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00031">carla::ros2::CarlaPublisher::_name</a> , 以及 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00032">carla::ros2::CarlaPublisher::_parent</a>.</p>
+
+</div>
+</div>
+<a id="a2ce9aa1c6bed794da6f069fe5c43b0c4" name="a2ce9aa1c6bed794da6f069fe5c43b0c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ce9aa1c6bed794da6f069fe5c43b0c4">&#9670;&#160;</a></span>CarlaGNSSPublisher() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::ros2::CarlaGNSSPublisher::CarlaGNSSPublisher </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html">CarlaGNSSPublisher</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>移动构造函数，用于创建当前对象的移动拷贝，避免不必要的深拷贝。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html">CarlaGNSSPublisher.cpp</a> 第 <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html#l00232">232</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00030">carla::ros2::CarlaPublisher::_frame_id</a>, <a class="el" href="../../dd/d28/CarlaGNSSPublisher_8h_source.html#l00057">_impl</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00031">carla::ros2::CarlaPublisher::_name</a> , 以及 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00032">carla::ros2::CarlaPublisher::_parent</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a088b58734f0c03a8280375805a5255b9" name="a088b58734f0c03a8280375805a5255b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a088b58734f0c03a8280375805a5255b9">&#9670;&#160;</a></span>Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::ros2::CarlaGNSSPublisher::Init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>初始化函数，用于设置ROS节点和发布者。 <br  />
+ </p>
+<dl class="section return"><dt>返回</dt><dd>如果初始化成功，则返回true；否则返回false。 <br  />
+ </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html">CarlaGNSSPublisher.cpp</a> 第 <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html#l00047">47</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00030">carla::ros2::CarlaPublisher::_frame_id</a>, <a class="el" href="../../dd/d28/CarlaGNSSPublisher_8h_source.html#l00057">_impl</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00031">carla::ros2::CarlaPublisher::_name</a> , 以及 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00032">carla::ros2::CarlaPublisher::_parent</a>.</p>
+
+</div>
+</div>
+<a id="ad054a1129e07d07e358c929efc5b8939" name="ad054a1129e07d07e358c929efc5b8939"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad054a1129e07d07e358c929efc5b8939">&#9670;&#160;</a></span>operator=() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html">CarlaGNSSPublisher</a> &amp; carla::ros2::CarlaGNSSPublisher::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html">CarlaGNSSPublisher</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>移动赋值运算符，用于将当前对象的状态移动到另一个同类型的对象中。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html">CarlaGNSSPublisher.cpp</a> 第 <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html#l00239">239</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00030">carla::ros2::CarlaPublisher::_frame_id</a>, <a class="el" href="../../dd/d28/CarlaGNSSPublisher_8h_source.html#l00057">_impl</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00031">carla::ros2::CarlaPublisher::_name</a> , 以及 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00032">carla::ros2::CarlaPublisher::_parent</a>.</p>
+
+</div>
+</div>
+<a id="ab031a8d734c00b99f7cd25301a746dc0" name="ab031a8d734c00b99f7cd25301a746dc0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab031a8d734c00b99f7cd25301a746dc0">&#9670;&#160;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html">CarlaGNSSPublisher</a> &amp; carla::ros2::CarlaGNSSPublisher::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html">CarlaGNSSPublisher</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>拷贝赋值运算符，用于将当前对象的状态复制到另一个同类型的对象中。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html">CarlaGNSSPublisher.cpp</a> 第 <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html#l00223">223</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00030">carla::ros2::CarlaPublisher::_frame_id</a>, <a class="el" href="../../dd/d28/CarlaGNSSPublisher_8h_source.html#l00057">_impl</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00031">carla::ros2::CarlaPublisher::_name</a> , 以及 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00032">carla::ros2::CarlaPublisher::_parent</a>.</p>
+
+</div>
+</div>
+<a id="ae9037f07815f63a6ef76bcb0634980dd" name="ae9037f07815f63a6ef76bcb0634980dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9037f07815f63a6ef76bcb0634980dd">&#9670;&#160;</a></span>Publish()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::ros2::CarlaGNSSPublisher::Publish </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>发布GNSS数据。 <br  />
+ </p>
+<dl class="section return"><dt>返回</dt><dd>如果发布成功，则返回true；否则返回false。 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html">CarlaGNSSPublisher.cpp</a> 第 <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html#l00107">107</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d28/CarlaGNSSPublisher_8h_source.html#l00057">_impl</a>.</p>
+
+</div>
+</div>
+<a id="a3f4963c26cf98ae397ec41a4d154c7f7" name="a3f4963c26cf98ae397ec41a4d154c7f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f4963c26cf98ae397ec41a4d154c7f7">&#9670;&#160;</a></span>SetData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::ros2::CarlaGNSSPublisher::SetData </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>seconds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>nanoseconds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double *&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置GNSS数据。 <br  />
+ </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">seconds</td><td>时间戳的秒部分。 <br  />
+ </td></tr>
+    <tr><td class="paramname">nanoseconds</td><td>时间戳的纳秒部分。 <br  />
+ </td></tr>
+    <tr><td class="paramname">data</td><td>指向GNSS数据的指针，数据以double类型数组的形式提供。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html">CarlaGNSSPublisher.cpp</a> 第 <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html#l00174">174</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00030">carla::ros2::CarlaPublisher::_frame_id</a>, <a class="el" href="../../dd/d28/CarlaGNSSPublisher_8h_source.html#l00057">_impl</a>, <a class="el" href="../../d8/d38/Time_8cpp_source.html#l00183">builtin_interfaces::msg::Time::nanosec()</a> , 以及 <a class="el" href="../../d8/d38/Time_8cpp_source.html#l00152">builtin_interfaces::msg::Time::sec()</a>.</p>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher_a3f4963c26cf98ae397ec41a4d154c7f7_cgraph.svg" width="411" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a1eb94d972a940a9d79e916fdaf391ffb" name="a1eb94d972a940a9d79e916fdaf391ffb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1eb94d972a940a9d79e916fdaf391ffb">&#9670;&#160;</a></span>type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * carla::ros2::CarlaGNSSPublisher::type </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>返回发布者的类型名称。 <br  />
+ </p>
+<dl class="section return"><dt>返回</dt><dd>类型名称字符串，对于GNSS发布者，返回"gnss"。 </dd></dl>
+
+<p>实现了 <a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a6448e2522e8b78dfe350aca123530089">carla::ros2::CarlaPublisher</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d28/CarlaGNSSPublisher_8h_source.html">CarlaGNSSPublisher.h</a> 第 <a class="el" href="../../dd/d28/CarlaGNSSPublisher_8h_source.html#l00053">53</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a6854a1373ef7fb369a51532b140ed83c" name="a6854a1373ef7fb369a51532b140ed83c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6854a1373ef7fb369a51532b140ed83c">&#9670;&#160;</a></span>_impl</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="../../d0/df2/structcarla_1_1ros2_1_1CarlaGNSSPublisherImpl.html">CarlaGNSSPublisherImpl</a>&gt; carla::ros2::CarlaGNSSPublisher::_impl</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>指向CarlaGNSSPublisherImpl的智能指针，用于隐藏实现细节。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d28/CarlaGNSSPublisher_8h_source.html">CarlaGNSSPublisher.h</a> 第 <a class="el" href="../../dd/d28/CarlaGNSSPublisher_8h_source.html#l00057">57</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html#l00216">CarlaGNSSPublisher()</a>, <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html#l00047">Init()</a>, <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html#l00223">operator=()</a>, <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html#l00107">Publish()</a>, <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html#l00174">SetData()</a> , 以及 <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html#l00198">~CarlaGNSSPublisher()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../dd/d28/CarlaGNSSPublisher_8h_source.html">CarlaGNSSPublisher.h</a></li>
+<li><a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html">CarlaGNSSPublisher.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

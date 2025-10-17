@@ -1,0 +1,13 @@
+<map id="carla::client::TrafficLight::GetStopWaypoints" name="carla::client::TrafficLight::GetStopWaypoints">
+<area shape="rect" id="node1" title=" " alt="" coords="5,165,163,205"/>
+<area shape="rect" id="node2" href="$d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#a520d5ef7284ded86a1d96a346f3516aa" title=" " alt="" coords="213,5,375,45"/>
+<area shape="rect" id="node3" href="$de/da4/classcarla_1_1geom_1_1Transform.html#ae2780e95b1c8b53205fb222a314f6773" title=" " alt="" coords="217,69,371,109"/>
+<area shape="rect" id="node7" href="$d6/da5/classcarla_1_1client_1_1Actor.html#ab5c7de9cefbe7d189c97a429ab052115" title="返回行为体的当前变换（位置和方向）。" alt="" coords="232,133,356,173"/>
+<area shape="rect" id="node8" href="$dc/d5c/classcarla_1_1client_1_1TrafficSign.html#a0f8c0a7718094908267c293f2ff7e0ce" title=" " alt="" coords="217,197,371,237"/>
+<area shape="rect" id="node9" href="$d1/dd3/classcarla_1_1client_1_1detail_1_1EpisodeProxyImpl.html#aaca857645fbeb6546b4a03a663bb65af" title="与 TryLock 相同，但永远不会返回 nullptr。" alt="" coords="211,261,377,301"/>
+<area shape="rect" id="node10" href="$de/da4/classcarla_1_1geom_1_1Transform.html#a3cc49b5e9c8293dec0c89a1cac2ceae8" title="将此变换应用于 in_point（先平移然后旋转）。 具体操作是先根据当前的旋转信息对输入点进行旋转操作，然后再根据当前的位置信息进行平移操作，最终将结果赋值回输入点" alt="" coords="217,325,371,365"/>
+<area shape="rect" id="node4" href="$d8/dba/classcarla_1_1geom_1_1Rotation.html#af3b9aeecb1d8a5a29aac264ea2b780dc" title=" " alt="" coords="425,81,568,121"/>
+<area shape="rect" id="node5" href="$d0/dea/classcarla_1_1geom_1_1Math.html#aafbb2dc8a60aa6e86cc7fe1ad2872beb" title="计算指向 rotation 的 X 轴的单位向量" alt="" coords="623,93,752,133"/>
+<area shape="rect" id="node6" href="$d0/dea/classcarla_1_1geom_1_1Math.html#a2bd79912876dfbab9354c0bb841320e4" title=" " alt="" coords="807,149,936,189"/>
+<area shape="rect" id="node11" href="$d8/dba/classcarla_1_1geom_1_1Rotation.html#ae5c4c69bc07cfb7fb46758ed2c8cb56e" title=" " alt="" coords="616,181,759,221"/>
+</map>

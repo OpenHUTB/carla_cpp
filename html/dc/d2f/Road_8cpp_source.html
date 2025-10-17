@@ -1,0 +1,491 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: Road.cpp 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_8afc3b5d71d319c27bc8bd38d925daae.html">road</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">Road.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../dc/d2f/Road_8cpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2020 Computer Vision Center (CVC) at the Universitat Autonoma</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// de Barcelona (UAB).</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// This work is licensed under the terms of the MIT license.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="../../d8/d8a/Exception_8h.html">carla/Exception.h</a>&quot;</span> <span class="comment">// 引入异常处理头文件</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="../../db/dee/CubicPolynomial_8h.html">carla/geom/CubicPolynomial.h</a>&quot;</span> <span class="comment">// 引入三次多项式几何头文件</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="../../d9/d8b/geom_2Location_8h.html">carla/geom/Location.h</a>&quot;</span> <span class="comment">// 引入位置几何头文件</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="../../db/d8a/Math_8h.html">carla/geom/Math.h</a>&quot;</span> <span class="comment">// 引入数学运算头文件</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="../../d4/d50/LibCarla_2source_2carla_2ListView_8h.html">carla/ListView.h</a>&quot;</span> <span class="comment">// 引入列表视图头文件</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="../../de/d87/Logging_8h.html">carla/Logging.h</a>&quot;</span> <span class="comment">// 引入日志记录头文件</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="../../d7/d90/RoadInfoElevation_8h.html">carla/road/element/RoadInfoElevation.h</a>&quot;</span> <span class="comment">// 引入道路信息的高度头文件</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="../../d0/d8e/RoadInfoGeometry_8h.html">carla/road/element/RoadInfoGeometry.h</a>&quot;</span> <span class="comment">// 引入道路几何信息头文件</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;<a class="code" href="../../db/d26/RoadInfoLaneOffset_8h.html">carla/road/element/RoadInfoLaneOffset.h</a>&quot;</span> <span class="comment">// 引入车道偏移信息头文件</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="../../d1/d16/RoadInfoLaneWidth_8h.html">carla/road/element/RoadInfoLaneWidth.h</a>&quot;</span> <span class="comment">// 引入车道宽度信息头文件</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &quot;<a class="code" href="../../d8/d27/Lane_8h.html">carla/road/Lane.h</a>&quot;</span> <span class="comment">// 引入车道头文件</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &quot;<a class="code" href="../../d5/db7/MapData_8h.html">carla/road/MapData.h</a>&quot;</span> <span class="comment">// 引入地图数据头文件</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &quot;<a class="code" href="../../db/d48/Road_8h.html">carla/road/Road.h</a>&quot;</span> <span class="comment">// 引入道路头文件</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;stdexcept&gt;</span> <span class="comment">// 引入标准异常处理头文件</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d9/d36/namespacecarla.html">carla</a> {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">namespace </span>road {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <span class="comment">// 获取与该道路相关联的地图数据</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  <span class="keyword">const</span> MapData *<a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#af53f7f9d34458132828fb50d6c913e98">Road::GetMap</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a05fdfb37a163bded2d3614ee1cb3a818">_map_data</a>; <span class="comment">// 返回地图数据指针</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  }</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <span class="comment">// 获取道路的ID</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <a class="code hl_typedef" href="../../de/d26/namespacecarla_1_1road.html#a9fa6f293e66647bffc1d64d59084eed7">RoadId</a> <a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a5fbd6ce83670d0394b56a89f0b7be239">Road::GetId</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a4f76cd62723468f99e24723485d93d26">_id</a>; <span class="comment">// 返回道路ID</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  }</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  <span class="comment">// 获取道路名称</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  std::string <a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#ae5a706413f22c1da5240a4c96cd58f79">Road::GetName</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="../../dd/de6/classcarla_1_1road_1_1Road.html#aebf343db3f93cbf9fda62a1eb4156751">_name</a>; <span class="comment">// 返回道路名称</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  }</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="comment">// 获取道路长度</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keywordtype">double</span> <a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a11acd9741132199eb349204c1def107f">Road::GetLength</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a364d48e04217afe4a0c57565002a13e7">_length</a>; <span class="comment">// 返回道路长度</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  }</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  <span class="comment">// 判断该道路是否为交叉口</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#af59728d624635d195db846b08c1f32c7">Road::IsJunction</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a88c0e4c9f38925e1e309a9d7adce06f7">_is_junction</a>; <span class="comment">// 返回是否为交叉口</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  }</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  <span class="comment">// 获取交叉口ID</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <a class="code hl_typedef" href="../../de/d26/namespacecarla_1_1road.html#a459e3705665dbc8b48b8ed053e15f6f7">JuncId</a> <a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#ae08b41fe6faadb42762266c90a74f2b1">Road::GetJunctionId</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a3fea1511d0c5ceb2dca10090b23d616e">_junction_id</a>; <span class="comment">// 返回交叉口ID</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  }</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  <span class="comment">// 获取下一条道路的ID</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  <a class="code hl_typedef" href="../../de/d26/namespacecarla_1_1road.html#a9fa6f293e66647bffc1d64d59084eed7">RoadId</a> <a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a56ce24902d4e496e30f9260718d4a376">Road::GetSuccessor</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="../../dd/de6/classcarla_1_1road_1_1Road.html#ad82403b75d7d9fd7a16bfbd36977854e">_successor</a>; <span class="comment">// 返回下一条道路ID</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  }</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  <span class="comment">// 获取前一条道路的ID</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  <a class="code hl_typedef" href="../../de/d26/namespacecarla_1_1road.html#a9fa6f293e66647bffc1d64d59084eed7">RoadId</a> <a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a0d4daeed04d8276c84e7db24a36dbff6">Road::GetPredecessor</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="../../dd/de6/classcarla_1_1road_1_1Road.html#af0d9106ed41000c139ac8038cddf3530">_predecessor</a>; <span class="comment">// 返回前一条道路ID</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>  }</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  <span class="comment">// 获取下一条道路的指针列表</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  std::vector&lt;Road *&gt; <a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a620a9283c5affb052a9ca15e48e0965e">Road::GetNexts</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a57e376489ef0d7fe752a310a18adf0c8">_nexts</a>; <span class="comment">// 返回下一条道路的指针列表</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  }</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  <span class="comment">// 获取前一条道路的指针列表</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  std::vector&lt;Road *&gt; <a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a192266bd14e5f7ebf55887aa0a4d00d1">Road::GetPrevs</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a58e44ae16af1a84e2d68de7d64a4085c">_prevs</a>; <span class="comment">// 返回前一条道路的指针列表</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  }</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  <span class="comment">// 获取给定距离s处的道路高度多项式</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  <span class="keyword">const</span> geom::CubicPolynomial &amp;<a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a9e0bba29f5bc845d314126c30c46743e">Road::GetElevationOn</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> s)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keyword">auto</span> info = GetInfo&lt;element::RoadInfoElevation&gt;(s); <span class="comment">// 获取道路高度信息</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keywordflow">if</span> (info == <span class="keyword">nullptr</span>) { <span class="comment">// 如果没有找到高度信息</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>      <a class="code hl_function" href="../../d9/d36/namespacecarla.html#a23602ab663165210a7757d6108f6b3cd">throw_exception</a>(std::runtime_error(<span class="stringliteral">&quot;failed to find road elevation.&quot;</span>)); <span class="comment">// 抛出异常</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    }</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keywordflow">return</span> info-&gt;GetPolynomial(); <span class="comment">// 返回高度多项式</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  }</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  <span class="comment">// 根据距离s和车道ID获取车道的引用</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>  Lane &amp;<a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#aa50c6bda434b04c6adb0fca5a26df4a9">Road::GetLaneByDistance</a>(<span class="keywordtype">double</span> s, <a class="code hl_typedef" href="../../de/d26/namespacecarla_1_1road.html#ab04570f0655cb16bd43d7cb2b939511f">LaneId</a> lane_id) {</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;section : <a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#aa7ef154cb2573a6a01138abd66d38d83">GetLaneSectionsAt</a>(s)) { <span class="comment">// 遍历在距离s处的车道段</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>      <span class="keyword">auto</span> *lane = section.GetLane(lane_id); <span class="comment">// 获取指定ID的车道</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>      <span class="keywordflow">if</span> (lane != <span class="keyword">nullptr</span>) { <span class="comment">// 如果找到了车道</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        <span class="keywordflow">return</span> *lane; <span class="comment">// 返回车道引用</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>      }</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    }</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <a class="code hl_function" href="../../d9/d36/namespacecarla.html#a23602ab663165210a7757d6108f6b3cd">throw_exception</a>(std::runtime_error(<span class="stringliteral">&quot;lane not found&quot;</span>)); <span class="comment">// 抛出异常，表示未找到车道</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>  }</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>  <span class="comment">// 获取给定距离s和车道ID的常量车道引用</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>  <span class="keyword">const</span> Lane &amp;<a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#aa50c6bda434b04c6adb0fca5a26df4a9">Road::GetLaneByDistance</a>(<span class="keywordtype">double</span> s, <a class="code hl_typedef" href="../../de/d26/namespacecarla_1_1road.html#ab04570f0655cb16bd43d7cb2b939511f">LaneId</a> lane_id)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keywordflow">return</span> <span class="keyword">const_cast&lt;</span><a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a16e9c29ee3f529d5473447fb53c94839">Road</a> *<span class="keyword">&gt;</span>(<span class="keyword">this</span>)-&gt;<a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#aa50c6bda434b04c6adb0fca5a26df4a9">GetLaneByDistance</a>(s, lane_id); <span class="comment">// 调用非常量版本</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>  }</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  <span class="comment">// 根据距离s获取所有车道的指针列表</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>  std::vector&lt;Lane*&gt; <a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#acbea6fe4d600f5f2a84d7ae16390aee3">Road::GetLanesByDistance</a>(<span class="keywordtype">double</span> s) {</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    std::vector&lt;Lane*&gt; result; <span class="comment">// 创建结果列表</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keyword">auto</span> lane_sections = <a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#aa7ef154cb2573a6a01138abd66d38d83">GetLaneSectionsAt</a>(s); <span class="comment">// 获取在距离s处的车道段</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;lane_section : lane_sections) { <span class="comment">// 遍历每个车道段</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>      <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp; lane_pair : lane_section.GetLanes()) { <span class="comment">// 遍历车道段中的每个车道</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        result.emplace_back(&amp;lane_pair.second); <span class="comment">// 将车道指针添加到结果列表</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>      }</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    }</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keywordflow">return</span> result; <span class="comment">// 返回车道指针列表</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  }</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>  <span class="comment">// 根据距离s获取所有车道的常量指针列表</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>  std::vector&lt;const Lane*&gt; <a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#acbea6fe4d600f5f2a84d7ae16390aee3">Road::GetLanesByDistance</a>(<span class="keywordtype">double</span> s)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    std::vector&lt;const Lane*&gt; result; <span class="comment">// 创建结果列表</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="keyword">const</span> <span class="keyword">auto</span> lane_sections = <a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#aa7ef154cb2573a6a01138abd66d38d83">GetLaneSectionsAt</a>(s); <span class="comment">// 获取在距离s处的车道段</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;lane_section : lane_sections) { <span class="comment">// 遍历每个车道段</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>      <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp; lane_pair : lane_section.GetLanes()) { <span class="comment">// 遍历车道段中的每个车道</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        result.emplace_back(&amp;lane_pair.second); <span class="comment">// 将车道指针添加到结果列表</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>      }</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    }</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="keywordflow">return</span> result; <span class="comment">// 返回车道指针列表</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>  }</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>  <span class="comment">// 根据车道段ID和车道ID获取车道的引用</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>  Lane &amp;<a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a44cd205b140128adf1fc06f91f55409a">Road::GetLaneById</a>(<a class="code hl_typedef" href="../../de/d26/namespacecarla_1_1road.html#aff83ed524d1d73b7d6d54b36a9fef9bf">SectionId</a> section_id, <a class="code hl_typedef" href="../../de/d26/namespacecarla_1_1road.html#ab04570f0655cb16bd43d7cb2b939511f">LaneId</a> lane_id) {</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#afc2ce3f2de8825413a827d46c62c197b">GetLaneSectionById</a>(section_id).<a class="code hl_function" href="../../dd/d80/classcarla_1_1road_1_1LaneSection.html#afb698c17b4d62c0df02cf8dae16b8f50">GetLanes</a>().at(lane_id); <span class="comment">// 获取指定车道段中的车道引用</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>  }</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>  <span class="comment">// 根据车道段ID和车道ID获取车道的常量引用</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>  <span class="keyword">const</span> Lane &amp;<a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a44cd205b140128adf1fc06f91f55409a">Road::GetLaneById</a>(<a class="code hl_typedef" href="../../de/d26/namespacecarla_1_1road.html#aff83ed524d1d73b7d6d54b36a9fef9bf">SectionId</a> section_id, <a class="code hl_typedef" href="../../de/d26/namespacecarla_1_1road.html#ab04570f0655cb16bd43d7cb2b939511f">LaneId</a> lane_id)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="keywordflow">return</span> <span class="keyword">const_cast&lt;</span><a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a16e9c29ee3f529d5473447fb53c94839">Road</a> *<span class="keyword">&gt;</span>(<span class="keyword">this</span>)-&gt;<a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a44cd205b140128adf1fc06f91f55409a">GetLaneById</a>(section_id, lane_id); <span class="comment">// 调用非常量版本</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>  }</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>  <span class="comment">// 获取给定距离s处的下一个车道</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>  Lane *<a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a7e9150dc29a3ab8b9a529ffb11205980">Road::GetNextLane</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> s, <span class="keyword">const</span> <a class="code hl_typedef" href="../../de/d26/namespacecarla_1_1road.html#ab04570f0655cb16bd43d7cb2b939511f">LaneId</a> lane_id) {</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="keyword">auto</span> upper = <a class="code hl_variable" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a51794196f4af00d66d8543c9b30aef2c">_lane_sections</a>.upper_bound(s); <span class="comment">// 获取距离s的上界车道段</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="keywordflow">while</span> (upper != <a class="code hl_variable" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a51794196f4af00d66d8543c9b30aef2c">_lane_sections</a>.end()) { <span class="comment">// 当上界车道段不为空时</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>      <span class="comment">// 检查ID</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>   Lane *ptr = upper-&gt;second.GetLane(lane_id); <span class="comment">// 获取与 lane_id 相关联的车道指针</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="keywordflow">if</span> (ptr != <span class="keyword">nullptr</span>) { <span class="comment">// 如果车道指针不为空</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="keywordflow">return</span> ptr; <span class="comment">// 返回该车道指针</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>}</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>++upper; <span class="comment">// 移动到下一个元素</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="keywordflow">return</span> <span class="keyword">nullptr</span>; <span class="comment">// 如果没有找到，返回空指针</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>}</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span><span class="comment">// 获取在 &#39;s&#39; 之前的车道</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>Lane *<a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a242d8d41927bee937a2ac46247a78c5c">Road::GetPrevLane</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> s, <span class="keyword">const</span> <a class="code hl_typedef" href="../../de/d26/namespacecarla_1_1road.html#ab04570f0655cb16bd43d7cb2b939511f">LaneId</a> lane_id) {</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="keyword">auto</span> lower = <a class="code hl_variable" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a51794196f4af00d66d8543c9b30aef2c">_lane_sections</a>.lower_bound(s); <span class="comment">// 找到第一个大于或等于 s 的元素</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keyword">auto</span> rlower = std::make_reverse_iterator(lower); <span class="comment">// 创建反向迭代器</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <span class="keywordflow">while</span> (rlower != <a class="code hl_variable" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a51794196f4af00d66d8543c9b30aef2c">_lane_sections</a>.rend()) { <span class="comment">// 遍历直到结束</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        Lane *ptr = rlower-&gt;second.GetLane(lane_id); <span class="comment">// 获取与 lane_id 相关联的车道指针</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        <span class="keywordflow">if</span> (ptr != <span class="keyword">nullptr</span>) { <span class="comment">// 如果车道指针不为空</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>            <span class="keywordflow">return</span> ptr; <span class="comment">// 返回该车道指针</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        }</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>        ++rlower; <span class="comment">// 移动到前一个元素</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    }</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    <span class="keywordflow">return</span> <span class="keyword">nullptr</span>; <span class="comment">// 如果没有找到，返回空指针</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>}</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="comment">// 获取具有指定 lane id 的开始段</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>LaneSection *<a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a6c90082d65eb8e2fbb8d9db51136563a">Road::GetStartSection</a>(<a class="code hl_typedef" href="../../de/d26/namespacecarla_1_1road.html#ab04570f0655cb16bd43d7cb2b939511f">LaneId</a> <span class="keywordtype">id</span>) {</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    <span class="keyword">auto</span> it = <a class="code hl_variable" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a51794196f4af00d66d8543c9b30aef2c">_lane_sections</a>.begin(); <span class="comment">// 从车道段的开始位置迭代</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <span class="keywordflow">while</span> (it != <a class="code hl_variable" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a51794196f4af00d66d8543c9b30aef2c">_lane_sections</a>.end()) { <span class="comment">// 遍历直到结束</span></div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>        Lane *ptr = it-&gt;second.GetLane(<span class="keywordtype">id</span>); <span class="comment">// 获取与 id 相关联的车道指针</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>        <span class="keywordflow">if</span> (ptr != <span class="keyword">nullptr</span>) { <span class="comment">// 如果车道指针不为空</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>            <span class="keywordflow">return</span> &amp;(it-&gt;second); <span class="comment">// 返回该车道段的地址</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>        }</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>        ++it; <span class="comment">// 移动到下一个元素</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    }</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    <span class="keywordflow">return</span> <span class="keyword">nullptr</span>; <span class="comment">// 如果没有找到，返回空指针</span></div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>}</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="comment">// 获取具有指定 lane id 的结束段</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>LaneSection *<a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#ae4e3c1ad71021067f9a444b98f78b335">Road::GetEndSection</a>(<a class="code hl_typedef" href="../../de/d26/namespacecarla_1_1road.html#ab04570f0655cb16bd43d7cb2b939511f">LaneId</a> <span class="keywordtype">id</span>) {</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    <span class="keyword">auto</span> it = <a class="code hl_variable" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a51794196f4af00d66d8543c9b30aef2c">_lane_sections</a>.rbegin(); <span class="comment">// 从车道段的结束位置反向迭代</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <span class="keywordflow">while</span> (it != <a class="code hl_variable" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a51794196f4af00d66d8543c9b30aef2c">_lane_sections</a>.rend()) { <span class="comment">// 遍历直到结束</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>        Lane *ptr = it-&gt;second.GetLane(<span class="keywordtype">id</span>); <span class="comment">// 获取与 id 相关联的车道指针</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>        <span class="keywordflow">if</span> (ptr != <span class="keyword">nullptr</span>) { <span class="comment">// 如果车道指针不为空</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>            <span class="keywordflow">return</span> &amp;(it-&gt;second); <span class="comment">// 返回该车道段的地址</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>        }</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>        ++it; <span class="comment">// 移动到前一个元素</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    }</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <span class="keywordflow">return</span> <span class="keyword">nullptr</span>; <span class="comment">// 如果没有找到，返回空指针</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>}</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="comment">// 根据给定的 s 获取方向点</span></div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>element::DirectedPoint <a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#abe77139bd9cba13e5c068c6f78b5196c">Road::GetDirectedPointIn</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> s)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <span class="keyword">const</span> <span class="keyword">auto</span> clamped_s = <a class="code hl_function" href="../../d0/dea/classcarla_1_1geom_1_1Math.html#a8f8eccc1a2bcc711250f2b47a21eb31f">geom::Math::Clamp</a>(s, 0.0, <a class="code hl_variable" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a364d48e04217afe4a0c57565002a13e7">_length</a>); <span class="comment">// 将 s 限制在有效范围内</span></div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    <span class="keyword">const</span> <span class="keyword">auto</span> geometry = <a class="code hl_variable" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a492de9c8b9aeae5b2e2ebf8727f57a9b">_info</a>.<a class="code hl_function" href="../../d4/d28/classcarla_1_1road_1_1InformationSet.html#a2c183586f8f7bfebf89339f1a3845e49">GetInfo</a>&lt;element::RoadInfoGeometry&gt;(clamped_s); <span class="comment">// 获取几何信息</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    <span class="keyword">const</span> <span class="keyword">auto</span> lane_offset = <a class="code hl_variable" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a492de9c8b9aeae5b2e2ebf8727f57a9b">_info</a>.<a class="code hl_function" href="../../d4/d28/classcarla_1_1road_1_1InformationSet.html#a2c183586f8f7bfebf89339f1a3845e49">GetInfo</a>&lt;element::RoadInfoLaneOffset&gt;(clamped_s); <span class="comment">// 获取车道偏移信息</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <span class="keywordtype">float</span> offset = 0; <span class="comment">// 初始化偏移量</span></div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <span class="keywordflow">if</span>(lane_offset){ <span class="comment">// 如果存在车道偏移信息</span></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>        offset = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(lane_offset-&gt;GetPolynomial().Evaluate(clamped_s)); <span class="comment">// 计算偏移量</span></div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    }</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    <span class="comment">// 应用道路的车道偏移记录</span></div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    element::DirectedPoint p = geometry-&gt;GetGeometry().PosFromDist(clamped_s - geometry-&gt;GetDistance()); <span class="comment">// 计算位置</span></div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <span class="comment">// Unreal 的 Y 轴偏移（偏移量取负）</span></div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    p.ApplyLateralOffset(-offset); <span class="comment">// 应用横向偏移</span></div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span> </div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <span class="comment">// 应用道路的高程记录</span></div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    <span class="keyword">const</span> <span class="keyword">auto</span> elevation_info = <a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a9e0bba29f5bc845d314126c30c46743e">GetElevationOn</a>(s); <span class="comment">// 获取高程信息</span></div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    p.location.z = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(elevation_info.Evaluate(s)); <span class="comment">// 设置 z 坐标</span></div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    p.pitch = elevation_info.Tangent(s); <span class="comment">// 设置俯仰角</span></div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span> </div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <span class="keywordflow">return</span> p; <span class="comment">// 返回方向点</span></div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>}</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><span class="comment">// 根据给定的 s 获取方向点，不考虑车道偏移</span></div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>element::DirectedPoint <a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#add5e8cae755c9981a715426d29f14887">Road::GetDirectedPointInNoLaneOffset</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> s)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    <span class="keyword">const</span> <span class="keyword">auto</span> clamped_s = <a class="code hl_function" href="../../d0/dea/classcarla_1_1geom_1_1Math.html#a8f8eccc1a2bcc711250f2b47a21eb31f">geom::Math::Clamp</a>(s, 0.0, <a class="code hl_variable" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a364d48e04217afe4a0c57565002a13e7">_length</a>); <span class="comment">// 将 s 限制在有效范围内</span></div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    <span class="keyword">const</span> <span class="keyword">auto</span> geometry = <a class="code hl_variable" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a492de9c8b9aeae5b2e2ebf8727f57a9b">_info</a>.<a class="code hl_function" href="../../d4/d28/classcarla_1_1road_1_1InformationSet.html#a2c183586f8f7bfebf89339f1a3845e49">GetInfo</a>&lt;element::RoadInfoGeometry&gt;(clamped_s); <span class="comment">// 获取几何信息</span></div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    element::DirectedPoint p = geometry-&gt;GetGeometry().PosFromDist(clamped_s - geometry-&gt;GetDistance()); <span class="comment">// 计算位置</span></div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span> </div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    <span class="comment">// 应用道路的高程记录</span></div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    <span class="keyword">const</span> <span class="keyword">auto</span> elevation_info = <a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a9e0bba29f5bc845d314126c30c46743e">GetElevationOn</a>(s); <span class="comment">// 获取高程信息</span></div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    p.location.z = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(elevation_info.Evaluate(s)); <span class="comment">// 设置 z 坐标</span></div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    p.pitch = elevation_info.Tangent(s); <span class="comment">// 设置俯仰角</span></div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> </div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <span class="keywordflow">return</span> p; <span class="comment">// 返回方向点</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>}</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span> </div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span><span class="comment">// 获取距离给定位置最近的点</span></div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span><span class="keyword">const</span> std::pair&lt;double, double&gt; <a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a126bfd018a69f7366fec8695e34657d2">Road::GetNearestPoint</a>(<span class="keyword">const</span> geom::Location &amp;loc)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    std::pair&lt;double, double&gt; last = { 0.0, std::numeric_limits&lt;double&gt;::max() }; <span class="comment">// 初始化最近点和距离</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span> </div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    <span class="keyword">auto</span> geom_info_list = <a class="code hl_variable" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a492de9c8b9aeae5b2e2ebf8727f57a9b">_info</a>.<a class="code hl_function" href="../../d4/d28/classcarla_1_1road_1_1InformationSet.html#abf1e4615805f6876dac8d37b8141319d">GetInfos</a>&lt;element::RoadInfoGeometry&gt;(); <span class="comment">// 获取几何信息列表</span></div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    <span class="keyword">decltype</span>(geom_info_list)::iterator nearest_geom = geom_info_list.end(); <span class="comment">// 初始化最近的几何信息指针</span></div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> g = geom_info_list.begin(); g != geom_info_list.end(); ++g) { <span class="comment">// 遍历几何信息列表</span></div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>        <a class="code hl_define" href="../../d4/deb/Debug_8h.html#a0480185f78b4135a9d05ec24bccef047">DEBUG_ASSERT</a>(*g != <span class="keyword">nullptr</span>); <span class="comment">// 确保指针不为空</span></div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>        <span class="keyword">auto</span> dist = (*g)-&gt;GetGeometry().DistanceTo(loc); <span class="comment">// 计算与位置的距离</span></div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>        <span class="keywordflow">if</span> (dist.second &lt; last.second) { <span class="comment">// 如果当前距离小于最近距离</span></div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>            last = dist; <span class="comment">// 更新最近距离</span></div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>            nearest_geom = g; <span class="comment">// 更新最近的几何信息指针</span></div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>        }</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    }</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span> </div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> g = geom_info_list.begin();</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>         g != geom_info_list.end() &amp;&amp; g != nearest_geom;</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>         ++g) { <span class="comment">// 遍历直到最近的几何信息</span></div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>        <a class="code hl_define" href="../../d4/deb/Debug_8h.html#a0480185f78b4135a9d05ec24bccef047">DEBUG_ASSERT</a>(*g != <span class="keyword">nullptr</span>); <span class="comment">// 确保指针不为空</span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>        last.first += (*g)-&gt;GetGeometry().GetLength(); <span class="comment">// 累加长度</span></div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    }</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    <span class="keywordflow">return</span> last; <span class="comment">// 返回最近点和距离</span></div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>}</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>  <span class="keyword">const</span> std::pair&lt;const Lane *, double&gt; <a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#ab2b49cb7ce0697c34d49e20dfa40692b">Road::GetNearestLane</a>(</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>      <span class="keyword">const</span> <span class="keywordtype">double</span> s,</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>      <span class="keyword">const</span> geom::Location &amp;loc,</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>      uint32_t lane_type)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    <span class="keyword">using namespace </span><a class="code hl_namespace" href="../../df/dc1/namespacecarla_1_1road_1_1element.html">carla::road::element</a>; <span class="comment">// 使用 carla::road::element 命名空间</span></div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    std::map&lt;LaneId, const Lane *&gt; lanes(<a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a6134bb923498e21fb6f52ccd5a929227">GetLanesAt</a>(s)); <span class="comment">// 获取在 s 位置的所有车道</span></div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span> </div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    <span class="comment">// 获取右侧车道（负值车道）</span></div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    <span class="keyword">auto</span> right_lanes = MakeListView(</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>        std::make_reverse_iterator(lanes.lower_bound(0)), lanes.rend()); <span class="comment">// 创建右侧车道的视图</span></div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    <span class="comment">// 获取左侧车道（正值车道）</span></div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    <span class="keyword">auto</span> left_lanes = MakeListView(</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>        lanes.lower_bound(1), lanes.end()); <span class="comment">// 创建左侧车道的视图</span></div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span> </div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    <span class="keyword">const</span> <a class="code hl_struct" href="../../df/d65/structcarla_1_1road_1_1element_1_1DirectedPoint.html">DirectedPoint</a> dp_lane_zero = <a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#abe77139bd9cba13e5c068c6f78b5196c">GetDirectedPointIn</a>(s); <span class="comment">// 获取在 s 处的方向点</span></div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    std::pair&lt;const Lane *, double&gt; result =</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>        std::make_pair(<span class="keyword">nullptr</span>, std::numeric_limits&lt;double&gt;::max()); <span class="comment">// 初始化结果为 null 和最大距离</span></div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span> </div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    <a class="code hl_struct" href="../../df/d65/structcarla_1_1road_1_1element_1_1DirectedPoint.html">DirectedPoint</a> current_dp = dp_lane_zero; <span class="comment">// 当前方向点初始化为 dp_lane_zero</span></div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;lane : right_lanes) { <span class="comment">// 遍历右侧车道</span></div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>      <span class="keyword">const</span> <span class="keyword">auto</span> lane_width_info = lane.second-&gt;GetInfo&lt;<a class="code hl_class" href="../../de/dbb/classcarla_1_1road_1_1element_1_1RoadInfoLaneWidth.html">RoadInfoLaneWidth</a>&gt;(s); <span class="comment">// 获取车道宽度信息</span></div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>      <span class="keyword">const</span> <span class="keyword">auto</span> half_width = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(lane_width_info-&gt;GetPolynomial().Evaluate(s)) * 0.5f; <span class="comment">// 计算半宽度</span></div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span> </div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>      current_dp.<a class="code hl_function" href="../../df/d65/structcarla_1_1road_1_1element_1_1DirectedPoint.html#a058ad3be7f22229ea802e569ab0e8b7e">ApplyLateralOffset</a>(half_width); <span class="comment">// 应用半宽度偏移到当前方向点</span></div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>      <span class="keyword">const</span> <span class="keyword">auto</span> current_dist = <a class="code hl_function" href="../../d0/dea/classcarla_1_1geom_1_1Math.html#adc0c40d67bed1ab82405838c7981aff1">geom::Math::Distance</a>(current_dp.<a class="code hl_variable" href="../../df/d65/structcarla_1_1road_1_1element_1_1DirectedPoint.html#a4b9f9bf824ad3ffaca1a52ecb1918ad3">location</a>, loc); <span class="comment">// 计算当前方向点到目标位置的距离</span></div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span> </div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>      <span class="comment">// 如果当前方向点接近目标位置，说明我们在正确的方向上</span></div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>      <span class="keywordflow">if</span> (current_dist &lt;= result.second) {</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>        <span class="comment">// 仅考虑与类型标志匹配的车道作为候选结果</span></div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>        <span class="keywordflow">if</span> ((<span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(lane.second-&gt;GetType()) &amp; lane_type) &gt; 0) {</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>          result.first = &amp;(*lane.second); <span class="comment">// 更新结果中的车道指针</span></div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>          result.second = current_dist; <span class="comment">// 更新结果中的距离</span></div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>        }</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>      } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>        <span class="comment">// 如果距离变远，说明我们可能在偏离方向</span></div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>        <span class="keywordflow">break</span>; <span class="comment">// 退出循环</span></div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>      }</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>      current_dp.<a class="code hl_function" href="../../df/d65/structcarla_1_1road_1_1element_1_1DirectedPoint.html#a058ad3be7f22229ea802e569ab0e8b7e">ApplyLateralOffset</a>(half_width); <span class="comment">// 再次应用半宽度偏移</span></div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>    }</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span> </div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>    current_dp = dp_lane_zero; <span class="comment">// 重置当前方向点为初始值</span></div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;lane : left_lanes) { <span class="comment">// 遍历左侧车道</span></div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>      <span class="keyword">const</span> <span class="keyword">auto</span> lane_width_info = lane.second-&gt;GetInfo&lt;<a class="code hl_class" href="../../de/dbb/classcarla_1_1road_1_1element_1_1RoadInfoLaneWidth.html">RoadInfoLaneWidth</a>&gt;(s); <span class="comment">// 获取车道宽度信息</span></div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>      <span class="keyword">const</span> <span class="keyword">auto</span> half_width = -<span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(lane_width_info-&gt;GetPolynomial().Evaluate(s)) * 0.5f; <span class="comment">// 计算负半宽度</span></div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span> </div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>      current_dp.<a class="code hl_function" href="../../df/d65/structcarla_1_1road_1_1element_1_1DirectedPoint.html#a058ad3be7f22229ea802e569ab0e8b7e">ApplyLateralOffset</a>(half_width); <span class="comment">// 应用负半宽度偏移到当前方向点</span></div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>      <span class="keyword">const</span> <span class="keyword">auto</span> current_dist = <a class="code hl_function" href="../../d0/dea/classcarla_1_1geom_1_1Math.html#adc0c40d67bed1ab82405838c7981aff1">geom::Math::Distance</a>(current_dp.<a class="code hl_variable" href="../../df/d65/structcarla_1_1road_1_1element_1_1DirectedPoint.html#a4b9f9bf824ad3ffaca1a52ecb1918ad3">location</a>, loc); <span class="comment">// 计算当前方向点到目标位置的距离</span></div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span> </div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>      <span class="comment">// 如果当前方向点接近目标位置，说明我们在正确的方向上</span></div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>      <span class="keywordflow">if</span> (current_dist &lt;= result.second) {</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>        <span class="comment">// 仅考虑与类型标志匹配的车道作为候选结果</span></div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>        <span class="keywordflow">if</span> ((<span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(lane.second-&gt;GetType()) &amp; lane_type) &gt; 0) {</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>          result.first = &amp;(*lane.second); <span class="comment">// 更新结果中的车道指针</span></div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>          result.second = current_dist; <span class="comment">// 更新结果中的距离</span></div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>        }</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>      } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>        <span class="comment">// 如果距离变远，说明我们可能在偏离方向</span></div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>        <span class="keywordflow">break</span>; <span class="comment">// 退出循环</span></div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>      }</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>      current_dp.<a class="code hl_function" href="../../df/d65/structcarla_1_1road_1_1element_1_1DirectedPoint.html#a058ad3be7f22229ea802e569ab0e8b7e">ApplyLateralOffset</a>(half_width); <span class="comment">// 再次应用负半宽度偏移</span></div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>    }</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span> </div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    <span class="keywordflow">return</span> result; <span class="comment">// 返回最近的车道和距离</span></div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>}</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span> </div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>std::map&lt;LaneId, const Lane *&gt; <a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#a6134bb923498e21fb6f52ccd5a929227">Road::GetLanesAt</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> s)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>    std::map&lt;LaneId, const Lane *&gt; map; <span class="comment">// 初始化一个车道映射</span></div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;&amp;lane_section : <a class="code hl_function" href="../../dd/de6/classcarla_1_1road_1_1Road.html#aa7ef154cb2573a6a01138abd66d38d83">GetLaneSectionsAt</a>(s)) { <span class="comment">// 遍历在 s 位置的车道段</span></div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>      <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;&amp;lane : lane_section.GetLanes()) { <span class="comment">// 遍历车道段中的所有车道</span></div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>        map[lane.first] = &amp;(lane.second); <span class="comment">// 将车道 ID 和车道指针存入映射</span></div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>      }</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>    }</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>    <span class="keywordflow">return</span> map; <span class="comment">// 返回车道映射</span></div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>}</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span> </div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>} <span class="comment">// road</span></div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>} <span class="comment">// carla</span></div>
+<div class="ttc" id="aCubicPolynomial_8h_html"><div class="ttname"><a href="../../db/dee/CubicPolynomial_8h.html">CubicPolynomial.h</a></div></div>
+<div class="ttc" id="aDebug_8h_html_a0480185f78b4135a9d05ec24bccef047"><div class="ttname"><a href="../../d4/deb/Debug_8h.html#a0480185f78b4135a9d05ec24bccef047">DEBUG_ASSERT</a></div><div class="ttdeci">#define DEBUG_ASSERT(predicate)</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/deb/Debug_8h_source.html#l00068">Debug.h:68</a></div></div>
+<div class="ttc" id="aException_8h_html"><div class="ttname"><a href="../../d8/d8a/Exception_8h.html">Exception.h</a></div></div>
+<div class="ttc" id="aLane_8h_html"><div class="ttname"><a href="../../d8/d27/Lane_8h.html">Lane.h</a></div></div>
+<div class="ttc" id="aLibCarla_2source_2carla_2ListView_8h_html"><div class="ttname"><a href="../../d4/d50/LibCarla_2source_2carla_2ListView_8h.html">ListView.h</a></div></div>
+<div class="ttc" id="aLogging_8h_html"><div class="ttname"><a href="../../de/d87/Logging_8h.html">Logging.h</a></div></div>
+<div class="ttc" id="aMapData_8h_html"><div class="ttname"><a href="../../d5/db7/MapData_8h.html">MapData.h</a></div></div>
+<div class="ttc" id="aMath_8h_html"><div class="ttname"><a href="../../db/d8a/Math_8h.html">Math.h</a></div></div>
+<div class="ttc" id="aRoadInfoElevation_8h_html"><div class="ttname"><a href="../../d7/d90/RoadInfoElevation_8h.html">RoadInfoElevation.h</a></div></div>
+<div class="ttc" id="aRoadInfoGeometry_8h_html"><div class="ttname"><a href="../../d0/d8e/RoadInfoGeometry_8h.html">RoadInfoGeometry.h</a></div></div>
+<div class="ttc" id="aRoadInfoLaneOffset_8h_html"><div class="ttname"><a href="../../db/d26/RoadInfoLaneOffset_8h.html">RoadInfoLaneOffset.h</a></div></div>
+<div class="ttc" id="aRoadInfoLaneWidth_8h_html"><div class="ttname"><a href="../../d1/d16/RoadInfoLaneWidth_8h.html">RoadInfoLaneWidth.h</a></div></div>
+<div class="ttc" id="aRoad_8h_html"><div class="ttname"><a href="../../db/d48/Road_8h.html">Road.h</a></div></div>
+<div class="ttc" id="aclasscarla_1_1geom_1_1Math_html_a8f8eccc1a2bcc711250f2b47a21eb31f"><div class="ttname"><a href="../../d0/dea/classcarla_1_1geom_1_1Math.html#a8f8eccc1a2bcc711250f2b47a21eb31f">carla::geom::Math::Clamp</a></div><div class="ttdeci">static T Clamp(T a, T min=T(0), T max=T(1))</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d8a/Math_8h_source.html#l00054">Math.h:54</a></div></div>
+<div class="ttc" id="aclasscarla_1_1geom_1_1Math_html_adc0c40d67bed1ab82405838c7981aff1"><div class="ttname"><a href="../../d0/dea/classcarla_1_1geom_1_1Math.html#adc0c40d67bed1ab82405838c7981aff1">carla::geom::Math::Distance</a></div><div class="ttdeci">static auto Distance(const Vector3D &amp;a, const Vector3D &amp;b)</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d8a/Math_8h_source.html#l00090">Math.h:90</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1InformationSet_html_a2c183586f8f7bfebf89339f1a3845e49"><div class="ttname"><a href="../../d4/d28/classcarla_1_1road_1_1InformationSet.html#a2c183586f8f7bfebf89339f1a3845e49">carla::road::InformationSet::GetInfo</a></div><div class="ttdeci">const T * GetInfo(const double s) const</div><div class="ttdoc">返回给定类型和距离s的单一信息</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d56/InformationSet_8h_source.html#l00041">InformationSet.h:41</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1InformationSet_html_abf1e4615805f6876dac8d37b8141319d"><div class="ttname"><a href="../../d4/d28/classcarla_1_1road_1_1InformationSet.html#abf1e4615805f6876dac8d37b8141319d">carla::road::InformationSet::GetInfos</a></div><div class="ttdeci">std::vector&lt; const T * &gt; GetInfos() const</div><div class="ttdoc">返回从道路起点给定类型的所有信息</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d56/InformationSet_8h_source.html#l00030">InformationSet.h:30</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1LaneSection_html_afb698c17b4d62c0df02cf8dae16b8f50"><div class="ttname"><a href="../../dd/d80/classcarla_1_1road_1_1LaneSection.html#afb698c17b4d62c0df02cf8dae16b8f50">carla::road::LaneSection::GetLanes</a></div><div class="ttdeci">std::map&lt; LaneId, Lane &gt; &amp; GetLanes()</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d5d/LaneSection_8cpp_source.html#l00047">LaneSection.cpp:47</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_a05fdfb37a163bded2d3614ee1cb3a818"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#a05fdfb37a163bded2d3614ee1cb3a818">carla::road::Road::_map_data</a></div><div class="ttdeci">MapData * _map_data</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d48/Road_8h_source.html#l00183">Road.h:183</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_a0d4daeed04d8276c84e7db24a36dbff6"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#a0d4daeed04d8276c84e7db24a36dbff6">carla::road::Road::GetPredecessor</a></div><div class="ttdeci">RoadId GetPredecessor() const</div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_a11acd9741132199eb349204c1def107f"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#a11acd9741132199eb349204c1def107f">carla::road::Road::GetLength</a></div><div class="ttdeci">double GetLength() const</div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_a126bfd018a69f7366fec8695e34657d2"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#a126bfd018a69f7366fec8695e34657d2">carla::road::Road::GetNearestPoint</a></div><div class="ttdeci">const std::pair&lt; double, double &gt; GetNearestPoint(const geom::Location &amp;loc) const</div><div class="ttdoc">返回一个包含以下内容的对：</div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_a16e9c29ee3f529d5473447fb53c94839"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#a16e9c29ee3f529d5473447fb53c94839">carla::road::Road::Road</a></div><div class="ttdeci">Road()=default</div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_a192266bd14e5f7ebf55887aa0a4d00d1"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#a192266bd14e5f7ebf55887aa0a4d00d1">carla::road::Road::GetPrevs</a></div><div class="ttdeci">std::vector&lt; Road * &gt; GetPrevs() const</div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_a242d8d41927bee937a2ac46247a78c5c"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#a242d8d41927bee937a2ac46247a78c5c">carla::road::Road::GetPrevLane</a></div><div class="ttdeci">Lane * GetPrevLane(const double s, const LaneId lane_id)</div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_a364d48e04217afe4a0c57565002a13e7"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#a364d48e04217afe4a0c57565002a13e7">carla::road::Road::_length</a></div><div class="ttdeci">double _length</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d48/Road_8h_source.html#l00189">Road.h:189</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_a3fea1511d0c5ceb2dca10090b23d616e"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#a3fea1511d0c5ceb2dca10090b23d616e">carla::road::Road::_junction_id</a></div><div class="ttdeci">JuncId _junction_id</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d48/Road_8h_source.html#l00193">Road.h:193</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_a44cd205b140128adf1fc06f91f55409a"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#a44cd205b140128adf1fc06f91f55409a">carla::road::Road::GetLaneById</a></div><div class="ttdeci">Lane &amp; GetLaneById(SectionId section_id, LaneId lane_id)</div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_a492de9c8b9aeae5b2e2ebf8727f57a9b"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#a492de9c8b9aeae5b2e2ebf8727f57a9b">carla::road::Road::_info</a></div><div class="ttdeci">InformationSet _info</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d48/Road_8h_source.html#l00201">Road.h:201</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_a4f76cd62723468f99e24723485d93d26"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#a4f76cd62723468f99e24723485d93d26">carla::road::Road::_id</a></div><div class="ttdeci">RoadId _id</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d48/Road_8h_source.html#l00185">Road.h:185</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_a51794196f4af00d66d8543c9b30aef2c"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#a51794196f4af00d66d8543c9b30aef2c">carla::road::Road::_lane_sections</a></div><div class="ttdeci">LaneSectionMap _lane_sections</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d48/Road_8h_source.html#l00195">Road.h:195</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_a56ce24902d4e496e30f9260718d4a376"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#a56ce24902d4e496e30f9260718d4a376">carla::road::Road::GetSuccessor</a></div><div class="ttdeci">RoadId GetSuccessor() const</div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_a57e376489ef0d7fe752a310a18adf0c8"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#a57e376489ef0d7fe752a310a18adf0c8">carla::road::Road::_nexts</a></div><div class="ttdeci">std::vector&lt; Road * &gt; _nexts</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d48/Road_8h_source.html#l00203">Road.h:203</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_a58e44ae16af1a84e2d68de7d64a4085c"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#a58e44ae16af1a84e2d68de7d64a4085c">carla::road::Road::_prevs</a></div><div class="ttdeci">std::vector&lt; Road * &gt; _prevs</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d48/Road_8h_source.html#l00205">Road.h:205</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_a5fbd6ce83670d0394b56a89f0b7be239"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#a5fbd6ce83670d0394b56a89f0b7be239">carla::road::Road::GetId</a></div><div class="ttdeci">RoadId GetId() const</div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_a6134bb923498e21fb6f52ccd5a929227"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#a6134bb923498e21fb6f52ccd5a929227">carla::road::Road::GetLanesAt</a></div><div class="ttdeci">std::map&lt; LaneId, const Lane * &gt; GetLanesAt(const double s) const</div><div class="ttdoc">获取在给定 s 位置的所有车道</div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_a620a9283c5affb052a9ca15e48e0965e"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#a620a9283c5affb052a9ca15e48e0965e">carla::road::Road::GetNexts</a></div><div class="ttdeci">std::vector&lt; Road * &gt; GetNexts() const</div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_a6c90082d65eb8e2fbb8d9db51136563a"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#a6c90082d65eb8e2fbb8d9db51136563a">carla::road::Road::GetStartSection</a></div><div class="ttdeci">LaneSection * GetStartSection(LaneId id)</div><div class="ttdoc">获取给定车道 ID 的起始车道段</div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_a7e9150dc29a3ab8b9a529ffb11205980"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#a7e9150dc29a3ab8b9a529ffb11205980">carla::road::Road::GetNextLane</a></div><div class="ttdeci">Lane * GetNextLane(const double s, const LaneId lane_id)</div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_a88c0e4c9f38925e1e309a9d7adce06f7"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#a88c0e4c9f38925e1e309a9d7adce06f7">carla::road::Road::_is_junction</a></div><div class="ttdeci">bool _is_junction</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d48/Road_8h_source.html#l00191">Road.h:191</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_a9e0bba29f5bc845d314126c30c46743e"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#a9e0bba29f5bc845d314126c30c46743e">carla::road::Road::GetElevationOn</a></div><div class="ttdeci">const geom::CubicPolynomial &amp; GetElevationOn(const double s) const</div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_aa50c6bda434b04c6adb0fca5a26df4a9"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#aa50c6bda434b04c6adb0fca5a26df4a9">carla::road::Road::GetLaneByDistance</a></div><div class="ttdeci">Lane &amp; GetLaneByDistance(double s, LaneId lane_id)</div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_aa7ef154cb2573a6a01138abd66d38d83"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#aa7ef154cb2573a6a01138abd66d38d83">carla::road::Road::GetLaneSectionsAt</a></div><div class="ttdeci">auto GetLaneSectionsAt(const double s)</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d48/Road_8h_source.html#l00144">Road.h:144</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_ab2b49cb7ce0697c34d49e20dfa40692b"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#ab2b49cb7ce0697c34d49e20dfa40692b">carla::road::Road::GetNearestLane</a></div><div class="ttdeci">const std::pair&lt; const Lane *, double &gt; GetNearestLane(const double s, const geom::Location &amp;loc, uint32_t type=static_cast&lt; uint32_t &gt;(Lane::LaneType::Any)) const</div><div class="ttdoc">返回最近的车道指针，给定相对于路段的 s 值和位置</div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_abe77139bd9cba13e5c068c6f78b5196c"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#abe77139bd9cba13e5c068c6f78b5196c">carla::road::Road::GetDirectedPointIn</a></div><div class="ttdeci">element::DirectedPoint GetDirectedPointIn(const double s) const</div><div class="ttdoc">返回指定距离的中心点（车道 0）的导向点</div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_acbea6fe4d600f5f2a84d7ae16390aee3"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#acbea6fe4d600f5f2a84d7ae16390aee3">carla::road::Road::GetLanesByDistance</a></div><div class="ttdeci">std::vector&lt; Lane * &gt; GetLanesByDistance(double s)</div><div class="ttdoc">在特定的 s 值获取所有车道</div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_ad82403b75d7d9fd7a16bfbd36977854e"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#ad82403b75d7d9fd7a16bfbd36977854e">carla::road::Road::_successor</a></div><div class="ttdeci">RoadId _successor</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d48/Road_8h_source.html#l00197">Road.h:197</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_add5e8cae755c9981a715426d29f14887"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#add5e8cae755c9981a715426d29f14887">carla::road::Road::GetDirectedPointInNoLaneOffset</a></div><div class="ttdeci">element::DirectedPoint GetDirectedPointInNoLaneOffset(const double s) const</div><div class="ttdoc">返回指定距离的中心点（车道 0）的导向点，不考虑车道偏移</div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_ae08b41fe6faadb42762266c90a74f2b1"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#ae08b41fe6faadb42762266c90a74f2b1">carla::road::Road::GetJunctionId</a></div><div class="ttdeci">JuncId GetJunctionId() const</div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_ae4e3c1ad71021067f9a444b98f78b335"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#ae4e3c1ad71021067f9a444b98f78b335">carla::road::Road::GetEndSection</a></div><div class="ttdeci">LaneSection * GetEndSection(LaneId id)</div><div class="ttdoc">获取给定车道 ID 的结束车道段</div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_ae5a706413f22c1da5240a4c96cd58f79"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#ae5a706413f22c1da5240a4c96cd58f79">carla::road::Road::GetName</a></div><div class="ttdeci">std::string GetName() const</div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_aebf343db3f93cbf9fda62a1eb4156751"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#aebf343db3f93cbf9fda62a1eb4156751">carla::road::Road::_name</a></div><div class="ttdeci">std::string _name</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d48/Road_8h_source.html#l00187">Road.h:187</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_af0d9106ed41000c139ac8038cddf3530"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#af0d9106ed41000c139ac8038cddf3530">carla::road::Road::_predecessor</a></div><div class="ttdeci">RoadId _predecessor</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d48/Road_8h_source.html#l00199">Road.h:199</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_af53f7f9d34458132828fb50d6c913e98"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#af53f7f9d34458132828fb50d6c913e98">carla::road::Road::GetMap</a></div><div class="ttdeci">const MapData * GetMap() const</div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_af59728d624635d195db846b08c1f32c7"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#af59728d624635d195db846b08c1f32c7">carla::road::Road::IsJunction</a></div><div class="ttdeci">bool IsJunction() const</div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Road_html_afc2ce3f2de8825413a827d46c62c197b"><div class="ttname"><a href="../../dd/de6/classcarla_1_1road_1_1Road.html#afc2ce3f2de8825413a827d46c62c197b">carla::road::Road::GetLaneSectionById</a></div><div class="ttdeci">LaneSection &amp; GetLaneSectionById(SectionId id)</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d48/Road_8h_source.html#l00160">Road.h:160</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1element_1_1RoadInfoLaneWidth_html"><div class="ttname"><a href="../../de/dbb/classcarla_1_1road_1_1element_1_1RoadInfoLaneWidth.html">carla::road::element::RoadInfoLaneWidth</a></div><div class="ttdoc">车道宽度记录：道路上每个交叉部分的车道可以提供多个宽度条目。 每个车道至少必须定义一个条目，除了按照惯例中心车道宽度为零。 每个条目在定义新条目之前都是有效的。如果为一个车道定义了多个条目， 它们必须按...</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d16/RoadInfoLaneWidth_8h_source.html#l00020">RoadInfoLaneWidth.h:20</a></div></div>
+<div class="ttc" id="ageom_2Location_8h_html"><div class="ttname"><a href="../../d9/d8b/geom_2Location_8h.html">Location.h</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1road_1_1element_html"><div class="ttname"><a href="../../df/dc1/namespacecarla_1_1road_1_1element.html">carla::road::element</a></div><div class="ttdef"><b>Definition:</b> <a href="../../de/d8e/SignComponent_8h_source.html#l00021">SignComponent.h:22</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1road_html_a459e3705665dbc8b48b8ed053e15f6f7"><div class="ttname"><a href="../../de/d26/namespacecarla_1_1road.html#a459e3705665dbc8b48b8ed053e15f6f7">carla::road::JuncId</a></div><div class="ttdeci">int32_t JuncId</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/dbb/RoadTypes_8h_source.html#l00023">RoadTypes.h:23</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1road_html_a9fa6f293e66647bffc1d64d59084eed7"><div class="ttname"><a href="../../de/d26/namespacecarla_1_1road.html#a9fa6f293e66647bffc1d64d59084eed7">carla::road::RoadId</a></div><div class="ttdeci">uint32_t RoadId</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/dbb/RoadTypes_8h_source.html#l00020">RoadTypes.h:20</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1road_html_ab04570f0655cb16bd43d7cb2b939511f"><div class="ttname"><a href="../../de/d26/namespacecarla_1_1road.html#ab04570f0655cb16bd43d7cb2b939511f">carla::road::LaneId</a></div><div class="ttdeci">int32_t LaneId</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/dbb/RoadTypes_8h_source.html#l00026">RoadTypes.h:26</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1road_html_aff83ed524d1d73b7d6d54b36a9fef9bf"><div class="ttname"><a href="../../de/d26/namespacecarla_1_1road.html#aff83ed524d1d73b7d6d54b36a9fef9bf">carla::road::SectionId</a></div><div class="ttdeci">uint32_t SectionId</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/dbb/RoadTypes_8h_source.html#l00029">RoadTypes.h:29</a></div></div>
+<div class="ttc" id="anamespacecarla_html"><div class="ttname"><a href="../../d9/d36/namespacecarla.html">carla</a></div><div class="ttdoc">CARLA模拟器的主命名空间。</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d4f/Carla_8cpp_source.html#l00139">Carla.cpp:139</a></div></div>
+<div class="ttc" id="anamespacecarla_html_a23602ab663165210a7757d6108f6b3cd"><div class="ttname"><a href="../../d9/d36/namespacecarla.html#a23602ab663165210a7757d6108f6b3cd">carla::throw_exception</a></div><div class="ttdeci">void throw_exception(const std::exception &amp;e)</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d4f/Carla_8cpp_source.html#l00142">Carla.cpp:142</a></div></div>
+<div class="ttc" id="astructcarla_1_1road_1_1element_1_1DirectedPoint_html"><div class="ttname"><a href="../../df/d65/structcarla_1_1road_1_1element_1_1DirectedPoint.html">carla::road::element::DirectedPoint</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d8b/Geometry_8h_source.html#l00040">Geometry.h:40</a></div></div>
+<div class="ttc" id="astructcarla_1_1road_1_1element_1_1DirectedPoint_html_a058ad3be7f22229ea802e569ab0e8b7e"><div class="ttname"><a href="../../df/d65/structcarla_1_1road_1_1element_1_1DirectedPoint.html#a058ad3be7f22229ea802e569ab0e8b7e">carla::road::element::DirectedPoint::ApplyLateralOffset</a></div><div class="ttdeci">void ApplyLateralOffset(float lateral_offset)</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/def/Geometry_8cpp_source.html#l00045">Geometry.cpp:45</a></div></div>
+<div class="ttc" id="astructcarla_1_1road_1_1element_1_1DirectedPoint_html_a4b9f9bf824ad3ffaca1a52ecb1918ad3"><div class="ttname"><a href="../../df/d65/structcarla_1_1road_1_1element_1_1DirectedPoint.html#a4b9f9bf824ad3ffaca1a52ecb1918ad3">carla::road::element::DirectedPoint::location</a></div><div class="ttdeci">geom::Location location</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d8b/Geometry_8h_source.html#l00055">Geometry.h:55</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

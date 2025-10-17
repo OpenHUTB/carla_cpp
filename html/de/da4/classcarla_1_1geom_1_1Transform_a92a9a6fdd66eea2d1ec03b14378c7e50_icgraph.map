@@ -1,0 +1,6 @@
+<map id="carla::geom::Transform::InverseTransformPoint" name="carla::geom::Transform::InverseTransformPoint">
+<area shape="rect" id="node1" title="将此变换的逆运算应用于 in_point 操作顺序为先进行位置上的逆平移（减去位置信息），然后再根据旋转的逆操作对向量进行旋转，最终将结果赋值回输入点" alt="" coords="224,69,384,109"/>
+<area shape="rect" id="node2" href="$d8/d68/classcarla_1_1geom_1_1BoundingBox.html#aa9aa09f487239f74ccc27fae7d5be085" title="检查给定的世界空间中的点是否在边界框内。" alt="" coords="5,5,176,45"/>
+<area shape="rect" id="node3" href="$de/da4/classcarla_1_1geom_1_1Transform.html#a68c63bc41afb72db22e52109e4db824d" title="计算逆变换的 4 矩阵形式 首先通过逆变换操作（InverseTransformPoint）得到一个用于逆变换的位置偏移向量，然后结合当前的旋转角度信息，按照特定数学规则计算出逆变换对应的 4x4 矩阵" alt="" coords="14,69,167,109"/>
+<area shape="rect" id="node4" href="$d6/dd9/test__geom_8cpp.html#acfbdbb2cd19d012a24efb35615b59025" title=" " alt="" coords="63,134,118,159"/>
+</map>

@@ -1,0 +1,554 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: ActorRegistry.h 文件参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_2d15d0715a2692171bd03ed14a4a79af.html">Unreal</a></li><li class="navelem"><a class="el" href="../../dir_d3c1db2570616bec48bf5a6dd06bce95.html">CarlaUE4</a></li><li class="navelem"><a class="el" href="../../dir_3538576148ac14151677be9b0aee6fcc.html">Plugins</a></li><li class="navelem"><a class="el" href="../../dir_fbda5b12374c683cbdca72abb2d51944.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_18937e8f6bde63367bf26837323a9508.html">Source</a></li><li class="navelem"><a class="el" href="../../dir_8fc34afb5f07a67966c78bf5319f94ae.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_31691989b6ffa820edb06b9eb32cc520.html">Actor</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">类</a> &#124;
+<a href="#func-members">函数</a> &#124;
+<a href="#var-members">变量</a>  </div>
+  <div class="headertitle"><div class="title">ActorRegistry.h 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="../../de/d36/CarlaActor_8h_source.html">Carla/Actor/CarlaActor.h</a>&quot;</code><br />
+<code>#include &quot;Containers/Map.h&quot;</code><br />
+<code>#include &lt;<a class="el" href="../../d2/d02/disable-ue4-macros_8h_source.html">compiler/disable-ue4-macros.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d7/ddd/Iterator_8h_source.html">carla/Iterator.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d9/da2/enable-ue4-macros_8h_source.html">compiler/enable-ue4-macros.h</a>&gt;</code><br />
+<code>#include &lt;unordered_map&gt;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> ActorRegistry.h 的引用(Include)关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../df/d93/ActorRegistry_8h__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+</div><div class="textblock"><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> 此图展示该文件直接或间接的被哪些文件引用了:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d2/ddb/ActorRegistry_8h__dep__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+</div>
+<p><a href="../../da/de4/ActorRegistry_8h_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/db5/classFActorRegistry.html">FActorRegistry</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">所有Carla角色的注册表  <a href="../../df/db5/classFActorRegistry.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a4d0ddb9848ef3ddcdbe11f6acea76e52"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../dc/dde/classFCarlaActor.html">FCarlaActor</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/de4/ActorRegistry_8h.html#a4d0ddb9848ef3ddcdbe11f6acea76e52">FindCarlaActor</a> (const <a class="el" href="../../d1/da4/classAActor.html">AActor</a> *<a class="el" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>) const</td></tr>
+<tr class="separator:a4d0ddb9848ef3ddcdbe11f6acea76e52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4a50803d02fbdeecfb4effe70e6edda"><td class="memItemLeft" align="right" valign="top">FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/de4/ActorRegistry_8h.html#aa4a50803d02fbdeecfb4effe70e6edda">GetDescriptionFromStream</a> (<a class="el" href="../../dd/dcc/namespacecarla_1_1streaming_1_1detail.html#aa375c2a4e6ec37df037554b54f12835e">carla::streaming::detail::stream_id_type</a> Id)</td></tr>
+<tr class="separator:aa4a50803d02fbdeecfb4effe70e6edda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a225b72e853e82cfa99ae57ce596b8d76"><td class="memItemLeft" align="right" valign="top">TSharedPtr&lt; <a class="el" href="../../dc/dde/classFCarlaActor.html">FCarlaActor</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/de4/ActorRegistry_8h.html#a225b72e853e82cfa99ae57ce596b8d76">MakeCarlaActor</a> (IdType Id, <a class="el" href="../../d1/da4/classAActor.html">AActor</a> &amp;<a class="el" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>, <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> Description, <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a05a30f3aa05ff2c5d120170d22c0fbf3">carla::rpc::ActorState</a> <a class="el" href="../../d3/d43/CarlaActor_8cpp.html#a83f2c055d62cc9e6bd0eb72d4552e333">InState</a>) const</td></tr>
+<tr class="separator:a225b72e853e82cfa99ae57ce596b8d76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4969e8a15a297af3eb033ba219541977"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dc/dde/classFCarlaActor.html">FCarlaActor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/de4/ActorRegistry_8h.html#a4969e8a15a297af3eb033ba219541977">MakeFakeActor</a> (<a class="el" href="../../d1/da4/classAActor.html">AActor</a> &amp;<a class="el" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>) const</td></tr>
+<tr class="separator:a4969e8a15a297af3eb033ba219541977"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6c567d5c73da4b5e31745d200cefbae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/de4/ActorRegistry_8h.html#ad6c567d5c73da4b5e31745d200cefbae">PutActorToSleep</a> (IdType Id, UCarlaEpisode *CarlaEpisode)</td></tr>
+<tr class="separator:ad6c567d5c73da4b5e31745d200cefbae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b5a295b4cde005a082de2cbe4fadb4b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/de4/ActorRegistry_8h.html#a5b5a295b4cde005a082de2cbe4fadb4b">WakeActorUp</a> (IdType Id, UCarlaEpisode *CarlaEpisode)</td></tr>
+<tr class="separator:a5b5a295b4cde005a082de2cbe4fadb4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a8adba6c42fed3c86324a62968648d6a0"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/de4/ActorRegistry_8h.html#a8adba6c42fed3c86324a62968648d6a0">begin</a> () const noexcept</td></tr>
+<tr class="memdesc:a8adba6c42fed3c86324a62968648d6a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">名称范围迭代支持  <a href="../../da/de4/ActorRegistry_8h.html#a8adba6c42fed3c86324a62968648d6a0">更多...</a><br /></td></tr>
+<tr class="separator:a8adba6c42fed3c86324a62968648d6a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10fc66af197e25cb554f58a721a473a3"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/de4/ActorRegistry_8h.html#a10fc66af197e25cb554f58a721a473a3">end</a> () const noexcept</td></tr>
+<tr class="separator:a10fc66af197e25cb554f58a721a473a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+变量</h2></td></tr>
+<tr class="memitem:a27e483868bc1b01ef701f001ff2bfbce"><td class="memItemLeft" align="right" valign="top">DatabaseType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/de4/ActorRegistry_8h.html#a27e483868bc1b01ef701f001ff2bfbce">ActorDatabase</a></td></tr>
+<tr class="separator:a27e483868bc1b01ef701f001ff2bfbce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e542cb6ab8b541d546c15454898ae78"><td class="memItemLeft" align="right" valign="top">TMap&lt; IdType, <a class="el" href="../../d1/da4/classAActor.html">AActor</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/de4/ActorRegistry_8h.html#a5e542cb6ab8b541d546c15454898ae78">Actors</a></td></tr>
+<tr class="separator:a5e542cb6ab8b541d546c15454898ae78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a288ef410b78bccd71f1bf1bcf405e36f"><td class="memItemLeft" align="right" valign="top">static IdType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/de4/ActorRegistry_8h.html#a288ef410b78bccd71f1bf1bcf405e36f">ID_COUNTER</a> = 0u</td></tr>
+<tr class="separator:a288ef410b78bccd71f1bf1bcf405e36f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe8170d6ab0f0c7d75e3f99b20def727"><td class="memItemLeft" align="right" valign="top">TMap&lt; <a class="el" href="../../d1/da4/classAActor.html">AActor</a> *, IdType &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/de4/ActorRegistry_8h.html#abe8170d6ab0f0c7d75e3f99b20def727">Ids</a></td></tr>
+<tr class="separator:abe8170d6ab0f0c7d75e3f99b20def727"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">函数说明</h2>
+<a id="a8adba6c42fed3c86324a62968648d6a0" name="a8adba6c42fed3c86324a62968648d6a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8adba6c42fed3c86324a62968648d6a0">&#9670;&#160;</a></span>begin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto begin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>名称范围迭代支持 </p>
+
+<p class="definition">在文件 <a class="el" href="../../da/de4/ActorRegistry_8h_source.html">ActorRegistry.h</a> 第 <a class="el" href="../../da/de4/ActorRegistry_8h_source.html#l00092">92</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../da/de4/ActorRegistry_8h_source.html#l00112">ActorDatabase</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02487">as_utf8_end()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02514">as_wide_impl()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l08493">convert_string_to_number_scratch()</a>, <a class="el" href="../../d7/d3c/AtomicList_8h_source.html#l00038">carla::client::detail::AtomicList&lt; T &gt;::DeleteByIndex()</a>, <a class="el" href="../../d2/d01/DebugHelper_8cpp_source.html#l00082">carla::client::DebugHelper::DrawArrow()</a>, <a class="el" href="../../d2/d01/DebugHelper_8cpp_source.html#l00096">carla::client::DebugHelper::DrawHUDArrow()</a>, <a class="el" href="../../d2/d01/DebugHelper_8cpp_source.html#l00070">carla::client::DebugHelper::DrawHUDLine()</a>, <a class="el" href="../../d2/d01/DebugHelper_8cpp_source.html#l00058">carla::client::DebugHelper::DrawLine()</a>, <a class="el" href="../../df/d9f/PointCloudIO_8h_source.html#l00029">carla::pointcloud::PointCloudIO::Dump()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l10689">xpath_ast_node::eval_string()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07905">xpath_string::from_heap()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07898">xpath_string::from_heap_preallocated()</a>, <a class="el" href="../../d9/de7/WorldObserver_8cpp_source.html#l00268">FWorldObserver_Serialize()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l08882">get_variable_scratch()</a>, <a class="el" href="../../d5/dca/Message_8h_source.html#l00105">carla::streaming::detail::tcp::MessageTmpl&lt; MaxNumberOfBuffers &gt;::GetBufferSequence()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07581">insertion_sort()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04809">integer_to_string()</a>, <a class="el" href="../../d4/d50/LibCarla_2source_2carla_2ListView_8h_source.html#l00080">carla::MakeListView()</a>, <a class="el" href="../../df/d24/RoadInfoIterator_8h_source.html#l00090">carla::road::element::MakeRoadInfoIterator()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07542">min_element()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02860">strconv_pcdata_impl&lt; opt_trim, opt_eol, opt_escape &gt;::parse()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07612">partition3()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07553">reverse()</a>, <a class="el" href="../../df/d9f/PointCloudIO_8h_source.html#l00040">carla::pointcloud::PointCloudIO::SaveToDisk()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04847">set_value_integer()</a>, <a class="el" href="../../d8/d97/CustomV2XSensor_8cpp_source.html#l00030">ACustomV2XSensor::SetOwner()</a>, <a class="el" href="../../d2/df9/V2XSensor_8cpp_source.html#l00031">AV2XSensor::SetOwner()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07639">sort()</a>, <a class="el" href="../../dd/d43/test__buffer_8cpp_source.html#l00086">TEST()</a>, <a class="el" href="../../d4/d1d/test__listview_8cpp_source.html#l00021">TestSequence()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l08331">truncate_zeros()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07558">unique()</a>, <a class="el" href="../../df/d9f/PointCloudIO_8h_source.html#l00052">carla::pointcloud::PointCloudIO::WriteHeader()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l08948">xpath_first()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l08909">xpath_get_order()</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l08925">xpath_sort()</a>.</p>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../da/de4/ActorRegistry_8h_a8adba6c42fed3c86324a62968648d6a0_icgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a10fc66af197e25cb554f58a721a473a3" name="a10fc66af197e25cb554f58a721a473a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10fc66af197e25cb554f58a721a473a3">&#9670;&#160;</a></span>end()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto end </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../da/de4/ActorRegistry_8h_source.html">ActorRegistry.h</a> 第 <a class="el" href="../../da/de4/ActorRegistry_8h_source.html#l00096">96</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../da/de4/ActorRegistry_8h_source.html#l00112">ActorDatabase</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02487">as_utf8_end()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02514">as_wide_impl()</a>, <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html#l00226">FCarlaServer::FPimpl::BindActions()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03782">convert_buffer_output_generic()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l08493">convert_string_to_number_scratch()</a>, <a class="el" href="../../d2/d01/DebugHelper_8cpp_source.html#l00082">carla::client::DebugHelper::DrawArrow()</a>, <a class="el" href="../../d2/d01/DebugHelper_8cpp_source.html#l00096">carla::client::DebugHelper::DrawHUDArrow()</a>, <a class="el" href="../../d2/d01/DebugHelper_8cpp_source.html#l00070">carla::client::DebugHelper::DrawHUDLine()</a>, <a class="el" href="../../d2/d01/DebugHelper_8cpp_source.html#l00058">carla::client::DebugHelper::DrawLine()</a>, <a class="el" href="../../df/d9f/PointCloudIO_8h_source.html#l00029">carla::pointcloud::PointCloudIO::Dump()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l10689">xpath_ast_node::eval_string()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07905">xpath_string::from_heap()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07898">xpath_string::from_heap_preallocated()</a>, <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00150">ACityMapGenerator::GenerateRoads()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l08882">get_variable_scratch()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07581">insertion_sort()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04809">integer_to_string()</a>, <a class="el" href="../../d3/d50/FileSystem_8cpp_source.html#l00046">carla::FileSystem::ListFolder()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00086">carla::nav::Navigation::Load()</a>, <a class="el" href="../../dd/dca/EndPoint_8h_source.html#l00085">carla::streaming::make_address()</a>, <a class="el" href="../../d4/d50/LibCarla_2source_2carla_2ListView_8h_source.html#l00080">carla::MakeListView()</a>, <a class="el" href="../../df/d24/RoadInfoIterator_8h_source.html#l00090">carla::road::element::MakeRoadInfoIterator()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07542">min_element()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02860">strconv_pcdata_impl&lt; opt_trim, opt_eol, opt_escape &gt;::parse()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07612">partition3()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07553">reverse()</a>, <a class="el" href="../../df/d9f/PointCloudIO_8h_source.html#l00040">carla::pointcloud::PointCloudIO::SaveToDisk()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04847">set_value_integer()</a>, <a class="el" href="../../d0/de7/CarlaSemanticLidarPublisher_8cpp_source.html#l00206">carla::ros2::CarlaSemanticLidarPublisher::SetData()</a>, <a class="el" href="../../db/dd0/CarlaLidarPublisher_8cpp_source.html#l00231">carla::ros2::CarlaLidarPublisher::SetData()</a>, <a class="el" href="../../d8/d97/CustomV2XSensor_8cpp_source.html#l00030">ACustomV2XSensor::SetOwner()</a>, <a class="el" href="../../d2/df9/V2XSensor_8cpp_source.html#l00031">AV2XSensor::SetOwner()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07639">sort()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l00290">strlength_wide()</a>, <a class="el" href="../../d2/d0c/Simulator_8cpp_source.html#l00049">carla::client::detail::SynchronizeFrame()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01405">Simplify::SimplificationObject::trimwhitespace()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l08331">truncate_zeros()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07558">unique()</a>, <a class="el" href="../../df/d9f/PointCloudIO_8h_source.html#l00052">carla::pointcloud::PointCloudIO::WriteHeader()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l08948">xpath_first()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l08909">xpath_get_order()</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l08925">xpath_sort()</a>.</p>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../da/de4/ActorRegistry_8h_a10fc66af197e25cb554f58a721a473a3_icgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a4d0ddb9848ef3ddcdbe11f6acea76e52" name="a4d0ddb9848ef3ddcdbe11f6acea76e52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d0ddb9848ef3ddcdbe11f6acea76e52">&#9670;&#160;</a></span>FindCarlaActor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="../../dc/dde/classFCarlaActor.html">FCarlaActor</a> * FindCarlaActor </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d1/da4/classAActor.html">AActor</a> *&#160;</td>
+          <td class="paramname"><em>Actor</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../da/de4/ActorRegistry_8h_source.html">ActorRegistry.h</a> 第 <a class="el" href="../../da/de4/ActorRegistry_8h_source.html#l00078">78</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d43/CarlaActor_8cpp_source.html#l00083">Actor</a>, <a class="el" href="../../da/de4/ActorRegistry_8h_source.html#l00078">FindCarlaActor()</a> , 以及 <a class="el" href="../../da/de4/ActorRegistry_8h_source.html#l00111">Ids</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/de4/ActorRegistry_8h_source.html#l00078">FindCarlaActor()</a>.</p>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../da/de4/ActorRegistry_8h_a4d0ddb9848ef3ddcdbe11f6acea76e52_cgraph.svg" width="119" height="60"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../da/de4/ActorRegistry_8h_a4d0ddb9848ef3ddcdbe11f6acea76e52_icgraph.svg" width="119" height="60"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="aa4a50803d02fbdeecfb4effe70e6edda" name="aa4a50803d02fbdeecfb4effe70e6edda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4a50803d02fbdeecfb4effe70e6edda">&#9670;&#160;</a></span>GetDescriptionFromStream()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">FString GetDescriptionFromStream </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../dd/dcc/namespacecarla_1_1streaming_1_1detail.html#aa375c2a4e6ec37df037554b54f12835e">carla::streaming::detail::stream_id_type</a>&#160;</td>
+          <td class="paramname"><em>Id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a225b72e853e82cfa99ae57ce596b8d76" name="a225b72e853e82cfa99ae57ce596b8d76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a225b72e853e82cfa99ae57ce596b8d76">&#9670;&#160;</a></span>MakeCarlaActor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TSharedPtr&lt; <a class="el" href="../../dc/dde/classFCarlaActor.html">FCarlaActor</a> &gt; FActorRegistry::MakeCarlaActor </td>
+          <td>(</td>
+          <td class="paramtype">IdType&#160;</td>
+          <td class="paramname"><em>Id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d1/da4/classAActor.html">AActor</a> &amp;&#160;</td>
+          <td class="paramname"><em>Actor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a>&#160;</td>
+          <td class="paramname"><em>Description</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a05a30f3aa05ff2c5d120170d22c0fbf3">carla::rpc::ActorState</a>&#160;</td>
+          <td class="paramname"><em>InState</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/df3/ActorRegistry_8cpp_source.html">ActorRegistry.cpp</a> 第 <a class="el" href="../../d3/df3/ActorRegistry_8cpp_source.html#l00211">211</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d43/CarlaActor_8cpp_source.html#l00083">Actor</a>, <a class="el" href="../../d3/df3/ActorRegistry_8cpp_source.html#l00081">CarlaGetRelevantTagAsString()</a>, <a class="el" href="../../d3/d43/CarlaActor_8cpp_source.html#l00138">FCarlaActor::ConstructCarlaActor()</a>, <a class="el" href="../../d3/df3/ActorRegistry_8cpp_source.html#l00039">FActorRegistry_GetActorType()</a>, <a class="el" href="../../dd/dd8/BoundingBoxCalculator_8cpp_source.html#l00041">UBoundingBoxCalculator::GetActorBoundingBox()</a>, <a class="el" href="../../d2/d35/Tagger_8cpp_source.html#l00243">ATagger::GetTagsOfTaggedActor()</a>, <a class="el" href="../../d3/d43/CarlaActor_8cpp_source.html#l00080">Info</a> , 以及 <a class="el" href="../../d3/d43/CarlaActor_8cpp_source.html#l00081">InState</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/df3/ActorRegistry_8cpp_source.html#l00103">FActorRegistry::Register()</a>.</p>
+<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../da/de4/ActorRegistry_8h_a225b72e853e82cfa99ae57ce596b8d76_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../da/de4/ActorRegistry_8h_a225b72e853e82cfa99ae57ce596b8d76_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a4969e8a15a297af3eb033ba219541977" name="a4969e8a15a297af3eb033ba219541977"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4969e8a15a297af3eb033ba219541977">&#9670;&#160;</a></span>MakeFakeActor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../dc/dde/classFCarlaActor.html">FCarlaActor</a> MakeFakeActor </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d1/da4/classAActor.html">AActor</a> &amp;&#160;</td>
+          <td class="paramname"><em>Actor</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad6c567d5c73da4b5e31745d200cefbae" name="ad6c567d5c73da4b5e31745d200cefbae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6c567d5c73da4b5e31745d200cefbae">&#9670;&#160;</a></span>PutActorToSleep()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PutActorToSleep </td>
+          <td>(</td>
+          <td class="paramtype">IdType&#160;</td>
+          <td class="paramname"><em>Id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">UCarlaEpisode *&#160;</td>
+          <td class="paramname"><em>CarlaEpisode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5b5a295b4cde005a082de2cbe4fadb4b" name="a5b5a295b4cde005a082de2cbe4fadb4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b5a295b4cde005a082de2cbe4fadb4b">&#9670;&#160;</a></span>WakeActorUp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WakeActorUp </td>
+          <td>(</td>
+          <td class="paramtype">IdType&#160;</td>
+          <td class="paramname"><em>Id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">UCarlaEpisode *&#160;</td>
+          <td class="paramname"><em>CarlaEpisode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">变量说明</h2>
+<a id="a27e483868bc1b01ef701f001ff2bfbce" name="a27e483868bc1b01ef701f001ff2bfbce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27e483868bc1b01ef701f001ff2bfbce">&#9670;&#160;</a></span>ActorDatabase</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">DatabaseType ActorDatabase</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../da/de4/ActorRegistry_8h_source.html">ActorRegistry.h</a> 第 <a class="el" href="../../da/de4/ActorRegistry_8h_source.html#l00112">112</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/de4/ActorRegistry_8h_source.html#l00092">begin()</a>, <a class="el" href="../../da/de4/ActorRegistry_8h_source.html#l00053">FActorRegistry::Contains()</a>, <a class="el" href="../../d3/df3/ActorRegistry_8cpp_source.html#l00167">FActorRegistry::Deregister()</a>, <a class="el" href="../../da/de4/ActorRegistry_8h_source.html#l00096">end()</a>, <a class="el" href="../../da/de4/ActorRegistry_8h_source.html#l00060">FActorRegistry::FindCarlaActor()</a> , 以及 <a class="el" href="../../d3/df3/ActorRegistry_8cpp_source.html#l00103">FActorRegistry::Register()</a>.</p>
+
+</div>
+</div>
+<a id="a5e542cb6ab8b541d546c15454898ae78" name="a5e542cb6ab8b541d546c15454898ae78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e542cb6ab8b541d546c15454898ae78">&#9670;&#160;</a></span>Actors</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TMap&lt;IdType, <a class="el" href="../../d1/da4/classAActor.html">AActor</a> *&gt; Actors</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../da/de4/ActorRegistry_8h_source.html">ActorRegistry.h</a> 第 <a class="el" href="../../da/de4/ActorRegistry_8h_source.html#l00110">110</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/df3/ActorRegistry_8cpp_source.html#l00167">FActorRegistry::Deregister()</a>, <a class="el" href="../../d0/d2e/CarlaGameModeBase_8cpp_source.html#l00264">ACarlaGameModeBase::FindActorByName()</a>, <a class="el" href="../../dd/dd8/BoundingBoxCalculator_8cpp_source.html#l00408">UBoundingBoxCalculator::GetBoundingBoxOfActors()</a>, <a class="el" href="../../d6/d3f/TrafficLightManager_8cpp_source.html#l00458">GetClosestTrafficSignActor()</a>, <a class="el" href="../../d0/d2e/CarlaGameModeBase_8cpp_source.html#l00247">ACarlaGameModeBase::GetNamesOfAllActors()</a>, <a class="el" href="../../d6/d3f/TrafficLightManager_8cpp_source.html#l00294">ATrafficLightManager::MatchTrafficLightActorsWithOpenDriveSignals()</a>, <a class="el" href="../../da/de4/ActorRegistry_8h_source.html#l00045">FActorRegistry::Num()</a>, <a class="el" href="../../de/dc6/CarlaRecorderQuery_8cpp_source.html#l00821">CarlaRecorderQuery::QueryBlocked()</a>, <a class="el" href="../../de/dc6/CarlaRecorderQuery_8cpp_source.html#l00641">CarlaRecorderQuery::QueryCollisions()</a>, <a class="el" href="../../d3/df3/ActorRegistry_8cpp_source.html#l00103">FActorRegistry::Register()</a>, <a class="el" href="../../d7/d86/ObjectRegister_8cpp_source.html#l00041">UObjectRegister::RegisterObjects()</a>, <a class="el" href="../../d6/d3f/TrafficLightManager_8cpp_source.html#l00842">ATrafficLightManager::RemoveAttachedProps()</a> , 以及 <a class="el" href="../../d6/d3f/TrafficLightManager_8cpp_source.html#l00816">ATrafficLightManager::RemoveRoadrunnerProps()</a>.</p>
+
+</div>
+</div>
+<a id="a288ef410b78bccd71f1bf1bcf405e36f" name="a288ef410b78bccd71f1bf1bcf405e36f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a288ef410b78bccd71f1bf1bcf405e36f">&#9670;&#160;</a></span>ID_COUNTER</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../df/db5/classFActorRegistry.html#a44792724170a49d07132f13d220f2d5c">FActorRegistry::IdType</a> FActorRegistry::ID_COUNTER = 0u</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../da/de4/ActorRegistry_8h_source.html">ActorRegistry.h</a> 第 <a class="el" href="../../da/de4/ActorRegistry_8h_source.html#l00113">113</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/df3/ActorRegistry_8cpp_source.html#l00103">FActorRegistry::Register()</a>.</p>
+
+</div>
+</div>
+<a id="abe8170d6ab0f0c7d75e3f99b20def727" name="abe8170d6ab0f0c7d75e3f99b20def727"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe8170d6ab0f0c7d75e3f99b20def727">&#9670;&#160;</a></span>Ids</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TMap&lt;<a class="el" href="../../d1/da4/classAActor.html">AActor</a> *, IdType&gt; Ids</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../da/de4/ActorRegistry_8h_source.html">ActorRegistry.h</a> 第 <a class="el" href="../../da/de4/ActorRegistry_8h_source.html#l00111">111</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/df3/ActorRegistry_8cpp_source.html#l00167">FActorRegistry::Deregister()</a>, <a class="el" href="../../da/de4/ActorRegistry_8h_source.html#l00070">FActorRegistry::FindCarlaActor()</a>, <a class="el" href="../../da/de4/ActorRegistry_8h_source.html#l00078">FindCarlaActor()</a> , 以及 <a class="el" href="../../d3/df3/ActorRegistry_8cpp_source.html#l00103">FActorRegistry::Register()</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

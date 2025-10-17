@@ -1,0 +1,1103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: carla::traffic_manager::LocalizationStage类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../d9/d36/namespacecarla.html">carla</a></li><li class="navelem"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html">traffic_manager</a></li><li class="navelem"><a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html">LocalizationStage</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-types">Private 类型</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="../../d2/d41/classcarla_1_1traffic__manager_1_1LocalizationStage-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">carla::traffic_manager::LocalizationStage类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>此类功能是维护车辆前方的路径点以供跟随。 该类还负责管理车道变更决策并适当地修改路径轨迹。  
+ <a href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../d9/df4/LocalizationStage_8h_source.html">LocalizationStage.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 类 carla::traffic_manager::LocalizationStage 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d4/d03/classcarla_1_1traffic__manager_1_1LocalizationStage__inherit__graph.svg" width="155" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> carla::traffic_manager::LocalizationStage 的协作图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../dc/d01/classcarla_1_1traffic__manager_1_1LocalizationStage__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a1a835123f13a99787a4a15704073f762"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae3077a5917d65549595f2ccdfc98570b">ActionBuffer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#a1a835123f13a99787a4a15704073f762">ComputeActionBuffer</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> &amp;actor_id)</td></tr>
+<tr class="separator:a1a835123f13a99787a4a15704073f762"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6310665dc1f4d6d28f5f3047478ee994"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ab5fe609686732a36b1ec4ead7d4a1d39">Action</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#a6310665dc1f4d6d28f5f3047478ee994">ComputeNextAction</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> &amp;actor_id)</td></tr>
+<tr class="separator:a6310665dc1f4d6d28f5f3047478ee994"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b7d3a84b56d5115144ade80d4068772"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#a3b7d3a84b56d5115144ade80d4068772">LocalizationStage</a> (const std::vector&lt; <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> &gt; &amp;<a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#a826443249213fa7222ba7f1415c902dd">vehicle_id_list</a>, <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a5be0dafc09e8417fe252af0d8be01835">BufferMap</a> &amp;<a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#ad3ade7ef075f0133dcc778a574b6a735">buffer_map</a>, const <a class="el" href="../../d9/d2b/classcarla_1_1traffic__manager_1_1SimulationState.html">SimulationState</a> &amp;<a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#a70b558571101d15871dad29c66c41c00">simulation_state</a>, <a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html">TrackTraffic</a> &amp;<a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#a83e075668ffdf92d57c9715239faa255">track_traffic</a>, const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a238485cf980d4c8095de3e6a90ed1614">LocalMapPtr</a> &amp;<a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#aa582be35513f5e1f48850408ef542d29">local_map</a>, <a class="el" href="../../d6/ddb/classcarla_1_1traffic__manager_1_1Parameters.html">Parameters</a> &amp;<a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#a7d1ee7ab5d16a62b4431c1b3bb350b9c">parameters</a>, std::vector&lt; <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> &gt; &amp;<a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#ac0795899ee972fe10226e43a82217225">marked_for_removal</a>, <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae6884760b2493309b27c236b91c72204">LocalizationFrame</a> &amp;<a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#abd381a2646b2b16c11615eb7ce7c3ed6">output_array</a>, <a class="el" href="../../d2/df0/classcarla_1_1traffic__manager_1_1RandomGenerator.html">RandomGenerator</a> &amp;<a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#a7878f9c0c0efbc165e7c38b08ff98c45">random_device</a>)</td></tr>
+<tr class="separator:a3b7d3a84b56d5115144ade80d4068772"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7a1474f31986f1613ccc6451d4b759d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#ad7a1474f31986f1613ccc6451d4b759d">RemoveActor</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> actor_id) <a class="el" href="../../de/d7d/ActorData_8h.html#ad031bfd5a8a2ed7e66d03dafcc3b2858">override</a></td></tr>
+<tr class="memdesc:ad7a1474f31986f1613ccc6451d4b759d"><td class="mdescLeft">&#160;</td><td class="mdescRight">移除参与者方法。  <a href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#ad7a1474f31986f1613ccc6451d4b759d">更多...</a><br /></td></tr>
+<tr class="separator:ad7a1474f31986f1613ccc6451d4b759d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99874d7e05163f20ea0bdd40f64a261d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#a99874d7e05163f20ea0bdd40f64a261d">Reset</a> () <a class="el" href="../../de/d7d/ActorData_8h.html#ad031bfd5a8a2ed7e66d03dafcc3b2858">override</a></td></tr>
+<tr class="memdesc:a99874d7e05163f20ea0bdd40f64a261d"><td class="mdescLeft">&#160;</td><td class="mdescRight">重置方法。  <a href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#a99874d7e05163f20ea0bdd40f64a261d">更多...</a><br /></td></tr>
+<tr class="separator:a99874d7e05163f20ea0bdd40f64a261d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf066b922ba5c21c6b6ee23d35731d91"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#acf066b922ba5c21c6b6ee23d35731d91">Update</a> (const unsigned long index) <a class="el" href="../../de/d7d/ActorData_8h.html#ad031bfd5a8a2ed7e66d03dafcc3b2858">override</a></td></tr>
+<tr class="memdesc:acf066b922ba5c21c6b6ee23d35731d91"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新方法。  <a href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#acf066b922ba5c21c6b6ee23d35731d91">更多...</a><br /></td></tr>
+<tr class="separator:acf066b922ba5c21c6b6ee23d35731d91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-types" name="pri-types"></a>
+Private 类型</h2></td></tr>
+<tr class="memitem:ae8a4d2ef2e21c940862dccd9fb23c68e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#ae8a4d2ef2e21c940862dccd9fb23c68e">SimpleWaypointPair</a> = std::pair&lt; <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#aee461a5a490f4fccca9a4aef84fab3b5">SimpleWaypointPtr</a>, <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#aee461a5a490f4fccca9a4aef84fab3b5">SimpleWaypointPtr</a> &gt;</td></tr>
+<tr class="separator:ae8a4d2ef2e21c940862dccd9fb23c68e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:a9f76e39404feb468084348215d3765c9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#aee461a5a490f4fccca9a4aef84fab3b5">SimpleWaypointPtr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#a9f76e39404feb468084348215d3765c9">AssignLaneChange</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> actor_id, const <a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">cg::Location</a> vehicle_location, const float vehicle_speed, bool force, bool direction)</td></tr>
+<tr class="separator:a9f76e39404feb468084348215d3765c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54529199aa49e3e0c5476ba0da376850"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#a54529199aa49e3e0c5476ba0da376850">ExtendAndFindSafeSpace</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> actor_id, const bool is_at_junction_entrance, <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a1d6b4dc3a00ae57d565e9382690490bd">Buffer</a> &amp;waypoint_buffer)</td></tr>
+<tr class="separator:a54529199aa49e3e0c5476ba0da376850"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cce09a8116d4faf0f718fb24d1c3191"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#a4cce09a8116d4faf0f718fb24d1c3191">ImportPath</a> (<a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a7c7f959da28bee9cf0ea48f61b9a6bb2">Path</a> &amp;imported_path, <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a1d6b4dc3a00ae57d565e9382690490bd">Buffer</a> &amp;waypoint_buffer, const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> actor_id, const float horizon_square)</td></tr>
+<tr class="separator:a4cce09a8116d4faf0f718fb24d1c3191"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22a54c0476fface2f2838a56a75fbc90"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#a22a54c0476fface2f2838a56a75fbc90">ImportRoute</a> (<a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a58761158ed79d767d06d0d36bf373bd1">Route</a> &amp;imported_actions, <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a1d6b4dc3a00ae57d565e9382690490bd">Buffer</a> &amp;waypoint_buffer, const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> actor_id, const float horizon_square)</td></tr>
+<tr class="separator:a22a54c0476fface2f2838a56a75fbc90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classcarla_1_1traffic__manager_1_1Stage"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classcarla_1_1traffic__manager_1_1Stage')"><img src="../../closed.png" alt="-"/>&#160;Private 成员函数 继承自 <a class="el" href="../../d2/dcf/classcarla_1_1traffic__manager_1_1Stage.html">carla::traffic_manager::Stage</a></td></tr>
+<tr class="memitem:a0ac758d4e4ee2a8adc2c5847c081c239 inherit pub_methods_classcarla_1_1traffic__manager_1_1Stage"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dcf/classcarla_1_1traffic__manager_1_1Stage.html#a0ac758d4e4ee2a8adc2c5847c081c239">RemoveActor</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> actor_id)=0</td></tr>
+<tr class="memdesc:a0ac758d4e4ee2a8adc2c5847c081c239 inherit pub_methods_classcarla_1_1traffic__manager_1_1Stage"><td class="mdescLeft">&#160;</td><td class="mdescRight">移除参与者方法。  <a href="../../d2/dcf/classcarla_1_1traffic__manager_1_1Stage.html#a0ac758d4e4ee2a8adc2c5847c081c239">更多...</a><br /></td></tr>
+<tr class="separator:a0ac758d4e4ee2a8adc2c5847c081c239 inherit pub_methods_classcarla_1_1traffic__manager_1_1Stage"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0183a39f24d6feb5980d11e60c56be0 inherit pub_methods_classcarla_1_1traffic__manager_1_1Stage"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dcf/classcarla_1_1traffic__manager_1_1Stage.html#ad0183a39f24d6feb5980d11e60c56be0">Reset</a> ()=0</td></tr>
+<tr class="memdesc:ad0183a39f24d6feb5980d11e60c56be0 inherit pub_methods_classcarla_1_1traffic__manager_1_1Stage"><td class="mdescLeft">&#160;</td><td class="mdescRight">重置方法。  <a href="../../d2/dcf/classcarla_1_1traffic__manager_1_1Stage.html#ad0183a39f24d6feb5980d11e60c56be0">更多...</a><br /></td></tr>
+<tr class="separator:ad0183a39f24d6feb5980d11e60c56be0 inherit pub_methods_classcarla_1_1traffic__manager_1_1Stage"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0c7f38beaded434c362658bc844b66e inherit pub_methods_classcarla_1_1traffic__manager_1_1Stage"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dcf/classcarla_1_1traffic__manager_1_1Stage.html#ab0c7f38beaded434c362658bc844b66e">Stage</a> ()</td></tr>
+<tr class="memdesc:ab0c7f38beaded434c362658bc844b66e inherit pub_methods_classcarla_1_1traffic__manager_1_1Stage"><td class="mdescLeft">&#160;</td><td class="mdescRight">默认构造函数。  <a href="../../d2/dcf/classcarla_1_1traffic__manager_1_1Stage.html#ab0c7f38beaded434c362658bc844b66e">更多...</a><br /></td></tr>
+<tr class="separator:ab0c7f38beaded434c362658bc844b66e inherit pub_methods_classcarla_1_1traffic__manager_1_1Stage"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcbc9dccd29a51ae8f90fa791d6abfee inherit pub_methods_classcarla_1_1traffic__manager_1_1Stage"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dcf/classcarla_1_1traffic__manager_1_1Stage.html#afcbc9dccd29a51ae8f90fa791d6abfee">Stage</a> (const <a class="el" href="../../d2/dcf/classcarla_1_1traffic__manager_1_1Stage.html">Stage</a> &amp;)</td></tr>
+<tr class="memdesc:afcbc9dccd29a51ae8f90fa791d6abfee inherit pub_methods_classcarla_1_1traffic__manager_1_1Stage"><td class="mdescLeft">&#160;</td><td class="mdescRight">拷贝构造函数。  <a href="../../d2/dcf/classcarla_1_1traffic__manager_1_1Stage.html#afcbc9dccd29a51ae8f90fa791d6abfee">更多...</a><br /></td></tr>
+<tr class="separator:afcbc9dccd29a51ae8f90fa791d6abfee inherit pub_methods_classcarla_1_1traffic__manager_1_1Stage"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21b6cbbd6e149b3ec87bad2b2db1c502 inherit pub_methods_classcarla_1_1traffic__manager_1_1Stage"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dcf/classcarla_1_1traffic__manager_1_1Stage.html#a21b6cbbd6e149b3ec87bad2b2db1c502">Update</a> (const unsigned long index)=0</td></tr>
+<tr class="memdesc:a21b6cbbd6e149b3ec87bad2b2db1c502 inherit pub_methods_classcarla_1_1traffic__manager_1_1Stage"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新方法。  <a href="../../d2/dcf/classcarla_1_1traffic__manager_1_1Stage.html#a21b6cbbd6e149b3ec87bad2b2db1c502">更多...</a><br /></td></tr>
+<tr class="separator:a21b6cbbd6e149b3ec87bad2b2db1c502 inherit pub_methods_classcarla_1_1traffic__manager_1_1Stage"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a076be1bea568073455a44d9252193bbf inherit pub_methods_classcarla_1_1traffic__manager_1_1Stage"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dcf/classcarla_1_1traffic__manager_1_1Stage.html#a076be1bea568073455a44d9252193bbf">~Stage</a> ()</td></tr>
+<tr class="memdesc:a076be1bea568073455a44d9252193bbf inherit pub_methods_classcarla_1_1traffic__manager_1_1Stage"><td class="mdescLeft">&#160;</td><td class="mdescRight">虚析构函数。  <a href="../../d2/dcf/classcarla_1_1traffic__manager_1_1Stage.html#a076be1bea568073455a44d9252193bbf">更多...</a><br /></td></tr>
+<tr class="separator:a076be1bea568073455a44d9252193bbf inherit pub_methods_classcarla_1_1traffic__manager_1_1Stage"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:ad3ade7ef075f0133dcc778a574b6a735"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a5be0dafc09e8417fe252af0d8be01835">BufferMap</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#ad3ade7ef075f0133dcc778a574b6a735">buffer_map</a></td></tr>
+<tr class="separator:ad3ade7ef075f0133dcc778a574b6a735"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefed2d11c524b97284a9419654c7d4f4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ab3fe50a324564d42cfdf4f06257e7cad">LaneChangeSWptMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#aefed2d11c524b97284a9419654c7d4f4">last_lane_change_swpt</a></td></tr>
+<tr class="separator:aefed2d11c524b97284a9419654c7d4f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa582be35513f5e1f48850408ef542d29"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a238485cf980d4c8095de3e6a90ed1614">LocalMapPtr</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#aa582be35513f5e1f48850408ef542d29">local_map</a></td></tr>
+<tr class="separator:aa582be35513f5e1f48850408ef542d29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0795899ee972fe10226e43a82217225"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#ac0795899ee972fe10226e43a82217225">marked_for_removal</a></td></tr>
+<tr class="separator:ac0795899ee972fe10226e43a82217225"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd381a2646b2b16c11615eb7ce7c3ed6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae6884760b2493309b27c236b91c72204">LocalizationFrame</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#abd381a2646b2b16c11615eb7ce7c3ed6">output_array</a></td></tr>
+<tr class="separator:abd381a2646b2b16c11615eb7ce7c3ed6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d1ee7ab5d16a62b4431c1b3bb350b9c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d6/ddb/classcarla_1_1traffic__manager_1_1Parameters.html">Parameters</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#a7d1ee7ab5d16a62b4431c1b3bb350b9c">parameters</a></td></tr>
+<tr class="separator:a7d1ee7ab5d16a62b4431c1b3bb350b9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7878f9c0c0efbc165e7c38b08ff98c45"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/df0/classcarla_1_1traffic__manager_1_1RandomGenerator.html">RandomGenerator</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#a7878f9c0c0efbc165e7c38b08ff98c45">random_device</a></td></tr>
+<tr class="separator:a7878f9c0c0efbc165e7c38b08ff98c45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70b558571101d15871dad29c66c41c00"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../d9/d2b/classcarla_1_1traffic__manager_1_1SimulationState.html">SimulationState</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#a70b558571101d15871dad29c66c41c00">simulation_state</a></td></tr>
+<tr class="separator:a70b558571101d15871dad29c66c41c00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83e075668ffdf92d57c9715239faa255"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html">TrackTraffic</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#a83e075668ffdf92d57c9715239faa255">track_traffic</a></td></tr>
+<tr class="separator:a83e075668ffdf92d57c9715239faa255"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a826443249213fa7222ba7f1415c902dd"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#a826443249213fa7222ba7f1415c902dd">vehicle_id_list</a></td></tr>
+<tr class="separator:a826443249213fa7222ba7f1415c902dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3558e2a7cb25985e9c66248083c35675"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a36e144174a4524310723dee7ddb8e286">ActorIdSet</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#a3558e2a7cb25985e9c66248083c35675">vehicles_at_junction</a></td></tr>
+<tr class="separator:a3558e2a7cb25985e9c66248083c35675"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6847ece1bfc4131e364a8d4f419e85ef"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a>, <a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#ae8a4d2ef2e21c940862dccd9fb23c68e">SimpleWaypointPair</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#a6847ece1bfc4131e364a8d4f419e85ef">vehicles_at_junction_entrance</a></td></tr>
+<tr class="separator:a6847ece1bfc4131e364a8d4f419e85ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p >此类功能是维护车辆前方的路径点以供跟随。 该类还负责管理车道变更决策并适当地修改路径轨迹。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html">LocalizationStage.h</a> 第 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00030">30</a> 行定义.</p>
+</div><h2 class="groupheader">成员类型定义说明</h2>
+<a id="ae8a4d2ef2e21c940862dccd9fb23c68e" name="ae8a4d2ef2e21c940862dccd9fb23c68e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8a4d2ef2e21c940862dccd9fb23c68e">&#9670;&#160;</a></span>SimpleWaypointPair</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#ae8a4d2ef2e21c940862dccd9fb23c68e">carla::traffic_manager::LocalizationStage::SimpleWaypointPair</a> =  std::pair&lt;<a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#aee461a5a490f4fccca9a4aef84fab3b5">SimpleWaypointPtr</a>, <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#aee461a5a490f4fccca9a4aef84fab3b5">SimpleWaypointPtr</a>&gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html">LocalizationStage.h</a> 第 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00043">43</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a3b7d3a84b56d5115144ade80d4068772" name="a3b7d3a84b56d5115144ade80d4068772"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b7d3a84b56d5115144ade80d4068772">&#9670;&#160;</a></span>LocalizationStage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::traffic_manager::LocalizationStage::LocalizationStage </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>vehicle_id_list</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a5be0dafc09e8417fe252af0d8be01835">BufferMap</a> &amp;&#160;</td>
+          <td class="paramname"><em>buffer_map</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d9/d2b/classcarla_1_1traffic__manager_1_1SimulationState.html">SimulationState</a> &amp;&#160;</td>
+          <td class="paramname"><em>simulation_state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html">TrackTraffic</a> &amp;&#160;</td>
+          <td class="paramname"><em>track_traffic</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a238485cf980d4c8095de3e6a90ed1614">LocalMapPtr</a> &amp;&#160;</td>
+          <td class="paramname"><em>local_map</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d6/ddb/classcarla_1_1traffic__manager_1_1Parameters.html">Parameters</a> &amp;&#160;</td>
+          <td class="paramname"><em>parameters</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>marked_for_removal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae6884760b2493309b27c236b91c72204">LocalizationFrame</a> &amp;&#160;</td>
+          <td class="paramname"><em>output_array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d2/df0/classcarla_1_1traffic__manager_1_1RandomGenerator.html">RandomGenerator</a> &amp;&#160;</td>
+          <td class="paramname"><em>random_device</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html">LocalizationStage.cpp</a> 第 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00018">18</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a9f76e39404feb468084348215d3765c9" name="a9f76e39404feb468084348215d3765c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f76e39404feb468084348215d3765c9">&#9670;&#160;</a></span>AssignLaneChange()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#aee461a5a490f4fccca9a4aef84fab3b5">SimpleWaypointPtr</a> carla::traffic_manager::LocalizationStage::AssignLaneChange </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a>&#160;</td>
+          <td class="paramname"><em>actor_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">cg::Location</a>&#160;</td>
+          <td class="paramname"><em>vehicle_location</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>vehicle_speed</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>force</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>direction</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html">LocalizationStage.cpp</a> 第 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00340">340</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00033">buffer_map</a>, <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00115">carla::traffic_manager::TrackTraffic::GetOverlappingVehicles()</a>, <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00211">carla::traffic_manager::TrackTraffic::GetPassingVehicles()</a>, <a class="el" href="../../d1/d45/Constants_8h_source.html#l00068">carla::traffic_manager::constants::LaneChange::MAX_WPT_DISTANCE</a>, <a class="el" href="../../d1/d45/Constants_8h_source.html#l00065">carla::traffic_manager::constants::LaneChange::MAXIMUM_LANE_OBSTACLE_CURVATURE</a>, <a class="el" href="../../d1/d45/Constants_8h_source.html#l00064">carla::traffic_manager::constants::LaneChange::MAXIMUM_LANE_OBSTACLE_DISTANCE</a>, <a class="el" href="../../d1/d45/Constants_8h_source.html#l00067">carla::traffic_manager::constants::LaneChange::MIN_WPT_DISTANCE</a>, <a class="el" href="../../d1/d45/Constants_8h_source.html#l00063">carla::traffic_manager::constants::LaneChange::MINIMUM_LANE_CHANGE_DISTANCE</a>, <a class="el" href="../../d1/d45/Constants_8h_source.html#l00013">SQUARE</a> , 以及 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00035">track_traffic</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00039">Update()</a>.</p>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage_a9f76e39404feb468084348215d3765c9_cgraph.svg" width="486" height="131"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage_a9f76e39404feb468084348215d3765c9_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a1a835123f13a99787a4a15704073f762" name="a1a835123f13a99787a4a15704073f762"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a835123f13a99787a4a15704073f762">&#9670;&#160;</a></span>ComputeActionBuffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae3077a5917d65549595f2ccdfc98570b">ActionBuffer</a> carla::traffic_manager::LocalizationStage::ComputeActionBuffer </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> &amp;&#160;</td>
+          <td class="paramname"><em>actor_id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html">LocalizationStage.cpp</a> 第 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00633">633</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00033">buffer_map</a>, <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a5734807dba08623eeca046a963ade360a34ea03ab35021d78c638ecd14116c128">carla::traffic_manager::ChangeLaneLeft</a>, <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a5734807dba08623eeca046a963ade360a71f0dc0420536e414ba71a6da6eb91d7">carla::traffic_manager::ChangeLaneRight</a>, <a class="el" href="../../d3/d9c/SimulationState_8cpp_source.html#l00071">carla::traffic_manager::SimulationState::GetHeading()</a>, <a class="el" href="../../d3/d9c/SimulationState_8cpp_source.html#l00058">carla::traffic_manager::SimulationState::GetLocation()</a>, <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00041">last_lane_change_swpt</a>, <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00034">simulation_state</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00024">carla::geom::Vector3D::x</a> , 以及 <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00026">carla::geom::Vector3D::y</a>.</p>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage_a1a835123f13a99787a4a15704073f762_cgraph.svg" width="446" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a6310665dc1f4d6d28f5f3047478ee994" name="a6310665dc1f4d6d28f5f3047478ee994"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6310665dc1f4d6d28f5f3047478ee994">&#9670;&#160;</a></span>ComputeNextAction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ab5fe609686732a36b1ec4ead7d4a1d39">Action</a> carla::traffic_manager::LocalizationStage::ComputeNextAction </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> &amp;&#160;</td>
+          <td class="paramname"><em>actor_id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html">LocalizationStage.cpp</a> 第 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00600">600</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00033">buffer_map</a>, <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a5734807dba08623eeca046a963ade360a34ea03ab35021d78c638ecd14116c128">carla::traffic_manager::ChangeLaneLeft</a>, <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a5734807dba08623eeca046a963ade360a71f0dc0420536e414ba71a6da6eb91d7">carla::traffic_manager::ChangeLaneRight</a>, <a class="el" href="../../d3/d9c/SimulationState_8cpp_source.html#l00071">carla::traffic_manager::SimulationState::GetHeading()</a>, <a class="el" href="../../d3/d9c/SimulationState_8cpp_source.html#l00058">carla::traffic_manager::SimulationState::GetLocation()</a>, <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a5734807dba08623eeca046a963ade360a22fcc0e97323f6110c5dcb5afbbee7b4">carla::traffic_manager::LaneFollow</a>, <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00041">last_lane_change_swpt</a>, <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00034">simulation_state</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00024">carla::geom::Vector3D::x</a> , 以及 <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00026">carla::geom::Vector3D::y</a>.</p>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage_a6310665dc1f4d6d28f5f3047478ee994_cgraph.svg" width="446" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a54529199aa49e3e0c5476ba0da376850" name="a54529199aa49e3e0c5476ba0da376850"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54529199aa49e3e0c5476ba0da376850">&#9670;&#160;</a></span>ExtendAndFindSafeSpace()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::traffic_manager::LocalizationStage::ExtendAndFindSafeSpace </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a>&#160;</td>
+          <td class="paramname"><em>actor_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>is_at_junction_entrance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a1d6b4dc3a00ae57d565e9382690490bd">Buffer</a> &amp;&#160;</td>
+          <td class="paramname"><em>waypoint_buffer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html">LocalizationStage.cpp</a> 第 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00242">242</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d1/d45/Constants_8h_source.html#l00058">carla::traffic_manager::constants::WaypointSelection::MIN_JUNCTION_LENGTH</a>, <a class="el" href="../../d1/dd6/LocalizationUtils_8cpp_source.html#l00040">carla::traffic_manager::PushWaypoint()</a>, <a class="el" href="../../d1/d45/Constants_8h_source.html#l00057">carla::traffic_manager::constants::WaypointSelection::SAFE_DISTANCE_AFTER_JUNCTION</a>, <a class="el" href="../../d1/d45/Constants_8h_source.html#l00013">SQUARE</a>, <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00035">track_traffic</a> , 以及 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00044">vehicles_at_junction_entrance</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00039">Update()</a>.</p>
+<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage_a54529199aa49e3e0c5476ba0da376850_cgraph.svg" width="640" height="66"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage_a54529199aa49e3e0c5476ba0da376850_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a4cce09a8116d4faf0f718fb24d1c3191" name="a4cce09a8116d4faf0f718fb24d1c3191"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cce09a8116d4faf0f718fb24d1c3191">&#9670;&#160;</a></span>ImportPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::traffic_manager::LocalizationStage::ImportPath </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a7c7f959da28bee9cf0ea48f61b9a6bb2">Path</a> &amp;&#160;</td>
+          <td class="paramname"><em>imported_path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a1d6b4dc3a00ae57d565e9382690490bd">Buffer</a> &amp;&#160;</td>
+          <td class="paramname"><em>waypoint_buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a>&#160;</td>
+          <td class="paramname"><em>actor_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>horizon_square</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html">LocalizationStage.cpp</a> 第 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00461">461</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d9/dbc/Parameters_8cpp_source.html#l00472">carla::traffic_manager::Parameters::GetOSMMode()</a>, <a class="el" href="../../d9/dbc/Parameters_8cpp_source.html#l00477">carla::traffic_manager::Parameters::GetUploadPath()</a>, <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00036">local_map</a>, <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00039">marked_for_removal</a>, <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00037">parameters</a>, <a class="el" href="../../d1/dd6/LocalizationUtils_8cpp_source.html#l00048">carla::traffic_manager::PopWaypoint()</a>, <a class="el" href="../../d1/dd6/LocalizationUtils_8cpp_source.html#l00040">carla::traffic_manager::PushWaypoint()</a>, <a class="el" href="../../d9/dbc/Parameters_8cpp_source.html#l00212">carla::traffic_manager::Parameters::RemoveUploadPath()</a>, <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00035">track_traffic</a> , 以及 <a class="el" href="../../d9/dbc/Parameters_8cpp_source.html#l00221">carla::traffic_manager::Parameters::UpdateUploadPath()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00039">Update()</a>.</p>
+<div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage_a4cce09a8116d4faf0f718fb24d1c3191_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage_a4cce09a8116d4faf0f718fb24d1c3191_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a22a54c0476fface2f2838a56a75fbc90" name="a22a54c0476fface2f2838a56a75fbc90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22a54c0476fface2f2838a56a75fbc90">&#9670;&#160;</a></span>ImportRoute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::traffic_manager::LocalizationStage::ImportRoute </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a58761158ed79d767d06d0d36bf373bd1">Route</a> &amp;&#160;</td>
+          <td class="paramname"><em>imported_actions</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a1d6b4dc3a00ae57d565e9382690490bd">Buffer</a> &amp;&#160;</td>
+          <td class="paramname"><em>waypoint_buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a>&#160;</td>
+          <td class="paramname"><em>actor_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>horizon_square</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html">LocalizationStage.cpp</a> 第 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00544">544</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d9/dbc/Parameters_8cpp_source.html#l00472">carla::traffic_manager::Parameters::GetOSMMode()</a>, <a class="el" href="../../d9/dbc/Parameters_8cpp_source.html#l00501">carla::traffic_manager::Parameters::GetUploadRoute()</a>, <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00039">marked_for_removal</a>, <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00037">parameters</a>, <a class="el" href="../../d1/dd6/LocalizationUtils_8cpp_source.html#l00048">carla::traffic_manager::PopWaypoint()</a>, <a class="el" href="../../d1/dd6/LocalizationUtils_8cpp_source.html#l00040">carla::traffic_manager::PushWaypoint()</a>, <a class="el" href="../../d9/dbc/Parameters_8cpp_source.html#l00238">carla::traffic_manager::Parameters::RemoveImportedRoute()</a>, <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00035">track_traffic</a> , 以及 <a class="el" href="../../d9/dbc/Parameters_8cpp_source.html#l00247">carla::traffic_manager::Parameters::UpdateImportedRoute()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00039">Update()</a>.</p>
+<div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage_a22a54c0476fface2f2838a56a75fbc90_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage_a22a54c0476fface2f2838a56a75fbc90_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ad7a1474f31986f1613ccc6451d4b759d" name="ad7a1474f31986f1613ccc6451d4b759d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7a1474f31986f1613ccc6451d4b759d">&#9670;&#160;</a></span>RemoveActor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::traffic_manager::LocalizationStage::RemoveActor </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a>&#160;</td>
+          <td class="paramname"><em>actor_id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>移除参与者方法。 </p>
+<p >应从阶段的内部状态中移除指定的参与者。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actor_id</td><td>要移除的参与者的ID。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>实现了 <a class="el" href="../../d2/dcf/classcarla_1_1traffic__manager_1_1Stage.html#a0ac758d4e4ee2a8adc2c5847c081c239">carla::traffic_manager::Stage</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html">LocalizationStage.cpp</a> 第 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00330">330</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00041">last_lane_change_swpt</a> , 以及 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00042">vehicles_at_junction</a>.</p>
+
+</div>
+</div>
+<a id="a99874d7e05163f20ea0bdd40f64a261d" name="a99874d7e05163f20ea0bdd40f64a261d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99874d7e05163f20ea0bdd40f64a261d">&#9670;&#160;</a></span>Reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::traffic_manager::LocalizationStage::Reset </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重置方法。 </p>
+<p >应清空阶段的所有内部状态。 </p>
+
+<p>实现了 <a class="el" href="../../d2/dcf/classcarla_1_1traffic__manager_1_1Stage.html#ad0183a39f24d6feb5980d11e60c56be0">carla::traffic_manager::Stage</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html">LocalizationStage.cpp</a> 第 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00335">335</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00041">last_lane_change_swpt</a> , 以及 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00042">vehicles_at_junction</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/d53/TrafficManagerLocal_8cpp_source.html#l00265">carla::traffic_manager::TrafficManagerLocal::Stop()</a>.</p>
+<div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-12-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-12-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage_a99874d7e05163f20ea0bdd40f64a261d_icgraph.svg" width="408" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="acf066b922ba5c21c6b6ee23d35731d91" name="acf066b922ba5c21c6b6ee23d35731d91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf066b922ba5c21c6b6ee23d35731d91">&#9670;&#160;</a></span>Update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::traffic_manager::LocalizationStage::Update </td>
+          <td>(</td>
+          <td class="paramtype">const unsigned long&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>更新方法。 </p>
+<p >应在每个更新周期调用此方法，代表阶段的核心操作。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>当前更新周期的索引。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>实现了 <a class="el" href="../../d2/dcf/classcarla_1_1traffic__manager_1_1Stage.html#a21b6cbbd6e149b3ec87bad2b2db1c502">carla::traffic_manager::Stage</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html">LocalizationStage.cpp</a> 第 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00039">39</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00340">AssignLaneChange()</a>, <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00033">buffer_map</a>, <a class="el" href="../../d9/dd7/Parameters_8h_source.html#l00033">carla::traffic_manager::ChangeLaneInfo::change_lane</a>, <a class="el" href="../../d1/dd6/LocalizationUtils_8cpp_source.html#l00026">carla::traffic_manager::DeviationDotProduct()</a>, <a class="el" href="../../d9/dd7/Parameters_8h_source.html#l00034">carla::traffic_manager::ChangeLaneInfo::direction</a>, <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00242">ExtendAndFindSafeSpace()</a>, <a class="el" href="../../d1/d45/Constants_8h_source.html#l00070">carla::traffic_manager::constants::LaneChange::FIFTYPERC</a>, <a class="el" href="../../d9/dbc/Parameters_8cpp_source.html#l00366">carla::traffic_manager::Parameters::GetAutoLaneChange()</a>, <a class="el" href="../../d9/dbc/Parameters_8cpp_source.html#l00489">carla::traffic_manager::Parameters::GetCustomPath()</a>, <a class="el" href="../../d9/dbc/Parameters_8cpp_source.html#l00315">carla::traffic_manager::Parameters::GetForceLaneChange()</a>, <a class="el" href="../../d3/d9c/SimulationState_8cpp_source.html#l00071">carla::traffic_manager::SimulationState::GetHeading()</a>, <a class="el" href="../../d9/dbc/Parameters_8cpp_source.html#l00513">carla::traffic_manager::Parameters::GetImportedRoute()</a>, <a class="el" href="../../d9/dbc/Parameters_8cpp_source.html#l00330">carla::traffic_manager::Parameters::GetKeepRightPercentage()</a>, <a class="el" href="../../d3/d9c/SimulationState_8cpp_source.html#l00058">carla::traffic_manager::SimulationState::GetLocation()</a>, <a class="el" href="../../d9/dbc/Parameters_8cpp_source.html#l00472">carla::traffic_manager::Parameters::GetOSMMode()</a>, <a class="el" href="../../d9/dbc/Parameters_8cpp_source.html#l00342">carla::traffic_manager::Parameters::GetRandomLeftLaneChangePercentage()</a>, <a class="el" href="../../d9/dbc/Parameters_8cpp_source.html#l00354">carla::traffic_manager::Parameters::GetRandomRightLaneChangePercentage()</a>, <a class="el" href="../../d1/dd6/LocalizationUtils_8cpp_source.html#l00061">carla::traffic_manager::GetTargetWaypoint()</a>, <a class="el" href="../../d3/d9c/SimulationState_8cpp_source.html#l00075">carla::traffic_manager::SimulationState::GetVelocity()</a>, <a class="el" href="../../d1/d45/Constants_8h_source.html#l00050">carla::traffic_manager::constants::PathBufferUpdate::HIGH_SPEED_HORIZON_RATE</a>, <a class="el" href="../../d1/d45/Constants_8h_source.html#l00041">carla::traffic_manager::constants::SpeedThreshold::HIGHWAY_SPEED</a>, <a class="el" href="../../d1/d45/Constants_8h_source.html#l00049">carla::traffic_manager::constants::PathBufferUpdate::HORIZON_RATE</a>, <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00461">ImportPath()</a>, <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00544">ImportRoute()</a>, <a class="el" href="../../d1/d45/Constants_8h_source.html#l00066">carla::traffic_manager::constants::LaneChange::INTER_LANE_CHANGE_DISTANCE</a>, <a class="el" href="../../d0/d49/DataStructures_8h_source.html#l00041">carla::traffic_manager::LocalizationData::is_at_junction_entrance</a>, <a class="el" href="../../d0/d49/DataStructures_8h_source.html#l00039">carla::traffic_manager::LocalizationData::junction_end_point</a>, <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00041">last_lane_change_swpt</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00053">carla::geom::Vector3D::Length()</a>, <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00036">local_map</a>, <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00039">marked_for_removal</a>, <a class="el" href="../../d1/d45/Constants_8h_source.html#l00047">carla::traffic_manager::constants::PathBufferUpdate::MAX_START_DISTANCE</a>, <a class="el" href="../../d1/d45/Constants_8h_source.html#l00069">carla::traffic_manager::constants::LaneChange::MIN_LANE_CHANGE_SPEED</a>, <a class="el" href="../../d1/d45/Constants_8h_source.html#l00048">carla::traffic_manager::constants::PathBufferUpdate::MINIMUM_HORIZON_LENGTH</a>, <a class="el" href="../../db/d7f/RandomGenerator_8h_source.html#l00023">carla::traffic_manager::RandomGenerator::next()</a>, <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00040">output_array</a>, <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00037">parameters</a>, <a class="el" href="../../d1/dd6/LocalizationUtils_8cpp_source.html#l00048">carla::traffic_manager::PopWaypoint()</a>, <a class="el" href="../../d1/dd6/LocalizationUtils_8cpp_source.html#l00040">carla::traffic_manager::PushWaypoint()</a>, <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00045">random_device</a>, <a class="el" href="../../d0/d49/DataStructures_8h_source.html#l00040">carla::traffic_manager::LocalizationData::safe_point</a>, <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00034">simulation_state</a>, <a class="el" href="../../d1/d45/Constants_8h_source.html#l00013">SQUARE</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00048">carla::geom::Vector3D::SquaredLength()</a>, <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00035">track_traffic</a>, <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00045">carla::traffic_manager::TrackTraffic::UpdateGridPosition()</a>, <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00032">vehicle_id_list</a> , 以及 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00044">vehicles_at_junction_entrance</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/d53/TrafficManagerLocal_8cpp_source.html#l00143">carla::traffic_manager::TrafficManagerLocal::Run()</a>.</p>
+<div id="dynsection-13" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-13-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-13-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-13-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage_acf066b922ba5c21c6b6ee23d35731d91_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<div id="dynsection-14" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-14-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-14-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-14-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage_acf066b922ba5c21c6b6ee23d35731d91_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="ad3ade7ef075f0133dcc778a574b6a735" name="ad3ade7ef075f0133dcc778a574b6a735"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3ade7ef075f0133dcc778a574b6a735">&#9670;&#160;</a></span>buffer_map</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a5be0dafc09e8417fe252af0d8be01835">BufferMap</a>&amp; carla::traffic_manager::LocalizationStage::buffer_map</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html">LocalizationStage.h</a> 第 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00033">33</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00340">AssignLaneChange()</a>, <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00633">ComputeActionBuffer()</a>, <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00600">ComputeNextAction()</a> , 以及 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00039">Update()</a>.</p>
+
+</div>
+</div>
+<a id="aefed2d11c524b97284a9419654c7d4f4" name="aefed2d11c524b97284a9419654c7d4f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefed2d11c524b97284a9419654c7d4f4">&#9670;&#160;</a></span>last_lane_change_swpt</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ab3fe50a324564d42cfdf4f06257e7cad">LaneChangeSWptMap</a> carla::traffic_manager::LocalizationStage::last_lane_change_swpt</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html">LocalizationStage.h</a> 第 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00041">41</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00633">ComputeActionBuffer()</a>, <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00600">ComputeNextAction()</a>, <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00330">RemoveActor()</a>, <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00335">Reset()</a> , 以及 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00039">Update()</a>.</p>
+
+</div>
+</div>
+<a id="aa582be35513f5e1f48850408ef542d29" name="aa582be35513f5e1f48850408ef542d29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa582be35513f5e1f48850408ef542d29">&#9670;&#160;</a></span>local_map</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a238485cf980d4c8095de3e6a90ed1614">LocalMapPtr</a>&amp; carla::traffic_manager::LocalizationStage::local_map</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html">LocalizationStage.h</a> 第 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00036">36</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00461">ImportPath()</a> , 以及 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00039">Update()</a>.</p>
+
+</div>
+</div>
+<a id="ac0795899ee972fe10226e43a82217225" name="ac0795899ee972fe10226e43a82217225"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0795899ee972fe10226e43a82217225">&#9670;&#160;</a></span>marked_for_removal</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a>&gt;&amp; carla::traffic_manager::LocalizationStage::marked_for_removal</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html">LocalizationStage.h</a> 第 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00039">39</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00461">ImportPath()</a>, <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00544">ImportRoute()</a> , 以及 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00039">Update()</a>.</p>
+
+</div>
+</div>
+<a id="abd381a2646b2b16c11615eb7ce7c3ed6" name="abd381a2646b2b16c11615eb7ce7c3ed6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd381a2646b2b16c11615eb7ce7c3ed6">&#9670;&#160;</a></span>output_array</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae6884760b2493309b27c236b91c72204">LocalizationFrame</a>&amp; carla::traffic_manager::LocalizationStage::output_array</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html">LocalizationStage.h</a> 第 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00040">40</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00039">Update()</a>.</p>
+
+</div>
+</div>
+<a id="a7d1ee7ab5d16a62b4431c1b3bb350b9c" name="a7d1ee7ab5d16a62b4431c1b3bb350b9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d1ee7ab5d16a62b4431c1b3bb350b9c">&#9670;&#160;</a></span>parameters</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d6/ddb/classcarla_1_1traffic__manager_1_1Parameters.html">Parameters</a>&amp; carla::traffic_manager::LocalizationStage::parameters</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html">LocalizationStage.h</a> 第 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00037">37</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00461">ImportPath()</a>, <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00544">ImportRoute()</a> , 以及 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00039">Update()</a>.</p>
+
+</div>
+</div>
+<a id="a7878f9c0c0efbc165e7c38b08ff98c45" name="a7878f9c0c0efbc165e7c38b08ff98c45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7878f9c0c0efbc165e7c38b08ff98c45">&#9670;&#160;</a></span>random_device</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d2/df0/classcarla_1_1traffic__manager_1_1RandomGenerator.html">RandomGenerator</a>&amp; carla::traffic_manager::LocalizationStage::random_device</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html">LocalizationStage.h</a> 第 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00045">45</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00039">Update()</a>.</p>
+
+</div>
+</div>
+<a id="a70b558571101d15871dad29c66c41c00" name="a70b558571101d15871dad29c66c41c00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70b558571101d15871dad29c66c41c00">&#9670;&#160;</a></span>simulation_state</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="../../d9/d2b/classcarla_1_1traffic__manager_1_1SimulationState.html">SimulationState</a>&amp; carla::traffic_manager::LocalizationStage::simulation_state</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html">LocalizationStage.h</a> 第 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00034">34</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00633">ComputeActionBuffer()</a>, <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00600">ComputeNextAction()</a> , 以及 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00039">Update()</a>.</p>
+
+</div>
+</div>
+<a id="a83e075668ffdf92d57c9715239faa255" name="a83e075668ffdf92d57c9715239faa255"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83e075668ffdf92d57c9715239faa255">&#9670;&#160;</a></span>track_traffic</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html">TrackTraffic</a>&amp; carla::traffic_manager::LocalizationStage::track_traffic</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html">LocalizationStage.h</a> 第 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00035">35</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00340">AssignLaneChange()</a>, <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00242">ExtendAndFindSafeSpace()</a>, <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00461">ImportPath()</a>, <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00544">ImportRoute()</a> , 以及 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00039">Update()</a>.</p>
+
+</div>
+</div>
+<a id="a826443249213fa7222ba7f1415c902dd" name="a826443249213fa7222ba7f1415c902dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a826443249213fa7222ba7f1415c902dd">&#9670;&#160;</a></span>vehicle_id_list</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::vector&lt;<a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a>&gt;&amp; carla::traffic_manager::LocalizationStage::vehicle_id_list</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html">LocalizationStage.h</a> 第 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00032">32</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00039">Update()</a>.</p>
+
+</div>
+</div>
+<a id="a3558e2a7cb25985e9c66248083c35675" name="a3558e2a7cb25985e9c66248083c35675"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3558e2a7cb25985e9c66248083c35675">&#9670;&#160;</a></span>vehicles_at_junction</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a36e144174a4524310723dee7ddb8e286">ActorIdSet</a> carla::traffic_manager::LocalizationStage::vehicles_at_junction</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html">LocalizationStage.h</a> 第 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00042">42</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00330">RemoveActor()</a> , 以及 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00335">Reset()</a>.</p>
+
+</div>
+</div>
+<a id="a6847ece1bfc4131e364a8d4f419e85ef" name="a6847ece1bfc4131e364a8d4f419e85ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6847ece1bfc4131e364a8d4f419e85ef">&#9670;&#160;</a></span>vehicles_at_junction_entrance</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unordered_map&lt;<a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a>, <a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#ae8a4d2ef2e21c940862dccd9fb23c68e">SimpleWaypointPair</a>&gt; carla::traffic_manager::LocalizationStage::vehicles_at_junction_entrance</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html">LocalizationStage.h</a> 第 <a class="el" href="../../d9/df4/LocalizationStage_8h_source.html#l00044">44</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00242">ExtendAndFindSafeSpace()</a> , 以及 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00039">Update()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../d9/df4/LocalizationStage_8h_source.html">LocalizationStage.h</a></li>
+<li><a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html">LocalizationStage.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

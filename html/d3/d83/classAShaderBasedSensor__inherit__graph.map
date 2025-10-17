@@ -1,0 +1,13 @@
+<map id="AShaderBasedSensor" name="AShaderBasedSensor">
+<area shape="rect" id="node1" title="通过应用后处理材质（着色器）来生成数据的传感器。 a scene capture image." alt="" coords="439,153,589,179"/>
+<area shape="rect" id="node5" href="$d2/daf/classADVSCamera.html" title="产生动态视觉事件的传感器" alt="" coords="691,5,794,31"/>
+<area shape="rect" id="node6" href="$db/d36/classADepthCamera.html" title="生成‘深度’图像的传感器." alt="" coords="687,55,798,80"/>
+<area shape="rect" id="node7" href="$d9/d25/classAInstanceSegmentationCamera.html" title="生成‘实例分割’图像的传感器." alt="" coords="639,104,846,129"/>
+<area shape="rect" id="node8" href="$d3/d49/classANormalsCamera.html" title="生成‘法线’图像的传感器." alt="" coords="680,153,805,179"/>
+<area shape="rect" id="node9" href="$d0/d61/classAOpticalFlowCamera.html" title="生成‘光流’图像的传感器." alt="" coords="670,203,815,228"/>
+<area shape="rect" id="node10" href="$d8/d68/classASceneCaptureCamera.html" title="捕捉场景图像的传感器&quot;" alt="" coords="663,252,822,277"/>
+<area shape="rect" id="node11" href="$d6/dad/classASemanticSegmentationCamera.html" title="生成‘语义分割’图像的传感器" alt="" coords="637,301,848,327"/>
+<area shape="rect" id="node2" href="$d4/d60/classASceneCaptureSensor.html" title="使用USceneCaptureComponent2D进行场景渲染的传感器基类 scene." alt="" coords="236,153,391,179"/>
+<area shape="rect" id="node3" href="$d3/d01/classASensor.html" title="传感器的基类" alt="" coords="116,153,188,179"/>
+<area shape="rect" id="node4" href="$d1/da4/classAActor.html" title=" " alt="" coords="5,153,68,179"/>
+</map>

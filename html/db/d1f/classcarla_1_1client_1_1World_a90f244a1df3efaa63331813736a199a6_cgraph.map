@@ -1,0 +1,4 @@
+<map id="carla::client::World::GetMap" name="carla::client::World::GetMap">
+<area shape="rect" id="node1" title="返回描述这个世界的地图。 返回的是一个智能指针指向的Map对象，该Map对象包含了模拟世界中的地理信息、道路布局等地图相关的数据结构， 供外部调用者进一步查询和操作地图相关的功能。" alt="" coords="5,5,132,45"/>
+<area shape="rect" id="node2" href="$d1/dd3/classcarla_1_1client_1_1detail_1_1EpisodeProxyImpl.html#aaca857645fbeb6546b4a03a663bb65af" title="与 TryLock 相同，但永远不会返回 nullptr。" alt="" coords="180,5,347,45"/>
+</map>

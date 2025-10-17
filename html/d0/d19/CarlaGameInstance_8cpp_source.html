@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: CarlaGameInstance.cpp 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_2d15d0715a2692171bd03ed14a4a79af.html">Unreal</a></li><li class="navelem"><a class="el" href="../../dir_d3c1db2570616bec48bf5a6dd06bce95.html">CarlaUE4</a></li><li class="navelem"><a class="el" href="../../dir_3538576148ac14151677be9b0aee6fcc.html">Plugins</a></li><li class="navelem"><a class="el" href="../../dir_fbda5b12374c683cbdca72abb2d51944.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_18937e8f6bde63367bf26837323a9508.html">Source</a></li><li class="navelem"><a class="el" href="../../dir_8fc34afb5f07a67966c78bf5319f94ae.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_b708e75f0564cefaa95a07ef1c60fa1d.html">Game</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">CarlaGameInstance.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d0/d19/CarlaGameInstance_8cpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// 版权所有 （c） 2017 巴塞罗那自治大学 （UAB） 计算机视觉中心 （CVC）。</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">// 本作品根据 MIT 许可证的条款进行许可。</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//有关副本，请参阅 &lt;https://opensource.org/licenses/MIT&gt;。</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="../../d7/d7d/Carla_8h.html">Carla.h</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="../../d2/dba/CarlaGameInstance_8h.html">Carla/Game/CarlaGameInstance.h</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="../../d3/d4e/CarlaSettings_8h.html">Carla/Settings/CarlaSettings.h</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">// 定义UCarlaGameInstance类的构造函数</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="../../da/d55/classUCarlaGameInstance.html#a3b28f0bd7dba5a2857929f24f87927d2">   12</a></span><a class="code hl_function" href="../../da/d55/classUCarlaGameInstance.html#a3b28f0bd7dba5a2857929f24f87927d2">UCarlaGameInstance::UCarlaGameInstance</a>() {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>  <a class="code hl_variable" href="../../da/d55/classUCarlaGameInstance.html#af9d1c3e6c06091fe58d8987539a126ce">CarlaSettings</a> = CreateDefaultSubobject&lt;UCarlaSettings&gt;(TEXT(<span class="stringliteral">&quot;CarlaSettings&quot;</span>));<span class="comment">// 创建一个UCarlaSettings的默认子对象，设置其名称为&quot;CarlaSettings&quot;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>  <a class="code hl_variable" href="../../da/d55/classUCarlaGameInstance.html#ac61b1f1748065fcecfb407b648236fde">Recorder</a> = CreateDefaultSubobject&lt;ACarlaRecorder&gt;(TEXT(<span class="stringliteral">&quot;Recorder&quot;</span>));<span class="comment">// 创建一个ACarlaRecorder的默认子对象，设置其名称为&quot;Recorder&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>  <a class="code hl_variable" href="../../da/d55/classUCarlaGameInstance.html#adb9dce381ca79f5df352ff31ba16a074">CarlaEngine</a>.<a class="code hl_function" href="../../dc/d49/classFCarlaEngine.html#ac432b3a472ef220baca1d7086e2ae8c0">SetRecorder</a>(<a class="code hl_variable" href="../../da/d55/classUCarlaGameInstance.html#ac61b1f1748065fcecfb407b648236fde">Recorder</a>);<span class="comment">// 将Recorder对象设置为CarlaEngine的记录器</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  check(<a class="code hl_variable" href="../../da/d55/classUCarlaGameInstance.html#af9d1c3e6c06091fe58d8987539a126ce">CarlaSettings</a> != <span class="keyword">nullptr</span>);<span class="comment">// 检查CarlaSettings是否成功创建，确保其指针不为空</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  <a class="code hl_variable" href="../../da/d55/classUCarlaGameInstance.html#af9d1c3e6c06091fe58d8987539a126ce">CarlaSettings</a>-&gt;<a class="code hl_function" href="../../d7/d1e/classUCarlaSettings.html#a174db9a076cd0df7a2324ca728aeb1e5">LoadSettings</a>();<span class="comment">// 加载设置，通常这会从配置文件或其他来源读取配置信息</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  <a class="code hl_variable" href="../../da/d55/classUCarlaGameInstance.html#af9d1c3e6c06091fe58d8987539a126ce">CarlaSettings</a>-&gt;<a class="code hl_function" href="../../d7/d1e/classUCarlaSettings.html#aadaca1c20e5413aab737e3cd63779bd4">LogSettings</a>();<span class="comment">// 打印加载的设置，用于调试和验证设置是否正确</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>}</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><a class="code hl_function" href="../../da/d55/classUCarlaGameInstance.html#ae93111a3833da14078916f048afd40f7">UCarlaGameInstance::~UCarlaGameInstance</a>() = <span class="keywordflow">default</span>;<span class="comment">// 定义析构函数，C++中的析构函数通常用于清理资源</span></div>
+<div class="ttc" id="aCarlaGameInstance_8h_html"><div class="ttname"><a href="../../d2/dba/CarlaGameInstance_8h.html">CarlaGameInstance.h</a></div></div>
+<div class="ttc" id="aCarlaSettings_8h_html"><div class="ttname"><a href="../../d3/d4e/CarlaSettings_8h.html">CarlaSettings.h</a></div></div>
+<div class="ttc" id="aCarla_8h_html"><div class="ttname"><a href="../../d7/d7d/Carla_8h.html">Carla.h</a></div></div>
+<div class="ttc" id="aclassFCarlaEngine_html_ac432b3a472ef220baca1d7086e2ae8c0"><div class="ttname"><a href="../../dc/d49/classFCarlaEngine.html#ac432b3a472ef220baca1d7086e2ae8c0">FCarlaEngine::SetRecorder</a></div><div class="ttdeci">void SetRecorder(ACarlaRecorder *InRecorder)</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d11/CarlaEngine_8h_source.html#l00062">CarlaEngine.h:62</a></div></div>
+<div class="ttc" id="aclassUCarlaGameInstance_html_a3b28f0bd7dba5a2857929f24f87927d2"><div class="ttname"><a href="../../da/d55/classUCarlaGameInstance.html#a3b28f0bd7dba5a2857929f24f87927d2">UCarlaGameInstance::UCarlaGameInstance</a></div><div class="ttdeci">UCarlaGameInstance()</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d19/CarlaGameInstance_8cpp_source.html#l00012">CarlaGameInstance.cpp:12</a></div></div>
+<div class="ttc" id="aclassUCarlaGameInstance_html_ac61b1f1748065fcecfb407b648236fde"><div class="ttname"><a href="../../da/d55/classUCarlaGameInstance.html#ac61b1f1748065fcecfb407b648236fde">UCarlaGameInstance::Recorder</a></div><div class="ttdeci">ACarlaRecorder * Recorder</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/dba/CarlaGameInstance_8h_source.html#l00143">CarlaGameInstance.h:143</a></div></div>
+<div class="ttc" id="aclassUCarlaGameInstance_html_adb9dce381ca79f5df352ff31ba16a074"><div class="ttname"><a href="../../da/d55/classUCarlaGameInstance.html#adb9dce381ca79f5df352ff31ba16a074">UCarlaGameInstance::CarlaEngine</a></div><div class="ttdeci">FCarlaEngine CarlaEngine</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/dba/CarlaGameInstance_8h_source.html#l00139">CarlaGameInstance.h:139</a></div></div>
+<div class="ttc" id="aclassUCarlaGameInstance_html_ae93111a3833da14078916f048afd40f7"><div class="ttname"><a href="../../da/d55/classUCarlaGameInstance.html#ae93111a3833da14078916f048afd40f7">UCarlaGameInstance::~UCarlaGameInstance</a></div><div class="ttdeci">~UCarlaGameInstance()</div></div>
+<div class="ttc" id="aclassUCarlaGameInstance_html_af9d1c3e6c06091fe58d8987539a126ce"><div class="ttname"><a href="../../da/d55/classUCarlaGameInstance.html#af9d1c3e6c06091fe58d8987539a126ce">UCarlaGameInstance::CarlaSettings</a></div><div class="ttdeci">UCarlaSettings * CarlaSettings</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/dba/CarlaGameInstance_8h_source.html#l00136">CarlaGameInstance.h:136</a></div></div>
+<div class="ttc" id="aclassUCarlaSettings_html_a174db9a076cd0df7a2324ca728aeb1e5"><div class="ttname"><a href="../../d7/d1e/classUCarlaSettings.html#a174db9a076cd0df7a2324ca728aeb1e5">UCarlaSettings::LoadSettings</a></div><div class="ttdeci">void LoadSettings()</div><div class="ttdoc">根据命令行参数和 INI 文件（如果提供）加载设置。</div><div class="ttdef"><b>Definition:</b> <a href="../../dc/d42/CarlaSettings_8cpp_source.html#l00119">CarlaSettings.cpp:119</a></div></div>
+<div class="ttc" id="aclassUCarlaSettings_html_aadaca1c20e5413aab737e3cd63779bd4"><div class="ttname"><a href="../../d7/d1e/classUCarlaSettings.html#aadaca1c20e5413aab737e3cd63779bd4">UCarlaSettings::LogSettings</a></div><div class="ttdeci">void LogSettings() const</div><div class="ttdoc">记录设置值。</div><div class="ttdef"><b>Definition:</b> <a href="../../dc/d42/CarlaSettings_8cpp_source.html#l00195">CarlaSettings.cpp:195</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

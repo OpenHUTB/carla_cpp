@@ -1,0 +1,255 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: SoilTypeManager.cpp 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_2d15d0715a2692171bd03ed14a4a79af.html">Unreal</a></li><li class="navelem"><a class="el" href="../../dir_d3c1db2570616bec48bf5a6dd06bce95.html">CarlaUE4</a></li><li class="navelem"><a class="el" href="../../dir_3538576148ac14151677be9b0aee6fcc.html">Plugins</a></li><li class="navelem"><a class="el" href="../../dir_fbda5b12374c683cbdca72abb2d51944.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_18937e8f6bde63367bf26837323a9508.html">Source</a></li><li class="navelem"><a class="el" href="../../dir_8fc34afb5f07a67966c78bf5319f94ae.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_3e9aec868781f29a05b56aecc37cd1a9.html">MapGen</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">SoilTypeManager.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d9/dbd/SoilTypeManager_8cpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma de Barcelona (UAB). This work is licensed under the terms of the MIT license. For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;<a class="code" href="../../d1/dae/SoilTypeManager_8h.html">MapGen/SoilTypeManager.h</a>&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// 引入 &quot;MapGen/SoilTypeManager.h&quot; 头文件，通常其中包含了当前类（ASoilTypeManager）的定义以及相关的类型、函数等声明</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;Kismet/GameplayStatics.h&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">// 引入 &quot;Kismet/GameplayStatics.h&quot; 头文件，该头文件提供了一系列用于游戏玩法相关的静态函数，比如获取场景中的Actor等操作</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">// 设置默认值</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="../../d1/da5/classASoilTypeManager.html#ac5801617c5d7ecad0289319f81295c3a">   10</a></span><a class="code hl_function" href="../../d1/da5/classASoilTypeManager.html#ac5801617c5d7ecad0289319f81295c3a">ASoilTypeManager::ASoilTypeManager</a>()</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>{</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>   <span class="comment">// 设置此 Actor 使其每一帧都调用 Tick () 函数。如果你不需要它（每帧调用 Tick () 函数的功能），可以将其关闭以提高性能。</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>  PrimaryActorTick.bCanEverTick = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>}</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">// 在游戏开始或（Actor）生成时被调用。</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="../../d1/da5/classASoilTypeManager.html#a4d7ea639f2bebaebc4c454eafeeeb5c2">   17</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d1/da5/classASoilTypeManager.html#a4d7ea639f2bebaebc4c454eafeeeb5c2">ASoilTypeManager::BeginPlay</a>()</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>{</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  Super::BeginPlay();</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <span class="comment">// 调用父类的BeginPlay函数，确保父类在游戏开始或Actor被生成时的初始化逻辑先执行，</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  <span class="comment">// 这里虽然没有添加额外的逻辑，但在继承体系中保留这种调用是很重要的，以保证正确的初始化顺序</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>}</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="../../d1/da5/classASoilTypeManager.html#ab5bb955f61f4ef88e175e863d8b850df">   25</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d1/da5/classASoilTypeManager.html#ab5bb955f61f4ef88e175e863d8b850df">ASoilTypeManager::Tick</a>(<span class="keywordtype">float</span> DeltaTime)</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>{</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#if WITH_EDITOR </span><span class="comment">// 仅用于调试目的。需要在构造函数中激活 Tick（函数调用）。</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="comment">// 这是一个预编译指令，只有在定义了WITH_EDITOR宏的情况下（通常在编辑器相关的编译配置中会定义），</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <span class="comment">// 下面的代码才会被编译，主要用于调试目的，并且需要在构造函数中开启Tick函数调用（前面已经设置默认关闭）</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <span class="keywordflow">if</span>((<span class="keywordtype">int</span>)DeltaTime % 2000 == 0)</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  {</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="comment">// 每隔2000个时间单位（这里DeltaTime的单位应该是与游戏帧率相关的时间单位，比如秒）执行一次下面的逻辑</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <a class="code hl_class" href="../../d9/d4b/classALargeMapManager.html">ALargeMapManager</a>* <a class="code hl_variable" href="../../d1/da5/classASoilTypeManager.html#a4e82fa333784e5c5dded3bbd3c9e3fda">LargeMapManager</a> = (<a class="code hl_class" href="../../d9/d4b/classALargeMapManager.html">ALargeMapManager</a>*) UGameplayStatics::GetActorOfClass(GetWorld(), ALargeMapManager::StaticClass());</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="comment">// 使用UGameplayStatics的静态函数GetActorOfClass从当前世界（GetWorld获取）中获取ALargeMapManager类型的Actor，</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="comment">// 并将其转换为ALargeMapManager* 类型，用于后续操作与地图相关的逻辑</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <a class="code hl_class" href="../../d1/da4/classAActor.html">AActor</a>* Car = UGameplayStatics::GetActorOfClass(GetWorld(), <a class="code hl_variable" href="../../d1/da5/classASoilTypeManager.html#a2cba45b81ba83f934d68923894703512">CarClass</a>);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="comment">// 同样使用GetActorOfClass函数从当前世界中获取指定类型（CarClass，这里CarClass应该是在其他地方定义的表示车辆的Actor类）的Actor，</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="comment">// 并存储为AActor* 类型，用于后续获取车辆相关信息</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordflow">if</span>(Car != <span class="keyword">nullptr</span>)</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    {</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>      <span class="comment">// 如果成功获取到了表示车辆的Actor（即Car不为nullptr），则执行下面的操作</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>      FVector CarPos = Car-&gt;GetActorLocation();</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>      <span class="comment">// 获取车辆Actor的位置信息，存储在FVector类型的CarPos变量中，FVector通常用于表示三维空间中的向量（这里表示位置向量）</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>      FVector GlobalCarPos = <a class="code hl_variable" href="../../d1/da5/classASoilTypeManager.html#a4e82fa333784e5c5dded3bbd3c9e3fda">LargeMapManager</a>-&gt;<a class="code hl_function" href="../../d9/d4b/classALargeMapManager.html#adc28142d65c3bdb83f5a6a6db9deee81">LocalToGlobalLocation</a>(CarPos);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>      <span class="comment">// 通过获取到的LargeMapManager对象，调用其LocalToGlobalLocation函数将车辆的本地位置（CarPos）转换为全局位置，</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>      <span class="comment">// 并存储在GlobalCarPos变量中，以便在全局坐标系下进行后续操作</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>      FIntVector TileVector = <a class="code hl_variable" href="../../d1/da5/classASoilTypeManager.html#a4e82fa333784e5c5dded3bbd3c9e3fda">LargeMapManager</a>-&gt;<a class="code hl_function" href="../../d9/d4b/classALargeMapManager.html#a53d7481bf584f8c3f39c6d8b744084e6">GetTileVectorID</a>(GlobalCarPos);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>      <span class="comment">// 使用LargeMapManager对象的GetTileVectorID函数，根据车辆的全局位置（GlobalCarPos）获取对应的地图瓦片向量ID，</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>      <span class="comment">// 该ID可能用于在地图瓦片相关的数据结构中索引特定的瓦片信息，存储在FIntVector类型的TileVector变量中</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>      uint64 TileIndex = <a class="code hl_variable" href="../../d1/da5/classASoilTypeManager.html#a4e82fa333784e5c5dded3bbd3c9e3fda">LargeMapManager</a>-&gt;<a class="code hl_function" href="../../d9/d4b/classALargeMapManager.html#a719578eff1513ef2ab1993349ea6db52">GetTileID</a>(GlobalCarPos);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>      <span class="comment">// 类似地，通过LargeMapManager对象的GetTileID函数，根据车辆的全局位置获取对应的地图瓦片索引（TileIndex），</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>      <span class="comment">// 具体的索引格式可能根据地图数据结构的实现而定</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>      FString TypeStr = <a class="code hl_function" href="../../d1/da5/classASoilTypeManager.html#a32d9eeb99313ff527d8d02c76009e9e7">GetTerrainPropertiesAtGlobalLocation</a>(GlobalCarPos).<a class="code hl_function" href="../../d2/d79/structFSoilTerramechanicsProperties.html#adf002df2b8cd8aef8a6551afddeabb99">ToString</a>();</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>      </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>      <span class="comment">// 调用当前类（ASoilTypeManager）的GetTerrainPropertiesAtGlobalLocation函数获取车辆所在全局位置的地形属性，</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>      <span class="comment">// 并将其转换为字符串形式存储在TypeStr变量中，以便后续输出日志</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>      <a class="code hl_function" href="../../d0/d6a/ActorDispatcher_8cpp.html#a69d0a7232310b5ebaa51abb2b9945184">UE_LOG</a>(LogCarla, Log, TEXT(<span class="stringliteral">&quot;Current Tile Index %d ----&gt; (%d, %d, %d) with position L[%f, %f, %f] G[%f, %f, %f] Terrain Type: %s&quot;</span>),</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        TileIndex, TileVector.X, TileVector.Y, TileVector.Z, CarPos.X, CarPos.Y, CarPos.Z, GlobalCarPos.X, GlobalCarPos.Y, GlobalCarPos.Z,</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        *TypeStr);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>      <span class="comment">// 使用UE_LOG输出日志信息，记录当前瓦片索引、瓦片向量ID、车辆的本地位置和全局位置以及地形类型等相关信息，</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>      <span class="comment">// 方便在调试时查看游戏运行过程中的相关数据状态</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    }</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  }</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>}</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="../../d1/da5/classASoilTypeManager.html#a8e49d53a4f0fc99e8e6f08e50e22d37f">   70</a></span><a class="code hl_struct" href="../../d2/d79/structFSoilTerramechanicsProperties.html">FSoilTerramechanicsProperties</a> <a class="code hl_function" href="../../d1/da5/classASoilTypeManager.html#a8e49d53a4f0fc99e8e6f08e50e22d37f">ASoilTypeManager::GetGeneralTerrainProperties</a>()</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>{</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d1/da5/classASoilTypeManager.html#a15dc2a717fe013a188b43544e7f343bf">GeneralTerrainProperties</a>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  <span class="comment">// 返回当前类的成员变量GeneralTerrainProperties，该变量应该存储了一些通用的地形力学属性相关信息，</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  <span class="comment">// 返回的类型是FSoilTerramechanicsProperties，应该是一个自定义的结构体类型用于表示土壤地形力学属性</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>}</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="../../d1/da5/classASoilTypeManager.html#a32d9eeb99313ff527d8d02c76009e9e7">   77</a></span><a class="code hl_struct" href="../../d2/d79/structFSoilTerramechanicsProperties.html">FSoilTerramechanicsProperties</a> <a class="code hl_function" href="../../d1/da5/classASoilTypeManager.html#a32d9eeb99313ff527d8d02c76009e9e7">ASoilTypeManager::GetTerrainPropertiesAtGlobalLocation</a>(FVector VehicleLocation)</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>{</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  <span class="comment">// 从位置获取索引</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  FIntVector TileVectorID = <a class="code hl_variable" href="../../d1/da5/classASoilTypeManager.html#a4e82fa333784e5c5dded3bbd3c9e3fda">LargeMapManager</a>-&gt;<a class="code hl_function" href="../../d9/d4b/classALargeMapManager.html#a53d7481bf584f8c3f39c6d8b744084e6">GetTileVectorID</a>(VehicleLocation);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  <span class="comment">// 根据传入的车辆在全局坐标系下的位置（VehicleLocation），通过LargeMapManager对象的GetTileVectorID函数获取对应的地图瓦片向量ID，</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  <span class="comment">// 以便后续在地图相关的数据结构中查找该位置对应的地形属性</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  <span class="comment">// 查询地图，如果（所需信息）不在地图中，则返回通用（属性）。</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  <span class="keywordflow">if</span>(<a class="code hl_variable" href="../../d1/da5/classASoilTypeManager.html#a14244d66be1f4ff976b5a0e72ec8ba7e">TilesTerrainProperties</a>.Contains(TileVectorID))</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d1/da5/classASoilTypeManager.html#a14244d66be1f4ff976b5a0e72ec8ba7e">TilesTerrainProperties</a>[TileVectorID];  <span class="comment">// Tile properties</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d1/da5/classASoilTypeManager.html#a15dc2a717fe013a188b43544e7f343bf">GeneralTerrainProperties</a>;    <span class="comment">// General properties</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>  <span class="comment">// 检查地图瓦片地形属性的容器（TilesTerrainProperties，应该是一个以FIntVector为键，FSoilTerramechanicsProperties为值的容器）</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>  <span class="comment">// 是否包含根据位置获取到的瓦片向量ID，如果包含则返回该ID对应的具体地形属性（即该瓦片位置的地形属性），</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>  <span class="comment">// 如果不包含则返回通用的地形属性（GeneralTerrainProperties）</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>}</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="../../d1/da5/classASoilTypeManager.html#a6dbe8ca05cdbf2733dc3bbba5009df44">   94</a></span><a class="code hl_struct" href="../../d2/d79/structFSoilTerramechanicsProperties.html">FSoilTerramechanicsProperties</a> <a class="code hl_function" href="../../d1/da5/classASoilTypeManager.html#a6dbe8ca05cdbf2733dc3bbba5009df44">ASoilTypeManager::GetTerrainPropertiesAtLocalLocation</a>(FVector VehicleLocation)</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>{</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>  FVector GlobalVehiclePosition = <a class="code hl_variable" href="../../d1/da5/classASoilTypeManager.html#a4e82fa333784e5c5dded3bbd3c9e3fda">LargeMapManager</a>-&gt;<a class="code hl_function" href="../../d9/d4b/classALargeMapManager.html#adc28142d65c3bdb83f5a6a6db9deee81">LocalToGlobalLocation</a>(VehicleLocation);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>  <span class="comment">// 首先将传入的车辆在本地坐标系下的位置（VehicleLocation）通过LargeMapManager对象的LocalToGlobalLocation函数转换为全局位置，</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  <span class="comment">// 存储在GlobalVehiclePosition变量中</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>  <span class="keywordflow">return</span> <a class="code hl_function" href="../../d1/da5/classASoilTypeManager.html#a32d9eeb99313ff527d8d02c76009e9e7">GetTerrainPropertiesAtGlobalLocation</a>(GlobalVehiclePosition);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>  <span class="comment">// 然后调用GetTerrainPropertiesAtGlobalLocation函数获取该全局位置对应的地形属性，并返回结果</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>}</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="../../d1/da5/classASoilTypeManager.html#aed63ddfedd335204c374f5deba3b69f4">  103</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d1/da5/classASoilTypeManager.html#aed63ddfedd335204c374f5deba3b69f4">ASoilTypeManager::SetGeneralTerrainProperties</a>(<a class="code hl_struct" href="../../d2/d79/structFSoilTerramechanicsProperties.html">FSoilTerramechanicsProperties</a> TerrainProperties)</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>{</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>  <span class="keyword">const</span> FString TerrainPropertiesStr = TerrainProperties.<a class="code hl_function" href="../../d2/d79/structFSoilTerramechanicsProperties.html#adf002df2b8cd8aef8a6551afddeabb99">ToString</a>();</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>  <span class="comment">// 将传入的地形属性参数（TerrainProperties）转换为字符串形式，存储在TerrainPropertiesStr变量中，</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>  <span class="comment">// 以便后续输出日志使用</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>  <a class="code hl_function" href="../../d0/d6a/ActorDispatcher_8cpp.html#a69d0a7232310b5ebaa51abb2b9945184">UE_LOG</a>(LogCarla, Log, TEXT(<span class="stringliteral">&quot;Setting General Terrain Settings %s&quot;</span>), *TerrainPropertiesStr);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>  <span class="comment">// 使用UE_LOG输出日志信息，记录正在设置通用地形设置的相关信息，包括设置的具体地形属性内容（通过TerrainPropertiesStr）</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>  <a class="code hl_variable" href="../../d1/da5/classASoilTypeManager.html#a15dc2a717fe013a188b43544e7f343bf">GeneralTerrainProperties</a> = TerrainProperties;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  <span class="comment">// 将传入的地形属性参数赋值给当前类的成员变量GeneralTerrainProperties，完成对通用地形属性的设置操作</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>}</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="../../d1/da5/classASoilTypeManager.html#a7cf694e8e9b9ba04f9c450019888f212">  114</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d1/da5/classASoilTypeManager.html#a7cf694e8e9b9ba04f9c450019888f212">ASoilTypeManager::AddTerrainPropertiesToTile</a>(<span class="keywordtype">int</span> TileX, <span class="keywordtype">int</span> TileY, <a class="code hl_struct" href="../../d2/d79/structFSoilTerramechanicsProperties.html">FSoilTerramechanicsProperties</a> TerrainProperties)</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>{</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>  <span class="comment">// 根据 X、Y 坐标计算 ID。</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>  check(<a class="code hl_variable" href="../../d1/da5/classASoilTypeManager.html#a4e82fa333784e5c5dded3bbd3c9e3fda">LargeMapManager</a> != <span class="keyword">nullptr</span>)</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>  <span class="comment">// 使用check宏来确保LargeMapManager指针不为空，这是一种在开发过程中进行断言检查的方式，</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>  <span class="comment">// 如果LargeMapManager为空则会触发断言失败，通常在调试版本中会给出相应的错误提示</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>  FIntVector TileVectorID(TileX, TileY, 0);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>  <span class="comment">// 根据传入的瓦片坐标（TileX和TileY）创建一个FIntVector类型的瓦片向量ID，这里Z坐标设置为0，</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>  <span class="comment">// 可能表示二维地图瓦片的索引方式（具体取决于地图数据结构的设计）</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>  <span class="comment">// 添加到地图（中）</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>  <span class="keywordflow">if</span>(TerrainProperties.<a class="code hl_variable" href="../../d2/d79/structFSoilTerramechanicsProperties.html#a6dc7ca134a561dff6900bec55f1acdd5">TerrainType</a> == ESoilTerramechanicsType::NONE_SOIL)</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <a class="code hl_variable" href="../../d1/da5/classASoilTypeManager.html#a14244d66be1f4ff976b5a0e72ec8ba7e">TilesTerrainProperties</a>.Add(TileVectorID, <a class="code hl_variable" href="../../d1/da5/classASoilTypeManager.html#a15dc2a717fe013a188b43544e7f343bf">GeneralTerrainProperties</a>);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>  <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <a class="code hl_variable" href="../../d1/da5/classASoilTypeManager.html#a14244d66be1f4ff976b5a0e72ec8ba7e">TilesTerrainProperties</a>.Add(TileVectorID, TerrainProperties);</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>  <span class="comment">// 根据传入的地形属性中的地形类型（TerrainProperties.TerrainType）判断，</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>  <span class="comment">// 如果是NONE_SOIL类型，则将通用地形属性（GeneralTerrainProperties）添加到地图瓦片地形属性的容器（TilesTerrainProperties）中，</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>  <span class="comment">// 对应的键是刚刚创建的瓦片向量ID；如果不是NONE_SOIL类型，则将传入的具体地形属性（TerrainProperties）添加到容器中，</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>  <span class="comment">// 同样以瓦片向量ID为键，这样就完成了将特定地形属性添加到指定地图瓦片位置的操作</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>}</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="../../d1/da5/classASoilTypeManager.html#a1efd2a91671d880121f2ffcd1145d23a">  136</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d1/da5/classASoilTypeManager.html#a1efd2a91671d880121f2ffcd1145d23a">ASoilTypeManager::ClearTerrainPropertiesMap</a>()</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>{</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>  <a class="code hl_variable" href="../../d1/da5/classASoilTypeManager.html#a14244d66be1f4ff976b5a0e72ec8ba7e">TilesTerrainProperties</a>.Empty(<a class="code hl_variable" href="../../d1/da5/classASoilTypeManager.html#a14244d66be1f4ff976b5a0e72ec8ba7e">TilesTerrainProperties</a>.Num());</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>  <span class="comment">// 清空地图瓦片地形属性的容器（TilesTerrainProperties），通过调用Empty函数并传入容器当前的元素数量，</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>  <span class="comment">// 实现将容器中的所有元素移除，重置容器为空状态的操作</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>}</div>
+<div class="ttc" id="aActorDispatcher_8cpp_html_a69d0a7232310b5ebaa51abb2b9945184"><div class="ttname"><a href="../../d0/d6a/ActorDispatcher_8cpp.html#a69d0a7232310b5ebaa51abb2b9945184">UE_LOG</a></div><div class="ttdeci">UE_LOG(LogCarla, Log, TEXT(&quot;UActorDispatcher::Destroying actor: '%s' %x&quot;), *Id, Actor)</div></div>
+<div class="ttc" id="aSoilTypeManager_8h_html"><div class="ttname"><a href="../../d1/dae/SoilTypeManager_8h.html">SoilTypeManager.h</a></div></div>
+<div class="ttc" id="aclassAActor_html"><div class="ttname"><a href="../../d1/da4/classAActor.html">AActor</a></div></div>
+<div class="ttc" id="aclassALargeMapManager_html"><div class="ttname"><a href="../../d9/d4b/classALargeMapManager.html">ALargeMapManager</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d30/LargeMapManager_8h_source.html#l00061">LargeMapManager.h:62</a></div></div>
+<div class="ttc" id="aclassALargeMapManager_html_a53d7481bf584f8c3f39c6d8b744084e6"><div class="ttname"><a href="../../d9/d4b/classALargeMapManager.html#a53d7481bf584f8c3f39c6d8b744084e6">ALargeMapManager::GetTileVectorID</a></div><div class="ttdeci">FIntVector GetTileVectorID(FVector TileLocation) const</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d6c/LargeMapManager_8cpp_source.html#l00528">LargeMapManager.cpp:528</a></div></div>
+<div class="ttc" id="aclassALargeMapManager_html_a719578eff1513ef2ab1993349ea6db52"><div class="ttname"><a href="../../d9/d4b/classALargeMapManager.html#a719578eff1513ef2ab1993349ea6db52">ALargeMapManager::GetTileID</a></div><div class="ttdeci">TileID GetTileID(FVector TileLocation) const</div><div class="ttdoc">从给定的位置检索覆盖该区域的图块ID。</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d6c/LargeMapManager_8cpp_source.html#l00588">LargeMapManager.cpp:588</a></div></div>
+<div class="ttc" id="aclassALargeMapManager_html_adc28142d65c3bdb83f5a6a6db9deee81"><div class="ttname"><a href="../../d9/d4b/classALargeMapManager.html#adc28142d65c3bdb83f5a6a6db9deee81">ALargeMapManager::LocalToGlobalLocation</a></div><div class="ttdeci">FVector LocalToGlobalLocation(const FVector &amp;InLocation) const</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d6c/LargeMapManager_8cpp_source.html#l00337">LargeMapManager.cpp:337</a></div></div>
+<div class="ttc" id="aclassASoilTypeManager_html_a14244d66be1f4ff976b5a0e72ec8ba7e"><div class="ttname"><a href="../../d1/da5/classASoilTypeManager.html#a14244d66be1f4ff976b5a0e72ec8ba7e">ASoilTypeManager::TilesTerrainProperties</a></div><div class="ttdeci">TMap&lt; FIntVector, FSoilTerramechanicsProperties &gt; TilesTerrainProperties</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/dae/SoilTypeManager_8h_source.html#l00052">SoilTypeManager.h:52</a></div></div>
+<div class="ttc" id="aclassASoilTypeManager_html_a15dc2a717fe013a188b43544e7f343bf"><div class="ttname"><a href="../../d1/da5/classASoilTypeManager.html#a15dc2a717fe013a188b43544e7f343bf">ASoilTypeManager::GeneralTerrainProperties</a></div><div class="ttdeci">FSoilTerramechanicsProperties GeneralTerrainProperties</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/dae/SoilTypeManager_8h_source.html#l00049">SoilTypeManager.h:49</a></div></div>
+<div class="ttc" id="aclassASoilTypeManager_html_a1efd2a91671d880121f2ffcd1145d23a"><div class="ttname"><a href="../../d1/da5/classASoilTypeManager.html#a1efd2a91671d880121f2ffcd1145d23a">ASoilTypeManager::ClearTerrainPropertiesMap</a></div><div class="ttdeci">void ClearTerrainPropertiesMap()</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/dbd/SoilTypeManager_8cpp_source.html#l00136">SoilTypeManager.cpp:136</a></div></div>
+<div class="ttc" id="aclassASoilTypeManager_html_a2cba45b81ba83f934d68923894703512"><div class="ttname"><a href="../../d1/da5/classASoilTypeManager.html#a2cba45b81ba83f934d68923894703512">ASoilTypeManager::CarClass</a></div><div class="ttdeci">TSubclassOf&lt; AActor &gt; CarClass</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/dae/SoilTypeManager_8h_source.html#l00062">SoilTypeManager.h:62</a></div></div>
+<div class="ttc" id="aclassASoilTypeManager_html_a32d9eeb99313ff527d8d02c76009e9e7"><div class="ttname"><a href="../../d1/da5/classASoilTypeManager.html#a32d9eeb99313ff527d8d02c76009e9e7">ASoilTypeManager::GetTerrainPropertiesAtGlobalLocation</a></div><div class="ttdeci">FSoilTerramechanicsProperties GetTerrainPropertiesAtGlobalLocation(FVector VehicleLocation)</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/dbd/SoilTypeManager_8cpp_source.html#l00077">SoilTypeManager.cpp:77</a></div></div>
+<div class="ttc" id="aclassASoilTypeManager_html_a4d7ea639f2bebaebc4c454eafeeeb5c2"><div class="ttname"><a href="../../d1/da5/classASoilTypeManager.html#a4d7ea639f2bebaebc4c454eafeeeb5c2">ASoilTypeManager::BeginPlay</a></div><div class="ttdeci">virtual void BeginPlay() override</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/dbd/SoilTypeManager_8cpp_source.html#l00017">SoilTypeManager.cpp:17</a></div></div>
+<div class="ttc" id="aclassASoilTypeManager_html_a4e82fa333784e5c5dded3bbd3c9e3fda"><div class="ttname"><a href="../../d1/da5/classASoilTypeManager.html#a4e82fa333784e5c5dded3bbd3c9e3fda">ASoilTypeManager::LargeMapManager</a></div><div class="ttdeci">ALargeMapManager * LargeMapManager</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/dae/SoilTypeManager_8h_source.html#l00055">SoilTypeManager.h:55</a></div></div>
+<div class="ttc" id="aclassASoilTypeManager_html_a6dbe8ca05cdbf2733dc3bbba5009df44"><div class="ttname"><a href="../../d1/da5/classASoilTypeManager.html#a6dbe8ca05cdbf2733dc3bbba5009df44">ASoilTypeManager::GetTerrainPropertiesAtLocalLocation</a></div><div class="ttdeci">FSoilTerramechanicsProperties GetTerrainPropertiesAtLocalLocation(FVector VehicleLocation)</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/dbd/SoilTypeManager_8cpp_source.html#l00094">SoilTypeManager.cpp:94</a></div></div>
+<div class="ttc" id="aclassASoilTypeManager_html_a7cf694e8e9b9ba04f9c450019888f212"><div class="ttname"><a href="../../d1/da5/classASoilTypeManager.html#a7cf694e8e9b9ba04f9c450019888f212">ASoilTypeManager::AddTerrainPropertiesToTile</a></div><div class="ttdeci">void AddTerrainPropertiesToTile(int TileX, int TileY, FSoilTerramechanicsProperties TerrainProperties)</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/dbd/SoilTypeManager_8cpp_source.html#l00114">SoilTypeManager.cpp:114</a></div></div>
+<div class="ttc" id="aclassASoilTypeManager_html_a8e49d53a4f0fc99e8e6f08e50e22d37f"><div class="ttname"><a href="../../d1/da5/classASoilTypeManager.html#a8e49d53a4f0fc99e8e6f08e50e22d37f">ASoilTypeManager::GetGeneralTerrainProperties</a></div><div class="ttdeci">FSoilTerramechanicsProperties GetGeneralTerrainProperties()</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/dbd/SoilTypeManager_8cpp_source.html#l00070">SoilTypeManager.cpp:70</a></div></div>
+<div class="ttc" id="aclassASoilTypeManager_html_ab5bb955f61f4ef88e175e863d8b850df"><div class="ttname"><a href="../../d1/da5/classASoilTypeManager.html#ab5bb955f61f4ef88e175e863d8b850df">ASoilTypeManager::Tick</a></div><div class="ttdeci">virtual void Tick(float DeltaSeconds) override</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/dbd/SoilTypeManager_8cpp_source.html#l00025">SoilTypeManager.cpp:25</a></div></div>
+<div class="ttc" id="aclassASoilTypeManager_html_ac5801617c5d7ecad0289319f81295c3a"><div class="ttname"><a href="../../d1/da5/classASoilTypeManager.html#ac5801617c5d7ecad0289319f81295c3a">ASoilTypeManager::ASoilTypeManager</a></div><div class="ttdeci">ASoilTypeManager()</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/dbd/SoilTypeManager_8cpp_source.html#l00010">SoilTypeManager.cpp:10</a></div></div>
+<div class="ttc" id="aclassASoilTypeManager_html_aed63ddfedd335204c374f5deba3b69f4"><div class="ttname"><a href="../../d1/da5/classASoilTypeManager.html#aed63ddfedd335204c374f5deba3b69f4">ASoilTypeManager::SetGeneralTerrainProperties</a></div><div class="ttdeci">void SetGeneralTerrainProperties(FSoilTerramechanicsProperties TerrainProperties)</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/dbd/SoilTypeManager_8cpp_source.html#l00103">SoilTypeManager.cpp:103</a></div></div>
+<div class="ttc" id="astructFSoilTerramechanicsProperties_html"><div class="ttname"><a href="../../d2/d79/structFSoilTerramechanicsProperties.html">FSoilTerramechanicsProperties</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d1/dae/SoilTypeManager_8h_source.html#l00019">SoilTypeManager.h:20</a></div></div>
+<div class="ttc" id="astructFSoilTerramechanicsProperties_html_a6dc7ca134a561dff6900bec55f1acdd5"><div class="ttname"><a href="../../d2/d79/structFSoilTerramechanicsProperties.html#a6dc7ca134a561dff6900bec55f1acdd5">FSoilTerramechanicsProperties::TerrainType</a></div><div class="ttdeci">TEnumAsByte&lt; ESoilTerramechanicsType &gt; TerrainType</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/dae/SoilTypeManager_8h_source.html#l00024">SoilTypeManager.h:24</a></div></div>
+<div class="ttc" id="astructFSoilTerramechanicsProperties_html_adf002df2b8cd8aef8a6551afddeabb99"><div class="ttname"><a href="../../d2/d79/structFSoilTerramechanicsProperties.html#adf002df2b8cd8aef8a6551afddeabb99">FSoilTerramechanicsProperties::ToString</a></div><div class="ttdeci">const FString ToString() const</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/dae/SoilTypeManager_8h_source.html#l00026">SoilTypeManager.h:26</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

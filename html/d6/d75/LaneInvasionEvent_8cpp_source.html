@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: LaneInvasionEvent.cpp 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_8b842c0ad24262c95de16c440fd51527.html">sensor</a></li><li class="navelem"><a class="el" href="../../dir_c1cab5d7e7d14afd616fdecacd66a589.html">data</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">LaneInvasionEvent.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d6/d75/LaneInvasionEvent_8cpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// de Barcelona (UAB).</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">// 说明该代码遵循MIT许可协议，可通过对应链接查看协议详情</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// This work is licensed under the terms of the MIT license.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">// 引入Carla项目中传感器数据相关的LaneInvasionEvent头文件，可能包含了车道入侵事件相关的数据结构定义等内容，</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">// 该文件应该定义了LaneInvasionEvent类，在此处只是使用该类的定义，而不负责其具体实现（类的定义在其他文件中，这里通过包含头文件获取其声明）</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="../../de/d3a/LaneInvasionEvent_8h.html">carla/sensor/data/LaneInvasionEvent.h</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">// 引入Carla项目中的异常处理相关的Exception头文件，用于在代码中抛出和处理异常情况，比如在获取演员（Actor）失败时抛出合适的异常</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="../../d8/d8a/Exception_8h.html">carla/Exception.h</a>&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">// 引入Carla项目中客户端细节相关的Simulator头文件，可能包含了模拟器相关的功能和数据结构，</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">// 在这里用于获取与模拟器相关的场景（Episode）信息以及通过ID查找演员（Actor）等操作</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;<a class="code" href="../../d6/d4a/Simulator_8h.html">carla/client/detail/Simulator.h</a>&quot;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d9/d36/namespacecarla.html">carla</a> {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">namespace </span>sensor {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">namespace </span>data {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  <span class="comment">// 定义LaneInvasionEvent类的GetActor函数，该函数用于获取与车道入侵事件相关的演员（Actor）的共享指针（SharedPtr），</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  <span class="comment">// 这里的演员可能是触发车道入侵事件的车辆或其他相关实体，函数返回值类型为SharedPtr&lt;client::Actor&gt;，表示指向客户端（client）模块中定义的Actor类型的共享指针</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="../../de/d3a/classcarla_1_1sensor_1_1data_1_1LaneInvasionEvent.html#a31f91056fa20913ecdb29421f165807e">   23</a></span>  <a class="code hl_typedef" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr&lt;client::Actor&gt;</a> <a class="code hl_function" href="../../de/d3a/classcarla_1_1sensor_1_1data_1_1LaneInvasionEvent.html#a31f91056fa20913ecdb29421f165807e">LaneInvasionEvent::GetActor</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="comment">// 调用GetEpisode函数（该函数应该是LaneInvasionEvent类从其父类或其他地方继承而来的成员函数，用于获取当前事件所属的场景（Episode）信息），</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="comment">// 并使用Lock函数（具体功能取决于其定义，可能是用于在多线程或异步环境下安全地获取场景对象的某种锁机制，以确保对场景对象的访问是线程安全的），</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="comment">// 获取一个指向当前场景的智能指针（episode），如果获取失败（例如场景已经被销毁等情况），episode将为nullptr或者处于无效状态</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">auto</span> episode = <a class="code hl_function" href="../../df/d8c/classcarla_1_1sensor_1_1SensorData.html#a71cc95690632431ec4959d13408ce2c8">GetEpisode</a>().Lock();</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="comment">// 通过episode智能指针调用GetActorById函数（该函数应该是在Simulator头文件中定义的与模拟器相关的函数，用于根据演员ID查找对应的演员描述信息），</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="comment">// 传入当前车道入侵事件的父对象ID（_parent，该成员变量应该是LaneInvasionEvent类中的一个成员变量，用于标识与该事件相关的父对象，比如触发事件的车辆等），</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="comment">// 查找对应的演员描述信息，并将结果存储在description变量中，description的类型应该是一个可空的某种类型（根据代码中的has_value函数推测，可能是std::optional或者类似的可表示可选值的类型），</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="comment">// 如果找到了对应的演员，description将包含该演员的详细描述信息，否则将处于无值状态</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">auto</span> description = episode-&gt;GetActorById(<a class="code hl_variable" href="../../de/d3a/classcarla_1_1sensor_1_1data_1_1LaneInvasionEvent.html#a7afb57bd935800b03b4d5d43074f3021">_parent</a>);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="comment">// 使用if语句检查description是否有值，如果没有值（意味着没有找到对应的演员，可能是因为该演员已经被销毁或者ID无效等原因），</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="comment">// 则通过throw_exception函数（在Exception头文件中定义，用于抛出异常）抛出一个std::runtime_error类型的异常，异常信息为 &quot;LaneInvasionEvent: parent already dead&quot;，</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="comment">// 表示在车道入侵事件中，相关的父对象（如触发事件的车辆）已经不存在了，这可能会导致后续操作无法正常进行，所以通过抛出异常来通知调用者出现了错误情况</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordflow">if</span> (!description.has_value()) {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>      <a class="code hl_function" href="../../d9/d36/namespacecarla.html#a23602ab663165210a7757d6108f6b3cd">throw_exception</a>(std::runtime_error(<span class="stringliteral">&quot;LaneInvasionEvent: parent already dead&quot;</span>));</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    }</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="comment">// 如果description有值，说明找到了对应的演员描述信息，通过episode智能指针调用MakeActor函数（该函数应该是在客户端相关的模块中定义的用于创建演员对象的函数，</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="comment">// 可能会根据传入的演员描述信息构建一个实际的演员对象），传入description中的演员描述信息，创建一个对应的演员对象，并返回一个指向该演员对象的共享指针，</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="comment">// 这样调用者就可以通过返回的共享指针操作与车道入侵事件相关的演员对象，比如获取演员的属性、执行演员相关的操作等</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordflow">return</span> episode-&gt;MakeActor(*description);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  }</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>} <span class="comment">// namespace data</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>} <span class="comment">// namespace sensor</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>} <span class="comment">// namespace carla</span></div>
+<div class="ttc" id="aException_8h_html"><div class="ttname"><a href="../../d8/d8a/Exception_8h.html">Exception.h</a></div></div>
+<div class="ttc" id="aLaneInvasionEvent_8h_html"><div class="ttname"><a href="../../de/d3a/LaneInvasionEvent_8h.html">LaneInvasionEvent.h</a></div></div>
+<div class="ttc" id="aSimulator_8h_html"><div class="ttname"><a href="../../d6/d4a/Simulator_8h.html">Simulator.h</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1SensorData_html_a71cc95690632431ec4959d13408ce2c8"><div class="ttname"><a href="../../df/d8c/classcarla_1_1sensor_1_1SensorData.html#a71cc95690632431ec4959d13408ce2c8">carla::sensor::SensorData::GetEpisode</a></div><div class="ttdeci">const auto &amp; GetEpisode() const</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d07/SensorData_8h_source.html#l00057">SensorData.h:57</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1data_1_1LaneInvasionEvent_html_a31f91056fa20913ecdb29421f165807e"><div class="ttname"><a href="../../de/d3a/classcarla_1_1sensor_1_1data_1_1LaneInvasionEvent.html#a31f91056fa20913ecdb29421f165807e">carla::sensor::data::LaneInvasionEvent::GetActor</a></div><div class="ttdeci">SharedPtr&lt; client::Actor &gt; GetActor() const</div><div class="ttdoc">获取压线车道的Actor</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d75/LaneInvasionEvent_8cpp_source.html#l00023">LaneInvasionEvent.cpp:23</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1data_1_1LaneInvasionEvent_html_a7afb57bd935800b03b4d5d43074f3021"><div class="ttname"><a href="../../de/d3a/classcarla_1_1sensor_1_1data_1_1LaneInvasionEvent.html#a7afb57bd935800b03b4d5d43074f3021">carla::sensor::data::LaneInvasionEvent::_parent</a></div><div class="ttdeci">ActorId _parent</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d3a/LaneInvasionEvent_8h_source.html#l00047">LaneInvasionEvent.h:47</a></div></div>
+<div class="ttc" id="anamespacecarla_html"><div class="ttname"><a href="../../d9/d36/namespacecarla.html">carla</a></div><div class="ttdoc">CARLA模拟器的主命名空间。</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d4f/Carla_8cpp_source.html#l00139">Carla.cpp:139</a></div></div>
+<div class="ttc" id="anamespacecarla_html_a23602ab663165210a7757d6108f6b3cd"><div class="ttname"><a href="../../d9/d36/namespacecarla.html#a23602ab663165210a7757d6108f6b3cd">carla::throw_exception</a></div><div class="ttdeci">void throw_exception(const std::exception &amp;e)</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d4f/Carla_8cpp_source.html#l00142">Carla.cpp:142</a></div></div>
+<div class="ttc" id="anamespacecarla_html_a92e3ea2d07fa7e0a2fe5d680fb0ba614"><div class="ttname"><a href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">carla::SharedPtr</a></div><div class="ttdeci">boost::shared_ptr&lt; T &gt; SharedPtr</div><div class="ttdoc">使用这个SharedPtr（boost::shared_ptr）以保持与boost::python的兼容性， 但未来如果可能的话，我们希望能为std::shared_ptr制作一个Python适配器。</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d5c/Memory_8h_source.html#l00019">Memory.h:19</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

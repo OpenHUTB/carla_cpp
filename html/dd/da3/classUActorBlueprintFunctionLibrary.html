@@ -1,0 +1,2504 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: UActorBlueprintFunctionLibrary类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="../../d9/dc9/classUActorBlueprintFunctionLibrary-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">UActorBlueprintFunctionLibrary类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="../../d7/dda/ActorBlueprintFunctionLibrary_8h_source.html">ActorBlueprintFunctionLibrary.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 类 UActorBlueprintFunctionLibrary 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d62/classUActorBlueprintFunctionLibrary__inherit__graph.svg" width="214" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> UActorBlueprintFunctionLibrary 的协作图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d9/d83/classUActorBlueprintFunctionLibrary__coll__graph.svg" width="214" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:afa4aba6393bb016000f71bd60d2e2f12"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#afa4aba6393bb016000f71bd60d2e2f12">CheckActorDefinition</a> (const <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;ActorDefinitions)</td></tr>
+<tr class="memdesc:afa4aba6393bb016000f71bd60d2e2f12"><td class="mdescLeft">&#160;</td><td class="mdescRight">返回角色定义是否有效。打印所有找到的错误  <a href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#afa4aba6393bb016000f71bd60d2e2f12">更多...</a><br /></td></tr>
+<tr class="separator:afa4aba6393bb016000f71bd60d2e2f12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbc517c6b70dc38dcc9573ba48b77f17"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#abbc517c6b70dc38dcc9573ba48b77f17">CheckActorDefinitions</a> (const TArray&lt; <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &gt; &amp;ActorDefinitions)</td></tr>
+<tr class="memdesc:abbc517c6b70dc38dcc9573ba48b77f17"><td class="mdescLeft">&#160;</td><td class="mdescRight">返回演员定义列表是否有效。打印所有 发现错误  <a href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#abbc517c6b70dc38dcc9573ba48b77f17">更多...</a><br /></td></tr>
+<tr class="separator:abbc517c6b70dc38dcc9573ba48b77f17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0868b514cddf92d49758bc605e511c1"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#ae0868b514cddf92d49758bc605e511c1">MakeGenericDefinition</a> (const FString &amp;Category, const FString &amp;Type, const FString &amp;Id)</td></tr>
+<tr class="memdesc:ae0868b514cddf92d49758bc605e511c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个通用的参与者定义。  <a href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#ae0868b514cddf92d49758bc605e511c1">更多...</a><br /></td></tr>
+<tr class="separator:ae0868b514cddf92d49758bc605e511c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac586f27c6e47e3aee9427dd89d01bb9e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#ac586f27c6e47e3aee9427dd89d01bb9e">MakeGenericSensorDefinition</a> (const FString &amp;Type, const FString &amp;Id)</td></tr>
+<tr class="memdesc:ac586f27c6e47e3aee9427dd89d01bb9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个通用的传感器参与者定义。  <a href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#ac586f27c6e47e3aee9427dd89d01bb9e">更多...</a><br /></td></tr>
+<tr class="separator:ac586f27c6e47e3aee9427dd89d01bb9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73179ac899a1f87c07ab2ae222f0a9ec"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a73179ac899a1f87c07ab2ae222f0a9ec">MakeCameraDefinition</a> (const FString &amp;Id, bool bEnableModifyingPostProcessEffects=false)</td></tr>
+<tr class="memdesc:a73179ac899a1f87c07ab2ae222f0a9ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个相机参与者定义。  <a href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a73179ac899a1f87c07ab2ae222f0a9ec">更多...</a><br /></td></tr>
+<tr class="separator:a73179ac899a1f87c07ab2ae222f0a9ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a472a14c750c6c5dc66b38cfeaea82ccc"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a472a14c750c6c5dc66b38cfeaea82ccc">MakeCameraDefinition</a> (const FString &amp;Id, bool bEnableModifyingPostProcessEffects, bool &amp;<a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;Definition)</td></tr>
+<tr class="memdesc:a472a14c750c6c5dc66b38cfeaea82ccc"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个相机参与者定义，并返回操作是否成功。  <a href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a472a14c750c6c5dc66b38cfeaea82ccc">更多...</a><br /></td></tr>
+<tr class="separator:a472a14c750c6c5dc66b38cfeaea82ccc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c8420b32e8a4dd64fd80c3c0a2b771e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a9c8420b32e8a4dd64fd80c3c0a2b771e">MakeNormalsCameraDefinition</a> ()</td></tr>
+<tr class="memdesc:a9c8420b32e8a4dd64fd80c3c0a2b771e"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个法线相机参与者定义。  <a href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a9c8420b32e8a4dd64fd80c3c0a2b771e">更多...</a><br /></td></tr>
+<tr class="separator:a9c8420b32e8a4dd64fd80c3c0a2b771e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab49a876cfbacc4ffedbb09362fc9b180"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#ab49a876cfbacc4ffedbb09362fc9b180">MakeNormalsCameraDefinition</a> (bool &amp;<a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;Definition)</td></tr>
+<tr class="memdesc:ab49a876cfbacc4ffedbb09362fc9b180"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个法线相机参与者定义，并返回操作是否成功。  <a href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#ab49a876cfbacc4ffedbb09362fc9b180">更多...</a><br /></td></tr>
+<tr class="separator:ab49a876cfbacc4ffedbb09362fc9b180"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5393a029ca31b268e52ceda00bf166f"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#ab5393a029ca31b268e52ceda00bf166f">MakeLidarDefinition</a> (const FString &amp;Id)</td></tr>
+<tr class="memdesc:ab5393a029ca31b268e52ceda00bf166f"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个激光雷达参与者定义。  <a href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#ab5393a029ca31b268e52ceda00bf166f">更多...</a><br /></td></tr>
+<tr class="separator:ab5393a029ca31b268e52ceda00bf166f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fc1f6b43a586fa2ec4525c18b3228b3"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a6fc1f6b43a586fa2ec4525c18b3228b3">MakeLidarDefinition</a> (const FString &amp;Id, bool &amp;<a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;Definition)</td></tr>
+<tr class="memdesc:a6fc1f6b43a586fa2ec4525c18b3228b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个激光雷达参与者定义，并返回操作是否成功。  <a href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a6fc1f6b43a586fa2ec4525c18b3228b3">更多...</a><br /></td></tr>
+<tr class="separator:a6fc1f6b43a586fa2ec4525c18b3228b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1c9b64bc9ae7f652d82e88e7a92b90d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#ad1c9b64bc9ae7f652d82e88e7a92b90d">MakeGnssDefinition</a> ()</td></tr>
+<tr class="memdesc:ad1c9b64bc9ae7f652d82e88e7a92b90d"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个全球导航卫星系统传感器参与者定义。  <a href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#ad1c9b64bc9ae7f652d82e88e7a92b90d">更多...</a><br /></td></tr>
+<tr class="separator:ad1c9b64bc9ae7f652d82e88e7a92b90d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeeecb98e14d67062e00cbae809823d3d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#aeeecb98e14d67062e00cbae809823d3d">MakeGnssDefinition</a> (bool &amp;<a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;Definition)</td></tr>
+<tr class="memdesc:aeeecb98e14d67062e00cbae809823d3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个全球导航卫星系统传感器参与者定义，并返回操作是否成功。  <a href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#aeeecb98e14d67062e00cbae809823d3d">更多...</a><br /></td></tr>
+<tr class="separator:aeeecb98e14d67062e00cbae809823d3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a027542870b02494a58d594e9c0036a84"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a027542870b02494a58d594e9c0036a84">MakeIMUDefinition</a> ()</td></tr>
+<tr class="memdesc:a027542870b02494a58d594e9c0036a84"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个惯性测量单元参与者定义。  <a href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a027542870b02494a58d594e9c0036a84">更多...</a><br /></td></tr>
+<tr class="separator:a027542870b02494a58d594e9c0036a84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8113a5e0efff9740fde3c53ed9994b6e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a8113a5e0efff9740fde3c53ed9994b6e">MakeIMUDefinition</a> (bool &amp;<a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;Definition)</td></tr>
+<tr class="memdesc:a8113a5e0efff9740fde3c53ed9994b6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个惯性测量单元参与者定义，并返回操作是否成功。  <a href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a8113a5e0efff9740fde3c53ed9994b6e">更多...</a><br /></td></tr>
+<tr class="separator:a8113a5e0efff9740fde3c53ed9994b6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa43806792dd9edcc44f33931b687dce3"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#aa43806792dd9edcc44f33931b687dce3">MakeRadarDefinition</a> ()</td></tr>
+<tr class="memdesc:aa43806792dd9edcc44f33931b687dce3"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个雷达参与者定义。  <a href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#aa43806792dd9edcc44f33931b687dce3">更多...</a><br /></td></tr>
+<tr class="separator:aa43806792dd9edcc44f33931b687dce3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b441a042b6087b5d31976e26a42e734"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a6b441a042b6087b5d31976e26a42e734">MakeRadarDefinition</a> (bool &amp;<a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;Definition)</td></tr>
+<tr class="memdesc:a6b441a042b6087b5d31976e26a42e734"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个雷达参与者定义，并返回操作是否成功。  <a href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a6b441a042b6087b5d31976e26a42e734">更多...</a><br /></td></tr>
+<tr class="separator:a6b441a042b6087b5d31976e26a42e734"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fc8a0928a734d540d481b83829e43e1"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a7fc8a0928a734d540d481b83829e43e1">MakeV2XDefinition</a> ()</td></tr>
+<tr class="memdesc:a7fc8a0928a734d540d481b83829e43e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个车对外界信息交换传感器参与者定义。  <a href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a7fc8a0928a734d540d481b83829e43e1">更多...</a><br /></td></tr>
+<tr class="separator:a7fc8a0928a734d540d481b83829e43e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23a5b764c6cc08e321b9fa9649f4a057"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a23a5b764c6cc08e321b9fa9649f4a057">MakeV2XDefinition</a> (bool &amp;<a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;Definition)</td></tr>
+<tr class="memdesc:a23a5b764c6cc08e321b9fa9649f4a057"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个车对外界信息交换传感器参与者定义，并返回操作是否成功。  <a href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a23a5b764c6cc08e321b9fa9649f4a057">更多...</a><br /></td></tr>
+<tr class="separator:a23a5b764c6cc08e321b9fa9649f4a057"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a173dbad37b644bb5c9da44cddedada26"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a173dbad37b644bb5c9da44cddedada26">MakeCustomV2XDefinition</a> ()</td></tr>
+<tr class="memdesc:a173dbad37b644bb5c9da44cddedada26"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个自定义车对外界信息交换传感器参与者定义。  <a href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a173dbad37b644bb5c9da44cddedada26">更多...</a><br /></td></tr>
+<tr class="separator:a173dbad37b644bb5c9da44cddedada26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d7c6945a4c4add2abd9f3f8098995fd"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a7d7c6945a4c4add2abd9f3f8098995fd">MakeCustomV2XDefinition</a> (bool &amp;<a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;Definition)</td></tr>
+<tr class="memdesc:a7d7c6945a4c4add2abd9f3f8098995fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个自定义车对外界信息交换传感器参与者定义，并返回操作是否成功。  <a href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a7d7c6945a4c4add2abd9f3f8098995fd">更多...</a><br /></td></tr>
+<tr class="separator:a7d7c6945a4c4add2abd9f3f8098995fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9cb83bde6c359d38bbe76bc6e434388"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#ae9cb83bde6c359d38bbe76bc6e434388">MakeVehicleDefinition</a> (const <a class="el" href="../../d0/db7/structFVehicleParameters.html">FVehicleParameters</a> &amp;Parameters, bool &amp;<a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;Definition)</td></tr>
+<tr class="memdesc:ae9cb83bde6c359d38bbe76bc6e434388"><td class="mdescLeft">&#160;</td><td class="mdescRight">根据车辆参数创建车辆参与者定义，并返回操作是否成功。  <a href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#ae9cb83bde6c359d38bbe76bc6e434388">更多...</a><br /></td></tr>
+<tr class="separator:ae9cb83bde6c359d38bbe76bc6e434388"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2dae92b174564d4050004f4a5222b19c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a2dae92b174564d4050004f4a5222b19c">MakeVehicleDefinitions</a> (const TArray&lt; <a class="el" href="../../d0/db7/structFVehicleParameters.html">FVehicleParameters</a> &gt; &amp;ParameterArray, TArray&lt; <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &gt; &amp;Definitions)</td></tr>
+<tr class="memdesc:a2dae92b174564d4050004f4a5222b19c"><td class="mdescLeft">&#160;</td><td class="mdescRight">根据车辆参数数组创建多个车辆参与者定义。  <a href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a2dae92b174564d4050004f4a5222b19c">更多...</a><br /></td></tr>
+<tr class="separator:a2dae92b174564d4050004f4a5222b19c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fa1f77b897b57ae88ca28744cfa1394"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a2fa1f77b897b57ae88ca28744cfa1394">MakePedestrianDefinition</a> (const <a class="el" href="../../d9/db1/structFPedestrianParameters.html">FPedestrianParameters</a> &amp;Parameters, bool &amp;<a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;Definition)</td></tr>
+<tr class="memdesc:a2fa1f77b897b57ae88ca28744cfa1394"><td class="mdescLeft">&#160;</td><td class="mdescRight">根据行人参数创建行人参与者定义，并返回操作是否成功。  <a href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a2fa1f77b897b57ae88ca28744cfa1394">更多...</a><br /></td></tr>
+<tr class="separator:a2fa1f77b897b57ae88ca28744cfa1394"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e233f1eca4d03065e8b535a3283f846"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a4e233f1eca4d03065e8b535a3283f846">MakePedestrianDefinitions</a> (const TArray&lt; <a class="el" href="../../d9/db1/structFPedestrianParameters.html">FPedestrianParameters</a> &gt; &amp;ParameterArray, TArray&lt; <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &gt; &amp;Definitions)</td></tr>
+<tr class="memdesc:a4e233f1eca4d03065e8b535a3283f846"><td class="mdescLeft">&#160;</td><td class="mdescRight">根据行人参数数组创建多个行人参与者定义。  <a href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a4e233f1eca4d03065e8b535a3283f846">更多...</a><br /></td></tr>
+<tr class="separator:a4e233f1eca4d03065e8b535a3283f846"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a863fd160b02fb7bbc36ed5db8650eb1d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a863fd160b02fb7bbc36ed5db8650eb1d">MakeTriggerDefinitions</a> (const TArray&lt; FString &gt; &amp;ParameterArray, TArray&lt; <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &gt; &amp;Definitions)</td></tr>
+<tr class="memdesc:a863fd160b02fb7bbc36ed5db8650eb1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">根据ID数组创建触发器参与者定义。  <a href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a863fd160b02fb7bbc36ed5db8650eb1d">更多...</a><br /></td></tr>
+<tr class="separator:a863fd160b02fb7bbc36ed5db8650eb1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a082f2198c3706cdd1f0d946c13ed86e3"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a082f2198c3706cdd1f0d946c13ed86e3">MakeTriggerDefinition</a> (const FString &amp;Id, bool &amp;<a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;Definition)</td></tr>
+<tr class="memdesc:a082f2198c3706cdd1f0d946c13ed86e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">根据ID创建触发器参与者定义，并返回操作是否成功。  <a href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a082f2198c3706cdd1f0d946c13ed86e3">更多...</a><br /></td></tr>
+<tr class="separator:a082f2198c3706cdd1f0d946c13ed86e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a927f87429fee66f15d60414b1273f55f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a927f87429fee66f15d60414b1273f55f">MakePropDefinition</a> (const <a class="el" href="../../db/d61/structFPropParameters.html">FPropParameters</a> &amp;Parameters, bool &amp;<a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;Definition)</td></tr>
+<tr class="memdesc:a927f87429fee66f15d60414b1273f55f"><td class="mdescLeft">&#160;</td><td class="mdescRight">根据道具参数创建道具参与者定义，并返回操作是否成功。  <a href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a927f87429fee66f15d60414b1273f55f">更多...</a><br /></td></tr>
+<tr class="separator:a927f87429fee66f15d60414b1273f55f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f0d642302076337c3434384517341c8"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a2f0d642302076337c3434384517341c8">MakePropDefinitions</a> (const TArray&lt; <a class="el" href="../../db/d61/structFPropParameters.html">FPropParameters</a> &gt; &amp;ParameterArray, TArray&lt; <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &gt; &amp;Definitions)</td></tr>
+<tr class="separator:a2f0d642302076337c3434384517341c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af87b4efd9fc708fb312abe82a58b6ff9"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#af87b4efd9fc708fb312abe82a58b6ff9">MakeObstacleDetectorDefinitions</a> (const FString &amp;Type, const FString &amp;Id, <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;Definition)</td></tr>
+<tr class="separator:af87b4efd9fc708fb312abe82a58b6ff9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad03a2c025c694d29634cdd5f8affd4a5"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#ad03a2c025c694d29634cdd5f8affd4a5">ActorAttributeToBool</a> (const <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &amp;ActorAttribute, bool Default)</td></tr>
+<tr class="separator:ad03a2c025c694d29634cdd5f8affd4a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30cfafa418b3747c37a7ce847f8dae8a"><td class="memItemLeft" align="right" valign="top">static int32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a30cfafa418b3747c37a7ce847f8dae8a">ActorAttributeToInt</a> (const <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &amp;ActorAttribute, int32 Default)</td></tr>
+<tr class="memdesc:a30cfafa418b3747c37a7ce847f8dae8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">将参与者属性转换为整数，如果不存在则返回默认值。  <a href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a30cfafa418b3747c37a7ce847f8dae8a">更多...</a><br /></td></tr>
+<tr class="separator:a30cfafa418b3747c37a7ce847f8dae8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad033b243eee231466417d9a33f822238"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#ad033b243eee231466417d9a33f822238">ActorAttributeToFloat</a> (const <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &amp;ActorAttribute, float Default)</td></tr>
+<tr class="memdesc:ad033b243eee231466417d9a33f822238"><td class="mdescLeft">&#160;</td><td class="mdescRight">将参与者属性转换为浮点数，如果不存在则返回默认值。  <a href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#ad033b243eee231466417d9a33f822238">更多...</a><br /></td></tr>
+<tr class="separator:ad033b243eee231466417d9a33f822238"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59005bad490a29efec18148ac00725c3"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a59005bad490a29efec18148ac00725c3">ActorAttributeToString</a> (const <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &amp;ActorAttribute, const FString &amp;Default)</td></tr>
+<tr class="memdesc:a59005bad490a29efec18148ac00725c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">将参与者属性转换为字符串，如果不存在则返回默认值。  <a href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a59005bad490a29efec18148ac00725c3">更多...</a><br /></td></tr>
+<tr class="separator:a59005bad490a29efec18148ac00725c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33a8708ac92222e64ce5862beabdd718"><td class="memItemLeft" align="right" valign="top">static FColor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a33a8708ac92222e64ce5862beabdd718">ActorAttributeToColor</a> (const <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &amp;ActorAttribute, const FColor &amp;Default)</td></tr>
+<tr class="memdesc:a33a8708ac92222e64ce5862beabdd718"><td class="mdescLeft">&#160;</td><td class="mdescRight">将参与者属性转换为颜色，如果不存在则返回默认值。  <a href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a33a8708ac92222e64ce5862beabdd718">更多...</a><br /></td></tr>
+<tr class="separator:a33a8708ac92222e64ce5862beabdd718"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f0e4ddc74646b651422e648b32dc94b"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a5f0e4ddc74646b651422e648b32dc94b">RetrieveActorAttributeToBool</a> (const FString &amp;Id, const TMap&lt; FString, <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &gt; &amp;Attributes, bool Default)</td></tr>
+<tr class="memdesc:a5f0e4ddc74646b651422e648b32dc94b"><td class="mdescLeft">&#160;</td><td class="mdescRight">从参与者属性映射中检索布尔值，如果不存在则返回默认值。  <a href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a5f0e4ddc74646b651422e648b32dc94b">更多...</a><br /></td></tr>
+<tr class="separator:a5f0e4ddc74646b651422e648b32dc94b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a513042ecc9e4822d821f38709d0de6c6"><td class="memItemLeft" align="right" valign="top">static int32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a513042ecc9e4822d821f38709d0de6c6">RetrieveActorAttributeToInt</a> (const FString &amp;Id, const TMap&lt; FString, <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &gt; &amp;Attributes, int32 Default)</td></tr>
+<tr class="memdesc:a513042ecc9e4822d821f38709d0de6c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">从参与者属性映射中检索整数，如果不存在则返回默认值。  <a href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a513042ecc9e4822d821f38709d0de6c6">更多...</a><br /></td></tr>
+<tr class="separator:a513042ecc9e4822d821f38709d0de6c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbbb5164cad05db842fb6249f2b3508a"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#abbbb5164cad05db842fb6249f2b3508a">RetrieveActorAttributeToFloat</a> (const FString &amp;Id, const TMap&lt; FString, <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &gt; &amp;Attributes, float Default)</td></tr>
+<tr class="separator:abbbb5164cad05db842fb6249f2b3508a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72a4f3b77018d20915fd2f45eb2fa2a8"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a72a4f3b77018d20915fd2f45eb2fa2a8">RetrieveActorAttributeToString</a> (const FString &amp;Id, const TMap&lt; FString, <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &gt; &amp;Attributes, const FString &amp;Default)</td></tr>
+<tr class="separator:a72a4f3b77018d20915fd2f45eb2fa2a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bef2b32aff9954a9d79326bffeef16d"><td class="memItemLeft" align="right" valign="top">static FColor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a3bef2b32aff9954a9d79326bffeef16d">RetrieveActorAttributeToColor</a> (const FString &amp;Id, const TMap&lt; FString, <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &gt; &amp;Attributes, const FColor &amp;Default)</td></tr>
+<tr class="separator:a3bef2b32aff9954a9d79326bffeef16d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8b25cf33e95f1cb6f0025957f2b4b83"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#ae8b25cf33e95f1cb6f0025957f2b4b83">SetCamera</a> (const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;Description, <a class="el" href="../../d4/d60/classASceneCaptureSensor.html">ASceneCaptureSensor</a> *Camera)</td></tr>
+<tr class="separator:ae8b25cf33e95f1cb6f0025957f2b4b83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa475002eb6dfc0cec40ca841b98f0964"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#aa475002eb6dfc0cec40ca841b98f0964">SetCamera</a> (const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;Description, <a class="el" href="../../da/dd3/classAShaderBasedSensor.html">AShaderBasedSensor</a> *Camera)</td></tr>
+<tr class="separator:aa475002eb6dfc0cec40ca841b98f0964"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49efaa7eab0ea42a2cf44ad02c34c714"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a49efaa7eab0ea42a2cf44ad02c34c714">SetLidar</a> (const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;Description, <a class="el" href="../../de/d6f/structFLidarDescription.html">FLidarDescription</a> &amp;Lidar)</td></tr>
+<tr class="separator:a49efaa7eab0ea42a2cf44ad02c34c714"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad545b3078bf786f46271a2bd677e01ca"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#ad545b3078bf786f46271a2bd677e01ca">SetGnss</a> (const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;Description, <a class="el" href="../../d0/dc3/classAGnssSensor.html">AGnssSensor</a> *Gnss)</td></tr>
+<tr class="separator:ad545b3078bf786f46271a2bd677e01ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae86e152d4d7656bcb4d6258de3084575"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#ae86e152d4d7656bcb4d6258de3084575">SetIMU</a> (const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;Description, <a class="el" href="../../d5/de0/classAInertialMeasurementUnit.html">AInertialMeasurementUnit</a> *IMU)</td></tr>
+<tr class="separator:ae86e152d4d7656bcb4d6258de3084575"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cf1f91b1bdde34852da3882fe179eba"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a4cf1f91b1bdde34852da3882fe179eba">SetRadar</a> (const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;Description, <a class="el" href="../../d9/d27/classARadar.html">ARadar</a> *Radar)</td></tr>
+<tr class="separator:a4cf1f91b1bdde34852da3882fe179eba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4db7a8126dcfb15348ab10bb251f728b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a4db7a8126dcfb15348ab10bb251f728b">SetV2X</a> (const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;Description, <a class="el" href="../../d3/dd4/classAV2XSensor.html">AV2XSensor</a> *V2X)</td></tr>
+<tr class="separator:a4db7a8126dcfb15348ab10bb251f728b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3592cb01a4f206e6dc15fd5892cc51f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#ac3592cb01a4f206e6dc15fd5892cc51f">SetCustomV2X</a> (const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;Description, <a class="el" href="../../de/d1f/classACustomV2XSensor.html">ACustomV2XSensor</a> *V2X)</td></tr>
+<tr class="separator:ac3592cb01a4f206e6dc15fd5892cc51f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="../../d7/dda/ActorBlueprintFunctionLibrary_8h_source.html">ActorBlueprintFunctionLibrary.h</a> 第 <a class="el" href="../../d7/dda/ActorBlueprintFunctionLibrary_8h_source.html#l00031">31</a> 行定义.</p>
+</div><h2 class="groupheader">成员函数说明</h2>
+<a id="ad03a2c025c694d29634cdd5f8affd4a5" name="ad03a2c025c694d29634cdd5f8affd4a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad03a2c025c694d29634cdd5f8affd4a5">&#9670;&#160;</a></span>ActorAttributeToBool()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool UActorBlueprintFunctionLibrary::ActorAttributeToBool </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &amp;&#160;</td>
+          <td class="paramname"><em>ActorAttribute</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>Default</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<h1><a class="anchor" id="autotoc_md8"></a>
+@}</h1>
+<h1><a class="anchor" id="autotoc_md9"></a>
+@name 获取属性值的帮助程序</h1>
+<p >将参与者属性转换为布尔值，如果不存在则返回默认值。 </p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01163">MakeIMUDefinition()</a>.</p>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_ad03a2c025c694d29634cdd5f8affd4a5_icgraph.svg" width="464" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a33a8708ac92222e64ce5862beabdd718" name="a33a8708ac92222e64ce5862beabdd718"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33a8708ac92222e64ce5862beabdd718">&#9670;&#160;</a></span>ActorAttributeToColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FColor UActorBlueprintFunctionLibrary::ActorAttributeToColor </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &amp;&#160;</td>
+          <td class="paramname"><em>ActorAttribute</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FColor &amp;&#160;</td>
+          <td class="paramname"><em>Default</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>将参与者属性转换为颜色，如果不存在则返回默认值。 </p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01163">MakeIMUDefinition()</a>.</p>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_a33a8708ac92222e64ce5862beabdd718_icgraph.svg" width="464" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ad033b243eee231466417d9a33f822238" name="ad033b243eee231466417d9a33f822238"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad033b243eee231466417d9a33f822238">&#9670;&#160;</a></span>ActorAttributeToFloat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static float UActorBlueprintFunctionLibrary::ActorAttributeToFloat </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &amp;&#160;</td>
+          <td class="paramname"><em>ActorAttribute</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>Default</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>将参与者属性转换为浮点数，如果不存在则返回默认值。 </p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01163">MakeIMUDefinition()</a> , 以及 <a class="el" href="../../d7/d16/Sensor_8cpp_source.html#l00035">ASensor::Set()</a>.</p>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_ad033b243eee231466417d9a33f822238_icgraph.svg" width="647" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a30cfafa418b3747c37a7ce847f8dae8a" name="a30cfafa418b3747c37a7ce847f8dae8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30cfafa418b3747c37a7ce847f8dae8a">&#9670;&#160;</a></span>ActorAttributeToInt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int32 UActorBlueprintFunctionLibrary::ActorAttributeToInt </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &amp;&#160;</td>
+          <td class="paramname"><em>ActorAttribute</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32&#160;</td>
+          <td class="paramname"><em>Default</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>将参与者属性转换为整数，如果不存在则返回默认值。 </p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01163">MakeIMUDefinition()</a>.</p>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_a30cfafa418b3747c37a7ce847f8dae8a_icgraph.svg" width="464" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a59005bad490a29efec18148ac00725c3" name="a59005bad490a29efec18148ac00725c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59005bad490a29efec18148ac00725c3">&#9670;&#160;</a></span>ActorAttributeToString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString UActorBlueprintFunctionLibrary::ActorAttributeToString </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &amp;&#160;</td>
+          <td class="paramname"><em>ActorAttribute</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>Default</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>将参与者属性转换为字符串，如果不存在则返回默认值。 </p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01163">MakeIMUDefinition()</a>.</p>
+<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_a59005bad490a29efec18148ac00725c3_icgraph.svg" width="464" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="afa4aba6393bb016000f71bd60d2e2f12" name="afa4aba6393bb016000f71bd60d2e2f12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa4aba6393bb016000f71bd60d2e2f12">&#9670;&#160;</a></span>CheckActorDefinition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool UActorBlueprintFunctionLibrary::CheckActorDefinition </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;&#160;</td>
+          <td class="paramname"><em>ActorDefinition</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>返回角色定义是否有效。打印所有找到的错误 </p>
+<p >============================================================================</p>
+<h1><a class="anchor" id="autotoc_md4"></a>
+@}</h1>
+<h1><a class="anchor" id="autotoc_md5"></a>
+@name 参与者定义验证器</h1>
+<h1><a class="anchor" id="autotoc_md0"></a>
+– Actor definition validators（Actor定义验证器） -----------------------—</h1>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00278">278</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00053">FActorDefinitionValidator::SingleIsValid()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00024">UActorDispatcher::Bind()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00496">MakeCameraDefinition()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01163">MakeIMUDefinition()</a> , 以及 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01061">MakeNormalsCameraDefinition()</a>.</p>
+<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_afa4aba6393bb016000f71bd60d2e2f12_cgraph.svg" width="100%" height="376"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_afa4aba6393bb016000f71bd60d2e2f12_icgraph.svg" width="100%" height="472"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="abbc517c6b70dc38dcc9573ba48b77f17" name="abbc517c6b70dc38dcc9573ba48b77f17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbc517c6b70dc38dcc9573ba48b77f17">&#9670;&#160;</a></span>CheckActorDefinitions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool UActorBlueprintFunctionLibrary::CheckActorDefinitions </td>
+          <td>(</td>
+          <td class="paramtype">const TArray&lt; <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>ActorDefinitions</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>返回演员定义列表是否有效。打印所有 发现错误 </p>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00288">288</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00046">FActorDefinitionValidator::AreValid()</a>.</p>
+<div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_abbc517c6b70dc38dcc9573ba48b77f17_cgraph.svg" width="427" height="75"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a472a14c750c6c5dc66b38cfeaea82ccc" name="a472a14c750c6c5dc66b38cfeaea82ccc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a472a14c750c6c5dc66b38cfeaea82ccc">&#9670;&#160;</a></span>MakeCameraDefinition() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UActorBlueprintFunctionLibrary::MakeCameraDefinition </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>Id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bEnableModifyingPostProcessEffects</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &amp;&#160;</td>
+          <td class="paramname"><em>Success</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;&#160;</td>
+          <td class="paramname"><em>Definition</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建一个相机参与者定义，并返回操作是否成功。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00496">496</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00349">AddRecommendedValuesForSensorRoleNames()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00356">AddVariationsForSensor()</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00069">FActorVariation::bRestrictToRecommended</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00278">CheckActorDefinition()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00305">FillIdAndTags()</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00060">FActorVariation::Id</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00066">FActorVariation::RecommendedValues</a>, <a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00063">FActorVariation::Type</a> , 以及 <a class="el" href="../../d0/d65/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDefinition_8h_source.html#l00042">FActorDefinition::Variations</a>.</p>
+<div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_a472a14c750c6c5dc66b38cfeaea82ccc_cgraph.svg" width="100%" height="462"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a73179ac899a1f87c07ab2ae222f0a9ec" name="a73179ac899a1f87c07ab2ae222f0a9ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73179ac899a1f87c07ab2ae222f0a9ec">&#9670;&#160;</a></span>MakeCameraDefinition() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> UActorBlueprintFunctionLibrary::MakeCameraDefinition </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>Id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bEnableModifyingPostProcessEffects</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建一个相机参与者定义。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00470">470</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00470">MakeCameraDefinition()</a> , 以及 <a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d7/d0e/DepthCamera_8cpp_source.html#l00014">ADepthCamera::GetSensorDefinition()</a>, <a class="el" href="../../d9/d6e/DVSCamera_8cpp_source.html#l00041">ADVSCamera::GetSensorDefinition()</a>, <a class="el" href="../../d6/dcd/InstanceSegmentationCamera_8cpp_source.html#l00022">AInstanceSegmentationCamera::GetSensorDefinition()</a>, <a class="el" href="../../d0/d58/OpticalFlowCamera_8cpp_source.html#l00010">AOpticalFlowCamera::GetSensorDefinition()</a>, <a class="el" href="../../d1/dec/SceneCaptureCamera_8cpp_source.html#l00016">ASceneCaptureCamera::GetSensorDefinition()</a>, <a class="el" href="../../d9/d38/SemanticSegmentationCamera_8cpp_source.html#l00015">ASemanticSegmentationCamera::GetSensorDefinition()</a> , 以及 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00470">MakeCameraDefinition()</a>.</p>
+<div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_a73179ac899a1f87c07ab2ae222f0a9ec_cgraph.svg" width="214" height="75"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-12-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-12-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_a73179ac899a1f87c07ab2ae222f0a9ec_icgraph.svg" width="492" height="343"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a173dbad37b644bb5c9da44cddedada26" name="a173dbad37b644bb5c9da44cddedada26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a173dbad37b644bb5c9da44cddedada26">&#9670;&#160;</a></span>MakeCustomV2XDefinition() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> UActorBlueprintFunctionLibrary::MakeCustomV2XDefinition </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建一个自定义车对外界信息交换传感器参与者定义。 </p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d8/d97/CustomV2XSensor_8cpp_source.html#l00062">ACustomV2XSensor::GetSensorDefinition()</a> , 以及 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01163">MakeIMUDefinition()</a>.</p>
+<div id="dynsection-13" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-13-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-13-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-13-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_a173dbad37b644bb5c9da44cddedada26_icgraph.svg" width="472" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a7d7c6945a4c4add2abd9f3f8098995fd" name="a7d7c6945a4c4add2abd9f3f8098995fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d7c6945a4c4add2abd9f3f8098995fd">&#9670;&#160;</a></span>MakeCustomV2XDefinition() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void UActorBlueprintFunctionLibrary::MakeCustomV2XDefinition </td>
+          <td>(</td>
+          <td class="paramtype">bool &amp;&#160;</td>
+          <td class="paramname"><em>Success</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;&#160;</td>
+          <td class="paramname"><em>Definition</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建一个自定义车对外界信息交换传感器参与者定义，并返回操作是否成功。 </p>
+
+</div>
+</div>
+<a id="ae0868b514cddf92d49758bc605e511c1" name="ae0868b514cddf92d49758bc605e511c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0868b514cddf92d49758bc605e511c1">&#9670;&#160;</a></span>MakeGenericDefinition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> UActorBlueprintFunctionLibrary::MakeGenericDefinition </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>Category</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>Type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>Id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建一个通用的参与者定义。 </p>
+<h1><a class="anchor" id="autotoc_md6"></a>
+@}</h1>
+<h1><a class="anchor" id="autotoc_md7"></a>
+@name 创建角色定义的辅助工具</h1>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00426">426</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00305">FillIdAndTags()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00449">MakeGenericSensorDefinition()</a>.</p>
+<div id="dynsection-14" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-14-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-14-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-14-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_ae0868b514cddf92d49758bc605e511c1_cgraph.svg" width="499" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-15" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-15-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-15-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-15-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_ae0868b514cddf92d49758bc605e511c1_icgraph.svg" width="100%" height="472"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ac586f27c6e47e3aee9427dd89d01bb9e" name="ac586f27c6e47e3aee9427dd89d01bb9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac586f27c6e47e3aee9427dd89d01bb9e">&#9670;&#160;</a></span>MakeGenericSensorDefinition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> UActorBlueprintFunctionLibrary::MakeGenericSensorDefinition </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>Type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>Id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建一个通用的传感器参与者定义。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00449">449</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00349">AddRecommendedValuesForSensorRoleNames()</a> , 以及 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00426">MakeGenericDefinition()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/df0/CollisionSensor_8cpp_source.html#l00026">ACollisionSensor::GetSensorDefinition()</a>, <a class="el" href="../../d4/d9b/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Sensor_2LaneInvasionSensor_8cpp_source.html#l00010">ALaneInvasionSensor::GetSensorDefinition()</a>, <a class="el" href="../../df/db5/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Sensor_2RssSensor_8cpp_source.html#l00012">ARssSensor::GetSensorDefinition()</a> , 以及 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01163">MakeIMUDefinition()</a>.</p>
+<div id="dynsection-16" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-16-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-16-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-16-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_ac586f27c6e47e3aee9427dd89d01bb9e_cgraph.svg" width="100%" height="386"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<div id="dynsection-17" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-17-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-17-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-17-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_ac586f27c6e47e3aee9427dd89d01bb9e_icgraph.svg" width="478" height="230"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ad1c9b64bc9ae7f652d82e88e7a92b90d" name="ad1c9b64bc9ae7f652d82e88e7a92b90d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1c9b64bc9ae7f652d82e88e7a92b90d">&#9670;&#160;</a></span>MakeGnssDefinition() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> UActorBlueprintFunctionLibrary::MakeGnssDefinition </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建一个全球导航卫星系统传感器参与者定义。 </p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d7/d22/GnssSensor_8cpp_source.html#l00028">AGnssSensor::GetSensorDefinition()</a> , 以及 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01163">MakeIMUDefinition()</a>.</p>
+<div id="dynsection-18" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-18-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-18-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-18-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_ad1c9b64bc9ae7f652d82e88e7a92b90d_icgraph.svg" width="486" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="aeeecb98e14d67062e00cbae809823d3d" name="aeeecb98e14d67062e00cbae809823d3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeeecb98e14d67062e00cbae809823d3d">&#9670;&#160;</a></span>MakeGnssDefinition() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void UActorBlueprintFunctionLibrary::MakeGnssDefinition </td>
+          <td>(</td>
+          <td class="paramtype">bool &amp;&#160;</td>
+          <td class="paramname"><em>Success</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;&#160;</td>
+          <td class="paramname"><em>Definition</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建一个全球导航卫星系统传感器参与者定义，并返回操作是否成功。 </p>
+
+</div>
+</div>
+<a id="a027542870b02494a58d594e9c0036a84" name="a027542870b02494a58d594e9c0036a84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a027542870b02494a58d594e9c0036a84">&#9670;&#160;</a></span>MakeIMUDefinition() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> UActorBlueprintFunctionLibrary::MakeIMUDefinition </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建一个惯性测量单元参与者定义。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01146">1146</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01146">MakeIMUDefinition()</a> , 以及 <a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00038">AInertialMeasurementUnit::GetSensorDefinition()</a> , 以及 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01146">MakeIMUDefinition()</a>.</p>
+<div id="dynsection-19" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-19-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-19-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-19-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_a027542870b02494a58d594e9c0036a84_cgraph.svg" width="214" height="75"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-20" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-20-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-20-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-20-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_a027542870b02494a58d594e9c0036a84_icgraph.svg" width="435" height="75"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a8113a5e0efff9740fde3c53ed9994b6e" name="a8113a5e0efff9740fde3c53ed9994b6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8113a5e0efff9740fde3c53ed9994b6e">&#9670;&#160;</a></span>MakeIMUDefinition() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UActorBlueprintFunctionLibrary::MakeIMUDefinition </td>
+          <td>(</td>
+          <td class="paramtype">bool &amp;&#160;</td>
+          <td class="paramname"><em>Success</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;&#160;</td>
+          <td class="paramname"><em>Definition</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建一个惯性测量单元参与者定义，并返回操作是否成功。 </p>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000001">待办事项:</a></b></dt><dd>We need to validate here the params. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000002">待办事项:</a></b></dt><dd>We need to validate here the params. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000003">待办事项:</a></b></dt><dd>We need to validate here the params. </dd></dl>
+<p >============================================================================ </p>
+<h1><a class="anchor" id="autotoc_md2"></a>
+– Helpers to retrieve attribute values ---------------------------------—</h1>
+<p >============================================================================ </p>
+<h1><a class="anchor" id="autotoc_md3"></a>
+– Helpers to set Actors ------------------------------------------------—</h1>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01163">1163</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#ad03a2c025c694d29634cdd5f8affd4a5">ActorAttributeToBool()</a>, <a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a33a8708ac92222e64ce5862beabdd718">ActorAttributeToColor()</a>, <a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#ad033b243eee231466417d9a33f822238">ActorAttributeToFloat()</a>, <a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a30cfafa418b3747c37a7ce847f8dae8a">ActorAttributeToInt()</a>, <a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a59005bad490a29efec18148ac00725c3">ActorAttributeToString()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00331">AddRecommendedValuesForActorRoleName()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00349">AddRecommendedValuesForSensorRoleNames()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00356">AddVariationsForSensor()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00378">AddVariationsForTrigger()</a>, <a class="el" href="../../de/d92/LidarDescription_8h_source.html#l00048">FLidarDescription::AtmospAttenRate</a>, <a class="el" href="../../d0/d65/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDefinition_8h_source.html#l00047">FActorDefinition::Attributes</a>, <a class="el" href="../../d1/d1b/VehicleParameters_8h_source.html#l00039">FVehicleParameters::BaseType</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00069">FActorVariation::bRestrictToRecommended</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp.html#aa5bc512e969f357c51dbad48d60b4414">CARLA_ABFL_CHECK_ACTOR</a>, <a class="el" href="../../de/d92/LidarDescription_8h_source.html#l00020">FLidarDescription::Channels</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00278">CheckActorDefinition()</a>, <a class="el" href="../../d0/d65/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDefinition_8h_source.html#l00033">FActorDefinition::Class</a>, <a class="el" href="../../d1/d1b/VehicleParameters_8h_source.html#l00025">FVehicleParameters::Class</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00263">ColorToFString()</a>, <a class="el" href="../../d4/deb/Debug_8h_source.html#l00068">DEBUG_ASSERT</a>, <a class="el" href="../../de/d92/LidarDescription_8h_source.html#l00064">FLidarDescription::DropOffAtZeroIntensity</a>, <a class="el" href="../../de/d92/LidarDescription_8h_source.html#l00056">FLidarDescription::DropOffGenRate</a>, <a class="el" href="../../de/d92/LidarDescription_8h_source.html#l00060">FLidarDescription::DropOffIntensityLimit</a>, <a class="el" href="../../d8/d95/SceneCaptureSensor_8h_source.html#l00153">ASceneCaptureSensor::EnablePostProcessingEffects()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00305">FillIdAndTags()</a>, <a class="el" href="../../de/dd9/RandomEngine_8cpp_source.html#l00034">URandomEngine::GenerateRandomSeed()</a>, <a class="el" href="../../d1/d1b/VehicleParameters_8h_source.html#l00031">FVehicleParameters::Generation</a>, <a class="el" href="../../d7/d7d/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Sensor_2Sensor_8h_source.html#l00079">ASensor::GetRandomEngine()</a>, <a class="el" href="../../d1/d1b/VehicleParameters_8h_source.html#l00046">FVehicleParameters::HasDynamicDoors</a>, <a class="el" href="../../d1/d1b/VehicleParameters_8h_source.html#l00049">FVehicleParameters::HasLights</a>, <a class="el" href="../../de/d92/LidarDescription_8h_source.html#l00044">FLidarDescription::HorizontalFov</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00060">FActorVariation::Id</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00083">FActorAttribute::Id</a>, <a class="el" href="../../de/d92/LidarDescription_8h_source.html#l00040">FLidarDescription::LowerFovLimit</a>, <a class="el" href="../../d1/d1b/VehicleParameters_8h_source.html#l00019">FVehicleParameters::Make</a>, <a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a173dbad37b644bb5c9da44cddedada26">MakeCustomV2XDefinition()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00449">MakeGenericSensorDefinition()</a>, <a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#ad1c9b64bc9ae7f652d82e88e7a92b90d">MakeGnssDefinition()</a>, <a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#ab5393a029ca31b268e52ceda00bf166f">MakeLidarDefinition()</a>, <a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#af87b4efd9fc708fb312abe82a58b6ff9">MakeObstacleDetectorDefinitions()</a>, <a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a2fa1f77b897b57ae88ca28744cfa1394">MakePedestrianDefinition()</a>, <a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a4e233f1eca4d03065e8b535a3283f846">MakePedestrianDefinitions()</a>, <a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a927f87429fee66f15d60414b1273f55f">MakePropDefinition()</a>, <a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a2f0d642302076337c3434384517341c8">MakePropDefinitions()</a>, <a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#aa43806792dd9edcc44f33931b687dce3">MakeRadarDefinition()</a>, <a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a082f2198c3706cdd1f0d946c13ed86e3">MakeTriggerDefinition()</a>, <a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a863fd160b02fb7bbc36ed5db8650eb1d">MakeTriggerDefinitions()</a>, <a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a7fc8a0928a734d540d481b83829e43e1">MakeV2XDefinition()</a>, <a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#ae9cb83bde6c359d38bbe76bc6e434388">MakeVehicleDefinition()</a>, <a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a2dae92b174564d4050004f4a5222b19c">MakeVehicleDefinitions()</a>, <a class="el" href="../../d1/d1b/VehicleParameters_8h_source.html#l00022">FVehicleParameters::Model</a>, <a class="el" href="../../de/d92/LidarDescription_8h_source.html#l00071">FLidarDescription::NoiseStdDev</a>, <a class="el" href="../../d1/d1b/VehicleParameters_8h_source.html#l00028">FVehicleParameters::NumberOfWheels</a>, <a class="el" href="../../d1/d1b/VehicleParameters_8h_source.html#l00035">FVehicleParameters::ObjectType</a>, <a class="el" href="../../de/d92/LidarDescription_8h_source.html#l00028">FLidarDescription::PointsPerSecond</a>, <a class="el" href="../../de/d92/LidarDescription_8h_source.html#l00052">FLidarDescription::RandomSeed</a>, <a class="el" href="../../de/d92/LidarDescription_8h_source.html#l00024">FLidarDescription::Range</a>, <a class="el" href="../../d1/d1b/VehicleParameters_8h_source.html#l00052">FVehicleParameters::RecommendedColors</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00066">FActorVariation::RecommendedValues</a>, <a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a5f0e4ddc74646b651422e648b32dc94b">RetrieveActorAttributeToBool()</a>, <a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a3bef2b32aff9954a9d79326bffeef16d">RetrieveActorAttributeToColor()</a>, <a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#abbbb5164cad05db842fb6249f2b3508a">RetrieveActorAttributeToFloat()</a>, <a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a513042ecc9e4822d821f38709d0de6c6">RetrieveActorAttributeToInt()</a>, <a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a72a4f3b77018d20915fd2f45eb2fa2a8">RetrieveActorAttributeToString()</a>, <a class="el" href="../../de/d92/LidarDescription_8h_source.html#l00032">FLidarDescription::RotationFrequency</a>, <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00219">AInertialMeasurementUnit::SetAccelerationStandardDeviation()</a>, <a class="el" href="../../d2/df9/V2XSensor_8cpp_source.html#l00128">AV2XSensor::SetAccelerationStandardDeviation()</a>, <a class="el" href="../../d7/d22/GnssSensor_8cpp_source.html#l00122">AGnssSensor::SetAltitudeBias()</a>, <a class="el" href="../../d7/d22/GnssSensor_8cpp_source.html#l00104">AGnssSensor::SetAltitudeDeviation()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00150">ASceneCaptureSensor::SetAperture()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00210">ASceneCaptureSensor::SetBladeCount()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00390">ASceneCaptureSensor::SetBloomIntensity()</a>, <a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#ae8b25cf33e95f1cb6f0025957f2b4b83">SetCamera()</a>, <a class="el" href="../../d2/df9/V2XSensor_8cpp_source.html#l00069">AV2XSensor::SetCaServiceParams()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00426">ASceneCaptureSensor::SetChromAberrIntensity()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00438">ASceneCaptureSensor::SetChromAberrOffset()</a>, <a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#ac3592cb01a4f206e6dc15fd5892cc51f">SetCustomV2X()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00174">ASceneCaptureSensor::SetDepthBlurAmount()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00186">ASceneCaptureSensor::SetDepthBlurRadius()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00198">ASceneCaptureSensor::SetDepthOfFieldMinFstop()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00330">ASceneCaptureSensor::SetExposureCalibrationConstant()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00108">ASceneCaptureSensor::SetExposureCompensation()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00294">ASceneCaptureSensor::SetExposureMaxBrightness()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00096">ASceneCaptureSensor::SetExposureMethod()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00282">ASceneCaptureSensor::SetExposureMinBrightness()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00306">ASceneCaptureSensor::SetExposureSpeedDown()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00318">ASceneCaptureSensor::SetExposureSpeedUp()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00258">ASceneCaptureSensor::SetFilmBlackClip()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00246">ASceneCaptureSensor::SetFilmShoulder()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00222">ASceneCaptureSensor::SetFilmSlope()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00234">ASceneCaptureSensor::SetFilmToe()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00270">ASceneCaptureSensor::SetFilmWhiteClip()</a>, <a class="el" href="../../da/d96/ShaderBasedSensor_8cpp_source.html#l00061">AShaderBasedSensor::SetFloatShaderParameter()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00162">ASceneCaptureSensor::SetFocalDistance()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00084">ASceneCaptureSensor::SetFOVAngle()</a>, <a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#ad545b3078bf786f46271a2bd677e01ca">SetGnss()</a>, <a class="el" href="../../d2/df9/V2XSensor_8cpp_source.html#l00133">AV2XSensor::SetGNSSDeviation()</a>, <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00229">AInertialMeasurementUnit::SetGyroscopeBias()</a>, <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00224">AInertialMeasurementUnit::SetGyroscopeStandardDeviation()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00078">ASceneCaptureSensor::SetImageSize()</a>, <a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#ae86e152d4d7656bcb4d6258de3084575">SetIMU()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00138">ASceneCaptureSensor::SetISO()</a>, <a class="el" href="../../d7/d22/GnssSensor_8cpp_source.html#l00110">AGnssSensor::SetLatitudeBias()</a>, <a class="el" href="../../d7/d22/GnssSensor_8cpp_source.html#l00092">AGnssSensor::SetLatitudeDeviation()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00378">ASceneCaptureSensor::SetLensFlareIntensity()</a>, <a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a49efaa7eab0ea42a2cf44ad02c34c714">SetLidar()</a>, <a class="el" href="../../d7/d22/GnssSensor_8cpp_source.html#l00116">AGnssSensor::SetLongitudeBias()</a>, <a class="el" href="../../d7/d22/GnssSensor_8cpp_source.html#l00098">AGnssSensor::SetLongitudeDeviation()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00342">ASceneCaptureSensor::SetMotionBlurIntensity()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00354">ASceneCaptureSensor::SetMotionBlurMaxDistortion()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00366">ASceneCaptureSensor::SetMotionBlurMinObjectScreenSize()</a>, <a class="el" href="../../d8/d97/CustomV2XSensor_8cpp_source.html#l00089">ACustomV2XSensor::SetPathLossModel()</a>, <a class="el" href="../../d2/df9/V2XSensor_8cpp_source.html#l00089">AV2XSensor::SetPathLossModel()</a>, <a class="el" href="../../d8/d97/CustomV2XSensor_8cpp_source.html#l00075">ACustomV2XSensor::SetPropagationParams()</a>, <a class="el" href="../../d2/df9/V2XSensor_8cpp_source.html#l00075">AV2XSensor::SetPropagationParams()</a>, <a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a4cf1f91b1bdde34852da3882fe179eba">SetRadar()</a>, <a class="el" href="../../d8/d97/CustomV2XSensor_8cpp_source.html#l00093">ACustomV2XSensor::SetScenario()</a>, <a class="el" href="../../d2/df9/V2XSensor_8cpp_source.html#l00094">AV2XSensor::SetScenario()</a>, <a class="el" href="../../d7/d16/Sensor_8cpp_source.html#l00087">ASensor::SetSeed()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00126">ASceneCaptureSensor::SetShutterSpeed()</a>, <a class="el" href="../../d8/d95/SceneCaptureSensor_8h_source.html#l00183">ASceneCaptureSensor::SetTargetGamma()</a>, <a class="el" href="../../dd/da3/classUActorBlueprintFunctionLibrary.html#a4db7a8126dcfb15348ab10bb251f728b">SetV2X()</a>, <a class="el" href="../../d2/df9/V2XSensor_8cpp_source.html#l00152">AV2XSensor::SetVelDeviation()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00402">ASceneCaptureSensor::SetWhiteTemp()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00414">ASceneCaptureSensor::SetWhiteTint()</a>, <a class="el" href="../../d2/df9/V2XSensor_8cpp_source.html#l00157">AV2XSensor::SetYawrateDeviation()</a>, <a class="el" href="../../d1/d1b/VehicleParameters_8h_source.html#l00043">FVehicleParameters::SpecialType</a>, <a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d1/d1b/VehicleParameters_8h_source.html#l00056">FVehicleParameters::SupportedDrivers</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00063">FActorVariation::Type</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00086">FActorAttribute::Type</a>, <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp.html#a69d0a7232310b5ebaa51abb2b9945184">UE_LOG()</a>, <a class="el" href="../../de/d92/LidarDescription_8h_source.html#l00036">FLidarDescription::UpperFovLimit</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00089">FActorAttribute::Value</a>, <a class="el" href="../../d0/d65/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDefinition_8h_source.html#l00042">FActorDefinition::Variations</a> , 以及 <a class="el" href="../../d4/de6/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDescription_8h_source.html#l00036">FActorDescription::Variations</a>.</p>
+
+</div>
+</div>
+<a id="ab5393a029ca31b268e52ceda00bf166f" name="ab5393a029ca31b268e52ceda00bf166f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5393a029ca31b268e52ceda00bf166f">&#9670;&#160;</a></span>MakeLidarDefinition() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> UActorBlueprintFunctionLibrary::MakeLidarDefinition </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>Id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建一个激光雷达参与者定义。 </p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/dec/RayCastLidar_8cpp_source.html#l00024">ARayCastLidar::GetSensorDefinition()</a>, <a class="el" href="../../d8/ddc/RayCastSemanticLidar_8cpp_source.html#l00025">ARayCastSemanticLidar::GetSensorDefinition()</a> , 以及 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01163">MakeIMUDefinition()</a>.</p>
+<div id="dynsection-21" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-21-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-21-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-21-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_ab5393a029ca31b268e52ceda00bf166f_icgraph.svg" width="464" height="179"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a6fc1f6b43a586fa2ec4525c18b3228b3" name="a6fc1f6b43a586fa2ec4525c18b3228b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fc1f6b43a586fa2ec4525c18b3228b3">&#9670;&#160;</a></span>MakeLidarDefinition() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void UActorBlueprintFunctionLibrary::MakeLidarDefinition </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>Id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &amp;&#160;</td>
+          <td class="paramname"><em>Success</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;&#160;</td>
+          <td class="paramname"><em>Definition</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建一个激光雷达参与者定义，并返回操作是否成功。 </p>
+
+</div>
+</div>
+<a id="a9c8420b32e8a4dd64fd80c3c0a2b771e" name="a9c8420b32e8a4dd64fd80c3c0a2b771e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c8420b32e8a4dd64fd80c3c0a2b771e">&#9670;&#160;</a></span>MakeNormalsCameraDefinition() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> UActorBlueprintFunctionLibrary::MakeNormalsCameraDefinition </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建一个法线相机参与者定义。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01042">1042</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01042">MakeNormalsCameraDefinition()</a> , 以及 <a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d6/d81/NormalsCamera_8cpp_source.html#l00015">ANormalsCamera::GetSensorDefinition()</a> , 以及 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01042">MakeNormalsCameraDefinition()</a>.</p>
+<div id="dynsection-22" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-22-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-22-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-22-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_a9c8420b32e8a4dd64fd80c3c0a2b771e_cgraph.svg" width="218" height="75"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-23" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-23-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-23-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-23-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_a9c8420b32e8a4dd64fd80c3c0a2b771e_icgraph.svg" width="459" height="75"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ab49a876cfbacc4ffedbb09362fc9b180" name="ab49a876cfbacc4ffedbb09362fc9b180"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab49a876cfbacc4ffedbb09362fc9b180">&#9670;&#160;</a></span>MakeNormalsCameraDefinition() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UActorBlueprintFunctionLibrary::MakeNormalsCameraDefinition </td>
+          <td>(</td>
+          <td class="paramtype">bool &amp;&#160;</td>
+          <td class="paramname"><em>Success</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;&#160;</td>
+          <td class="paramname"><em>Definition</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建一个法线相机参与者定义，并返回操作是否成功。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01061">1061</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00349">AddRecommendedValuesForSensorRoleNames()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00356">AddVariationsForSensor()</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00069">FActorVariation::bRestrictToRecommended</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00278">CheckActorDefinition()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00305">FillIdAndTags()</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00060">FActorVariation::Id</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00066">FActorVariation::RecommendedValues</a>, <a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00063">FActorVariation::Type</a> , 以及 <a class="el" href="../../d0/d65/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDefinition_8h_source.html#l00042">FActorDefinition::Variations</a>.</p>
+<div id="dynsection-24" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-24-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-24-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-24-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_ab49a876cfbacc4ffedbb09362fc9b180_cgraph.svg" width="100%" height="462"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="af87b4efd9fc708fb312abe82a58b6ff9" name="af87b4efd9fc708fb312abe82a58b6ff9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af87b4efd9fc708fb312abe82a58b6ff9">&#9670;&#160;</a></span>MakeObstacleDetectorDefinitions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void UActorBlueprintFunctionLibrary::MakeObstacleDetectorDefinitions </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>Type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>Id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;&#160;</td>
+          <td class="paramname"><em>Definition</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d2/d70/ObstacleDetectionSensor_8cpp_source.html#l00026">AObstacleDetectionSensor::GetSensorDefinition()</a> , 以及 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01163">MakeIMUDefinition()</a>.</p>
+<div id="dynsection-25" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-25-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-25-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-25-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_af87b4efd9fc708fb312abe82a58b6ff9_icgraph.svg" width="483" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a2fa1f77b897b57ae88ca28744cfa1394" name="a2fa1f77b897b57ae88ca28744cfa1394"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fa1f77b897b57ae88ca28744cfa1394">&#9670;&#160;</a></span>MakePedestrianDefinition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void UActorBlueprintFunctionLibrary::MakePedestrianDefinition </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d9/db1/structFPedestrianParameters.html">FPedestrianParameters</a> &amp;&#160;</td>
+          <td class="paramname"><em>Parameters</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &amp;&#160;</td>
+          <td class="paramname"><em>Success</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;&#160;</td>
+          <td class="paramname"><em>Definition</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>根据行人参数创建行人参与者定义，并返回操作是否成功。 </p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01163">MakeIMUDefinition()</a>.</p>
+<div id="dynsection-26" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-26-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-26-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-26-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_a2fa1f77b897b57ae88ca28744cfa1394_icgraph.svg" width="464" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a4e233f1eca4d03065e8b535a3283f846" name="a4e233f1eca4d03065e8b535a3283f846"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e233f1eca4d03065e8b535a3283f846">&#9670;&#160;</a></span>MakePedestrianDefinitions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void UActorBlueprintFunctionLibrary::MakePedestrianDefinitions </td>
+          <td>(</td>
+          <td class="paramtype">const TArray&lt; <a class="el" href="../../d9/db1/structFPedestrianParameters.html">FPedestrianParameters</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>ParameterArray</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TArray&lt; <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Definitions</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>根据行人参数数组创建多个行人参与者定义。 </p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01163">MakeIMUDefinition()</a>.</p>
+<div id="dynsection-27" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-27-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-27-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-27-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_a4e233f1eca4d03065e8b535a3283f846_icgraph.svg" width="464" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a927f87429fee66f15d60414b1273f55f" name="a927f87429fee66f15d60414b1273f55f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a927f87429fee66f15d60414b1273f55f">&#9670;&#160;</a></span>MakePropDefinition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void UActorBlueprintFunctionLibrary::MakePropDefinition </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../db/d61/structFPropParameters.html">FPropParameters</a> &amp;&#160;</td>
+          <td class="paramname"><em>Parameters</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &amp;&#160;</td>
+          <td class="paramname"><em>Success</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;&#160;</td>
+          <td class="paramname"><em>Definition</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>根据道具参数创建道具参与者定义，并返回操作是否成功。 </p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01163">MakeIMUDefinition()</a>.</p>
+<div id="dynsection-28" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-28-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-28-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-28-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_a927f87429fee66f15d60414b1273f55f_icgraph.svg" width="464" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a2f0d642302076337c3434384517341c8" name="a2f0d642302076337c3434384517341c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f0d642302076337c3434384517341c8">&#9670;&#160;</a></span>MakePropDefinitions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void UActorBlueprintFunctionLibrary::MakePropDefinitions </td>
+          <td>(</td>
+          <td class="paramtype">const TArray&lt; <a class="el" href="../../db/d61/structFPropParameters.html">FPropParameters</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>ParameterArray</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TArray&lt; <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Definitions</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01163">MakeIMUDefinition()</a>.</p>
+<div id="dynsection-29" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-29-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-29-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-29-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_a2f0d642302076337c3434384517341c8_icgraph.svg" width="464" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="aa43806792dd9edcc44f33931b687dce3" name="aa43806792dd9edcc44f33931b687dce3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa43806792dd9edcc44f33931b687dce3">&#9670;&#160;</a></span>MakeRadarDefinition() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> UActorBlueprintFunctionLibrary::MakeRadarDefinition </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建一个雷达参与者定义。 </p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/d99/Radar_8cpp_source.html#l00020">ARadar::GetSensorDefinition()</a> , 以及 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01163">MakeIMUDefinition()</a>.</p>
+<div id="dynsection-30" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-30-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-30-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-30-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_aa43806792dd9edcc44f33931b687dce3_icgraph.svg" width="464" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a6b441a042b6087b5d31976e26a42e734" name="a6b441a042b6087b5d31976e26a42e734"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b441a042b6087b5d31976e26a42e734">&#9670;&#160;</a></span>MakeRadarDefinition() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void UActorBlueprintFunctionLibrary::MakeRadarDefinition </td>
+          <td>(</td>
+          <td class="paramtype">bool &amp;&#160;</td>
+          <td class="paramname"><em>Success</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;&#160;</td>
+          <td class="paramname"><em>Definition</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建一个雷达参与者定义，并返回操作是否成功。 </p>
+
+</div>
+</div>
+<a id="a082f2198c3706cdd1f0d946c13ed86e3" name="a082f2198c3706cdd1f0d946c13ed86e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a082f2198c3706cdd1f0d946c13ed86e3">&#9670;&#160;</a></span>MakeTriggerDefinition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void UActorBlueprintFunctionLibrary::MakeTriggerDefinition </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>Id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &amp;&#160;</td>
+          <td class="paramname"><em>Success</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;&#160;</td>
+          <td class="paramname"><em>Definition</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>根据ID创建触发器参与者定义，并返回操作是否成功。 </p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/da1/TriggerFactory_8cpp_source.html#l00022">ATriggerFactory::GetDefinitions()</a> , 以及 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01163">MakeIMUDefinition()</a>.</p>
+<div id="dynsection-31" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-31-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-31-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-31-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_a082f2198c3706cdd1f0d946c13ed86e3_icgraph.svg" width="464" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a863fd160b02fb7bbc36ed5db8650eb1d" name="a863fd160b02fb7bbc36ed5db8650eb1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a863fd160b02fb7bbc36ed5db8650eb1d">&#9670;&#160;</a></span>MakeTriggerDefinitions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void UActorBlueprintFunctionLibrary::MakeTriggerDefinitions </td>
+          <td>(</td>
+          <td class="paramtype">const TArray&lt; FString &gt; &amp;&#160;</td>
+          <td class="paramname"><em>ParameterArray</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TArray&lt; <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Definitions</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>根据ID数组创建触发器参与者定义。 </p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01163">MakeIMUDefinition()</a>.</p>
+<div id="dynsection-32" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-32-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-32-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-32-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_a863fd160b02fb7bbc36ed5db8650eb1d_icgraph.svg" width="464" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a7fc8a0928a734d540d481b83829e43e1" name="a7fc8a0928a734d540d481b83829e43e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fc8a0928a734d540d481b83829e43e1">&#9670;&#160;</a></span>MakeV2XDefinition() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> UActorBlueprintFunctionLibrary::MakeV2XDefinition </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建一个车对外界信息交换传感器参与者定义。 </p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d2/df9/V2XSensor_8cpp_source.html#l00056">AV2XSensor::GetSensorDefinition()</a> , 以及 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01163">MakeIMUDefinition()</a>.</p>
+<div id="dynsection-33" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-33-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-33-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-33-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_a7fc8a0928a734d540d481b83829e43e1_icgraph.svg" width="480" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a23a5b764c6cc08e321b9fa9649f4a057" name="a23a5b764c6cc08e321b9fa9649f4a057"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23a5b764c6cc08e321b9fa9649f4a057">&#9670;&#160;</a></span>MakeV2XDefinition() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void UActorBlueprintFunctionLibrary::MakeV2XDefinition </td>
+          <td>(</td>
+          <td class="paramtype">bool &amp;&#160;</td>
+          <td class="paramname"><em>Success</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;&#160;</td>
+          <td class="paramname"><em>Definition</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建一个车对外界信息交换传感器参与者定义，并返回操作是否成功。 </p>
+
+</div>
+</div>
+<a id="ae9cb83bde6c359d38bbe76bc6e434388" name="ae9cb83bde6c359d38bbe76bc6e434388"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9cb83bde6c359d38bbe76bc6e434388">&#9670;&#160;</a></span>MakeVehicleDefinition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void UActorBlueprintFunctionLibrary::MakeVehicleDefinition </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/structFVehicleParameters.html">FVehicleParameters</a> &amp;&#160;</td>
+          <td class="paramname"><em>Parameters</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &amp;&#160;</td>
+          <td class="paramname"><em>Success</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;&#160;</td>
+          <td class="paramname"><em>Definition</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>根据车辆参数创建车辆参与者定义，并返回操作是否成功。 </p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01163">MakeIMUDefinition()</a>.</p>
+<div id="dynsection-34" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-34-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-34-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-34-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_ae9cb83bde6c359d38bbe76bc6e434388_icgraph.svg" width="464" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a2dae92b174564d4050004f4a5222b19c" name="a2dae92b174564d4050004f4a5222b19c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2dae92b174564d4050004f4a5222b19c">&#9670;&#160;</a></span>MakeVehicleDefinitions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void UActorBlueprintFunctionLibrary::MakeVehicleDefinitions </td>
+          <td>(</td>
+          <td class="paramtype">const TArray&lt; <a class="el" href="../../d0/db7/structFVehicleParameters.html">FVehicleParameters</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>ParameterArray</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TArray&lt; <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Definitions</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>根据车辆参数数组创建多个车辆参与者定义。 </p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01163">MakeIMUDefinition()</a>.</p>
+<div id="dynsection-35" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-35-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-35-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-35-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_a2dae92b174564d4050004f4a5222b19c_icgraph.svg" width="464" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a5f0e4ddc74646b651422e648b32dc94b" name="a5f0e4ddc74646b651422e648b32dc94b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f0e4ddc74646b651422e648b32dc94b">&#9670;&#160;</a></span>RetrieveActorAttributeToBool()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool UActorBlueprintFunctionLibrary::RetrieveActorAttributeToBool </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>Id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TMap&lt; FString, <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Attributes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>Default</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>从参与者属性映射中检索布尔值，如果不存在则返回默认值。 </p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01163">MakeIMUDefinition()</a>, <a class="el" href="../../d9/d6e/DVSCamera_8cpp_source.html#l00093">ADVSCamera::Set()</a> , 以及 <a class="el" href="../../d2/d70/ObstacleDetectionSensor_8cpp_source.html#l00033">AObstacleDetectionSensor::Set()</a>.</p>
+<div id="dynsection-36" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-36-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-36-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-36-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_a5f0e4ddc74646b651422e648b32dc94b_icgraph.svg" width="467" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a3bef2b32aff9954a9d79326bffeef16d" name="a3bef2b32aff9954a9d79326bffeef16d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3bef2b32aff9954a9d79326bffeef16d">&#9670;&#160;</a></span>RetrieveActorAttributeToColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FColor UActorBlueprintFunctionLibrary::RetrieveActorAttributeToColor </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>Id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TMap&lt; FString, <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Attributes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FColor &amp;&#160;</td>
+          <td class="paramname"><em>Default</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01163">MakeIMUDefinition()</a>.</p>
+<div id="dynsection-37" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-37-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-37-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-37-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_a3bef2b32aff9954a9d79326bffeef16d_icgraph.svg" width="464" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="abbbb5164cad05db842fb6249f2b3508a" name="abbbb5164cad05db842fb6249f2b3508a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbbb5164cad05db842fb6249f2b3508a">&#9670;&#160;</a></span>RetrieveActorAttributeToFloat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static float UActorBlueprintFunctionLibrary::RetrieveActorAttributeToFloat </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>Id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TMap&lt; FString, <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Attributes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>Default</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01163">MakeIMUDefinition()</a>, <a class="el" href="../../d9/d6e/DVSCamera_8cpp_source.html#l00093">ADVSCamera::Set()</a>, <a class="el" href="../../d2/d70/ObstacleDetectionSensor_8cpp_source.html#l00033">AObstacleDetectionSensor::Set()</a> , 以及 <a class="el" href="../../d3/da1/TriggerFactory_8cpp_source.html#l00038">ATriggerFactory::SpawnActor()</a>.</p>
+<div id="dynsection-38" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-38-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-38-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-38-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_abbbb5164cad05db842fb6249f2b3508a_icgraph.svg" width="467" height="200"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a513042ecc9e4822d821f38709d0de6c6" name="a513042ecc9e4822d821f38709d0de6c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a513042ecc9e4822d821f38709d0de6c6">&#9670;&#160;</a></span>RetrieveActorAttributeToInt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int32 UActorBlueprintFunctionLibrary::RetrieveActorAttributeToInt </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>Id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TMap&lt; FString, <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Attributes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32&#160;</td>
+          <td class="paramname"><em>Default</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>从参与者属性映射中检索整数，如果不存在则返回默认值。 </p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01163">MakeIMUDefinition()</a> , 以及 <a class="el" href="../../d9/d6e/DVSCamera_8cpp_source.html#l00093">ADVSCamera::Set()</a>.</p>
+<div id="dynsection-39" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-39-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-39-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-39-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_a513042ecc9e4822d821f38709d0de6c6_icgraph.svg" width="464" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a72a4f3b77018d20915fd2f45eb2fa2a8" name="a72a4f3b77018d20915fd2f45eb2fa2a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72a4f3b77018d20915fd2f45eb2fa2a8">&#9670;&#160;</a></span>RetrieveActorAttributeToString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString UActorBlueprintFunctionLibrary::RetrieveActorAttributeToString </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>Id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TMap&lt; FString, <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Attributes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;&#160;</td>
+          <td class="paramname"><em>Default</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01163">MakeIMUDefinition()</a>.</p>
+<div id="dynsection-40" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-40-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-40-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-40-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_a72a4f3b77018d20915fd2f45eb2fa2a8_icgraph.svg" width="467" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ae8b25cf33e95f1cb6f0025957f2b4b83" name="ae8b25cf33e95f1cb6f0025957f2b4b83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8b25cf33e95f1cb6f0025957f2b4b83">&#9670;&#160;</a></span>SetCamera() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void UActorBlueprintFunctionLibrary::SetCamera </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;&#160;</td>
+          <td class="paramname"><em>Description</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d4/d60/classASceneCaptureSensor.html">ASceneCaptureSensor</a> *&#160;</td>
+          <td class="paramname"><em>Camera</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<h1><a class="anchor" id="autotoc_md10"></a>
+@}</h1>
+<h1><a class="anchor" id="autotoc_md11"></a>
+@name 设置角色的辅助工具</h1>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01163">MakeIMUDefinition()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00072">ASceneCaptureSensor::Set()</a> , 以及 <a class="el" href="../../da/d96/ShaderBasedSensor_8cpp_source.html#l00053">AShaderBasedSensor::Set()</a>.</p>
+<div id="dynsection-41" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-41-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-41-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-41-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_ae8b25cf33e95f1cb6f0025957f2b4b83_icgraph.svg" width="464" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="aa475002eb6dfc0cec40ca841b98f0964" name="aa475002eb6dfc0cec40ca841b98f0964"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa475002eb6dfc0cec40ca841b98f0964">&#9670;&#160;</a></span>SetCamera() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void UActorBlueprintFunctionLibrary::SetCamera </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;&#160;</td>
+          <td class="paramname"><em>Description</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../da/dd3/classAShaderBasedSensor.html">AShaderBasedSensor</a> *&#160;</td>
+          <td class="paramname"><em>Camera</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac3592cb01a4f206e6dc15fd5892cc51f" name="ac3592cb01a4f206e6dc15fd5892cc51f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3592cb01a4f206e6dc15fd5892cc51f">&#9670;&#160;</a></span>SetCustomV2X()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void UActorBlueprintFunctionLibrary::SetCustomV2X </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;&#160;</td>
+          <td class="paramname"><em>Description</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/d1f/classACustomV2XSensor.html">ACustomV2XSensor</a> *&#160;</td>
+          <td class="paramname"><em>V2X</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01163">MakeIMUDefinition()</a> , 以及 <a class="el" href="../../d8/d97/CustomV2XSensor_8cpp_source.html#l00068">ACustomV2XSensor::Set()</a>.</p>
+<div id="dynsection-42" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-42-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-42-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-42-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_ac3592cb01a4f206e6dc15fd5892cc51f_icgraph.svg" width="464" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ad545b3078bf786f46271a2bd677e01ca" name="ad545b3078bf786f46271a2bd677e01ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad545b3078bf786f46271a2bd677e01ca">&#9670;&#160;</a></span>SetGnss()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void UActorBlueprintFunctionLibrary::SetGnss </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;&#160;</td>
+          <td class="paramname"><em>Description</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d0/dc3/classAGnssSensor.html">AGnssSensor</a> *&#160;</td>
+          <td class="paramname"><em>Gnss</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01163">MakeIMUDefinition()</a> , 以及 <a class="el" href="../../d7/d22/GnssSensor_8cpp_source.html#l00034">AGnssSensor::Set()</a>.</p>
+<div id="dynsection-43" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-43-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-43-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-43-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_ad545b3078bf786f46271a2bd677e01ca_icgraph.svg" width="464" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ae86e152d4d7656bcb4d6258de3084575" name="ae86e152d4d7656bcb4d6258de3084575"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae86e152d4d7656bcb4d6258de3084575">&#9670;&#160;</a></span>SetIMU()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void UActorBlueprintFunctionLibrary::SetIMU </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;&#160;</td>
+          <td class="paramname"><em>Description</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d5/de0/classAInertialMeasurementUnit.html">AInertialMeasurementUnit</a> *&#160;</td>
+          <td class="paramname"><em>IMU</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01163">MakeIMUDefinition()</a> , 以及 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00043">AInertialMeasurementUnit::Set()</a>.</p>
+<div id="dynsection-44" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-44-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-44-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-44-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_ae86e152d4d7656bcb4d6258de3084575_icgraph.svg" width="464" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a49efaa7eab0ea42a2cf44ad02c34c714" name="a49efaa7eab0ea42a2cf44ad02c34c714"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49efaa7eab0ea42a2cf44ad02c34c714">&#9670;&#160;</a></span>SetLidar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void UActorBlueprintFunctionLibrary::SetLidar </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;&#160;</td>
+          <td class="paramname"><em>Description</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/d6f/structFLidarDescription.html">FLidarDescription</a> &amp;&#160;</td>
+          <td class="paramname"><em>Lidar</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01163">MakeIMUDefinition()</a>, <a class="el" href="../../df/dec/RayCastLidar_8cpp_source.html#l00037">ARayCastLidar::Set()</a> , 以及 <a class="el" href="../../d8/ddc/RayCastSemanticLidar_8cpp_source.html#l00036">ARayCastSemanticLidar::Set()</a>.</p>
+<div id="dynsection-45" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-45-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-45-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-45-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_a49efaa7eab0ea42a2cf44ad02c34c714_icgraph.svg" width="464" height="199"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a4cf1f91b1bdde34852da3882fe179eba" name="a4cf1f91b1bdde34852da3882fe179eba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cf1f91b1bdde34852da3882fe179eba">&#9670;&#160;</a></span>SetRadar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void UActorBlueprintFunctionLibrary::SetRadar </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;&#160;</td>
+          <td class="paramname"><em>Description</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d27/classARadar.html">ARadar</a> *&#160;</td>
+          <td class="paramname"><em>Radar</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01163">MakeIMUDefinition()</a> , 以及 <a class="el" href="../../d5/d99/Radar_8cpp_source.html#l00038">ARadar::Set()</a>.</p>
+<div id="dynsection-46" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-46-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-46-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-46-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_a4cf1f91b1bdde34852da3882fe179eba_icgraph.svg" width="464" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a4db7a8126dcfb15348ab10bb251f728b" name="a4db7a8126dcfb15348ab10bb251f728b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4db7a8126dcfb15348ab10bb251f728b">&#9670;&#160;</a></span>SetV2X()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void UActorBlueprintFunctionLibrary::SetV2X </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;&#160;</td>
+          <td class="paramname"><em>Description</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d3/dd4/classAV2XSensor.html">AV2XSensor</a> *&#160;</td>
+          <td class="paramname"><em>V2X</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01163">MakeIMUDefinition()</a> , 以及 <a class="el" href="../../d2/df9/V2XSensor_8cpp_source.html#l00062">AV2XSensor::Set()</a>.</p>
+<div id="dynsection-47" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-47-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-47-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-47-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/da3/classUActorBlueprintFunctionLibrary_a4db7a8126dcfb15348ab10bb251f728b_icgraph.svg" width="464" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../d7/dda/ActorBlueprintFunctionLibrary_8h_source.html">ActorBlueprintFunctionLibrary.h</a></li>
+<li><a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

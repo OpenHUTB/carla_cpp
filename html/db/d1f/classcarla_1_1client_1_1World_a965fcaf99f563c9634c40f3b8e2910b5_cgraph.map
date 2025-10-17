@@ -1,0 +1,13 @@
+<map id="carla::client::World::GetTrafficLightsFromWaypoint" name="carla::client::World::GetTrafficLightsFromWaypoint">
+<area shape="rect" id="node1" title=" " alt="" coords="5,101,208,141"/>
+<area shape="rect" id="node2" href="$dd/dff/classcarla_1_1client_1_1Waypoint.html#ad76e1411cf92f89ac9e44050ad5729b2" title="获取从当前位置到指定距离内的所有地标列表。" alt="" coords="256,37,447,77"/>
+<area shape="rect" id="node3" href="$db/d1f/classcarla_1_1client_1_1World.html#a4772c8468347fcee02678a9a6a8396d1" title="根据提供的地标（Landmark）获取对应的交通信号灯（TrafficLight）的智能指针。 与获取交通标志类似，通过地标来查找对应的交通信号灯对象，以便获取信号灯状态、控制信号灯等相关操作，模拟交通..." alt="" coords="288,101,415,141"/>
+<area shape="rect" id="node11" href="$db/d47/classcarla_1_1road_1_1SignalType.html#aa4bab3287ce92cf7e1ba04767775ebf0" title=" " alt="" coords="276,165,427,205"/>
+<area shape="rect" id="node4" href="$db/d1f/classcarla_1_1client_1_1World.html#a04a22f65ea5ccd3e93b833503dda6d65" title="返回一个包含当前世界上所有存在的参与者（actor）的列表。 获取整个模拟世界中所有参与者的集合，便于进行批量操作、统计或者遍历所有实体执行某些通用的操作等。" alt="" coords="509,5,635,45"/>
+<area shape="rect" id="node6" href="$d3/dc1/classcarla_1_1client_1_1Landmark.html#a6b327470a3e4ed26200893f3f4d064d5" title="获取地标的唯一标识符。 该标识符在整个系统中是唯一的，用来区分不同的地标。" alt="" coords="497,69,647,109"/>
+<area shape="rect" id="node8" href="$dc/d5c/classcarla_1_1client_1_1TrafficSign.html#a4da25f7dd11cdf6c92401145cb50ffba" title=" " alt="" coords="495,133,649,173"/>
+<area shape="rect" id="node10" href="$de/d93/classcarla_1_1StringUtil.html#a42f81d32011bf4575fa71e593596b1f3" title="Match str with the Unix shell&#45;style wildcard_pattern." alt="" coords="514,197,630,237"/>
+<area shape="rect" id="node5" href="$d1/dd3/classcarla_1_1client_1_1detail_1_1EpisodeProxyImpl.html#aaca857645fbeb6546b4a03a663bb65af" title="与 TryLock 相同，但永远不会返回 nullptr。" alt="" coords="709,5,876,45"/>
+<area shape="rect" id="node7" href="$d5/d51/classcarla_1_1road_1_1element_1_1RoadInfoSignal.html#a46a4c6561df160ade96e9d12b0e4309f" title=" " alt="" coords="697,69,888,109"/>
+<area shape="rect" id="node9" href="$d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#a520d5ef7284ded86a1d96a346f3516aa" title=" " alt="" coords="711,133,874,173"/>
+</map>

@@ -1,0 +1,15 @@
+<map id="carla::client::RssSensor::Listen" name="carla::client::RssSensor::Listen">
+<area shape="rect" id="node1" title="注册一个回调函数，每次接收到新的测量数据时都会执行该函数。" alt="" coords="5,280,163,320"/>
+<area shape="rect" id="node2" href="$d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#aa98c1565c9edcf133148109c52023819" title=" " alt="" coords="211,5,381,45"/>
+<area shape="rect" id="node3" href="$d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#a520d5ef7284ded86a1d96a346f3516aa" title=" " alt="" coords="215,69,377,109"/>
+<area shape="rect" id="node4" href="$db/d1f/classcarla_1_1client_1_1World.html#a90f244a1df3efaa63331813736a199a6" title="返回描述这个世界的地图。 返回的是一个智能指针指向的Map对象，该Map对象包含了模拟世界中的地理信息、道路布局等地图相关的数据结构， 供外部调用者进一步查询和操作地图相关的功能。" alt="" coords="233,133,359,173"/>
+<area shape="rect" id="node5" href="$d1/dd3/classcarla_1_1client_1_1detail_1_1EpisodeProxyImpl.html#aaca857645fbeb6546b4a03a663bb65af" title="与 TryLock 相同，但永远不会返回 nullptr。" alt="" coords="429,163,596,203"/>
+<area shape="rect" id="node6" href="$d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#a77b201455dd52b51bb3b1834ccf87ccc" title=" " alt="" coords="219,248,373,288"/>
+<area shape="rect" id="node7" href="$d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#ac98d447f3db74c88b3b43e80435042bc" title=" " alt="" coords="221,312,371,352"/>
+<area shape="rect" id="node8" href="$d7/db6/classcarla_1_1client_1_1RssSensor.html#a4de185e37508b6932b1f4a017726ca71" title="返回此Sensor实例当前是否正在监听模拟器中的相关传感器" alt="" coords="217,376,375,416"/>
+<area shape="rect" id="node9" href="$d9/d36/namespacecarla.html#afb6ca911605d1ec35bdf563de2814dba" title=" " alt="" coords="239,441,353,466"/>
+<area shape="rect" id="node11" href="$d9/d36/namespacecarla.html#a7673dfc76e17f5856b798de6d0384b56" title=" " alt="" coords="243,490,349,515"/>
+<area shape="rect" id="node12" href="$d9/d36/namespacecarla.html#a23602ab663165210a7757d6108f6b3cd" title=" " alt="" coords="221,539,371,565"/>
+<area shape="rect" id="node10" href="$d2/d8c/namespacecarla_1_1logging.html#a4193666236852fb6a6977299a31445d8" title=" " alt="" coords="447,453,578,493"/>
+<area shape="rect" id="node13" href="$d0/d6a/ActorDispatcher_8cpp.html#a69d0a7232310b5ebaa51abb2b9945184" title=" " alt="" coords="475,539,550,565"/>
+</map>

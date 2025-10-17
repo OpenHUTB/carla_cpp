@@ -1,0 +1,6 @@
+<map id="carla::client::Landmark::GetId" name="carla::client::Landmark::GetId">
+<area shape="rect" id="node1" title="获取地标的唯一标识符。 该标识符在整个系统中是唯一的，用来区分不同的地标。" alt="" coords="431,37,581,77"/>
+<area shape="rect" id="node2" href="$db/d1f/classcarla_1_1client_1_1World.html#a4772c8468347fcee02678a9a6a8396d1" title="根据提供的地标（Landmark）获取对应的交通信号灯（TrafficLight）的智能指针。 与获取交通标志类似，通过地标来查找对应的交通信号灯对象，以便获取信号灯状态、控制信号灯等相关操作，模拟交通..." alt="" coords="256,5,383,45"/>
+<area shape="rect" id="node4" href="$db/d1f/classcarla_1_1client_1_1World.html#ad6366a7909dc11fc8ebb883a3434a551" title="根据提供的地标（Landmark）获取对应的交通标志（TrafficSign）的智能指针。 地标通常代表地图中的特定位置，通过它可以定位和获取对应的交通标志对象，用于查询交通规则相关的指示信息等。" alt="" coords="256,69,383,109"/>
+<area shape="rect" id="node3" href="$db/d1f/classcarla_1_1client_1_1World.html#a965fcaf99f563c9634c40f3b8e2910b5" title=" " alt="" coords="5,5,208,45"/>
+</map>

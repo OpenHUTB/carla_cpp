@@ -1,0 +1,13 @@
+<map id="UOpenDriveMap::HasMap" name="UOpenDriveMap::HasMap">
+<area shape="rect" id="node1" title="返回此映射是否已初始化。" alt="" coords="863,185,1036,211"/>
+<area shape="rect" id="node2" href="$d8/dfe/classUOpenDriveMap.html#ac2e4b736aedc292dd6abd91be62db773" title="计算航点的变换。x轴指向该航点的道路方向。" alt="" coords="579,29,813,55"/>
+<area shape="rect" id="node6" href="$d8/dfe/classUOpenDriveMap.html#a06e25b945b7bddf710f968d6140c9bff" title="生成定义此拓扑的最小航路点集地图。航点位于每条车道的入口处。" alt="" coords="581,79,811,104"/>
+<area shape="rect" id="node7" href="$d8/dfe/classUOpenDriveMap.html#ad28bf91838a10d8a1803d52c558be5a0" title="在地图上以近似距离生成航路点。" alt="" coords="577,128,815,153"/>
+<area shape="rect" id="node8" href="$d8/dfe/classUOpenDriveMap.html#a4cff5136b5d6c47fd06cccfddcf4da39" title="在每条道路的起点，在每条车道上生成航点。" alt="" coords="577,178,815,218"/>
+<area shape="rect" id="node9" href="$d8/dfe/classUOpenDriveMap.html#ad1ed4995dd03e6cec22d1fd83c967070" title="给定一个位置，返回车道中心最近的点。" alt="" coords="601,242,791,282"/>
+<area shape="rect" id="node10" href="$d8/dfe/classUOpenDriveMap.html#acd24011ce2cb7bf4b01b605329adae24" title="返回给定距离上的航点列表，以便位于航点的车辆可以行驶得到。" alt="" coords="610,307,782,332"/>
+<area shape="rect" id="node11" href="$d8/dfe/classUOpenDriveMap.html#a0ce422ee1f79211e6957bab1d2048348" title="使用OpenDrive（XODR）文件加载此映射。" alt="" coords="619,356,773,381"/>
+<area shape="rect" id="node3" href="$d8/dfe/classUOpenDriveMap.html#abba6cb000173e63b49fda598c0369452" title="计算航点的位置。" alt="" coords="295,5,521,31"/>
+<area shape="rect" id="node5" href="$d8/dfe/classUOpenDriveMap.html#aabcef6e59894a43d7434d9defbc18cbf" title="计算航点数组的变换。" alt="" coords="287,55,529,80"/>
+<area shape="rect" id="node4" href="$d8/dfe/classUOpenDriveMap.html#a8d7347131f7cb4203d4f18b5b64a23ba" title="计算航点数组的位置。" alt="" coords="5,5,239,31"/>
+</map>

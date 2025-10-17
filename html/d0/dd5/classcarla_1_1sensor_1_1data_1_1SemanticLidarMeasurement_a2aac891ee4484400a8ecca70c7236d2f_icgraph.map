@@ -1,0 +1,6 @@
+<map id="carla::sensor::data::SemanticLidarMeasurement::GetHeader" name="carla::sensor::data::SemanticLidarMeasurement::GetHeader">
+<area shape="rect" id="node1" title=" " alt="" coords="244,84,435,139"/>
+<area shape="rect" id="node2" href="$d0/dd5/classcarla_1_1sensor_1_1data_1_1SemanticLidarMeasurement.html#a79fa1035477a8e5a5ca2860d011c27b2" title="激光雷达的通道数量。" alt="" coords="5,5,196,60"/>
+<area shape="rect" id="node3" href="$d0/dd5/classcarla_1_1sensor_1_1data_1_1SemanticLidarMeasurement.html#a40c22a3b9275ede94d449680abbde2e2" title="测量时激光雷达的水平角度。" alt="" coords="5,84,196,139"/>
+<area shape="rect" id="node4" href="$d0/dd5/classcarla_1_1sensor_1_1data_1_1SemanticLidarMeasurement.html#a9349c5b211e065e86efeb1c60e2517d0" title="获取由特定通道生成的点的数量。点是按通道排序的，因此这个方法可以用来识别生成每个点的通道。" alt="" coords="5,163,196,217"/>
+</map>

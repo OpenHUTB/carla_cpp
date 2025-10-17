@@ -1,0 +1,21 @@
+<map id="carla::geom::MeshFactory::GenerateOrderedWithMaxLen" name="carla::geom::MeshFactory::GenerateOrderedWithMaxLen">
+<area shape="rect" id="node1" title="生成一个定义车道段的按顺序排列的网格列表，限制最大长度" alt="" coords="5,261,204,301"/>
+<area shape="rect" id="node2" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#ab98f3e86a2e1abf508c132708c48e414" title="生成按顺序排列的车道段网格" alt="" coords="252,204,452,244"/>
+<area shape="rect" id="node3" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a15a67316be6174f196580a188edb847b" title="生成车道段的人行道网格" alt="" coords="500,147,669,187"/>
+<area shape="rect" id="node4" href="$dd/d80/classcarla_1_1road_1_1LaneSection.html#afb698c17b4d62c0df02cf8dae16b8f50" title=" " alt="" coords="717,5,877,45"/>
+<area shape="rect" id="node5" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#ae26205cfd730254bb1a35302386b497f" title="用更高的细分生成从给定的s起始和结束的车道网格" alt="" coords="500,261,669,301"/>
+<area shape="rect" id="node16" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a0969da14208e075e1414357de8183cdd" title="在给定车道类型下选择的宽度内的顶点数量" alt="" coords="500,325,669,365"/>
+<area shape="rect" id="node17" href="$dd/d80/classcarla_1_1road_1_1LaneSection.html#a2a83bca663a2b7b6388daebed95704a9" title=" " alt="" coords="272,369,432,409"/>
+<area shape="rect" id="node18" href="$dd/d80/classcarla_1_1road_1_1LaneSection.html#a059dcb478641cd498e3d213feb7e000d" title=" " alt="" coords="272,433,432,473"/>
+<area shape="rect" id="node6" href="$d0/d02/classcarla_1_1geom_1_1Mesh.html#a07814867b5e1b31a7af31d0c8f91b90b" title="将索引附加到索引列表。" alt="" coords="731,261,863,301"/>
+<area shape="rect" id="node7" href="$d0/d02/classcarla_1_1geom_1_1Mesh.html#aa2752de6bd91ed08eeb68e015c783825" title="开始将新材质应用到新添加的三角形。" alt="" coords="731,325,863,365"/>
+<area shape="rect" id="node8" href="$d0/d02/classcarla_1_1geom_1_1Mesh.html#aa51f24b8ab582d1ad828c2561b9ca153" title="停止将材质应用到新添加的三角形。" alt="" coords="925,355,1057,395"/>
+<area shape="rect" id="node9" href="$d0/d02/classcarla_1_1geom_1_1Mesh.html#a5860ad4aae3291192acaae868ce9768d" title="添加纹理映射坐标(Texture&#45;Mapping Coordinates, UV)" alt="" coords="731,440,863,480"/>
+<area shape="rect" id="node10" href="$d0/d02/classcarla_1_1geom_1_1Mesh.html#a17ebc0f75528a6ccf9d1c818b12415fa" title="将顶点附加到顶点列表。" alt="" coords="731,504,863,544"/>
+<area shape="rect" id="node11" href="$df/d85/classcarla_1_1road_1_1Lane.html#ae0d376fa422b14e54af3a702e1b8385a" title="计算给定位置s的车道边缘位置" alt="" coords="730,568,865,608"/>
+<area shape="rect" id="node12" href="$df/d85/classcarla_1_1road_1_1Lane.html#ae02c9441872377fc865c85339df51cbd" title=" " alt="" coords="736,632,859,672"/>
+<area shape="rect" id="node13" href="$df/d85/classcarla_1_1road_1_1Lane.html#ae1a5f15925f91fca2b5d759fb53901f3" title=" " alt="" coords="736,69,859,109"/>
+<area shape="rect" id="node14" href="$df/d85/classcarla_1_1road_1_1Lane.html#af158921fdf12a061967943ee2d645481" title=" " alt="" coords="736,133,859,173"/>
+<area shape="rect" id="node15" href="$df/d85/classcarla_1_1road_1_1Lane.html#aa03b1c0d6dd6988f0cbfcd63c842669b" title=" " alt="" coords="736,197,859,237"/>
+<area shape="rect" id="node19" href="$dd/d80/classcarla_1_1road_1_1LaneSection.html#a20f42f8a9aa46a316e50c2defaac1d55" title=" " alt="" coords="505,433,665,473"/>
+</map>

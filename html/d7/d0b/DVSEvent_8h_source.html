@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: DVSEvent.h 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_8b842c0ad24262c95de16c440fd51527.html">sensor</a></li><li class="navelem"><a class="el" href="../../dir_c1cab5d7e7d14afd616fdecacd66a589.html">data</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">DVSEvent.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d7/d0b/DVSEvent_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2020 Robotics and Perception Group (GPR)</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// University of Zurich and ETH Zurich</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">// 说明该代码遵循MIT许可协议，可通过对应链接查看协议详情</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// This work is licensed under the terms of the MIT license.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">// 引入C++标准库中固定宽度整数类型的头文件，后续结构体中的成员变量会用到相关整数类型定义</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d9/d36/namespacecarla.html">carla</a> {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span>sensor {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span>data {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">// 设置结构体的内存对齐方式为1字节对齐，方便精确控制结构体大小，后续会有对应的恢复操作，这样结构体成员会紧密排列</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#pragma pack(push, 1)</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment">// 定义DVSEvent结构体，用于表示某种特定事件相关的数据结构，可能与传感器数据等相关（结合所在命名空间推测）</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html">   20</a></span><span class="keyword">struct </span><a class="code hl_struct" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html">DVSEvent</a> {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="comment">// =========================================================================</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="comment">// -- 构造函数相关 ----------------------------------------------------------</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="comment">// =========================================================================</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="comment">// 默认构造函数，使用编译器默认的初始化行为，结构体成员变量会被初始化为其对应类型的默认值（例如数值类型为0，布尔类型为false等）</span><span class="comment"></span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment">    /// Default constructor</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a75d0dbae960b9da1f0769ff5e6016c77">   27</a></span><span class="comment"></span>    <a class="code hl_function" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a75d0dbae960b9da1f0769ff5e6016c77">DVSEvent</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="comment">// 拷贝构造函数，用于根据已有的DVSEvent对象创建一个新的副本，将传入对象的各个成员变量的值复制给新创建的对象</span><span class="comment"></span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment">    /// Copy Constructor</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a8f608d12174a22ee17fd35bbd89127eb">   31</a></span><span class="comment"></span>    <a class="code hl_function" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a8f608d12174a22ee17fd35bbd89127eb">DVSEvent</a>(<span class="keyword">const</span> <a class="code hl_struct" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html">DVSEvent</a> &amp;arg)</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>      : <a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a2f7b5eb143ddb05ee4fe388ad509dd44">x</a>(arg.<a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a2f7b5eb143ddb05ee4fe388ad509dd44">x</a>), <a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a2518b10e04fe66a5ea91c1dff1a889d2">y</a>(arg.<a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a2518b10e04fe66a5ea91c1dff1a889d2">y</a>), <a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#ac09aa4a3d7f1478dd42b5922807dfd9a">t</a>(arg.<a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#ac09aa4a3d7f1478dd42b5922807dfd9a">t</a>), <a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#acc99a8236a2ae33aefef8044deb67458">pol</a>(arg.<a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#acc99a8236a2ae33aefef8044deb67458">pol</a>) {}</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="comment">// 移动构造函数，用于通过“移动”语义来构造新的DVSEvent对象，它会“窃取”传入的临时对象（右值引用参数）的资源，避免不必要的拷贝操作，提高性能，常用于涉及资源管理的情况</span><span class="comment"></span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment">    /// Moving constructor</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a3203707eafe7ad3129cedd11f15fcb00">   36</a></span><span class="comment"></span>    <a class="code hl_function" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a3203707eafe7ad3129cedd11f15fcb00">DVSEvent</a>(<span class="keyword">const</span> <a class="code hl_struct" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html">DVSEvent</a> &amp;&amp;arg)</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>      : <a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a2f7b5eb143ddb05ee4fe388ad509dd44">x</a>(<a class="code hl_namespace" href="../../d8/dcc/namespacestd.html">std</a>::move(arg.<a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a2f7b5eb143ddb05ee4fe388ad509dd44">x</a>)),</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a2518b10e04fe66a5ea91c1dff1a889d2">y</a>(<a class="code hl_namespace" href="../../d8/dcc/namespacestd.html">std</a>::move(arg.<a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a2518b10e04fe66a5ea91c1dff1a889d2">y</a>)),</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#ac09aa4a3d7f1478dd42b5922807dfd9a">t</a>(<a class="code hl_namespace" href="../../d8/dcc/namespacestd.html">std</a>::move(arg.<a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#ac09aa4a3d7f1478dd42b5922807dfd9a">t</a>)),</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#acc99a8236a2ae33aefef8044deb67458">pol</a>(<a class="code hl_namespace" href="../../d8/dcc/namespacestd.html">std</a>::move(arg.<a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#acc99a8236a2ae33aefef8044deb67458">pol</a>)) {}</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="comment">// 带参数的构造函数，用于根据传入的具体参数值初始化DVSEvent结构体对象的各个成员变量，方便按照指定的值来创建事件对象</span><span class="comment"></span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">    /// Constructor</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a8aac757c51e6de9d307793f6708870b7">   44</a></span><span class="comment"></span>    <a class="code hl_function" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a8aac757c51e6de9d307793f6708870b7">DVSEvent</a>(std::uint16_t <a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a2f7b5eb143ddb05ee4fe388ad509dd44">x</a>, std::uint16_t <a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a2518b10e04fe66a5ea91c1dff1a889d2">y</a>, std::int64_t <a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#ac09aa4a3d7f1478dd42b5922807dfd9a">t</a>, <span class="keywordtype">bool</span> <a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#acc99a8236a2ae33aefef8044deb67458">pol</a>)</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>      : <a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a2f7b5eb143ddb05ee4fe388ad509dd44">x</a>(<a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a2f7b5eb143ddb05ee4fe388ad509dd44">x</a>), <a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a2518b10e04fe66a5ea91c1dff1a889d2">y</a>(<a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a2518b10e04fe66a5ea91c1dff1a889d2">y</a>), <a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#ac09aa4a3d7f1478dd42b5922807dfd9a">t</a>(<a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#ac09aa4a3d7f1478dd42b5922807dfd9a">t</a>), <a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#acc99a8236a2ae33aefef8044deb67458">pol</a>(<a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#acc99a8236a2ae33aefef8044deb67458">pol</a>) {}</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="comment">// =========================================================================</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="comment">// -- 赋值运算符相关 --------------------------------------------------------</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="comment">// =========================================================================</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="comment">// 拷贝赋值运算符重载，用于将一个DVSEvent对象的值复制给另一个已存在的对象，实现对象间数据的赋值操作</span><span class="comment"></span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment">    /// Assignement operator</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a2a5be9e9e08c1597bb7101c843f0347a">   53</a></span><span class="comment"></span>    <a class="code hl_struct" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html">DVSEvent</a> &amp;<a class="code hl_function" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a2a5be9e9e08c1597bb7101c843f0347a">operator=</a>(<span class="keyword">const</span> <a class="code hl_struct" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html">DVSEvent</a> &amp;other) {</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>      <a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a2f7b5eb143ddb05ee4fe388ad509dd44">x</a> = other.<a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a2f7b5eb143ddb05ee4fe388ad509dd44">x</a>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>      <a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a2518b10e04fe66a5ea91c1dff1a889d2">y</a> = other.<a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a2518b10e04fe66a5ea91c1dff1a889d2">y</a>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>      <a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#ac09aa4a3d7f1478dd42b5922807dfd9a">t</a> = other.<a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#ac09aa4a3d7f1478dd42b5922807dfd9a">t</a>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>      <a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#acc99a8236a2ae33aefef8044deb67458">pol</a> = other.<a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#acc99a8236a2ae33aefef8044deb67458">pol</a>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>      <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    }</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="comment">// 移动赋值运算符重载，用于将一个临时的（右值引用的）DVSEvent对象的资源“移动”给另一个已存在的对象，同样是为了提高性能，避免不必要的拷贝，实现资源的高效转移赋值</span><span class="comment"></span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment">    /// Move Assignement operator</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#aff3df2699f17125914589c1936feed91">   63</a></span><span class="comment"></span>    <a class="code hl_struct" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html">DVSEvent</a> &amp;<a class="code hl_function" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#aff3df2699f17125914589c1936feed91">operator=</a>(<span class="keyword">const</span> <a class="code hl_struct" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html">DVSEvent</a> &amp;&amp;other) {</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>      <a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a2f7b5eb143ddb05ee4fe388ad509dd44">x</a> = std::move(other.x);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>      <a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a2518b10e04fe66a5ea91c1dff1a889d2">y</a> = std::move(other.y);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>      <a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#ac09aa4a3d7f1478dd42b5922807dfd9a">t</a> = std::move(other.t);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>      <a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#acc99a8236a2ae33aefef8044deb67458">pol</a> = std::move(other.pol);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>      <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    }</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="comment">// =========================================================================</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="comment">// -- 比较运算符相关 --------------------------------------------------------</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="comment">// =========================================================================</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="comment">// 重载==运算符，用于比较两个DVSEvent结构体对象是否相等，通过依次比较各个成员变量（x、y、t、pol）是否分别相等来判断两个对象是否完全相同</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a16e2550f582e9c62b51bdf6be6d214de">   76</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a16e2550f582e9c62b51bdf6be6d214de">operator==</a>(<span class="keyword">const</span> <a class="code hl_struct" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html">DVSEvent</a> &amp;rhs)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>      <span class="keywordflow">return</span> (<a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a2f7b5eb143ddb05ee4fe388ad509dd44">x</a> == rhs.<a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a2f7b5eb143ddb05ee4fe388ad509dd44">x</a>) &amp;&amp; (<a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a2518b10e04fe66a5ea91c1dff1a889d2">y</a> == rhs.<a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a2518b10e04fe66a5ea91c1dff1a889d2">y</a>) &amp;&amp; (<a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#ac09aa4a3d7f1478dd42b5922807dfd9a">t</a> == rhs.<a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#ac09aa4a3d7f1478dd42b5922807dfd9a">t</a>) &amp;&amp; (<a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#acc99a8236a2ae33aefef8044deb67458">pol</a> == rhs.<a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#acc99a8236a2ae33aefef8044deb67458">pol</a>);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    }</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="comment">// 重载!=运算符，通过对==运算符的结果取反来判断两个DVSEvent结构体对象是否不相等，提供一种便捷的判断不相等的方式</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a415ba1be25d367ef14a6d3ae311da1fb">   81</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a415ba1be25d367ef14a6d3ae311da1fb">operator!=</a>(<span class="keyword">const</span> <a class="code hl_struct" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html">DVSEvent</a> &amp;rhs)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>      <span class="keywordflow">return</span> !(*<span class="keyword">this</span> == rhs);</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    }</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="comment">// 结构体的成员变量，用于存储与该事件相关的具体数据信息</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="comment">// 表示事件在某个二维空间中x坐标相关的数据，类型为无符号16位整数，具体含义取决于应用场景（比如可能是图像传感器中像素的横坐标等）</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a2f7b5eb143ddb05ee4fe388ad509dd44">   88</a></span>    std::uint16_t <a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a2f7b5eb143ddb05ee4fe388ad509dd44">x</a>;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="comment">// 表示事件在某个二维空间中y坐标相关的数据，类型为无符号16位整数，类似x坐标，可能对应像素纵坐标等含义</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a2518b10e04fe66a5ea91c1dff1a889d2">   90</a></span>    std::uint16_t <a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a2518b10e04fe66a5ea91c1dff1a889d2">y</a>;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="comment">// 表示事件发生的时间相关的数据，类型为有符号64位整数，可用于记录精确的时间戳等信息，方便按时间顺序处理事件等操作</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#ac09aa4a3d7f1478dd42b5922807dfd9a">   92</a></span>    std::int64_t <a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#ac09aa4a3d7f1478dd42b5922807dfd9a">t</a>;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="comment">// 表示事件的某种极性（或状态等布尔属性）相关的数据，类型为布尔值，具体含义根据具体事件的定义来确定（比如信号的正负、事件的激活与否等）</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#acc99a8236a2ae33aefef8044deb67458">   94</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#acc99a8236a2ae33aefef8044deb67458">pol</a>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>  };</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="comment">// 恢复之前的内存对齐方式，与前面的#pragma pack(push, 1)对应，使后续的内存布局恢复到之前的设置</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="preprocessor">#pragma pack(pop)</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>} <span class="comment">// namespace data</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>} <span class="comment">// namespace sensor</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>} <span class="comment">// namespace carla</span></div>
+<div class="ttc" id="anamespacecarla_html"><div class="ttname"><a href="../../d9/d36/namespacecarla.html">carla</a></div><div class="ttdoc">CARLA模拟器的主命名空间。</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d4f/Carla_8cpp_source.html#l00139">Carla.cpp:139</a></div></div>
+<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="../../d8/dcc/namespacestd.html">std</a></div><div class="ttdef"><b>Definition:</b> <a href="../../df/d06/CarlaRecorderCollision_8h_source.html#l00030">CarlaRecorderCollision.h:31</a></div></div>
+<div class="ttc" id="astructcarla_1_1sensor_1_1data_1_1DVSEvent_html"><div class="ttname"><a href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html">carla::sensor::data::DVSEvent</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d7/d0b/DVSEvent_8h_source.html#l00020">DVSEvent.h:20</a></div></div>
+<div class="ttc" id="astructcarla_1_1sensor_1_1data_1_1DVSEvent_html_a16e2550f582e9c62b51bdf6be6d214de"><div class="ttname"><a href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a16e2550f582e9c62b51bdf6be6d214de">carla::sensor::data::DVSEvent::operator==</a></div><div class="ttdeci">bool operator==(const DVSEvent &amp;rhs) const</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/d0b/DVSEvent_8h_source.html#l00076">DVSEvent.h:76</a></div></div>
+<div class="ttc" id="astructcarla_1_1sensor_1_1data_1_1DVSEvent_html_a2518b10e04fe66a5ea91c1dff1a889d2"><div class="ttname"><a href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a2518b10e04fe66a5ea91c1dff1a889d2">carla::sensor::data::DVSEvent::y</a></div><div class="ttdeci">std::uint16_t y</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/d0b/DVSEvent_8h_source.html#l00090">DVSEvent.h:90</a></div></div>
+<div class="ttc" id="astructcarla_1_1sensor_1_1data_1_1DVSEvent_html_a2a5be9e9e08c1597bb7101c843f0347a"><div class="ttname"><a href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a2a5be9e9e08c1597bb7101c843f0347a">carla::sensor::data::DVSEvent::operator=</a></div><div class="ttdeci">DVSEvent &amp; operator=(const DVSEvent &amp;other)</div><div class="ttdoc">Assignement operator</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/d0b/DVSEvent_8h_source.html#l00053">DVSEvent.h:53</a></div></div>
+<div class="ttc" id="astructcarla_1_1sensor_1_1data_1_1DVSEvent_html_a2f7b5eb143ddb05ee4fe388ad509dd44"><div class="ttname"><a href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a2f7b5eb143ddb05ee4fe388ad509dd44">carla::sensor::data::DVSEvent::x</a></div><div class="ttdeci">std::uint16_t x</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/d0b/DVSEvent_8h_source.html#l00088">DVSEvent.h:88</a></div></div>
+<div class="ttc" id="astructcarla_1_1sensor_1_1data_1_1DVSEvent_html_a3203707eafe7ad3129cedd11f15fcb00"><div class="ttname"><a href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a3203707eafe7ad3129cedd11f15fcb00">carla::sensor::data::DVSEvent::DVSEvent</a></div><div class="ttdeci">DVSEvent(const DVSEvent &amp;&amp;arg)</div><div class="ttdoc">Moving constructor</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/d0b/DVSEvent_8h_source.html#l00036">DVSEvent.h:36</a></div></div>
+<div class="ttc" id="astructcarla_1_1sensor_1_1data_1_1DVSEvent_html_a415ba1be25d367ef14a6d3ae311da1fb"><div class="ttname"><a href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a415ba1be25d367ef14a6d3ae311da1fb">carla::sensor::data::DVSEvent::operator!=</a></div><div class="ttdeci">bool operator!=(const DVSEvent &amp;rhs) const</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/d0b/DVSEvent_8h_source.html#l00081">DVSEvent.h:81</a></div></div>
+<div class="ttc" id="astructcarla_1_1sensor_1_1data_1_1DVSEvent_html_a75d0dbae960b9da1f0769ff5e6016c77"><div class="ttname"><a href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a75d0dbae960b9da1f0769ff5e6016c77">carla::sensor::data::DVSEvent::DVSEvent</a></div><div class="ttdeci">DVSEvent()=default</div><div class="ttdoc">Default constructor</div></div>
+<div class="ttc" id="astructcarla_1_1sensor_1_1data_1_1DVSEvent_html_a8aac757c51e6de9d307793f6708870b7"><div class="ttname"><a href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a8aac757c51e6de9d307793f6708870b7">carla::sensor::data::DVSEvent::DVSEvent</a></div><div class="ttdeci">DVSEvent(std::uint16_t x, std::uint16_t y, std::int64_t t, bool pol)</div><div class="ttdoc">Constructor</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/d0b/DVSEvent_8h_source.html#l00044">DVSEvent.h:44</a></div></div>
+<div class="ttc" id="astructcarla_1_1sensor_1_1data_1_1DVSEvent_html_a8f608d12174a22ee17fd35bbd89127eb"><div class="ttname"><a href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#a8f608d12174a22ee17fd35bbd89127eb">carla::sensor::data::DVSEvent::DVSEvent</a></div><div class="ttdeci">DVSEvent(const DVSEvent &amp;arg)</div><div class="ttdoc">Copy Constructor</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/d0b/DVSEvent_8h_source.html#l00031">DVSEvent.h:31</a></div></div>
+<div class="ttc" id="astructcarla_1_1sensor_1_1data_1_1DVSEvent_html_ac09aa4a3d7f1478dd42b5922807dfd9a"><div class="ttname"><a href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#ac09aa4a3d7f1478dd42b5922807dfd9a">carla::sensor::data::DVSEvent::t</a></div><div class="ttdeci">std::int64_t t</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/d0b/DVSEvent_8h_source.html#l00092">DVSEvent.h:92</a></div></div>
+<div class="ttc" id="astructcarla_1_1sensor_1_1data_1_1DVSEvent_html_acc99a8236a2ae33aefef8044deb67458"><div class="ttname"><a href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#acc99a8236a2ae33aefef8044deb67458">carla::sensor::data::DVSEvent::pol</a></div><div class="ttdeci">bool pol</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/d0b/DVSEvent_8h_source.html#l00094">DVSEvent.h:94</a></div></div>
+<div class="ttc" id="astructcarla_1_1sensor_1_1data_1_1DVSEvent_html_aff3df2699f17125914589c1936feed91"><div class="ttname"><a href="../../de/d6a/structcarla_1_1sensor_1_1data_1_1DVSEvent.html#aff3df2699f17125914589c1936feed91">carla::sensor::data::DVSEvent::operator=</a></div><div class="ttdeci">DVSEvent &amp; operator=(const DVSEvent &amp;&amp;other)</div><div class="ttdoc">Move Assignement operator</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/d0b/DVSEvent_8h_source.html#l00063">DVSEvent.h:63</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

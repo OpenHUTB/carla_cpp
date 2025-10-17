@@ -1,0 +1,16 @@
+<map id="FActorDefinitionValidator::OnScreenAssert" name="FActorDefinitionValidator::OnScreenAssert">
+<area shape="rect" id="node1" title="If Predicate is false, print an error message." alt="" coords="1143,69,1308,109"/>
+<area shape="rect" id="node2" href="$dd/d10/classFActorDefinitionValidator.html#a1d4e5831f504c76f576349f3f15ce6dd" title="验证标签是否有效" alt="" coords="929,5,1095,45"/>
+<area shape="rect" id="node4" href="$dd/d10/classFActorDefinitionValidator.html#a6d3d67fef4ee00078d2e4ebf65d02194" title="验证ID是否有效" alt="" coords="929,69,1095,109"/>
+<area shape="rect" id="node6" href="$dd/d10/classFActorDefinitionValidator.html#a4079e0ecc2f4724dac9ec84d39c14e0b" title="验证类型是否有效" alt="" coords="929,133,1095,173"/>
+<area shape="rect" id="node3" href="$dd/d10/classFActorDefinitionValidator.html#ad0ec708bf840e217fb4f0ee7ed4e79ec" title=" " alt="" coords="716,5,881,45"/>
+<area shape="rect" id="node5" href="$dd/d10/classFActorDefinitionValidator.html#a1405b13ec1abb98b9699c2ae26c470f3" title=" " alt="" coords="716,69,881,109"/>
+<area shape="rect" id="node7" href="$dd/d10/classFActorDefinitionValidator.html#a4b422342112f95727e4a3ec2624a8f4f" title="Applies IsValid to each item in Array." alt="" coords="716,133,881,173"/>
+<area shape="rect" id="node8" href="$dd/d10/classFActorDefinitionValidator.html#a2dbfbc4af402b42b6c351adf8f9e4ebd" title="Validate ActorDefinition and display messages on error.（验证ActorDefinition的有效性，并在出现错误时显示消息）" alt="" coords="716,197,881,237"/>
+<area shape="rect" id="node9" href="$dd/da3/classUActorBlueprintFunctionLibrary.html#afa4aba6393bb016000f71bd60d2e2f12" title="返回角色定义是否有效。打印所有找到的错误" alt="" coords="465,197,668,237"/>
+<area shape="rect" id="node10" href="$d7/d90/classUActorDispatcher.html#a25f7b647b7b98c3875052b042c8aca56" title=" " alt="" coords="235,115,393,141"/>
+<area shape="rect" id="node12" href="$dd/da3/classUActorBlueprintFunctionLibrary.html#a472a14c750c6c5dc66b38cfeaea82ccc" title="创建一个相机参与者定义，并返回操作是否成功。" alt="" coords="213,165,415,205"/>
+<area shape="rect" id="node13" href="$dd/da3/classUActorBlueprintFunctionLibrary.html#a8113a5e0efff9740fde3c53ed9994b6e" title="创建一个惯性测量单元参与者定义，并返回操作是否成功。" alt="" coords="213,229,415,269"/>
+<area shape="rect" id="node14" href="$dd/da3/classUActorBlueprintFunctionLibrary.html#ab49a876cfbacc4ffedbb09362fc9b180" title="创建一个法线相机参与者定义，并返回操作是否成功。" alt="" coords="211,293,417,333"/>
+<area shape="rect" id="node11" href="$d7/d90/classUActorDispatcher.html#ae8fafc943ff2c9da465f7aa21d0b2025" title=" " alt="" coords="5,115,163,141"/>
+</map>

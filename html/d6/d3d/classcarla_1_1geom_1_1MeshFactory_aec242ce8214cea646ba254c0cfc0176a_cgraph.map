@@ -1,0 +1,18 @@
+<map id="carla::geom::MeshFactory::GenerateWalls" name="carla::geom::MeshFactory::GenerateWalls">
+<area shape="rect" id="node1" title="生成一个网格，表示道路角落的墙，以避免车辆掉下去" alt="" coords="5,376,175,416"/>
+<area shape="rect" id="node2" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a202f9750d3be15d0af4b42b3a90f3662" title="在车道的左侧生成一个墙状网格" alt="" coords="223,376,392,416"/>
+<area shape="rect" id="node15" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a11c673db2f69ad3c21ebba4d068b8c6c" title="在车道的右侧生成一个墙状网格" alt="" coords="223,312,392,352"/>
+<area shape="rect" id="node16" href="$dd/d80/classcarla_1_1road_1_1LaneSection.html#afb698c17b4d62c0df02cf8dae16b8f50" title=" " alt="" coords="227,440,387,480"/>
+<area shape="rect" id="node3" href="$d0/d02/classcarla_1_1geom_1_1Mesh.html#aa2752de6bd91ed08eeb68e015c783825" title="开始将新材质应用到新添加的三角形。" alt="" coords="441,312,573,352"/>
+<area shape="rect" id="node4" href="$d0/d02/classcarla_1_1geom_1_1Mesh.html#aa51f24b8ab582d1ad828c2561b9ca153" title="停止将材质应用到新添加的三角形。" alt="" coords="623,312,755,352"/>
+<area shape="rect" id="node5" href="$d0/d02/classcarla_1_1geom_1_1Mesh.html#afc814a912c427b43363289e6765a5ba3" title="向网格添加三角形带，顶点顺序为逆时针。" alt="" coords="441,69,573,109"/>
+<area shape="rect" id="node9" href="$df/d85/classcarla_1_1road_1_1Lane.html#ae0d376fa422b14e54af3a702e1b8385a" title="计算给定位置s的车道边缘位置" alt="" coords="440,184,575,224"/>
+<area shape="rect" id="node10" href="$df/d85/classcarla_1_1road_1_1Lane.html#ae02c9441872377fc865c85339df51cbd" title=" " alt="" coords="446,248,569,288"/>
+<area shape="rect" id="node11" href="$df/d85/classcarla_1_1road_1_1Lane.html#ae1a5f15925f91fca2b5d759fb53901f3" title=" " alt="" coords="446,376,569,416"/>
+<area shape="rect" id="node12" href="$df/d85/classcarla_1_1road_1_1Lane.html#af158921fdf12a061967943ee2d645481" title=" " alt="" coords="446,440,569,480"/>
+<area shape="rect" id="node13" href="$df/d85/classcarla_1_1road_1_1Lane.html#aa03b1c0d6dd6988f0cbfcd63c842669b" title=" " alt="" coords="446,504,569,544"/>
+<area shape="rect" id="node14" href="$df/d85/classcarla_1_1road_1_1Lane.html#a046ae843bd1a4d5da97903da529fe09d" title="检查几何形状是否是直线" alt="" coords="446,568,569,608"/>
+<area shape="rect" id="node6" href="$d0/d02/classcarla_1_1geom_1_1Mesh.html#a07814867b5e1b31a7af31d0c8f91b90b" title="将索引附加到索引列表。" alt="" coords="623,5,755,45"/>
+<area shape="rect" id="node7" href="$d0/d02/classcarla_1_1geom_1_1Mesh.html#a17ebc0f75528a6ccf9d1c818b12415fa" title="将顶点附加到顶点列表。" alt="" coords="623,69,755,109"/>
+<area shape="rect" id="node8" href="$d0/d02/classcarla_1_1geom_1_1Mesh.html#a8a26943588ebd1b9bbce817b039b1410" title=" " alt="" coords="623,133,755,173"/>
+</map>

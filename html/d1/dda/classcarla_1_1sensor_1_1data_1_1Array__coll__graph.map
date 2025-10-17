@@ -1,0 +1,19 @@
+<map id="carla::sensor::data::Array&lt; T &gt;" name="carla::sensor::data::Array&lt; T &gt;">
+<area shape="rect" id="node1" title="所有传感器数据的基类，包含一个项目数组。" alt="" coords="1383,286,1509,326"/>
+<area shape="rect" id="node2" href="$df/d8c/classcarla_1_1sensor_1_1SensorData.html" title="所有传感器生成数据的对象的基类" alt="" coords="1129,169,1299,195"/>
+<area shape="rect" id="node3" href="$da/d05/classEnableSharedFromThis.html" title=" " alt="" coords="799,105,957,145"/>
+<area shape="rect" id="node4" href="$d4/d8b/classcarla_1_1NonCopyable.html" title="这个类用于禁止拷贝和移动构造函数及赋值操作" alt="" coords="811,169,945,195"/>
+<area shape="rect" id="node5" title=" " alt="" coords="787,219,969,259"/>
+<area shape="rect" id="node6" title=" " alt="" coords="833,289,923,315"/>
+<area shape="rect" id="node7" title=" " alt="" coords="848,5,908,31"/>
+<area shape="rect" id="node8" href="$de/da4/classcarla_1_1geom_1_1Transform.html" title=" " alt="" coords="801,55,955,80"/>
+<area shape="rect" id="node9" href="$de/d23/classcarla_1_1geom_1_1Location.html" title=" " alt="" coords="494,97,638,123"/>
+<area shape="rect" id="node10" href="$d9/dfe/classcarla_1_1geom_1_1Vector3D.html" title=" " alt="" coords="132,100,280,125"/>
+<area shape="rect" id="node11" title=" " alt="" coords="5,64,52,89"/>
+<area shape="rect" id="node12" href="$d8/dba/classcarla_1_1geom_1_1Rotation.html" title=" " alt="" coords="304,28,447,53"/>
+<area shape="rect" id="node13" href="$d3/da0/classcarla_1_1sensor_1_1RawData.html" title="包装一个传感器生成的原始数据以及一些有用的元信息。" alt="" coords="1137,355,1291,380"/>
+<area shape="rect" id="node14" href="$d0/d0a/classcarla_1_1Buffer.html" title="一块原始数据。 请注意，如果需要更多容量，则会分配一个新的内存块，并 删除旧的内存块。这意味着默认情况下，缓冲区只能增长。要释放内存，使用 clear 或 pop。" alt="" coords="833,355,923,380"/>
+<area shape="rect" id="node15" title=" " alt="" coords="471,404,661,429"/>
+<area shape="rect" id="node16" title=" " alt="" coords="532,305,600,331"/>
+<area shape="rect" id="node17" title=" " alt="" coords="481,355,651,380"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="sensor_msgs::msg::CameraInfo::getCdrSerializedSize" name="sensor_msgs::msg::CameraInfo::getCdrSerializedSize">
+<area shape="rect" id="node1" title="This function returns the serialized size of a data depending on the buffer alignment...." alt="" coords="5,229,188,269"/>
+<area shape="rect" id="node2" href="$d7/d52/classsensor__msgs_1_1msg_1_1CameraInfo.html#a3a3ea40907930625e12ea0d1eb4d9429" title="This function copies the value in member D（设置畸变参数 D（Distortion Coefficients）" alt="" coords="247,5,430,45"/>
+<area shape="rect" id="node3" href="$d7/d52/classsensor__msgs_1_1msg_1_1CameraInfo.html#a9931319ddb9d5230719a6b413e078adf" title="This function copies the value in member distortion_model（设置畸变模型（distortion_model））" alt="" coords="247,69,430,109"/>
+<area shape="rect" id="node4" href="$d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a400852dcf9880a96d51df7ce08cc5f83" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="236,133,441,173"/>
+<area shape="rect" id="node5" href="$d7/d52/classsensor__msgs_1_1msg_1_1CameraInfo.html#a91a306bd4ad2c889a014bcea83c8b45b" title="This function copies the value in member header（）（设置 header 成员变量的值）" alt="" coords="247,197,430,237"/>
+<area shape="rect" id="node6" href="$d7/d52/classsensor__msgs_1_1msg_1_1CameraInfo.html#a26cf59c7495081f634a1dd3ae0058673" title="This function copies the value in member K（将新值拷贝到成员变量 K 中）" alt="" coords="247,261,430,301"/>
+<area shape="rect" id="node7" href="$d7/d52/classsensor__msgs_1_1msg_1_1CameraInfo.html#a1433ff7a599ff9212e98f1a81f48d7de" title="This function copies the value in member p" alt="" coords="247,325,430,365"/>
+<area shape="rect" id="node8" href="$d7/d52/classsensor__msgs_1_1msg_1_1CameraInfo.html#aa151d5fb2ae08fa45c61bf948f205d4b" title="This function copies the value in member r（将新值拷贝到成员变量 R 中）" alt="" coords="247,389,430,429"/>
+<area shape="rect" id="node9" href="$d7/d52/classsensor__msgs_1_1msg_1_1CameraInfo.html#a6ce3b3d026fec91701f6b606ea585ce7" title="This function copies the value in member roi（将新值拷贝到成员变量 roi 中）" alt="" coords="247,453,430,493"/>
+</map>

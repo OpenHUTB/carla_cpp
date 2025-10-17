@@ -1,0 +1,7 @@
+<map id="carla::traffic_manager::DeviationCrossProduct" name="carla::traffic_manager::DeviationCrossProduct">
+<area shape="rect" id="node1" title="返回车辆朝向向量与指向下一个目标路点方向向量之间的叉积（z分量值）" alt="" coords="837,13,999,53"/>
+<area shape="rect" id="node2" href="$dd/df9/classcarla_1_1traffic__manager_1_1MotionPlanStage.html#a7a57d649d96daccb2e2ee9780f24c4ec" title="更新方法。" alt="" coords="615,13,789,53"/>
+<area shape="rect" id="node3" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a6d67cce3d0e5a48056645270364fe637" title="启动线程以顺序运行交通管理器 &#160;&#160;此方法将创建一个新线程（如果尚未创建），并在该线程中顺序运行交通管理器的逻辑" alt="" coords="392,13,567,53"/>
+<area shape="rect" id="node4" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a1ffbdb0bed64f385437d2820a90286d0" title="启动交通管理器 &#160;&#160;此方法用于启动TrafficManagerLocal，开始其管理交通的功能" alt="" coords="199,5,344,60"/>
+<area shape="rect" id="node5" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a75976d36f4213ab24e79e3ea2dcd280a" title="私有构造函数，用于单例生命周期管理" alt="" coords="5,5,151,60"/>
+</map>

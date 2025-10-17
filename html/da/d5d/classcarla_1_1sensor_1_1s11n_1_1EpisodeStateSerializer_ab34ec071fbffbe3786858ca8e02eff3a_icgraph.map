@@ -1,0 +1,9 @@
+<map id="carla::sensor::s11n::EpisodeStateSerializer::DeserializeHeader" name="carla::sensor::s11n::EpisodeStateSerializer::DeserializeHeader">
+<area shape="rect" id="node1" title=" " alt="" coords="520,141,679,196"/>
+<area shape="rect" id="node2" href="$d4/d68/classcarla_1_1sensor_1_1data_1_1RawEpisodeState.html#a41c627f3fa5914603df00ae7c2acb82e" title=" " alt="" coords="272,149,472,189"/>
+<area shape="rect" id="node3" href="$d4/d68/classcarla_1_1sensor_1_1data_1_1RawEpisodeState.html#ab323af3d6eae58aaeceb6c38eefa88ce" title="获取自上一帧以来经过的模拟秒数。" alt="" coords="21,5,209,60"/>
+<area shape="rect" id="node4" href="$d4/d68/classcarla_1_1sensor_1_1data_1_1RawEpisodeState.html#aa112fa12e8546738a1bfce4ba0f9b92b" title="获取生成此数据的剧集的唯一ID。" alt="" coords="7,85,222,125"/>
+<area shape="rect" id="node5" href="$d4/d68/classcarla_1_1sensor_1_1data_1_1RawEpisodeState.html#a70898ae33e41e3511ae83d21cff6b13d" title=" " alt="" coords="6,149,223,189"/>
+<area shape="rect" id="node6" href="$d4/d68/classcarla_1_1sensor_1_1data_1_1RawEpisodeState.html#a6841c35aca82054f07da4b154b720758" title="获取进行此次测量的帧的时间戳，时间单位为秒，该时间戳由操作系统提供。" alt="" coords="11,213,218,268"/>
+<area shape="rect" id="node7" href="$d4/d68/classcarla_1_1sensor_1_1data_1_1RawEpisodeState.html#a11a23930d261981a4ef7bf407058e90a" title="获取模拟状态标志，用于表示当前模拟的一些状态情况" alt="" coords="5,292,224,347"/>
+</map>

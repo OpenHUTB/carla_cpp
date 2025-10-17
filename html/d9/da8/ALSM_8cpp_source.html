@@ -1,0 +1,584 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: ALSM.cpp 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_a8dbe3691941680fc0b6dad001059c22.html">trafficmanager</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">ALSM.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d9/da8/ALSM_8cpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;boost/pointer_cast.hpp&quot;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="../../da/d48/client_2Actor_8h.html">carla/client/Actor.h</a>&quot;</span> <span class="comment">//导入 Actor 类</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="../../d9/d18/Vehicle_8h.html">carla/client/Vehicle.h</a>&quot;</span> <span class="comment">//导入 Vehicle (车辆)类</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="../../d5/d10/Walker_8h.html">carla/client/Walker.h</a>&quot;</span> <span class="comment">//导入 Walker (行人)类</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="../../d1/d45/Constants_8h.html">carla/trafficmanager/Constants.h</a>&quot;</span> <span class="comment">//导入交通管理中的常量定义</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="../../d2/d84/LocalizationUtils_8h.html">carla/trafficmanager/LocalizationUtils.h</a>&quot;</span> <span class="comment">//导入定义相关的工具</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="../../d7/dd3/SimpleWaypoint_8h.html">carla/trafficmanager/SimpleWaypoint.h</a>&quot;</span> <span class="comment">//导入 SimpleWaypoint 类</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="../../dc/d2c/ALSM_8h.html">carla/trafficmanager/ALSM.h</a>&quot;</span> <span class="comment">//导入 ALSM 类的声明</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d9/d36/namespacecarla.html">carla</a> {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">namespace </span>traffic_manager {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//ALSM 类的构造函数，用于初始化各个模块</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>ALSM::ALSM(</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  AtomicActorSet &amp;registered_vehicles, <span class="comment">//已注册车辆的集合</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <a class="code hl_typedef" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a5be0dafc09e8417fe252af0d8be01835">BufferMap</a> &amp;buffer_map, <span class="comment">//存储交通流中路径缓存</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  TrackTraffic &amp;track_traffic, <span class="comment">//用于追踪交通的模块</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  std::vector&lt;ActorId&gt;&amp; marked_for_removal, <span class="comment">//标记即将移除的车辆 ID 列表</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  <span class="keyword">const</span> Parameters &amp;parameters, <span class="comment">//系统的参数配置</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  <span class="keyword">const</span> <a class="code hl_class" href="../../db/d1f/classcarla_1_1client_1_1World.html">cc::World</a> &amp;world, <span class="comment">//代表仿真世界</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <span class="keyword">const</span> <a class="code hl_typedef" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a238485cf980d4c8095de3e6a90ed1614">LocalMapPtr</a> &amp;local_map, <span class="comment">//本地地图指针，用于交通管理</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  SimulationState &amp;simulation_state, <span class="comment">//仿真状态</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  LocalizationStage &amp;localization_stage, <span class="comment">//定位模块</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  CollisionStage &amp;collision_stage,<span class="comment">//碰撞检测模块</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  TrafficLightStage &amp;traffic_light_stage, <span class="comment">//交通信号灯控制模块</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  MotionPlanStage &amp;motion_plan_stage, <span class="comment">//运动规划模块</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  VehicleLightStage &amp;vehicle_light_stage) <span class="comment">//车辆灯光控制模块</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  : registered_vehicles(registered_vehicles), <span class="comment">//初始化已注册车辆</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    buffer_map(buffer_map), <span class="comment">//初始化路径缓存</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    track_traffic(track_traffic), <span class="comment">//初始化交通追踪器</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    marked_for_removal(marked_for_removal), <span class="comment">//初始化将移除的车辆列表</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    parameters(parameters), <span class="comment">//初始化系统参数</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    world(world), <span class="comment">//初始化仿真世界</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    local_map(local_map), <span class="comment">//初始化本地地图</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    simulation_state(simulation_state), <span class="comment">//初始化仿真状态</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    localization_stage(localization_stage), <span class="comment">//初始化定位模块</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    collision_stage(collision_stage), <span class="comment">//初始化碰撞检测模块</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    traffic_light_stage(traffic_light_stage), <span class="comment">//初始化交通信号灯控制模块</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    motion_plan_stage(motion_plan_stage), <span class="comment">//初始化运动规划模块</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    vehicle_light_stage(vehicle_light_stage) {} <span class="comment">//初始化车辆灯光控制模块</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keywordtype">void</span> ALSM::Update() {</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  <span class="comment">//获取是否启用混合物理模式参数</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  <span class="keywordtype">bool</span> hybrid_physics_mode = parameters.GetHybridPhysicsMode();</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="comment">//定义两个集合用于存储世界中的车辆 ID 和行人 ID</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  std::set&lt;ActorId&gt; world_vehicle_ids;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  std::set&lt;ActorId&gt; world_pedestrian_ids;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <span class="comment">//存储待删除的未注册参与者的 ID 列表</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  std::vector&lt;ActorId&gt; unregistered_list_to_be_deleted;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  current_timestamp = world.<a class="code hl_function" href="../../db/d1f/classcarla_1_1client_1_1World.html#a259343e4a40aba854336762e415a4397">GetSnapshot</a>().<a class="code hl_function" href="../../d4/dc6/classcarla_1_1client_1_1WorldSnapshot.html#a52ead59d048a20a519b7c78519648c4f">GetTimestamp</a>(); <span class="comment">//获取当前时间截</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  ActorList world_actors = world.GetActors();<span class="comment">//获取当前世界中的所有参与者列表</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  <span class="comment">// 找到已经销毁的参与者并进行清理</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  <span class="keyword">const</span> ALSM::DestroyeddActors destroyed_actors = IdentifyDestroyedActors(world_actors);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  <span class="comment">//处理已注册的被销毁的参与者</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  <span class="keyword">const</span> <a class="code hl_typedef" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a36e144174a4524310723dee7ddb8e286">ActorIdSet</a> &amp;destroyed_registered = destroyed_actors.first;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>  <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;deletion_id: destroyed_registered) {</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    RemoveActor(deletion_id, <span class="keyword">true</span>); <span class="comment">//删除角色并标记为注册参与者</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  }</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  <span class="comment">//处理未注册的被销毁参与者</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="keyword">const</span> <a class="code hl_typedef" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a36e144174a4524310723dee7ddb8e286">ActorIdSet</a> &amp;destroyed_unregistered = destroyed_actors.second;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  <span class="keywordflow">for</span> (<span class="keyword">auto</span> deletion_id : destroyed_unregistered) {</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    RemoveActor(deletion_id, <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  }</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  <span class="comment">// 检查英雄参与者是否存活，如果英雄参与者已被销毁，则将其从英雄列表中移除</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  <span class="keywordflow">if</span> (hero_actors.size() != 0u) {</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <a class="code hl_typedef" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a36e144174a4524310723dee7ddb8e286">ActorIdSet</a> hero_actors_to_delete;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="comment">//遍历英雄参与者，查看它们是否已被销毁</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;hero_actor_info: hero_actors) { </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="comment">//如果在未注册销毁列表中找到英雄参与者，则标记其删除</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>      <span class="keywordflow">if</span> (destroyed_unregistered.find(hero_actor_info.first) != destroyed_unregistered.end()) {</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        hero_actors_to_delete.insert(hero_actor_info.first);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>      }</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>      <span class="comment">//如果在已注册销毁列表中找到英雄参与者，则标记其删除</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>      <span class="keywordflow">if</span> (destroyed_registered.find(hero_actor_info.first) != destroyed_registered.end()) {</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        hero_actors_to_delete.insert(hero_actor_info.first);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>      }</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    }</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="comment">//删除所有已标记的英雄参与者</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;deletion_id: hero_actors_to_delete) {</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>      hero_actors.erase(deletion_id);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    }</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>  }</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>  <span class="comment">// 扫描并识别新的未注册参与者</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>  IdentifyNewActors(world_actors);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>  <span class="comment">// 更新所有已注册的车辆的动态状态和静态属性</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>  ALSM::IdleInfo max_idle_time = std::make_pair(0u, current_timestamp.elapsed_seconds);</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  UpdateRegisteredActorsData(hybrid_physics_mode, max_idle_time);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>  <span class="comment">// 如果某辆已注册的车在某位置停留过久，则销毁该车辆</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  <span class="keywordflow">if</span> (IsVehicleStuck(max_idle_time.first)</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>      &amp;&amp; (current_timestamp.elapsed_seconds - elapsed_last_actor_destruction) &gt; DELTA_TIME_BETWEEN_DESTRUCTIONS</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>      &amp;&amp; hero_actors.find(max_idle_time.first) == hero_actors.end()) {</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="comment">// 如果车辆被卡住，且它不是英雄参与者，并且距离上次销毁的时间超过了预设的时间间隔，则销毁该车辆。</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    registered_vehicles.Destroy(max_idle_time.first); <span class="comment">// 销毁长时间停滞不动的车辆</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    RemoveActor(max_idle_time.first, <span class="keyword">true</span>); <span class="comment">//从已注册的参与者中移除该辆车</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    elapsed_last_actor_destruction = current_timestamp.elapsed_seconds;<span class="comment">//更新上一次销毁的时间</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>  }</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  <span class="comment">//分阶段销毁标记为移除的车辆</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>  <span class="keywordflow">if</span> (parameters.GetOSMMode()) {</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="comment">//如果系统处于 OSM 模式，遍历标记为移除的参与者列表</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> ActorId&amp; actor_id: marked_for_removal) {</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>      registered_vehicles.Destroy(actor_id); <span class="comment">//销毁这些标记为移除的车辆</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>      RemoveActor(actor_id, <span class="keyword">true</span>); <span class="comment">//从已注册参与者列表中移除</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    }</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    marked_for_removal.clear(); <span class="comment">//清空标记为移除的参与者列表</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>  }</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>  <span class="comment">// 更新未注册参与者的动态状态和静态属性</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>  UpdateUnregisteredActorsData();</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>}</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="comment">//识别新的参与者</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="keywordtype">void</span> ALSM::IdentifyNewActors(<span class="keyword">const</span> ActorList &amp;actor_list) {</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="comment">//遍历传入的参与者列表</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>  <span class="keywordflow">for</span> (<span class="keyword">auto</span> iter = actor_list-&gt;begin(); iter != actor_list-&gt;end(); ++iter) {</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <a class="code hl_typedef" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> actor = *iter; <span class="comment">//获取当前的参与者对象</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <a class="code hl_typedef" href="../../de/d6c/namespacecarla_1_1rpc.html#a8a3d3e920d321eca7eac112a8cacd747">ActorId</a> actor_id = actor-&gt;GetId(); <span class="comment">//获取当前参与者的唯一标识符（ID）</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="comment">// 识别新的英雄车辆</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="keywordflow">if</span> (actor-&gt;GetTypeId().front() == <span class="charliteral">&#39;v&#39;</span>) { <span class="comment">//通过其类型（ID）判断当前参与者</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>     <span class="comment">//如果没有任何已识别的英雄车辆，或者该参与者不在英雄参与者列表中</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>     <span class="keywordflow">if</span> (hero_actors.size() == 0u || hero_actors.find(actor_id) == hero_actors.end()) {</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>      <span class="comment">//遍历该参与者的所有属性</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>      <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp;&amp; attribute: actor-&gt;GetAttributes()) {</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>        <span class="comment">//如果属性的 ID 是 &quot;role_name&quot;，并且其值是 &quot;hero&quot;</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>        <span class="keywordflow">if</span> (attribute.GetId() == <span class="stringliteral">&quot;role_name&quot;</span> &amp;&amp; attribute.GetValue() == <span class="stringliteral">&quot;hero&quot;</span>) {</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>         <span class="comment">//将英雄车辆插入到英雄列表中</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>          hero_actors.insert({actor_id, actor});</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>        }</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>      }</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    }</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>  }</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="comment">//如果该参与者不在已注册车辆列表中，且不在未注册的参与者列表中</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="keywordflow">if</span> (!registered_vehicles.Contains(actor_id)</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>        &amp;&amp; unregistered_actors.find(actor_id) == unregistered_actors.end()) {</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>      <span class="comment">//将该参与者添加到未注册参与者中</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>      unregistered_actors.insert({actor_id, actor});</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    }</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>  }</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>}</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="comment">//识别已销毁的参与者</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>ALSM::DestroyeddActors ALSM::IdentifyDestroyedActors(<span class="keyword">const</span> ActorList &amp;actor_list) {</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>  ALSM::DestroyeddActors destroyed_actors; <span class="comment">//用于存储销毁的参与者 ID</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>  <a class="code hl_typedef" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a36e144174a4524310723dee7ddb8e286">ActorIdSet</a> &amp;deleted_registered = destroyed_actors.first; <span class="comment">//存储已销毁的注册车辆的 ID</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>  <a class="code hl_typedef" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a36e144174a4524310723dee7ddb8e286">ActorIdSet</a> &amp;deleted_unregistered = destroyed_actors.second; <span class="comment">//存储已销毁的未注册参与者的 ID</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>  <span class="comment">//构建当前帧中存在的参与者的哈希集合</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>  <a class="code hl_typedef" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a36e144174a4524310723dee7ddb8e286">ActorIdSet</a> current_actors;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>  <span class="keywordflow">for</span>  (<span class="keyword">auto</span> iter = actor_list-&gt;begin(); iter != actor_list-&gt;end(); ++iter) {</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    current_actors.insert((*iter)-&gt;GetId()); <span class="comment">//将当前参与者的 ID 插入集合中</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>  }</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>  <span class="comment">// 查找被销毁的已注册车辆</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>  std::vector&lt;ActorId&gt; registered_ids = registered_vehicles.GetIDList();</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>  <span class="keywordflow">for</span> (<span class="keyword">const</span> ActorId &amp;actor_id : registered_ids) {</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <span class="comment">//如果当前帧中不存在某个已注册车辆</span></div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    <span class="keywordflow">if</span> (current_actors.find(actor_id) == current_actors.end()) {</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>        <span class="comment">//将该车辆的 ID 加入到已销毁的注册车辆列表中</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>      deleted_registered.insert(actor_id);</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    }</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>  }</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>  <span class="comment">// 查找被销毁的未注册参与者</span></div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>  <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;actor_info: unregistered_actors) {</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    <span class="keyword">const</span> <a class="code hl_typedef" href="../../de/d6c/namespacecarla_1_1rpc.html#a8a3d3e920d321eca7eac112a8cacd747">ActorId</a> &amp;actor_id = actor_info.first;</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    <span class="comment">//如果当前帧中不存在某个未注册的参与者，或者该参与者已经注册为车辆</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>     <span class="keywordflow">if</span> (current_actors.find(actor_id) == current_actors.end()</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>         || registered_vehicles.Contains(actor_id)) {</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>      <span class="comment">//将该参与者的 ID 加入到已销毁的未注册参与者列表中</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>      deleted_unregistered.insert(actor_id);</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    }</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>  }</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>  <span class="comment">//返回销毁的参与者列表</span></div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>  <span class="keywordflow">return</span> destroyed_actors;</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>}</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span><span class="keywordtype">void</span> ALSM::UpdateRegisteredActorsData(<span class="keyword">const</span> <span class="keywordtype">bool</span> hybrid_physics_mode, ALSM::IdleInfo &amp;max_idle_time) {</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>  <span class="comment">//获取所有注册车辆的列表</span></div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>  std::vector&lt;ActorPtr&gt; vehicle_list = registered_vehicles.GetList();</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>  <span class="comment">//检查是否有英雄车辆存在</span></div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>  <span class="keywordtype">bool</span> hero_actor_present = hero_actors.size() != 0u;</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>  <span class="comment">//获取混合物理模式下的半径值</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>  <span class="keywordtype">float</span> physics_radius = parameters.GetHybridPhysicsRadius();</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>  <span class="comment">//计算半径的平方值</span></div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>  <span class="keywordtype">float</span> physics_radius_square = <a class="code hl_define" href="../../d1/d45/Constants_8h.html#adc79c67a861395580961f87d80f38483">SQUARE</a>(physics_radius);</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>  <span class="comment">//检查是否启用了重生功能</span></div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>  <span class="keywordtype">bool</span> is_respawn_vehicles = parameters.GetRespawnDormantVehicles();</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>  <span class="comment">//如果启用了重生功能且没有英雄车辆，将英雄车辆设置为(0,0,0)</span></div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>  <span class="keywordflow">if</span> (is_respawn_vehicles &amp;&amp; !hero_actor_present) {</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    track_traffic.SetHeroLocation(<a class="code hl_class" href="../../de/d23/classcarla_1_1geom_1_1Location.html">cg::Location</a>(0,0,0));</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>  }</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>  <span class="comment">// 首先更新英雄车辆的信息</span></div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>  <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;hero_actor_info: hero_actors){</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>     <span class="comment">//如果启用了重生功能，设置英雄车辆的当前位置</span></div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <span class="keywordflow">if</span> (is_respawn_vehicles) {</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>      track_traffic.SetHeroLocation(hero_actor_info.second-&gt;GetTransform().location);</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    }</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <span class="comment">//更新英雄车辆的数据，传入是否处于混合物理模式、英雄车辆、是否有英雄车辆存在、物理半径平方等参数</span></div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    UpdateData(hybrid_physics_mode, hero_actor_info.second, hero_actor_present, physics_radius_square);</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>  }</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>  <span class="comment">// 更新其他注册车辆的信息</span></div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>  <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a> &amp;vehicle : vehicle_list) {</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    <span class="comment">//获取车辆的 ID</span></div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    <a class="code hl_typedef" href="../../de/d6c/namespacecarla_1_1rpc.html#a8a3d3e920d321eca7eac112a8cacd747">ActorId</a> actor_id = vehicle-&gt;GetId();</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <span class="comment">//如果车辆不是英雄车辆，更新该车辆的数据</span></div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    <span class="keywordflow">if</span> (hero_actors.find(actor_id) == hero_actors.end()) {</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>      <span class="comment">//更新车辆数据</span></div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>      UpdateData(hybrid_physics_mode, vehicle, hero_actor_present, physics_radius_square);</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>      <span class="comment">//更新该车辆的空闲时间信息</span></div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>      UpdateIdleTime(max_idle_time, actor_id);</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    }</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>  }</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>}</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span> </div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span><span class="keywordtype">void</span> ALSM::UpdateData(<span class="keyword">const</span> <span class="keywordtype">bool</span> hybrid_physics_mode, <span class="keyword">const</span> <a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a> &amp;vehicle,</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>                      <span class="keyword">const</span> <span class="keywordtype">bool</span> hero_actor_present, <span class="keyword">const</span> <span class="keywordtype">float</span> physics_radius_square) {</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span> </div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>  <span class="comment">//获取车辆的ID和位置信息</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>  <a class="code hl_typedef" href="../../de/d6c/namespacecarla_1_1rpc.html#a8a3d3e920d321eca7eac112a8cacd747">ActorId</a> actor_id = vehicle-&gt;GetId();</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>  <a class="code hl_class" href="../../de/da4/classcarla_1_1geom_1_1Transform.html">cg::Transform</a> vehicle_transform = vehicle-&gt;GetTransform();</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>  <a class="code hl_class" href="../../de/d23/classcarla_1_1geom_1_1Location.html">cg::Location</a> vehicle_location = vehicle_transform.<a class="code hl_variable" href="../../de/da4/classcarla_1_1geom_1_1Transform.html#a6927848e28438e6c288faea1d75289bc">location</a>;</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>  <a class="code hl_class" href="../../d8/dba/classcarla_1_1geom_1_1Rotation.html">cg::Rotation</a> vehicle_rotation = vehicle_transform.<a class="code hl_variable" href="../../de/da4/classcarla_1_1geom_1_1Transform.html#a89dcfef603363e7fb60c917b15091122">rotation</a>;</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>  <a class="code hl_class" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">cg::Vector3D</a> vehicle_velocity = vehicle-&gt;GetVelocity();</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>  <span class="comment">//检查仿真状态中是否包含当前车辆的状态信息</span></div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>  <span class="keywordtype">bool</span> state_entry_present = simulation_state.ContainsActor(actor_id);</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span> </div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>  <span class="comment">//初始化空闲时间</span></div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>  <span class="keywordflow">if</span> (idle_time.find(actor_id) == idle_time.end() &amp;&amp; current_timestamp.elapsed_seconds != 0.0) {</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    idle_time.insert({actor_id, current_timestamp.elapsed_seconds});</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>  }</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span> </div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>  <span class="comment">// 检查当前车辆是否在英雄车辆的范围内，并在混合物理模式下启用物理仿真</span></div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>  <span class="keywordtype">bool</span> in_range_of_hero_actor = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>  <span class="keywordflow">if</span> (hero_actor_present &amp;&amp; hybrid_physics_mode) {</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;hero_actor_info: hero_actors) {</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>      <span class="keyword">const</span> <a class="code hl_typedef" href="../../de/d6c/namespacecarla_1_1rpc.html#a8a3d3e920d321eca7eac112a8cacd747">ActorId</a> &amp;hero_actor_id =  hero_actor_info.first;</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>      <span class="keywordflow">if</span> (simulation_state.ContainsActor(hero_actor_id)) {</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>        <span class="keyword">const</span> <a class="code hl_class" href="../../de/d23/classcarla_1_1geom_1_1Location.html">cg::Location</a> &amp;hero_location = simulation_state.GetLocation(hero_actor_id);</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>        <span class="keywordflow">if</span> (cg::Math::DistanceSquared(vehicle_location, hero_location) &lt; physics_radius_square) {</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>          in_range_of_hero_actor = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>          <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>        }</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>      }</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    }</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>  }</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span> </div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>  <span class="comment">//根据混合物理模式和是否在英雄车辆范围内决定是否启用物理仿真</span></div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>  <span class="keywordtype">bool</span> enable_physics = hybrid_physics_mode ? in_range_of_hero_actor : <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>  <span class="keywordflow">if</span> (!has_physics_enabled.count(actor_id) || has_physics_enabled[actor_id] != enable_physics) {</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    <span class="comment">// 如果当前车辆不是英雄车辆，则更新物理仿真状态</span></div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    <span class="keywordflow">if</span> (hero_actors.find(actor_id) == hero_actors.end()) {</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>      vehicle-&gt;SetSimulatePhysics(enable_physics);</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>      has_physics_enabled[actor_id] = enable_physics;</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>      <span class="comment">//如果启用了物理仿真，并且仿真状态中存在车辆状态信息，则设置目标速度</span></div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>      <span class="keywordflow">if</span> (enable_physics == <span class="keyword">true</span> &amp;&amp; state_entry_present) {</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>        vehicle-&gt;SetTargetVelocity(simulation_state.GetVelocity(actor_id));</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>      }</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    }</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>  }</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span> </div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>  <span class="comment">// 如果物理仿真被禁用，根据位置变化计算速度</span></div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>  <span class="comment">// 不要使用 &#39;enable_physics&#39; ，因为在这一刻关闭物理仿真并不会移除当前速度</span></div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>  <span class="comment">// 为了避免其他客户端导致的对象位置偏移问题，使用之前记录的输出位置</span></div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>  <span class="keywordflow">if</span> (state_entry_present &amp;&amp; !simulation_state.IsPhysicsEnabled(actor_id)){</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    <a class="code hl_class" href="../../de/d23/classcarla_1_1geom_1_1Location.html">cg::Location</a> previous_location = simulation_state.GetLocation(actor_id);</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    <a class="code hl_class" href="../../de/d23/classcarla_1_1geom_1_1Location.html">cg::Location</a> previous_end_location = simulation_state.GetHybridEndLocation(actor_id);</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    <a class="code hl_class" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">cg::Vector3D</a> displacement = (previous_end_location - previous_location);</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    vehicle_velocity = displacement * INV_HYBRID_DT;</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>  }</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span> </div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>  <span class="comment">// 更新运动学状态对象</span></div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>  <span class="keyword">auto</span> vehicle_ptr = boost::static_pointer_cast&lt;cc::Vehicle&gt;(vehicle);</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>  KinematicState kinematic_state{vehicle_location, vehicle_rotation,</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>                                  vehicle_velocity, vehicle_ptr-&gt;GetSpeedLimit(),</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>                                  enable_physics, vehicle-&gt;IsDormant(), <a class="code hl_class" href="../../de/d23/classcarla_1_1geom_1_1Location.html">cg::Location</a>()};</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span> </div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>  <span class="comment">// 更新交通信号状态对象</span></div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>  <a class="code hl_enumeration" href="../../de/d6c/namespacecarla_1_1rpc.html#a46c3995219197dcef2980adce8d1cfba">TrafficLightState</a> tl_state = {vehicle_ptr-&gt;GetTrafficLightState(), vehicle_ptr-&gt;IsAtTrafficLight()};</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span> </div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>  <span class="comment">// 更新仿真状态</span></div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>  <span class="keywordflow">if</span> (state_entry_present) {</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>    simulation_state.UpdateKinematicState(actor_id, kinematic_state);</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    simulation_state.UpdateTrafficLightState(actor_id, tl_state);</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>  }</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>  <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>    <span class="comment">// 如果是新车辆，添加静态属性，包括车辆的类型和边界尺寸</span></div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>    <a class="code hl_class" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">cg::Vector3D</a> dimensions = vehicle_ptr-&gt;GetBoundingBox().extent;</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>    StaticAttributes attributes{ActorType::Vehicle, dimensions.<a class="code hl_variable" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html#a954d3af57d2d79fcafc30d62e5b959fe">x</a>, dimensions.<a class="code hl_variable" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html#a5ca01ca36e9be8d143731da42df9ac1c">y</a>, dimensions.<a class="code hl_variable" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html#ab319cb76841047b082bce5047a6da98a">z</a>};</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span> </div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>    <span class="comment">// 将新的车辆及其状态添加到仿真状态中</span></div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>    simulation_state.AddActor(actor_id, kinematic_state, attributes, tl_state);</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>  }</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>}</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span> </div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span> </div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span><span class="keywordtype">void</span> ALSM::UpdateUnregisteredActorsData() {</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>  <span class="comment">//遍历所有未注册的参与者</span></div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>  <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;actor_info: unregistered_actors) {</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span> </div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    <span class="keyword">const</span> <a class="code hl_typedef" href="../../de/d6c/namespacecarla_1_1rpc.html#a8a3d3e920d321eca7eac112a8cacd747">ActorId</a> actor_id = actor_info.first; <span class="comment">//获取参与者的 ID</span></div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>    <span class="keyword">const</span> <a class="code hl_typedef" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">ActorPtr</a> actor_ptr = actor_info.second; <span class="comment">//获取参与者的指针</span></div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    <span class="keyword">const</span> std::string type_id = actor_ptr-&gt;GetTypeId(); <span class="comment">//获取参与者的类型 ID</span></div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>     </div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    <span class="keyword">const</span> <a class="code hl_class" href="../../de/da4/classcarla_1_1geom_1_1Transform.html">cg::Transform</a> actor_transform = actor_ptr-&gt;GetTransform(); <span class="comment">//获取参与者的变换信息</span></div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    <span class="keyword">const</span> <a class="code hl_class" href="../../de/d23/classcarla_1_1geom_1_1Location.html">cg::Location</a> actor_location = actor_transform.<a class="code hl_variable" href="../../de/da4/classcarla_1_1geom_1_1Transform.html#a6927848e28438e6c288faea1d75289bc">location</a>; <span class="comment">//获取参与者的位置</span></div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>    <span class="keyword">const</span> <a class="code hl_class" href="../../d8/dba/classcarla_1_1geom_1_1Rotation.html">cg::Rotation</a> actor_rotation = actor_transform.<a class="code hl_variable" href="../../de/da4/classcarla_1_1geom_1_1Transform.html#a89dcfef603363e7fb60c917b15091122">rotation</a>; <span class="comment">//获取参与者的旋转信息</span></div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>    <span class="keyword">const</span> <a class="code hl_class" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">cg::Vector3D</a> actor_velocity = actor_ptr-&gt;GetVelocity(); <span class="comment">//获取参与者的速度</span></div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>    <span class="keyword">const</span> <span class="keywordtype">bool</span> actor_is_dormant = actor_ptr-&gt;IsDormant(); <span class="comment">//判断参与者是否处于休眠状态</span></div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>    <span class="comment">//创建运动状态对象</span></div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>    KinematicState kinematic_state {actor_location, actor_rotation, actor_velocity, -1.0f, <span class="keyword">true</span>, actor_is_dormant, <a class="code hl_class" href="../../de/d23/classcarla_1_1geom_1_1Location.html">cg::Location</a>()};</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span> </div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>    <a class="code hl_enumeration" href="../../de/d6c/namespacecarla_1_1rpc.html#a46c3995219197dcef2980adce8d1cfba">TrafficLightState</a> tl_state; <span class="comment">//交通灯状态</span></div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>    <a class="code hl_enumeration" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a50f39917151d60f6feafd15ea11a3d30">ActorType</a> actor_type = ActorType::Any; <span class="comment">//参与者类型</span></div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>    <a class="code hl_class" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">cg::Vector3D</a> dimensions; <span class="comment">//参与者的尺寸</span></div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>    std::vector&lt;SimpleWaypointPtr&gt; nearest_waypoints; <span class="comment">//最近的路点</span></div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span> </div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>    <span class="comment">//检查参与者在模拟状态中是否存在条目</span></div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>    <span class="keywordtype">bool</span> state_entry_not_present = !simulation_state.ContainsActor(actor_id);</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>    <span class="keywordflow">if</span> (type_id.front() == <span class="charliteral">&#39;v&#39;</span>) { <span class="comment">//如果是车辆</span></div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>      <span class="keyword">auto</span> vehicle_ptr = boost::static_pointer_cast&lt;cc::Vehicle&gt;(actor_ptr); <span class="comment">//转换为车辆指针</span></div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>      kinematic_state.speed_limit = vehicle_ptr-&gt;GetSpeedLimit(); <span class="comment">//获取车辆的速度限制</span></div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span> </div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>      tl_state = {vehicle_ptr-&gt;GetTrafficLightState(), vehicle_ptr-&gt;IsAtTrafficLight()}; <span class="comment">//获取交通灯状态</span></div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span> </div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>      <span class="keywordflow">if</span> (state_entry_not_present) {</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>        dimensions = vehicle_ptr-&gt;GetBoundingBox().extent; <span class="comment">//获取车辆的边界框尺寸</span></div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>        actor_type = ActorType::Vehicle; <span class="comment">//设置参与者类型为车辆</span></div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>        StaticAttributes attributes {actor_type, dimensions.<a class="code hl_variable" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html#a954d3af57d2d79fcafc30d62e5b959fe">x</a>, dimensions.<a class="code hl_variable" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html#a5ca01ca36e9be8d143731da42df9ac1c">y</a>, dimensions.<a class="code hl_variable" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html#ab319cb76841047b082bce5047a6da98a">z</a>}; <span class="comment">//创建静态属性</span></div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span> </div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>        <span class="comment">//添加参与者到模拟状态</span></div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>        simulation_state.AddActor(actor_id, kinematic_state, attributes, tl_state);</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>      } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>        <span class="comment">// 更新运动状态和交通灯状态</span></div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>        simulation_state.UpdateKinematicState(actor_id, kinematic_state);</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>        simulation_state.UpdateTrafficLightState(actor_id, tl_state);</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>      }</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span> </div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>      <span class="comment">// 确定占用的路点</span></div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>      <a class="code hl_class" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">cg::Vector3D</a> extent = vehicle_ptr-&gt;GetBoundingBox().extent; <span class="comment">// 获取车辆的尺寸</span></div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>      <a class="code hl_class" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">cg::Vector3D</a> heading_vector = vehicle_ptr-&gt;GetTransform().GetForwardVector(); <span class="comment">//获取车辆的朝向向量</span></div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>     <span class="comment">// 计算车辆四个角的位置</span></div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>      std::vector&lt;cg::Location&gt; corners = {actor_location + <a class="code hl_class" href="../../de/d23/classcarla_1_1geom_1_1Location.html">cg::Location</a>(extent.<a class="code hl_variable" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html#a954d3af57d2d79fcafc30d62e5b959fe">x</a> * heading_vector),</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>                                           actor_location,</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>                                           actor_location + <a class="code hl_class" href="../../de/d23/classcarla_1_1geom_1_1Location.html">cg::Location</a>(-extent.<a class="code hl_variable" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html#a954d3af57d2d79fcafc30d62e5b959fe">x</a> * heading_vector)};</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>      <span class="keywordflow">for</span> (<a class="code hl_class" href="../../de/d23/classcarla_1_1geom_1_1Location.html">cg::Location</a> &amp;vertex: corners) {</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>        <a class="code hl_typedef" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#aee461a5a490f4fccca9a4aef84fab3b5">SimpleWaypointPtr</a> nearest_waypoint = local_map-&gt;GetWaypoint(vertex); <span class="comment">//获取最近的路点</span></div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>        nearest_waypoints.push_back(nearest_waypoint); <span class="comment">//添加到最近路点列表</span></div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>      }</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>    }</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (type_id.front() == <span class="charliteral">&#39;w&#39;</span>) { <span class="comment">//如果是行人</span></div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>      <span class="keyword">auto</span> walker_ptr = boost::static_pointer_cast&lt;cc::Walker&gt;(actor_ptr); <span class="comment">//转换为行人指针</span></div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span> </div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>      <span class="keywordflow">if</span> (state_entry_not_present) {</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>        dimensions = walker_ptr-&gt;GetBoundingBox().extent; <span class="comment">//获取行人的边界框尺寸</span></div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>        actor_type = ActorType::Pedestrian; <span class="comment">//设置参与者类型为行人</span></div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>        StaticAttributes attributes {actor_type, dimensions.<a class="code hl_variable" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html#a954d3af57d2d79fcafc30d62e5b959fe">x</a>, dimensions.<a class="code hl_variable" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html#a5ca01ca36e9be8d143731da42df9ac1c">y</a>, dimensions.<a class="code hl_variable" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html#ab319cb76841047b082bce5047a6da98a">z</a>}; <span class="comment">//创建静态属性</span></div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span> </div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>        <span class="comment">// 添加参与者到模拟状态</span></div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>        simulation_state.AddActor(actor_id, kinematic_state, attributes, tl_state);</div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>      } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>         <span class="comment">// 更新运动状态</span></div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>        simulation_state.UpdateKinematicState(actor_id, kinematic_state);</div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>      }</div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span> </div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>      <span class="comment">// 确定占用的路点</span></div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>      <a class="code hl_typedef" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#aee461a5a490f4fccca9a4aef84fab3b5">SimpleWaypointPtr</a> nearest_waypoint = local_map-&gt;GetWaypoint(actor_location); <span class="comment">//获取最近的路线</span></div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>      nearest_waypoints.push_back(nearest_waypoint); <span class="comment">//添加到最近路点列表</span></div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>    }</div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>    <span class="comment">//更新未注册参与者的网络位置</span></div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>    track_traffic.UpdateUnregisteredGridPosition(actor_id, nearest_waypoints);</div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>  }</div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>}</div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span> </div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span><span class="keywordtype">void</span> ALSM::UpdateIdleTime(std::pair&lt;ActorId, double&gt;&amp; max_idle_time, <span class="keyword">const</span> ActorId&amp; actor_id) {</div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>    <span class="comment">// 检查参与者的空闲时间是否存在于空闲时间映射中</span></div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>    <span class="keywordflow">if</span> (idle_time.find(actor_id) != idle_time.end()) {</div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>    <span class="comment">// 获取参与者的空闲持续时间</span></div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>    <span class="keywordtype">double</span> &amp;idle_duration = idle_time.at(actor_id);</div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>    <span class="comment">// 检查参与者的速度是否超过停止阈值</span></div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>    <span class="keywordflow">if</span> (simulation_state.GetVelocity(actor_id).SquaredLength() &gt; <a class="code hl_define" href="../../d1/d45/Constants_8h.html#adc79c67a861395580961f87d80f38483">SQUARE</a>(STOPPED_VELOCITY_THRESHOLD)) {</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>        <span class="comment">//如果速度超过阈值，则更新空闲时间为当前时间截</span></div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>        idle_duration = current_timestamp.elapsed_seconds;</div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span>    }</div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span> </div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span>    <span class="comment">// 检查并更新最大空闲时间</span></div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span>    <span class="keywordflow">if</span> (max_idle_time.first == 0u || max_idle_time.second &gt; idle_duration) {</div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>      max_idle_time = std::make_pair(actor_id, idle_duration);</div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>    }</div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>  }</div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>}</div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span> </div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span><span class="comment">//检查车辆是否被卡住</span></div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span><span class="keywordtype">bool</span> ALSM::IsVehicleStuck(<span class="keyword">const</span> ActorId&amp; actor_id) {</div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>  <span class="comment">// 检查参与者的空闲时间是否存在</span></div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>  <span class="keywordflow">if</span> (idle_time.find(actor_id) != idle_time.end()) {</div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span>      <span class="comment">// 计算自上次纪录以来的空闲时间增量</span></div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>      <span class="keywordtype">double</span> delta_idle_time = current_timestamp.elapsed_seconds - idle_time.at(actor_id);</div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span>      <span class="comment">// 获取交通灯状态</span></div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span>      <a class="code hl_enumeration" href="../../de/d6c/namespacecarla_1_1rpc.html#a46c3995219197dcef2980adce8d1cfba">TrafficLightState</a> tl_state = simulation_state.GetTLS(actor_id);</div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>      <span class="comment">// 检查是否超过红灯阻塞时间阈值或非红灯状态的阻塞时间阈值</span></div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>      <span class="keywordflow">if</span> ((delta_idle_time &gt;= RED_TL_BLOCKED_TIME_THRESHOLD)</div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span>    || (delta_idle_time &gt;= BLOCKED_TIME_THRESHOLD &amp;&amp; tl_state.tl_state != TLS::Red))</div>
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span>    {</div>
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span>      <span class="keywordflow">return</span> <span class="keyword">true</span>; <span class="comment">// 车辆被认为是卡住的</span></div>
+<div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span>    }</div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span>  }</div>
+<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span>  <span class="keywordflow">return</span> <span class="keyword">false</span>; <span class="comment">//车辆被没有认为是卡住的</span></div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span>}</div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span> </div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span><span class="comment">// 移除指定的参与者</span></div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span><span class="keywordtype">void</span> ALSM::RemoveActor(<span class="keyword">const</span> ActorId actor_id, <span class="keyword">const</span> <span class="keywordtype">bool</span> registered_actor) {</div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span>  <span class="comment">// 如果参与者是已注册的</span></div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span>  <span class="keywordflow">if</span> (registered_actor) {</div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span>    <span class="comment">// 从注册车辆中移除参与者</span></div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span>    registered_vehicles.Remove({actor_id});</div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span>    <span class="comment">// 从缓冲区、空闲时间、定位阶段等中移除参与者</span></div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span>    buffer_map.erase(actor_id);</div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span>    idle_time.erase(actor_id);</div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span>    localization_stage.RemoveActor(actor_id);</div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span>    collision_stage.RemoveActor(actor_id);</div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span>    traffic_light_stage.RemoveActor(actor_id);</div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span>    motion_plan_stage.RemoveActor(actor_id);</div>
+<div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span>    vehicle_light_stage.RemoveActor(actor_id);</div>
+<div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span>  }</div>
+<div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span>  <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span>    <span class="comment">// 如果参与者未注册，则从未注册参与者和英雄参与者集合中移除</span></div>
+<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span>    unregistered_actors.erase(actor_id);</div>
+<div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span>    hero_actors.erase(actor_id);</div>
+<div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span>  }</div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span> </div>
+<div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span>  <span class="comment">//从交通监控系统中删除参与者</span></div>
+<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span>  track_traffic.DeleteActor(actor_id);</div>
+<div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span>  <span class="comment">// 从仿真状态中移除参与者</span></div>
+<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span>  simulation_state.RemoveActor(actor_id);</div>
+<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span>}</div>
+<div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span> </div>
+<div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span><span class="comment">// 重置状态</span></div>
+<div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span><span class="keywordtype">void</span> ALSM::Reset() {</div>
+<div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span>  <span class="comment">// 清空未注册参与者、空闲时间、英雄参与者等数据</span></div>
+<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span>  unregistered_actors.clear();</div>
+<div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span>  idle_time.clear();</div>
+<div class="line"><a id="l00457" name="l00457"></a><span class="lineno">  457</span>  hero_actors.clear();</div>
+<div class="line"><a id="l00458" name="l00458"></a><span class="lineno">  458</span>  elapsed_last_actor_destruction = 0.0; <span class="comment">// 重置上次参与者销毁的时间</span></div>
+<div class="line"><a id="l00459" name="l00459"></a><span class="lineno">  459</span>  current_timestamp = world.GetSnapshot().GetTimestamp(); <span class="comment">// 更新当前时间截</span></div>
+<div class="line"><a id="l00460" name="l00460"></a><span class="lineno">  460</span>}</div>
+<div class="line"><a id="l00461" name="l00461"></a><span class="lineno">  461</span> </div>
+<div class="line"><a id="l00462" name="l00462"></a><span class="lineno">  462</span>} <span class="comment">// namespace traffic_manager</span></div>
+<div class="line"><a id="l00463" name="l00463"></a><span class="lineno">  463</span>} <span class="comment">// namespace carla</span></div>
+<div class="ttc" id="aALSM_8h_html"><div class="ttname"><a href="../../dc/d2c/ALSM_8h.html">ALSM.h</a></div></div>
+<div class="ttc" id="aCarlaActor_8cpp_html_acf512646b33f06951fc18015682664e4"><div class="ttname"><a href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a></div><div class="ttdeci">TSharedPtr&lt; const FActorInfo &gt; carla::rpc::ActorState UWorld Actor</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d43/CarlaActor_8cpp_source.html#l00083">CarlaActor.cpp:83</a></div></div>
+<div class="ttc" id="aConstants_8h_html"><div class="ttname"><a href="../../d1/d45/Constants_8h.html">Constants.h</a></div></div>
+<div class="ttc" id="aConstants_8h_html_adc79c67a861395580961f87d80f38483"><div class="ttname"><a href="../../d1/d45/Constants_8h.html#adc79c67a861395580961f87d80f38483">SQUARE</a></div><div class="ttdeci">#define SQUARE(a)</div><div class="ttdoc">This file contains various constants used in traffic manager arranged into sensible namespaces for re...</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d45/Constants_8h_source.html#l00013">Constants.h:13</a></div></div>
+<div class="ttc" id="aLocalizationUtils_8h_html"><div class="ttname"><a href="../../d2/d84/LocalizationUtils_8h.html">LocalizationUtils.h</a></div></div>
+<div class="ttc" id="aSimpleWaypoint_8h_html"><div class="ttname"><a href="../../d7/dd3/SimpleWaypoint_8h.html">SimpleWaypoint.h</a></div></div>
+<div class="ttc" id="aVehicle_8h_html"><div class="ttname"><a href="../../d9/d18/Vehicle_8h.html">Vehicle.h</a></div></div>
+<div class="ttc" id="aWalker_8h_html"><div class="ttname"><a href="../../d5/d10/Walker_8h.html">Walker.h</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1WorldSnapshot_html_a52ead59d048a20a519b7c78519648c4f"><div class="ttname"><a href="../../d4/dc6/classcarla_1_1client_1_1WorldSnapshot.html#a52ead59d048a20a519b7c78519648c4f">carla::client::WorldSnapshot::GetTimestamp</a></div><div class="ttdeci">const Timestamp &amp; GetTimestamp() const</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d11/WorldSnapshot_8h_source.html#l00035">WorldSnapshot.h:35</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1World_html"><div class="ttname"><a href="../../db/d1f/classcarla_1_1client_1_1World.html">carla::client::World</a></div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d5b/World_8h_source.html#l00050">World.h:50</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1World_html_a259343e4a40aba854336762e415a4397"><div class="ttname"><a href="../../db/d1f/classcarla_1_1client_1_1World.html#a259343e4a40aba854336762e415a4397">carla::client::World::GetSnapshot</a></div><div class="ttdeci">WorldSnapshot GetSnapshot() const</div><div class="ttdoc">返回当前世界的快照。 快照（Snapshot）包含了模拟世界在某一时刻的整体状态信息，例如所有参与者的位置、状态，天气情况等， 可以用于记录、对比不同时刻的世界状态或者进行一些基于特定时刻状态的分析和操...</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/dfe/World_8cpp_source.html#l00102">World.cpp:102</a></div></div>
+<div class="ttc" id="aclasscarla_1_1geom_1_1Location_html"><div class="ttname"><a href="../../de/d23/classcarla_1_1geom_1_1Location.html">carla::geom::Location</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d8b/geom_2Location_8h_source.html#l00028">geom/Location.h:28</a></div></div>
+<div class="ttc" id="aclasscarla_1_1geom_1_1Rotation_html"><div class="ttname"><a href="../../d8/dba/classcarla_1_1geom_1_1Rotation.html">carla::geom::Rotation</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d8f/Rotation_8h_source.html#l00027">Rotation.h:27</a></div></div>
+<div class="ttc" id="aclasscarla_1_1geom_1_1Transform_html"><div class="ttname"><a href="../../de/da4/classcarla_1_1geom_1_1Transform.html">carla::geom::Transform</a></div><div class="ttdef"><b>Definition:</b> <a href="../../de/d17/geom_2Transform_8h_source.html#l00026">geom/Transform.h:26</a></div></div>
+<div class="ttc" id="aclasscarla_1_1geom_1_1Transform_html_a6927848e28438e6c288faea1d75289bc"><div class="ttname"><a href="../../de/da4/classcarla_1_1geom_1_1Transform.html#a6927848e28438e6c288faea1d75289bc">carla::geom::Transform::location</a></div><div class="ttdeci">Location location</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d17/geom_2Transform_8h_source.html#l00034">geom/Transform.h:34</a></div></div>
+<div class="ttc" id="aclasscarla_1_1geom_1_1Transform_html_a89dcfef603363e7fb60c917b15091122"><div class="ttname"><a href="../../de/da4/classcarla_1_1geom_1_1Transform.html#a89dcfef603363e7fb60c917b15091122">carla::geom::Transform::rotation</a></div><div class="ttdeci">Rotation rotation</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d17/geom_2Transform_8h_source.html#l00036">geom/Transform.h:36</a></div></div>
+<div class="ttc" id="aclasscarla_1_1geom_1_1Vector3D_html"><div class="ttname"><a href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">carla::geom::Vector3D</a></div><div class="ttdef"><b>Definition:</b> <a href="../../de/d70/geom_2Vector3D_8h_source.html#l00017">geom/Vector3D.h:17</a></div></div>
+<div class="ttc" id="aclasscarla_1_1geom_1_1Vector3D_html_a5ca01ca36e9be8d143731da42df9ac1c"><div class="ttname"><a href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html#a5ca01ca36e9be8d143731da42df9ac1c">carla::geom::Vector3D::y</a></div><div class="ttdeci">float y</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d70/geom_2Vector3D_8h_source.html#l00026">geom/Vector3D.h:26</a></div></div>
+<div class="ttc" id="aclasscarla_1_1geom_1_1Vector3D_html_a954d3af57d2d79fcafc30d62e5b959fe"><div class="ttname"><a href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html#a954d3af57d2d79fcafc30d62e5b959fe">carla::geom::Vector3D::x</a></div><div class="ttdeci">float x</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d70/geom_2Vector3D_8h_source.html#l00024">geom/Vector3D.h:24</a></div></div>
+<div class="ttc" id="aclasscarla_1_1geom_1_1Vector3D_html_ab319cb76841047b082bce5047a6da98a"><div class="ttname"><a href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html#ab319cb76841047b082bce5047a6da98a">carla::geom::Vector3D::z</a></div><div class="ttdeci">float z</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d70/geom_2Vector3D_8h_source.html#l00028">geom/Vector3D.h:28</a></div></div>
+<div class="ttc" id="aclient_2Actor_8h_html"><div class="ttname"><a href="../../da/d48/client_2Actor_8h.html">Actor.h</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1rpc_html_a46c3995219197dcef2980adce8d1cfba"><div class="ttname"><a href="../../de/d6c/namespacecarla_1_1rpc.html#a46c3995219197dcef2980adce8d1cfba">carla::rpc::TrafficLightState</a></div><div class="ttdeci">TrafficLightState</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d16/LibCarla_2source_2carla_2rpc_2TrafficLightState_8h_source.html#l00016">LibCarla/source/carla/rpc/TrafficLightState.h:16</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1rpc_html_a8a3d3e920d321eca7eac112a8cacd747"><div class="ttname"><a href="../../de/d6c/namespacecarla_1_1rpc.html#a8a3d3e920d321eca7eac112a8cacd747">carla::rpc::ActorId</a></div><div class="ttdeci">uint32_t ActorId</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d89/ActorId_8h_source.html#l00020">ActorId.h:20</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1traffic__manager_html_a238485cf980d4c8095de3e6a90ed1614"><div class="ttname"><a href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a238485cf980d4c8095de3e6a90ed1614">carla::traffic_manager::LocalMapPtr</a></div><div class="ttdeci">std::shared_ptr&lt; InMemoryMap &gt; LocalMapPtr</div><div class="ttdoc">本地地图指针类型，使用智能指针管理InMemoryMap对象</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/df4/LocalizationStage_8h_source.html#l00020">LocalizationStage.h:20</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1traffic__manager_html_a36e144174a4524310723dee7ddb8e286"><div class="ttname"><a href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a36e144174a4524310723dee7ddb8e286">carla::traffic_manager::ActorIdSet</a></div><div class="ttdeci">std::unordered_set&lt; ActorId &gt; ActorIdSet</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d84/LocalizationUtils_8h_source.html#l00028">LocalizationUtils.h:28</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1traffic__manager_html_a50f39917151d60f6feafd15ea11a3d30"><div class="ttname"><a href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a50f39917151d60f6feafd15ea11a3d30">carla::traffic_manager::ActorType</a></div><div class="ttdeci">ActorType</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/d3b/SimulationState_8h_source.html#l00012">SimulationState.h:12</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1traffic__manager_html_a5be0dafc09e8417fe252af0d8be01835"><div class="ttname"><a href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a5be0dafc09e8417fe252af0d8be01835">carla::traffic_manager::BufferMap</a></div><div class="ttdeci">std::unordered_map&lt; carla::ActorId, Buffer &gt; BufferMap</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d67/CollisionStage_8h_source.html#l00045">CollisionStage.h:45</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1traffic__manager_html_ae044fb807468d2ab451698aa2ecea64a"><div class="ttname"><a href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae044fb807468d2ab451698aa2ecea64a">carla::traffic_manager::ActorPtr</a></div><div class="ttdeci">carla::SharedPtr&lt; cc::Actor &gt; ActorPtr</div><div class="ttdoc">使用别名简化代码中的命名</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dfa/AtomicActorSet_8h_source.html#l00020">AtomicActorSet.h:20</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1traffic__manager_html_aee461a5a490f4fccca9a4aef84fab3b5"><div class="ttname"><a href="../../d0/db7/namespacecarla_1_1traffic__manager.html#aee461a5a490f4fccca9a4aef84fab3b5">carla::traffic_manager::SimpleWaypointPtr</a></div><div class="ttdeci">std::shared_ptr&lt; SimpleWaypoint &gt; SimpleWaypointPtr</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/d9b/CachedSimpleWaypoint_8h_source.html#l00016">CachedSimpleWaypoint.h:16</a></div></div>
+<div class="ttc" id="anamespacecarla_html"><div class="ttname"><a href="../../d9/d36/namespacecarla.html">carla</a></div><div class="ttdoc">CARLA模拟器的主命名空间。</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d4f/Carla_8cpp_source.html#l00139">Carla.cpp:139</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

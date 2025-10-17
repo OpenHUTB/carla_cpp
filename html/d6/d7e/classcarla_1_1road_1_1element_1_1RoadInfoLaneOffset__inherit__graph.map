@@ -1,0 +1,5 @@
+<map id="carla::road::element::RoadInfoLaneOffset" name="carla::road::element::RoadInfoLaneOffset">
+<area shape="rect" id="node1" title="车道偏移记录定义了车道参考线（通常与道路参考线相同）的横向位移。 这可以用于轻松实现车道相对于道路参考线的（局部）横向位移。 特别是，这个特性可以显著地促进城市内部布局或“2+1”乡村道路布局的建模。" alt="" coords="5,167,149,207"/>
+<area shape="rect" id="node2" href="$d6/d0f/classcarla_1_1road_1_1element_1_1RoadInfo.html" title=" " alt="" coords="11,79,144,119"/>
+<area shape="rect" id="node3" href="$d4/d8b/classcarla_1_1NonCopyable.html" title="这个类用于禁止拷贝和移动构造函数及赋值操作" alt="" coords="11,5,144,31"/>
+</map>

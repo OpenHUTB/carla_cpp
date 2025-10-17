@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: LidarMeasurement.h 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_8b842c0ad24262c95de16c440fd51527.html">sensor</a></li><li class="navelem"><a class="el" href="../../dir_c1cab5d7e7d14afd616fdecacd66a589.html">data</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">LidarMeasurement.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d4/dbb/LidarMeasurement_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// de Barcelona (UAB).</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// This work is licensed under the terms of the MIT license.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">// 预处理指令，确保该头文件在整个项目编译过程中只会被包含一次</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="../../d4/deb/Debug_8h.html">carla/Debug.h</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">// 引入carla项目中与调试相关的头文件</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="../../d5/da5/rpc_2Location_8h.html">carla/rpc/Location.h</a>&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">// 引入carla项目里rpc模块下关于Location（通常用于表示位置信息）的头文件</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="../../df/dd0/Array_8h.html">carla/sensor/data/Array.h</a>&quot;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">// 引入carla项目中传感器数据里关于Array（数组相关）的头文件</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;<a class="code" href="../../d1/de3/LidarSerializer_8h.html">carla/sensor/s11n/LidarSerializer.h</a>&quot;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">// 引入carla项目中传感器序列化相关模块（s11n）里关于激光雷达序列化（LidarSerializer）的头文件</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d9/d36/namespacecarla.html">carla</a> {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">namespace </span>sensor {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">namespace </span>data {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment"></span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment">  /// Measurement produced by a Lidar. Consists of an array of 3D points plus</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">  /// some extra meta-information about the Lidar.</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="../../df/d8d/classcarla_1_1sensor_1_1data_1_1LidarMeasurement.html">   24</a></span><span class="comment"></span>  <span class="keyword">class </span><a class="code hl_class" href="../../df/d8d/classcarla_1_1sensor_1_1data_1_1LidarMeasurement.html">LidarMeasurement</a> : <span class="keyword">public</span> <a class="code hl_class" href="../../d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html">Array</a>&lt;data::LidarDetection&gt;  {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keyword">static_assert</span>(<span class="keyword">sizeof</span>(data::LidarDetection) == 4u * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>), <span class="stringliteral">&quot;Location size missmatch&quot;</span>);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment">// 使用静态断言（static_assert）检查data::LidarDetection类型的大小是否等于4倍float类型的大小，如果不相等则输出给定的错误信息（&quot;Location size missmatch&quot;）</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="../../df/d8d/classcarla_1_1sensor_1_1data_1_1LidarMeasurement.html#a677d645e83c48a6a412b1fcc35c2865c">   28</a></span>    <span class="keyword">using </span><a class="code hl_class" href="../../d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html">Super</a> = <a class="code hl_class" href="../../d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html">Array&lt;data::LidarDetection&gt;</a>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> <span class="comment">// 使用using关键字定义一个类型别名Super</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="../../df/d8d/classcarla_1_1sensor_1_1data_1_1LidarMeasurement.html#a73f4579f7fc0557cdb949b60e430a8c4">   32</a></span>    <span class="keyword">using </span><a class="code hl_class" href="../../dc/d6a/classcarla_1_1sensor_1_1s11n_1_1LidarSerializer.html">Serializer</a> = <a class="code hl_class" href="../../dc/d6a/classcarla_1_1sensor_1_1s11n_1_1LidarSerializer.html">s11n::LidarSerializer</a>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment">// 使用using关键字定义一个类型别名Serializer</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="../../df/d8d/classcarla_1_1sensor_1_1data_1_1LidarMeasurement.html#a7683adf239404dee8e8d723148998411">   35</a></span>    <span class="keyword">friend</span> <a class="code hl_variable" href="../../df/d8d/classcarla_1_1sensor_1_1data_1_1LidarMeasurement.html#a7683adf239404dee8e8d723148998411">Serializer</a>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment">// 声明s11n::LidarSerializer类为友元类，意味着LidarSerializer类可以访问LidarMeasurement类的私有和保护成员</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="../../df/d8d/classcarla_1_1sensor_1_1data_1_1LidarMeasurement.html#a9fde1d8dd752706395b6304ff6606d9e">   38</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="../../df/d8d/classcarla_1_1sensor_1_1data_1_1LidarMeasurement.html#a9fde1d8dd752706395b6304ff6606d9e">LidarMeasurement</a>(<a class="code hl_class" href="../../d3/da0/classcarla_1_1sensor_1_1RawData.html">RawData</a> &amp;&amp;<a class="code hl_function" href="../../d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html#aaba8587c9e8b3bfab47ab14b92fe2c11">data</a>)</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>      : <a class="code hl_class" href="../../d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html">Super</a>(<a class="code hl_namespace" href="../../d8/dcc/namespacestd.html">std</a>::move(<a class="code hl_function" href="../../d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html#aaba8587c9e8b3bfab47ab14b92fe2c11">data</a>), [](const <a class="code hl_class" href="../../d3/da0/classcarla_1_1sensor_1_1RawData.html">RawData</a> &amp;d) {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="../../dc/d6a/classcarla_1_1sensor_1_1s11n_1_1LidarSerializer.html#ae69b82b5fb55ff03e29e98ba2d7fd149">Serializer::GetHeaderOffset</a>(d);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    }) {}</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment">// 定义构造函数，接收一个右值引用类型的RawData（传感器原始数据）参数。</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">// 传递给父类构造函数的参数除了移动语义传入的原始数据（std::move(data)）外，还有一个匿名函数（lambda表达式）</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> <span class="comment">// 这个匿名函数以RawData类型的引用作为参数，在函数体中调用Serializer（即LidarSerializer类）的GetHeaderOffset函数</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="../../df/d8d/classcarla_1_1sensor_1_1data_1_1LidarMeasurement.html#ac6874dd8456f4ad5d9c0bb19a1f411c8">   47</a></span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../df/d8d/classcarla_1_1sensor_1_1data_1_1LidarMeasurement.html#ac6874dd8456f4ad5d9c0bb19a1f411c8">GetHeader</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="../../dc/d6a/classcarla_1_1sensor_1_1s11n_1_1LidarSerializer.html#ae5a49baca70ce28ef427df4e6a9c9be1">Serializer::DeserializeHeader</a>(<a class="code hl_function" href="../../d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html#a983393435e9f7b95abfa923448a831bd">Super::GetRawData</a>());</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    }</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment">// 定义一个常成员函数GetHeader</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="comment">// 具体做法是先通过调用父类（Super）的GetRawData函数获取原始数据，然后将其作为参数传递给Serializer（LidarSerializer类）的DeserializeHeader函数</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment">// 利用该函数进行反序列化操作来获取头部信息并返回，这样后续其他成员函数就能基于这个头部信息进行相应的操作了。</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="comment">    /// Horizontal angle of the Lidar at the time of the measurement.</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="../../df/d8d/classcarla_1_1sensor_1_1data_1_1LidarMeasurement.html#a1996c9cfc5aa0b983dc0934332153824">   56</a></span><span class="comment"></span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../df/d8d/classcarla_1_1sensor_1_1data_1_1LidarMeasurement.html#a1996c9cfc5aa0b983dc0934332153824">GetHorizontalAngle</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="../../df/d8d/classcarla_1_1sensor_1_1data_1_1LidarMeasurement.html#ac6874dd8456f4ad5d9c0bb19a1f411c8">GetHeader</a>().GetHorizontalAngle();</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    }</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> <span class="comment">// 定义一个常成员函数GetHorizontalAngle</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> <span class="comment">// 它通过先调用GetHeader函数获取头部信息，然后再调用头部信息对象的GetHorizontalAngle函数来获取具体的水平角度值并返回。</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment"></span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment">    /// Number of channels of the Lidar.</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="../../df/d8d/classcarla_1_1sensor_1_1data_1_1LidarMeasurement.html#a1fb1199206f56c0c0a0930a430062a42">   63</a></span><span class="comment"></span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../df/d8d/classcarla_1_1sensor_1_1data_1_1LidarMeasurement.html#a1fb1199206f56c0c0a0930a430062a42">GetChannelCount</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="../../df/d8d/classcarla_1_1sensor_1_1data_1_1LidarMeasurement.html#ac6874dd8456f4ad5d9c0bb19a1f411c8">GetHeader</a>().GetChannelCount();</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    }</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="comment">// 定义一个常成员函数GetChannelCount</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment">// 同样是先获取头部信息（调用GetHeader函数），再调用头部信息对象的GetChannelCount函数来获取具体的通道数量值并返回。</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment"></span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment">    /// Retrieve the number of points that @a channel generated. Points are</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment">    /// sorted by channel, so this method allows to identify the channel that</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment">    /// generated each point.</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="../../df/d8d/classcarla_1_1sensor_1_1data_1_1LidarMeasurement.html#a14bf4bcfe4c08d2940f65a217adf6e9f">   72</a></span><span class="comment"></span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../df/d8d/classcarla_1_1sensor_1_1data_1_1LidarMeasurement.html#a14bf4bcfe4c08d2940f65a217adf6e9f">GetPointCount</a>(<span class="keywordtype">size_t</span> channel)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="../../df/d8d/classcarla_1_1sensor_1_1data_1_1LidarMeasurement.html#ac6874dd8456f4ad5d9c0bb19a1f411c8">GetHeader</a>().GetPointCount(channel);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    }</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="comment">// 定义一个常成员函数GetPointCount，用于获取指定通道（由参数channel指定）所产生的点数信息。</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> <span class="comment">// 还是先获取头部信息，然后调用头部信息对象的GetPointCount函数，并传入指定的通道索引（channel）来获取对应通道的点数并返回</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> <span class="comment">// 由于点是按照通道进行排序的，所以这个函数可以帮助确定每个点是由哪个通道生成的。</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  };</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>} <span class="comment">// namespace data</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>} <span class="comment">// namespace sensor</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>} <span class="comment">// namespace carla</span></div>
+<div class="ttc" id="aArray_8h_html"><div class="ttname"><a href="../../df/dd0/Array_8h.html">Array.h</a></div></div>
+<div class="ttc" id="aDebug_8h_html"><div class="ttname"><a href="../../d4/deb/Debug_8h.html">Debug.h</a></div></div>
+<div class="ttc" id="aLidarSerializer_8h_html"><div class="ttname"><a href="../../d1/de3/LidarSerializer_8h.html">LidarSerializer.h</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1RawData_html"><div class="ttname"><a href="../../d3/da0/classcarla_1_1sensor_1_1RawData.html">carla::sensor::RawData</a></div><div class="ttdoc">包装一个传感器生成的原始数据以及一些有用的元信息。</div><div class="ttdef"><b>Definition:</b> <a href="../../dc/d62/RawData_8h_source.html#l00020">RawData.h:20</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1data_1_1Array_html"><div class="ttname"><a href="../../d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html">carla::sensor::data::Array</a></div><div class="ttdoc">所有传感器数据的基类，包含一个项目数组。</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dd0/Array_8h_source.html#l00023">Array.h:23</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1data_1_1Array_html_a983393435e9f7b95abfa923448a831bd"><div class="ttname"><a href="../../d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html#a983393435e9f7b95abfa923448a831bd">carla::sensor::data::Array&lt; data::LidarDetection &gt;::GetRawData</a></div><div class="ttdeci">const RawData &amp; GetRawData() const</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dd0/Array_8h_source.html#l00162">Array.h:162</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1data_1_1Array_html_aaba8587c9e8b3bfab47ab14b92fe2c11"><div class="ttname"><a href="../../d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html#aaba8587c9e8b3bfab47ab14b92fe2c11">carla::sensor::data::Array&lt; data::LidarDetection &gt;::data</a></div><div class="ttdeci">value_type * data()</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dd0/Array_8h_source.html#l00109">Array.h:109</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1data_1_1LidarMeasurement_html"><div class="ttname"><a href="../../df/d8d/classcarla_1_1sensor_1_1data_1_1LidarMeasurement.html">carla::sensor::data::LidarMeasurement</a></div><div class="ttdoc">Measurement produced by a Lidar.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/dbb/LidarMeasurement_8h_source.html#l00024">LidarMeasurement.h:24</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1data_1_1LidarMeasurement_html_a14bf4bcfe4c08d2940f65a217adf6e9f"><div class="ttname"><a href="../../df/d8d/classcarla_1_1sensor_1_1data_1_1LidarMeasurement.html#a14bf4bcfe4c08d2940f65a217adf6e9f">carla::sensor::data::LidarMeasurement::GetPointCount</a></div><div class="ttdeci">auto GetPointCount(size_t channel) const</div><div class="ttdoc">Retrieve the number of points that channel generated.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/dbb/LidarMeasurement_8h_source.html#l00072">LidarMeasurement.h:72</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1data_1_1LidarMeasurement_html_a1996c9cfc5aa0b983dc0934332153824"><div class="ttname"><a href="../../df/d8d/classcarla_1_1sensor_1_1data_1_1LidarMeasurement.html#a1996c9cfc5aa0b983dc0934332153824">carla::sensor::data::LidarMeasurement::GetHorizontalAngle</a></div><div class="ttdeci">auto GetHorizontalAngle() const</div><div class="ttdoc">Horizontal angle of the Lidar at the time of the measurement.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/dbb/LidarMeasurement_8h_source.html#l00056">LidarMeasurement.h:56</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1data_1_1LidarMeasurement_html_a1fb1199206f56c0c0a0930a430062a42"><div class="ttname"><a href="../../df/d8d/classcarla_1_1sensor_1_1data_1_1LidarMeasurement.html#a1fb1199206f56c0c0a0930a430062a42">carla::sensor::data::LidarMeasurement::GetChannelCount</a></div><div class="ttdeci">auto GetChannelCount() const</div><div class="ttdoc">Number of channels of the Lidar.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/dbb/LidarMeasurement_8h_source.html#l00063">LidarMeasurement.h:63</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1data_1_1LidarMeasurement_html_a7683adf239404dee8e8d723148998411"><div class="ttname"><a href="../../df/d8d/classcarla_1_1sensor_1_1data_1_1LidarMeasurement.html#a7683adf239404dee8e8d723148998411">carla::sensor::data::LidarMeasurement::Serializer</a></div><div class="ttdeci">friend Serializer</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/dbb/LidarMeasurement_8h_source.html#l00035">LidarMeasurement.h:35</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1data_1_1LidarMeasurement_html_a9fde1d8dd752706395b6304ff6606d9e"><div class="ttname"><a href="../../df/d8d/classcarla_1_1sensor_1_1data_1_1LidarMeasurement.html#a9fde1d8dd752706395b6304ff6606d9e">carla::sensor::data::LidarMeasurement::LidarMeasurement</a></div><div class="ttdeci">LidarMeasurement(RawData &amp;&amp;data)</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/dbb/LidarMeasurement_8h_source.html#l00038">LidarMeasurement.h:38</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1data_1_1LidarMeasurement_html_ac6874dd8456f4ad5d9c0bb19a1f411c8"><div class="ttname"><a href="../../df/d8d/classcarla_1_1sensor_1_1data_1_1LidarMeasurement.html#ac6874dd8456f4ad5d9c0bb19a1f411c8">carla::sensor::data::LidarMeasurement::GetHeader</a></div><div class="ttdeci">auto GetHeader() const</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/dbb/LidarMeasurement_8h_source.html#l00047">LidarMeasurement.h:47</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1s11n_1_1LidarSerializer_html"><div class="ttname"><a href="../../dc/d6a/classcarla_1_1sensor_1_1s11n_1_1LidarSerializer.html">carla::sensor::s11n::LidarSerializer</a></div><div class="ttdoc">Serializes the data generated by Lidar sensors.</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/de3/LidarSerializer_8h_source.html#l00075">LidarSerializer.h:75</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1s11n_1_1LidarSerializer_html_ae5a49baca70ce28ef427df4e6a9c9be1"><div class="ttname"><a href="../../dc/d6a/classcarla_1_1sensor_1_1s11n_1_1LidarSerializer.html#ae5a49baca70ce28ef427df4e6a9c9be1">carla::sensor::s11n::LidarSerializer::DeserializeHeader</a></div><div class="ttdeci">static LidarHeaderView DeserializeHeader(const RawData &amp;data)</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/de3/LidarSerializer_8h_source.html#l00078">LidarSerializer.h:78</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1s11n_1_1LidarSerializer_html_ae69b82b5fb55ff03e29e98ba2d7fd149"><div class="ttname"><a href="../../dc/d6a/classcarla_1_1sensor_1_1s11n_1_1LidarSerializer.html#ae69b82b5fb55ff03e29e98ba2d7fd149">carla::sensor::s11n::LidarSerializer::GetHeaderOffset</a></div><div class="ttdeci">static size_t GetHeaderOffset(const RawData &amp;data)</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/de3/LidarSerializer_8h_source.html#l00085">LidarSerializer.h:85</a></div></div>
+<div class="ttc" id="anamespacecarla_html"><div class="ttname"><a href="../../d9/d36/namespacecarla.html">carla</a></div><div class="ttdoc">CARLA模拟器的主命名空间。</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d4f/Carla_8cpp_source.html#l00139">Carla.cpp:139</a></div></div>
+<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="../../d8/dcc/namespacestd.html">std</a></div><div class="ttdef"><b>Definition:</b> <a href="../../df/d06/CarlaRecorderCollision_8h_source.html#l00030">CarlaRecorderCollision.h:31</a></div></div>
+<div class="ttc" id="arpc_2Location_8h_html"><div class="ttname"><a href="../../d5/da5/rpc_2Location_8h.html">Location.h</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: CarlaLineInvasionPublisher.h 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_087ce8304d10c4897e4acbeac1a6fcc8.html">ros2</a></li><li class="navelem"><a class="el" href="../../dir_383a5740fdf161cbe25505c91e409c8e.html">publishers</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">CarlaLineInvasionPublisher.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../da/dff/CarlaLineInvasionPublisher_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2022 Computer Vision Center (CVC) at the Universitat Autonoma de Barcelona (UAB).</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// This work is licensed under the terms of the MIT license.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">// For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="../../da/dff/CarlaLineInvasionPublisher_8h.html#acbf3245277a73b810032219100559ae2">    6</a></span><span class="preprocessor">#define _GLIBCXX_USE_CXX11_ABI 0</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="../../de/d7a/CarlaPublisher_8h.html">CarlaPublisher.h</a>&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d9/d36/namespacecarla.html">carla</a> {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d8/dc9/namespaceros2.html">ros2</a> {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> <span class="comment">// 前向声明一个名为 CarlaLineInvasionPublisherImpl 的结构体，</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        <span class="comment">// 通常这样做是因为在当前编译单元中暂时不需要知道该结构体的完整定义（可能其定义在其他源文件中），</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        <span class="comment">// 但在类中又需要以指针等形式使用它，先声明一下告诉编译器它是存在的结构体类型即可</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  <span class="keyword">struct </span>CarlaLineInvasionPublisherImpl;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">// 定义 CarlaLineInvasionPublisher 类，它继承自 CarlaPublisher 类，意味着它会继承 CarlaPublisher 的公有成员和接口等，</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="comment">// 并在此基础上可能扩展自己特有的功能，这个类大概率是用于在 ROS2 环境下发布某种和 &quot;line invasion&quot;（线入侵，推测是和自动驾驶等领域相关概念）相关的消息</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="../../df/dce/classcarla_1_1ros2_1_1CarlaLineInvasionPublisher.html">   20</a></span>  <span class="keyword">class </span><a class="code hl_class" href="../../df/dce/classcarla_1_1ros2_1_1CarlaLineInvasionPublisher.html">CarlaLineInvasionPublisher</a> : <span class="keyword">public</span> <a class="code hl_class" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html">CarlaPublisher</a> {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">public</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> <span class="comment">// 构造函数，用于创建 CarlaLineInvasionPublisher 类的对象，</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>                <span class="comment">// 接收两个可选的参数，ros_name 默认值为空字符串，parent 默认值为 &quot;&quot;，可用于初始化对象相关属性，比如设置发布者在 ROS2 中的名称等</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>      <a class="code hl_class" href="../../df/dce/classcarla_1_1ros2_1_1CarlaLineInvasionPublisher.html">CarlaLineInvasionPublisher</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* ros_name = <span class="stringliteral">&quot;&quot;</span>, <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a0f2175762993c5eec161b8f304c59bb5">parent</a> = <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> <span class="comment">// 析构函数，用于在对象生命周期结束时进行资源清理等操作，比如释放内存、关闭文件句柄等相关资源，</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>                <span class="comment">// 这里会释放该类对象所占用的相关资源（具体取决于类内部的实现以及其包含的成员等情况）</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>      <a class="code hl_function" href="../../df/dce/classcarla_1_1ros2_1_1CarlaLineInvasionPublisher.html#a76420d958bcf53c0d4cde11c306fb1c1">~CarlaLineInvasionPublisher</a>();</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> <span class="comment">// 析构函数，用于在对象生命周期结束时进行资源清理等操作，比如释放内存、关闭文件句柄等相关资源，</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>                <span class="comment">// 这里会释放该类对象所占用的相关资源（具体取决于类内部的实现以及其包含的成员等情况）</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>      <a class="code hl_class" href="../../df/dce/classcarla_1_1ros2_1_1CarlaLineInvasionPublisher.html">CarlaLineInvasionPublisher</a>(<span class="keyword">const</span> <a class="code hl_class" href="../../df/dce/classcarla_1_1ros2_1_1CarlaLineInvasionPublisher.html">CarlaLineInvasionPublisher</a>&amp;);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">// 拷贝赋值运算符重载，用于将一个同类型的对象赋值给当前对象，</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>                <span class="comment">// 返回当前对象的引用，以便可以进行连续赋值操作（如 a = b = c; 这样的语法形式），同样如果没有显式定义，编译器会生成默认版本</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>      <a class="code hl_class" href="../../df/dce/classcarla_1_1ros2_1_1CarlaLineInvasionPublisher.html">CarlaLineInvasionPublisher</a>&amp; <a class="code hl_function" href="../../df/dce/classcarla_1_1ros2_1_1CarlaLineInvasionPublisher.html#acb5337e4ea5f53ac09384ee8e06f7012">operator=</a>(<span class="keyword">const</span> <a class="code hl_class" href="../../df/dce/classcarla_1_1ros2_1_1CarlaLineInvasionPublisher.html">CarlaLineInvasionPublisher</a>&amp;);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="comment">// 移动构造函数，用于通过 &quot;窃取&quot; 其他同类型对象的资源来初始化新对象，而不是进行拷贝操作，</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>                <span class="comment">// 这样可以提高效率，特别是对于包含大量资源（如动态分配内存等）的对象，参数是右值引用类型，表示可以接收临时对象等即将销毁的资源</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>      <a class="code hl_class" href="../../df/dce/classcarla_1_1ros2_1_1CarlaLineInvasionPublisher.html">CarlaLineInvasionPublisher</a>(<a class="code hl_class" href="../../df/dce/classcarla_1_1ros2_1_1CarlaLineInvasionPublisher.html">CarlaLineInvasionPublisher</a>&amp;&amp;);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment">// 移动赋值运算符重载，类似移动构造函数的作用，将一个右值引用类型的同类型对象的资源转移给当前对象，</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>                <span class="comment">// 并返回当前对象的引用，实现高效的资源转移赋值操作，同样是为了优化性能，避免不必要的拷贝</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>      <a class="code hl_class" href="../../df/dce/classcarla_1_1ros2_1_1CarlaLineInvasionPublisher.html">CarlaLineInvasionPublisher</a>&amp; <a class="code hl_function" href="../../df/dce/classcarla_1_1ros2_1_1CarlaLineInvasionPublisher.html#acb5337e4ea5f53ac09384ee8e06f7012">operator=</a>(<a class="code hl_class" href="../../df/dce/classcarla_1_1ros2_1_1CarlaLineInvasionPublisher.html">CarlaLineInvasionPublisher</a>&amp;&amp;);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment">// 用于进行一些初始化相关的操作，比如初始化 ROS2 发布者、连接到相关的 ROS2 节点等，</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>                <span class="comment">// 返回一个 bool 值，用于指示初始化是否成功，如果返回 true 表示初始化操作顺利完成，否则表示出现问题</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>      <span class="keywordtype">bool</span> <a class="code hl_function" href="../../df/dce/classcarla_1_1ros2_1_1CarlaLineInvasionPublisher.html#a594dd8d521c2b0c6f5585dce6ea78125">Init</a>();</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">// 用于进行一些初始化相关的操作，比如初始化 ROS2 发布者、连接到相关的 ROS2 节点等，</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>                <span class="comment">// 返回一个 bool 值，用于指示初始化是否成功，如果返回 true 表示初始化操作顺利完成，否则表示出现问题</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>      <span class="keywordtype">bool</span> <a class="code hl_function" href="../../df/dce/classcarla_1_1ros2_1_1CarlaLineInvasionPublisher.html#a8996e18a6e0ff08e0c212483929ad06a">Publish</a>();</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment">// 用于设置要发布的数据，接收三个参数，分别是表示时间的秒数（int32_t 类型）、纳秒数（uint32_t 类型）以及数据指针（指向 int32_t 类型数组，推测是具体的 &quot;line invasion&quot; 相关数据内容），</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>                <span class="comment">// 这个函数的作用是准备好要发布的数据，以便后续调用 Publish 函数进行发布操作</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>      <span class="keywordtype">void</span> <a class="code hl_function" href="../../df/dce/classcarla_1_1ros2_1_1CarlaLineInvasionPublisher.html#a73fa3618ac6bdfefc5b468ba53e1acc7">SetData</a>(int32_t seconds, uint32_t nanoseconds, <span class="keyword">const</span> int32_t* data);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="comment">// 重写了基类（CarlaPublisher）中的虚函数 type，用于返回该发布者所发布消息的类型名称，</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>                <span class="comment">// 在这个类中固定返回 &quot;line invasion&quot;，表明发布的是和 &quot;线入侵&quot; 相关的消息类型</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="../../df/dce/classcarla_1_1ros2_1_1CarlaLineInvasionPublisher.html#a367a82cd1fcf6cd4fc5db56ab24fb263">   51</a></span>      <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="../../df/dce/classcarla_1_1ros2_1_1CarlaLineInvasionPublisher.html#a367a82cd1fcf6cd4fc5db56ab24fb263">type</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <span class="stringliteral">&quot;line invasion&quot;</span>; }</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> <span class="comment">// 使用 std::shared_ptr 智能指针来管理 CarlaLineInvasionPublisherImpl 类型的对象，</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>                <span class="comment">// 这样可以方便地进行内存管理，避免手动释放内存导致的内存泄漏等问题，同时可以实现多个对象共享同一份资源（如果需要的话）</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="../../df/dce/classcarla_1_1ros2_1_1CarlaLineInvasionPublisher.html#aa9f5877b879db8710ddbe22f0da2c22d">   56</a></span>      std::shared_ptr&lt;CarlaLineInvasionPublisherImpl&gt; <a class="code hl_variable" href="../../df/dce/classcarla_1_1ros2_1_1CarlaLineInvasionPublisher.html#aa9f5877b879db8710ddbe22f0da2c22d">_impl</a>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  };</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>}</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>}</div>
+<div class="ttc" id="aCarlaPublisher_8h_html"><div class="ttname"><a href="../../de/d7a/CarlaPublisher_8h.html">CarlaPublisher.h</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaLineInvasionPublisher_html"><div class="ttname"><a href="../../df/dce/classcarla_1_1ros2_1_1CarlaLineInvasionPublisher.html">carla::ros2::CarlaLineInvasionPublisher</a></div><div class="ttdef"><b>Definition:</b> <a href="../../da/dff/CarlaLineInvasionPublisher_8h_source.html#l00020">CarlaLineInvasionPublisher.h:20</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaLineInvasionPublisher_html_a367a82cd1fcf6cd4fc5db56ab24fb263"><div class="ttname"><a href="../../df/dce/classcarla_1_1ros2_1_1CarlaLineInvasionPublisher.html#a367a82cd1fcf6cd4fc5db56ab24fb263">carla::ros2::CarlaLineInvasionPublisher::type</a></div><div class="ttdeci">const char * type() const override</div><div class="ttdef"><b>Definition:</b> <a href="../../da/dff/CarlaLineInvasionPublisher_8h_source.html#l00051">CarlaLineInvasionPublisher.h:51</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaLineInvasionPublisher_html_a594dd8d521c2b0c6f5585dce6ea78125"><div class="ttname"><a href="../../df/dce/classcarla_1_1ros2_1_1CarlaLineInvasionPublisher.html#a594dd8d521c2b0c6f5585dce6ea78125">carla::ros2::CarlaLineInvasionPublisher::Init</a></div><div class="ttdeci">bool Init()</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/d01/CarlaLineInvasionPublisher_8cpp_source.html#l00048">CarlaLineInvasionPublisher.cpp:48</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaLineInvasionPublisher_html_a73fa3618ac6bdfefc5b468ba53e1acc7"><div class="ttname"><a href="../../df/dce/classcarla_1_1ros2_1_1CarlaLineInvasionPublisher.html#a73fa3618ac6bdfefc5b468ba53e1acc7">carla::ros2::CarlaLineInvasionPublisher::SetData</a></div><div class="ttdeci">void SetData(int32_t seconds, uint32_t nanoseconds, const int32_t *data)</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/d01/CarlaLineInvasionPublisher_8cpp_source.html#l00183">CarlaLineInvasionPublisher.cpp:183</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaLineInvasionPublisher_html_a76420d958bcf53c0d4cde11c306fb1c1"><div class="ttname"><a href="../../df/dce/classcarla_1_1ros2_1_1CarlaLineInvasionPublisher.html#a76420d958bcf53c0d4cde11c306fb1c1">carla::ros2::CarlaLineInvasionPublisher::~CarlaLineInvasionPublisher</a></div><div class="ttdeci">~CarlaLineInvasionPublisher()</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/d01/CarlaLineInvasionPublisher_8cpp_source.html#l00202">CarlaLineInvasionPublisher.cpp:202</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaLineInvasionPublisher_html_a8996e18a6e0ff08e0c212483929ad06a"><div class="ttname"><a href="../../df/dce/classcarla_1_1ros2_1_1CarlaLineInvasionPublisher.html#a8996e18a6e0ff08e0c212483929ad06a">carla::ros2::CarlaLineInvasionPublisher::Publish</a></div><div class="ttdeci">bool Publish()</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/d01/CarlaLineInvasionPublisher_8cpp_source.html#l00104">CarlaLineInvasionPublisher.cpp:104</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaLineInvasionPublisher_html_aa9f5877b879db8710ddbe22f0da2c22d"><div class="ttname"><a href="../../df/dce/classcarla_1_1ros2_1_1CarlaLineInvasionPublisher.html#aa9f5877b879db8710ddbe22f0da2c22d">carla::ros2::CarlaLineInvasionPublisher::_impl</a></div><div class="ttdeci">std::shared_ptr&lt; CarlaLineInvasionPublisherImpl &gt; _impl</div><div class="ttdef"><b>Definition:</b> <a href="../../da/dff/CarlaLineInvasionPublisher_8h_source.html#l00056">CarlaLineInvasionPublisher.h:56</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaLineInvasionPublisher_html_acb5337e4ea5f53ac09384ee8e06f7012"><div class="ttname"><a href="../../df/dce/classcarla_1_1ros2_1_1CarlaLineInvasionPublisher.html#acb5337e4ea5f53ac09384ee8e06f7012">carla::ros2::CarlaLineInvasionPublisher::operator=</a></div><div class="ttdeci">CarlaLineInvasionPublisher &amp; operator=(const CarlaLineInvasionPublisher &amp;)</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/d01/CarlaLineInvasionPublisher_8cpp_source.html#l00226">CarlaLineInvasionPublisher.cpp:226</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaPublisher_html"><div class="ttname"><a href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html">carla::ros2::CarlaPublisher</a></div><div class="ttdef"><b>Definition:</b> <a href="../../de/d7a/CarlaPublisher_8h_source.html#l00013">CarlaPublisher.h:13</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaPublisher_html_a0f2175762993c5eec161b8f304c59bb5"><div class="ttname"><a href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a0f2175762993c5eec161b8f304c59bb5">carla::ros2::CarlaPublisher::parent</a></div><div class="ttdeci">const std::string &amp; parent() const</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d7a/CarlaPublisher_8h_source.html#l00017">CarlaPublisher.h:17</a></div></div>
+<div class="ttc" id="anamespacecarla_html"><div class="ttname"><a href="../../d9/d36/namespacecarla.html">carla</a></div><div class="ttdoc">CARLA模拟器的主命名空间。</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d4f/Carla_8cpp_source.html#l00139">Carla.cpp:139</a></div></div>
+<div class="ttc" id="anamespaceros2_html"><div class="ttname"><a href="../../d8/dc9/namespaceros2.html">ros2</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

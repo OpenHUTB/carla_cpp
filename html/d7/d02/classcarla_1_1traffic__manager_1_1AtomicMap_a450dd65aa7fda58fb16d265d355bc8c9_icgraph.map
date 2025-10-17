@@ -1,0 +1,15 @@
+<map id="carla::traffic_manager::AtomicMap::RemoveEntry" name="carla::traffic_manager::AtomicMap::RemoveEntry">
+<area shape="rect" id="node1" title="从映射中移除指定的键及其对应的值。" alt="" coords="1380,169,1557,209"/>
+<area shape="rect" id="node2" href="$d6/ddb/classcarla_1_1traffic__manager_1_1Parameters.html#a81b479b6de75d12338af05f0221c2b84" title="移除路线的方法" alt="" coords="1097,5,1332,45"/>
+<area shape="rect" id="node8" href="$d6/ddb/classcarla_1_1traffic__manager_1_1Parameters.html#ab3db4b7828e033d718a1b2b979a29281" title="移除一组点的方法" alt="" coords="1106,341,1323,381"/>
+<area shape="rect" id="node10" href="$d6/ddb/classcarla_1_1traffic__manager_1_1Parameters.html#ab39a1c157b48086f38ab30d5b0a00c81" title="设置车辆的精确期望速度" alt="" coords="1113,133,1316,173"/>
+<area shape="rect" id="node11" href="$d6/ddb/classcarla_1_1traffic__manager_1_1Parameters.html#ad07f282e83ebe6e3bc05aeb5270ac902" title="设置车辆相对于速度限制的速度降低百分比 如果小于0，则表示速度增加百分比" alt="" coords="1103,198,1327,253"/>
+<area shape="rect" id="node12" href="$d6/ddb/classcarla_1_1traffic__manager_1_1Parameters.html#a5d3d88964cd7b988585d3276e692cfa2" title="更新已设置路线的方法" alt="" coords="1101,69,1329,109"/>
+<area shape="rect" id="node13" href="$d6/ddb/classcarla_1_1traffic__manager_1_1Parameters.html#a4390412aa0025680771e33f4737d007b" title="更新已设置的点列表的方法" alt="" coords="1109,277,1320,317"/>
+<area shape="rect" id="node3" href="$d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#a22a54c0476fface2f2838a56a75fbc90" title=" " alt="" coords="841,69,1049,109"/>
+<area shape="rect" id="node4" href="$d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#acf066b922ba5c21c6b6ee23d35731d91" title="更新方法。" alt="" coords="615,173,793,213"/>
+<area shape="rect" id="node5" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a6d67cce3d0e5a48056645270364fe637" title="启动线程以顺序运行交通管理器 &#160;&#160;此方法将创建一个新线程（如果尚未创建），并在该线程中顺序运行交通管理器的逻辑" alt="" coords="392,173,567,213"/>
+<area shape="rect" id="node6" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a1ffbdb0bed64f385437d2820a90286d0" title="启动交通管理器 &#160;&#160;此方法用于启动TrafficManagerLocal，开始其管理交通的功能" alt="" coords="199,166,344,221"/>
+<area shape="rect" id="node7" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a75976d36f4213ab24e79e3ea2dcd280a" title="私有构造函数，用于单例生命周期管理" alt="" coords="5,166,151,221"/>
+<area shape="rect" id="node9" href="$d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#a4cce09a8116d4faf0f718fb24d1c3191" title=" " alt="" coords="845,277,1046,317"/>
+</map>

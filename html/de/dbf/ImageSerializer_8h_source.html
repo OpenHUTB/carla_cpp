@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: ImageSerializer.h 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_8b842c0ad24262c95de16c440fd51527.html">sensor</a></li><li class="navelem"><a class="el" href="../../dir_b71b58631e6fc4802964ac57c42fdaac.html">s11n</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">ImageSerializer.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../de/dbf/ImageSerializer_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// de Barcelona (UAB).</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// This work is licensed under the terms of the MIT license.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">// 预处理指令，用于确保该头文件在整个项目的编译过程中只会被包含一次</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="../../de/d5c/Memory_8h.html">carla/Memory.h</a>&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">// 引入carla项目中与内存管理相关的头文件</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="../../dc/d62/RawData_8h.html">carla/sensor/RawData.h</a>&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">// 引入carla项目里有关传感器原始数据（RawData）的头文件</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">// 引入C++标准库中用于定义固定宽度整数类型的头文件</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;cstring&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">// 引入C++标准库中包含字符串处理以及内存操作相关函数（比如memcpy等函数）的头文件，后续代码中可以利用这些函数来进行内存中数据的拷贝等操作。</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d9/d36/namespacecarla.html">carla</a> {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">namespace </span>sensor {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  <span class="keyword">class </span>SensorData;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment">// 前向声明SensorData类</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">namespace </span>s11n {</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment"></span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="comment">  /// Serializes image buffers generated by camera sensors.</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="../../db/dba/classcarla_1_1sensor_1_1s11n_1_1ImageSerializer.html">   28</a></span><span class="comment"></span>  <span class="keyword">class </span><a class="code hl_class" href="../../db/dba/classcarla_1_1sensor_1_1s11n_1_1ImageSerializer.html">ImageSerializer</a> {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#pragma pack(push, 1)</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment">// 这是一个预处理指令，用于设置结构体的字节对齐方式为1字节对齐</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="../../d2/d05/structcarla_1_1sensor_1_1s11n_1_1ImageSerializer_1_1ImageHeader.html">   34</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="../../d2/d05/structcarla_1_1sensor_1_1s11n_1_1ImageSerializer_1_1ImageHeader.html">ImageHeader</a> {</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="../../d2/d05/structcarla_1_1sensor_1_1s11n_1_1ImageSerializer_1_1ImageHeader.html#a47df42de092d4fec9094e241d80fda55">   35</a></span>      uint32_t <a class="code hl_variable" href="../../d2/d05/structcarla_1_1sensor_1_1s11n_1_1ImageSerializer_1_1ImageHeader.html#a47df42de092d4fec9094e241d80fda55">width</a>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment">// 定义一个32位无符号整数类型的成员变量</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="../../d2/d05/structcarla_1_1sensor_1_1s11n_1_1ImageSerializer_1_1ImageHeader.html#a804fe87291355b356a8c24b30fae4a63">   37</a></span>      uint32_t <a class="code hl_variable" href="../../d2/d05/structcarla_1_1sensor_1_1s11n_1_1ImageSerializer_1_1ImageHeader.html#a804fe87291355b356a8c24b30fae4a63">height</a>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> <span class="comment">// 同样是32位无符号整数类型的成员变量</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="../../d2/d05/structcarla_1_1sensor_1_1s11n_1_1ImageSerializer_1_1ImageHeader.html#a50c84d3ccb63af9988a91579765bb73f">   39</a></span>      <span class="keywordtype">float</span> <a class="code hl_variable" href="../../d2/d05/structcarla_1_1sensor_1_1s11n_1_1ImageSerializer_1_1ImageHeader.html#a50c84d3ccb63af9988a91579765bb73f">fov_angle</a>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> <span class="comment">// 定义一个单精度浮点数类型的成员变量</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    };</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#pragma pack(pop)</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">// 恢复之前的默认字节对齐方式，取消掉由#pragma pack(push, 1)所设置的紧凑对齐状态</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="../../db/dba/classcarla_1_1sensor_1_1s11n_1_1ImageSerializer.html#adc449be63227af3b01dcfebec691eda2">   45</a></span>    <span class="keyword">constexpr</span> <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_variable" href="../../db/dba/classcarla_1_1sensor_1_1s11n_1_1ImageSerializer.html#adc449be63227af3b01dcfebec691eda2">header_offset</a> = <span class="keyword">sizeof</span>(<a class="code hl_struct" href="../../d2/d05/structcarla_1_1sensor_1_1s11n_1_1ImageSerializer_1_1ImageHeader.html">ImageHeader</a>);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> <span class="comment">// 使用constexpr关键字定义一个静态常量，将其初始化为ImageHeader结构体的大小（字节数）。</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="../../db/dba/classcarla_1_1sensor_1_1s11n_1_1ImageSerializer.html#aa3fdfba42660f9865b1967194a34b755">   48</a></span>    <span class="keyword">static</span> <span class="keyword">const</span> <a class="code hl_struct" href="../../d2/d05/structcarla_1_1sensor_1_1s11n_1_1ImageSerializer_1_1ImageHeader.html">ImageHeader</a> &amp;<a class="code hl_function" href="../../db/dba/classcarla_1_1sensor_1_1s11n_1_1ImageSerializer.html#aa3fdfba42660f9865b1967194a34b755">DeserializeHeader</a>(<span class="keyword">const</span> <a class="code hl_class" href="../../d3/da0/classcarla_1_1sensor_1_1RawData.html">RawData</a> &amp;data) {</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>      <span class="keywordflow">return</span> *<span class="keyword">reinterpret_cast&lt;</span><span class="keyword">const </span><a class="code hl_struct" href="../../d2/d05/structcarla_1_1sensor_1_1s11n_1_1ImageSerializer_1_1ImageHeader.html">ImageHeader</a> *<span class="keyword">&gt;</span>(data.<a class="code hl_function" href="../../d3/da0/classcarla_1_1sensor_1_1RawData.html#ad29c6a9698aa66f593286f5e6fc601ea">begin</a>());</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment">// 定义一个静态函数DeserializeHeader，它的功能是对传入的原始数据（类型为RawData）进行反序列化操作，目的是获取其中的图像头部信息。</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="comment">// 具体实现方式是，先获取原始数据的起始地址（通过data.begin()获取），然后使用reinterpret_cast操作符将这个起始地址强制转换为指向ImageHeader结构体的指针类型</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> <span class="comment">// 最后返回这个指针所指向的ImageHeader结构体的引用，这样就能够获取到解析出来的头部信息结构体，进而可以方便地使用其中各个成员变量进行后续相应的处理操作。</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    }</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Sensor&gt;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keyword">static</span> <a class="code hl_class" href="../../d0/d0a/classcarla_1_1Buffer.html">Buffer</a> <a class="code hl_function" href="../../db/dba/classcarla_1_1sensor_1_1s11n_1_1ImageSerializer.html#ac42dd3890ad51f75c67a1556969a871d">Serialize</a>(<span class="keyword">const</span> Sensor &amp;sensor, <a class="code hl_class" href="../../d0/d0a/classcarla_1_1Buffer.html">Buffer</a> &amp;&amp;bitmap);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> <span class="comment">// 定义一个静态模板函数Serialize，它用于将特定传感器（由模板参数Sensor来指定具体类型）相关的图像缓冲区数据（由参数bitmap表示）进行序列化操作。</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="comment">// 参数sensor是对应传感器的对象引用，通过它可以获取到传感器相关的图像属性等信息；bitmap是要进行序列化的图像缓冲区</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keyword">static</span> <a class="code hl_typedef" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr&lt;SensorData&gt;</a> <a class="code hl_function" href="../../db/dba/classcarla_1_1sensor_1_1s11n_1_1ImageSerializer.html#ae448cae9fdb88476466e6945952c80cc">Deserialize</a>(<a class="code hl_class" href="../../d3/da0/classcarla_1_1sensor_1_1RawData.html">RawData</a> &amp;&amp;data);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">// 定义一个静态函数Deserialize，该函数用于将传入的原始数据（通过右值引用的方式接收，即RawData &amp;&amp;data，这样做可以避免不必要的拷贝操作）进行反序列化处理。</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment">// 最终函数会返回一个指向SensorData类型的共享智能指针（SharedPtr表示共享所有权的智能指针，使用它有助于进行内存管理以及控制对象的生命周期）</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">// 也就是把原始数据还原为相应的传感器数据对象形式，方便后续在程序中进一步使用该数据。</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  };</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Sensor&gt;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="../../db/dba/classcarla_1_1sensor_1_1s11n_1_1ImageSerializer.html#ac42dd3890ad51f75c67a1556969a871d">   68</a></span>  <span class="keyword">inline</span> <a class="code hl_class" href="../../d0/d0a/classcarla_1_1Buffer.html">Buffer</a> <a class="code hl_function" href="../../db/dba/classcarla_1_1sensor_1_1s11n_1_1ImageSerializer.html#ac42dd3890ad51f75c67a1556969a871d">ImageSerializer::Serialize</a>(<span class="keyword">const</span> Sensor &amp;sensor, <a class="code hl_class" href="../../d0/d0a/classcarla_1_1Buffer.html">Buffer</a> &amp;&amp;bitmap) {</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <a class="code hl_define" href="../../d4/deb/Debug_8h.html#a0480185f78b4135a9d05ec24bccef047">DEBUG_ASSERT</a>(bitmap.size() &gt; <span class="keyword">sizeof</span>(<a class="code hl_struct" href="../../d2/d05/structcarla_1_1sensor_1_1s11n_1_1ImageSerializer_1_1ImageHeader.html">ImageHeader</a>));</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> <span class="comment">// 使用DEBUG_ASSERT宏进行断言检查</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment">// 其目的是确保传入的图像缓冲区（bitmap）的大小要大于ImageHeader结构体的大小。因为后续操作需要在缓冲区前面添加头部信息，如果缓冲区大小不够就会出现问题</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <a class="code hl_struct" href="../../d2/d05/structcarla_1_1sensor_1_1s11n_1_1ImageSerializer_1_1ImageHeader.html">ImageHeader</a> header = {</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>      sensor.GetImageWidth(),</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>      sensor.GetImageHeight(),</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>      sensor.GetFOVAngle()</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    };</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="comment">// 创建一个ImageHeader结构体的对象header</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="comment">// 然后使用这些获取到的值对header结构体进行初始化赋值，为后续将这些信息添加到图像缓冲区作为头部信息做好准备。</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    std::memcpy(bitmap.data(), <span class="keyword">reinterpret_cast&lt;</span><span class="keyword">const </span><span class="keywordtype">void</span> *<span class="keyword">&gt;</span>(&amp;header), <span class="keyword">sizeof</span>(header));</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="comment">// 使用来自&lt;cstring&gt;头文件中的std::memcpy函数，将刚才创建并初始化好的header结构体的数据复制到图像缓冲区（bitmap）的起始位置。</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="comment">// 这里需要先将header结构体的指针通过reinterpret_cast转换为void*类型，以满足std::memcpy函数对于参数类型的要求，并且指定复制的数据字节数为header结构体的大小（sizeof(header)）</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordflow">return</span> std::move(bitmap);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="comment">// 通过移动语义（使用std::move函数）返回填充好头部信息的图像缓冲区（bitmap）。采用移动语义的好处是避免了不必要的数据拷贝操作，提高了函数返回的效率</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  }</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>} <span class="comment">// namespace s11n</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>} <span class="comment">// namespace sensor</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>} <span class="comment">// namespace carla</span></div>
+<div class="ttc" id="aDebug_8h_html_a0480185f78b4135a9d05ec24bccef047"><div class="ttname"><a href="../../d4/deb/Debug_8h.html#a0480185f78b4135a9d05ec24bccef047">DEBUG_ASSERT</a></div><div class="ttdeci">#define DEBUG_ASSERT(predicate)</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/deb/Debug_8h_source.html#l00068">Debug.h:68</a></div></div>
+<div class="ttc" id="aMemory_8h_html"><div class="ttname"><a href="../../de/d5c/Memory_8h.html">Memory.h</a></div></div>
+<div class="ttc" id="aRawData_8h_html"><div class="ttname"><a href="../../dc/d62/RawData_8h.html">RawData.h</a></div></div>
+<div class="ttc" id="aclasscarla_1_1Buffer_html"><div class="ttname"><a href="../../d0/d0a/classcarla_1_1Buffer.html">carla::Buffer</a></div><div class="ttdoc">一块原始数据。 请注意，如果需要更多容量，则会分配一个新的内存块，并 删除旧的内存块。这意味着默认情况下，缓冲区只能增长。要释放内存，使用 clear 或 pop。</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/dda/carla_2Buffer_8h_source.html#l00052">carla/Buffer.h:52</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1RawData_html"><div class="ttname"><a href="../../d3/da0/classcarla_1_1sensor_1_1RawData.html">carla::sensor::RawData</a></div><div class="ttdoc">包装一个传感器生成的原始数据以及一些有用的元信息。</div><div class="ttdef"><b>Definition:</b> <a href="../../dc/d62/RawData_8h_source.html#l00020">RawData.h:20</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1RawData_html_ad29c6a9698aa66f593286f5e6fc601ea"><div class="ttname"><a href="../../d3/da0/classcarla_1_1sensor_1_1RawData.html#ad29c6a9698aa66f593286f5e6fc601ea">carla::sensor::RawData::begin</a></div><div class="ttdeci">auto begin() noexcept</div><div class="ttdoc">指向传感器生成的数据的开始迭代器。</div><div class="ttdef"><b>Definition:</b> <a href="../../dc/d62/RawData_8h_source.html#l00052">RawData.h:52</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1s11n_1_1ImageSerializer_html"><div class="ttname"><a href="../../db/dba/classcarla_1_1sensor_1_1s11n_1_1ImageSerializer.html">carla::sensor::s11n::ImageSerializer</a></div><div class="ttdoc">Serializes image buffers generated by camera sensors.</div><div class="ttdef"><b>Definition:</b> <a href="../../de/dbf/ImageSerializer_8h_source.html#l00028">ImageSerializer.h:28</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1s11n_1_1ImageSerializer_html_aa3fdfba42660f9865b1967194a34b755"><div class="ttname"><a href="../../db/dba/classcarla_1_1sensor_1_1s11n_1_1ImageSerializer.html#aa3fdfba42660f9865b1967194a34b755">carla::sensor::s11n::ImageSerializer::DeserializeHeader</a></div><div class="ttdeci">static const ImageHeader &amp; DeserializeHeader(const RawData &amp;data)</div><div class="ttdef"><b>Definition:</b> <a href="../../de/dbf/ImageSerializer_8h_source.html#l00048">ImageSerializer.h:48</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1s11n_1_1ImageSerializer_html_ac42dd3890ad51f75c67a1556969a871d"><div class="ttname"><a href="../../db/dba/classcarla_1_1sensor_1_1s11n_1_1ImageSerializer.html#ac42dd3890ad51f75c67a1556969a871d">carla::sensor::s11n::ImageSerializer::Serialize</a></div><div class="ttdeci">static Buffer Serialize(const Sensor &amp;sensor, Buffer &amp;&amp;bitmap)</div><div class="ttdef"><b>Definition:</b> <a href="../../de/dbf/ImageSerializer_8h_source.html#l00068">ImageSerializer.h:68</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1s11n_1_1ImageSerializer_html_adc449be63227af3b01dcfebec691eda2"><div class="ttname"><a href="../../db/dba/classcarla_1_1sensor_1_1s11n_1_1ImageSerializer.html#adc449be63227af3b01dcfebec691eda2">carla::sensor::s11n::ImageSerializer::header_offset</a></div><div class="ttdeci">static constexpr auto header_offset</div><div class="ttdef"><b>Definition:</b> <a href="../../de/dbf/ImageSerializer_8h_source.html#l00045">ImageSerializer.h:45</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1s11n_1_1ImageSerializer_html_ae448cae9fdb88476466e6945952c80cc"><div class="ttname"><a href="../../db/dba/classcarla_1_1sensor_1_1s11n_1_1ImageSerializer.html#ae448cae9fdb88476466e6945952c80cc">carla::sensor::s11n::ImageSerializer::Deserialize</a></div><div class="ttdeci">static SharedPtr&lt; SensorData &gt; Deserialize(RawData &amp;&amp;data)</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d47/ImageSerializer_8cpp_source.html#l00015">ImageSerializer.cpp:15</a></div></div>
+<div class="ttc" id="anamespacecarla_html"><div class="ttname"><a href="../../d9/d36/namespacecarla.html">carla</a></div><div class="ttdoc">CARLA模拟器的主命名空间。</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d4f/Carla_8cpp_source.html#l00139">Carla.cpp:139</a></div></div>
+<div class="ttc" id="anamespacecarla_html_a92e3ea2d07fa7e0a2fe5d680fb0ba614"><div class="ttname"><a href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">carla::SharedPtr</a></div><div class="ttdeci">boost::shared_ptr&lt; T &gt; SharedPtr</div><div class="ttdoc">使用这个SharedPtr（boost::shared_ptr）以保持与boost::python的兼容性， 但未来如果可能的话，我们希望能为std::shared_ptr制作一个Python适配器。</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d5c/Memory_8h_source.html#l00019">Memory.h:19</a></div></div>
+<div class="ttc" id="astructcarla_1_1sensor_1_1s11n_1_1ImageSerializer_1_1ImageHeader_html"><div class="ttname"><a href="../../d2/d05/structcarla_1_1sensor_1_1s11n_1_1ImageSerializer_1_1ImageHeader.html">carla::sensor::s11n::ImageSerializer::ImageHeader</a></div><div class="ttdef"><b>Definition:</b> <a href="../../de/dbf/ImageSerializer_8h_source.html#l00034">ImageSerializer.h:34</a></div></div>
+<div class="ttc" id="astructcarla_1_1sensor_1_1s11n_1_1ImageSerializer_1_1ImageHeader_html_a47df42de092d4fec9094e241d80fda55"><div class="ttname"><a href="../../d2/d05/structcarla_1_1sensor_1_1s11n_1_1ImageSerializer_1_1ImageHeader.html#a47df42de092d4fec9094e241d80fda55">carla::sensor::s11n::ImageSerializer::ImageHeader::width</a></div><div class="ttdeci">uint32_t width</div><div class="ttdef"><b>Definition:</b> <a href="../../de/dbf/ImageSerializer_8h_source.html#l00035">ImageSerializer.h:35</a></div></div>
+<div class="ttc" id="astructcarla_1_1sensor_1_1s11n_1_1ImageSerializer_1_1ImageHeader_html_a50c84d3ccb63af9988a91579765bb73f"><div class="ttname"><a href="../../d2/d05/structcarla_1_1sensor_1_1s11n_1_1ImageSerializer_1_1ImageHeader.html#a50c84d3ccb63af9988a91579765bb73f">carla::sensor::s11n::ImageSerializer::ImageHeader::fov_angle</a></div><div class="ttdeci">float fov_angle</div><div class="ttdef"><b>Definition:</b> <a href="../../de/dbf/ImageSerializer_8h_source.html#l00039">ImageSerializer.h:39</a></div></div>
+<div class="ttc" id="astructcarla_1_1sensor_1_1s11n_1_1ImageSerializer_1_1ImageHeader_html_a804fe87291355b356a8c24b30fae4a63"><div class="ttname"><a href="../../d2/d05/structcarla_1_1sensor_1_1s11n_1_1ImageSerializer_1_1ImageHeader.html#a804fe87291355b356a8c24b30fae4a63">carla::sensor::s11n::ImageSerializer::ImageHeader::height</a></div><div class="ttdeci">uint32_t height</div><div class="ttdef"><b>Definition:</b> <a href="../../de/dbf/ImageSerializer_8h_source.html#l00037">ImageSerializer.h:37</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

@@ -1,0 +1,474 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: Image.h 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_087ce8304d10c4897e4acbeac1a6fcc8.html">ros2</a></li><li class="navelem"><a class="el" href="../../dir_4ea2d91c13d1361ac1a1dbc78466282d.html">types</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">ros2/types/Image.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d4/d17/ros2_2types_2Image_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright 2016 Proyectos y Sistemas de Mantenimiento SL (eProsima).</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// you may not use this file except in compliance with the License.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// You may obtain a copy of the License at</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//     http://www.apache.org/licenses/LICENSE-2.0</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">// Unless required by applicable law or agreed to in writing, software</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">// See the License for the specific language governing permissions and</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">// limitations under the License.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment"></span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">/*!</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment"> * @file Image.h</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment"> * This header file contains the declaration of the described types in the IDL file.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment"> * This file was generated by the tool gen.</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#ifndef _FAST_DDS_GENERATED_SENSOR_MSGS_MSG_IMAGE_H_</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#define _FAST_DDS_GENERATED_SENSOR_MSGS_MSG_IMAGE_H_</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment">// 包含 &quot;Header.h&quot; 头文件，具体作用需看该头文件内的内容声明</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;<a class="code" href="../../d3/d6a/Header_8h.html">Header.h</a>&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="comment">// 包含 fastrtps 库中用于固定大小字符串的头文件，可能用于特定的字符串处理相关功能</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;fastrtps/utils/fixed_size_string.hpp&gt;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment">// 包含标准的整数类型定义头文件，用于使用如uint32_t等类型</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">// 包含数组相关的标准库头文件，方便使用数组类型操作</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#include &lt;array&gt;</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment">// 包含标准的字符串类型相关头文件，用于操作字符串对象</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment">// 包含标准的向量（动态数组）类型相关头文件，用于处理可变长度的数据集合等情况</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment">// 包含标准的映射（关联容器）类型相关头文件，用于建立键值对的映射关系等操作</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment">// 包含位集合相关头文件，可用于按位操作等功能</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#include &lt;bitset&gt;</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment">// 如果是 Windows 平台</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#if defined(_WIN32)</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">// 如果定义了 EPROSIMA_USER_DLL_EXPORT 宏</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#if defined(EPROSIMA_USER_DLL_EXPORT)</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">// 定义 eProsima_user_DllExport 为导出动态链接库符号的修饰符（Windows 下的 dllexport），用于向外提供接口</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#define eProsima_user_DllExport __declspec( dllexport )</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">// 如果未定义 EPROSIMA_USER_DLL_EXPORT 宏</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">#define eProsima_user_DllExport</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> <span class="comment">// 定义 eProsima_user_DllExport 为空，可能表示不进行特殊的动态链接库相关处理</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">#endif  </span><span class="comment">// EPROSIMA_USER_DLL_EXPORT</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment">// 如果不是 Windows 平台</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> <span class="comment">// 同样定义 eProsima_user_DllExport 为空，在非 Windows 环境下不做特殊处理（比如没有类似 Windows 的动态链接库导出导入概念）</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">    #define eProsima_user_DllExport</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="../../d4/d17/ros2_2types_2Image_8h.html#abd19d82e50737e50241fe1723b1c6066">   56</a></span><span class="preprocessor">#define eProsima_user_DllExport</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#endif  </span><span class="comment">// _WIN32</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="comment">// 如果是 Windows 平台</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="preprocessor">#if defined(_WIN32)</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">// 如果定义了 EPROSIMA_USER_DLL_EXPORT 宏</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="preprocessor">#if defined(EPROSIMA_USER_DLL_EXPORT)</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">// 定义 Image_DllAPI 为导出动态链接库符号的修饰符（Windows 下的 dllexport），用于向外提供接口（针对 Image 相关类）</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="preprocessor">#if defined(Image_SOURCE)</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="comment">// 如果未定义 Image_SOURCE 宏</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="preprocessor">#define Image_DllAPI __declspec( dllexport )</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment">// 定义 Image_DllAPI 为导入动态链接库符号的修饰符（Windows 下的 dllimport），用于使用外部动态链接库中的接口（针对 Image 相关类）</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="preprocessor">#define Image_DllAPI __declspec( dllimport )</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="preprocessor">#endif </span><span class="comment">// Image_SOURCE</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="preprocessor">#define Image_DllAPI</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="preprocessor">#endif  </span><span class="comment">// EPROSIMA_USER_DLL_EXPORT</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="comment">// 如果不是 Windows 平台</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="comment">// 定义 Image_DllAPI 为空，在非 Windows 环境下不做特殊处理（比如没有类似 Windows 的动态链接库导出导入概念，针对 Image 相关类）</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="../../d4/d17/ros2_2types_2Image_8h.html#aa009e7bce31ca24a70542eccaa2305ba">   77</a></span><span class="preprocessor">#define Image_DllAPI</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="preprocessor">#endif </span><span class="comment">// _WIN32</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="comment">// eprosima 命名空间开始，可能是某个库或模块的整体命名空间</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d6/d99/namespaceeprosima.html">eprosima</a> {</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> <span class="comment">// fastcdr 子命名空间，可能用于和快速 CDR（Common Data Representation，一种数据序列化表示方式）相关的功能</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="keyword">namespace </span>fastcdr {</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="comment">// 前置声明 Cdr 类，具体完整定义可能在其他地方，此处只是告诉编译器有这么个类，方便后续使用指针、引用等操作</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="keyword">class </span>Cdr;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>} <span class="comment">// namespace fastcdr</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>} <span class="comment">// namespace eprosima</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="comment">// sensor_msgs 命名空间开始，可能用于存放传感器相关消息类型等内容</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d9/d7d/namespacesensor__msgs.html">sensor_msgs</a> {</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keyword">namespace </span>msg {</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>  <span class="comment">// msg 子命名空间，通常用于存放具体消息类型的定义</span><span class="comment"></span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="comment">         /*!</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="comment">         * @brief This class represents the structure Image defined by the user in the IDL file.</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="comment">         * @ingroup IMAGE</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="comment">         * 这个类表示在 IDL（接口定义语言）文件中由用户定义的 Image 结构，用于特定的消息传递场景，可能与图像相关消息有关，@ingroup 可能用于文档生成等相关的分组标识（比如分组展示文档等）</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="comment">         */</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html">   96</a></span>        <span class="keyword">class </span><a class="code hl_class" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html">Image</a></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        {</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>             <span class="comment">/*！</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="comment">             * 这是默认构造函数，用于创建一个 Image 类的对象，初始化对象的成员到默认状态</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#acef2d0dfe340885851b4a8f00829c625">Image</a>();</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="comment"></span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="comment">           * 这是默认析构函数，用于在对象生命周期结束时进行资源清理等相关操作（比如释放动态分配的内存等，如果有相关需求）</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a8b1851ae955b778e317c41de0aaeacf6">~Image</a>();</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="comment"></span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="comment">             * 拷贝构造函数，通过传入一个已有的 Image 类对象的引用 x，创建一个新的 Image 对象，新对象的成员值将和传入的对象相同（进行深拷贝或浅拷贝，具体看内部实现）</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#acef2d0dfe340885851b4a8f00829c625">Image</a>(</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>                    <span class="keyword">const</span> <a class="code hl_class" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html">Image</a>&amp; x);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="comment"></span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="comment">            移动构造函数，通过传入一个已有的 Image 类对象的引用 x，将 x 的资源所有权转移到新创建的 Image 对象中（常用于优化对象传递时的性能，避免不必要的拷贝）</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="comment">             </span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#acef2d0dfe340885851b4a8f00829c625">Image</a>(</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>                    <a class="code hl_class" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html">Image</a>&amp;&amp; x) <span class="keyword">noexcept</span>;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="comment"></span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="comment">* 拷贝赋值运算符重载，用于将一个已有的 Image 类对象（通过引用 x 传入）的值赋值给当前的 Image 对象（同样涉及深拷贝或浅拷贝相关操作，要保证赋值后的对象状态符合预期</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <a class="code hl_class" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html">Image</a>&amp; <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a7d86b7f47a00d7150783f1e123919406">operator =</a>(</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>                    <span class="keyword">const</span> <a class="code hl_class" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html">Image</a>&amp; x);</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="comment"></span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="comment">              * 移动赋值运算符重载，用于将一个已有的 Image 类对象（通过引用 x 传入）的资源所有权转移给当前的 Image 对象，实现高效的资源转移（避免不必要的拷贝开销）</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <a class="code hl_class" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html">Image</a>&amp; <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a7d86b7f47a00d7150783f1e123919406">operator =</a>(</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>                    <a class="code hl_class" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html">Image</a>&amp;&amp; x) <span class="keyword">noexcept</span>;</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="comment"></span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="comment">            * 相等比较运算符重载，用于比较当前的 Image 对象和传入的 Image 对象 x 是否相等，返回一个布尔值表示比较结果</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a71566448ee3c6d27efb362c6ea3d8ce7">operator ==</a>(</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>                    <span class="keyword">const</span> <a class="code hl_class" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html">Image</a>&amp; x) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="comment"></span> </div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="comment">             * 不等比较运算符重载，与上面的相等比较运算符相对应，用于比较当前的 Image 对象和传入的 Image 对象 x 是否不相等，返回一个布尔值表示比较结果</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a33ded5ce7547ecf49be08f2e9033d8d8">operator !=</a>(</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>                    <span class="keyword">const</span> <a class="code hl_class" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html">Image</a>&amp; x) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span><span class="comment"></span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="comment">            * 此函数用于将传入的 _header（类型为 std_msgs::msg::Header）的值拷贝到当前 Image 对象的 m_header 成员中，实现对头部信息的设置（可能是图像消息头部相关信息）</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keywordtype">void</span> <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a362f8b3abf880a6ff60929c20ff5edb1">header</a>(</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>                    <span class="keyword">const</span> std_msgs::msg::Header&amp; _header);</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span><span class="comment"></span> </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span><span class="comment">            * 此函数用于将传入的 _header（类型为 std_msgs::msg::Header）的值移动到当前 Image 对象的 m_header 成员中，实现对头部信息的设置（可能是图像消息头部相关信息），移动操作可能更高效地处理资源所有权转移</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keywordtype">void</span> <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a362f8b3abf880a6ff60929c20ff5edb1">header</a>(</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>                    std_msgs::msg::Header&amp;&amp; _header);</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="comment"></span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="comment">             * 此函数返回当前 Image 对象中 m_header 成员的常量引用，外部可以通过这个引用获取头部信息但不能修改它（保证了数据的只读性，符合某些场景需求）</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keyword">const</span> std_msgs::msg::Header&amp; <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a362f8b3abf880a6ff60929c20ff5edb1">header</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="comment"></span> </div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="comment">              * 此函数返回当前 Image 对象中 m_header 成员的普通引用，外部可以通过这个引用获取和修改头部信息（与上面的常量引用函数对应，用于需要修改头部信息的场景）</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> std_msgs::msg::Header&amp; <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a362f8b3abf880a6ff60929c20ff5edb1">header</a>();<span class="comment"></span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span><span class="comment">            * 此函数用于设置当前 Image 对象中 m_height 成员的值，这个成员可能表示图像的高度相关信息</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keywordtype">void</span> <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a7b243d73f658d7a28067b24cb9327f8e">height</a>(</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>                    uint32_t _height);</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span><span class="comment"></span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span><span class="comment">              * 此函数返回当前 Image 对象中 m_height 成员的值，即获取图像高度相关信息</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> uint32_t <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a7b243d73f658d7a28067b24cb9327f8e">height</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span><span class="comment"></span> </div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="comment">            * 此函数返回当前 Image 对象中 m_height 成员的引用，外部可以通过这个引用获取和修改图像高度相关信息</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> uint32_t&amp; <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a7b243d73f658d7a28067b24cb9327f8e">height</a>();</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span><span class="comment"></span> </div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span><span class="comment">             * 此函数用于设置当前 Image 对象中 m_width 成员的值，这个成员可能表示图像的宽度相关信息</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keywordtype">void</span> <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#ace744c48ee41ee1b6db07ca7bfa27197">width</a>(</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>                    uint32_t _width);</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="comment"></span> </div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span><span class="comment">              * 此函数返回当前 Image 对象中 m_width 成员的值，即获取图像宽度相关信息</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> uint32_t <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#ace744c48ee41ee1b6db07ca7bfa27197">width</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="comment"></span> </div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span><span class="comment">              * 此函数返回当前 Image 对象中 m_width 成员的引用，外部可以通过这个引用获取和修改图像宽度相关信息</span></div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> uint32_t&amp; <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#ace744c48ee41ee1b6db07ca7bfa27197">width</a>();</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span><span class="comment"></span> </div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span><span class="comment">             * 此函数用于将传入的 _encoding（类型为 std::string）的值拷贝到当前 Image 对象的 m_encoding 成员中，这个成员可能表示图像的编码格式相关信息</span></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keywordtype">void</span> <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a71982c59dee7132175a4e0a318292447">encoding</a>(</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>                    <span class="keyword">const</span> std::string&amp; _encoding);</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span><span class="comment"></span> </div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span><span class="comment">             * 此函数用于将传入的 _encoding（类型为 std::string）的值移动到当前 Image 对象的 m_encoding 成员中，这个成员可能表示图像的编码格式相关信息，移动操作可能更高效地处理资源所有权转移</span></div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keywordtype">void</span> <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a71982c59dee7132175a4e0a318292447">encoding</a>(</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>                    std::string&amp;&amp; _encoding);</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span><span class="comment"></span> </div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span><span class="comment">             * 此函数返回当前 Image 对象中 m_encoding 成员的常量引用，外部可以通过这个引用获取图像编码格式相关信息但不能修改它（保证了数据的只读性，符合某些场景需求）</span></div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keyword">const</span> std::string&amp; <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a71982c59dee7132175a4e0a318292447">encoding</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span><span class="comment"></span> </div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span><span class="comment">             * 此函数返回当前 Image 对象中 m_encoding 成员的普通引用，外部可以通过这个引用获取和修改图像编码格式相关信息（与上面的常量引用函数对应，用于需要修改图像编码格式的场景）</span></div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> std::string&amp; <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a71982c59dee7132175a4e0a318292447">encoding</a>();<span class="comment"></span></div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span><span class="comment">             * 此函数用于设置当前 Image 对象中 m_is_bigendian 成员的值，这个成员可能用于表示图像数据存储是否是大端序相关信息</span></div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keywordtype">void</span> <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#aed77192b66035951823ee41fb54f4cea">is_bigendian</a>(</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>                    uint8_t _is_bigendian);</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span><span class="comment"></span> </div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span><span class="comment">             * 此函数返回当前 Image 对象中 m_is_bigendian 成员的值，即获取图像数据存储是否是大端序相关信息</span></div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> uint8_t <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#aed77192b66035951823ee41fb54f4cea">is_bigendian</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span><span class="comment"></span> </div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span><span class="comment">            * 此函数返回当前 Image 对象中 m_is_bigendian 成员的引用，外部可以通过这个引用获取和修改图像数据存储是否是大端序相关信息</span></div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> uint8_t&amp; <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#aed77192b66035951823ee41fb54f4cea">is_bigendian</a>();</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span><span class="comment"></span> </div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span><span class="comment">             * 此函数用于设置当前 Image 对象中 m_step 成员的值，这个成员可能表示图像每行数据的字节跨度等相关信息（比如在处理图像像素数据存储布局方面有用）</span></div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keywordtype">void</span> <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#aecebd5b235f8bf2f308243a0c15e27ee">step</a>(</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>                    uint32_t _step);</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span><span class="comment"></span> </div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span><span class="comment">            * 此函数返回当前 Image 对象中 m_step 成员的值，即获取图像每行数据的字节跨度等相关信息</span></div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> uint32_t <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#aecebd5b235f8bf2f308243a0c15e27ee">step</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span><span class="comment"></span> </div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span><span class="comment">             * 此函数返回当前 Image 对象中 m_step 成员的引用，外部可以通过这个引用获取和修改图像每行数据的字节跨度等相关信息</span></div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> uint32_t&amp; <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#aecebd5b235f8bf2f308243a0c15e27ee">step</a>();</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span><span class="comment"></span> </div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span><span class="comment">              * 此函数用于将传入的 _data（类型为 std::vector&lt;uint8_t&gt;，即字节数组，可能表示图像的像素数据等）的值拷贝到当前 Image 对象的 m_data 成员中，实现对图像数据的设置</span></div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>             */</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keywordtype">void</span> <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a621ce7422aa9aef612ae36932891d740">data</a>(</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>                    <span class="keyword">const</span> std::vector&lt;uint8_t&gt;&amp; _data);</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span><span class="comment"></span> </div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span><span class="comment">             * 此函数用于将传入的 _data（类型为 std::vector&lt;uint8_t&gt;，即字节数组，可能表示图像的像素数据等）的值移动到当前 Image 对象的 m_data 成员中，实现对图像数据的设置，移动操作可能更高效地处理资源所有权转移</span></div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keywordtype">void</span> <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a621ce7422aa9aef612ae36932891d740">data</a>(</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>                    std::vector&lt;uint8_t&gt;&amp;&amp; _data);</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span><span class="comment"></span> </div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span><span class="comment">            * 此函数返回当前 Image 对象中 m_data 成员的常量引用，外部可以通过这个引用获取图像数据但不能修改它（保证了数据的只读性，符合某些场景需求）</span></div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keyword">const</span> std::vector&lt;uint8_t&gt;&amp; <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a621ce7422aa9aef612ae36932891d740">data</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span><span class="comment"></span> </div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span><span class="comment">            * 此函数返回当前 Image 对象中 m_data 成员的普通引用，外部可以通过这个引用获取和修改图像数据（与上面的常量引用函数对应，用于需要修改图像数据的场景）</span></div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> std::vector&lt;uint8_t&gt;&amp; <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a621ce7422aa9aef612ae36932891d740">data</a>();</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span><span class="comment"></span> </div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span><span class="comment">            * 此函数用于返回一个对象（这里指的是Image类的对象）根据缓冲区对齐方式的情况下，所能序列化后的最大尺寸（字节数）。</span></div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span><span class="comment"> * 参数current_alignment用于指定当前的缓冲区对齐方式，如果调用时不传入该参数，则使用默认值0（具体含义可能取决于具体的序列化实现机制）。</span></div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span><span class="comment"> * 返回值是根据相应条件计算得到的最大序列化尺寸，可用于提前预估序列化操作所需的缓冲区大小等情况。</span></div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span><span class="comment">            */</span></div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keyword">static</span> <span class="keywordtype">size_t</span> <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a0f1e315bc33b95ce0c945dc3ace63177">getMaxCdrSerializedSize</a>(</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>                    <span class="keywordtype">size_t</span> <a class="code hl_variable" href="../../db/db2/PoseWithCovariance_8cpp.html#ab0622670d2b449ae43c500e168400292">current_alignment</a> = 0);</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span><span class="comment"></span> </div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span><span class="comment">            * 这个函数的功能是根据缓冲区对齐方式，返回给定的Image类对象（通过参数data传入）序列化后的尺寸（字节数）。</span></div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span><span class="comment"> * 参数data是要计算序列化尺寸的具体Image类对象，current_alignment则是缓冲区对齐方式参数，同样若不传则使用默认值0。</span></div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span><span class="comment"> * 该函数返回对应的序列化后的准确尺寸，有助于精确地分配内存、进行数据传输等操作中判断所需空间大小。</span></div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keyword">static</span> <span class="keywordtype">size_t</span> <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a5e09e00c244303b1c1fa4f3ba9c16e49">getCdrSerializedSize</a>(</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>                    <span class="keyword">const</span> <a class="code hl_class" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html">sensor_msgs::msg::Image</a>&amp; <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a621ce7422aa9aef612ae36932891d740">data</a>,</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>                    <span class="keywordtype">size_t</span> <a class="code hl_variable" href="../../db/db2/PoseWithCovariance_8cpp.html#ab0622670d2b449ae43c500e168400292">current_alignment</a> = 0);</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span> </div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span><span class="comment"></span> </div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span><span class="comment">              * 此函数用于将当前的Image类对象按照CDR（Common Data Representation，一种数据序列化表示方式）序列化机制进行序列化操作。</span></div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span><span class="comment"> * 参数cdr是一个用于执行CDR序列化操作的对象，在函数内部会通过它来将Image类对象的各个成员变量按照相应规则转化为可传输、存储的序列化格式。</span></div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span><span class="comment"> * 一般用于将对象转换为字节流等形式以便在网络传输、文件存储等场景下使用。</span></div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keywordtype">void</span> <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a25524e1cf0db079a80f4fc7f1b6c2c77">serialize</a>(</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>                    eprosima::fastcdr::Cdr&amp; cdr) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span><span class="comment"></span> </div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span><span class="comment">            * 此函数与上面的serialize函数相对应，用于将已经按照CDR序列化后的字节流（通过参数cdr关联的对象来表示）反序列化，恢复成一个Image类对象。</span></div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span><span class="comment"> * 也就是从传输过来的或者从存储中读取的字节流数据，根据CDR的反序列化规则，重新构建出对应的Image类对象，使得对象可以在程序中继续进行后续的处理操作。</span></div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keywordtype">void</span> <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a37d563210fa1bd9728e2e60a0031fd71">deserialize</a>(</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>                    eprosima::fastcdr::Cdr&amp; cdr);</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span><span class="comment"></span> </div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span><span class="comment">             * 这个函数用于返回一个对象（这里也是针对Image类对象）的键（Key，可能用于在某些数据结构、传输场景中唯一标识该对象等用途）根据缓冲区对齐方式的情况下，所能序列化后的最大尺寸（字节数）。</span></div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span><span class="comment"> * 参数current_alignment指定了当前的缓冲区对齐方式，默认值为0（其含义取决于具体的序列化相关实现细节）。</span></div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span><span class="comment"> * 返回的最大序列化尺寸值可帮助提前规划键序列化操作所需的空间等情况</span></div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keyword">static</span> <span class="keywordtype">size_t</span> <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#ac8f2aec0d0ff6c0fe3f3a682d079891d">getKeyMaxCdrSerializedSize</a>(</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>                    <span class="keywordtype">size_t</span> <a class="code hl_variable" href="../../db/db2/PoseWithCovariance_8cpp.html#ab0622670d2b449ae43c500e168400292">current_alignment</a> = 0);</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span><span class="comment"></span> </div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span><span class="comment">             * 此函数用于判断对于当前的Image类型，是否已经定义了键（Key）。返回值是一个布尔类型，若返回true表示已经定义了键，返回false则表示未定义。</span></div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span><span class="comment"> * 可用于在一些依赖键进行操作的逻辑中，提前判断是否可以进行相关键相关的处理，比如根据键进行查找、比对等操作。</span></div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span><span class="comment"></span> </div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a60f3899c6b908396888abacf3b30e95a">isKeyDefined</a>();</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span><span class="comment"></span> </div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span><span class="comment">            /*!</span></div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span><span class="comment">             * 此函数的作用是按照CDR序列化机制，对当前Image类对象中用于作为键（Key）的相关成员变量进行序列化操作。</span></div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span><span class="comment"> * 参数cdr是执行CDR序列化的对象，通过它将与键相关的成员按照相应规则转换为序列化格式，常用于针对键进行单独处理的场景，比如在某些基于键值对的数据存储、检索系统中使用。</span></div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keywordtype">void</span> <a class="code hl_function" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#aed9abcf4b407f2ab25d09b4d1fb37c43">serializeKey</a>(</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>                    eprosima::fastcdr::Cdr&amp; cdr) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span><span class="comment">// Image类的私有成员变量定义部分，这些变量用于存储与图像相关的各种信息</span></div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span> </div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span><span class="comment">// m_header成员变量，类型是std_msgs::msg::Header，可能用于存放图像消息的头部信息，比如消息的时间戳、消息来源等相关内容</span></div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>        <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno"><a class="line" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#acf9d006c0c213f462b253b06ae5b8b50">  334</a></span>            std_msgs::msg::Header <a class="code hl_variable" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#acf9d006c0c213f462b253b06ae5b8b50">m_header</a>;</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span><span class="comment">// m_height成员变量，类型是uint32_t，用于存储图像的高度相关信息，比如以像素为单位的图像高度值</span></div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno"><a class="line" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#af650086675426b128f5d97040d1597a5">  336</a></span>            uint32_t <a class="code hl_variable" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#af650086675426b128f5d97040d1597a5">m_height</a>;</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span><span class="comment">// m_width成员变量，类型是uint32_t，用于存储图像的宽度相关信息，例如以像素为单位的图像宽度数值</span></div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno"><a class="line" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a58e37513d75c220a55393c3d53cfa6e4">  338</a></span>            uint32_t <a class="code hl_variable" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a58e37513d75c220a55393c3d53cfa6e4">m_width</a>;</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span><span class="comment">// m_encoding成员变量，类型是std::string，用来存放图像的编码格式相关信息，例如&quot;RGB&quot;、&quot;JPEG&quot;等表示图像编码方式的字符串</span></div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno"><a class="line" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a7fb0a98eb1e74e2453852630d285544f">  340</a></span>            std::string <a class="code hl_variable" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a7fb0a98eb1e74e2453852630d285544f">m_encoding</a>;</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span><span class="comment">// m_is_bigendian成员变量，类型是uint8_t，用于指示图像数据存储是否采用大端序（比如在跨平台传输、存储图像数据时大端序相关设置很重要）</span></div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno"><a class="line" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a82ab1ef1738c583093f5dd185bbb127d">  342</a></span>            uint8_t <a class="code hl_variable" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a82ab1ef1738c583093f5dd185bbb127d">m_is_bigendian</a>;</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span><span class="comment">// m_step成员变量，类型是uint32_t，可能表示图像每行数据的字节跨度等相关信息，在处理图像像素数据存储布局以及内存对齐等方面有作用</span></div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno"><a class="line" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#aaedd49bc23e8b741388b86ada955a20e">  344</a></span>            uint32_t <a class="code hl_variable" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#aaedd49bc23e8b741388b86ada955a20e">m_step</a>;</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span><span class="comment">// m_data成员变量，类型是std::vector&lt;uint8_t&gt;，很可能用于存放图像的像素数据等实际内容，是字节数组形式</span></div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno"><a class="line" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a672599402c9b66f42430ead454f86f0a">  346</a></span>            std::vector&lt;uint8_t&gt; <a class="code hl_variable" href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a672599402c9b66f42430ead454f86f0a">m_data</a>;</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>        };</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>    } <span class="comment">// namespace msg</span></div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>} <span class="comment">// namespace sensor_msgs</span></div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span> </div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span><span class="preprocessor">#endif </span><span class="comment">// _FAST_DDS_GENERATED_SENSOR_MSGS_MSG_IMAGE_H_</span></div>
+<div class="ttc" id="aCameraInfo_8h_html_abd19d82e50737e50241fe1723b1c6066"><div class="ttname"><a href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a></div><div class="ttdeci">#define eProsima_user_DllExport</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d15/CameraInfo_8h_source.html#l00044">CameraInfo.h:44</a></div></div>
+<div class="ttc" id="aHeader_8h_html"><div class="ttname"><a href="../../d3/d6a/Header_8h.html">Header.h</a></div></div>
+<div class="ttc" id="aPoseWithCovariance_8cpp_html_ab0622670d2b449ae43c500e168400292"><div class="ttname"><a href="../../db/db2/PoseWithCovariance_8cpp.html#ab0622670d2b449ae43c500e168400292">current_alignment</a></div><div class="ttdeci">current_alignment</div><div class="ttdef"><b>Definition:</b> <a href="../../db/db2/PoseWithCovariance_8cpp_source.html#l00162">PoseWithCovariance.cpp:162</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1Image_html"><div class="ttname"><a href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html">sensor_msgs::msg::Image</a></div><div class="ttdoc">This class represents the structure Image defined by the user in the IDL file.这个类表示在 IDL（接口定义语言）文件中由用...</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d17/ros2_2types_2Image_8h_source.html#l00096">ros2/types/Image.h:97</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1Image_html_a0f1e315bc33b95ce0c945dc3ace63177"><div class="ttname"><a href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a0f1e315bc33b95ce0c945dc3ace63177">sensor_msgs::msg::Image::getMaxCdrSerializedSize</a></div><div class="ttdeci">static eProsima_user_DllExport size_t getMaxCdrSerializedSize(size_t current_alignment=0)</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d4e/Image_8cpp_source.html#l00172">Image.cpp:172</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1Image_html_a25524e1cf0db079a80f4fc7f1b6c2c77"><div class="ttname"><a href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a25524e1cf0db079a80f4fc7f1b6c2c77">sensor_msgs::msg::Image::serialize</a></div><div class="ttdeci">eProsima_user_DllExport void serialize(eprosima::fastcdr::Cdr &amp;cdr) const</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d4e/Image_8cpp_source.html#l00207">Image.cpp:207</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1Image_html_a33ded5ce7547ecf49be08f2e9033d8d8"><div class="ttname"><a href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a33ded5ce7547ecf49be08f2e9033d8d8">sensor_msgs::msg::Image::operator!=</a></div><div class="ttdeci">eProsima_user_DllExport bool operator!=(const Image &amp;x) const</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d4e/Image_8cpp_source.html#l00165">Image.cpp:165</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1Image_html_a362f8b3abf880a6ff60929c20ff5edb1"><div class="ttname"><a href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a362f8b3abf880a6ff60929c20ff5edb1">sensor_msgs::msg::Image::header</a></div><div class="ttdeci">eProsima_user_DllExport const std_msgs::msg::Header &amp; header() const</div><div class="ttdoc">此函数返回成员变量 header 的常量引用</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d4e/Image_8cpp_source.html#l00259">Image.cpp:259</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1Image_html_a37d563210fa1bd9728e2e60a0031fd71"><div class="ttname"><a href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a37d563210fa1bd9728e2e60a0031fd71">sensor_msgs::msg::Image::deserialize</a></div><div class="ttdeci">eProsima_user_DllExport void deserialize(eprosima::fastcdr::Cdr &amp;cdr)</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d4e/Image_8cpp_source.html#l00220">Image.cpp:220</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1Image_html_a58e37513d75c220a55393c3d53cfa6e4"><div class="ttname"><a href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a58e37513d75c220a55393c3d53cfa6e4">sensor_msgs::msg::Image::m_width</a></div><div class="ttdeci">uint32_t m_width</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d17/ros2_2types_2Image_8h_source.html#l00338">ros2/types/Image.h:338</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1Image_html_a5e09e00c244303b1c1fa4f3ba9c16e49"><div class="ttname"><a href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a5e09e00c244303b1c1fa4f3ba9c16e49">sensor_msgs::msg::Image::getCdrSerializedSize</a></div><div class="ttdeci">static eProsima_user_DllExport size_t getCdrSerializedSize(const sensor_msgs::msg::Image &amp;data, size_t current_alignment=0)</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d4e/Image_8cpp_source.html#l00180">Image.cpp:180</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1Image_html_a60f3899c6b908396888abacf3b30e95a"><div class="ttname"><a href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a60f3899c6b908396888abacf3b30e95a">sensor_msgs::msg::Image::isKeyDefined</a></div><div class="ttdeci">static eProsima_user_DllExport bool isKeyDefined()</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d4e/Image_8cpp_source.html#l00461">Image.cpp:461</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1Image_html_a621ce7422aa9aef612ae36932891d740"><div class="ttname"><a href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a621ce7422aa9aef612ae36932891d740">sensor_msgs::msg::Image::data</a></div><div class="ttdeci">eProsima_user_DllExport const std::vector&lt; uint8_t &gt; &amp; data() const</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d4e/Image_8cpp_source.html#l00434">Image.cpp:434</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1Image_html_a672599402c9b66f42430ead454f86f0a"><div class="ttname"><a href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a672599402c9b66f42430ead454f86f0a">sensor_msgs::msg::Image::m_data</a></div><div class="ttdeci">std::vector&lt; uint8_t &gt; m_data</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d17/ros2_2types_2Image_8h_source.html#l00346">ros2/types/Image.h:346</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1Image_html_a71566448ee3c6d27efb362c6ea3d8ce7"><div class="ttname"><a href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a71566448ee3c6d27efb362c6ea3d8ce7">sensor_msgs::msg::Image::operator==</a></div><div class="ttdeci">eProsima_user_DllExport bool operator==(const Image &amp;x) const</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d4e/Image_8cpp_source.html#l00158">Image.cpp:158</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1Image_html_a71982c59dee7132175a4e0a318292447"><div class="ttname"><a href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a71982c59dee7132175a4e0a318292447">sensor_msgs::msg::Image::encoding</a></div><div class="ttdeci">eProsima_user_DllExport const std::string &amp; encoding() const</div><div class="ttdoc">This function returns a constant reference to member encoding</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d4e/Image_8cpp_source.html#l00364">Image.cpp:364</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1Image_html_a7b243d73f658d7a28067b24cb9327f8e"><div class="ttname"><a href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a7b243d73f658d7a28067b24cb9327f8e">sensor_msgs::msg::Image::height</a></div><div class="ttdeci">eProsima_user_DllExport uint32_t height() const</div><div class="ttdoc">此函数返回成员变量 height 的值</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d4e/Image_8cpp_source.html#l00290">Image.cpp:290</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1Image_html_a7d86b7f47a00d7150783f1e123919406"><div class="ttname"><a href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a7d86b7f47a00d7150783f1e123919406">sensor_msgs::msg::Image::operator=</a></div><div class="ttdeci">eProsima_user_DllExport Image &amp; operator=(const Image &amp;x)</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d4e/Image_8cpp_source.html#l00114">Image.cpp:114</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1Image_html_a7fb0a98eb1e74e2453852630d285544f"><div class="ttname"><a href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a7fb0a98eb1e74e2453852630d285544f">sensor_msgs::msg::Image::m_encoding</a></div><div class="ttdeci">std::string m_encoding</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d17/ros2_2types_2Image_8h_source.html#l00340">ros2/types/Image.h:340</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1Image_html_a82ab1ef1738c583093f5dd185bbb127d"><div class="ttname"><a href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a82ab1ef1738c583093f5dd185bbb127d">sensor_msgs::msg::Image::m_is_bigendian</a></div><div class="ttdeci">uint8_t m_is_bigendian</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d17/ros2_2types_2Image_8h_source.html#l00342">ros2/types/Image.h:342</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1Image_html_a8b1851ae955b778e317c41de0aaeacf6"><div class="ttname"><a href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a8b1851ae955b778e317c41de0aaeacf6">sensor_msgs::msg::Image::~Image</a></div><div class="ttdeci">eProsima_user_DllExport ~Image()</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d4e/Image_8cpp_source.html#l00069">Image.cpp:69</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1Image_html_aaedd49bc23e8b741388b86ada955a20e"><div class="ttname"><a href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#aaedd49bc23e8b741388b86ada955a20e">sensor_msgs::msg::Image::m_step</a></div><div class="ttdeci">uint32_t m_step</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d17/ros2_2types_2Image_8h_source.html#l00344">ros2/types/Image.h:344</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1Image_html_ac8f2aec0d0ff6c0fe3f3a682d079891d"><div class="ttname"><a href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#ac8f2aec0d0ff6c0fe3f3a682d079891d">sensor_msgs::msg::Image::getKeyMaxCdrSerializedSize</a></div><div class="ttdeci">static eProsima_user_DllExport size_t getKeyMaxCdrSerializedSize(size_t current_alignment=0)</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d4e/Image_8cpp_source.html#l00452">Image.cpp:452</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1Image_html_ace744c48ee41ee1b6db07ca7bfa27197"><div class="ttname"><a href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#ace744c48ee41ee1b6db07ca7bfa27197">sensor_msgs::msg::Image::width</a></div><div class="ttdeci">eProsima_user_DllExport uint32_t width() const</div><div class="ttdoc">此函数返回成员变量 width 的值</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d4e/Image_8cpp_source.html#l00321">Image.cpp:321</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1Image_html_acef2d0dfe340885851b4a8f00829c625"><div class="ttname"><a href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#acef2d0dfe340885851b4a8f00829c625">sensor_msgs::msg::Image::Image</a></div><div class="ttdeci">eProsima_user_DllExport Image()</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d4e/Image_8cpp_source.html#l00051">Image.cpp:51</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1Image_html_acf9d006c0c213f462b253b06ae5b8b50"><div class="ttname"><a href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#acf9d006c0c213f462b253b06ae5b8b50">sensor_msgs::msg::Image::m_header</a></div><div class="ttdeci">std_msgs::msg::Header m_header</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d17/ros2_2types_2Image_8h_source.html#l00334">ros2/types/Image.h:334</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1Image_html_aecebd5b235f8bf2f308243a0c15e27ee"><div class="ttname"><a href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#aecebd5b235f8bf2f308243a0c15e27ee">sensor_msgs::msg::Image::step</a></div><div class="ttdeci">eProsima_user_DllExport uint32_t step() const</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d4e/Image_8cpp_source.html#l00402">Image.cpp:402</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1Image_html_aed77192b66035951823ee41fb54f4cea"><div class="ttname"><a href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#aed77192b66035951823ee41fb54f4cea">sensor_msgs::msg::Image::is_bigendian</a></div><div class="ttdeci">eProsima_user_DllExport uint8_t is_bigendian() const</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d4e/Image_8cpp_source.html#l00383">Image.cpp:383</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1Image_html_aed9abcf4b407f2ab25d09b4d1fb37c43"><div class="ttname"><a href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#aed9abcf4b407f2ab25d09b4d1fb37c43">sensor_msgs::msg::Image::serializeKey</a></div><div class="ttdeci">eProsima_user_DllExport void serializeKey(eprosima::fastcdr::Cdr &amp;cdr) const</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d4e/Image_8cpp_source.html#l00468">Image.cpp:468</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1Image_html_af650086675426b128f5d97040d1597a5"><div class="ttname"><a href="../../d7/de9/classsensor__msgs_1_1msg_1_1Image.html#af650086675426b128f5d97040d1597a5">sensor_msgs::msg::Image::m_height</a></div><div class="ttdeci">uint32_t m_height</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d17/ros2_2types_2Image_8h_source.html#l00336">ros2/types/Image.h:336</a></div></div>
+<div class="ttc" id="anamespaceeprosima_html"><div class="ttname"><a href="../../d6/d99/namespaceeprosima.html">eprosima</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d15/CameraInfo_8h_source.html#l00062">CameraInfo.h:62</a></div></div>
+<div class="ttc" id="anamespacesensor__msgs_html"><div class="ttname"><a href="../../d9/d7d/namespacesensor__msgs.html">sensor_msgs</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d15/CameraInfo_8h_source.html#l00068">CameraInfo.h:68</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

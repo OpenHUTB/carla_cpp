@@ -1,0 +1,4 @@
+<map id="carla::client::World::GetSettings" name="carla::client::World::GetSettings">
+<area shape="rect" id="node1" title="获取当前模拟世界的设置信息，比如时间步长、同步模式等相关的参数配置情况， 返回的rpc::EpisodeSettings对象包含了这些详细的设置内容，供外部查询和可能的修改参考。" alt="" coords="5,5,132,45"/>
+<area shape="rect" id="node2" href="$d1/dd3/classcarla_1_1client_1_1detail_1_1EpisodeProxyImpl.html#aaca857645fbeb6546b4a03a663bb65af" title="与 TryLock 相同，但永远不会返回 nullptr。" alt="" coords="180,5,347,45"/>
+</map>

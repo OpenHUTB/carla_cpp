@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: primaryCommands.h 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_a2af28fa3ae0e0a62585ff5a8c898ebe.html">multigpu</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">primaryCommands.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../dd/dbf/primaryCommands_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2022 Computer Vision Center (CVC) at the Universitat Autonoma</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// de Barcelona (UAB).</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// This work is licensed under the terms of the MIT license.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">// #include &quot;carla/Logging.h&quot; // 原本可能计划包含用于日志记录相关功能的头文件，但目前被注释掉了，也许后续根据需求会添加进来用于记录相关操作的日志信息</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">// 包含多GPU相关命令定义的头文件，里面应该定义了在多GPU环境下涉及的各种操作命令相关的数据结构、函数等内容</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="../../d5/d90/commands_8h.html">carla/multigpu/commands.h</a>&quot;</span> <span class="comment">// 包含多GPU环境中主节点相关功能的头文件，可能定义了主节点相关的类、接口等，用于处理主节点的操作逻辑</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="../../d8/d15/primary_8h.html">carla/multigpu/primary.h</a>&quot;</span> <span class="comment">// 包含流媒体相关的TCP消息定义的头文件，用于处理在网络传输中基于TCP协议的消息相关操作和数据结构</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="../../d5/dca/Message_8h.html">carla/streaming/detail/tcp/Message.h</a>&quot;</span> <span class="comment">// 包含流媒体相关的令牌（Token）定义的头文件，Token可能用于标识不同的流媒体会话、资源等，方便进行相关管理和操作</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="../../d9/d9d/detail_2Token_8h.html">carla/streaming/detail/Token.h</a>&quot;</span> <span class="comment">// 包含流媒体相关的类型定义的头文件，里面定义了在流媒体处理过程中用到的各种自定义类型，便于统一类型管理和代码的清晰性</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;<a class="code" href="../../d7/df8/Types_8h.html">carla/streaming/detail/Types.h</a>&quot;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">// 定义在carla命名空间下的multigpu命名空间中，用于组织和限定多GPU相关代码的作用域，避免命名冲突</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d9/d36/namespacecarla.html">carla</a> {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">namespace </span>multigpu {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment">// using session = std::shared_ptr&lt;Primary&gt;;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment">// using callback_response = std::function&lt;void(std::shared_ptr&lt;Primary&gt;, carla::Buffer)&gt;;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="../../dd/d17/namespacecarla_1_1multigpu.html#aaa937a210c89364b3ccfd25145ba796e">   22</a></span><span class="keyword">using </span><a class="code hl_class" href="../../df/de1/classcarla_1_1streaming_1_1detail_1_1token__type.html">token_type</a> = <a class="code hl_class" href="../../df/de1/classcarla_1_1streaming_1_1detail_1_1token__type.html">carla::streaming::detail::token_type</a>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="../../dd/d17/namespacecarla_1_1multigpu.html#abd1ff4d8e7fdd9dddbd35b0786d3f4d1">   23</a></span><span class="keyword">using </span><a class="code hl_typedef" href="../../dd/d17/namespacecarla_1_1multigpu.html#abd1ff4d8e7fdd9dddbd35b0786d3f4d1">stream_id</a> = <a class="code hl_typedef" href="../../dd/dcc/namespacecarla_1_1streaming_1_1detail.html#aa375c2a4e6ec37df037554b54f12835e">carla::streaming::detail::stream_id_type</a>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">class </span><a class="code hl_class" href="../../d6/d67/classRouter.html">Router</a>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html">   27</a></span><span class="keyword">class </span><a class="code hl_class" href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html">PrimaryCommands</a> {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <a class="code hl_function" href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#a89ca4be7db6f68621eb13dab36f4eaf3">PrimaryCommands</a>();</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <a class="code hl_function" href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#a89ca4be7db6f68621eb13dab36f4eaf3">PrimaryCommands</a>(std::shared_ptr&lt;Router&gt; router);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#a1f774946cd18793e8c9263a44cd112b0">set_router</a>(std::shared_ptr&lt;Router&gt; router);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="comment">// 向所有辅助服务器广播帧数据</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#a627ed9751bf7a35037f36283eeec7124">SendFrameData</a>(<a class="code hl_class" href="../../d0/d0a/classcarla_1_1Buffer.html">carla::Buffer</a> buffer);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="comment">// 向所有辅助服务器广播要加载的地图</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#afad357f45fb9473a4863aab8adf60818">SendLoadMap</a>(std::string map);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="comment">// 发送以了解连接是否处于活动状态</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#a2adfe341ddd9a820fa8d643ee4ed9ec5">SendIsAlive</a>();</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <a class="code hl_class" href="../../df/de1/classcarla_1_1streaming_1_1detail_1_1token__type.html">token_type</a> <a class="code hl_function" href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#a5c69feeed4dba60dbf699c444a0ac401">GetToken</a>(<a class="code hl_typedef" href="../../dd/d17/namespacecarla_1_1multigpu.html#abd1ff4d8e7fdd9dddbd35b0786d3f4d1">stream_id</a> sensor_id);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#a68a8f8ee0216b21fc3a337464b22fb01">EnableForROS</a>(<a class="code hl_typedef" href="../../dd/d17/namespacecarla_1_1multigpu.html#abd1ff4d8e7fdd9dddbd35b0786d3f4d1">stream_id</a> sensor_id);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#a4b3a34129e33a3fc37a85bac4d4f220c">DisableForROS</a>(<a class="code hl_typedef" href="../../dd/d17/namespacecarla_1_1multigpu.html#abd1ff4d8e7fdd9dddbd35b0786d3f4d1">stream_id</a> sensor_id);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#ae1ae1b535bfab6d551ae46899e8ea8a1">IsEnabledForROS</a>(<a class="code hl_typedef" href="../../dd/d17/namespacecarla_1_1multigpu.html#abd1ff4d8e7fdd9dddbd35b0786d3f4d1">stream_id</a> sensor_id);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="comment">// 发送到一个辅助节点以获取传感器的令牌</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <a class="code hl_class" href="../../df/de1/classcarla_1_1streaming_1_1detail_1_1token__type.html">token_type</a> <a class="code hl_function" href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#ab4d09fd63dc935c297966a919eab7ba4">SendGetToken</a>(<a class="code hl_typedef" href="../../dd/dcc/namespacecarla_1_1streaming_1_1detail.html#aa375c2a4e6ec37df037554b54f12835e">carla::streaming::detail::stream_id_type</a> sensor_id);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="comment">// 管理 ROS 传感器的启用/禁用</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#a06d5a4cd883c0b12ac31eb4364849e25">SendEnableForROS</a>(<a class="code hl_typedef" href="../../dd/d17/namespacecarla_1_1multigpu.html#abd1ff4d8e7fdd9dddbd35b0786d3f4d1">stream_id</a> sensor_id); <span class="comment">// 与SendEnableForROS函数类似，用于向相关节点发送禁用ROS传感器的消息，是DisableForROS函数的底层实现逻辑的一部分，实现关闭ROS相关功能的具体网络通信操作</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#ab7e817dbfdbf97732f03af42e38cfc43">SendDisableForROS</a>(<a class="code hl_typedef" href="../../dd/d17/namespacecarla_1_1multigpu.html#abd1ff4d8e7fdd9dddbd35b0786d3f4d1">stream_id</a> sensor_id); <span class="comment">// 与IsEnabledForROS函数类似，用于向相关节点发送查询请求以了解ROS传感器是否已被启用的消息，并返回查询结果，是IsEnabledForROS函数的底层实现逻辑的一部分，通过网络通信获取当前传感器在ROS方面的启用状态</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#a4d9d647870c65962a8b7445dc4573ce0">SendIsEnabledForROS</a>(<a class="code hl_typedef" href="../../dd/d17/namespacecarla_1_1multigpu.html#abd1ff4d8e7fdd9dddbd35b0786d3f4d1">stream_id</a> sensor_id);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#ae485c1cccd061549022533f6892ee85e">   64</a></span>    std::shared_ptr&lt;Router&gt; <a class="code hl_variable" href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#ae485c1cccd061549022533f6892ee85e">_router</a>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#a13bdc548b4713ab3aa1c31081b1f8cfd">   65</a></span>    std::unordered_map&lt;stream_id, token_type&gt; <a class="code hl_variable" href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#a13bdc548b4713ab3aa1c31081b1f8cfd">_tokens</a>;<span class="comment">// 成员变量，使用无序映射（unordered_map）存储传感器流标识（stream_id）与指向Primary类的弱智能指针（std::weak_ptr&lt;Primary&gt;）之间的映射关系，用于关联传感器流和对应的主节点相关信息，弱智能指针可以避免循环引用等问题</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#a6ef2c51a4cf2603d23f0ec7f99bc1009">   66</a></span>    std::unordered_map&lt;stream_id, std::weak_ptr&lt;Primary&gt;&gt; <a class="code hl_variable" href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#a6ef2c51a4cf2603d23f0ec7f99bc1009">_servers</a>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>};</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>} <span class="comment">// namespace multigpu</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>} <span class="comment">// namespace carla</span></div>
+<div class="ttc" id="aMessage_8h_html"><div class="ttname"><a href="../../d5/dca/Message_8h.html">Message.h</a></div><div class="ttdoc">包含 Carla 框架中与网络流相关的类和函数的声明。</div></div>
+<div class="ttc" id="aTypes_8h_html"><div class="ttname"><a href="../../d7/df8/Types_8h.html">Types.h</a></div><div class="ttdoc">包含与Carla流处理相关的底层细节的头文件。</div></div>
+<div class="ttc" id="aclassRouter_html"><div class="ttname"><a href="../../d6/d67/classRouter.html">Router</a></div><div class="ttdef"><b>Definition:</b> <a href="../../da/db7/router_8h_source.html#l00049">router.h:49</a></div></div>
+<div class="ttc" id="aclasscarla_1_1Buffer_html"><div class="ttname"><a href="../../d0/d0a/classcarla_1_1Buffer.html">carla::Buffer</a></div><div class="ttdoc">一块原始数据。 请注意，如果需要更多容量，则会分配一个新的内存块，并 删除旧的内存块。这意味着默认情况下，缓冲区只能增长。要释放内存，使用 clear 或 pop。</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/dda/carla_2Buffer_8h_source.html#l00052">carla/Buffer.h:52</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1PrimaryCommands_html"><div class="ttname"><a href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html">carla::multigpu::PrimaryCommands</a></div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dbf/primaryCommands_8h_source.html#l00027">primaryCommands.h:27</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1PrimaryCommands_html_a06d5a4cd883c0b12ac31eb4364849e25"><div class="ttname"><a href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#a06d5a4cd883c0b12ac31eb4364849e25">carla::multigpu::PrimaryCommands::SendEnableForROS</a></div><div class="ttdeci">void SendEnableForROS(stream_id sensor_id)</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/da8/primaryCommands_8cpp_source.html#l00094">primaryCommands.cpp:94</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1PrimaryCommands_html_a13bdc548b4713ab3aa1c31081b1f8cfd"><div class="ttname"><a href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#a13bdc548b4713ab3aa1c31081b1f8cfd">carla::multigpu::PrimaryCommands::_tokens</a></div><div class="ttdeci">std::unordered_map&lt; stream_id, token_type &gt; _tokens</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dbf/primaryCommands_8h_source.html#l00065">primaryCommands.h:65</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1PrimaryCommands_html_a1f774946cd18793e8c9263a44cd112b0"><div class="ttname"><a href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#a1f774946cd18793e8c9263a44cd112b0">carla::multigpu::PrimaryCommands::set_router</a></div><div class="ttdeci">void set_router(std::shared_ptr&lt; Router &gt; router)</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/da8/primaryCommands_8cpp_source.html#l00033">primaryCommands.cpp:33</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1PrimaryCommands_html_a2adfe341ddd9a820fa8d643ee4ed9ec5"><div class="ttname"><a href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#a2adfe341ddd9a820fa8d643ee4ed9ec5">carla::multigpu::PrimaryCommands::SendIsAlive</a></div><div class="ttdeci">void SendIsAlive()</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/da8/primaryCommands_8cpp_source.html#l00077">primaryCommands.cpp:77</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1PrimaryCommands_html_a4b3a34129e33a3fc37a85bac4d4f220c"><div class="ttname"><a href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#a4b3a34129e33a3fc37a85bac4d4f220c">carla::multigpu::PrimaryCommands::DisableForROS</a></div><div class="ttdeci">void DisableForROS(stream_id sensor_id)</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/da8/primaryCommands_8cpp_source.html#l00205">primaryCommands.cpp:205</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1PrimaryCommands_html_a4d9d647870c65962a8b7445dc4573ce0"><div class="ttname"><a href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#a4d9d647870c65962a8b7445dc4573ce0">carla::multigpu::PrimaryCommands::SendIsEnabledForROS</a></div><div class="ttdeci">bool SendIsEnabledForROS(stream_id sensor_id)</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/da8/primaryCommands_8cpp_source.html#l00135">primaryCommands.cpp:135</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1PrimaryCommands_html_a5c69feeed4dba60dbf699c444a0ac401"><div class="ttname"><a href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#a5c69feeed4dba60dbf699c444a0ac401">carla::multigpu::PrimaryCommands::GetToken</a></div><div class="ttdeci">token_type GetToken(stream_id sensor_id)</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/da8/primaryCommands_8cpp_source.html#l00163">primaryCommands.cpp:163</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1PrimaryCommands_html_a627ed9751bf7a35037f36283eeec7124"><div class="ttname"><a href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#a627ed9751bf7a35037f36283eeec7124">carla::multigpu::PrimaryCommands::SendFrameData</a></div><div class="ttdeci">void SendFrameData(carla::Buffer buffer)</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/da8/primaryCommands_8cpp_source.html#l00040">primaryCommands.cpp:40</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1PrimaryCommands_html_a68a8f8ee0216b21fc3a337464b22fb01"><div class="ttname"><a href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#a68a8f8ee0216b21fc3a337464b22fb01">carla::multigpu::PrimaryCommands::EnableForROS</a></div><div class="ttdeci">void EnableForROS(stream_id sensor_id)</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/da8/primaryCommands_8cpp_source.html#l00191">primaryCommands.cpp:191</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1PrimaryCommands_html_a6ef2c51a4cf2603d23f0ec7f99bc1009"><div class="ttname"><a href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#a6ef2c51a4cf2603d23f0ec7f99bc1009">carla::multigpu::PrimaryCommands::_servers</a></div><div class="ttdeci">std::unordered_map&lt; stream_id, std::weak_ptr&lt; Primary &gt; &gt; _servers</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dbf/primaryCommands_8h_source.html#l00066">primaryCommands.h:66</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1PrimaryCommands_html_a89ca4be7db6f68621eb13dab36f4eaf3"><div class="ttname"><a href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#a89ca4be7db6f68621eb13dab36f4eaf3">carla::multigpu::PrimaryCommands::PrimaryCommands</a></div><div class="ttdeci">PrimaryCommands()</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/da8/primaryCommands_8cpp_source.html#l00022">primaryCommands.cpp:22</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1PrimaryCommands_html_ab4d09fd63dc935c297966a919eab7ba4"><div class="ttname"><a href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#ab4d09fd63dc935c297966a919eab7ba4">carla::multigpu::PrimaryCommands::SendGetToken</a></div><div class="ttdeci">token_type SendGetToken(carla::streaming::detail::stream_id_type sensor_id)</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/da8/primaryCommands_8cpp_source.html#l00058">primaryCommands.cpp:58</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1PrimaryCommands_html_ab7e817dbfdbf97732f03af42e38cfc43"><div class="ttname"><a href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#ab7e817dbfdbf97732f03af42e38cfc43">carla::multigpu::PrimaryCommands::SendDisableForROS</a></div><div class="ttdeci">void SendDisableForROS(stream_id sensor_id)</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/da8/primaryCommands_8cpp_source.html#l00113">primaryCommands.cpp:113</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1PrimaryCommands_html_ae1ae1b535bfab6d551ae46899e8ea8a1"><div class="ttname"><a href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#ae1ae1b535bfab6d551ae46899e8ea8a1">carla::multigpu::PrimaryCommands::IsEnabledForROS</a></div><div class="ttdeci">bool IsEnabledForROS(stream_id sensor_id)</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/da8/primaryCommands_8cpp_source.html#l00216">primaryCommands.cpp:216</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1PrimaryCommands_html_ae485c1cccd061549022533f6892ee85e"><div class="ttname"><a href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#ae485c1cccd061549022533f6892ee85e">carla::multigpu::PrimaryCommands::_router</a></div><div class="ttdeci">std::shared_ptr&lt; Router &gt; _router</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dbf/primaryCommands_8h_source.html#l00064">primaryCommands.h:64</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1PrimaryCommands_html_afad357f45fb9473a4863aab8adf60818"><div class="ttname"><a href="../../da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#afad357f45fb9473a4863aab8adf60818">carla::multigpu::PrimaryCommands::SendLoadMap</a></div><div class="ttdeci">void SendLoadMap(std::string map)</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/da8/primaryCommands_8cpp_source.html#l00048">primaryCommands.cpp:48</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1token__type_html"><div class="ttname"><a href="../../df/de1/classcarla_1_1streaming_1_1detail_1_1token__type.html">carla::streaming::detail::token_type</a></div><div class="ttdoc">静态断言，用于确保token_data结构体的大小与Token::data的大小相同。</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d9d/detail_2Token_8h_source.html#l00098">detail/Token.h:98</a></div></div>
+<div class="ttc" id="acommands_8h_html"><div class="ttname"><a href="../../d5/d90/commands_8h.html">commands.h</a></div></div>
+<div class="ttc" id="adetail_2Token_8h_html"><div class="ttname"><a href="../../d9/d9d/detail_2Token_8h.html">Token.h</a></div><div class="ttdoc">包含CARLA流处理相关头文件和Boost.Asio网络库头文件。 包含CARLA的调试功能相关定义。 包含CARLA流处理的端点（EndPoint）类定义。 包含CARLA流处理的令牌（Token）类...</div></div>
+<div class="ttc" id="anamespacecarla_1_1multigpu_html_abd1ff4d8e7fdd9dddbd35b0786d3f4d1"><div class="ttname"><a href="../../dd/d17/namespacecarla_1_1multigpu.html#abd1ff4d8e7fdd9dddbd35b0786d3f4d1">carla::multigpu::stream_id</a></div><div class="ttdeci">carla::streaming::detail::stream_id_type stream_id</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dbf/primaryCommands_8h_source.html#l00023">primaryCommands.h:23</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1streaming_1_1detail_html_aa375c2a4e6ec37df037554b54f12835e"><div class="ttname"><a href="../../dd/dcc/namespacecarla_1_1streaming_1_1detail.html#aa375c2a4e6ec37df037554b54f12835e">carla::streaming::detail::stream_id_type</a></div><div class="ttdeci">uint32_t stream_id_type</div><div class="ttdoc">流ID的类型定义。</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/df8/Types_8h_source.html#l00033">Types.h:33</a></div></div>
+<div class="ttc" id="anamespacecarla_html"><div class="ttname"><a href="../../d9/d36/namespacecarla.html">carla</a></div><div class="ttdoc">CARLA模拟器的主命名空间。</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d4f/Carla_8cpp_source.html#l00139">Carla.cpp:139</a></div></div>
+<div class="ttc" id="aprimary_8h_html"><div class="ttname"><a href="../../d8/d15/primary_8h.html">primary.h</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

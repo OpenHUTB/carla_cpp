@@ -1,0 +1,30 @@
+<map id="carla::client::detail::ActorState::GetDisplayId" name="carla::client::detail::ActorState::GetDisplayId">
+<area shape="rect" id="node1" title=" " alt="" coords="515,779,685,819"/>
+<area shape="rect" id="node2" href="$d7/db6/classcarla_1_1client_1_1RssSensor.html#ac445573909a9236ad5a554d6937d3a6e" title="向当前路由目标列表追加一个路由目标 (" alt="" coords="272,5,429,45"/>
+<area shape="rect" id="node3" href="$de/d68/classcarla_1_1client_1_1ServerSideSensor.html#a8b8d6cfb406fd98f00390ff017b6df71" title=" " alt="" coords="17,120,175,160"/>
+<area shape="rect" id="node4" href="$df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html#ae6feb4d03375b8d6610be9abfa8c8b9a" title="销毁指定的演员" alt="" coords="269,299,433,339"/>
+<area shape="rect" id="node5" href="$d7/db6/classcarla_1_1client_1_1RssSensor.html#a91c91095f0bf0dd79842864dce708fa0" title="返回当前自车（ego vehicle）所使用的动力学参数（" alt="" coords="265,363,436,403"/>
+<area shape="rect" id="node6" href="$d7/db6/classcarla_1_1client_1_1RssSensor.html#a5877773536fda089c1a55ba7d080d729" title="返回当前其他车辆所使用的动力学参数（" alt="" coords="260,427,441,467"/>
+<area shape="rect" id="node7" href="$d7/db6/classcarla_1_1client_1_1RssSensor.html#ae52d2d340bd7fd0d8f02e1a3967f41b6" title="返回当前行人所使用的动力学参数（" alt="" coords="267,491,435,531"/>
+<area shape="rect" id="node8" href="$d7/db6/classcarla_1_1client_1_1RssSensor.html#a1e193b8437b7e1c1e04e7526092650ff" title=" " alt="" coords="263,555,439,595"/>
+<area shape="rect" id="node9" href="$d7/db6/classcarla_1_1client_1_1RssSensor.html#ae83312e0908d5a97d8ea815e9e000a32" title=" " alt="" coords="272,619,429,659"/>
+<area shape="rect" id="node10" href="$de/d68/classcarla_1_1client_1_1ServerSideSensor.html#ad9cbca9c2bc3d5762df81970696bdc81" title="注册一个 回调，每次收到新的测量值时执行。" alt="" coords="272,683,429,723"/>
+<area shape="rect" id="node11" href="$d7/db6/classcarla_1_1client_1_1RssSensor.html#af2dcc2b1ee4a52dbc8e1e7727e3653c4" title="注册一个回调函数，每次接收到新的测量数据时都会执行该函数。" alt="" coords="272,747,429,787"/>
+<area shape="rect" id="node12" href="$de/d68/classcarla_1_1client_1_1ServerSideSensor.html#a8d2f2ded63362c44925f7e5c7c64adcf" title="监听 fr" alt="" coords="269,811,433,851"/>
+<area shape="rect" id="node13" href="$d7/db6/classcarla_1_1client_1_1RssSensor.html#a761bb9c8cfffcd4225fd19453b76e108" title="为每个待处理的测量中的每个行为体注册一个回调函数，以便决定RSS传感器相对于自我车辆与行为体星座的操作。" alt="" coords="235,875,467,915"/>
+<area shape="rect" id="node14" href="$df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html#a414d306143aa4176218dad033c46553c" title=" " alt="" coords="248,939,453,979"/>
+<area shape="rect" id="node15" href="$d7/db6/classcarla_1_1client_1_1RssSensor.html#a205b330869e72dbf3e1b86d4d2b0ad15" title="重置当前的路由目标 (" alt="" coords="272,1003,429,1043"/>
+<area shape="rect" id="node16" href="$de/d68/classcarla_1_1client_1_1ServerSideSensor.html#aa21c177524bc15fb56b45fa3c87dd91b" title="通过该传感器发送数据" alt="" coords="272,1067,429,1107"/>
+<area shape="rect" id="node17" href="$d7/db6/classcarla_1_1client_1_1RssSensor.html#a59c753d75ccc40906c28de0a099f594f" title="设置自车（ego vehicle）将要使用的动力学参数（" alt="" coords="265,1131,436,1171"/>
+<area shape="rect" id="node18" href="$d7/db6/classcarla_1_1client_1_1RssSensor.html#a58daca3e4215e63c5d6a37da643dd2b5" title="设置当前的日志级别" alt="" coords="272,1195,429,1235"/>
+<area shape="rect" id="node19" href="$d7/db6/classcarla_1_1client_1_1RssSensor.html#a9603323a282012d61dcbe6f532bed650" title="设置当前的地图日志级别" alt="" coords="272,1259,429,1299"/>
+<area shape="rect" id="node20" href="$d7/db6/classcarla_1_1client_1_1RssSensor.html#a8daf2300175fe66497ada5415c88ce3d" title="设置其他车辆所使用的动力学参数（" alt="" coords="261,1323,441,1363"/>
+<area shape="rect" id="node21" href="$d7/db6/classcarla_1_1client_1_1RssSensor.html#a73e557f1bf767797866cd339ef4fcd13" title="设置行人所使用的动力学参数（" alt="" coords="267,1387,434,1427"/>
+<area shape="rect" id="node22" href="$d7/db6/classcarla_1_1client_1_1RssSensor.html#acf5726bb8aad25b9e2dbb83b75c5904a" title="设置当前用于遵守道路边界的模式 (" alt="" coords="263,1451,438,1491"/>
+<area shape="rect" id="node23" href="$de/d68/classcarla_1_1client_1_1ServerSideSensor.html#ac50a567c3bfd01261f06f9743afef84a" title="停止监听新的测量结果。" alt="" coords="272,120,429,160"/>
+<area shape="rect" id="node24" href="$de/d68/classcarla_1_1client_1_1ServerSideSensor.html#a1201671eeb012dca84d5159d1921512a" title=" " alt="" coords="5,184,187,224"/>
+<area shape="rect" id="node25" href="$d7/db6/classcarla_1_1client_1_1RssSensor.html#a84708b0cda6793b54a1df34c90050962" title="停止监听新的测量数据。" alt="" coords="272,1515,429,1555"/>
+<area shape="rect" id="node27" href="$de/d68/classcarla_1_1client_1_1ServerSideSensor.html#af9ff392aec23bfad361e211dcd85fd9f" title="停止监听特定的 gbuffer 流。" alt="" coords="272,184,429,224"/>
+<area shape="rect" id="node28" href="$df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html#a828a2d0b33e3746d6def8095794b8e85" title=" " alt="" coords="242,1579,459,1619"/>
+<area shape="rect" id="node26" href="$d7/db6/classcarla_1_1client_1_1RssSensor.html#a4374f932e9cc6e726d7cbf98a7006cc9" title="析构函数" alt="" coords="17,1515,175,1555"/>
+</map>

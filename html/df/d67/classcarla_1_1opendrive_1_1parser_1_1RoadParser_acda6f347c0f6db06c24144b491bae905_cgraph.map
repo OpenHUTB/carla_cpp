@@ -1,0 +1,20 @@
+<map id="carla::opendrive::parser::RoadParser::Parse" name="carla::opendrive::parser::RoadParser::Parse">
+<area shape="rect" id="node1" title="解析XML文档中的道路信息，并将其用于构建道路地图 该函数读取XML文档中的道路数据，如道路几何形状、车道信息、交叉口等 并使用这些数据来构建或更新道路地图" alt="" coords="5,383,160,423"/>
+<area shape="rect" id="node2" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#a3bd8ae2f59e33c89d34144f003bd8e7b" title=" " alt="" coords="212,5,364,45"/>
+<area shape="rect" id="node3" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#a4c51ad576d6a0f4078594d571b64a4d4" title=" " alt="" coords="212,69,364,109"/>
+<area shape="rect" id="node4" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#a1484f5063da0a24cdc1e3d1f9560186d" title=" " alt="" coords="211,133,365,173"/>
+<area shape="rect" id="node5" href="$de/d7c/classpugi_1_1xml__attribute.html#ad419c797deda65f8369bfcdebb82ef46" title=" " alt="" coords="225,197,351,237"/>
+<area shape="rect" id="node6" href="$de/d7c/classpugi_1_1xml__attribute.html#a4f67c7bffc69055c9dfc36bd212f6fa6" title=" " alt="" coords="225,261,351,301"/>
+<area shape="rect" id="node7" href="$de/d7c/classpugi_1_1xml__attribute.html#af7a05c041c45bce9bf89ee2a957362ec" title=" " alt="" coords="225,325,351,365"/>
+<area shape="rect" id="node8" href="$db/d65/classpugi_1_1xml__node.html#ac0234bad0db50690f5bc97d0788303ad" title=" " alt="" coords="208,390,368,415"/>
+<area shape="rect" id="node9" href="$db/d65/classpugi_1_1xml__node.html#a1e23e9720c90ef764197f1e0c71aa287" title=" " alt="" coords="218,439,358,465"/>
+<area shape="rect" id="node11" href="$db/d65/classpugi_1_1xml__node.html#a3dd84eaeb958e8262f3edb7bda013101" title=" " alt="" coords="209,489,367,514"/>
+<area shape="rect" id="node14" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#a290e593d53d5a58895c542e3db1012f6" title=" " alt="" coords="212,539,364,579"/>
+<area shape="rect" id="node15" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#a42bde86ce9e8116ad27afcf8a10cc839" title=" " alt="" coords="212,603,364,643"/>
+<area shape="rect" id="node16" href="$db/dd5/namespacecarla_1_1opendrive_1_1parser.html#a822c45470d46b854860abe81239bcd1d" title=" " alt="" coords="211,667,365,707"/>
+<area shape="rect" id="node18" href="$de/d7c/classpugi_1_1xml__attribute.html#affe352ea96e4e82e52bb8a8313c3def0" title=" " alt="" coords="225,731,351,771"/>
+<area shape="rect" id="node10" href="$db/d65/classpugi_1_1xml__node.html#a36ec0eb8b399d71f6b55be0e181c69f9" title=" " alt="" coords="416,439,584,465"/>
+<area shape="rect" id="node12" href="$db/d65/classpugi_1_1xml__node.html#ae42dc1a560ee36a16f907cd7aa89cc9c" title=" " alt="" coords="428,489,572,514"/>
+<area shape="rect" id="node13" href="$db/d65/classpugi_1_1xml__node.html#a6c1f42812de4e25ac72908efab842126" title=" " alt="" coords="433,538,567,563"/>
+<area shape="rect" id="node17" href="$de/d93/classcarla_1_1StringUtil.html#ada48ad70d7afa9a0cd6b3d68a1c292e8" title=" " alt="" coords="442,667,558,707"/>
+</map>

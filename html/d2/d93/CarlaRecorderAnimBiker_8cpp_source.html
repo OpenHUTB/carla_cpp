@@ -1,0 +1,216 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: CarlaRecorderAnimBiker.cpp 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_2d15d0715a2692171bd03ed14a4a79af.html">Unreal</a></li><li class="navelem"><a class="el" href="../../dir_d3c1db2570616bec48bf5a6dd06bce95.html">CarlaUE4</a></li><li class="navelem"><a class="el" href="../../dir_3538576148ac14151677be9b0aee6fcc.html">Plugins</a></li><li class="navelem"><a class="el" href="../../dir_fbda5b12374c683cbdca72abb2d51944.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_18937e8f6bde63367bf26837323a9508.html">Source</a></li><li class="navelem"><a class="el" href="../../dir_8fc34afb5f07a67966c78bf5319f94ae.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_0dd3f6464b0e5c5db135a4b73b996175.html">Recorder</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">CarlaRecorderAnimBiker.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d2/d93/CarlaRecorderAnimBiker_8cpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// de Barcelona (UAB).</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// This work is licensed under the terms of the MIT license.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="../../d9/d6a/CarlaRecorder_8h.html">CarlaRecorder.h</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="../../d6/dda/CarlaRecorderAnimBiker_8h.html">CarlaRecorderAnimBiker.h</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="../../d6/dd1/CarlaRecorderHelpers_8h.html">CarlaRecorderHelpers.h</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">// CarlaRecorderAnimBiker类的Write函数，用于将该类对象的相关数据成员写入到给定的输出流OutFile中，以便进行数据持久化、传输等操作，此函数被声明为const，意味着不会修改类的非mutable成员变量。</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="../../db/d9f/structCarlaRecorderAnimBiker.html#a09fd0631992f5f3a53bd14e2721b41e3">   12</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../db/d9f/structCarlaRecorderAnimBiker.html#a09fd0631992f5f3a53bd14e2721b41e3">CarlaRecorderAnimBiker::Write</a>(std::ostream &amp;OutFile)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="comment">// 调用WriteValue函数（推测是自定义的用于向输出流写入特定类型数据的辅助函数），将当前对象的DatabaseId（类型为uint32_t，可能是数据库中对应记录的唯一标识之类的用途）写入到输出流OutFile中。</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="comment">// 这样，在后续从相应的输入流读取数据时，可以按照相同的顺序和格式恢复这个值，确保数据的一致性和完整性。</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    WriteValue&lt;uint32_t&gt;(OutFile, <a class="code hl_variable" href="../../db/d9f/structCarlaRecorderAnimBiker.html#a707191dd0d3937ec58a7f21e330c71ea">DatabaseId</a>);</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="comment">// 同样调用WriteValue函数，把ForwardSpeed（类型为float，大概率表示该对象向前行进的速度值）这个成员变量的值写入到输出流OutFile中，方便后续对速度相关数据的记录和使用。</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    WriteValue&lt;float&gt;(OutFile, <a class="code hl_variable" href="../../db/d9f/structCarlaRecorderAnimBiker.html#a05ebe7642bb97d2c046fa8a4fa581b3f">ForwardSpeed</a>);</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="comment">// 再次调用WriteValue函数，将EngineRotation（类型为float，可能代表引擎的旋转相关参数，比如转速之类的）成员变量的值写入到输出流OutFile中，完成该类对象主要数据成员向输出流的写入操作。</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    WriteValue&lt;float&gt;(OutFile, <a class="code hl_variable" href="../../db/d9f/structCarlaRecorderAnimBiker.html#a3f4963aa39f6a596cf6664b4e359fa19">EngineRotation</a>);</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>}</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">// CarlaRecorderAnimBiker类的Read函数，作用是从给定的输入流InFile中读取数据，并将读取到的值赋给类的相应成员变量，实现从外部数据源恢复对象状态的功能。</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="../../db/d9f/structCarlaRecorderAnimBiker.html#a53a0fca1da840cad5c7301943a0fc6b3">   24</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../db/d9f/structCarlaRecorderAnimBiker.html#a53a0fca1da840cad5c7301943a0fc6b3">CarlaRecorderAnimBiker::Read</a>(std::istream &amp;InFile)</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>{</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="comment">// 调用ReadValue函数（与WriteValue相对应，应是自定义的用于从输入流读取特定类型数据的辅助函数），从输入流InFile中读取一个uint32_t类型的数据，</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="comment">// 并将其赋值给当前对象的DatabaseId成员变量，确保能正确恢复这个在写入时保存的唯一标识数据。</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    ReadValue&lt;uint32_t&gt;(InFile, <a class="code hl_variable" href="../../db/d9f/structCarlaRecorderAnimBiker.html#a707191dd0d3937ec58a7f21e330c71ea">DatabaseId</a>);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="comment">// 类似地，调用ReadValue函数从输入流InFile中读取一个float类型的数据，然后将该数据赋值给ForwardSpeed成员变量，以恢复对象的速度相关信息。</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    ReadValue&lt;float&gt;(InFile, <a class="code hl_variable" href="../../db/d9f/structCarlaRecorderAnimBiker.html#a05ebe7642bb97d2c046fa8a4fa581b3f">ForwardSpeed</a>);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="comment">// 再次调用ReadValue函数，从输入流InFile中读取一个float类型的数据，并将其赋值给EngineRotation成员变量，从而完整地从输入流中读取数据并更新类中对应成员变量的值，恢复对象的状态。</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    ReadValue&lt;float&gt;(InFile, <a class="code hl_variable" href="../../db/d9f/structCarlaRecorderAnimBiker.html#a3f4963aa39f6a596cf6664b4e359fa19">EngineRotation</a>);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>}</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment">// ---------------------------------------------</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment">// CarlaRecorderAnimBikers类的Clear函数，用于清空该类内部存储的所有CarlaRecorderAnimBiker类型对象的容器，释放相关内存资源或者重置数据状态。</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="../../da/d46/classCarlaRecorderAnimBikers.html#a2b929431292f3d4a91a1cff2a7a09af1">   38</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../da/d46/classCarlaRecorderAnimBikers.html#a2b929431292f3d4a91a1cff2a7a09af1">CarlaRecorderAnimBikers::Clear</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>{</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="comment">// 调用std::vector容器的clear函数，它会销毁Bikers容器中存储的所有元素（如果元素是动态分配内存的对象，会释放相应内存），并将容器的大小设置为0，</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="comment">// 使得Bikers容器变为空容器，后续可以重新添加新的元素进行数据存储等操作。</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <a class="code hl_variable" href="../../da/d46/classCarlaRecorderAnimBikers.html#a9f01b68136cd3df90cae1479bf018313">Bikers</a>.clear();</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>}</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">// CarlaRecorderAnimBikers类的Add函数，功能是向类内部的Bikers容器中添加一个CarlaRecorderAnimBiker类型的对象，方便收集和管理多个此类对象。</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="../../da/d46/classCarlaRecorderAnimBikers.html#aaad7c1465ee9023ecb31287d2db3a31e">   46</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../da/d46/classCarlaRecorderAnimBikers.html#aaad7c1465ee9023ecb31287d2db3a31e">CarlaRecorderAnimBikers::Add</a>(<span class="keyword">const</span> <a class="code hl_struct" href="../../db/d9f/structCarlaRecorderAnimBiker.html">CarlaRecorderAnimBiker</a> &amp;Biker)</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>{</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="comment">// 利用std::vector容器的push_back函数，将传入的Biker对象（以常量引用的形式传入，避免不必要的拷贝开销，同时保证原对象不被修改）添加到Bikers容器的末尾，</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="comment">// 这会使Bikers容器中的元素数量增加1，实现了向容器内插入新元素的操作，便于后续对多个对象进行批量处理（比如批量写入、读取等操作）。</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <a class="code hl_variable" href="../../da/d46/classCarlaRecorderAnimBikers.html#a9f01b68136cd3df90cae1479bf018313">Bikers</a>.push_back(Biker);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>}</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="comment">// CarlaRecorderAnimBikers类的Write函数，目的是将该类所管理的多个CarlaRecorderAnimBiker对象的数据整体写入到输出流OutFile中，包括一些必要的标识信息和各个对象的数据内容，便于后续进行数据存储、传输以及读取恢复操作。</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="../../da/d46/classCarlaRecorderAnimBikers.html#a0e7d84693e5fc1848d23fab59d12549e">   54</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../da/d46/classCarlaRecorderAnimBikers.html#a0e7d84693e5fc1848d23fab59d12549e">CarlaRecorderAnimBikers::Write</a>(std::ostream &amp;OutFile)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="comment">// 调用WriteValue函数，写入一个char类型的数据，这里将CarlaRecorderPacketId::AnimBiker（可能是一个枚举值，用于标识当前数据包对应的是与动画骑手相关的类型）转换为char类型后写入输出流OutFile中，</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="comment">// 这样在读取数据时，可以先通过这个标识来判断数据包的类型，进而按照相应的规则进行后续数据的解析，起到区分不同类型数据的作用。</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    WriteValue&lt;char&gt;(OutFile, <span class="keyword">static_cast&lt;</span><span class="keywordtype">char</span><span class="keyword">&gt;</span>(CarlaRecorderPacketId::AnimBiker));</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="comment">// 计算要写入的数据包的总大小，数据包总大小由两部分组成：一部分是固定的头部大小（这里设置为2字节，可能用于存放一些协议相关的控制信息或者后续扩展的标识等），</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="comment">// 另一部分是所有存储在Bikers容器中的CarlaRecorderAnimBiker对象所占用的空间大小（通过Bikers容器中元素个数乘以单个对象的大小，即sizeof(CarlaRecorderAnimBiker)来计算），</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="comment">// 将计算得到的总大小存储在Total变量中，后续会把这个总大小信息也写入到输出流中，方便接收方准确知晓整个数据包的长度，以便正确地读取数据。</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    uint32_t Total = 2 + <a class="code hl_variable" href="../../da/d46/classCarlaRecorderAnimBikers.html#a9f01b68136cd3df90cae1479bf018313">Bikers</a>.size() * <span class="keyword">sizeof</span>(<a class="code hl_struct" href="../../db/d9f/structCarlaRecorderAnimBiker.html">CarlaRecorderAnimBiker</a>);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="comment">// 调用WriteValue函数，将前面计算好的数据包总大小（Total变量的值，类型为uint32_t）写入到输出流OutFile中，使得接收方能够获取这个关键的数据包长度信息，确保数据读取的准确性。</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    WriteValue&lt;uint32_t&gt;(OutFile, Total);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="comment">// 将Bikers容器中存储的CarlaRecorderAnimBiker对象的个数赋值给Total变量（重新赋值，覆盖之前用于计算数据包大小的用法），目的是将这个记录个数信息也写入到输出流中，</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="comment">// 接收方在读取数据时，可以先获取这个记录个数，从而知道后续需要读取多少个CarlaRecorderAnimBiker对象的数据，便于通过循环等方式准确地解析出每个对象的数据内容。</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    Total = <a class="code hl_variable" href="../../da/d46/classCarlaRecorderAnimBikers.html#a9f01b68136cd3df90cae1479bf018313">Bikers</a>.size();</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="comment">// 调用WriteValue函数，将记录个数（Total变量的值，类型为uint16_t）写入到输出流OutFile中，完成数据记录个数信息的写入操作，为后续正确解析数据提供必要的前置信息。</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    WriteValue&lt;uint16_t&gt;(OutFile, Total);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="comment">// 判断记录个数（Total）是否大于0，即确认是否有实际的数据记录需要写入输出流。如果有数据记录（Total &gt; 0），则执行以下操作，将所有CarlaRecorderAnimBiker对象的数据写入到输出流中。</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordflow">if</span> (Total &gt; 0)</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    {</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        <span class="comment">// 使用std::ostream的write函数，将Bikers容器中存储的所有CarlaRecorderAnimBiker对象的数据以字节流的形式直接写入到输出流OutFile中。</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        <span class="comment">// 通过reinterpret_cast将Bikers.data()（它返回指向Bikers容器中存储数据的首地址的指针，原本类型为const char *，符合write函数要求的参数类型）进行类型转换，</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        <span class="comment">// 并按照Bikers容器中元素个数乘以单个对象大小（Bikers.size() * sizeof(CarlaRecorderAnimBiker)）确定要写入的字节长度，实现批量数据的写入操作，将所有对象的数据完整地发送到输出流中。</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        OutFile.write(<span class="keyword">reinterpret_cast&lt;</span><span class="keyword">const </span><span class="keywordtype">char</span> *<span class="keyword">&gt;</span>(<a class="code hl_variable" href="../../da/d46/classCarlaRecorderAnimBikers.html#a9f01b68136cd3df90cae1479bf018313">Bikers</a>.data()),</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>            <a class="code hl_variable" href="../../da/d46/classCarlaRecorderAnimBikers.html#a9f01b68136cd3df90cae1479bf018313">Bikers</a>.size() * <span class="keyword">sizeof</span>(<a class="code hl_struct" href="../../db/d9f/structCarlaRecorderAnimBiker.html">CarlaRecorderAnimBiker</a>));</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    }</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>}</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="comment">// CarlaRecorderAnimBikers类的Read函数，用于从输入流InFile中读取数据，并解析恢复出多个CarlaRecorderAnimBiker对象，将它们存储到类内部的Bikers容器中，实现数据的读取和对象集合的重建操作。</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="../../da/d46/classCarlaRecorderAnimBikers.html#acfc22c11c50432f5c647248954460b37">   85</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../da/d46/classCarlaRecorderAnimBikers.html#acfc22c11c50432f5c647248954460b37">CarlaRecorderAnimBikers::Read</a>(std::istream &amp;InFile)</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>{</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="comment">// 定义两个变量，i（类型为uint16_t）用于循环计数，Total（类型为uint16_t）用于存储从输入流中读取到的CarlaRecorderAnimBiker对象的总个数，初始化这两个变量，为后续的循环操作和数据读取控制做好准备。</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    uint16_t i, Total;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="comment">// 创建一个CarlaRecorderAnimBiker类型的临时对象Biker，在后续的循环读取过程中，每次会利用这个临时对象从输入流中读取一个对象的数据，然后通过调用其Read函数进行解析恢复，最后添加到Bikers容器中。</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <a class="code hl_struct" href="../../db/d9f/structCarlaRecorderAnimBiker.html">CarlaRecorderAnimBiker</a> Biker;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="comment">// 调用ReadValue函数，从输入流InFile中读取一个uint16_t类型的数据，这个数据应该是表示后续要读取的CarlaRecorderAnimBiker对象的总个数，将读取到的值赋给Total变量，</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="comment">// 以此来确定后续循环读取数据的次数，确保能够正确地解析出所有需要的对象数据，避免多读或者少读数据的情况发生。</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    ReadValue&lt;uint16_t&gt;(InFile, Total);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="comment">// 开始循环，只要i小于Total（即还没有读取完所有的对象数据），就持续执行循环体中的操作，每次循环完成一个CarlaRecorderAnimBiker对象的数据读取、解析和添加到Bikers容器的操作。</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="keywordflow">for</span> (i = 0; i &lt; Total; ++i)</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    {</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <span class="comment">// 调用临时创建的Biker对象的Read函数，传入输入流InFile，让Biker对象从输入流中按照其自身定义的读取格式（在CarlaRecorderAnimBiker::Read函数中实现）读取自身相关的数据，</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <span class="comment">// 比如之前通过Write函数写入的DatabaseId、ForwardSpeed、EngineRotation等成员变量的数据，完成单个对象数据的解析恢复操作，使其恢复到写入之前的状态。</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        Biker.<a class="code hl_function" href="../../db/d9f/structCarlaRecorderAnimBiker.html#a53a0fca1da840cad5c7301943a0fc6b3">Read</a>(InFile);</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        <span class="comment">// 调用该类的Add函数，将已经读取并解析好数据的Biker对象添加到Bikers容器中，实现将从输入流中读取到的对象数据存储到类中管理的数据容器里，方便后续对这些对象进行统一的管理和使用，比如再次写入、查询等操作。</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        <a class="code hl_function" href="../../da/d46/classCarlaRecorderAnimBikers.html#aaad7c1465ee9023ecb31287d2db3a31e">Add</a>(Biker);</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    }</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>}</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="comment">// CarlaRecorderAnimBikers类的GetBikers函数，用于获取类内部存储CarlaRecorderAnimBiker对象的向量容器（Bikers）的常量引用，方便外部代码访问容器内的数据，但不允许修改容器本身。</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="../../da/d46/classCarlaRecorderAnimBikers.html#aad2567f313c99f3d4e32c6280cfbfcba">  107</a></span><span class="keyword">const</span> std::vector&lt;CarlaRecorderAnimBiker&gt;&amp; <a class="code hl_function" href="../../da/d46/classCarlaRecorderAnimBikers.html#aad2567f313c99f3d4e32c6280cfbfcba">CarlaRecorderAnimBikers::GetBikers</a>()</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>{</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="../../da/d46/classCarlaRecorderAnimBikers.html#a9f01b68136cd3df90cae1479bf018313">Bikers</a>;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>}</div>
+<div class="ttc" id="aCarlaRecorderAnimBiker_8h_html"><div class="ttname"><a href="../../d6/dda/CarlaRecorderAnimBiker_8h.html">CarlaRecorderAnimBiker.h</a></div></div>
+<div class="ttc" id="aCarlaRecorderHelpers_8h_html"><div class="ttname"><a href="../../d6/dd1/CarlaRecorderHelpers_8h.html">CarlaRecorderHelpers.h</a></div></div>
+<div class="ttc" id="aCarlaRecorder_8h_html"><div class="ttname"><a href="../../d9/d6a/CarlaRecorder_8h.html">CarlaRecorder.h</a></div></div>
+<div class="ttc" id="aclassCarlaRecorderAnimBikers_html_a0e7d84693e5fc1848d23fab59d12549e"><div class="ttname"><a href="../../da/d46/classCarlaRecorderAnimBikers.html#a0e7d84693e5fc1848d23fab59d12549e">CarlaRecorderAnimBikers::Write</a></div><div class="ttdeci">void Write(std::ostream &amp;OutFile) const</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d93/CarlaRecorderAnimBiker_8cpp_source.html#l00054">CarlaRecorderAnimBiker.cpp:54</a></div></div>
+<div class="ttc" id="aclassCarlaRecorderAnimBikers_html_a2b929431292f3d4a91a1cff2a7a09af1"><div class="ttname"><a href="../../da/d46/classCarlaRecorderAnimBikers.html#a2b929431292f3d4a91a1cff2a7a09af1">CarlaRecorderAnimBikers::Clear</a></div><div class="ttdeci">void Clear(void)</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d93/CarlaRecorderAnimBiker_8cpp_source.html#l00038">CarlaRecorderAnimBiker.cpp:38</a></div></div>
+<div class="ttc" id="aclassCarlaRecorderAnimBikers_html_a9f01b68136cd3df90cae1479bf018313"><div class="ttname"><a href="../../da/d46/classCarlaRecorderAnimBikers.html#a9f01b68136cd3df90cae1479bf018313">CarlaRecorderAnimBikers::Bikers</a></div><div class="ttdeci">std::vector&lt; CarlaRecorderAnimBiker &gt; Bikers</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/dda/CarlaRecorderAnimBiker_8h_source.html#l00042">CarlaRecorderAnimBiker.h:42</a></div></div>
+<div class="ttc" id="aclassCarlaRecorderAnimBikers_html_aaad7c1465ee9023ecb31287d2db3a31e"><div class="ttname"><a href="../../da/d46/classCarlaRecorderAnimBikers.html#aaad7c1465ee9023ecb31287d2db3a31e">CarlaRecorderAnimBikers::Add</a></div><div class="ttdeci">void Add(const CarlaRecorderAnimBiker &amp;InObj)</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d93/CarlaRecorderAnimBiker_8cpp_source.html#l00046">CarlaRecorderAnimBiker.cpp:46</a></div></div>
+<div class="ttc" id="aclassCarlaRecorderAnimBikers_html_aad2567f313c99f3d4e32c6280cfbfcba"><div class="ttname"><a href="../../da/d46/classCarlaRecorderAnimBikers.html#aad2567f313c99f3d4e32c6280cfbfcba">CarlaRecorderAnimBikers::GetBikers</a></div><div class="ttdeci">const std::vector&lt; CarlaRecorderAnimBiker &gt; &amp; GetBikers()</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d93/CarlaRecorderAnimBiker_8cpp_source.html#l00107">CarlaRecorderAnimBiker.cpp:107</a></div></div>
+<div class="ttc" id="aclassCarlaRecorderAnimBikers_html_acfc22c11c50432f5c647248954460b37"><div class="ttname"><a href="../../da/d46/classCarlaRecorderAnimBikers.html#acfc22c11c50432f5c647248954460b37">CarlaRecorderAnimBikers::Read</a></div><div class="ttdeci">void Read(std::istream &amp;InFile)</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d93/CarlaRecorderAnimBiker_8cpp_source.html#l00085">CarlaRecorderAnimBiker.cpp:85</a></div></div>
+<div class="ttc" id="astructCarlaRecorderAnimBiker_html"><div class="ttname"><a href="../../db/d9f/structCarlaRecorderAnimBiker.html">CarlaRecorderAnimBiker</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d6/dda/CarlaRecorderAnimBiker_8h_source.html#l00013">CarlaRecorderAnimBiker.h:14</a></div></div>
+<div class="ttc" id="astructCarlaRecorderAnimBiker_html_a05ebe7642bb97d2c046fa8a4fa581b3f"><div class="ttname"><a href="../../db/d9f/structCarlaRecorderAnimBiker.html#a05ebe7642bb97d2c046fa8a4fa581b3f">CarlaRecorderAnimBiker::ForwardSpeed</a></div><div class="ttdeci">float ForwardSpeed</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/dda/CarlaRecorderAnimBiker_8h_source.html#l00016">CarlaRecorderAnimBiker.h:16</a></div></div>
+<div class="ttc" id="astructCarlaRecorderAnimBiker_html_a09fd0631992f5f3a53bd14e2721b41e3"><div class="ttname"><a href="../../db/d9f/structCarlaRecorderAnimBiker.html#a09fd0631992f5f3a53bd14e2721b41e3">CarlaRecorderAnimBiker::Write</a></div><div class="ttdeci">void Write(std::ostream &amp;OutFile) const</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d93/CarlaRecorderAnimBiker_8cpp_source.html#l00012">CarlaRecorderAnimBiker.cpp:12</a></div></div>
+<div class="ttc" id="astructCarlaRecorderAnimBiker_html_a3f4963aa39f6a596cf6664b4e359fa19"><div class="ttname"><a href="../../db/d9f/structCarlaRecorderAnimBiker.html#a3f4963aa39f6a596cf6664b4e359fa19">CarlaRecorderAnimBiker::EngineRotation</a></div><div class="ttdeci">float EngineRotation</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/dda/CarlaRecorderAnimBiker_8h_source.html#l00017">CarlaRecorderAnimBiker.h:17</a></div></div>
+<div class="ttc" id="astructCarlaRecorderAnimBiker_html_a53a0fca1da840cad5c7301943a0fc6b3"><div class="ttname"><a href="../../db/d9f/structCarlaRecorderAnimBiker.html#a53a0fca1da840cad5c7301943a0fc6b3">CarlaRecorderAnimBiker::Read</a></div><div class="ttdeci">void Read(std::istream &amp;InFile)</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d93/CarlaRecorderAnimBiker_8cpp_source.html#l00024">CarlaRecorderAnimBiker.cpp:24</a></div></div>
+<div class="ttc" id="astructCarlaRecorderAnimBiker_html_a707191dd0d3937ec58a7f21e330c71ea"><div class="ttname"><a href="../../db/d9f/structCarlaRecorderAnimBiker.html#a707191dd0d3937ec58a7f21e330c71ea">CarlaRecorderAnimBiker::DatabaseId</a></div><div class="ttdeci">uint32_t DatabaseId</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/dda/CarlaRecorderAnimBiker_8h_source.html#l00015">CarlaRecorderAnimBiker.h:15</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

@@ -1,0 +1,8 @@
+<map id="carla::geom::GeoLocation::Transform" name="carla::geom::GeoLocation::Transform">
+<area shape="rect" id="node1" title="使用此对象作为地理参考，将给定的 location 转换为 GeoLocation。" alt="" coords="5,47,173,87"/>
+<area shape="rect" id="node2" href="$dc/dda/namespacecarla_1_1geom.html#ab563ac51c2d53544481217df7e8e6a35" title="在给定的纬度、经度上添加米为单位的dx/dy，并返回新的纬度、经度" alt="" coords="221,55,420,80"/>
+<area shape="rect" id="node3" href="$dc/dda/namespacecarla_1_1geom.html#a4d327b593c8f26a8e7c03f13816366e6" title="将纬度、经度和比例尺转换为墨卡托坐标系中的mx/my" alt="" coords="468,5,669,31"/>
+<area shape="rect" id="node5" href="$dc/dda/namespacecarla_1_1geom.html#a3c277daefc89cfd431359716d8190551" title="将纬度转换为墨卡托投影所需的比例尺" alt="" coords="488,55,649,80"/>
+<area shape="rect" id="node6" href="$dc/dda/namespacecarla_1_1geom.html#a812320ece05307ebf6e8ec577cbbc05f" title="将墨卡托坐标系中的mx/my转换回纬度、经度" alt="" coords="468,104,669,129"/>
+<area shape="rect" id="node4" href="$d0/dea/classcarla_1_1geom_1_1Math.html#a2bd79912876dfbab9354c0bb841320e4" title=" " alt="" coords="717,23,847,63"/>
+</map>

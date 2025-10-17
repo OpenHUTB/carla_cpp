@@ -1,0 +1,51 @@
+<map id="carla::NonCopyable" name="carla::NonCopyable">
+<area shape="rect" id="node1" title="这个类用于禁止拷贝和移动构造函数及赋值操作" alt="" coords="5,831,139,857"/>
+<area shape="rect" id="node2" href="$d9/dd7/classcarla_1_1client_1_1detail_1_1AtomicList.html" title=" " alt="" coords="692,5,860,75"/>
+<area shape="rect" id="node3" href="$d9/dd7/classcarla_1_1client_1_1detail_1_1AtomicList.html" title=" " alt="" coords="677,128,875,197"/>
+<area shape="rect" id="node4" href="$d1/dff/classcarla_1_1client_1_1detail_1_1CallbackList.html" title=" " alt="" coords="694,555,858,610"/>
+<area shape="rect" id="node5" href="$db/d02/classcarla_1_1PythonUtil_1_1AcquireGIL.html" title=" " alt="" coords="241,223,364,263"/>
+<area shape="rect" id="node6" href="$d1/d0a/classcarla_1_1PythonUtil_1_1ReleaseGIL.html" title=" " alt="" coords="241,287,364,327"/>
+<area shape="rect" id="node7" href="$db/d71/classcarla_1_1ThreadGroup.html" title=" " alt="" coords="237,351,368,377"/>
+<area shape="rect" id="node8" href="$da/d72/classcarla_1_1ThreadPool.html" title="基于Boost.Asio的上下文" alt="" coords="241,401,364,426"/>
+<area shape="rect" id="node9" href="$dc/df7/classcarla_1_1client_1_1Junction.html" title=" " alt="" coords="231,450,374,475"/>
+<area shape="rect" id="node10" href="$dd/dff/classcarla_1_1client_1_1Waypoint.html" title="路径点类，表示道路上的特定位置。" alt="" coords="229,499,376,525"/>
+<area shape="rect" id="node11" href="$d9/dd7/classcarla_1_1client_1_1detail_1_1AtomicList.html" title="持有一个指向列表的原子指针。" alt="" coords="241,108,365,148"/>
+<area shape="rect" id="node12" href="$d1/dff/classcarla_1_1client_1_1detail_1_1CallbackList.html" title=" " alt="" coords="219,600,386,640"/>
+<area shape="rect" id="node13" href="$dd/ddd/classcarla_1_1client_1_1detail_1_1Client.html" title="提供与 CARLA 模拟器的 rpc 和流媒体服务器的通信。" alt="" coords="241,664,365,704"/>
+<area shape="rect" id="node14" href="$d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html" title="持有当前剧集及当前剧集状态" alt="" coords="241,728,365,768"/>
+<area shape="rect" id="node15" href="$d5/dbf/classcarla_1_1client_1_1detail_1_1EpisodeState.html" title="表示某一帧的所有参与者的状态" alt="" coords="241,792,365,832"/>
+<area shape="rect" id="node16" href="$df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html" title="连接并控制 CARLA 模拟器。" alt="" coords="241,856,365,896"/>
+<area shape="rect" id="node17" href="$d1/d83/classcarla_1_1client_1_1detail_1_1WalkerNavigation.html" title=" " alt="" coords="237,920,368,960"/>
+<area shape="rect" id="node18" href="$d8/d50/classcarla_1_1multigpu_1_1Listener.html" title="警告：在它的io_context停止之前，这个服务器不能被销毁。" alt="" coords="223,985,382,1010"/>
+<area shape="rect" id="node19" href="$da/dda/classcarla_1_1multigpu_1_1Primary.html" title="TCP 服务器会话。会话打开时，它会从套接字读取流 ID 对象并将其自身传递给回调函子。" alt="" coords="225,1034,380,1059"/>
+<area shape="rect" id="node20" href="$d6/d8b/classcarla_1_1multigpu_1_1Secondary.html" title=" " alt="" coords="217,1083,389,1109"/>
+<area shape="rect" id="node21" href="$d9/dc2/classcarla_1_1nav_1_1Navigation.html" title="管理行人导航，使用 Recast &amp; Detour 库进行低层计算。" alt="" coords="230,1133,375,1158"/>
+<area shape="rect" id="node22" href="$dd/d5b/classcarla_1_1nav_1_1WalkerManager.html" title=" " alt="" coords="216,1182,389,1207"/>
+<area shape="rect" id="node23" href="$d6/d0f/classcarla_1_1road_1_1element_1_1RoadInfo.html" title=" " alt="" coords="236,1232,369,1272"/>
+<area shape="rect" id="node39" href="$df/d8c/classcarla_1_1sensor_1_1SensorData.html" title="所有传感器生成数据的对象的基类" alt="" coords="218,1297,387,1322"/>
+<area shape="rect" id="node45" href="$d3/d38/classcarla_1_1streaming_1_1detail_1_1StreamStateBase.html" title="所有流副本之间的共享状态类。如果处于活动状态，则提供对底层服务器会话的访问。" alt="" coords="227,1347,378,1387"/>
+<area shape="rect" id="node46" href="$dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html" title="连接单个流的客户端。" alt="" coords="227,1411,378,1451"/>
+<area shape="rect" id="node47" href="$db/df7/classcarla_1_1streaming_1_1detail_1_1tcp_1_1MessageTmpl.html" title="通过TCP套接字发送的一组缓冲区的序列化，作为单个消息发送。" alt="" coords="188,1475,417,1530"/>
+<area shape="rect" id="node48" href="$df/d4d/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Server.html" title="警告：在io_context停止之前，不能销毁这个服务器实例" alt="" coords="227,1555,378,1595"/>
+<area shape="rect" id="node49" href="$d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html" title="TCP服务器会话类。" alt="" coords="227,1619,378,1659"/>
+<area shape="rect" id="node24" href="$dc/d4a/classcarla_1_1road_1_1element_1_1RoadInfoCrosswalk.html" title=" " alt="" coords="705,1349,847,1389"/>
+<area shape="rect" id="node25" href="$d7/d3e/classcarla_1_1road_1_1element_1_1RoadInfoElevation.html" title=" " alt="" coords="709,1413,843,1453"/>
+<area shape="rect" id="node26" href="$d4/dcb/classcarla_1_1road_1_1element_1_1RoadInfoGeometry.html" title=" " alt="" coords="708,1477,844,1517"/>
+<area shape="rect" id="node27" href="$d1/dc1/classcarla_1_1road_1_1element_1_1RoadInfoLaneAccess.html" title="此记录定义了某些类型道路使用者的访问限制。 该记录可用于补充来自标志或信号的限制，以控制场景中的交通流。 每个条目在s坐标增加的方向上有效，直到定义新的条目。 如果定义了多个条目，它们必须按增加顺序列出..." alt="" coords="699,1541,853,1581"/>
+<area shape="rect" id="node28" href="$d8/dd6/classcarla_1_1road_1_1element_1_1RoadInfoLaneBorder.html" title="与其通过宽度条目描述车道，依赖于内层车道对外层车道的影响， 不如独立描述每个车道的外边界。这种方式在道路数据源自测量时特别有用， 可以提供一种更方便的方法，而无需将道路段划分为过多部分。 注意：车道边界..." alt="" coords="703,645,849,685"/>
+<area shape="rect" id="node29" href="$d3/dcb/classcarla_1_1road_1_1element_1_1RoadInfoLaneHeight.html" title="RoadInfoLaneHeight类是RoadInfo的派生类，用于表示车道的表面高度信息。 它提供了一种简化的方法来描述车道表面相对于道路平面的偏移量， 通过在车道轮廓的离散位置设置内部和外部偏移量..." alt="" coords="703,709,849,749"/>
+<area shape="rect" id="node30" href="$d4/de2/classcarla_1_1road_1_1element_1_1RoadInfoLaneMaterial.html" title=" " alt="" coords="699,773,853,813"/>
+<area shape="rect" id="node31" href="$d3/dbb/classcarla_1_1road_1_1element_1_1RoadInfoLaneOffset.html" title="车道偏移记录定义了车道参考线（通常与道路参考线相同）的横向位移。 这可以用于轻松实现车道相对于道路参考线的（局部）横向位移。 特别是，这个特性可以显著地促进城市内部布局或“2+1”乡村道路布局的建模。" alt="" coords="704,837,848,877"/>
+<area shape="rect" id="node32" href="$d7/db5/classcarla_1_1road_1_1element_1_1RoadInfoLaneRule.html" title="这个记录定义了可以应用于车道的规则，以描述其他属性未覆盖的附加属性。" alt="" coords="709,901,843,941"/>
+<area shape="rect" id="node33" href="$da/d34/classcarla_1_1road_1_1element_1_1RoadInfoLaneVisibility.html" title="RoadInfoLaneVisibility类表示道路横截面中每个车道的可见性信息 此类定义了车道相对于其方向的四个方向（前、后、左、右）的可见性 每个条目直到定义了新的条目之前都是有效的 如果定义了多..." alt="" coords="697,965,855,1005"/>
+<area shape="rect" id="node34" href="$de/dbb/classcarla_1_1road_1_1element_1_1RoadInfoLaneWidth.html" title="车道宽度记录：道路上每个交叉部分的车道可以提供多个宽度条目。 每个车道至少必须定义一个条目，除了按照惯例中心车道宽度为零。 每个条目在定义新条目之前都是有效的。如果为一个车道定义了多个条目， 它们必须按..." alt="" coords="705,1029,847,1069"/>
+<area shape="rect" id="node35" href="$d1/df9/classcarla_1_1road_1_1element_1_1RoadInfoMarkRecord.html" title="每条车道在道路横截面内可以提供多个道路标记条目。 道路标记信息定义了车道外边界的线条样式。 对于左侧车道，这是左边界；对于右侧车道，这是右边界。 左右车道之间的分隔线样式由零号车道（即中央车道）的道路标..." alt="" coords="701,1093,851,1133"/>
+<area shape="rect" id="node36" href="$da/da9/classcarla_1_1road_1_1element_1_1RoadInfoMarkTypeLine.html" title=" " alt="" coords="695,1157,857,1197"/>
+<area shape="rect" id="node37" href="$d5/d51/classcarla_1_1road_1_1element_1_1RoadInfoSignal.html" title=" " alt="" coords="709,1221,843,1261"/>
+<area shape="rect" id="node38" href="$da/d67/classcarla_1_1road_1_1element_1_1RoadInfoSpeed.html" title=" " alt="" coords="709,1285,843,1325"/>
+<area shape="rect" id="node40" href="$d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html" title=" " alt="" coords="693,1669,859,1709"/>
+<area shape="rect" id="node41" href="$d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html" title=" " alt="" coords="672,1733,880,1773"/>
+<area shape="rect" id="node42" href="$d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html" title=" " alt="" coords="706,1797,846,1837"/>
+<area shape="rect" id="node43" href="$d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html" title=" " alt="" coords="713,1861,839,1901"/>
+<area shape="rect" id="node44" href="$d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html" title=" " alt="" coords="679,1605,873,1645"/>
+</map>

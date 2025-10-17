@@ -1,0 +1,14 @@
+<map id="URoadMap::SaveAsPNG" name="URoadMap::SaveAsPNG">
+<area shape="rect" id="node1" title="将当前地图另存为 PNG，并将像素数据编码为颜色。" alt="" coords="5,209,173,234"/>
+<area shape="rect" id="node2" href="$d9/d74/structFRoadMapPixelData.html#aebe28ea4770184cb32da9305211ffeee" title=" " alt="" coords="233,69,380,109"/>
+<area shape="rect" id="node6" href="$d5/db2/classURoadMap.html#aa0d3000af01cde25fde6ba931a54f0c5" title=" " alt="" coords="231,134,383,159"/>
+<area shape="rect" id="node7" href="$d5/db2/classURoadMap.html#aa578c4ca2edaa3e4aa79969a948a3bc1" title=" " alt="" coords="233,183,380,209"/>
+<area shape="rect" id="node8" href="$d5/db2/classURoadMap.html#a35fa959e7b508a718906b5137aa52f59" title=" " alt="" coords="240,233,373,258"/>
+<area shape="rect" id="node9" href="$dd/d11/classFPixelReader.html#ada445b4ee415b134a18c03429139352b" title="异步保存 RenderTarget 中的像素到磁盘。" alt="" coords="221,307,392,347"/>
+<area shape="rect" id="node12" href="$d0/d6a/ActorDispatcher_8cpp.html#a69d0a7232310b5ebaa51abb2b9945184" title=" " alt="" coords="891,343,965,369"/>
+<area shape="rect" id="node3" href="$d9/d74/structFRoadMapPixelData.html#a22230decf6a0370ff085b7453db07250" title="获取道路方向的方位角 [&#45;PI， PI]（球面 坐标）的 S Package。" alt="" coords="440,5,624,45"/>
+<area shape="rect" id="node4" href="$d9/d74/structFRoadMapPixelData.html#a459ad7b2bb32fbd2bd19658363ff3efc" title="此像素是否定义了方向（例如，道路交叉口为 不是越野，但都没有明确的方向）。" alt="" coords="459,69,605,109"/>
+<area shape="rect" id="node5" href="$d9/d74/structFRoadMapPixelData.html#ab1de611abe87fdf3a01824052cf28328" title="此像素是否位于道路上。" alt="" coords="459,133,605,173"/>
+<area shape="rect" id="node10" href="$dd/d11/classFPixelReader.html#aafcd002853bb8dff7881ae341474d9a2" title="转储 RenderTarget 中的像素。" alt="" coords="445,314,619,339"/>
+<area shape="rect" id="node11" href="$dd/d11/classFPixelReader.html#a7b7dcebd2d155ed24686e65d0c420c7e" title="将 RenderTarget 中的像素复制到 BitMap 中。" alt="" coords="672,307,843,347"/>
+</map>

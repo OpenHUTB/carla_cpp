@@ -1,0 +1,5 @@
+<map id="AWalkerStartSpawnPoint" name="AWalkerStartSpawnPoint">
+<area shape="rect" id="node1" title="用于设置关卡中行人的生成器位置。这些位置将仅用于在游戏开始时生成行人。" alt="" coords="6,152,175,177"/>
+<area shape="rect" id="node2" href="$df/d0d/classAWalkerSpawnPointBase.html" title="Base class for spawner locations for walkers." alt="" coords="5,79,176,104"/>
+<area shape="rect" id="node3" href="$dd/ded/classATargetPoint.html" title=" " alt="" coords="41,5,140,31"/>
+</map>

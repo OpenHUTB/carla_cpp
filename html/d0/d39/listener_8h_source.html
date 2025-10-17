@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: listener.h 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_a2af28fa3ae0e0a62585ff5a8c898ebe.html">multigpu</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">listener.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d0/d39/listener_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2022 Computer Vision Center (CVC) at the Universitat Autonoma</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// de Barcelona (UAB).</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// This work is licensed under the terms of the MIT license.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">// 包含非复制类的定义，可能用于限制类对象不能被复制，以确保某些特定的语义和资源管理逻辑</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="../../d4/dd8/LibCarla_2source_2carla_2NonCopyable_8h.html">carla/NonCopyable.h</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="../../d4/dd8/LibCarla_2source_2carla_2NonCopyable_8h.html">carla/NonCopyable.h</a>&quot;</span> <span class="comment">// 包含禁止拷贝操作的NonCopyable基类定义，用于防止派生类被意外复制</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="../../d2/d33/Time_8h.html">carla/Time.h</a>&quot;</span> <span class="comment">// 包含时间相关的类定义</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="../../d2/dda/carla_2Buffer_8h.html">carla/Buffer.h</a>&quot;</span> <span class="comment">// 包含缓冲区类的定义</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">// 引入Boost库中asio模块的io_context类，用于管理异步I/O操作的上下文环境</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;boost/asio/io_context.hpp&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;boost/asio/ip/tcp.hpp&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;boost/asio/post.hpp&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">// 包含原子操作类，用于实现多线程环境下对变量的原子性操作，保证数据的一致性和并发安全</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;atomic&gt;</span> <span class="comment">// 包含原子操作类</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d9/d36/namespacecarla.html">carla</a> {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">namespace </span>multigpu {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  <span class="comment">// 前置声明一个名为Primary的类，这个类在其他地方定义，意味着此处只是告知编译器有这么一个类存在，后续会在别处完整定义它，并且它与Listener类存在交互关系</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  <span class="keyword">class </span>Primary; <span class="comment">// 声明一个名为Primary的类，这个类在其他地方定义，与Listener类有交互</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment"></span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">  /// 警告：在它的io_context停止之前，这个服务器不能被销毁。</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment"></span>  <span class="keyword">class </span>Listener : <span class="keyword">public</span> std::enable_shared_from_this&lt;Listener&gt;, <span class="keyword">private</span> <a class="code hl_class" href="../../dc/d3c/classNonCopyable.html">NonCopyable</a> {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#a71530dcecbf9719fece705a78323cd12">   29</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#a71530dcecbf9719fece705a78323cd12">endpoint</a> = boost::asio::ip::tcp::endpoint; <span class="comment">// 使用typedef定义endpoint类型</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#ab5b476c5ea4a06fd1d5ac687ebc2aa33">   30</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#ab5b476c5ea4a06fd1d5ac687ebc2aa33">protocol_type</a> = endpoint::protocol_type; <span class="comment">// 使用typedef定义protocol_type类型</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#a61fd3d71a682c613c2e3dc1e7249bc39">   31</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#a61fd3d71a682c613c2e3dc1e7249bc39">Session</a> = std::shared_ptr&lt;Primary&gt;; <span class="comment">// 使用typedef定义Session类型为Primary的shared_ptr</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#adfce39fe79914edf47c186a78e950331">   32</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#adfce39fe79914edf47c186a78e950331">callback_function_type</a> = std::function&lt;void(std::shared_ptr&lt;Primary&gt;)&gt;; <span class="comment">// 定义回调函数类型</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#af2206295a798e18b21b2d9907f7b00fd">   33</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#af2206295a798e18b21b2d9907f7b00fd">callback_function_type_response</a> = std::function&lt;void(std::shared_ptr&lt;Primary&gt;, <a class="code hl_class" href="../../d0/d0a/classcarla_1_1Buffer.html">carla::Buffer</a>)&gt;;<span class="comment">// 定义带响应的回调函数类型</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#af483302a8d9e69f18f88a342327253da">   35</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#af483302a8d9e69f18f88a342327253da">Listener</a>(boost::asio::io_context &amp;io_context, <a class="code hl_typedef" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#a71530dcecbf9719fece705a78323cd12">endpoint</a> ep);  <span class="comment">// 构造函数，接受一个io_context引用和一个endpoint对象</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#aba153af5aec13f95d681cad9b94bbcfc">   36</a></span>    <a class="code hl_function" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#aba153af5aec13f95d681cad9b94bbcfc">~Listener</a>();  <span class="comment">// 析构函数，用于清理资源</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#a52e54d3a1a20e6aa21810f37c99d4daa">   38</a></span>    <a class="code hl_typedef" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#a71530dcecbf9719fece705a78323cd12">endpoint</a> <a class="code hl_function" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#a52e54d3a1a20e6aa21810f37c99d4daa">GetLocalEndpoint</a>()<span class="keyword"> const </span>{  <span class="comment">// 获取当前Listener绑定的本地端点</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#a844fe00cb01ed6c88265cdda5a9d4853">_acceptor</a>.local_endpoint();</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    }</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment"></span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment">    /// 设置会话超时时间。这只适用于新创建的会话。默认情况下，超时时间设置为10秒。</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">    /// </span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#a9f76a370ab29da2b9c1e594597521389">   44</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#a9f76a370ab29da2b9c1e594597521389">SetTimeout</a>(<a class="code hl_class" href="../../d2/d2e/classcarla_1_1time__duration.html">time_duration</a> timeout) { <span class="comment">// 设置会话超时时间，用于控制连接的超时行为</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>      <a class="code hl_variable" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#a2d5e57ff9fbf60df3b7311e82a923d65">_timeout</a> = timeout;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    }</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment"></span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="comment">    /// 开始监听连接。在每个新连接时，会调用on_session_opened，</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="comment">    /// 在会话关闭时调用on_session_closed，同时在收到响应时调用on_response。</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment">    ///</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#a930bfe33bcf7a0f0aac6bbfebb401faf">   51</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#a930bfe33bcf7a0f0aac6bbfebb401faf">Listen</a>(<a class="code hl_typedef" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#adfce39fe79914edf47c186a78e950331">callback_function_type</a> on_session_opened, </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>                <a class="code hl_typedef" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#adfce39fe79914edf47c186a78e950331">callback_function_type</a> on_session_closed,</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>                <a class="code hl_typedef" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#af2206295a798e18b21b2d9907f7b00fd">callback_function_type_response</a> on_response) { <span class="comment">// 开始监听连接</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>      boost::asio::post(<a class="code hl_variable" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#a20a93bedb649c267f890a38ff40d6a12">_io_context</a>, [=]() {</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <a class="code hl_function" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#af9f08e352fbfe1fa8c3dda9da25ccc79">OpenSession</a>(</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            <a class="code hl_variable" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#a2d5e57ff9fbf60df3b7311e82a923d65">_timeout</a>,</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            std::move(on_session_opened),</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>            std::move(on_session_closed),</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>            std::move(on_response));</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>      });</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    }</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#ae1427f11fc3072743bfa3b98bd0b837a">   63</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#ae1427f11fc3072743bfa3b98bd0b837a">Stop</a>(); <span class="comment">// 停止监听TCP连接</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#aeca9744b90e675200742963d71f55c77">   67</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#aeca9744b90e675200742963d71f55c77">OpenSession</a>(</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <a class="code hl_class" href="../../d2/d2e/classcarla_1_1time__duration.html">time_duration</a> timeout,<span class="comment">// time_duration 是一个表示时间长度的类型，可能是自定义的结构体或类</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment">// timeout 参数指定了某个操作（如打开或保持会话）的最大允许时间</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <a class="code hl_typedef" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#adfce39fe79914edf47c186a78e950331">callback_function_type</a> on_session_opened,<span class="comment">// callback_function_type 是一个函数类型别名，用于指定回调函数的签名</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment">// on_session_opened 是一个回调函数，当会话成功打开时被调用</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        <a class="code hl_typedef" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#adfce39fe79914edf47c186a78e950331">callback_function_type</a> on_session_closed,<span class="comment">// on_session_closed 是一个回调函数，当会话关闭时被调用</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="comment">// 它允许开发者执行清理操作或处理会话结束后的逻辑</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <a class="code hl_typedef" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#af2206295a798e18b21b2d9907f7b00fd">callback_function_type_response</a> on_response); <span class="comment">// 私有成员函数，用于处理新会话的打开</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    boost::asio::io_context         &amp;<a class="code hl_variable" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#a20a93bedb649c267f890a38ff40d6a12">_io_context</a>; <span class="comment">// 引用io_context</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    boost::asio::ip::tcp::acceptor  <a class="code hl_variable" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#a844fe00cb01ed6c88265cdda5a9d4853">_acceptor</a>; <span class="comment">// TCP acceptor对象，用于接受新的TCP连接</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#a4b25852a4f3649a486b8a3537b9c1001">   78</a></span>    std::atomic&lt;time_duration&gt;      <a class="code hl_variable" href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#a4b25852a4f3649a486b8a3537b9c1001">_timeout</a>; <span class="comment">// 原子变量，用于存储会话超时时间</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  };</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>} <span class="comment">// namespace multigpu</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>} <span class="comment">// namespace carla</span></div>
+<div class="ttc" id="aLibCarla_2source_2carla_2NonCopyable_8h_html"><div class="ttname"><a href="../../d4/dd8/LibCarla_2source_2carla_2NonCopyable_8h.html">NonCopyable.h</a></div></div>
+<div class="ttc" id="aTime_8h_html"><div class="ttname"><a href="../../d2/d33/Time_8h.html">Time.h</a></div></div>
+<div class="ttc" id="acarla_2Buffer_8h_html"><div class="ttname"><a href="../../d2/dda/carla_2Buffer_8h.html">Buffer.h</a></div></div>
+<div class="ttc" id="aclassNonCopyable_html"><div class="ttname"><a href="../../dc/d3c/classNonCopyable.html">NonCopyable</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d57/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Util_2NonCopyable_8h_source.html#l00003">Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Util/NonCopyable.h:3</a></div></div>
+<div class="ttc" id="aclasscarla_1_1Buffer_html"><div class="ttname"><a href="../../d0/d0a/classcarla_1_1Buffer.html">carla::Buffer</a></div><div class="ttdoc">一块原始数据。 请注意，如果需要更多容量，则会分配一个新的内存块，并 删除旧的内存块。这意味着默认情况下，缓冲区只能增长。要释放内存，使用 clear 或 pop。</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/dda/carla_2Buffer_8h_source.html#l00052">carla/Buffer.h:52</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1Listener_html_a20a93bedb649c267f890a38ff40d6a12"><div class="ttname"><a href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#a20a93bedb649c267f890a38ff40d6a12">carla::multigpu::Listener::_io_context</a></div><div class="ttdeci">boost::asio::io_context &amp; _io_context</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d8b/listener_8cpp_source.html#l00039">listener.cpp:39</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1Listener_html_a2d5e57ff9fbf60df3b7311e82a923d65"><div class="ttname"><a href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#a2d5e57ff9fbf60df3b7311e82a923d65">carla::multigpu::Listener::_timeout</a></div><div class="ttdeci">time_duration _timeout</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d8b/listener_8cpp_source.html#l00041">listener.cpp:41</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1Listener_html_a4b25852a4f3649a486b8a3537b9c1001"><div class="ttname"><a href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#a4b25852a4f3649a486b8a3537b9c1001">carla::multigpu::Listener::_timeout</a></div><div class="ttdeci">std::atomic&lt; time_duration &gt; _timeout</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d39/listener_8h_source.html#l00078">listener.h:78</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1Listener_html_a52e54d3a1a20e6aa21810f37c99d4daa"><div class="ttname"><a href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#a52e54d3a1a20e6aa21810f37c99d4daa">carla::multigpu::Listener::GetLocalEndpoint</a></div><div class="ttdeci">endpoint GetLocalEndpoint() const</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d39/listener_8h_source.html#l00038">listener.h:38</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1Listener_html_a61fd3d71a682c613c2e3dc1e7249bc39"><div class="ttname"><a href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#a61fd3d71a682c613c2e3dc1e7249bc39">carla::multigpu::Listener::Session</a></div><div class="ttdeci">std::shared_ptr&lt; Primary &gt; Session</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d39/listener_8h_source.html#l00031">listener.h:31</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1Listener_html_a71530dcecbf9719fece705a78323cd12"><div class="ttname"><a href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#a71530dcecbf9719fece705a78323cd12">carla::multigpu::Listener::endpoint</a></div><div class="ttdeci">boost::asio::ip::tcp::endpoint endpoint</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d39/listener_8h_source.html#l00029">listener.h:29</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1Listener_html_a844fe00cb01ed6c88265cdda5a9d4853"><div class="ttname"><a href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#a844fe00cb01ed6c88265cdda5a9d4853">carla::multigpu::Listener::_acceptor</a></div><div class="ttdeci">boost::asio::ip::tcp::acceptor _acceptor</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d8b/listener_8cpp_source.html#l00040">listener.cpp:40</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1Listener_html_a930bfe33bcf7a0f0aac6bbfebb401faf"><div class="ttname"><a href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#a930bfe33bcf7a0f0aac6bbfebb401faf">carla::multigpu::Listener::Listen</a></div><div class="ttdeci">void Listen(callback_function_type on_session_opened, callback_function_type on_session_closed, callback_function_type_response on_response)</div><div class="ttdoc">开始监听连接。在每个新连接时，会调用on_session_opened， 在会话关闭时调用on_session_closed，同时在收到响应时调用on_response。</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d39/listener_8h_source.html#l00051">listener.h:51</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1Listener_html_a9f76a370ab29da2b9c1e594597521389"><div class="ttname"><a href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#a9f76a370ab29da2b9c1e594597521389">carla::multigpu::Listener::SetTimeout</a></div><div class="ttdeci">void SetTimeout(time_duration timeout)</div><div class="ttdoc">设置会话超时时间。这只适用于新创建的会话。默认情况下，超时时间设置为10秒。</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d39/listener_8h_source.html#l00044">listener.h:44</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1Listener_html_ab5b476c5ea4a06fd1d5ac687ebc2aa33"><div class="ttname"><a href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#ab5b476c5ea4a06fd1d5ac687ebc2aa33">carla::multigpu::Listener::protocol_type</a></div><div class="ttdeci">endpoint::protocol_type protocol_type</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d39/listener_8h_source.html#l00030">listener.h:30</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1Listener_html_aba153af5aec13f95d681cad9b94bbcfc"><div class="ttname"><a href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#aba153af5aec13f95d681cad9b94bbcfc">carla::multigpu::Listener::~Listener</a></div><div class="ttdeci">~Listener()</div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1Listener_html_adfce39fe79914edf47c186a78e950331"><div class="ttname"><a href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#adfce39fe79914edf47c186a78e950331">carla::multigpu::Listener::callback_function_type</a></div><div class="ttdeci">std::function&lt; void(std::shared_ptr&lt; Primary &gt;)&gt; callback_function_type</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d39/listener_8h_source.html#l00032">listener.h:32</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1Listener_html_ae1427f11fc3072743bfa3b98bd0b837a"><div class="ttname"><a href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#ae1427f11fc3072743bfa3b98bd0b837a">carla::multigpu::Listener::Stop</a></div><div class="ttdeci">void Stop()</div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1Listener_html_aeca9744b90e675200742963d71f55c77"><div class="ttname"><a href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#aeca9744b90e675200742963d71f55c77">carla::multigpu::Listener::OpenSession</a></div><div class="ttdeci">void OpenSession(time_duration timeout, callback_function_type on_session_opened, callback_function_type on_session_closed, callback_function_type_response on_response)</div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1Listener_html_af2206295a798e18b21b2d9907f7b00fd"><div class="ttname"><a href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#af2206295a798e18b21b2d9907f7b00fd">carla::multigpu::Listener::callback_function_type_response</a></div><div class="ttdeci">std::function&lt; void(std::shared_ptr&lt; Primary &gt;, carla::Buffer)&gt; callback_function_type_response</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d39/listener_8h_source.html#l00033">listener.h:33</a></div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1Listener_html_af483302a8d9e69f18f88a342327253da"><div class="ttname"><a href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#af483302a8d9e69f18f88a342327253da">carla::multigpu::Listener::Listener</a></div><div class="ttdeci">Listener(boost::asio::io_context &amp;io_context, endpoint ep)</div></div>
+<div class="ttc" id="aclasscarla_1_1multigpu_1_1Listener_html_af9f08e352fbfe1fa8c3dda9da25ccc79"><div class="ttname"><a href="../../d8/d50/classcarla_1_1multigpu_1_1Listener.html#af9f08e352fbfe1fa8c3dda9da25ccc79">carla::multigpu::Listener::OpenSession</a></div><div class="ttdeci">void OpenSession(time_duration timeout, callback_function_type on_opened, callback_function_type on_closed, callback_function_type_response on_response)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d8b/listener_8cpp_source.html#l00066">listener.cpp:66</a></div></div>
+<div class="ttc" id="aclasscarla_1_1time__duration_html"><div class="ttname"><a href="../../d2/d2e/classcarla_1_1time__duration.html">carla::time_duration</a></div><div class="ttdoc">Positive time duration up to milliseconds resolution.</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d33/Time_8h_source.html#l00019">Time.h:19</a></div></div>
+<div class="ttc" id="anamespacecarla_html"><div class="ttname"><a href="../../d9/d36/namespacecarla.html">carla</a></div><div class="ttdoc">CARLA模拟器的主命名空间。</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d4f/Carla_8cpp_source.html#l00139">Carla.cpp:139</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

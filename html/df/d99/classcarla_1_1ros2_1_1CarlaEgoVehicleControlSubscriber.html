@@ -1,0 +1,825 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: carla::ros2::CarlaEgoVehicleControlSubscriber类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../d9/d36/namespacecarla.html">carla</a></li><li class="navelem"><a class="el" href="../../d1/d4b/namespacecarla_1_1ros2.html">ros2</a></li><li class="navelem"><a class="el" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html">CarlaEgoVehicleControlSubscriber</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="../../dd/d73/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">carla::ros2::CarlaEgoVehicleControlSubscriber类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>CarlaEgoVehicleControlSubscriber类，用于订阅并处理来自ROS2的自动驾驶车辆控制消息  
+ <a href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../de/d54/CarlaEgoVehicleControlSubscriber_8h_source.html">CarlaEgoVehicleControlSubscriber.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 类 carla::ros2::CarlaEgoVehicleControlSubscriber 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d8/d9c/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber__inherit__graph.svg" width="194" height="124"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> carla::ros2::CarlaEgoVehicleControlSubscriber 的协作图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../de/d2b/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber__coll__graph.svg" width="630" height="147"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a71f72aa1b598a0bc44a339eb62ad9fbe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a71f72aa1b598a0bc44a339eb62ad9fbe">CarlaEgoVehicleControlSubscriber</a> (<a class="el" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html">CarlaEgoVehicleControlSubscriber</a> &amp;&amp;)</td></tr>
+<tr class="memdesc:a71f72aa1b598a0bc44a339eb62ad9fbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">移动构造函数，创建当前对象的移动拷贝。  <a href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a71f72aa1b598a0bc44a339eb62ad9fbe">更多...</a><br /></td></tr>
+<tr class="separator:a71f72aa1b598a0bc44a339eb62ad9fbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade3f554a51233cd7bcc65a6cde106540"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#ade3f554a51233cd7bcc65a6cde106540">CarlaEgoVehicleControlSubscriber</a> (const <a class="el" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html">CarlaEgoVehicleControlSubscriber</a> &amp;)</td></tr>
+<tr class="memdesc:ade3f554a51233cd7bcc65a6cde106540"><td class="mdescLeft">&#160;</td><td class="mdescRight">拷贝构造函数，创建当前对象的深拷贝。  <a href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#ade3f554a51233cd7bcc65a6cde106540">更多...</a><br /></td></tr>
+<tr class="separator:ade3f554a51233cd7bcc65a6cde106540"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e27e98fac55ccd8e9a0ea21e2e01a28"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a7e27e98fac55ccd8e9a0ea21e2e01a28">CarlaEgoVehicleControlSubscriber</a> (void *vehicle, const char *ros_name=&quot;&quot;, const char *<a class="el" href="../../de/dd4/classcarla_1_1ros2_1_1CarlaSubscriber.html#af8043d4ca1cc5caf53fea7b04550c833">parent</a>=&quot;&quot;)</td></tr>
+<tr class="memdesc:a7e27e98fac55ccd8e9a0ea21e2e01a28"><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数，初始化用户并关联到指定的车辆。  <a href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a7e27e98fac55ccd8e9a0ea21e2e01a28">更多...</a><br /></td></tr>
+<tr class="separator:a7e27e98fac55ccd8e9a0ea21e2e01a28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad86aa5ed0f179bea0727b4badbb5aee7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#ad86aa5ed0f179bea0727b4badbb5aee7">DestroySubscriber</a> ()</td></tr>
+<tr class="memdesc:ad86aa5ed0f179bea0727b4badbb5aee7"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁用户并释放相关资源。  <a href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#ad86aa5ed0f179bea0727b4badbb5aee7">更多...</a><br /></td></tr>
+<tr class="separator:ad86aa5ed0f179bea0727b4badbb5aee7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3969fae771594ee1880ac546e808417"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#ab3969fae771594ee1880ac546e808417">ForwardMessage</a> (<a class="el" href="../../de/d61/structcarla_1_1ros2_1_1VehicleControl.html">VehicleControl</a> control)</td></tr>
+<tr class="memdesc:ab3969fae771594ee1880ac546e808417"><td class="mdescLeft">&#160;</td><td class="mdescRight">（内部使用）将控制消息转发给内部处理函数。  <a href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#ab3969fae771594ee1880ac546e808417">更多...</a><br /></td></tr>
+<tr class="separator:ab3969fae771594ee1880ac546e808417"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74b7a8454f98a9373a1fc9f28600d610"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d61/structcarla_1_1ros2_1_1VehicleControl.html">VehicleControl</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a74b7a8454f98a9373a1fc9f28600d610">GetMessage</a> ()</td></tr>
+<tr class="memdesc:a74b7a8454f98a9373a1fc9f28600d610"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取最新的车辆控制消息。  <a href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a74b7a8454f98a9373a1fc9f28600d610">更多...</a><br /></td></tr>
+<tr class="separator:a74b7a8454f98a9373a1fc9f28600d610"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24224f43a255489f229669114e2554fc"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a24224f43a255489f229669114e2554fc">GetVehicle</a> ()</td></tr>
+<tr class="memdesc:a24224f43a255489f229669114e2554fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取与用户关联的车辆实例的指针。  <a href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a24224f43a255489f229669114e2554fc">更多...</a><br /></td></tr>
+<tr class="separator:a24224f43a255489f229669114e2554fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab265625d0cd4b7102f05bd513e661ed5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#ab265625d0cd4b7102f05bd513e661ed5">HasNewMessage</a> ()</td></tr>
+<tr class="memdesc:ab265625d0cd4b7102f05bd513e661ed5"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查是否有新的控制消息到达。  <a href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#ab265625d0cd4b7102f05bd513e661ed5">更多...</a><br /></td></tr>
+<tr class="separator:ab265625d0cd4b7102f05bd513e661ed5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2428261bf05e0347a430652e62dcf44"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#ab2428261bf05e0347a430652e62dcf44">Init</a> ()</td></tr>
+<tr class="memdesc:ab2428261bf05e0347a430652e62dcf44"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化用户。  <a href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#ab2428261bf05e0347a430652e62dcf44">更多...</a><br /></td></tr>
+<tr class="separator:ab2428261bf05e0347a430652e62dcf44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a857889fe93ed24c05605aa4fdf98d0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a3a857889fe93ed24c05605aa4fdf98d0">IsAlive</a> ()</td></tr>
+<tr class="memdesc:a3a857889fe93ed24c05605aa4fdf98d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查用户是否仍然活跃。  <a href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a3a857889fe93ed24c05605aa4fdf98d0">更多...</a><br /></td></tr>
+<tr class="separator:a3a857889fe93ed24c05605aa4fdf98d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24c815725723979849cfee112d26f1dd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html">CarlaEgoVehicleControlSubscriber</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a24c815725723979849cfee112d26f1dd">operator=</a> (<a class="el" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html">CarlaEgoVehicleControlSubscriber</a> &amp;&amp;)</td></tr>
+<tr class="memdesc:a24c815725723979849cfee112d26f1dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">移动赋值运算符，用于移动赋值。  <a href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a24c815725723979849cfee112d26f1dd">更多...</a><br /></td></tr>
+<tr class="separator:a24c815725723979849cfee112d26f1dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4327c426abf441359a749e09f2a45077"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html">CarlaEgoVehicleControlSubscriber</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a4327c426abf441359a749e09f2a45077">operator=</a> (const <a class="el" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html">CarlaEgoVehicleControlSubscriber</a> &amp;)</td></tr>
+<tr class="memdesc:a4327c426abf441359a749e09f2a45077"><td class="mdescLeft">&#160;</td><td class="mdescRight">拷贝赋值运算符，用于深拷贝赋值。  <a href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a4327c426abf441359a749e09f2a45077">更多...</a><br /></td></tr>
+<tr class="separator:a4327c426abf441359a749e09f2a45077"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ca736e4e32295973abf4970e99f01f8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a6ca736e4e32295973abf4970e99f01f8">Read</a> ()</td></tr>
+<tr class="memdesc:a6ca736e4e32295973abf4970e99f01f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">读取并处理新的控制消息。  <a href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a6ca736e4e32295973abf4970e99f01f8">更多...</a><br /></td></tr>
+<tr class="separator:a6ca736e4e32295973abf4970e99f01f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08d9d86f38bcb02a5034264213bfcea5"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a08d9d86f38bcb02a5034264213bfcea5">type</a> () const <a class="el" href="../../de/d7d/ActorData_8h.html#ad031bfd5a8a2ed7e66d03dafcc3b2858">override</a></td></tr>
+<tr class="memdesc:a08d9d86f38bcb02a5034264213bfcea5"><td class="mdescLeft">&#160;</td><td class="mdescRight">返回用户的类型名称。  <a href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a08d9d86f38bcb02a5034264213bfcea5">更多...</a><br /></td></tr>
+<tr class="separator:a08d9d86f38bcb02a5034264213bfcea5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a985d6e1ae0583dcc4994a993e6119e4b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a985d6e1ae0583dcc4994a993e6119e4b">~CarlaEgoVehicleControlSubscriber</a> ()</td></tr>
+<tr class="memdesc:a985d6e1ae0583dcc4994a993e6119e4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">析构函数，清理资源并销毁用户。  <a href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a985d6e1ae0583dcc4994a993e6119e4b">更多...</a><br /></td></tr>
+<tr class="separator:a985d6e1ae0583dcc4994a993e6119e4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classcarla_1_1ros2_1_1CarlaSubscriber"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classcarla_1_1ros2_1_1CarlaSubscriber')"><img src="../../closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="../../de/dd4/classcarla_1_1ros2_1_1CarlaSubscriber.html">carla::ros2::CarlaSubscriber</a></td></tr>
+<tr class="memitem:ae6e573827b8f82582728861718386b16 inherit pub_methods_classcarla_1_1ros2_1_1CarlaSubscriber"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dd4/classcarla_1_1ros2_1_1CarlaSubscriber.html#ae6e573827b8f82582728861718386b16">CarlaSubscriber</a> ()=default</td></tr>
+<tr class="separator:ae6e573827b8f82582728861718386b16 inherit pub_methods_classcarla_1_1ros2_1_1CarlaSubscriber"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b2640e417b79dd3b45286302e34315d inherit pub_methods_classcarla_1_1ros2_1_1CarlaSubscriber"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dd4/classcarla_1_1ros2_1_1CarlaSubscriber.html#a7b2640e417b79dd3b45286302e34315d">frame_id</a> () const</td></tr>
+<tr class="separator:a7b2640e417b79dd3b45286302e34315d inherit pub_methods_classcarla_1_1ros2_1_1CarlaSubscriber"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a263f356d7d52b8e18707408bc15f6833 inherit pub_methods_classcarla_1_1ros2_1_1CarlaSubscriber"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dd4/classcarla_1_1ros2_1_1CarlaSubscriber.html#a263f356d7d52b8e18707408bc15f6833">frame_id</a> (std::string &amp;&amp;frame_id)</td></tr>
+<tr class="separator:a263f356d7d52b8e18707408bc15f6833 inherit pub_methods_classcarla_1_1ros2_1_1CarlaSubscriber"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac131ff867566e5105dc56a8953c69d29 inherit pub_methods_classcarla_1_1ros2_1_1CarlaSubscriber"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dd4/classcarla_1_1ros2_1_1CarlaSubscriber.html#ac131ff867566e5105dc56a8953c69d29">name</a> () const</td></tr>
+<tr class="separator:ac131ff867566e5105dc56a8953c69d29 inherit pub_methods_classcarla_1_1ros2_1_1CarlaSubscriber"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c3db7867fd301aa7bf3fc7351dfa2b8 inherit pub_methods_classcarla_1_1ros2_1_1CarlaSubscriber"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dd4/classcarla_1_1ros2_1_1CarlaSubscriber.html#a7c3db7867fd301aa7bf3fc7351dfa2b8">name</a> (std::string &amp;&amp;name)</td></tr>
+<tr class="separator:a7c3db7867fd301aa7bf3fc7351dfa2b8 inherit pub_methods_classcarla_1_1ros2_1_1CarlaSubscriber"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8043d4ca1cc5caf53fea7b04550c833 inherit pub_methods_classcarla_1_1ros2_1_1CarlaSubscriber"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dd4/classcarla_1_1ros2_1_1CarlaSubscriber.html#af8043d4ca1cc5caf53fea7b04550c833">parent</a> () const</td></tr>
+<tr class="separator:af8043d4ca1cc5caf53fea7b04550c833 inherit pub_methods_classcarla_1_1ros2_1_1CarlaSubscriber"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade903c09ad42f376ceafd33388152cd7 inherit pub_methods_classcarla_1_1ros2_1_1CarlaSubscriber"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dd4/classcarla_1_1ros2_1_1CarlaSubscriber.html#ade903c09ad42f376ceafd33388152cd7">parent</a> (std::string &amp;&amp;parent)</td></tr>
+<tr class="separator:ade903c09ad42f376ceafd33388152cd7 inherit pub_methods_classcarla_1_1ros2_1_1CarlaSubscriber"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63f94799859d634e23e6dd7d0c8928bf inherit pub_methods_classcarla_1_1ros2_1_1CarlaSubscriber"><td class="memItemLeft" align="right" valign="top">virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dd4/classcarla_1_1ros2_1_1CarlaSubscriber.html#a63f94799859d634e23e6dd7d0c8928bf">type</a> () const =0</td></tr>
+<tr class="separator:a63f94799859d634e23e6dd7d0c8928bf inherit pub_methods_classcarla_1_1ros2_1_1CarlaSubscriber"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe39969fc7484535f34bd4ae958cf142 inherit pub_methods_classcarla_1_1ros2_1_1CarlaSubscriber"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dd4/classcarla_1_1ros2_1_1CarlaSubscriber.html#afe39969fc7484535f34bd4ae958cf142">~CarlaSubscriber</a> ()=default</td></tr>
+<tr class="separator:afe39969fc7484535f34bd4ae958cf142 inherit pub_methods_classcarla_1_1ros2_1_1CarlaSubscriber"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:a0079a2e9a9ae7b30ba61f174b8bde997"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a0079a2e9a9ae7b30ba61f174b8bde997">SetData</a> (int32_t seconds, uint32_t nanoseconds, uint32_t actor_id, std::vector&lt; float &gt; &amp;&amp;data)</td></tr>
+<tr class="memdesc:a0079a2e9a9ae7b30ba61f174b8bde997"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置内部数据，包括时间戳、车辆ID和控制数据。  <a href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#a0079a2e9a9ae7b30ba61f174b8bde997">更多...</a><br /></td></tr>
+<tr class="separator:a0079a2e9a9ae7b30ba61f174b8bde997"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:aaa13dbd203e6546893344f0a1a11f61f"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="../../d4/d93/structcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriberImpl.html">CarlaEgoVehicleControlSubscriberImpl</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#aaa13dbd203e6546893344f0a1a11f61f">_impl</a></td></tr>
+<tr class="memdesc:aaa13dbd203e6546893344f0a1a11f61f"><td class="mdescLeft">&#160;</td><td class="mdescRight">指向内部实现结构的智能指针，用于隐藏实现细节。  <a href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#aaa13dbd203e6546893344f0a1a11f61f">更多...</a><br /></td></tr>
+<tr class="separator:aaa13dbd203e6546893344f0a1a11f61f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pro_attribs_classcarla_1_1ros2_1_1CarlaSubscriber"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classcarla_1_1ros2_1_1CarlaSubscriber')"><img src="../../closed.png" alt="-"/>&#160;Protected 属性 继承自 <a class="el" href="../../de/dd4/classcarla_1_1ros2_1_1CarlaSubscriber.html">carla::ros2::CarlaSubscriber</a></td></tr>
+<tr class="memitem:a73b2c9f673170d2b0d2e182e3b8ac11f inherit pro_attribs_classcarla_1_1ros2_1_1CarlaSubscriber"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dd4/classcarla_1_1ros2_1_1CarlaSubscriber.html#a73b2c9f673170d2b0d2e182e3b8ac11f">_frame_id</a> = &quot;&quot;</td></tr>
+<tr class="separator:a73b2c9f673170d2b0d2e182e3b8ac11f inherit pro_attribs_classcarla_1_1ros2_1_1CarlaSubscriber"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46045b96aebe69878dde19312267b8b7 inherit pro_attribs_classcarla_1_1ros2_1_1CarlaSubscriber"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dd4/classcarla_1_1ros2_1_1CarlaSubscriber.html#a46045b96aebe69878dde19312267b8b7">_name</a> = &quot;&quot;</td></tr>
+<tr class="separator:a46045b96aebe69878dde19312267b8b7 inherit pro_attribs_classcarla_1_1ros2_1_1CarlaSubscriber"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af10c6f75bd4f1e69de3b46bc81c0e470 inherit pro_attribs_classcarla_1_1ros2_1_1CarlaSubscriber"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dd4/classcarla_1_1ros2_1_1CarlaSubscriber.html#af10c6f75bd4f1e69de3b46bc81c0e470">_parent</a> = &quot;&quot;</td></tr>
+<tr class="separator:af10c6f75bd4f1e69de3b46bc81c0e470 inherit pro_attribs_classcarla_1_1ros2_1_1CarlaSubscriber"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p >CarlaEgoVehicleControlSubscriber类，用于订阅并处理来自ROS2的自动驾驶车辆控制消息 </p>
+<p >用于订阅和控制CARLA中自车（ego vehicle）的类 此类可能包含与ROS 2节点相关的逻辑，用于接收来自CARLA的自车控制命令。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../de/d54/CarlaEgoVehicleControlSubscriber_8h_source.html">CarlaEgoVehicleControlSubscriber.h</a> 第 <a class="el" href="../../de/d54/CarlaEgoVehicleControlSubscriber_8h_source.html#l00020">20</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a7e27e98fac55ccd8e9a0ea21e2e01a28" name="a7e27e98fac55ccd8e9a0ea21e2e01a28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e27e98fac55ccd8e9a0ea21e2e01a28">&#9670;&#160;</a></span>CarlaEgoVehicleControlSubscriber() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::ros2::CarlaEgoVehicleControlSubscriber::CarlaEgoVehicleControlSubscriber </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>vehicle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>ros_name</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>构造函数，初始化用户并关联到指定的车辆。 </p>
+<p >CarlaEgoVehicleControlSubscriber类的构造函数。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vehicle</td><td>指向车辆实例的指针。 </td></tr>
+    <tr><td class="paramname">ros_name</td><td>ROS2节点的名称，默认为空字符串。 </td></tr>
+    <tr><td class="paramname">parent</td><td>父节点的名称，默认为空字符串。</td></tr>
+  </table>
+  </dd>
+</dl>
+<p >构造函数初始化内部实现对象，并设置相关属性，包括车辆对象指针、ROS节点名称和父节点名称。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vehicle</td><td>车辆对象指针。 </td></tr>
+    <tr><td class="paramname">ros_name</td><td>ROS节点名称。 </td></tr>
+    <tr><td class="paramname">parent</td><td>父节点名称。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html">CarlaEgoVehicleControlSubscriber.cpp</a> 第 <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00314">314</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d54/CarlaEgoVehicleControlSubscriber_8h_source.html#l00075">_impl</a>, <a class="el" href="../../d9/de5/CarlaSubscriber_8h_source.html#l00033">carla::ros2::CarlaSubscriber::_name</a>, <a class="el" href="../../d9/de5/CarlaSubscriber_8h_source.html#l00034">carla::ros2::CarlaSubscriber::_parent</a> , 以及 <a class="el" href="../../d9/de5/CarlaSubscriber_8h_source.html#l00017">carla::ros2::CarlaSubscriber::parent()</a>.</p>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber_a7e27e98fac55ccd8e9a0ea21e2e01a28_cgraph.svg" width="464" height="66"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a985d6e1ae0583dcc4994a993e6119e4b" name="a985d6e1ae0583dcc4994a993e6119e4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a985d6e1ae0583dcc4994a993e6119e4b">&#9670;&#160;</a></span>~CarlaEgoVehicleControlSubscriber()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::ros2::CarlaEgoVehicleControlSubscriber::~CarlaEgoVehicleControlSubscriber </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>析构函数，清理资源并销毁用户。 </p>
+<p >CarlaEgoVehicleControlSubscriber类的析构函数。</p>
+<p >析构函数负责清理订阅者所使用的资源。 它首先检查_impl指针是否为空，如果不为空，则依次删除数据读取器、订阅者、主题和参与者。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html">CarlaEgoVehicleControlSubscriber.cpp</a> 第 <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00327">327</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d54/CarlaEgoVehicleControlSubscriber_8h_source.html#l00075">_impl</a>.</p>
+
+</div>
+</div>
+<a id="ade3f554a51233cd7bcc65a6cde106540" name="ade3f554a51233cd7bcc65a6cde106540"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade3f554a51233cd7bcc65a6cde106540">&#9670;&#160;</a></span>CarlaEgoVehicleControlSubscriber() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::ros2::CarlaEgoVehicleControlSubscriber::CarlaEgoVehicleControlSubscriber </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html">CarlaEgoVehicleControlSubscriber</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>拷贝构造函数，创建当前对象的深拷贝。 </p>
+<p >CarlaEgoVehicleControlSubscriber类的拷贝构造函数。</p>
+<p >拷贝构造函数通过复制另一个CarlaEgoVehicleControlSubscriber对象来初始化新对象。 它复制了所有成员变量，并设置了监听器的所有者。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>要复制的CarlaEgoVehicleControlSubscriber对象。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html">CarlaEgoVehicleControlSubscriber.cpp</a> 第 <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00351">351</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d9/de5/CarlaSubscriber_8h_source.html#l00032">carla::ros2::CarlaSubscriber::_frame_id</a>, <a class="el" href="../../de/d54/CarlaEgoVehicleControlSubscriber_8h_source.html#l00075">_impl</a>, <a class="el" href="../../d9/de5/CarlaSubscriber_8h_source.html#l00033">carla::ros2::CarlaSubscriber::_name</a> , 以及 <a class="el" href="../../d9/de5/CarlaSubscriber_8h_source.html#l00034">carla::ros2::CarlaSubscriber::_parent</a>.</p>
+
+</div>
+</div>
+<a id="a71f72aa1b598a0bc44a339eb62ad9fbe" name="a71f72aa1b598a0bc44a339eb62ad9fbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71f72aa1b598a0bc44a339eb62ad9fbe">&#9670;&#160;</a></span>CarlaEgoVehicleControlSubscriber() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::ros2::CarlaEgoVehicleControlSubscriber::CarlaEgoVehicleControlSubscriber </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html">CarlaEgoVehicleControlSubscriber</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>移动构造函数，创建当前对象的移动拷贝。 </p>
+<p >CarlaEgoVehicleControlSubscriber类的移动构造函数。</p>
+<p >移动构造函数通过移动另一个CarlaEgoVehicleControlSubscriber对象的资源来初始化新对象。 它移动了所有成员变量，并设置了监听器的所有者。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>要移动的CarlaEgoVehicleControlSubscriber对象。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html">CarlaEgoVehicleControlSubscriber.cpp</a> 第 <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00384">384</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d9/de5/CarlaSubscriber_8h_source.html#l00032">carla::ros2::CarlaSubscriber::_frame_id</a>, <a class="el" href="../../de/d54/CarlaEgoVehicleControlSubscriber_8h_source.html#l00075">_impl</a>, <a class="el" href="../../d9/de5/CarlaSubscriber_8h_source.html#l00033">carla::ros2::CarlaSubscriber::_name</a> , 以及 <a class="el" href="../../d9/de5/CarlaSubscriber_8h_source.html#l00034">carla::ros2::CarlaSubscriber::_parent</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="ad86aa5ed0f179bea0727b4badbb5aee7" name="ad86aa5ed0f179bea0727b4badbb5aee7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad86aa5ed0f179bea0727b4badbb5aee7">&#9670;&#160;</a></span>DestroySubscriber()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::ros2::CarlaEgoVehicleControlSubscriber::DestroySubscriber </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>销毁用户并释放相关资源。 </p>
+<p >销毁订阅者。</p>
+<p >该函数将内部实现对象的存活标志设置为false，用于通知其他部分该订阅者已经不再活跃。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html">CarlaEgoVehicleControlSubscriber.cpp</a> 第 <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00260">260</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d54/CarlaEgoVehicleControlSubscriber_8h_source.html#l00075">_impl</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/d58/CarlaSubscriberListener_8cpp_source.html#l00049">carla::ros2::CarlaSubscriberListenerImpl::on_subscription_matched()</a>.</p>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber_ad86aa5ed0f179bea0727b4badbb5aee7_icgraph.svg" width="487" height="66"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ab3969fae771594ee1880ac546e808417" name="ab3969fae771594ee1880ac546e808417"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3969fae771594ee1880ac546e808417">&#9670;&#160;</a></span>ForwardMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::ros2::CarlaEgoVehicleControlSubscriber::ForwardMessage </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../de/d61/structcarla_1_1ros2_1_1VehicleControl.html">VehicleControl</a>&#160;</td>
+          <td class="paramname"><em>control</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>（内部使用）将控制消息转发给内部处理函数。 </p>
+<p >将车辆控制信息转发给内部实现。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">control</td><td>包含控制指令的VehicleControl对象。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section warning"><dt>警告</dt><dd>此方法仅供内部使用，外部调用可能会导致未定义行为。</dd></dl>
+<p >该函数将传入的车辆控制信息（VehicleControl）保存到内部实现对象的对应成员变量中， 并标记有新的消息到达。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">control</td><td>车辆控制信息。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html">CarlaEgoVehicleControlSubscriber.cpp</a> 第 <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00251">251</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d54/CarlaEgoVehicleControlSubscriber_8h_source.html#l00075">_impl</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/d58/CarlaSubscriberListener_8cpp_source.html#l00068">carla::ros2::CarlaSubscriberListenerImpl::on_data_available()</a>.</p>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber_ab3969fae771594ee1880ac546e808417_icgraph.svg" width="494" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a74b7a8454f98a9373a1fc9f28600d610" name="a74b7a8454f98a9373a1fc9f28600d610"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74b7a8454f98a9373a1fc9f28600d610">&#9670;&#160;</a></span>GetMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../de/d61/structcarla_1_1ros2_1_1VehicleControl.html">VehicleControl</a> carla::ros2::CarlaEgoVehicleControlSubscriber::GetMessage </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取最新的车辆控制消息。 </p>
+<p >获取最新的车辆控制信息。</p>
+<dl class="section return"><dt>返回</dt><dd>包含控制指令的VehicleControl对象。</dd></dl>
+<p >该函数返回内部实现对象中保存的车辆控制信息，并将新的消息标志设置为false， 表示该消息已被读取。</p>
+<dl class="section return"><dt>返回</dt><dd>车辆控制信息。 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html">CarlaEgoVehicleControlSubscriber.cpp</a> 第 <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00271">271</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d54/CarlaEgoVehicleControlSubscriber_8h_source.html#l00075">_impl</a>.</p>
+
+</div>
+</div>
+<a id="a24224f43a255489f229669114e2554fc" name="a24224f43a255489f229669114e2554fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24224f43a255489f229669114e2554fc">&#9670;&#160;</a></span>GetVehicle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void * carla::ros2::CarlaEgoVehicleControlSubscriber::GetVehicle </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取与用户关联的车辆实例的指针。 </p>
+<p >获取关联的车辆对象。</p>
+<dl class="section return"><dt>返回</dt><dd>指向车辆实例的指针。</dd></dl>
+<p >该函数返回内部实现对象中保存的车辆对象指针。</p>
+<dl class="section return"><dt>返回</dt><dd>车辆对象指针。 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html">CarlaEgoVehicleControlSubscriber.cpp</a> 第 <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00302">302</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d54/CarlaEgoVehicleControlSubscriber_8h_source.html#l00075">_impl</a>.</p>
+
+</div>
+</div>
+<a id="ab265625d0cd4b7102f05bd513e661ed5" name="ab265625d0cd4b7102f05bd513e661ed5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab265625d0cd4b7102f05bd513e661ed5">&#9670;&#160;</a></span>HasNewMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::ros2::CarlaEgoVehicleControlSubscriber::HasNewMessage </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>检查是否有新的控制消息到达。 </p>
+<p >检查是否有新的消息到达。</p>
+<dl class="section return"><dt>返回</dt><dd>如果有新消息，则返回true；否则返回false。</dd></dl>
+<p >该函数返回内部实现对象的新消息标志，用于判断是否有新的车辆控制信息到达。</p>
+<dl class="section return"><dt>返回</dt><dd>如果有新的消息到达，则返回true；否则返回false。 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html">CarlaEgoVehicleControlSubscriber.cpp</a> 第 <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00292">292</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d54/CarlaEgoVehicleControlSubscriber_8h_source.html#l00075">_impl</a>.</p>
+
+</div>
+</div>
+<a id="ab2428261bf05e0347a430652e62dcf44" name="ab2428261bf05e0347a430652e62dcf44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2428261bf05e0347a430652e62dcf44">&#9670;&#160;</a></span>Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::ros2::CarlaEgoVehicleControlSubscriber::Init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>初始化用户。 </p>
+<p >初始化CARLA EgoVehicleControl消息的订阅者。</p>
+<dl class="section return"><dt>返回</dt><dd>如果初始化成功，则返回true；否则返回false。</dd></dl>
+<dl class="section return"><dt>返回</dt><dd>初始化成功返回true，否则返回false。 </dd></dl>
+<p >检查类型支持是否有效。</p>
+<p >设置域参与者的QoS（Quality of Service）并创建域参与者。</p>
+<p >注册消息类型。</p>
+<p >设置订阅者的QoS并创建订阅者。</p>
+<p >设置主题的QoS并创建主题。</p>
+<p >设置数据读取器的QoS并创建数据读取器。</p>
+
+<p class="definition">在文件 <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html">CarlaEgoVehicleControlSubscriber.cpp</a> 第 <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00097">97</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d54/CarlaEgoVehicleControlSubscriber_8h_source.html#l00075">_impl</a>, <a class="el" href="../../d9/de5/CarlaSubscriber_8h_source.html#l00033">carla::ros2::CarlaSubscriber::_name</a> , 以及 <a class="el" href="../../d9/de5/CarlaSubscriber_8h_source.html#l00034">carla::ros2::CarlaSubscriber::_parent</a>.</p>
+
+</div>
+</div>
+<a id="a3a857889fe93ed24c05605aa4fdf98d0" name="a3a857889fe93ed24c05605aa4fdf98d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a857889fe93ed24c05605aa4fdf98d0">&#9670;&#160;</a></span>IsAlive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::ros2::CarlaEgoVehicleControlSubscriber::IsAlive </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>检查用户是否仍然活跃。 </p>
+<p >检查订阅者是否存活。</p>
+<dl class="section return"><dt>返回</dt><dd>如果用户活跃，则返回true；否则返回false</dd></dl>
+<p >该函数返回内部实现对象的存活标志，用于判断订阅者是否仍然活跃。</p>
+<dl class="section return"><dt>返回</dt><dd>如果订阅者存活，则返回true；否则返回false。 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html">CarlaEgoVehicleControlSubscriber.cpp</a> 第 <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00282">282</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d54/CarlaEgoVehicleControlSubscriber_8h_source.html#l00075">_impl</a>.</p>
+
+</div>
+</div>
+<a id="a24c815725723979849cfee112d26f1dd" name="a24c815725723979849cfee112d26f1dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24c815725723979849cfee112d26f1dd">&#9670;&#160;</a></span>operator=() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html">CarlaEgoVehicleControlSubscriber</a> &amp; carla::ros2::CarlaEgoVehicleControlSubscriber::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html">CarlaEgoVehicleControlSubscriber</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>移动赋值运算符，用于移动赋值。 </p>
+<p >移动赋值运算符。</p>
+<p >移动赋值运算符将当前对象替换为通过移动另一个CarlaEgoVehicleControlSubscriber对象的资源得到的对象。 它移动了所有成员变量，并设置了监听器的所有者。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>要移动的CarlaEgoVehicleControlSubscriber对象。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>引用当前对象。 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html">CarlaEgoVehicleControlSubscriber.cpp</a> 第 <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00400">400</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d9/de5/CarlaSubscriber_8h_source.html#l00032">carla::ros2::CarlaSubscriber::_frame_id</a>, <a class="el" href="../../de/d54/CarlaEgoVehicleControlSubscriber_8h_source.html#l00075">_impl</a>, <a class="el" href="../../d9/de5/CarlaSubscriber_8h_source.html#l00033">carla::ros2::CarlaSubscriber::_name</a> , 以及 <a class="el" href="../../d9/de5/CarlaSubscriber_8h_source.html#l00034">carla::ros2::CarlaSubscriber::_parent</a>.</p>
+
+</div>
+</div>
+<a id="a4327c426abf441359a749e09f2a45077" name="a4327c426abf441359a749e09f2a45077"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4327c426abf441359a749e09f2a45077">&#9670;&#160;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html">CarlaEgoVehicleControlSubscriber</a> &amp; carla::ros2::CarlaEgoVehicleControlSubscriber::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html">CarlaEgoVehicleControlSubscriber</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>拷贝赋值运算符，用于深拷贝赋值。 </p>
+<p >拷贝赋值运算符。</p>
+<p >拷贝赋值运算符将当前对象替换为另一个CarlaEgoVehicleControlSubscriber对象的副本。 它复制了所有成员变量，并设置了监听器的所有者。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>要复制的CarlaEgoVehicleControlSubscriber对象。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>引用当前对象。 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html">CarlaEgoVehicleControlSubscriber.cpp</a> 第 <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00367">367</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d9/de5/CarlaSubscriber_8h_source.html#l00032">carla::ros2::CarlaSubscriber::_frame_id</a>, <a class="el" href="../../de/d54/CarlaEgoVehicleControlSubscriber_8h_source.html#l00075">_impl</a>, <a class="el" href="../../d9/de5/CarlaSubscriber_8h_source.html#l00033">carla::ros2::CarlaSubscriber::_name</a> , 以及 <a class="el" href="../../d9/de5/CarlaSubscriber_8h_source.html#l00034">carla::ros2::CarlaSubscriber::_parent</a>.</p>
+
+</div>
+</div>
+<a id="a6ca736e4e32295973abf4970e99f01f8" name="a6ca736e4e32295973abf4970e99f01f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ca736e4e32295973abf4970e99f01f8">&#9670;&#160;</a></span>Read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::ros2::CarlaEgoVehicleControlSubscriber::Read </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>读取并处理新的控制消息。 </p>
+<p >读取并处理来自数据读取器的样本</p>
+<dl class="section return"><dt>返回</dt><dd>如果读取成功，则返回true；否则返回false。</dd></dl>
+<p >该函数尝试从内部数据读取器中获取下一个样本，并根据返回的代码执行相应的操作。 如果成功获取样本，则返回true；否则，根据错误代码打印错误信息并返回false。</p>
+<dl class="section return"><dt>返回</dt><dd>bool 如果成功获取样本，则返回true；否则返回false。 </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000056">待办事项:</a></b></dt><dd>成功获取样本，返回true </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000057">待办事项:</a></b></dt><dd>打印错误代码"RETCODE_ERROR"并返回false </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000058">待办事项:</a></b></dt><dd>打印错误代码"RETCODE_UNSUPPORTED"并返回false </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000059">待办事项:</a></b></dt><dd>打印错误代码"RETCODE_BAD_PARAMETER"并返回false </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000060">待办事项:</a></b></dt><dd>打印错误代码"RETCODE_PRECONDITION_NOT_MET"并返回false </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000061">待办事项:</a></b></dt><dd>打印错误代码"RETCODE_OUT_OF_RESOURCES"并返回false </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000062">待办事项:</a></b></dt><dd>打印错误代码"RETCODE_NOT_ENABLED"并返回false </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000063">待办事项:</a></b></dt><dd>打印错误代码"RETCODE_IMMUTABLE_POLICY"并返回false </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000064">待办事项:</a></b></dt><dd>打印错误代码"RETCODE_INCONSISTENT_POLICY"并返回false </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000065">待办事项:</a></b></dt><dd>打印错误代码"RETCODE_ALREADY_DELETED"并返回false </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000066">待办事项:</a></b></dt><dd>打印错误代码"RETCODE_TIMEOUT"并返回false </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000067">待办事项:</a></b></dt><dd>打印错误代码"RETCODE_NO_DATA"并返回false </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000068">待办事项:</a></b></dt><dd>打印错误代码"RETCODE_ILLEGAL_OPERATION"并返回false </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000069">待办事项:</a></b></dt><dd>打印错误代码"RETCODE_NOT_ALLOWED_BY_SECURITY"并返回false </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000070">待办事项:</a></b></dt><dd>打印未知错误代码"UNKNOWN"并返回false </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html">CarlaEgoVehicleControlSubscriber.cpp</a> 第 <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00165">165</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d54/CarlaEgoVehicleControlSubscriber_8h_source.html#l00075">_impl</a>.</p>
+
+</div>
+</div>
+<a id="a0079a2e9a9ae7b30ba61f174b8bde997" name="a0079a2e9a9ae7b30ba61f174b8bde997"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0079a2e9a9ae7b30ba61f174b8bde997">&#9670;&#160;</a></span>SetData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::ros2::CarlaEgoVehicleControlSubscriber::SetData </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>seconds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>nanoseconds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>actor_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; float &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置内部数据，包括时间戳、车辆ID和控制数据。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">seconds</td><td>时间戳的秒部分。 </td></tr>
+    <tr><td class="paramname">nanoseconds</td><td>时间戳的纳秒部分。 </td></tr>
+    <tr><td class="paramname">actor_id</td><td>车辆ID。 </td></tr>
+    <tr><td class="paramname">data</td><td>控制指令的浮点数数组。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a08d9d86f38bcb02a5034264213bfcea5" name="a08d9d86f38bcb02a5034264213bfcea5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08d9d86f38bcb02a5034264213bfcea5">&#9670;&#160;</a></span>type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * carla::ros2::CarlaEgoVehicleControlSubscriber::type </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>返回用户的类型名称。 </p>
+<dl class="section return"><dt>返回</dt><dd>类型为"Ego vehicle control"的字符串。 </dd></dl>
+
+<p>实现了 <a class="el" href="../../de/dd4/classcarla_1_1ros2_1_1CarlaSubscriber.html#a63f94799859d634e23e6dd7d0c8928bf">carla::ros2::CarlaSubscriber</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="../../de/d54/CarlaEgoVehicleControlSubscriber_8h_source.html">CarlaEgoVehicleControlSubscriber.h</a> 第 <a class="el" href="../../de/d54/CarlaEgoVehicleControlSubscriber_8h_source.html#l00057">57</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="aaa13dbd203e6546893344f0a1a11f61f" name="aaa13dbd203e6546893344f0a1a11f61f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa13dbd203e6546893344f0a1a11f61f">&#9670;&#160;</a></span>_impl</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="../../d4/d93/structcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriberImpl.html">CarlaEgoVehicleControlSubscriberImpl</a>&gt; carla::ros2::CarlaEgoVehicleControlSubscriber::_impl</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>指向内部实现结构的智能指针，用于隐藏实现细节。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../de/d54/CarlaEgoVehicleControlSubscriber_8h_source.html">CarlaEgoVehicleControlSubscriber.h</a> 第 <a class="el" href="../../de/d54/CarlaEgoVehicleControlSubscriber_8h_source.html#l00075">75</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00314">CarlaEgoVehicleControlSubscriber()</a>, <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00260">DestroySubscriber()</a>, <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00251">ForwardMessage()</a>, <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00271">GetMessage()</a>, <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00302">GetVehicle()</a>, <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00292">HasNewMessage()</a>, <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00097">Init()</a>, <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00282">IsAlive()</a>, <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00367">operator=()</a>, <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00165">Read()</a> , 以及 <a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00327">~CarlaEgoVehicleControlSubscriber()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../de/d54/CarlaEgoVehicleControlSubscriber_8h_source.html">CarlaEgoVehicleControlSubscriber.h</a></li>
+<li><a class="el" href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html">CarlaEgoVehicleControlSubscriber.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

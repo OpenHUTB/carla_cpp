@@ -1,0 +1,991 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: Simplify::SimplificationObject类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../d7/d5b/namespaceSimplify.html">Simplify</a></li><li class="navelem"><a class="el" href="../../dd/dcf/classSimplify_1_1SimplificationObject.html">SimplificationObject</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-attribs">Public 属性</a> &#124;
+<a href="../../d7/d0b/classSimplify_1_1SimplificationObject-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">Simplify::SimplificationObject类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>用于简化网格的类。  
+ <a href="../../dd/dcf/classSimplify_1_1SimplificationObject.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> Simplify::SimplificationObject 的协作图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d0/dd9/classSimplify_1_1SimplificationObject__coll__graph.svg" width="446" height="234"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a3dad96e7db9db379305c7c93ce5ffacf"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dcf/classSimplify_1_1SimplificationObject.html#a3dad96e7db9db379305c7c93ce5ffacf">calculate_error</a> (int id_v1, int id_v2, <a class="el" href="../../da/d83/structvec3f.html">vec3f</a> &amp;p_result)</td></tr>
+<tr class="separator:a3dad96e7db9db379305c7c93ce5ffacf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abaaeb1075317fba28429124ebf3e328d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dcf/classSimplify_1_1SimplificationObject.html#abaaeb1075317fba28429124ebf3e328d">compact_mesh</a> ()</td></tr>
+<tr class="separator:abaaeb1075317fba28429124ebf3e328d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c4d9d31bedca9d0e0066ef11adb1247"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dcf/classSimplify_1_1SimplificationObject.html#a4c4d9d31bedca9d0e0066ef11adb1247">flipped</a> (<a class="el" href="../../da/d83/structvec3f.html">vec3f</a> p, int i0, int i1, <a class="el" href="../../d8/dea/structSimplify_1_1Vertex.html">Vertex</a> &amp;v0, <a class="el" href="../../d8/dea/structSimplify_1_1Vertex.html">Vertex</a> &amp;v1, std::vector&lt; int &gt; &amp;deleted)</td></tr>
+<tr class="memdesc:a4c4d9d31bedca9d0e0066ef11adb1247"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查移除指定边后三角形是否会翻转  <a href="../../dd/dcf/classSimplify_1_1SimplificationObject.html#a4c4d9d31bedca9d0e0066ef11adb1247">更多...</a><br /></td></tr>
+<tr class="separator:a4c4d9d31bedca9d0e0066ef11adb1247"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf388533d091ce3505df543844d0509c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dcf/classSimplify_1_1SimplificationObject.html#abf388533d091ce3505df543844d0509c">load_obj</a> (const char *filename, bool process_uv=false)</td></tr>
+<tr class="separator:abf388533d091ce3505df543844d0509c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7c6c15b545db21899dea2390c0caa53"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dcf/classSimplify_1_1SimplificationObject.html#ac7c6c15b545db21899dea2390c0caa53">simplify_mesh</a> (int target_count, double agressiveness=7, bool verbose=false)</td></tr>
+<tr class="memdesc:ac7c6c15b545db21899dea2390c0caa53"><td class="mdescLeft">&#160;</td><td class="mdescRight">主简化函数。  <a href="../../dd/dcf/classSimplify_1_1SimplificationObject.html#ac7c6c15b545db21899dea2390c0caa53">更多...</a><br /></td></tr>
+<tr class="separator:ac7c6c15b545db21899dea2390c0caa53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03f17e525c617e393a3d95270f25ef61"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dcf/classSimplify_1_1SimplificationObject.html#a03f17e525c617e393a3d95270f25ef61">simplify_mesh_lossless</a> (bool verbose=false)</td></tr>
+<tr class="memdesc:a03f17e525c617e393a3d95270f25ef61"><td class="mdescLeft">&#160;</td><td class="mdescRight">无损简化网格  <a href="../../dd/dcf/classSimplify_1_1SimplificationObject.html#a03f17e525c617e393a3d95270f25ef61">更多...</a><br /></td></tr>
+<tr class="separator:a03f17e525c617e393a3d95270f25ef61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac95e5824cb37d982056f9d652a8450d"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dcf/classSimplify_1_1SimplificationObject.html#aac95e5824cb37d982056f9d652a8450d">trimwhitespace</a> (char *str)</td></tr>
+<tr class="separator:aac95e5824cb37d982056f9d652a8450d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2995ac3dc92843c2918f2a9593ccf275"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dcf/classSimplify_1_1SimplificationObject.html#a2995ac3dc92843c2918f2a9593ccf275">update_mesh</a> (int iteration)</td></tr>
+<tr class="memdesc:a2995ac3dc92843c2918f2a9593ccf275"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新网格：压缩三角形，并建立引用列表  <a href="../../dd/dcf/classSimplify_1_1SimplificationObject.html#a2995ac3dc92843c2918f2a9593ccf275">更多...</a><br /></td></tr>
+<tr class="separator:a2995ac3dc92843c2918f2a9593ccf275"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3e0f9f0f8f577c7c7e3e52eb36fc722"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dcf/classSimplify_1_1SimplificationObject.html#ae3e0f9f0f8f577c7c7e3e52eb36fc722">update_triangles</a> (int i0, <a class="el" href="../../d8/dea/structSimplify_1_1Vertex.html">Vertex</a> &amp;v, std::vector&lt; int &gt; &amp;deleted, int &amp;deleted_triangles)</td></tr>
+<tr class="memdesc:ae3e0f9f0f8f577c7c7e3e52eb36fc722"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新三角形连接和边误差  <a href="../../dd/dcf/classSimplify_1_1SimplificationObject.html#ae3e0f9f0f8f577c7c7e3e52eb36fc722">更多...</a><br /></td></tr>
+<tr class="separator:ae3e0f9f0f8f577c7c7e3e52eb36fc722"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4a753f9377a011f628575bd4131a424"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dcf/classSimplify_1_1SimplificationObject.html#aa4a753f9377a011f628575bd4131a424">update_uvs</a> (int i0, const <a class="el" href="../../d8/dea/structSimplify_1_1Vertex.html">Vertex</a> &amp;v, const <a class="el" href="../../da/d83/structvec3f.html">vec3f</a> &amp;p, std::vector&lt; int &gt; &amp;deleted)</td></tr>
+<tr class="memdesc:aa4a753f9377a011f628575bd4131a424"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新UV坐标  <a href="../../dd/dcf/classSimplify_1_1SimplificationObject.html#aa4a753f9377a011f628575bd4131a424">更多...</a><br /></td></tr>
+<tr class="separator:aa4a753f9377a011f628575bd4131a424"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3914d033ceabb16b3848f727176693c"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dcf/classSimplify_1_1SimplificationObject.html#af3914d033ceabb16b3848f727176693c">vertex_error</a> (<a class="el" href="../../da/dcb/classSymetricMatrix.html">SymetricMatrix</a> q, double x, double y, double z)</td></tr>
+<tr class="separator:af3914d033ceabb16b3848f727176693c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a226ae7395b8759e246c3ef4a52d1fdb0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dcf/classSimplify_1_1SimplificationObject.html#a226ae7395b8759e246c3ef4a52d1fdb0">write_obj</a> (const char *filename)</td></tr>
+<tr class="separator:a226ae7395b8759e246c3ef4a52d1fdb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:a5e072575b20c7a31cbff86754b8e5270"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dcf/classSimplify_1_1SimplificationObject.html#a5e072575b20c7a31cbff86754b8e5270">materials</a></td></tr>
+<tr class="memdesc:a5e072575b20c7a31cbff86754b8e5270"><td class="mdescLeft">&#160;</td><td class="mdescRight">存储材质名称的向量。  <a href="../../dd/dcf/classSimplify_1_1SimplificationObject.html#a5e072575b20c7a31cbff86754b8e5270">更多...</a><br /></td></tr>
+<tr class="separator:a5e072575b20c7a31cbff86754b8e5270"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4572538aa9c584efea0cef2de233f7d2"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dcf/classSimplify_1_1SimplificationObject.html#a4572538aa9c584efea0cef2de233f7d2">mtllib</a></td></tr>
+<tr class="memdesc:a4572538aa9c584efea0cef2de233f7d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">材质库的名称。  <a href="../../dd/dcf/classSimplify_1_1SimplificationObject.html#a4572538aa9c584efea0cef2de233f7d2">更多...</a><br /></td></tr>
+<tr class="separator:a4572538aa9c584efea0cef2de233f7d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6324e3db8d18c174fa2ac244a62306d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="../../d1/d9c/structSimplify_1_1Ref.html">Ref</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dcf/classSimplify_1_1SimplificationObject.html#ab6324e3db8d18c174fa2ac244a62306d">refs</a></td></tr>
+<tr class="memdesc:ab6324e3db8d18c174fa2ac244a62306d"><td class="mdescLeft">&#160;</td><td class="mdescRight">存储引用的向量。  <a href="../../dd/dcf/classSimplify_1_1SimplificationObject.html#ab6324e3db8d18c174fa2ac244a62306d">更多...</a><br /></td></tr>
+<tr class="separator:ab6324e3db8d18c174fa2ac244a62306d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80e3a206fe74a30d793071fe136dc6fe"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="../../dd/d2e/structSimplify_1_1Triangle.html">Triangle</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dcf/classSimplify_1_1SimplificationObject.html#a80e3a206fe74a30d793071fe136dc6fe">triangles</a></td></tr>
+<tr class="memdesc:a80e3a206fe74a30d793071fe136dc6fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">存储三角形的向量。  <a href="../../dd/dcf/classSimplify_1_1SimplificationObject.html#a80e3a206fe74a30d793071fe136dc6fe">更多...</a><br /></td></tr>
+<tr class="separator:a80e3a206fe74a30d793071fe136dc6fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83ffa74a58f12c30bfe74eb8f501d6ad"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="../../d8/dea/structSimplify_1_1Vertex.html">Vertex</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dcf/classSimplify_1_1SimplificationObject.html#a83ffa74a58f12c30bfe74eb8f501d6ad">vertices</a></td></tr>
+<tr class="memdesc:a83ffa74a58f12c30bfe74eb8f501d6ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">存储顶点的向量。  <a href="../../dd/dcf/classSimplify_1_1SimplificationObject.html#a83ffa74a58f12c30bfe74eb8f501d6ad">更多...</a><br /></td></tr>
+<tr class="separator:a83ffa74a58f12c30bfe74eb8f501d6ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p >用于简化网格的类。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00828">828</a> 行定义.</p>
+</div><h2 class="groupheader">成员函数说明</h2>
+<a id="a3dad96e7db9db379305c7c93ce5ffacf" name="a3dad96e7db9db379305c7c93ce5ffacf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3dad96e7db9db379305c7c93ce5ffacf">&#9670;&#160;</a></span>calculate_error()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double Simplify::SimplificationObject::calculate_error </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id_v1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id_v2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a> &amp;&#160;</td>
+          <td class="paramname"><em>p_result</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01364">1364</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00677">SymetricMatrix::det()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00591">min()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01358">vertex_error()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00838">vertices</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00135">vec3f::x</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00135">vec3f::y</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00135">vec3f::z</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00859">simplify_mesh()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00978">simplify_mesh_lossless()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01201">update_mesh()</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01165">update_triangles()</a>.</p>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/dcf/classSimplify_1_1SimplificationObject_a3dad96e7db9db379305c7c93ce5ffacf_cgraph.svg" width="360" height="175"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/dcf/classSimplify_1_1SimplificationObject_a3dad96e7db9db379305c7c93ce5ffacf_icgraph.svg" width="570" height="158"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="abaaeb1075317fba28429124ebf3e328d" name="abaaeb1075317fba28429124ebf3e328d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abaaeb1075317fba28429124ebf3e328d">&#9670;&#160;</a></span>compact_mesh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Simplify::SimplificationObject::compact_mesh </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01326">1326</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00107">loopi</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00108">loopj</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00834">triangles</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00766">Simplify::Triangle::v</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00838">vertices</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00859">simplify_mesh()</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00978">simplify_mesh_lossless()</a>.</p>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/dcf/classSimplify_1_1SimplificationObject_abaaeb1075317fba28429124ebf3e328d_icgraph.svg" width="364" height="131"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a4c4d9d31bedca9d0e0066ef11adb1247" name="a4c4d9d31bedca9d0e0066ef11adb1247"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c4d9d31bedca9d0e0066ef11adb1247">&#9670;&#160;</a></span>flipped()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Simplify::SimplificationObject::flipped </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a>&#160;</td>
+          <td class="paramname"><em>p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d8/dea/structSimplify_1_1Vertex.html">Vertex</a> &amp;&#160;</td>
+          <td class="paramname"><em>v0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d8/dea/structSimplify_1_1Vertex.html">Vertex</a> &amp;&#160;</td>
+          <td class="paramname"><em>v1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; int &gt; &amp;&#160;</td>
+          <td class="paramname"><em>deleted</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>检查移除指定边后三角形是否会翻转 </p>
+<p >遍历与顶点v0相关联的所有三角形，检查如果移除边(p, v0) -&gt; (p, v1)后， 是否有三角形发生翻转。翻转的条件包括：</p><ol type="1">
+<li>边(p, v0)相邻的两向量几乎共线（点积接近1或-1）。</li>
+<li>三角形的法向量与由边(p, v0)相邻的两向量构成的平面的法向量差异较大。</li>
+</ol>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>与v0和v1形成边的另一个端点 </td></tr>
+    <tr><td class="paramname">i0</td><td>顶点p在顶点数组中的索引 </td></tr>
+    <tr><td class="paramname">i1</td><td>顶点v1在顶点数组中的索引 </td></tr>
+    <tr><td class="paramname">v0</td><td>顶点v0的引用 </td></tr>
+    <tr><td class="paramname">v1</td><td>顶点v1的引用 </td></tr>
+    <tr><td class="paramname">deleted</td><td>用于标记被删除的三角形的数组 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>true 如果移除边后至少有一个三角形翻转，否则返回false </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01090">1090</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00265">vec3f::cross()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00774">Simplify::Triangle::deleted</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00252">vec3f::dot()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00116">loopk</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00778">Simplify::Triangle::n</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00452">vec3f::normalize()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00842">refs</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00802">Simplify::Vertex::tcount</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00834">triangles</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00802">Simplify::Vertex::tstart</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00766">Simplify::Triangle::v</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00838">vertices</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00859">simplify_mesh()</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00978">simplify_mesh_lossless()</a>.</p>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/dcf/classSimplify_1_1SimplificationObject_a4c4d9d31bedca9d0e0066ef11adb1247_cgraph.svg" width="324" height="135"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/dcf/classSimplify_1_1SimplificationObject_a4c4d9d31bedca9d0e0066ef11adb1247_icgraph.svg" width="360" height="131"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="abf388533d091ce3505df543844d0509c" name="abf388533d091ce3505df543844d0509c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf388533d091ce3505df543844d0509c">&#9670;&#160;</a></span>load_obj()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Simplify::SimplificationObject::load_obj </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>filename</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>process_uv</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01431">1431</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00774">Simplify::Triangle::attr</a>, <a class="el" href="../../d3/db5/odrSpiral_8cpp_source.html#l00086">fn</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00107">loopi</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00108">loopj</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00786">Simplify::Triangle::material</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00850">materials</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00846">mtllib</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00798">Simplify::Vertex::p</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00750">Simplify::TEXCOORD</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00834">triangles</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01405">trimwhitespace()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00766">Simplify::Triangle::v</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00838">vertices</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00135">vec3f::x</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00135">vec3f::y</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00135">vec3f::z</a>.</p>
+<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/dcf/classSimplify_1_1SimplificationObject_abf388533d091ce3505df543844d0509c_cgraph.svg" width="455" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ac7c6c15b545db21899dea2390c0caa53" name="ac7c6c15b545db21899dea2390c0caa53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7c6c15b545db21899dea2390c0caa53">&#9670;&#160;</a></span>simplify_mesh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Simplify::SimplificationObject::simplify_mesh </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>target_count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>agressiveness</em> = <code>7</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>verbose</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>主简化函数。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target_count</td><td>目标三角形数量。 </td></tr>
+    <tr><td class="paramname">agressiveness</td><td>激进程度，用于增加阈值的锐度。5到8是较好的数值，更多迭代次数可以获得更高质量。 </td></tr>
+    <tr><td class="paramname">verbose</td><td>是否输出详细信息。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00859">859</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00774">Simplify::Triangle::attr</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00810">Simplify::Vertex::border</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01364">calculate_error()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01326">compact_mesh()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00774">Simplify::Triangle::deleted</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00774">Simplify::Triangle::dirty</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00770">Simplify::Triangle::err</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01090">flipped()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00107">loopi</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00108">loopj</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00798">Simplify::Vertex::p</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00806">Simplify::Vertex::q</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00842">refs</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00802">Simplify::Vertex::tcount</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00750">Simplify::TEXCOORD</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00834">triangles</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00802">Simplify::Vertex::tstart</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01201">update_mesh()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01165">update_triangles()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01136">update_uvs()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00766">Simplify::Triangle::v</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00838">vertices</a>.</p>
+<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../dd/dcf/classSimplify_1_1SimplificationObject_ac7c6c15b545db21899dea2390c0caa53_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a03f17e525c617e393a3d95270f25ef61" name="a03f17e525c617e393a3d95270f25ef61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03f17e525c617e393a3d95270f25ef61">&#9670;&#160;</a></span>simplify_mesh_lossless()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Simplify::SimplificationObject::simplify_mesh_lossless </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>verbose</em> = <code>false</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>无损简化网格 </p>
+<p >该函数通过迭代地移除误差低于给定阈值的三角形来简化网格，同时保持网格的无损性。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">verbose</td><td>是否打印详细信息，默认为false不打印 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000077">待办事项:</a></b></dt><dd>使用范围for循环替换宏定义的循环，以提高代码可读性和安全性 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00978">978</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00774">Simplify::Triangle::attr</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00810">Simplify::Vertex::border</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01364">calculate_error()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01326">compact_mesh()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00774">Simplify::Triangle::deleted</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00774">Simplify::Triangle::dirty</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00770">Simplify::Triangle::err</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01090">flipped()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00107">loopi</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00108">loopj</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00798">Simplify::Vertex::p</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00806">Simplify::Vertex::q</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00842">refs</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00802">Simplify::Vertex::tcount</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00750">Simplify::TEXCOORD</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00834">triangles</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00802">Simplify::Vertex::tstart</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01201">update_mesh()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01165">update_triangles()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01136">update_uvs()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00766">Simplify::Triangle::v</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00838">vertices</a>.</p>
+<div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../dd/dcf/classSimplify_1_1SimplificationObject_a03f17e525c617e393a3d95270f25ef61_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="aac95e5824cb37d982056f9d652a8450d" name="aac95e5824cb37d982056f9d652a8450d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac95e5824cb37d982056f9d652a8450d">&#9670;&#160;</a></span>trimwhitespace()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char * Simplify::SimplificationObject::trimwhitespace </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01405">1405</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../da/de4/ActorRegistry_8h_source.html#l00096">end()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01431">load_obj()</a>.</p>
+<div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/dcf/classSimplify_1_1SimplificationObject_aac95e5824cb37d982056f9d652a8450d_cgraph.svg" width="256" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/dcf/classSimplify_1_1SimplificationObject_aac95e5824cb37d982056f9d652a8450d_icgraph.svg" width="364" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a2995ac3dc92843c2918f2a9593ccf275" name="a2995ac3dc92843c2918f2a9593ccf275"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2995ac3dc92843c2918f2a9593ccf275">&#9670;&#160;</a></span>update_mesh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Simplify::SimplificationObject::update_mesh </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>iteration</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>更新网格：压缩三角形，并建立引用列表 </p>
+<p >该函数在指定的迭代次数大于0时，会压缩三角形数组，移除被标记为删除的三角形。 接着，它会初始化顶点的三角形起始索引和三角形计数，然后遍历三角形数组来更新这些值。 最后，它会构建一个引用列表，该列表将每个顶点与其相关联的三角形以及三角形中的顶点索引相关联。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">iteration</td><td>当前迭代次数，用于判断是否进行三角形的压缩 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01201">1201</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01364">calculate_error()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00265">vec3f::cross()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00252">vec3f::dot()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00770">Simplify::Triangle::err</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00107">loopi</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00108">loopj</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00116">loopk</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00591">min()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00778">Simplify::Triangle::n</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00452">vec3f::normalize()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00842">refs</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00802">Simplify::Vertex::tcount</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00834">triangles</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00802">Simplify::Vertex::tstart</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00766">Simplify::Triangle::v</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00838">vertices</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00135">vec3f::x</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00135">vec3f::y</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00135">vec3f::z</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00859">simplify_mesh()</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00978">simplify_mesh_lossless()</a>.</p>
+<div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/dcf/classSimplify_1_1SimplificationObject_a2995ac3dc92843c2918f2a9593ccf275_cgraph.svg" width="559" height="324"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-12-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-12-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/dcf/classSimplify_1_1SimplificationObject_a2995ac3dc92843c2918f2a9593ccf275_icgraph.svg" width="360" height="131"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ae3e0f9f0f8f577c7c7e3e52eb36fc722" name="ae3e0f9f0f8f577c7c7e3e52eb36fc722"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3e0f9f0f8f577c7c7e3e52eb36fc722">&#9670;&#160;</a></span>update_triangles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Simplify::SimplificationObject::update_triangles </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d8/dea/structSimplify_1_1Vertex.html">Vertex</a> &amp;&#160;</td>
+          <td class="paramname"><em>v</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; int &gt; &amp;&#160;</td>
+          <td class="paramname"><em>deleted</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>deleted_triangles</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>更新三角形连接和边误差 </p>
+<p >遍历与顶点v相关联的所有三角形，更新其顶点连接和边误差。如果三角形被标记为删除， 则将其标记为已删除并增加已删除三角形的计数。否则，更新三角形的顶点连接， 并重新计算其误差。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i0</td><td>顶点p在顶点数组中的索引 </td></tr>
+    <tr><td class="paramname">v</td><td>顶点v的引用 </td></tr>
+    <tr><td class="paramname">deleted</td><td>用于标记被删除的三角形的数组 </td></tr>
+    <tr><td class="paramname">deleted_triangles</td><td>已删除三角形的计数，通过引用传递以便更新 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01165">1165</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01364">calculate_error()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00774">Simplify::Triangle::deleted</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00774">Simplify::Triangle::dirty</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00770">Simplify::Triangle::err</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00116">loopk</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00591">min()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00842">refs</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00802">Simplify::Vertex::tcount</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00821">Simplify::Ref::tid</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00834">triangles</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00802">Simplify::Vertex::tstart</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00821">Simplify::Ref::tvertex</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00766">Simplify::Triangle::v</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00859">simplify_mesh()</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00978">simplify_mesh_lossless()</a>.</p>
+<div id="dynsection-13" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-13-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-13-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-13-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/dcf/classSimplify_1_1SimplificationObject_ae3e0f9f0f8f577c7c7e3e52eb36fc722_cgraph.svg" width="570" height="175"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-14" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-14-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-14-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-14-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/dcf/classSimplify_1_1SimplificationObject_ae3e0f9f0f8f577c7c7e3e52eb36fc722_icgraph.svg" width="371" height="131"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="aa4a753f9377a011f628575bd4131a424" name="aa4a753f9377a011f628575bd4131a424"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4a753f9377a011f628575bd4131a424">&#9670;&#160;</a></span>update_uvs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Simplify::SimplificationObject::update_uvs </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d8/dea/structSimplify_1_1Vertex.html">Vertex</a> &amp;&#160;</td>
+          <td class="paramname"><em>v</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../da/d83/structvec3f.html">vec3f</a> &amp;&#160;</td>
+          <td class="paramname"><em>p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; int &gt; &amp;&#160;</td>
+          <td class="paramname"><em>deleted</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>更新UV坐标 </p>
+<p >遍历与顶点v相关联的所有三角形，对于未被删除且当前顶点未被标记为删除的三角形， 更新其UV坐标。新的UV坐标通过插值计算得到。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i0</td><td>顶点p在顶点数组中的索引 </td></tr>
+    <tr><td class="paramname">v</td><td>顶点v的引用 </td></tr>
+    <tr><td class="paramname">p</td><td>与v形成边的另一个端点 </td></tr>
+    <tr><td class="paramname">deleted</td><td>用于标记被删除的三角形的数组 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01136">1136</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00774">Simplify::Triangle::deleted</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00575">interpolate()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00116">loopk</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00842">refs</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00802">Simplify::Vertex::tcount</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00821">Simplify::Ref::tid</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00834">triangles</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00802">Simplify::Vertex::tstart</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00821">Simplify::Ref::tvertex</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00782">Simplify::Triangle::uvs</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00766">Simplify::Triangle::v</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00838">vertices</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00859">simplify_mesh()</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00978">simplify_mesh_lossless()</a>.</p>
+<div id="dynsection-15" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-15-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-15-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-15-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/dcf/classSimplify_1_1SimplificationObject_aa4a753f9377a011f628575bd4131a424_cgraph.svg" width="552" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-16" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-16-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-16-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-16-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/dcf/classSimplify_1_1SimplificationObject_aa4a753f9377a011f628575bd4131a424_icgraph.svg" width="360" height="131"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="af3914d033ceabb16b3848f727176693c" name="af3914d033ceabb16b3848f727176693c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3914d033ceabb16b3848f727176693c">&#9670;&#160;</a></span>vertex_error()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double Simplify::SimplificationObject::vertex_error </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../da/dcb/classSymetricMatrix.html">SymetricMatrix</a>&#160;</td>
+          <td class="paramname"><em>q</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>z</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01358">1358</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01364">calculate_error()</a>.</p>
+<div id="dynsection-17" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-17-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-17-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-17-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../dd/dcf/classSimplify_1_1SimplificationObject_af3914d033ceabb16b3848f727176693c_icgraph.svg" width="100%" height="418"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a226ae7395b8759e246c3ef4a52d1fdb0" name="a226ae7395b8759e246c3ef4a52d1fdb0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a226ae7395b8759e246c3ef4a52d1fdb0">&#9670;&#160;</a></span>write_obj()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Simplify::SimplificationObject::write_obj </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>filename</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01627">1627</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00107">loopi</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00846">mtllib</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00750">Simplify::TEXCOORD</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00834">triangles</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00838">vertices</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a5e072575b20c7a31cbff86754b8e5270" name="a5e072575b20c7a31cbff86754b8e5270"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e072575b20c7a31cbff86754b8e5270">&#9670;&#160;</a></span>materials</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::string&gt; Simplify::SimplificationObject::materials</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>存储材质名称的向量。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00850">850</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01431">load_obj()</a>.</p>
+
+</div>
+</div>
+<a id="a4572538aa9c584efea0cef2de233f7d2" name="a4572538aa9c584efea0cef2de233f7d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4572538aa9c584efea0cef2de233f7d2">&#9670;&#160;</a></span>mtllib</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Simplify::SimplificationObject::mtllib</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>材质库的名称。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00846">846</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01431">load_obj()</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01627">write_obj()</a>.</p>
+
+</div>
+</div>
+<a id="ab6324e3db8d18c174fa2ac244a62306d" name="ab6324e3db8d18c174fa2ac244a62306d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6324e3db8d18c174fa2ac244a62306d">&#9670;&#160;</a></span>refs</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="../../d1/d9c/structSimplify_1_1Ref.html">Ref</a>&gt; Simplify::SimplificationObject::refs</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>存储引用的向量。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00842">842</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01090">flipped()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00859">simplify_mesh()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00978">simplify_mesh_lossless()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01201">update_mesh()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01165">update_triangles()</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01136">update_uvs()</a>.</p>
+
+</div>
+</div>
+<a id="a80e3a206fe74a30d793071fe136dc6fe" name="a80e3a206fe74a30d793071fe136dc6fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80e3a206fe74a30d793071fe136dc6fe">&#9670;&#160;</a></span>triangles</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="../../dd/d2e/structSimplify_1_1Triangle.html">Triangle</a>&gt; Simplify::SimplificationObject::triangles</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>存储三角形的向量。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00834">834</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01326">compact_mesh()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01090">flipped()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01431">load_obj()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00859">simplify_mesh()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00978">simplify_mesh_lossless()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01201">update_mesh()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01165">update_triangles()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01136">update_uvs()</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01627">write_obj()</a>.</p>
+
+</div>
+</div>
+<a id="a83ffa74a58f12c30bfe74eb8f501d6ad" name="a83ffa74a58f12c30bfe74eb8f501d6ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83ffa74a58f12c30bfe74eb8f501d6ad">&#9670;&#160;</a></span>vertices</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="../../d8/dea/structSimplify_1_1Vertex.html">Vertex</a>&gt; Simplify::SimplificationObject::vertices</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>存储顶点的向量。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00838">838</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01364">calculate_error()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01326">compact_mesh()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01090">flipped()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01431">load_obj()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00859">simplify_mesh()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00978">simplify_mesh_lossless()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01201">update_mesh()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01136">update_uvs()</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l01627">write_obj()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

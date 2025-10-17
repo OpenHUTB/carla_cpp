@@ -1,0 +1,326 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: Episode.cpp 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_64d7bb605f27024d49af86070bd3f0b6.html">client</a></li><li class="navelem"><a class="el" href="../../dir_f9a24d883fd04dccdcdb897ae270d193.html">detail</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">Episode.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d6/d12/Episode_8cpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// de Barcelona (UAB).</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// This work is licensed under the terms of the MIT license.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">// 包含Carla项目中客户端相关的Episode（场景、情节相关概念，可能代表一次模拟过程等）的头文件，</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">// 推测其中定义了Episode类的声明等内容，用于处理模拟场景相关的操作和状态管理</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="../../d9/d9e/Episode_8h.html">carla/client/detail/Episode.h</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="../../de/d87/Logging_8h.html">carla/Logging.h</a>&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="../../df/d8b/client_2detail_2Client_8h.html">carla/client/detail/Client.h</a>&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="../../d5/d09/WalkerNavigation_8h.html">carla/client/detail/WalkerNavigation.h</a>&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="../../d3/df2/Deserializer_8h.html">carla/sensor/Deserializer.h</a>&quot;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="../../da/dfd/TrafficManager_8h.html">carla/trafficmanager/TrafficManager.h</a>&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;exception&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d9/d36/namespacecarla.html">carla</a> {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d7/d1c/namespaceclient.html">client</a> {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">namespace </span>detail {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment">// 使用命名空间中的chrono_literals，用于方便地表示时间常量</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">using namespace </span>std::chrono_literals;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">// 静态函数，将传感器数据强制转换为特定类型</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="../../d8/dcd/namespacecarla_1_1client_1_1detail.html#ad9296fca461df6af9c2b6438681b0be7">   24</a></span>  <span class="keyword">static</span> <span class="keyword">auto</span> &amp;<a class="code hl_function" href="../../d8/dcd/namespacecarla_1_1client_1_1detail.html#ad9296fca461df6af9c2b6438681b0be7">CastData</a>(<span class="keyword">const</span> <a class="code hl_class" href="../../df/d8c/classcarla_1_1sensor_1_1SensorData.html">sensor::SensorData</a> &amp;data) {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keyword">using </span>target_t = <span class="keyword">const</span> <a class="code hl_class" href="../../d4/d68/classcarla_1_1sensor_1_1data_1_1RawEpisodeState.html">sensor::data::RawEpisodeState</a>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>target_t &amp;<span class="keyword">&gt;</span>(data);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  }</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment">// 模板函数，根据给定的参与者ID范围获取演员列表</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> RangeT&gt;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="../../d8/dcd/namespacecarla_1_1client_1_1detail.html#a30df6469e31dff8ae7db4644facb3dfb">   30</a></span>  <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="../../d8/dcd/namespacecarla_1_1client_1_1detail.html#a30df6469e31dff8ae7db4644facb3dfb">GetActorsById_Impl</a>(<a class="code hl_class" href="../../dd/ddd/classcarla_1_1client_1_1detail_1_1Client.html">Client</a> &amp;<a class="code hl_namespace" href="../../d7/d1c/namespaceclient.html">client</a>, <a class="code hl_class" href="../../de/dfc/classcarla_1_1client_1_1detail_1_1CachedActorList.html">CachedActorList</a> &amp;actors, <span class="keyword">const</span> RangeT &amp;actor_ids) {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="comment">// 获取缺失的参与者ID</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">auto</span> missing_ids = actors.<a class="code hl_function" href="../../de/dfc/classcarla_1_1client_1_1detail_1_1CachedActorList.html#aec92273a1c18af363db7f5f4f332c200">GetMissingIds</a>(actor_ids);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordflow">if</span> (!missing_ids.empty()) {</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <span class="comment">// 如果有缺失的ID，从客户端获取对应参与者并插入列表</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>      actors.<a class="code hl_function" href="../../de/dfc/classcarla_1_1client_1_1detail_1_1CachedActorList.html#a27188adf815a78eeed8ea0b5b87753a8">InsertRange</a>(<a class="code hl_namespace" href="../../d7/d1c/namespaceclient.html">client</a>.GetActorsById(missing_ids));</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    }</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>     <span class="comment">// 返回指定ID的参与者列表</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordflow">return</span> actors.<a class="code hl_function" href="../../de/dfc/classcarla_1_1client_1_1detail_1_1CachedActorList.html#ab37f94cd03b38494fe0875f1e8f3427c">GetActorsById</a>(actor_ids);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  }</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment">// 构造函数，通过客户端和弱引用的模拟器创建Episode对象，并使用默认的EpisodeInfo</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#aea59051d7aadf931e76db4a99a5bc48b">   41</a></span>  <a class="code hl_function" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#aea59051d7aadf931e76db4a99a5bc48b">Episode::Episode</a>(<a class="code hl_class" href="../../dd/ddd/classcarla_1_1client_1_1detail_1_1Client.html">Client</a> &amp;<a class="code hl_namespace" href="../../d7/d1c/namespaceclient.html">client</a>, std::weak_ptr&lt;Simulator&gt; simulator)</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    : <a class="code hl_class" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html">Episode</a>(<a class="code hl_namespace" href="../../d7/d1c/namespaceclient.html">client</a>, <a class="code hl_namespace" href="../../d7/d1c/namespaceclient.html">client</a>.GetEpisodeInfo(), simulator) {}</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">// 构造函数，通过客户端、EpisodeInfo和弱引用的模拟器创建Episode对象</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#a1e1ae6583ed0a49db187164712cfb423">   44</a></span>  <a class="code hl_function" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#aea59051d7aadf931e76db4a99a5bc48b">Episode::Episode</a>(<a class="code hl_class" href="../../dd/ddd/classcarla_1_1client_1_1detail_1_1Client.html">Client</a> &amp;<a class="code hl_namespace" href="../../d7/d1c/namespaceclient.html">client</a>, <span class="keyword">const</span> <a class="code hl_class" href="../../db/d00/classcarla_1_1rpc_1_1EpisodeInfo.html">rpc::EpisodeInfo</a> &amp;info, std::weak_ptr&lt;Simulator&gt; simulator)</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    : _client(<a class="code hl_namespace" href="../../d7/d1c/namespaceclient.html">client</a>),</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>      _state(<a class="code hl_namespace" href="../../d8/dcc/namespacestd.html">std</a>::make_shared&lt;<a class="code hl_class" href="../../d5/dbf/classcarla_1_1client_1_1detail_1_1EpisodeState.html">EpisodeState</a>&gt;(info.id)),</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>      _simulator(simulator),</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>      _token(info.token) {}</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="comment">// 析构函数，尝试取消订阅流并处理可能的异常</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#ae1b497948120557841fb4d057511ccec">   50</a></span>  <a class="code hl_function" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#ae1b497948120557841fb4d057511ccec">Episode::~Episode</a>() {</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordflow">try</span> {</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>      <a class="code hl_variable" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#abb2abf1a491f7d03fa0022e9a3221130">_client</a>.<a class="code hl_function" href="../../dd/ddd/classcarla_1_1client_1_1detail_1_1Client.html#a47675d8d967a68f2ff71ed7e3763be24">UnSubscribeFromStream</a>(<a class="code hl_variable" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#a80db61ef8dd09022dd46a75929562429">_token</a>);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception &amp;e) {</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>      <a class="code hl_function" href="../../d9/d36/namespacecarla.html#a7673dfc76e17f5856b798de6d0384b56">log_error</a>(<span class="stringliteral">&quot;exception trying to disconnect from episode:&quot;</span>, e.what());</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    }</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  }</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="comment">// 开始监听流数据的函数</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#afa2c9d4a111adf6575e39980cfc4b8c3">   58</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#afa2c9d4a111adf6575e39980cfc4b8c3">Episode::Listen</a>() {</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    std::weak_ptr&lt;Episode&gt; weak = shared_from_this();</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <a class="code hl_variable" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#abb2abf1a491f7d03fa0022e9a3221130">_client</a>.<a class="code hl_function" href="../../dd/ddd/classcarla_1_1client_1_1detail_1_1Client.html#a5a2c188ed3b5a3c40aa9d1a80428a518">SubscribeToStream</a>(<a class="code hl_variable" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#a80db61ef8dd09022dd46a75929562429">_token</a>, [weak](<span class="keyword">auto</span> buffer) {</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>      <span class="keyword">auto</span> self = weak.lock();</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>      <span class="keywordflow">if</span> (self != <span class="keyword">nullptr</span>) {</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <span class="comment">// 反序列化数据</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="keyword">auto</span> data = <a class="code hl_function" href="../../d5/d46/classcarla_1_1sensor_1_1Deserializer.html#a718d97708b670faeba94b6cd4bd0a350">sensor::Deserializer::Deserialize</a>(std::move(buffer));</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="keyword">auto</span> next = std::make_shared&lt;const EpisodeState&gt;(<a class="code hl_function" href="../../d8/dcd/namespacecarla_1_1client_1_1detail.html#ad9296fca461df6af9c2b6438681b0be7">CastData</a>(*data));</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keyword">auto</span> prev = self-&gt;GetState();</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="comment">// TODO: 更新地图变化的检测方式</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="keywordtype">bool</span> HasMapChanged = next-&gt;HasMapChanged();</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="keywordtype">bool</span> UpdateLights = next-&gt;IsLightUpdatePending();</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment"></span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment">        /// 检查待处理的异常（主要是交通管理服务器关闭）</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="comment"></span>        <span class="keywordflow">if</span>(self-&gt;_pending_exceptions) {</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="comment"></span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="comment">          /// 将待处理的异常标记为 false</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="comment"></span>          self-&gt;_pending_exceptions = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="comment"></span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="comment">          /// 为错误消息创建异常</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="comment"></span>          <span class="keyword">auto</span> exception(self-&gt;_pending_exceptions_msg);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>          <span class="comment">// 通知等待线程发生异常</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>          self-&gt;_snapshot.SetException(std::runtime_error(exception));</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        }<span class="comment"></span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="comment">        /// 传感器案例：数据不一致</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="comment"></span>        <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>          <span class="keywordtype">bool</span> episode_changed = (next-&gt;GetEpisodeId() != prev-&gt;GetEpisodeId());</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>          <span class="keywordflow">do</span> {<span class="comment">// 如果当前状态的帧编号（GetFrame函数获取）大于等于下一个状态的帧编号，并且模拟场景没有改变（episode_changed为false），</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>                        <span class="comment">// 则调用_on_tick_callbacks（可能是一个用于存储和执行每帧回调函数的对象）的Call函数，传入下一个状态数据，然后直接返回，</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>                        <span class="comment">// 表示这种情况下已经处理完当前数据，不需要进行后续的状态更新等操作。</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>            <span class="keywordflow">if</span> (prev-&gt;GetFrame() &gt;= next-&gt;GetFrame() &amp;&amp; !episode_changed) {</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>              self-&gt;_on_tick_callbacks.Call(next);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>              <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>            }</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>          } <span class="keywordflow">while</span> (!self-&gt;_state.compare_exchange(&amp;prev, next));</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="comment">// 如果需要更新交通信号灯（UpdateLights为true）或者地图发生了变化（HasMapChanged为true），</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>                    <span class="comment">// 则调用_on_light_update_callbacks（可能是一个用于处理交通信号灯更新相关回调函数的对象）的Call函数，传入下一个状态数据。</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>          <span class="keywordflow">if</span>(UpdateLights || HasMapChanged) {</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>            self-&gt;_on_light_update_callbacks.Call(next);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>          }</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="comment">// 如果地图发生了变化，将_should_update_map标记为true，表示需要在后续的操作中更新地图相关的内容。</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>          <span class="keywordflow">if</span>(HasMapChanged) {</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>            self-&gt;_should_update_map = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>          }</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="comment"></span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="comment">          /// Episode 改变</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="comment"></span>          <span class="keywordflow">if</span>(episode_changed) {</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>            self-&gt;OnEpisodeChanged();</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>          }</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>          <span class="comment">// 通知等待的线程并执行回调。</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>          self-&gt;_snapshot.SetValue(next);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>/ 通知等待的线程并执行回调，通过调用_snapshot的SetValue函数，传入下一个状态数据，</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>                    <span class="comment">// 这样其他等待该状态数据的部分（可能是其他线程或者模块）就可以获取到最新的状态并进行相应操作。</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>                    <span class="comment">// 同时调用_on_tick_callbacks的Call函数，传入下一个状态数据，执行用户注册的每帧回调函数。</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>          self-&gt;_on_tick_callbacks.Call(next);</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        }</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>      }</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    });</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>  }</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="comment">// Episode类的成员函数GetActorById，用于根据给定的参与者ID获取单个参与者信息。</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="comment">// 首先尝试从缓存的参与者列表_actors中获取对应的参与者信息（通过调用GetActorById函数），如果获取不到（返回的结果没有值），</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="comment">// 则从客户端获取该ID对应的参与者信息列表（通过调用_client的GetActorsById函数传入单个ID的列表），</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="comment">// 如果获取到的列表不为空，则取出第一个参与者信息（假设ID是唯一对应的），并插入到缓存列表_actors中，最后返回获取到的参与者信息（如果有的话）</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>  boost::optional&lt;rpc::Actor&gt; Episode::GetActorById(<a class="code hl_typedef" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> <span class="keywordtype">id</span>) {</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="keyword">auto</span> actor = <a class="code hl_variable" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#a2bba3d9c1fd1fcfc8040e93c508f4285">_actors</a>.<a class="code hl_function" href="../../de/dfc/classcarla_1_1client_1_1detail_1_1CachedActorList.html#a0756edce11624b1c3e0b698fa6979c27">GetActorById</a>(<span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="keywordflow">if</span> (!actor.has_value()) {</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>      <span class="keyword">auto</span> actor_list = <a class="code hl_variable" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#abb2abf1a491f7d03fa0022e9a3221130">_client</a>.<a class="code hl_function" href="../../dd/ddd/classcarla_1_1client_1_1detail_1_1Client.html#a2a604d4a47f7f3ced2c9cd09d3aa7d6c">GetActorsById</a>({<span class="keywordtype">id</span>});</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>      <span class="keywordflow">if</span> (!actor_list.empty()) {</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        actor = std::move(actor_list.front());</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        <a class="code hl_variable" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#a2bba3d9c1fd1fcfc8040e93c508f4285">_actors</a>.<a class="code hl_function" href="../../de/dfc/classcarla_1_1client_1_1detail_1_1CachedActorList.html#a7cd8246a79526d68aca70f7344c97103">Insert</a>(*actor);</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>      }</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    }</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="keywordflow">return</span> actor;</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>  }</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="comment">// Episode类的成员函数GetActorsById，用于根据给定的参与者ID列表获取对应的参与者列表。</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="comment">// 它调用了前面定义的模板函数GetActorsById_Impl，传入客户端对象、缓存的参与者列表对象以及给定的参与者ID列表，</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="comment">// 通过模板函数内部的逻辑来获取并返回对应的参与者列表（如果有的话），可能涉及从缓存中获取或者从客户端获取缺失的参与者信息等操作。</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>  std::vector&lt;rpc::Actor&gt; Episode::GetActorsById(<span class="keyword">const</span> std::vector&lt;ActorId&gt; &amp;actor_ids) {</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="../../d8/dcd/namespacecarla_1_1client_1_1detail.html#a30df6469e31dff8ae7db4644facb3dfb">GetActorsById_Impl</a>(<a class="code hl_variable" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#abb2abf1a491f7d03fa0022e9a3221130">_client</a>, <a class="code hl_variable" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#a2bba3d9c1fd1fcfc8040e93c508f4285">_actors</a>, actor_ids);</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>  }</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="comment">// Episode类的成员函数GetActors，用于获取所有的参与者列表。</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="comment">// 它同样调用了模板函数GetActorsById_Impl，不过传入的参与者ID范围是通过调用GetState函数获取当前模拟场景状态中的所有参与者ID列表，</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <span class="comment">// 以此来获取并返回整个模拟场景中的所有参与者信息列表（如果有的话）。</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>  std::vector&lt;rpc::Actor&gt; Episode::GetActors() {</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="../../d8/dcd/namespacecarla_1_1client_1_1detail.html#a30df6469e31dff8ae7db4644facb3dfb">GetActorsById_Impl</a>(<a class="code hl_variable" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#abb2abf1a491f7d03fa0022e9a3221130">_client</a>, <a class="code hl_variable" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#a2bba3d9c1fd1fcfc8040e93c508f4285">_actors</a>, <a class="code hl_function" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#a7a9cb5518af7f6e883cdc6e198395d4f">GetState</a>()-&gt;GetActorIds());</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>  }</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span><span class="comment">// Episode类的成员函数OnEpisodeStarted，用于在模拟场景（Episode）开始时执行一些初始化和清理操作。</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="comment">// 它会清空缓存的参与者列表_actors，清除每帧回调函数列表_on_tick_callbacks，重置行人导航对象_walker_navigation（如果有的话），</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="comment">// 以及调用交通管理模块（TrafficManager）的Release函数（可能用于释放之前的资源或者重置相关状态等操作）。</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno"><a class="line" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#a953923f840afcfd19be46d816805f060">  151</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#a953923f840afcfd19be46d816805f060">Episode::OnEpisodeStarted</a>() {</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <a class="code hl_variable" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#a2bba3d9c1fd1fcfc8040e93c508f4285">_actors</a>.<a class="code hl_function" href="../../de/dfc/classcarla_1_1client_1_1detail_1_1CachedActorList.html#a7563583112293f4d27d249bef0f2c614">Clear</a>();</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <a class="code hl_variable" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#a3240e53e30e8831d08dc36e2befd0613">_on_tick_callbacks</a>.Clear();</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <a class="code hl_variable" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#a8cf3a67eeb05c6c8d180f2a88582682d">_walker_navigation</a>.reset();</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <a class="code hl_function" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#ab8b1ddabe257a4b75430eb645fdd7811">traffic_manager::TrafficManager::Release</a>();</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>  }</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="comment">// Episode类的成员函数OnEpisodeChanged，用于在模拟场景（Episode）发生改变（比如场景切换、重新初始化等情况）时执行相应的操作。</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="comment">// 这里调用了交通管理模块（TrafficManager）的Reset函数，可能用于重置交通管理相关的状态、参数等内容，以适应新的模拟场景情况。</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno"><a class="line" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#a5c09238d091858b3c72c761764efabc9">  159</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#a5c09238d091858b3c72c761764efabc9">Episode::OnEpisodeChanged</a>() {</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <a class="code hl_function" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#ae1ed940a391fc5a91d42c5a0e6e586ea">traffic_manager::TrafficManager::Reset</a>();</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>  }</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="comment">// Episode类的成员函数HasMapChangedSinceLastCall，用于检查自上次调用该函数以来地图是否发生了变化。</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <span class="comment">// 通过检查_should_update_map成员变量（如果为true表示地图需要更新，即发生了变化），如果为true则将其重置为false并返回true，</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    <span class="comment">// 表示地图发生了变化；如果为false则直接返回false，表示地图没有发生变化。</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#acbda29a6ba9457c5ae1a99c8bd88387d">  165</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#acbda29a6ba9457c5ae1a99c8bd88387d">Episode::HasMapChangedSinceLastCall</a>() {</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    <span class="keywordflow">if</span>(<a class="code hl_variable" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#a98f2ba9d7664c7cbdbd2a5d721847c75">_should_update_map</a>) {</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>      <a class="code hl_variable" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#a98f2ba9d7664c7cbdbd2a5d721847c75">_should_update_map</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>      <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    }</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>  }<span class="comment">// Episode类的成员函数CreateNavigationIfMissing，用于创建一个WalkerNavigation对象（行人导航对象），如果该对象还不存在的话。</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="comment">// 通过一个循环和原子操作compare_exchange来确保只有一个线程能够成功创建新的WalkerNavigation对象（如果当前不存在的话），</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="comment">// 一旦创建成功或者已经存在，则返回指向该WalkerNavigation对象的共享指针。</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno"><a class="line" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#a52e8266588be7d58d4a3f70149d5fa59">  174</a></span>  std::shared_ptr&lt;WalkerNavigation&gt; <a class="code hl_function" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#a52e8266588be7d58d4a3f70149d5fa59">Episode::CreateNavigationIfMissing</a>() {</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    std::shared_ptr&lt;WalkerNavigation&gt; nav;</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    <span class="keywordflow">do</span> {</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>      nav = <a class="code hl_variable" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#a8cf3a67eeb05c6c8d180f2a88582682d">_walker_navigation</a>.load();</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>      <span class="keywordflow">if</span> (nav == <span class="keyword">nullptr</span>) {</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>        <span class="keyword">auto</span> new_nav = std::make_shared&lt;WalkerNavigation&gt;(<a class="code hl_variable" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#a3018f85cde402f8848e6a3e996b5d203">_simulator</a>);</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>        <a class="code hl_variable" href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#a8cf3a67eeb05c6c8d180f2a88582682d">_walker_navigation</a>.compare_exchange(&amp;nav, new_nav);</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>      }</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    } <span class="keywordflow">while</span> (nav == <span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <span class="keywordflow">return</span> nav;</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>  }</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>} <span class="comment">// namespace detail</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>} <span class="comment">// namespace client</span></div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>} <span class="comment">// namespace carla</span></div>
+<div class="ttc" id="aDeserializer_8h_html"><div class="ttname"><a href="../../d3/df2/Deserializer_8h.html">Deserializer.h</a></div></div>
+<div class="ttc" id="aEpisode_8h_html"><div class="ttname"><a href="../../d9/d9e/Episode_8h.html">Episode.h</a></div></div>
+<div class="ttc" id="aLogging_8h_html"><div class="ttname"><a href="../../de/d87/Logging_8h.html">Logging.h</a></div></div>
+<div class="ttc" id="aTrafficManager_8h_html"><div class="ttname"><a href="../../da/dfd/TrafficManager_8h.html">TrafficManager.h</a></div></div>
+<div class="ttc" id="aWalkerNavigation_8h_html"><div class="ttname"><a href="../../d5/d09/WalkerNavigation_8h.html">WalkerNavigation.h</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1detail_1_1CachedActorList_html"><div class="ttname"><a href="../../de/dfc/classcarla_1_1client_1_1detail_1_1CachedActorList.html">carla::client::detail::CachedActorList</a></div><div class="ttdoc">保留参与者描述列表，以避免每次都向服务器请求描述。</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/d81/CachedActorList_8h_source.html#l00029">CachedActorList.h:29</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1detail_1_1CachedActorList_html_a0756edce11624b1c3e0b698fa6979c27"><div class="ttname"><a href="../../de/dfc/classcarla_1_1client_1_1detail_1_1CachedActorList.html#a0756edce11624b1c3e0b698fa6979c27">carla::client::detail::CachedActorList::GetActorById</a></div><div class="ttdeci">boost::optional&lt; rpc::Actor &gt; GetActorById(ActorId id) const</div><div class="ttdoc">检索与 id 匹配的参与者，如果参与者未被缓存，则为空（可选）。</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/d81/CachedActorList_8h_source.html#l00093">CachedActorList.h:93</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1detail_1_1CachedActorList_html_a27188adf815a78eeed8ea0b5b87753a8"><div class="ttname"><a href="../../de/dfc/classcarla_1_1client_1_1detail_1_1CachedActorList.html#a27188adf815a78eeed8ea0b5b87753a8">carla::client::detail::CachedActorList::InsertRange</a></div><div class="ttdeci">void InsertRange(RangeT range)</div><div class="ttdoc">插入包含参与者的 范围。</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/d81/CachedActorList_8h_source.html#l00070">CachedActorList.h:70</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1detail_1_1CachedActorList_html_a7563583112293f4d27d249bef0f2c614"><div class="ttname"><a href="../../de/dfc/classcarla_1_1client_1_1detail_1_1CachedActorList.html#a7563583112293f4d27d249bef0f2c614">carla::client::detail::CachedActorList::Clear</a></div><div class="ttdeci">void Clear()</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/d81/CachedActorList_8h_source.html#l00116">CachedActorList.h:116</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1detail_1_1CachedActorList_html_a7cd8246a79526d68aca70f7344c97103"><div class="ttname"><a href="../../de/dfc/classcarla_1_1client_1_1detail_1_1CachedActorList.html#a7cd8246a79526d68aca70f7344c97103">carla::client::detail::CachedActorList::Insert</a></div><div class="ttdeci">void Insert(rpc::Actor actor)</div><div class="ttdoc">将参与者插入到列表中。</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/d81/CachedActorList_8h_source.html#l00063">CachedActorList.h:63</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1detail_1_1CachedActorList_html_ab37f94cd03b38494fe0875f1e8f3427c"><div class="ttname"><a href="../../de/dfc/classcarla_1_1client_1_1detail_1_1CachedActorList.html#ab37f94cd03b38494fe0875f1e8f3427c">carla::client::detail::CachedActorList::GetActorsById</a></div><div class="ttdeci">std::vector&lt; rpc::Actor &gt; GetActorsById(const RangeT &amp;range) const</div><div class="ttdoc">检索与 范围内的 ID 匹配的参与者。</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/d81/CachedActorList_8h_source.html#l00103">CachedActorList.h:103</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1detail_1_1CachedActorList_html_aec92273a1c18af363db7f5f4f332c200"><div class="ttname"><a href="../../de/dfc/classcarla_1_1client_1_1detail_1_1CachedActorList.html#aec92273a1c18af363db7f5f4f332c200">carla::client::detail::CachedActorList::GetMissingIds</a></div><div class="ttdeci">std::vector&lt; ActorId &gt; GetMissingIds(const RangeT &amp;range) const</div><div class="ttdoc">返回 范围内尚未添加到此列表的参与者 ID。</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/d81/CachedActorList_8h_source.html#l00083">CachedActorList.h:83</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1detail_1_1Client_html"><div class="ttname"><a href="../../dd/ddd/classcarla_1_1client_1_1detail_1_1Client.html">carla::client::detail::Client</a></div><div class="ttdoc">提供与 CARLA 模拟器的 rpc 和流媒体服务器的通信。</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d8b/client_2detail_2Client_8h_source.html#l00071">client/detail/Client.h:71</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1detail_1_1Client_html_a2a604d4a47f7f3ced2c9cd09d3aa7d6c"><div class="ttname"><a href="../../dd/ddd/classcarla_1_1client_1_1detail_1_1Client.html#a2a604d4a47f7f3ced2c9cd09d3aa7d6c">carla::client::detail::Client::GetActorsById</a></div><div class="ttdeci">std::vector&lt; rpc::Actor &gt; GetActorsById(const std::vector&lt; ActorId &gt; &amp;ids)</div><div class="ttdef"><b>Definition:</b> <a href="../../dc/d4a/client_2detail_2Client_8cpp_source.html#l00280">client/detail/Client.cpp:280</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1detail_1_1Client_html_a47675d8d967a68f2ff71ed7e3763be24"><div class="ttname"><a href="../../dd/ddd/classcarla_1_1client_1_1detail_1_1Client.html#a47675d8d967a68f2ff71ed7e3763be24">carla::client::detail::Client::UnSubscribeFromStream</a></div><div class="ttdeci">void UnSubscribeFromStream(const streaming::Token &amp;token)</div><div class="ttdef"><b>Definition:</b> <a href="../../dc/d4a/client_2detail_2Client_8cpp_source.html#l00661">client/detail/Client.cpp:661</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1detail_1_1Client_html_a5a2c188ed3b5a3c40aa9d1a80428a518"><div class="ttname"><a href="../../dd/ddd/classcarla_1_1client_1_1detail_1_1Client.html#a5a2c188ed3b5a3c40aa9d1a80428a518">carla::client::detail::Client::SubscribeToStream</a></div><div class="ttdeci">void SubscribeToStream(const streaming::Token &amp;token, std::function&lt; void(Buffer)&gt; callback)</div><div class="ttdef"><b>Definition:</b> <a href="../../dc/d4a/client_2detail_2Client_8cpp_source.html#l00653">client/detail/Client.cpp:653</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1detail_1_1EpisodeState_html"><div class="ttname"><a href="../../d5/dbf/classcarla_1_1client_1_1detail_1_1EpisodeState.html">carla::client::detail::EpisodeState</a></div><div class="ttdoc">表示某一帧的所有参与者的状态</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/df2/EpisodeState_8h_source.html#l00027">EpisodeState.h:29</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1detail_1_1Episode_html"><div class="ttname"><a href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html">carla::client::detail::Episode</a></div><div class="ttdoc">持有当前剧集及当前剧集状态</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d9e/Episode_8h_source.html#l00033">Episode.h:35</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1detail_1_1Episode_html_a2bba3d9c1fd1fcfc8040e93c508f4285"><div class="ttname"><a href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#a2bba3d9c1fd1fcfc8040e93c508f4285">carla::client::detail::Episode::_actors</a></div><div class="ttdeci">CachedActorList _actors</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d9e/Episode_8h_source.html#l00117">Episode.h:117</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1detail_1_1Episode_html_a3018f85cde402f8848e6a3e996b5d203"><div class="ttname"><a href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#a3018f85cde402f8848e6a3e996b5d203">carla::client::detail::Episode::_simulator</a></div><div class="ttdeci">std::weak_ptr&lt; Simulator &gt; _simulator</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d9e/Episode_8h_source.html#l00135">Episode.h:135</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1detail_1_1Episode_html_a3240e53e30e8831d08dc36e2befd0613"><div class="ttname"><a href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#a3240e53e30e8831d08dc36e2befd0613">carla::client::detail::Episode::_on_tick_callbacks</a></div><div class="ttdeci">CallbackList&lt; WorldSnapshot &gt; _on_tick_callbacks</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d9e/Episode_8h_source.html#l00119">Episode.h:119</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1detail_1_1Episode_html_a52e8266588be7d58d4a3f70149d5fa59"><div class="ttname"><a href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#a52e8266588be7d58d4a3f70149d5fa59">carla::client::detail::Episode::CreateNavigationIfMissing</a></div><div class="ttdeci">std::shared_ptr&lt; WalkerNavigation &gt; CreateNavigationIfMissing()</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d12/Episode_8cpp_source.html#l00174">Episode.cpp:174</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1detail_1_1Episode_html_a5c09238d091858b3c72c761764efabc9"><div class="ttname"><a href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#a5c09238d091858b3c72c761764efabc9">carla::client::detail::Episode::OnEpisodeChanged</a></div><div class="ttdeci">void OnEpisodeChanged()</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d12/Episode_8cpp_source.html#l00159">Episode.cpp:159</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1detail_1_1Episode_html_a7a9cb5518af7f6e883cdc6e198395d4f"><div class="ttname"><a href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#a7a9cb5518af7f6e883cdc6e198395d4f">carla::client::detail::Episode::GetState</a></div><div class="ttdeci">std::shared_ptr&lt; const EpisodeState &gt; GetState() const</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d9e/Episode_8h_source.html#l00048">Episode.h:48</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1detail_1_1Episode_html_a80db61ef8dd09022dd46a75929562429"><div class="ttname"><a href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#a80db61ef8dd09022dd46a75929562429">carla::client::detail::Episode::_token</a></div><div class="ttdeci">const streaming::Token _token</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d9e/Episode_8h_source.html#l00129">Episode.h:129</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1detail_1_1Episode_html_a8cf3a67eeb05c6c8d180f2a88582682d"><div class="ttname"><a href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#a8cf3a67eeb05c6c8d180f2a88582682d">carla::client::detail::Episode::_walker_navigation</a></div><div class="ttdeci">AtomicSharedPtr&lt; WalkerNavigation &gt; _walker_navigation</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d9e/Episode_8h_source.html#l00127">Episode.h:127</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1detail_1_1Episode_html_a953923f840afcfd19be46d816805f060"><div class="ttname"><a href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#a953923f840afcfd19be46d816805f060">carla::client::detail::Episode::OnEpisodeStarted</a></div><div class="ttdeci">void OnEpisodeStarted()</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d12/Episode_8cpp_source.html#l00151">Episode.cpp:151</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1detail_1_1Episode_html_a98f2ba9d7664c7cbdbd2a5d721847c75"><div class="ttname"><a href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#a98f2ba9d7664c7cbdbd2a5d721847c75">carla::client::detail::Episode::_should_update_map</a></div><div class="ttdeci">bool _should_update_map</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d9e/Episode_8h_source.html#l00133">Episode.h:133</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1detail_1_1Episode_html_abb2abf1a491f7d03fa0022e9a3221130"><div class="ttname"><a href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#abb2abf1a491f7d03fa0022e9a3221130">carla::client::detail::Episode::_client</a></div><div class="ttdeci">Client &amp; _client</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d9e/Episode_8h_source.html#l00111">Episode.h:111</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1detail_1_1Episode_html_acbda29a6ba9457c5ae1a99c8bd88387d"><div class="ttname"><a href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#acbda29a6ba9457c5ae1a99c8bd88387d">carla::client::detail::Episode::HasMapChangedSinceLastCall</a></div><div class="ttdeci">bool HasMapChangedSinceLastCall()</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d12/Episode_8cpp_source.html#l00165">Episode.cpp:165</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1detail_1_1Episode_html_ae1b497948120557841fb4d057511ccec"><div class="ttname"><a href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#ae1b497948120557841fb4d057511ccec">carla::client::detail::Episode::~Episode</a></div><div class="ttdeci">~Episode()</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d12/Episode_8cpp_source.html#l00050">Episode.cpp:50</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1detail_1_1Episode_html_aea59051d7aadf931e76db4a99a5bc48b"><div class="ttname"><a href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#aea59051d7aadf931e76db4a99a5bc48b">carla::client::detail::Episode::Episode</a></div><div class="ttdeci">Episode(Client &amp;client, std::weak_ptr&lt; Simulator &gt; simulator)</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d12/Episode_8cpp_source.html#l00041">Episode.cpp:41</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1detail_1_1Episode_html_afa2c9d4a111adf6575e39980cfc4b8c3"><div class="ttname"><a href="../../d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#afa2c9d4a111adf6575e39980cfc4b8c3">carla::client::detail::Episode::Listen</a></div><div class="ttdeci">void Listen()</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d12/Episode_8cpp_source.html#l00058">Episode.cpp:58</a></div></div>
+<div class="ttc" id="aclasscarla_1_1rpc_1_1EpisodeInfo_html"><div class="ttname"><a href="../../db/d00/classcarla_1_1rpc_1_1EpisodeInfo.html">carla::rpc::EpisodeInfo</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d1c/EpisodeInfo_8h_source.html#l00026">EpisodeInfo.h:26</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1Deserializer_html_a718d97708b670faeba94b6cd4bd0a350"><div class="ttname"><a href="../../d5/d46/classcarla_1_1sensor_1_1Deserializer.html#a718d97708b670faeba94b6cd4bd0a350">carla::sensor::Deserializer::Deserialize</a></div><div class="ttdeci">static SharedPtr&lt; SensorData &gt; Deserialize(Buffer &amp;&amp;buffer)</div><div class="ttdoc">静态函数，用于执行反序列化操作。</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d1a/Deserializer_8cpp_source.html#l00021">Deserializer.cpp:21</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1SensorData_html"><div class="ttname"><a href="../../df/d8c/classcarla_1_1sensor_1_1SensorData.html">carla::sensor::SensorData</a></div><div class="ttdoc">所有传感器生成数据的对象的基类</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d07/SensorData_8h_source.html#l00020">SensorData.h:22</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1data_1_1RawEpisodeState_html"><div class="ttname"><a href="../../d4/d68/classcarla_1_1sensor_1_1data_1_1RawEpisodeState.html">carla::sensor::data::RawEpisodeState</a></div><div class="ttdoc">表示给定帧处剧集的状态。</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d7d/RawEpisodeState_8h_source.html#l00020">RawEpisodeState.h:20</a></div></div>
+<div class="ttc" id="aclasscarla_1_1traffic__manager_1_1TrafficManager_html_ab8b1ddabe257a4b75430eb645fdd7811"><div class="ttname"><a href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#ab8b1ddabe257a4b75430eb645fdd7811">carla::traffic_manager::TrafficManager::Release</a></div><div class="ttdeci">static void Release()</div><div class="ttdoc">释放TrafficManager对象，用于单例模式的清理工作</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d04/TrafficManager_8cpp_source.html#l00051">TrafficManager.cpp:51</a></div></div>
+<div class="ttc" id="aclasscarla_1_1traffic__manager_1_1TrafficManager_html_ae1ed940a391fc5a91d42c5a0e6e586ea"><div class="ttname"><a href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#ae1ed940a391fc5a91d42c5a0e6e586ea">carla::traffic_manager::TrafficManager::Reset</a></div><div class="ttdeci">static void Reset()</div><div class="ttdoc">重置TrafficManager对象，用于单例模式的重置操作</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d04/TrafficManager_8cpp_source.html#l00062">TrafficManager.cpp:62</a></div></div>
+<div class="ttc" id="aclient_2detail_2Client_8h_html"><div class="ttname"><a href="../../df/d8b/client_2detail_2Client_8h.html">Client.h</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1client_1_1detail_html_a30df6469e31dff8ae7db4644facb3dfb"><div class="ttname"><a href="../../d8/dcd/namespacecarla_1_1client_1_1detail.html#a30df6469e31dff8ae7db4644facb3dfb">carla::client::detail::GetActorsById_Impl</a></div><div class="ttdeci">static auto GetActorsById_Impl(Client &amp;client, CachedActorList &amp;actors, const RangeT &amp;actor_ids)</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d12/Episode_8cpp_source.html#l00030">Episode.cpp:30</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1client_1_1detail_html_ad9296fca461df6af9c2b6438681b0be7"><div class="ttname"><a href="../../d8/dcd/namespacecarla_1_1client_1_1detail.html#ad9296fca461df6af9c2b6438681b0be7">carla::client::detail::CastData</a></div><div class="ttdeci">static auto &amp; CastData(const sensor::SensorData &amp;data)</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d12/Episode_8cpp_source.html#l00024">Episode.cpp:24</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1traffic__manager_html_a0031b3f566c364872121f8a79f27f174"><div class="ttname"><a href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">carla::traffic_manager::ActorId</a></div><div class="ttdeci">carla::ActorId ActorId</div><div class="ttdoc">参与者的智能指针类型</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dfa/AtomicActorSet_8h_source.html#l00021">AtomicActorSet.h:21</a></div></div>
+<div class="ttc" id="anamespacecarla_html"><div class="ttname"><a href="../../d9/d36/namespacecarla.html">carla</a></div><div class="ttdoc">CARLA模拟器的主命名空间。</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d4f/Carla_8cpp_source.html#l00139">Carla.cpp:139</a></div></div>
+<div class="ttc" id="anamespacecarla_html_a7673dfc76e17f5856b798de6d0384b56"><div class="ttname"><a href="../../d9/d36/namespacecarla.html#a7673dfc76e17f5856b798de6d0384b56">carla::log_error</a></div><div class="ttdeci">static void log_error(Args &amp;&amp;... args)</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d87/Logging_8h_source.html#l00115">Logging.h:115</a></div></div>
+<div class="ttc" id="anamespaceclient_html"><div class="ttname"><a href="../../d7/d1c/namespaceclient.html">client</a></div><div class="ttdoc">包含CARLA客户端相关类和函数的命名空间。</div></div>
+<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="../../d8/dcc/namespacestd.html">std</a></div><div class="ttdef"><b>Definition:</b> <a href="../../df/d06/CarlaRecorderCollision_8h_source.html#l00030">CarlaRecorderCollision.h:31</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

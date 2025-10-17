@@ -1,0 +1,5 @@
+<map id="carla::road::element::RoadInfoLaneAccess" name="carla::road::element::RoadInfoLaneAccess">
+<area shape="rect" id="node1" title="此记录定义了某些类型道路使用者的访问限制。 该记录可用于补充来自标志或信号的限制，以控制场景中的交通流。 每个条目在s坐标增加的方向上有效，直到定义新的条目。 如果定义了多个条目，它们必须按增加顺序列出..." alt="" coords="5,167,159,207"/>
+<area shape="rect" id="node2" href="$d6/d0f/classcarla_1_1road_1_1element_1_1RoadInfo.html" title=" " alt="" coords="15,79,149,119"/>
+<area shape="rect" id="node3" href="$d4/d8b/classcarla_1_1NonCopyable.html" title="这个类用于禁止拷贝和移动构造函数及赋值操作" alt="" coords="15,5,149,31"/>
+</map>

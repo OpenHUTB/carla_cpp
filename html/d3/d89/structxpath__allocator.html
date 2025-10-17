@@ -1,0 +1,406 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: xpath_allocator结构体 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-attribs">Public 属性</a> &#124;
+<a href="../../d5/dfa/structxpath__allocator-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">xpath_allocator结构体 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> xpath_allocator 的协作图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d8/dc5/structxpath__allocator__coll__graph.svg" width="382" height="212"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a6c13fefbd7038d78b336987f396c8415"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d89/structxpath__allocator.html#a6c13fefbd7038d78b336987f396c8415">allocate</a> (<a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a> size)</td></tr>
+<tr class="separator:a6c13fefbd7038d78b336987f396c8415"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d3ba1b01ba87b2002b348674e9d50b6"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d89/structxpath__allocator.html#a5d3ba1b01ba87b2002b348674e9d50b6">reallocate</a> (void *ptr, <a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a> old_size, <a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a> new_size)</td></tr>
+<tr class="separator:a5d3ba1b01ba87b2002b348674e9d50b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9436b8bdef3e0e0ff0df28c2af6a430d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d89/structxpath__allocator.html#a9436b8bdef3e0e0ff0df28c2af6a430d">release</a> ()</td></tr>
+<tr class="separator:a9436b8bdef3e0e0ff0df28c2af6a430d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1c3ec117935d4488bbd16adf807fbc1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d89/structxpath__allocator.html#af1c3ec117935d4488bbd16adf807fbc1">revert</a> (const <a class="el" href="../../d3/d89/structxpath__allocator.html">xpath_allocator</a> &amp;state)</td></tr>
+<tr class="separator:af1c3ec117935d4488bbd16adf807fbc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2c04c365636405fcade786bc535b9c4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d89/structxpath__allocator.html#af2c04c365636405fcade786bc535b9c4">xpath_allocator</a> (<a class="el" href="../../d0/d13/structxpath__memory__block.html">xpath_memory_block</a> *root, bool *error=0)</td></tr>
+<tr class="separator:af2c04c365636405fcade786bc535b9c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:a02bbb00b33ec7254cbf85dc553ad0e09"><td class="memItemLeft" align="right" valign="top">bool *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d89/structxpath__allocator.html#a02bbb00b33ec7254cbf85dc553ad0e09">_error</a></td></tr>
+<tr class="separator:a02bbb00b33ec7254cbf85dc553ad0e09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace647e1e57dd658b4bbcd3b18fb567f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/d13/structxpath__memory__block.html">xpath_memory_block</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d89/structxpath__allocator.html#ace647e1e57dd658b4bbcd3b18fb567f1">_root</a></td></tr>
+<tr class="separator:ace647e1e57dd658b4bbcd3b18fb567f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc703a6c3f3a0435f8b5f2e6c770b3fe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d89/structxpath__allocator.html#adc703a6c3f3a0435f8b5f2e6c770b3fe">_root_size</a></td></tr>
+<tr class="separator:adc703a6c3f3a0435f8b5f2e6c770b3fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07694">7694</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="af2c04c365636405fcade786bc535b9c4" name="af2c04c365636405fcade786bc535b9c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2c04c365636405fcade786bc535b9c4">&#9670;&#160;</a></span>xpath_allocator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">xpath_allocator::xpath_allocator </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d0/d13/structxpath__memory__block.html">xpath_memory_block</a> *&#160;</td>
+          <td class="paramname"><em>root</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool *&#160;</td>
+          <td class="paramname"><em>error</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07700">7700</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a6c13fefbd7038d78b336987f396c8415" name="a6c13fefbd7038d78b336987f396c8415"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c13fefbd7038d78b336987f396c8415">&#9670;&#160;</a></span>allocate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void * xpath_allocator::allocate </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a>&#160;</td>
+          <td class="paramname"><em>size</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07704">7704</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07698">_error</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07696">_root</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07697">_root_size</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l00233">xml_memory_management_function_storage&lt; T &gt;::allocate</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07685">xpath_memory_block::capacity</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07689">xpath_memory_block::data</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07684">xpath_memory_block::next</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07680">xpath_memory_block_alignment</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l11210">xpath_parser::alloc_node()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l11251">xpath_parser::alloc_string()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l08383">convert_number_to_string()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07877">xpath_string::duplicate_string()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l10647">xpath_ast_node::eval_string_concat()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07741">reallocate()</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l08659">translate_table_generate()</a>.</p>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d3/d89/structxpath__allocator_a6c13fefbd7038d78b336987f396c8415_icgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a5d3ba1b01ba87b2002b348674e9d50b6" name="a5d3ba1b01ba87b2002b348674e9d50b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d3ba1b01ba87b2002b348674e9d50b6">&#9670;&#160;</a></span>reallocate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void * xpath_allocator::reallocate </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a>&#160;</td>
+          <td class="paramname"><em>old_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a>&#160;</td>
+          <td class="paramname"><em>new_size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07741">7741</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07696">_root</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07697">_root_size</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07704">allocate()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07689">xpath_memory_block::data</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l00234">xml_memory_management_function_storage&lt; T &gt;::deallocate</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07684">xpath_memory_block::next</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07680">xpath_memory_block_alignment</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l09017">xpath_node_set_raw::append()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07922">xpath_string::append()</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l09072">xpath_node_set_raw::push_back_grow()</a>.</p>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d3/d89/structxpath__allocator_a5d3ba1b01ba87b2002b348674e9d50b6_cgraph.svg" width="390" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d3/d89/structxpath__allocator_a5d3ba1b01ba87b2002b348674e9d50b6_icgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a9436b8bdef3e0e0ff0df28c2af6a430d" name="a9436b8bdef3e0e0ff0df28c2af6a430d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9436b8bdef3e0e0ff0df28c2af6a430d">&#9670;&#160;</a></span>release()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void xpath_allocator::release </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07807">7807</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07696">_root</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l00234">xml_memory_management_function_storage&lt; T &gt;::deallocate</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07684">xpath_memory_block::next</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l12088">xpath_query_impl::destroy()</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07861">xpath_stack_data::~xpath_stack_data()</a>.</p>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d3/d89/structxpath__allocator_a9436b8bdef3e0e0ff0df28c2af6a430d_icgraph.svg" width="387" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="af1c3ec117935d4488bbd16adf807fbc1" name="af1c3ec117935d4488bbd16adf807fbc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1c3ec117935d4488bbd16adf807fbc1">&#9670;&#160;</a></span>revert()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void xpath_allocator::revert </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d3/d89/structxpath__allocator.html">xpath_allocator</a> &amp;&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07788">7788</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07696">_root</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07697">_root_size</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l00234">xml_memory_management_function_storage&lt; T &gt;::deallocate</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07684">xpath_memory_block::next</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07829">xpath_allocator_capture::~xpath_allocator_capture()</a>.</p>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d3/d89/structxpath__allocator_af1c3ec117935d4488bbd16adf807fbc1_icgraph.svg" width="379" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a02bbb00b33ec7254cbf85dc553ad0e09" name="a02bbb00b33ec7254cbf85dc553ad0e09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02bbb00b33ec7254cbf85dc553ad0e09">&#9670;&#160;</a></span>_error</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool* xpath_allocator::_error</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07698">7698</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07704">allocate()</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l11202">xpath_parser::error_oom()</a>.</p>
+
+</div>
+</div>
+<a id="ace647e1e57dd658b4bbcd3b18fb567f1" name="ace647e1e57dd658b4bbcd3b18fb567f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace647e1e57dd658b4bbcd3b18fb567f1">&#9670;&#160;</a></span>_root</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d0/d13/structxpath__memory__block.html">xpath_memory_block</a>* xpath_allocator::_root</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07696">7696</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07704">allocate()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07741">reallocate()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07807">release()</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07788">revert()</a>.</p>
+
+</div>
+</div>
+<a id="adc703a6c3f3a0435f8b5f2e6c770b3fe" name="adc703a6c3f3a0435f8b5f2e6c770b3fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc703a6c3f3a0435f8b5f2e6c770b3fe">&#9670;&#160;</a></span>_root_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a> xpath_allocator::_root_size</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07697">7697</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07704">allocate()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07741">reallocate()</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07788">revert()</a>.</p>
+
+</div>
+</div>
+<hr/>该结构体的文档由以下文件生成:<ul>
+<li><a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

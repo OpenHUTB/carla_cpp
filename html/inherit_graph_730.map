@@ -1,0 +1,12 @@
+<map id="类继承关系图" name="类继承关系图">
+<area shape="rect" id="node1" href="$df/def/classUObject.html" title=" " alt="" coords="5,203,76,228"/>
+<area shape="rect" id="node2" href="$d7/d90/classUActorDispatcher.html" title="负责将ActorDefinitions绑定到生成函数，以及 维护所有已生成参与者的注册表" alt="" coords="142,5,267,31"/>
+<area shape="rect" id="node3" href="$d7/d1e/classUCarlaSettings.html" title="Carla 的全局设置" alt="" coords="149,55,260,80"/>
+<area shape="rect" id="node4" href="$d4/d74/classUCarlaSettingsDelegate.html" title="用于为生成到世界中的每个角色设置设置" alt="" coords="124,104,285,129"/>
+<area shape="rect" id="node5" href="$d2/d5b/classUObjectRegister.html" title=" " alt="" coords="145,153,264,179"/>
+<area shape="rect" id="node6" href="$d8/dfe/classUOpenDriveMap.html" title="将 CARLA OpenDrive API 公开给蓝图的辅助类。" alt="" coords="145,203,264,228"/>
+<area shape="rect" id="node7" href="$d2/d4b/classURandomEngine.html" title=" " alt="" coords="145,252,264,277"/>
+<area shape="rect" id="node8" href="$d5/db2/classURoadMap.html" title="关卡路线图。包含哪些区域是道路的 2D 信息 和车道方向。" alt="" coords="161,301,248,327"/>
+<area shape="rect" id="node9" href="$df/dad/classUTaggerDelegate.html" title="用于给生成到世界中的每个 Actor 添加标签。" alt="" coords="143,351,266,376"/>
+<area shape="rect" id="node10" href="$d3/d08/classUTrafficLightController.html" title="从 OpenDrive 映射一个控制器。控制相关交通信号灯并包含其循环" alt="" coords="129,400,280,425"/>
+</map>

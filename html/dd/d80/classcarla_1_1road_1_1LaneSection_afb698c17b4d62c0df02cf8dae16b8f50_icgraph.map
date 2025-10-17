@@ -1,0 +1,13 @@
+<map id="carla::road::LaneSection::GetLanes" name="carla::road::LaneSection::GetLanes">
+<area shape="rect" id="node1" title=" " alt="" coords="791,269,951,309"/>
+<area shape="rect" id="node2" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a512234aafe71530fd0cff32d9a27a4e4" title="计算车道标记的当前s位置两侧的点" alt="" coords="549,37,743,77"/>
+<area shape="rect" id="node5" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a3201cc156b5a52fe8b6aaea040f82017" title="生成定义一段车道的网格" alt="" coords="561,101,731,141"/>
+<area shape="rect" id="node6" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#ab98f3e86a2e1abf508c132708c48e414" title="生成按顺序排列的车道段网格" alt="" coords="277,187,477,227"/>
+<area shape="rect" id="node7" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#acce620f6e7432999236d4dd2c7900e24" title="生成一个定义车道段的按顺序排列的网格列表，限制最大长度" alt="" coords="5,244,204,284"/>
+<area shape="rect" id="node8" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a15a67316be6174f196580a188edb847b" title="生成车道段的人行道网格" alt="" coords="561,240,731,280"/>
+<area shape="rect" id="node9" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#aec242ce8214cea646ba254c0cfc0176a" title="生成一个网格，表示道路角落的墙，以避免车辆掉下去" alt="" coords="561,355,731,395"/>
+<area shape="rect" id="node10" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a5588f2f98ea42ade1082db0ef1c8ce7b" title="生成一个定义车道段安全墙的网格列表，限制最大长度" alt="" coords="284,383,469,423"/>
+<area shape="rect" id="node11" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a4f08d64f46acd0e8a4e0ff9f2c20dde2" title="生成一个定义车道段的网格列表，限制最大长度" alt="" coords="561,469,731,509"/>
+<area shape="rect" id="node3" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a5744e75d34e0a3514892d4a9b7906652" title="仅为中心线（ID为0的线）生成车道标记" alt="" coords="263,5,491,45"/>
+<area shape="rect" id="node4" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#aad2ea408b3032e959e384431becd860b" title="为非中心线（即ID不为0的所有线）生成车道标记" alt="" coords="252,69,501,109"/>
+</map>

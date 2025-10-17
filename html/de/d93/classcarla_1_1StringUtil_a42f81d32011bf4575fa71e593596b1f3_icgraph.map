@@ -1,0 +1,14 @@
+<map id="carla::StringUtil::Match" name="carla::StringUtil::Match">
+<area shape="rect" id="node1" title="Match str with the Unix shell&#45;style wildcard_pattern." alt="" coords="620,197,736,237"/>
+<area shape="rect" id="node2" href="$da/d51/classcarla_1_1client_1_1ActorList.html#a656fb21f40ef20927b4a7194173575af" title="根据提供的通配符模式（wildcard_pattern）过滤符合条件的参与者列表。" alt="" coords="392,5,539,45"/>
+<area shape="rect" id="node3" href="$db/d1f/classcarla_1_1client_1_1World.html#a4772c8468347fcee02678a9a6a8396d1" title="根据提供的地标（Landmark）获取对应的交通信号灯（TrafficLight）的智能指针。 与获取交通标志类似，通过地标来查找对应的交通信号灯对象，以便获取信号灯状态、控制信号灯等相关操作，模拟交通..." alt="" coords="402,69,529,109"/>
+<area shape="rect" id="node5" href="$db/d1f/classcarla_1_1client_1_1World.html#ae95977f3a764f0d7e669e84630565447" title="根据OpenDRIVE标志ID获取对应的交通灯的智能指针。 OpenDRIVE是一种用于描述道路网络等信息的标准格式，利用其中的标志ID可以准确地在模拟世界中找到对应的交通灯对象，" alt="" coords="359,133,572,173"/>
+<area shape="rect" id="node7" href="$db/d1f/classcarla_1_1client_1_1World.html#ad6366a7909dc11fc8ebb883a3434a551" title="根据提供的地标（Landmark）获取对应的交通标志（TrafficSign）的智能指针。 地标通常代表地图中的特定位置，通过它可以定位和获取对应的交通标志对象，用于查询交通规则相关的指示信息等。" alt="" coords="402,197,529,237"/>
+<area shape="rect" id="node8" href="$d2/d21/classcarla_1_1FileSystem.html#a0c350a74f452877560a7ac63c37a7b94" title="列出 folder_path 中匹配 wildcard_pattern 的常规文件 （不递归）。" alt="" coords="402,261,529,301"/>
+<area shape="rect" id="node11" href="$de/d93/classcarla_1_1StringUtil.html#a5cd22ffd0bc6593a992504f0d40cf30e" title="Match str with the Unix shell&#45;style wildcard_pattern." alt="" coords="407,325,523,365"/>
+<area shape="rect" id="node12" href="$d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html#ac1ce62d1b76cbc6c36ca8e4c8d80d856" title="测试是否有标签满足 wildcard_pattern。" alt="" coords="378,389,553,429"/>
+<area shape="rect" id="node4" href="$db/d1f/classcarla_1_1client_1_1World.html#a965fcaf99f563c9634c40f3b8e2910b5" title=" " alt="" coords="108,69,311,109"/>
+<area shape="rect" id="node6" href="$db/d1f/classcarla_1_1client_1_1World.html#a82a6e3a2fe7a3d8ccd5de3aa95049788" title=" " alt="" coords="119,133,299,173"/>
+<area shape="rect" id="node9" href="$d3/d3b/classutil_1_1OpenDrive.html#a00a9ef927695cc1efc94abc1dfe5ca0b" title=" " alt="" coords="116,261,303,301"/>
+<area shape="rect" id="node10" href="$d1/dc0/test__opendrive_8cpp.html#a95337c8716f4e9d4e8bba560dbde9e34" title=" " alt="" coords="5,269,60,294"/>
+</map>

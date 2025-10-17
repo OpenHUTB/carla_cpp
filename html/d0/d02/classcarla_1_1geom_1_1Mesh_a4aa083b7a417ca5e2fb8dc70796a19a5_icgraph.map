@@ -1,0 +1,9 @@
+<map id="carla::geom::Mesh::IsValid" name="carla::geom::Mesh::IsValid">
+<area shape="rect" id="node1" title="检查网格是否有效。" alt="" coords="303,165,435,205"/>
+<area shape="rect" id="node2" href="$d0/d02/classcarla_1_1geom_1_1Mesh.html#a233c4f4f48c88e6ac2afc79155dca87c" title="将两个网格合并为一个网格" alt="" coords="64,5,196,45"/>
+<area shape="rect" id="node3" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a5744e75d34e0a3514892d4a9b7906652" title="仅为中心线（ID为0的线）生成车道标记" alt="" coords="16,69,244,109"/>
+<area shape="rect" id="node4" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#aad2ea408b3032e959e384431becd860b" title="为非中心线（即ID不为0的所有线）生成车道标记" alt="" coords="5,133,255,173"/>
+<area shape="rect" id="node5" href="$d0/d02/classcarla_1_1geom_1_1Mesh.html#a1e84afee1b87e881ced8e8e6b19a3749" title="返回包含 OBJ 中编码的网格的字符串。单位为米。它位于虚幻空间中。" alt="" coords="64,197,196,237"/>
+<area shape="rect" id="node6" href="$d0/d02/classcarla_1_1geom_1_1Mesh.html#a8949815059008e05cd22747265421b27" title="返回包含 OBJ 中编码的网格的字符串。单位为米。 此函数导出 OBJ 文件，供 Recast 库专门使用。更改构建面的方向和坐标空间。" alt="" coords="49,261,211,301"/>
+<area shape="rect" id="node7" href="$d0/d02/classcarla_1_1geom_1_1Mesh.html#a3d337881b9d8e2e322eef9efe4580247" title="返回包含 PLY 中编码的网格的字符串。单位为米。" alt="" coords="64,325,196,365"/>
+</map>

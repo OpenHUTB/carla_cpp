@@ -1,0 +1,299 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: MultiStreamState.h 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_6d1a5b6c73cd09063239376f47f02d88.html">streaming</a></li><li class="navelem"><a class="el" href="../../dir_d64eca314ebb95b8ef9e91613b20b92b.html">detail</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">MultiStreamState.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../df/dc5/MultiStreamState_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// de Barcelona (UAB).</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// This work is licensed under the terms of the MIT license.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">// 包含必要的头文件</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="../../df/de2/AtomicSharedPtr_8h.html">carla/AtomicSharedPtr.h</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">// 用于原子性的共享指针操作</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="../../de/d87/Logging_8h.html">carla/Logging.h</a>&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">// 用于日志记录</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="../../de/d69/StreamStateBase_8h.html">carla/streaming/detail/StreamStateBase.h</a>&quot;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">// 基类，可能提供了一些基本的流状态管理功能</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;<a class="code" href="../../d5/dca/Message_8h.html">carla/streaming/detail/tcp/Message.h</a>&quot;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;mutex&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;atomic&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d9/d36/namespacecarla.html">carla</a> {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">namespace </span>streaming {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">namespace </span>detail {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment"></span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">  /// A stream state that can hold any number of sessions.</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment">  ///</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="comment">  /// @todo Lacking some optimization.</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html">   28</a></span><span class="comment"></span>  <span class="keyword">class </span><a class="code hl_class" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html">MultiStreamState</a> final : <span class="keyword">public</span> <a class="code hl_class" href="../../d3/d38/classcarla_1_1streaming_1_1detail_1_1StreamStateBase.html">StreamStateBase</a> {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> <span class="comment">// 调用基类的构造函数</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keyword">using </span><a class="code hl_function" href="../../d3/d38/classcarla_1_1streaming_1_1detail_1_1StreamStateBase.html#a159784c9bf2d0477258de6d8f8df2c71">StreamStateBase::StreamStateBase</a>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> <span class="comment">// 构造函数，接受一个 token 并初始化成员变量</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#af12b58a5f82da35983ca4c4739a8252f">   33</a></span>    <a class="code hl_function" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#af12b58a5f82da35983ca4c4739a8252f">MultiStreamState</a>(<span class="keyword">const</span> <a class="code hl_class" href="../../df/de1/classcarla_1_1streaming_1_1detail_1_1token__type.html">token_type</a> &amp;<a class="code hl_function" href="../../d3/d38/classcarla_1_1streaming_1_1detail_1_1StreamStateBase.html#acdba3da2dbb0fcf0396cb5094cabf056">token</a>) :</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>      <a class="code hl_class" href="../../d3/d38/classcarla_1_1streaming_1_1detail_1_1StreamStateBase.html">StreamStateBase</a>(<a class="code hl_function" href="../../d3/d38/classcarla_1_1streaming_1_1detail_1_1StreamStateBase.html#acdba3da2dbb0fcf0396cb5094cabf056">token</a>),</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>      <a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a748c7874510731fee171ea1581348c6d">_session</a>(nullptr)</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>      {};</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment">// 模板函数，用于写入数据到流中</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span>... Buffers&gt;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#ad92ae721b7b7b4ae750e32d0ff0a8f1a">   39</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#ad92ae721b7b7b4ae750e32d0ff0a8f1a">Write</a>(Buffers... buffers) {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>      <span class="comment">// try write single stream</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>      <span class="keyword">auto</span> session = <a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a748c7874510731fee171ea1581348c6d">_session</a>.load();</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>      <span class="keywordflow">if</span> (session != <span class="keyword">nullptr</span>) {</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>          <span class="comment">// 创建消息并写入单个会话</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keyword">auto</span> message = <a class="code hl_function" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a9e5740dd86e28168fa2c8dc1dd503aee">Session::MakeMessage</a>(buffers...);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        session-&gt;Write(std::move(message));</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <a class="code hl_function" href="../../d9/d36/namespacecarla.html#afb6ca911605d1ec35bdf563de2814dba">log_debug</a>(<span class="stringliteral">&quot;sensor &quot;</span>, session-&gt;get_stream_id(),<span class="stringliteral">&quot; data sent&quot;</span>);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="comment">// Return here, _session is only valid if we have a</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="comment">// single session.</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>      }</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>      <span class="comment">// try write multiple stream</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>      std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a6ddd72f4b3ba3f53256387067329f9d7">_mutex</a>);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a59e37ccc2e0c08b0c5e96ff43f8c82bf">_sessions</a>.size() &gt; 0) {</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>          <span class="comment">// 创建消息并写入多个会话</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="keyword">auto</span> message = <a class="code hl_function" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a9e5740dd86e28168fa2c8dc1dd503aee">Session::MakeMessage</a>(buffers...);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;s : <a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a59e37ccc2e0c08b0c5e96ff43f8c82bf">_sessions</a>) {</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>          <span class="keywordflow">if</span> (s != <span class="keyword">nullptr</span>) {</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>            s-&gt;Write(message);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            <a class="code hl_function" href="../../d9/d36/namespacecarla.html#afb6ca911605d1ec35bdf563de2814dba">log_debug</a>(<span class="stringliteral">&quot;sensor &quot;</span>, s-&gt;get_stream_id(),<span class="stringliteral">&quot; data sent &quot;</span>);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>         }</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        }</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>      }</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    }</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> <span class="comment">// 设置强制激活标志</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#aa4aeaf89fed47c583aec797d78f40326">   66</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#aa4aeaf89fed47c583aec797d78f40326">ForceActive</a>() {</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>      <a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a22d1d36ccda6b7399b81912307262067">_force_active</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    }</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment">// 启用与 ROS 的交互</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a0c42b5eabe67b2598b644dd0724a47d1">   70</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a0c42b5eabe67b2598b644dd0724a47d1">EnableForROS</a>() {</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>      <a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a7439a2458390ab9f060187931614bffd">_enabled_for_ros</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    }</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="comment">// 禁用与 ROS 的交互</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a52861b09871464c368e2eaf281348b6a">   74</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a52861b09871464c368e2eaf281348b6a">DisableForROS</a>() {</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>      <a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a7439a2458390ab9f060187931614bffd">_enabled_for_ros</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    }</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> <span class="comment">// 检查是否为 ROS 启用了流状态</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a195dc4a30b088e7992cc27434491ea4c">   78</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a195dc4a30b088e7992cc27434491ea4c">IsEnabledForROS</a>() {</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a7439a2458390ab9f060187931614bffd">_enabled_for_ros</a>;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    }</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> <span class="comment">// 检查是否有客户端正在监听流</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#aa4daea6824dab50fee94788f8566c32e">   82</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#aa4daea6824dab50fee94788f8566c32e">AreClientsListening</a>() {</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>      <span class="keywordflow">return</span> (<a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a59e37ccc2e0c08b0c5e96ff43f8c82bf">_sessions</a>.size() &gt; 0 || <a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a22d1d36ccda6b7399b81912307262067">_force_active</a> || <a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a7439a2458390ab9f060187931614bffd">_enabled_for_ros</a>);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    }</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="comment">// 连接一个新的会话</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#aaab0c5043124a4940bcae3a6eee0b600">   86</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#aaab0c5043124a4940bcae3a6eee0b600">ConnectSession</a>(std::shared_ptr&lt;Session&gt; session) <span class="keyword">final</span> {</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>      <a class="code hl_define" href="../../d4/deb/Debug_8h.html#a0480185f78b4135a9d05ec24bccef047">DEBUG_ASSERT</a>(session != <span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>      std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a6ddd72f4b3ba3f53256387067329f9d7">_mutex</a>);</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>      <span class="comment">// 将新会话添加到会话列表中</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>      <a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a59e37ccc2e0c08b0c5e96ff43f8c82bf">_sessions</a>.emplace_back(std::move(session));</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>      <a class="code hl_function" href="../../d9/d36/namespacecarla.html#afb6ca911605d1ec35bdf563de2814dba">log_debug</a>(<span class="stringliteral">&quot;Connecting multistream sessions:&quot;</span>, <a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a59e37ccc2e0c08b0c5e96ff43f8c82bf">_sessions</a>.size());</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a59e37ccc2e0c08b0c5e96ff43f8c82bf">_sessions</a>.size() == 1) {</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>          <span class="comment">// 如果只有一个会话，设置 _session 指向这个会话</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        <a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a748c7874510731fee171ea1581348c6d">_session</a>.store(<a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a59e37ccc2e0c08b0c5e96ff43f8c82bf">_sessions</a>[0]);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>      }</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a59e37ccc2e0c08b0c5e96ff43f8c82bf">_sessions</a>.size() &gt; 1) {</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>          <span class="comment">// 如果有多个会话，设置 _session 为空指针</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a748c7874510731fee171ea1581348c6d">_session</a>.store(<span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>      }</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    }</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="comment">// 断开一个会话</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a30d9ec04e8423fcbb2268f034406720d">  102</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a30d9ec04e8423fcbb2268f034406720d">DisconnectSession</a>(std::shared_ptr&lt;Session&gt; session) <span class="keyword">final</span> {</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>      <a class="code hl_define" href="../../d4/deb/Debug_8h.html#a0480185f78b4135a9d05ec24bccef047">DEBUG_ASSERT</a>(session != <span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>      std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a6ddd72f4b3ba3f53256387067329f9d7">_mutex</a>);</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>      <a class="code hl_function" href="../../d9/d36/namespacecarla.html#afb6ca911605d1ec35bdf563de2814dba">log_debug</a>(<span class="stringliteral">&quot;Calling DisconnectSession for &quot;</span>, session-&gt;get_stream_id());</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a59e37ccc2e0c08b0c5e96ff43f8c82bf">_sessions</a>.size() == 0) <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a59e37ccc2e0c08b0c5e96ff43f8c82bf">_sessions</a>.size() == 1) {</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        <a class="code hl_define" href="../../d4/deb/Debug_8h.html#a0480185f78b4135a9d05ec24bccef047">DEBUG_ASSERT</a>(session == <a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a748c7874510731fee171ea1581348c6d">_session</a>.load());</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        <a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a748c7874510731fee171ea1581348c6d">_session</a>.store(<span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        <a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a59e37ccc2e0c08b0c5e96ff43f8c82bf">_sessions</a>.clear();</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a22d1d36ccda6b7399b81912307262067">_force_active</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <a class="code hl_function" href="../../d9/d36/namespacecarla.html#afb6ca911605d1ec35bdf563de2814dba">log_debug</a>(<span class="stringliteral">&quot;Last session disconnected&quot;</span>);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>      } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>           <span class="comment">// 从会话列表中移除指定的会话</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        <a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a59e37ccc2e0c08b0c5e96ff43f8c82bf">_sessions</a>.erase(</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>            std::remove(<a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a59e37ccc2e0c08b0c5e96ff43f8c82bf">_sessions</a>.begin(), <a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a59e37ccc2e0c08b0c5e96ff43f8c82bf">_sessions</a>.end(), session),</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>            <a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a59e37ccc2e0c08b0c5e96ff43f8c82bf">_sessions</a>.end());</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        <span class="comment">// set single session if only one</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a59e37ccc2e0c08b0c5e96ff43f8c82bf">_sessions</a>.size() == 1)<span class="comment">// 检查当前会话集合的大小</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>          <a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a748c7874510731fee171ea1581348c6d">_session</a>.store(<a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a59e37ccc2e0c08b0c5e96ff43f8c82bf">_sessions</a>[0]);  <span class="comment">// 如果会话集合中只有一个会话，</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>  <span class="comment">// 则将该会话存储到某个全局或成员变量 _session 中</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>          <a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a748c7874510731fee171ea1581348c6d">_session</a>.store(<span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>      }  </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="comment">// 如果会话集合中有多个会话或没有会话，</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="comment">// 则将 nullptr 存储到 _session 中，</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="comment">// 表示当前没有活动的会话或不确定哪个会话是活动的</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>      <a class="code hl_function" href="../../d9/d36/namespacecarla.html#afb6ca911605d1ec35bdf563de2814dba">log_debug</a>(<span class="stringliteral">&quot;Disconnecting multistream sessions:&quot;</span>, <a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a59e37ccc2e0c08b0c5e96ff43f8c82bf">_sessions</a>.size());</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    }</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>     <span class="comment">// 使用 log_debug 函数记录一条调试信息，</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>     <span class="comment">// 显示正在断开连接的多流会话的数量</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>     <span class="comment">// 清空所有的会话</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a22a1c258bce01b70fc09ec4189230acd">  134</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a22a1c258bce01b70fc09ec4189230acd">ClearSessions</a>() final {</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>     <span class="comment">// ClearSessions 是一个成员函数，用于清除所有会话并重置相关状态</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>      std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a6ddd72f4b3ba3f53256387067329f9d7">_mutex</a>);  </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>      <span class="comment">// 使用 std::lock_guard 自动管理互斥锁 _mutex 的锁定和解锁</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>      <span class="comment">// 这确保了在多线程环境中对 _sessions 的访问是线程安全的</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>      <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;s : <a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a59e37ccc2e0c08b0c5e96ff43f8c82bf">_sessions</a>) {</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>      <span class="comment">// 遍历 _sessions 容器中的每个会话对象</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>        <span class="keywordflow">if</span> (s != <span class="keyword">nullptr</span>) {  </div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>          s-&gt;Close();</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>      <span class="comment">// 如果会话对象不是 nullptr，则调用其 Close 方法来关闭会话</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>        }</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>      }</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>     <a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a59e37ccc2e0c08b0c5e96ff43f8c82bf">_sessions</a>.clear();</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>     <span class="comment">// 清空 _sessions 容器，移除所有会话对象</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>      <a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a22d1d36ccda6b7399b81912307262067">_force_active</a> = <span class="keyword">false</span>;   <span class="comment">// 将 _force_active 标志设置为 false，表示没有强制活动的会话</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>      <a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a748c7874510731fee171ea1581348c6d">_session</a>.store(<span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="comment">// 将 _session 变量重置为 nullptr，表示当前没有活动的会话</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>      <a class="code hl_function" href="../../d9/d36/namespacecarla.html#afb6ca911605d1ec35bdf563de2814dba">log_debug</a>(<span class="stringliteral">&quot;Disconnecting all multistream sessions&quot;</span>); </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="comment">// 使用 log_debug 函数记录一条调试信息，表示正在断开所有多流会话</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    }</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno"><a class="line" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a6ddd72f4b3ba3f53256387067329f9d7">  157</a></span>    std::mutex <a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a6ddd72f4b3ba3f53256387067329f9d7">_mutex</a>;</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="comment">// 私有成员变量</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="comment">// _mutex 是一个互斥锁，用于保护对 _sessions 容器的并发访问</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="comment">// if there is only one session, then we use atomic</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a748c7874510731fee171ea1581348c6d">  161</a></span>    <a class="code hl_class" href="../../d2/dcf/classcarla_1_1AtomicSharedPtr.html">AtomicSharedPtr&lt;Session&gt;</a> <a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a748c7874510731fee171ea1581348c6d">_session</a>;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="comment">// if there are more than one session, we use vector of sessions with mutex</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno"><a class="line" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a59e37ccc2e0c08b0c5e96ff43f8c82bf">  163</a></span>    std::vector&lt;std::shared_ptr&lt;Session&gt;&gt; <a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a59e37ccc2e0c08b0c5e96ff43f8c82bf">_sessions</a>; </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    <span class="comment">// _sessions 是一个向量（动态数组），存储了多个指向 Session 对象的智能指针</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <span class="comment">// 这些智能指针是 std::shared_ptr 类型，它们自动管理 Session 对象的生命周期</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    <span class="comment">// 当没有任何 std::shared_ptr 指向一个 Session 对象时，该对象会被自动删除</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno"><a class="line" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a22d1d36ccda6b7399b81912307262067">  167</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a22d1d36ccda6b7399b81912307262067">_force_active</a> {<span class="keyword">false</span>};   <span class="comment">// _force_active 是一个布尔变量，用于指示是否存在一个或多个会话被强制标记为活动状态</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <span class="comment">// 如果为 true，则可能表示有会话需要被特别处理，即使按照正常逻辑它们可能不应该处于活动状态</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    <span class="comment">// 初始化为 false，表示默认没有会话被强制标记为活动状态</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a7439a2458390ab9f060187931614bffd">  170</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a7439a2458390ab9f060187931614bffd">_enabled_for_ros</a> {<span class="keyword">false</span>};    <span class="comment">// _enabled_for_ros 是一个布尔变量，用于指示该类或其中的会话是否启用了对 ROS（Robot Operating System）的支持</span></div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    <span class="comment">// 如果为 true，则可能表示该类或其中的会话能够与 ROS 系统进行交互，例如发送或接收消息</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="comment">// 类的其他成员变量、方法和构造函数应该在这里定义</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="comment">// 注意：这些变量是公开的（public），但在实际设计中，您可能希望将它们设为私有（private）</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <span class="comment">// 并通过公共的 getter 和 setter 方法来访问它们，以封装类的内部状态</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>  };</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>} <span class="comment">// namespace detail</span></div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>} <span class="comment">// namespace streaming</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>} <span class="comment">// namespace carla</span></div>
+<div class="ttc" id="aAtomicSharedPtr_8h_html"><div class="ttname"><a href="../../df/de2/AtomicSharedPtr_8h.html">AtomicSharedPtr.h</a></div></div>
+<div class="ttc" id="aDebug_8h_html_a0480185f78b4135a9d05ec24bccef047"><div class="ttname"><a href="../../d4/deb/Debug_8h.html#a0480185f78b4135a9d05ec24bccef047">DEBUG_ASSERT</a></div><div class="ttdeci">#define DEBUG_ASSERT(predicate)</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/deb/Debug_8h_source.html#l00068">Debug.h:68</a></div></div>
+<div class="ttc" id="aLogging_8h_html"><div class="ttname"><a href="../../de/d87/Logging_8h.html">Logging.h</a></div></div>
+<div class="ttc" id="aMessage_8h_html"><div class="ttname"><a href="../../d5/dca/Message_8h.html">Message.h</a></div><div class="ttdoc">包含 Carla 框架中与网络流相关的类和函数的声明。</div></div>
+<div class="ttc" id="aStreamStateBase_8h_html"><div class="ttname"><a href="../../de/d69/StreamStateBase_8h.html">StreamStateBase.h</a></div><div class="ttdoc">包含StreamStateBase类的定义，它是流状态的基础类。</div></div>
+<div class="ttc" id="aclasscarla_1_1AtomicSharedPtr_html"><div class="ttname"><a href="../../d2/dcf/classcarla_1_1AtomicSharedPtr.html">carla::AtomicSharedPtr</a></div><div class="ttdoc">线程安全的原子智能指针封装类</div><div class="ttdef"><b>Definition:</b> <a href="../../df/de2/AtomicSharedPtr_8h_source.html#l00026">AtomicSharedPtr.h:26</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1MultiStreamState_html"><div class="ttname"><a href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html">carla::streaming::detail::MultiStreamState</a></div><div class="ttdoc">A stream state that can hold any number of sessions.</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dc5/MultiStreamState_8h_source.html#l00028">MultiStreamState.h:28</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1MultiStreamState_html_a0c42b5eabe67b2598b644dd0724a47d1"><div class="ttname"><a href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a0c42b5eabe67b2598b644dd0724a47d1">carla::streaming::detail::MultiStreamState::EnableForROS</a></div><div class="ttdeci">void EnableForROS()</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dc5/MultiStreamState_8h_source.html#l00070">MultiStreamState.h:70</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1MultiStreamState_html_a195dc4a30b088e7992cc27434491ea4c"><div class="ttname"><a href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a195dc4a30b088e7992cc27434491ea4c">carla::streaming::detail::MultiStreamState::IsEnabledForROS</a></div><div class="ttdeci">bool IsEnabledForROS()</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dc5/MultiStreamState_8h_source.html#l00078">MultiStreamState.h:78</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1MultiStreamState_html_a22a1c258bce01b70fc09ec4189230acd"><div class="ttname"><a href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a22a1c258bce01b70fc09ec4189230acd">carla::streaming::detail::MultiStreamState::ClearSessions</a></div><div class="ttdeci">void ClearSessions() final</div><div class="ttdoc">清除所有会话。</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dc5/MultiStreamState_8h_source.html#l00134">MultiStreamState.h:134</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1MultiStreamState_html_a22d1d36ccda6b7399b81912307262067"><div class="ttname"><a href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a22d1d36ccda6b7399b81912307262067">carla::streaming::detail::MultiStreamState::_force_active</a></div><div class="ttdeci">bool _force_active</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dc5/MultiStreamState_8h_source.html#l00167">MultiStreamState.h:167</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1MultiStreamState_html_a30d9ec04e8423fcbb2268f034406720d"><div class="ttname"><a href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a30d9ec04e8423fcbb2268f034406720d">carla::streaming::detail::MultiStreamState::DisconnectSession</a></div><div class="ttdeci">void DisconnectSession(std::shared_ptr&lt; Session &gt; session) final</div><div class="ttdoc">断开与会话的连接。</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dc5/MultiStreamState_8h_source.html#l00102">MultiStreamState.h:102</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1MultiStreamState_html_a52861b09871464c368e2eaf281348b6a"><div class="ttname"><a href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a52861b09871464c368e2eaf281348b6a">carla::streaming::detail::MultiStreamState::DisableForROS</a></div><div class="ttdeci">void DisableForROS()</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dc5/MultiStreamState_8h_source.html#l00074">MultiStreamState.h:74</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1MultiStreamState_html_a59e37ccc2e0c08b0c5e96ff43f8c82bf"><div class="ttname"><a href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a59e37ccc2e0c08b0c5e96ff43f8c82bf">carla::streaming::detail::MultiStreamState::_sessions</a></div><div class="ttdeci">std::vector&lt; std::shared_ptr&lt; Session &gt; &gt; _sessions</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dc5/MultiStreamState_8h_source.html#l00163">MultiStreamState.h:163</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1MultiStreamState_html_a6ddd72f4b3ba3f53256387067329f9d7"><div class="ttname"><a href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a6ddd72f4b3ba3f53256387067329f9d7">carla::streaming::detail::MultiStreamState::_mutex</a></div><div class="ttdeci">std::mutex _mutex</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dc5/MultiStreamState_8h_source.html#l00157">MultiStreamState.h:157</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1MultiStreamState_html_a7439a2458390ab9f060187931614bffd"><div class="ttname"><a href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a7439a2458390ab9f060187931614bffd">carla::streaming::detail::MultiStreamState::_enabled_for_ros</a></div><div class="ttdeci">bool _enabled_for_ros</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dc5/MultiStreamState_8h_source.html#l00170">MultiStreamState.h:170</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1MultiStreamState_html_a748c7874510731fee171ea1581348c6d"><div class="ttname"><a href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a748c7874510731fee171ea1581348c6d">carla::streaming::detail::MultiStreamState::_session</a></div><div class="ttdeci">AtomicSharedPtr&lt; Session &gt; _session</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dc5/MultiStreamState_8h_source.html#l00161">MultiStreamState.h:161</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1MultiStreamState_html_aa4aeaf89fed47c583aec797d78f40326"><div class="ttname"><a href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#aa4aeaf89fed47c583aec797d78f40326">carla::streaming::detail::MultiStreamState::ForceActive</a></div><div class="ttdeci">void ForceActive()</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dc5/MultiStreamState_8h_source.html#l00066">MultiStreamState.h:66</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1MultiStreamState_html_aa4daea6824dab50fee94788f8566c32e"><div class="ttname"><a href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#aa4daea6824dab50fee94788f8566c32e">carla::streaming::detail::MultiStreamState::AreClientsListening</a></div><div class="ttdeci">bool AreClientsListening()</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dc5/MultiStreamState_8h_source.html#l00082">MultiStreamState.h:82</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1MultiStreamState_html_aaab0c5043124a4940bcae3a6eee0b600"><div class="ttname"><a href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#aaab0c5043124a4940bcae3a6eee0b600">carla::streaming::detail::MultiStreamState::ConnectSession</a></div><div class="ttdeci">void ConnectSession(std::shared_ptr&lt; Session &gt; session) final</div><div class="ttdoc">连接到会话。</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dc5/MultiStreamState_8h_source.html#l00086">MultiStreamState.h:86</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1MultiStreamState_html_ad92ae721b7b7b4ae750e32d0ff0a8f1a"><div class="ttname"><a href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#ad92ae721b7b7b4ae750e32d0ff0a8f1a">carla::streaming::detail::MultiStreamState::Write</a></div><div class="ttdeci">void Write(Buffers... buffers)</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dc5/MultiStreamState_8h_source.html#l00039">MultiStreamState.h:39</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1MultiStreamState_html_af12b58a5f82da35983ca4c4739a8252f"><div class="ttname"><a href="../../d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#af12b58a5f82da35983ca4c4739a8252f">carla::streaming::detail::MultiStreamState::MultiStreamState</a></div><div class="ttdeci">MultiStreamState(const token_type &amp;token)</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dc5/MultiStreamState_8h_source.html#l00033">MultiStreamState.h:33</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1StreamStateBase_html"><div class="ttname"><a href="../../d3/d38/classcarla_1_1streaming_1_1detail_1_1StreamStateBase.html">carla::streaming::detail::StreamStateBase</a></div><div class="ttdoc">所有流副本之间的共享状态类。如果处于活动状态，则提供对底层服务器会话的访问。</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d69/StreamStateBase_8h_source.html#l00034">StreamStateBase.h:34</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1StreamStateBase_html_a159784c9bf2d0477258de6d8f8df2c71"><div class="ttname"><a href="../../d3/d38/classcarla_1_1streaming_1_1detail_1_1StreamStateBase.html#a159784c9bf2d0477258de6d8f8df2c71">carla::streaming::detail::StreamStateBase::StreamStateBase</a></div><div class="ttdeci">StreamStateBase(const token_type &amp;token)</div><div class="ttdoc">构造函数，使用给定的令牌初始化对象。</div><div class="ttdef"><b>Definition:</b> <a href="../../dc/d98/StreamStateBase_8cpp_source.html#l00017">StreamStateBase.cpp:17</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1StreamStateBase_html_acdba3da2dbb0fcf0396cb5094cabf056"><div class="ttname"><a href="../../d3/d38/classcarla_1_1streaming_1_1detail_1_1StreamStateBase.html#acdba3da2dbb0fcf0396cb5094cabf056">carla::streaming::detail::StreamStateBase::token</a></div><div class="ttdeci">const token_type &amp; token() const</div><div class="ttdoc">获取用于初始化对象的令牌。</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d69/StreamStateBase_8h_source.html#l00051">StreamStateBase.h:51</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession_html_a9e5740dd86e28168fa2c8dc1dd503aee"><div class="ttname"><a href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a9e5740dd86e28168fa2c8dc1dd503aee">carla::streaming::detail::tcp::ServerSession::MakeMessage</a></div><div class="ttdeci">static auto MakeMessage(Buffers... buffers)</div><div class="ttdoc">创建消息。</div><div class="ttdef"><b>Definition:</b> <a href="../../da/da2/ServerSession_8h_source.html#l00190">ServerSession.h:190</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1token__type_html"><div class="ttname"><a href="../../df/de1/classcarla_1_1streaming_1_1detail_1_1token__type.html">carla::streaming::detail::token_type</a></div><div class="ttdoc">静态断言，用于确保token_data结构体的大小与Token::data的大小相同。</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d9d/detail_2Token_8h_source.html#l00098">detail/Token.h:98</a></div></div>
+<div class="ttc" id="anamespacecarla_html"><div class="ttname"><a href="../../d9/d36/namespacecarla.html">carla</a></div><div class="ttdoc">CARLA模拟器的主命名空间。</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d4f/Carla_8cpp_source.html#l00139">Carla.cpp:139</a></div></div>
+<div class="ttc" id="anamespacecarla_html_afb6ca911605d1ec35bdf563de2814dba"><div class="ttname"><a href="../../d9/d36/namespacecarla.html#afb6ca911605d1ec35bdf563de2814dba">carla::log_debug</a></div><div class="ttdeci">static void log_debug(Args &amp;&amp;... args)</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d87/Logging_8h_source.html#l00071">Logging.h:71</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

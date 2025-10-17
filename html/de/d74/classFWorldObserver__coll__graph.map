@@ -1,0 +1,6 @@
+<map id="FWorldObserver" name="FWorldObserver">
+<area shape="rect" id="node1" title="序列化并发送当前 UCarlaEpisode 中的所有 Actor。" alt="" coords="31,299,147,324"/>
+<area shape="rect" id="node2" href="$d4/d9c/classFDataStreamTmpl.html" title=" " alt="" coords="5,196,172,236"/>
+<area shape="rect" id="node3" title=" " alt="" coords="9,5,168,31"/>
+<area shape="rect" id="node4" href="$d4/d9c/classFDataStreamTmpl.html" title="用于将传感器数据发送到客户端的流式处理通道。每个传感器 都有自己的 FDataStream。但请注意，此类不提供 send 函数。 为了发送数据，需要使用 “MakeAsyncDataStream” 函..." alt="" coords="137,93,296,119"/>
+</map>

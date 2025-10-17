@@ -1,0 +1,336 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: MoveAssetsCommandlet.cpp 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_2d15d0715a2692171bd03ed14a4a79af.html">Unreal</a></li><li class="navelem"><a class="el" href="../../dir_d3c1db2570616bec48bf5a6dd06bce95.html">CarlaUE4</a></li><li class="navelem"><a class="el" href="../../dir_3538576148ac14151677be9b0aee6fcc.html">Plugins</a></li><li class="navelem"><a class="el" href="../../dir_fbda5b12374c683cbdca72abb2d51944.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_18937e8f6bde63367bf26837323a9508.html">Source</a></li><li class="navelem"><a class="el" href="../../dir_8fc34afb5f07a67966c78bf5319f94ae.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_b73fafeaa93af49306e77afd3c0d0eef.html">Commandlet</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">MoveAssetsCommandlet.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../da/ddf/MoveAssetsCommandlet_8cpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// de Barcelona (UAB).</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// This work is licensed under the terms of the MIT license.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="../../db/d29/MoveAssetsCommandlet_8h.html">MoveAssetsCommandlet.h</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="../../d4/d11/SSTags_8h.html">SSTags.h</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">// UMoveAssetsCommandlet类的构造函数，用于初始化该类的一些属性。</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="../../dc/dc1/classUMoveAssetsCommandlet.html#ac3dae8cf42164e5865c4e47f03708f9d">   11</a></span><a class="code hl_function" href="../../dc/dc1/classUMoveAssetsCommandlet.html#ac3dae8cf42164e5865c4e47f03708f9d">UMoveAssetsCommandlet::UMoveAssetsCommandlet</a>()</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>{</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="comment">// 设置该命令let（Commandlet，在Unreal Engine中常用于执行特定命令行任务的类）不是客户端相关的，通常意味着它不是在客户端运行的逻辑。</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    IsClient = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="comment">// 设置该命令let是编辑器相关的，表明它主要在编辑器环境下执行相关操作。</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    IsEditor = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="comment">// 设置该命令let不是服务器相关的，说明它不涉及服务器端的运行逻辑。</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    IsServer = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="comment">// 设置将日志输出到控制台，方便在执行过程中查看相关的执行信息、报错等内容。</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    LogToConsole = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>}</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#if WITH_EDITORONLY_DATA</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment">// UMoveAssetsCommandlet类的成员函数ParseParams，用于解析传入的参数字符串，提取并整理出与移动资产包相关的参数信息。</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><a class="code hl_struct" href="../../d6/de6/structFMovePackageParams.html">FMovePackageParams</a> UMoveAssetsCommandlet::ParseParams(<span class="keyword">const</span> FString &amp;InParams)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="comment">// 创建一个字符串数组Tokens，用于存储解析命令行参数时分割出来的各个“单词”（token），例如按照空格等分隔符分割后的一个个字符串片段。</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    TArray&lt;FString&gt; Tokens;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="comment">// 创建一个字符串数组Params，用于存储解析后的具体参数内容，它会根据一定的规则对Tokens进一步处理得到。</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    TArray&lt;FString&gt; Params;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="comment">// 调用ParseCommandLine函数（应该是Unreal Engine中用于解析命令行参数的函数），将传入的参数字符串InParams进行解析，</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="comment">// 分割后的结果分别存储到Tokens和Params数组中，具体分割规则取决于该函数的实现逻辑。</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    ParseCommandLine(*InParams, Tokens, Params);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="comment">// 创建一个FMovePackageParams结构体对象，用于存储最终解析出来的与资产包移动相关的参数，后续会逐步填充其中的字段。</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <a class="code hl_struct" href="../../d6/de6/structFMovePackageParams.html">FMovePackageParams</a> PackageParams;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="comment">// 使用FParse::Value函数（用于从给定的字符串中提取指定键对应的值）从InParams字符串中提取键为&quot;PackageName=&quot;对应的值，</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="comment">// 并将提取到的值存储到PackageParams结构体的Name字段中，这个值通常代表要操作的资产包的名称。</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    FParse::Value(*InParams, TEXT(<span class="stringliteral">&quot;PackageName=&quot;</span>), PackageParams.<a class="code hl_variable" href="../../d6/de6/structFMovePackageParams.html#a490f303fca5eefa63c3d2e8975d1034a">Name</a>);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="comment">// 创建一个字符串变量Maps，用于存储后续从参数中提取的地图相关的字符串信息。</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    FString Maps;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="comment">// 使用FParse::Value函数从InParams字符串中提取键为&quot;Maps=&quot;对应的值，存储到Maps字符串变量中，这个值可能包含多个地图名称，以某种格式组合在一起。</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    FParse::Value(*InParams, TEXT(<span class="stringliteral">&quot;Maps=&quot;</span>), Maps);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="comment">// 创建一个字符串数组MapNames，用于存储解析后的各个地图名称。</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    TArray&lt;FString&gt; MapNames;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="comment">// 使用Maps字符串的ParseIntoArray函数（按照指定的分隔符将字符串分割为多个子字符串并存储到数组中），</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="comment">// 以空格作为分隔符，将Maps字符串中的地图名称分割出来，存储到MapNames数组中，并且设置允许为空字符串（true参数表示允许分割出空字符串元素）。</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    Maps.ParseIntoArray(MapNames, TEXT(<span class="stringliteral">&quot; &quot;</span>), <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="comment">// 将解析好的地图名称数组赋值给PackageParams结构体的MapNames字段，完成对FMovePackageParams结构体中地图相关参数的设置。</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    PackageParams.<a class="code hl_variable" href="../../d6/de6/structFMovePackageParams.html#a408c5eceba441edc94591b4f7712e279">MapNames</a> = MapNames;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="comment">// 返回填充好的包含资产包名称和地图名称等相关参数的FMovePackageParams结构体对象，供其他函数使用这些解析后的参数信息。</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordflow">return</span> PackageParams;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>}</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment">// UMoveAssetsCommandlet类的成员函数MoveAssets，用于根据传入的资产包移动相关参数，实际执行资产的移动操作，是整个资产移动流程的核心协调函数。</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="keywordtype">void</span> UMoveAssetsCommandlet::MoveAssets(<span class="keyword">const</span> <a class="code hl_struct" href="../../d6/de6/structFMovePackageParams.html">FMovePackageParams</a> &amp;PackageParams)</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>{</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="comment">// 创建一个UObjectLibrary对象实例（用于加载和管理对象资源的库），指定要加载的对象类型为UStaticMesh（静态网格类型，常用于表示游戏中的模型等资源），</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="comment">// 第二个参数false表示不加载所有类型的对象（只加载指定的UStaticMesh类型），GIsEditor是一个全局变量（应该是用于判断是否处于编辑器环境的标识）。</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="comment">// 这个库实例创建后用于后续加载、管理相关资产资源。</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <a class="code hl_variable" href="../../dc/dc1/classUMoveAssetsCommandlet.html#a729bff8504f34d7f3bc59b6195d5fcb7">AssetsObjectLibrary</a> = UObjectLibrary::CreateLibrary(UStaticMesh::StaticClass(), <span class="keyword">false</span>, GIsEditor);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="comment">// 将创建的AssetsObjectLibrary对象添加到根对象集合（用于管理对象的生命周期等，添加到根可以防止其被意外垃圾回收等情况）。</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <a class="code hl_variable" href="../../dc/dc1/classUMoveAssetsCommandlet.html#a729bff8504f34d7f3bc59b6195d5fcb7">AssetsObjectLibrary</a>-&gt;AddToRoot();</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="comment">// 开始遍历传入的资产包移动参数中指定的每个地图名称，针对每个地图执行资产移动相关操作，具体的移动操作由MoveAssetsFromMapForSemanticSegmentation函数完成。</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;<a class="code hl_class" href="../../d7/db0/classMap.html">Map</a> : PackageParams.<a class="code hl_variable" href="../../d6/de6/structFMovePackageParams.html#a408c5eceba441edc94591b4f7712e279">MapNames</a>)</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    {</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        MoveAssetsFromMapForSemanticSegmentation(PackageParams.<a class="code hl_variable" href="../../d6/de6/structFMovePackageParams.html#a490f303fca5eefa63c3d2e8975d1034a">Name</a>, <a class="code hl_class" href="../../d7/db0/classMap.html">Map</a>);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    }</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>}</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="comment">// 全局函数MoveFiles，用于将一组资产对象移动到指定的目标路径下，主要涉及对资产对象重命名等相关操作来实现移动效果。</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="keywordtype">void</span> MoveFiles(<span class="keyword">const</span> TArray&lt;UObject *&gt; &amp;Assets, <span class="keyword">const</span> FString &amp;DestPath)</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>{</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="comment">// 检查目标路径的长度是否大于0，确保传入的目标路径是有效的，如果路径长度为0则可能不符合移动资产的要求，会触发断言失败（在调试版本中）。</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    check(DestPath.Len() &gt; 0);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="comment">// 使用FModuleManager加载名为&quot;AssetTools&quot;的模块（应该是Unreal Engine中提供资产操作工具的模块），并获取对该模块的引用，用于后续调用模块中的资产相关操作函数。</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    FAssetToolsModule &amp;AssetToolsModule = FModuleManager::LoadModuleChecked&lt;FAssetToolsModule&gt;(<span class="stringliteral">&quot;AssetTools&quot;</span>);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="comment">// 创建一个FAssetRenameData类型的数组AssetsAndNames，用于存储资产对象以及对应的新名称、目标路径等重命名相关信息，后续会填充每个资产的对应信息。</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    TArray&lt;FAssetRenameData&gt; AssetsAndNames;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="comment">// 遍历传入的资产对象数组Assets，通过迭代器进行遍历操作。</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> AssetIt = Assets.CreateConstIterator(); AssetIt; ++AssetIt)</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    {</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        <span class="comment">// 获取当前迭代位置的资产对象指针。</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        <a class="code hl_class" href="../../df/def/classUObject.html">UObject</a> *Asset = *AssetIt;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        <span class="comment">// 使用ensure宏（在调试版本中进行条件检查，如果条件不满足会输出错误信息并暂停程序执行）检查资产对象是否有效（不为空指针），</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        <span class="comment">// 如果资产对象为空指针，则跳过当前循环，不进行后续针对该资产的重命名操作。</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        <span class="keywordflow">if</span> (!ensure(Asset))</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        {</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>            <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        }</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <span class="comment">// 使用Emplace函数（类似于push_back，但可以直接在数组中就地构造元素，更高效）向AssetsAndNames数组中添加一个FAssetRenameData对象，</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        <span class="comment">// 该对象包含了当前资产对象、目标路径以及资产对象原本的名称等信息，用于后续进行资产重命名操作时的参数传递。</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        AssetsAndNames.Emplace(Asset, DestPath, Asset-&gt;GetName());</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    }</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="comment">// 检查准备好的AssetsAndNames数组中元素个数是否大于0，即是否有需要进行重命名（移动）的资产对象信息，如果有则执行重命名操作。</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keywordflow">if</span> (AssetsAndNames.Num() &gt; 0)</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    {</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        <span class="comment">// 调用AssetToolsModule获取到的对象的RenameAssets函数（应该是实际执行资产重命名操作的函数），传入包含资产对象和重命名信息的AssetsAndNames数组，</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        <span class="comment">// 实现将资产对象移动到目标路径下的功能（通过重命名改变资产的存储路径来达到移动效果）。</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        AssetToolsModule.Get().RenameAssets(AssetsAndNames);</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    }</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>}</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="comment">// UMoveAssetsCommandlet类的成员函数MoveAssetsFromMapForSemanticSegmentation，用于从指定的地图中加载资产，并按照语义分割的规则将资产分类移动到相应的目标文件夹中。</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="keywordtype">void</span> UMoveAssetsCommandlet::MoveAssetsFromMapForSemanticSegmentation(</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="keyword">const</span> FString &amp;PackageName,</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="keyword">const</span> FString &amp;MapName)</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>{</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="comment">// 构建源路径字符串，格式为 &quot;/Game/&quot; + 资产包名称 + &quot;/Maps/&quot; + 地图名称，这个路径表示要从中加载资产的原始位置，</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="comment">// 后续会根据这个路径从相应的地图文件夹下加载相关的静态网格等资产资源。</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="keyword">const</span> FString SrcPath = TEXT(<span class="stringliteral">&quot;/Game/&quot;</span>) + PackageName + TEXT(<span class="stringliteral">&quot;/Maps/&quot;</span>) + MapName;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="comment">// 调用AssetsObjectLibrary对象的LoadAssetDataFromPath函数，根据构建好的源路径SrcPath加载该路径下的资产数据信息（但此时还未实际加载资产对象本身），</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="comment">// 只是获取资产的相关元数据等描述信息，存储在AssetsObjectLibrary内部的数据结构中。</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <a class="code hl_variable" href="../../dc/dc1/classUMoveAssetsCommandlet.html#a729bff8504f34d7f3bc59b6195d5fcb7">AssetsObjectLibrary</a>-&gt;LoadAssetDataFromPath(*SrcPath);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="comment">// 调用AssetsObjectLibrary对象的LoadAssetsFromAssetData函数，基于之前加载的资产数据信息，实际加载对应的资产对象到内存中，使得后续可以对这些资产进行操作。</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <a class="code hl_variable" href="../../dc/dc1/classUMoveAssetsCommandlet.html#a729bff8504f34d7f3bc59b6195d5fcb7">AssetsObjectLibrary</a>-&gt;LoadAssetsFromAssetData();</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="comment">// 清空MapContents数组（应该是用于存储当前地图中加载的资产数据信息的数组，之前可能存储了其他地图的相关数据，此处清空以便重新填充当前地图的资产数据）。</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <a class="code hl_variable" href="../../dc/dc1/classUMoveAssetsCommandlet.html#a40976bb7bc7585e6574c34fb3b08be14">MapContents</a>.Empty();</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="comment">// 调用AssetsObjectLibrary对象的GetAssetDataList函数，将加载好的当前地图中的资产数据信息填充到MapContents数组中，方便后续遍历和处理这些资产数据。</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <a class="code hl_variable" href="../../dc/dc1/classUMoveAssetsCommandlet.html#a729bff8504f34d7f3bc59b6195d5fcb7">AssetsObjectLibrary</a>-&gt;GetAssetDataList(<a class="code hl_variable" href="../../dc/dc1/classUMoveAssetsCommandlet.html#a40976bb7bc7585e6574c34fb3b08be14">MapContents</a>);</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="comment">// 调用AssetsObjectLibrary对象的ClearLoaded函数，清除已经加载的资产对象（可能是释放内存等相关操作，比如在不需要这些资产对象在内存中占用空间时进行清理），</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="comment">// 但资产的数据信息依然保留在MapContents数组等相关结构中，以便后续继续基于这些数据进行分类移动等操作。</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <a class="code hl_variable" href="../../dc/dc1/classUMoveAssetsCommandlet.html#a729bff8504f34d7f3bc59b6195d5fcb7">AssetsObjectLibrary</a>-&gt;ClearLoaded();</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="comment">// 创建一个字符串数组DestinationPaths，包含了一系列语义分割相关的目标文件夹名称，这些名称对应不同的语义类别，</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="comment">// 例如道路（ROAD）、道路标线（ROADLINE）、地形（TERRAIN）等，资产最终会根据分类移动到这些对应的文件夹下。</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    TArray&lt;FString&gt; DestinationPaths = {SSTags::ROAD, SSTags::ROADLINE, SSTags::TERRAIN, SSTags::GRASS, SSTags::SIDEWALK, SSTags::CURB, SSTags::GUTTER};</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="comment">// 创建一个TMap类型的映射（键值对容器）AssetDataMap，用于存储根据语义分类后的资产对象信息，键是语义分割的目标文件夹名称（如上述的各种类别名称），</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <span class="comment">// 值是对应类别的资产对象数组（UObject *类型的数组，表示属于该语义类别的资产对象集合）。</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    TMap&lt;FString, TArray&lt;UObject *&gt;&gt; AssetDataMap;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    <span class="comment">// 遍历DestinationPaths数组中的每个目标文件夹名称，为每个名称在AssetDataMap中初始化一个空的资产对象数组，</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="comment">// 即先创建好各个语义类别对应的键值对，后续再将资产对象填充到相应的类别数组中。</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;Paths : DestinationPaths)</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    {</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>        AssetDataMap.Add(Paths, {});</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    }</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="comment">// 遍历从当前地图中加载并存储在MapContents数组中的每个资产数据信息，对每个资产进行语义分类并添加到对应的AssetDataMap类别数组中。</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;MapAsset : <a class="code hl_variable" href="../../dc/dc1/classUMoveAssetsCommandlet.html#a40976bb7bc7585e6574c34fb3b08be14">MapContents</a>)</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    {</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        <span class="comment">// 创建一个字符串变量AssetName，用于存储资产的名称，后续会根据资产名称来判断其属于哪个语义类别。</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        FString AssetName;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        <span class="comment">// 使用CastChecked函数（进行类型安全的强制转换，如果转换失败会抛出异常，确保转换的类型正确性）将当前资产数据对应的资产对象转换为UStaticMesh类型，</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        <span class="comment">// 获取到指向该静态网格资产的指针，并赋值给MeshAsset变量，方便后续操作该资产对象。</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>        UStaticMesh *MeshAsset = CastChecked&lt;UStaticMesh&gt;(MapAsset.GetAsset());</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        <span class="comment">// 将资产对象的名称转换为字符串形式，并存储到AssetName变量中，通过调用AssetName的ToString函数实现。</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        MapAsset.AssetName.ToString(AssetName);</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        <span class="keywordflow">if</span> (SrcPath.Len())</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>        {</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>            <span class="comment">// 获取当前资产所属的最外层包的名称（通过获取资产对象的最外层对象的名称来得到），存储到CurrentPackageName变量中，</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>            <span class="comment">// 这个名称可以用于判断资产是否属于当前正在处理的源路径下的资产包，确保操作的资产来源正确。</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>            <span class="keyword">const</span> FString CurrentPackageName = MeshAsset-&gt;GetOutermost()-&gt;GetName();</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>            <span class="comment">// 使用ensure宏检查当前资产所属的包名称是否以源路径开头（即是否属于当前要处理的地图所在的资产包），</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>            <span class="comment">// 如果不满足则跳过当前资产的处理，继续处理下一个资产，保证只处理符合要求的资产对象。</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>            <span class="keywordflow">if</span> (!ensure(CurrentPackageName.StartsWith(SrcPath)))</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>            {</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>            }</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>            <span class="comment">// 根据资产名称中是否包含特定的语义标签（通过SSTags中定义的各种标签常量进行判断），将资产对象添加到对应的AssetDataMap类别数组中，实现语义分类。</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>            <span class="comment">// 如果资产名称包含道路相关标签（R_ROAD1或R_ROAD2），则将该资产添加到&quot;ROAD&quot;语义类别的资产数组中。</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>            <span class="keywordflow">if</span> (AssetName.Contains(SSTags::R_ROAD1) || AssetName.Contains(SSTags::R_ROAD2))</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>            {</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>                AssetDataMap[SSTags::ROAD].Add(MeshAsset);</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>            }</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>            <span class="comment">// 如果资产名称包含道路标线相关标签（R_MARKING1或R_MARKING2），则将该资产添加到&quot;ROADLINE&quot;语义类别的资产数组中。</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (AssetName.Contains(SSTags::R_MARKING1) || AssetName.Contains(SSTags::R_MARKING2))</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>            {</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>                AssetDataMap[SSTags::ROADLINE].Add(MeshAsset);</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>            }</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>            <span class="comment">// 如果资产名称包含地形相关标签（R_TERRAIN），则将该资产添加到&quot;TERRAIN&quot;语义类别的资产数组中。</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (AssetName.Contains(SSTags::R_TERRAIN))</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>            {</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>                AssetDataMap[SSTags::TERRAIN].Add(MeshAsset);</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>            }</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>            <span class="comment">// 如果资产名称包含人行道相关标签（R_SIDEWALK1或R_SIDEWALK2），则将该资产添加到&quot;SIDEWALK&quot;语义类别的资产数组中。</span></div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (AssetName.Contains(SSTags::R_SIDEWALK1) || AssetName.Contains(SSTags::R_SIDEWALK2))</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>            {</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>                AssetDataMap[SSTags::SIDEWALK].Add(MeshAsset);</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>            }</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>            <span class="comment">// 如果资产名称包含路边石相关标签（R_CURB1或R_CURB2），则将该资产添加到&quot;CURB&quot;语义类别的资产数组中。</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (AssetName.Contains(SSTags::R_CURB1) || AssetName.Contains(SSTags::R_CURB2))</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>            {</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>                AssetDataMap[SSTags::CURB].Add(MeshAsset);</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>            }</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>            <span class="comment">// 如果资产名称包含排水沟相关标签（R_GUTTER1或R_GUTTER2），则将该资产添加到&quot;GUTTER&quot;语义类别的资产数组中。</span></div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (AssetName.Contains(SSTags::R_GUTTER1) || AssetName.Contains(SSTags::R_GUTTER2))</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>            {</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>                AssetDataMap[SSTags::GUTTER].Add(MeshAsset);</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>            }</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>            <span class="comment">// 如果资产名称不包含上述任何特定标签，则默认将其添加到&quot;TERRAIN&quot;语义类别的资产数组中，作为一种兜底的分类方式。</span></div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>            <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>            {</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>                AssetDataMap[SSTags::TERRAIN].Add(MeshAsset);</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>            }</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>        }</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    }</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <span class="comment">// 遍历AssetDataMap映射中的每个键值对（每个语义类别及其对应的资产对象数组），将资产对象移动到相应的语义分割目标文件夹下，</span></div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <span class="comment">// 具体的移动操作通过调用MoveFiles函数实现，传入该类别下的资产对象数组和构建好的目标路径字符串。</span></div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;Elem : AssetDataMap)</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    {</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>        FString DestPath = TEXT(<span class="stringliteral">&quot;/Game/&quot;</span>) + PackageName + TEXT(<span class="stringliteral">&quot;/Static/&quot;</span>) + Elem.Key + <span class="stringliteral">&quot;/&quot;</span> + MapName;</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>        MoveFiles(Elem.Value, DestPath);</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    }</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>}</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span><span class="comment">// UMoveAssetsCommandlet类的成员函数Main，作为整个命令let的入口函数，负责协调参数解析和资产移动的整体流程，通常在命令行启动该命令let时会执行这个函数。</span></div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>int32 UMoveAssetsCommandlet::Main(<span class="keyword">const</span> FString &amp;Params)</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>{</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    <span class="comment">// 首先调用ParseParams函数解析传入的参数字符串Params，获取到包含资产包名称、地图名称等相关参数的FMovePackageParams结构体对象，用于后续操作。</span></div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    <a class="code hl_struct" href="../../d6/de6/structFMovePackageParams.html">FMovePackageParams</a> PackageParams = ParseParams(Params);</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span> </div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span><span class="comment">// 调用MoveAssets函数，传入解析好的资产包移动参数PackageParams，开始实际执行资产的移动操作流程，按照参数指定的要求对资产进行分类移动等操作。</span></div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span><span class="comment">// 这里把包含了资产包名称、地图名称等关键信息的PackageParams结构体对象传递给MoveAssets函数，MoveAssets函数会依据这些参数，</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span><span class="comment">// 去加载相应的资产库、遍历指定地图中的资产，然后按照语义分割等规则对资产进行分类整理，并最终将资产移动到对应的目标位置（通过调用其他相关的辅助函数来完成具体的移动操作）。</span></div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>MoveAssets(PackageParams);</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span> </div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span><span class="comment">// 函数执行完毕后，返回0表示程序正常结束，通常在命令行程序或者类似的执行环境中，返回0是一种约定俗成的表示成功执行完毕的方式，告知调用者该命令let执行过程没有出现错误，顺利完成了资产移动相关的任务。</span></div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span><span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>}</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aMoveAssetsCommandlet_8h_html"><div class="ttname"><a href="../../db/d29/MoveAssetsCommandlet_8h.html">MoveAssetsCommandlet.h</a></div></div>
+<div class="ttc" id="aSSTags_8h_html"><div class="ttname"><a href="../../d4/d11/SSTags_8h.html">SSTags.h</a></div></div>
+<div class="ttc" id="aclassMap_html"><div class="ttname"><a href="../../d7/db0/classMap.html">Map</a></div><div class="ttdoc">地图类的前向声明，用于在LaneInvasionSensor类中可能的引用。</div></div>
+<div class="ttc" id="aclassUMoveAssetsCommandlet_html_a40976bb7bc7585e6574c34fb3b08be14"><div class="ttname"><a href="../../dc/dc1/classUMoveAssetsCommandlet.html#a40976bb7bc7585e6574c34fb3b08be14">UMoveAssetsCommandlet::MapContents</a></div><div class="ttdeci">TArray&lt; FAssetData &gt; MapContents</div><div class="ttdoc">从任何对象库中加载地图</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d29/MoveAssetsCommandlet_8h_source.html#l00075">MoveAssetsCommandlet.h:75</a></div></div>
+<div class="ttc" id="aclassUMoveAssetsCommandlet_html_a729bff8504f34d7f3bc59b6195d5fcb7"><div class="ttname"><a href="../../dc/dc1/classUMoveAssetsCommandlet.html#a729bff8504f34d7f3bc59b6195d5fcb7">UMoveAssetsCommandlet::AssetsObjectLibrary</a></div><div class="ttdeci">UObjectLibrary * AssetsObjectLibrary</div><div class="ttdoc">用于在对象库中加载资产。 已加载的数据存储在 “资产数据” 中。</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d29/MoveAssetsCommandlet_8h_source.html#l00079">MoveAssetsCommandlet.h:79</a></div></div>
+<div class="ttc" id="aclassUMoveAssetsCommandlet_html_ac3dae8cf42164e5865c4e47f03708f9d"><div class="ttname"><a href="../../dc/dc1/classUMoveAssetsCommandlet.html#ac3dae8cf42164e5865c4e47f03708f9d">UMoveAssetsCommandlet::UMoveAssetsCommandlet</a></div><div class="ttdeci">UMoveAssetsCommandlet()</div><div class="ttdoc">默认构造函数.</div><div class="ttdef"><b>Definition:</b> <a href="../../da/ddf/MoveAssetsCommandlet_8cpp_source.html#l00011">MoveAssetsCommandlet.cpp:11</a></div></div>
+<div class="ttc" id="aclassUObject_html"><div class="ttname"><a href="../../df/def/classUObject.html">UObject</a></div></div>
+<div class="ttc" id="astructFMovePackageParams_html"><div class="ttname"><a href="../../d6/de6/structFMovePackageParams.html">FMovePackageParams</a></div><div class="ttdoc">包含 “包参数” 的结构体， 用于在调用此命令行工具时存储已解析的参数。</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d29/MoveAssetsCommandlet_8h_source.html#l00022">MoveAssetsCommandlet.h:23</a></div></div>
+<div class="ttc" id="astructFMovePackageParams_html_a408c5eceba441edc94591b4f7712e279"><div class="ttname"><a href="../../d6/de6/structFMovePackageParams.html#a408c5eceba441edc94591b4f7712e279">FMovePackageParams::MapNames</a></div><div class="ttdeci">TArray&lt; FString &gt; MapNames</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d29/MoveAssetsCommandlet_8h_source.html#l00028">MoveAssetsCommandlet.h:28</a></div></div>
+<div class="ttc" id="astructFMovePackageParams_html_a490f303fca5eefa63c3d2e8975d1034a"><div class="ttname"><a href="../../d6/de6/structFMovePackageParams.html#a490f303fca5eefa63c3d2e8975d1034a">FMovePackageParams::Name</a></div><div class="ttdeci">FString Name</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d29/MoveAssetsCommandlet_8h_source.html#l00026">MoveAssetsCommandlet.h:26</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

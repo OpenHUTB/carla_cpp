@@ -1,0 +1,436 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: ActorRegistry.cpp 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_2d15d0715a2692171bd03ed14a4a79af.html">Unreal</a></li><li class="navelem"><a class="el" href="../../dir_d3c1db2570616bec48bf5a6dd06bce95.html">CarlaUE4</a></li><li class="navelem"><a class="el" href="../../dir_3538576148ac14151677be9b0aee6fcc.html">Plugins</a></li><li class="navelem"><a class="el" href="../../dir_fbda5b12374c683cbdca72abb2d51944.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_18937e8f6bde63367bf26837323a9508.html">Source</a></li><li class="navelem"><a class="el" href="../../dir_8fc34afb5f07a67966c78bf5319f94ae.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_31691989b6ffa820edb06b9eb32cc520.html">Actor</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">ActorRegistry.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d3/df3/ActorRegistry_8cpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// 版权所有 （c） 2017 巴塞罗那自治大学 （UAB） 计算机视觉中心 （CVC）。</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">// 本作品根据 MIT 许可证的条款进行许可。</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// 有关副本，请参阅 &lt;https://opensource.org/licenses/MIT&gt;。</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">// 包含Carla相关的主头文件，可能定义了Carla项目中一些基础的类型、宏以及常用的功能等，是整个Carla相关代码的核心头文件</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="../../d7/d7d/Carla_8h.html">Carla.h</a>&quot;</span>  </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">// 包含Actor数据相关的头文件，可能定义了和Actor在Carla中存储、传递等相关的数据结构等内容</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="../../de/d7d/ActorData_8h.html">Carla/Actor/ActorData.h</a>&quot;</span>  </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">// 包含Actor注册相关的头文件，大概率用于管理Actor在系统中的注册、查找等操作相关的类和函数声明等</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="../../da/de4/ActorRegistry_8h.html">Carla/Actor/ActorRegistry.h</a>&quot;</span>  </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">// 包含Carla游戏中标签相关功能的头文件，可能用于处理游戏中各种对象的标签设定、获取等操作</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="../../d7/d06/Tagger_8h.html">Carla/Game/Tagger.h</a>&quot;</span>  </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">// 包含交通信号灯基础相关的头文件，用于定义交通信号灯相关的类以及操作函数等（和交通模拟相关的部分）</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="../../d9/d29/TrafficLightBase_8h.html">Carla/Traffic/TrafficLightBase.h</a>&quot;</span>  </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">// 包含用于计算边界框相关的头文件，可用于获取游戏中Actor的边界框信息（比如碰撞检测等场景会用到边界框）</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &quot;<a class="code" href="../../d8/dca/BoundingBoxCalculator_8h.html">Carla/Util/BoundingBoxCalculator.h</a>&quot;</span>  </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment">// 包含传感器相关的头文件，定义了Carla中传感器相关的类以及其操作函数等（用于模拟各种传感器行为）</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &quot;<a class="code" href="../../d7/d7d/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Sensor_2Sensor_8h.html">Carla/Sensor/Sensor.h</a>&quot;</span>  </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment">// 包含用于禁用UE4相关宏的头文件，可能在编译时避免一些UE4宏定义带来的影响（特定编译环境需求）</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;<a class="code" href="../../d2/d02/disable-ue4-macros_8h.html">compiler/disable-ue4-macros.h</a>&gt;</span>  </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment">// 包含Carla流媒体相关的Token头文件，可能用于处理流媒体传输过程中的标识、验证等相关功能（涉及数据传输部分）</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;<a class="code" href="../../dc/d33/Token_8h.html">carla/streaming/Token.h</a>&quot;</span>  </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment">// 包含Carla流媒体详细的Token头文件，可能是更具体深入的关于流媒体Token的定义和操作相关内容</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &quot;<a class="code" href="../../d9/d9d/detail_2Token_8h.html">carla/streaming/detail/Token.h</a>&quot;</span>  </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment">// 包含用于启用UE4相关宏的头文件，和前面禁用的对应，恢复UE4宏在编译时的正常作用</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &lt;<a class="code" href="../../d9/da2/enable-ue4-macros_8h.html">compiler/enable-ue4-macros.h</a>&gt;</span>  </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">// 使用命名空间别名crp来简化carla::rpc的书写，方便后续代码中使用rpc相关的类型、函数等</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../de/d6c/namespacecarla_1_1rpc.html">crp</a> = <a class="code hl_namespace" href="../../de/d6c/namespacecarla_1_1rpc.html">carla::rpc</a>;  </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment">// 定义FActorRegistry类中的静态成员变量ID_COUNTER，用于为注册的Actor分配唯一的ID，初始值为0（无符号整数类型）</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><a class="code hl_typedef" href="../../df/db5/classFActorRegistry.html#a44792724170a49d07132f13d220f2d5c">FActorRegistry::IdType</a> FActorRegistry::ID_COUNTER = 0u;  </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment">// 定义一个静态函数FActorRegistry_GetActorType，用于根据传入的AActor指针判断其对应的Actor类型</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment">// 参数Actor为指向AActor类型的指针，代表需要判断类型的游戏中的Actor对象</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="../../d3/df3/ActorRegistry_8cpp.html#ac3e95a366a763c6697781fa34a9f4064">   39</a></span><span class="keyword">static</span> <a class="code hl_enumeration" href="../../dc/dde/classFCarlaActor.html#a68463a6ebe4a8d0364996c5d84af4279">FCarlaActor::ActorType</a> <a class="code hl_function" href="../../d3/df3/ActorRegistry_8cpp.html#ac3e95a366a763c6697781fa34a9f4064">FActorRegistry_GetActorType</a>(<span class="keyword">const</span> <a class="code hl_class" href="../../d1/da4/classAActor.html">AActor</a> *<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>)  </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>{</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="comment">// 如果传入的Actor指针为空，说明没有有效的Actor对象，返回无效类型（INVALID）</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>)  </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="../../dc/dde/classFCarlaActor.html#a68463a6ebe4a8d0364996c5d84af4279accc0377a8afbf50e7094f5c23a8af223">FCarlaActor::ActorType::INVALID</a>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    }</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="comment">// 判断传入的Actor是否可以转换为ACarlaWheeledVehicle类型，如果可以，说明是车辆类型的Actor，返回Vehicle类型</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordflow">if</span> (<span class="keyword">nullptr</span>!= Cast&lt;ACarlaWheeledVehicle&gt;(<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>))  </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    {</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="../../dc/dde/classFCarlaActor.html#a68463a6ebe4a8d0364996c5d84af4279ad6af9c1eaff2a89ebd3f8d0c542be12b">FCarlaActor::ActorType::Vehicle</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    }</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="comment">// 判断是否可以转换为ACharacter类型，如果可以，说明是行人（角色）类型的Actor，返回Walker类型</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<span class="keyword">nullptr</span>!= Cast&lt;ACharacter&gt;(<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>))  </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    {</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="../../dc/dde/classFCarlaActor.html#a68463a6ebe4a8d0364996c5d84af4279ad719083f59856e34a37e2137e2241d80">FCarlaActor::ActorType::Walker</a>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    }</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="comment">// 判断是否可以转换为ATrafficLightBase类型，如果可以，说明是交通信号灯类型的Actor，返回TrafficLight类型</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<span class="keyword">nullptr</span>!= Cast&lt;ATrafficLightBase&gt;(<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>))  </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    {</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="../../dc/dde/classFCarlaActor.html#a68463a6ebe4a8d0364996c5d84af4279a63d457eeae119cb7c5618ff7b770a9c3">FCarlaActor::ActorType::TrafficLight</a>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    }</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="comment">// 判断是否可以转换为ATrafficSignBase类型，如果可以，说明是交通标识类型的Actor，返回TrafficSign类型</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<span class="keyword">nullptr</span>!= Cast&lt;ATrafficSignBase&gt;(<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>))  </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    {</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="../../dc/dde/classFCarlaActor.html#a68463a6ebe4a8d0364996c5d84af4279acf2604c5e6922e73ffa77da5dc026d9d">FCarlaActor::ActorType::TrafficSign</a>;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    }</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="comment">// 判断是否可以转换为ASensor类型，如果可以，说明是传感器类型的Actor，返回Sensor类型</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<span class="keyword">nullptr</span>!= Cast&lt;ASensor&gt;(<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>))  </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    {</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="../../dc/dde/classFCarlaActor.html#a68463a6ebe4a8d0364996c5d84af4279a06b185256c71c1aec263c6e22bf8ef6b">FCarlaActor::ActorType::Sensor</a>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    }</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="comment">// 如果都不符合上述类型判断，返回其他类型（Other）表示不属于前面明确分类的Actor类型</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordflow">else</span>  </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    {</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="../../dc/dde/classFCarlaActor.html#a68463a6ebe4a8d0364996c5d84af4279a6311ae17c1ee52b36e68aaf4ad066387">FCarlaActor::ActorType::Other</a>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    }</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>}</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="comment">// 定义函数CarlaGetRelevantTagAsString，用于从给定的语义标签集合中获取一个相关的、合适的标签字符串表示</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="comment">// 参数SemanticTags是一个包含crp::CityObjectLabel类型元素的集合，代表语义标签集合</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="../../d3/df3/ActorRegistry_8cpp.html#a8abf4ba163a234c4027a897a1b5d6bd3">   81</a></span>FString <a class="code hl_function" href="../../d3/df3/ActorRegistry_8cpp.html#a8abf4ba163a234c4027a897a1b5d6bd3">CarlaGetRelevantTagAsString</a>(<span class="keyword">const</span> TSet&lt;crp::CityObjectLabel&gt; &amp;SemanticTags)  </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>{</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="comment">// 遍历传入的语义标签集合SemanticTags</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;&amp;Tag : SemanticTags)  </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    {</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        <span class="comment">// 排除特定的无意义标签（None和Other），寻找合适的标签进行处理</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        <span class="keywordflow">if</span> ((Tag!= crp::CityObjectLabel::None) &amp;&amp; (Tag!= crp::CityObjectLabel::Other))  </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        {</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>            <span class="comment">// 将标签转换为字符串并转换为小写形式</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>            <span class="keyword">auto</span> Str = <a class="code hl_function" href="../../da/d86/classATagger.html#a2b8ab63680928bbd944deecb7e87ec23">ATagger::GetTagAsString</a>(Tag).ToLower();  </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>            <span class="comment">// 如果字符串以&#39;s&#39;结尾，去除末尾的&#39;s&#39;（可能是处理复数形式等情况），然后返回处理后的字符串</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>            <span class="keywordflow">return</span> (Str.EndsWith(TEXT(<span class="stringliteral">&quot;s&quot;</span>))? Str.LeftChop(1) : Str);  </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        }</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    }</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="comment">// 如果没有找到合适的标签，返回&quot;unknown&quot;表示未知标签情况</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="keywordflow">return</span> TEXT(<span class="stringliteral">&quot;unknown&quot;</span>);  </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>}</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="comment">// FActorRegistry类的成员函数Register，用于注册一个Actor到Actor注册系统中，返回注册后的FCarlaActor指针</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="comment">// 参数Actor是要注册的AActor类型的引用，代表实际的游戏Actor对象</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="comment">// 参数Description是FActorDescription类型，包含了Actor的描述信息（如名称、属性等）</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="comment">// 参数DesiredId是期望为Actor分配的ID（可选参数，若为0则自动分配）</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="../../df/db5/classFActorRegistry.html#a6bd1983faa1a28db04d21cdd7fd49d2e">  103</a></span><a class="code hl_class" href="../../dc/dde/classFCarlaActor.html">FCarlaActor</a>* <a class="code hl_function" href="../../df/db5/classFActorRegistry.html#a6bd1983faa1a28db04d21cdd7fd49d2e">FActorRegistry::Register</a>(<a class="code hl_class" href="../../d1/da4/classAActor.html">AActor</a> &amp;<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>, <a class="code hl_struct" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> Description, <a class="code hl_typedef" href="../../df/db5/classFActorRegistry.html#a44792724170a49d07132f13d220f2d5c">IdType</a> DesiredId)  </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>{</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="comment">// 尝试查找具有指定DesiredId的已注册的FCarlaActor对象（可能是检查是否已存在或复用等情况）</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <a class="code hl_class" href="../../dc/dde/classFCarlaActor.html">FCarlaActor</a>* CarlaActor = <a class="code hl_function" href="../../df/db5/classFActorRegistry.html#aad0e91aea1c0849ca9917af82d4ec0d1">FindCarlaActor</a>(DesiredId);  </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="comment">// 判断找到的CarlaActor是否存在且处于休眠状态（IsDormant为真表示休眠）</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keywordtype">bool</span> IsDormant = CarlaActor &amp;&amp; (CarlaActor-&gt;<a class="code hl_function" href="../../dc/dde/classFCarlaActor.html#a49f76353c69e02542858ed2cf6eeb000">IsDormant</a>());  </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="comment">// 如果是休眠状态的已注册Actor，进行重新关联等操作</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keywordflow">if</span> (IsDormant)  </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    {</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <span class="comment">// 将当前要注册的Actor关联到已有的CarlaActor对象上</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        CarlaActor-&gt;<a class="code hl_variable" href="../../dc/dde/classFCarlaActor.html#a633debc132e66e006af62dd1351800e2">TheActor</a> = &amp;<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>;  </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        <span class="comment">// 在Actors映射中添加（或更新）Actor与指定ID的关联</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        <a class="code hl_variable" href="../../da/de4/ActorRegistry_8h.html#a5e542cb6ab8b541d546c15454898ae78">Actors</a>.Add(DesiredId, &amp;<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>);  </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        <span class="comment">// 在Ids映射中添加（或更新）Actor指针与ID的反向关联</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        <a class="code hl_variable" href="../../da/de4/ActorRegistry_8h.html#abe8170d6ab0f0c7d75e3f99b20def727">Ids</a>.Add(&amp;<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>, DesiredId);  </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        <span class="comment">// 返回已处理好的CarlaActor指针，表示注册完成（复用已有的）</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        <span class="keywordflow">return</span> CarlaActor;  </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    }</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="comment">// 如果不是复用休眠状态的Actor，则为其分配一个新的ID，通过自增全局的ID计数器来获取新ID</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <a class="code hl_typedef" href="../../df/db5/classFActorRegistry.html#a44792724170a49d07132f13d220f2d5c">IdType</a> Id = ++FActorRegistry::ID_COUNTER;  </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <span class="comment">// 如果传入了期望的ID（DesiredId）且新分配的ID与期望的ID不一致，则进行以下处理</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="keywordflow">if</span> (DesiredId!= 0 &amp;&amp; Id!= DesiredId) {  </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        <span class="comment">// 检查期望的ID是否没有被其他Actor占用，如果没被占用则使用期望的ID</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="../../da/de4/ActorRegistry_8h.html#a5e542cb6ab8b541d546c15454898ae78">Actors</a>.Contains(DesiredId))  </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        {</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>            Id = DesiredId;  </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>            <span class="comment">// 如果全局ID计数器的值小于期望使用的ID，更新全局ID计数器的值为期望的ID（保证计数器始终是最大的ID值）</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>            <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../da/de4/ActorRegistry_8h.html#a288ef410b78bccd71f1bf1bcf405e36f">ID_COUNTER</a> &lt; Id)  </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>                <a class="code hl_variable" href="../../da/de4/ActorRegistry_8h.html#a288ef410b78bccd71f1bf1bcf405e36f">ID_COUNTER</a> = Id;  </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        }</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    }</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="comment">// 在Actors映射中添加新的Actor与分配的ID的关联</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <a class="code hl_variable" href="../../da/de4/ActorRegistry_8h.html#a5e542cb6ab8b541d546c15454898ae78">Actors</a>.Emplace(Id, &amp;<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>);  </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="comment">// 检查是否已经存在当前Actor指针的注册记录，如果存在则输出警告日志（可能存在重复注册等异常情况）</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../da/de4/ActorRegistry_8h.html#abe8170d6ab0f0c7d75e3f99b20def727">Ids</a>.Contains(&amp;<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>))  </div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    {</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>        <a class="code hl_function" href="../../d0/d6a/ActorDispatcher_8cpp.html#a69d0a7232310b5ebaa51abb2b9945184">UE_LOG</a>(</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>            LogCarla,</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>            Warning,</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>            TEXT(<span class="stringliteral">&quot;This actor&#39;s memory address is already registered, &quot;</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>                 <span class="stringliteral">&quot;either you forgot to deregister the actor &quot;</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>                 <span class="stringliteral">&quot;or the actor was garbage collected.&quot;</span>));</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    }</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="comment">// 在Ids映射中添加Actor指针与新分配ID的反向关联</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <a class="code hl_variable" href="../../da/de4/ActorRegistry_8h.html#abe8170d6ab0f0c7d75e3f99b20def727">Ids</a>.Emplace(&amp;<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>, Id);  </div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="comment">// 创建一个新的FCarlaActor的共享指针View，包含了Actor的各种信息（如ID、描述、状态等）</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    TSharedPtr&lt;FCarlaActor&gt; View =</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        <a class="code hl_function" href="../../da/de4/ActorRegistry_8h.html#a225b72e853e82cfa99ae57ce596b8d76">MakeCarlaActor</a>(Id, <a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>, std::move(Description), crp::ActorState::Active);  </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <span class="comment">// 将新创建的FCarlaActor共享指针添加到ActorDatabase映射中，使用分配的ID作为键，并获取添加后的引用（Result）</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    TSharedPtr&lt;FCarlaActor&gt;&amp; Result = <a class="code hl_variable" href="../../da/de4/ActorRegistry_8h.html#a27e483868bc1b01ef701f001ff2bfbce">ActorDatabase</a>.Emplace(Id, MoveTemp(View));  </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="comment">// 进行一致性检查，确保Actors映射中的元素数量和ActorDatabase映射中的元素数量相等（数据一致性校验）</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    check(<span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(<a class="code hl_variable" href="../../da/de4/ActorRegistry_8h.html#a5e542cb6ab8b541d546c15454898ae78">Actors</a>.Num()) == <a class="code hl_variable" href="../../da/de4/ActorRegistry_8h.html#a27e483868bc1b01ef701f001ff2bfbce">ActorDatabase</a>.Num());  </div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <span class="comment">// 返回注册后的FCarlaActor的指针，代表注册成功后的Actor对象在系统中的表示</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="keywordflow">return</span> Result.Get();  </div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>}</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span><span class="comment">// FActorRegistry类的成员函数Deregister，用于根据指定的ID注销一个已注册的Actor</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="comment">// 参数Id是要注销的Actor的ID类型，通过这个ID来查找并移除对应的Actor注册信息</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno"><a class="line" href="../../df/db5/classFActorRegistry.html#a9d941257df9af5f171a84eb297a8d0ba">  167</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../df/db5/classFActorRegistry.html#a9d941257df9af5f171a84eb297a8d0ba">FActorRegistry::Deregister</a>(<a class="code hl_typedef" href="../../df/db5/classFActorRegistry.html#a44792724170a49d07132f13d220f2d5c">IdType</a> Id)  </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>{</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    <span class="comment">// 根据传入的ID查找对应的FCarlaActor对象</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <a class="code hl_class" href="../../dc/dde/classFCarlaActor.html">FCarlaActor</a>* CarlaActor = <a class="code hl_function" href="../../df/db5/classFActorRegistry.html#aad0e91aea1c0849ca9917af82d4ec0d1">FindCarlaActor</a>(Id);  </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="comment">// 如果没找到对应的Actor（CarlaActor为nullptr），直接返回，不进行后续注销操作</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="keywordflow">if</span> (!CarlaActor) <span class="keywordflow">return</span>;  </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="comment">// 获取要注销的Actor对应的AActor指针</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    <a class="code hl_class" href="../../d1/da4/classAActor.html">AActor</a> *<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a> = CarlaActor-&gt;<a class="code hl_function" href="../../dc/dde/classFCarlaActor.html#a4d2752987e47827efd488b90053ad415">GetActor</a>();  </div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span> </div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    <span class="comment">// 从ActorDatabase映射中移除指定ID对应的Actor记录</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    <a class="code hl_variable" href="../../da/de4/ActorRegistry_8h.html#a27e483868bc1b01ef701f001ff2bfbce">ActorDatabase</a>.Remove(Id);  </div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    <span class="comment">// 从Actors映射中移除指定ID与Actor的关联</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    <a class="code hl_variable" href="../../da/de4/ActorRegistry_8h.html#a5e542cb6ab8b541d546c15454898ae78">Actors</a>.Remove(Id);  </div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    <span class="comment">// 从Ids映射中移除Actor指针与ID的反向关联</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <a class="code hl_variable" href="../../da/de4/ActorRegistry_8h.html#abe8170d6ab0f0c7d75e3f99b20def727">Ids</a>.Remove(<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>);  </div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <span class="comment">// 将对应的FCarlaActor对象中的Actor指针置为空，表示已注销该Actor</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    CarlaActor-&gt;<a class="code hl_variable" href="../../dc/dde/classFCarlaActor.html#a633debc132e66e006af62dd1351800e2">TheActor</a> = <span class="keyword">nullptr</span>;  </div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <span class="comment">// 进行一致性检查，确保Actors映射中的元素数量和ActorDatabase映射中的元素数量相等（数据一致性校验）</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    check(<span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(<a class="code hl_variable" href="../../da/de4/ActorRegistry_8h.html#a5e542cb6ab8b541d546c15454898ae78">Actors</a>.Num()) == <a class="code hl_variable" href="../../da/de4/ActorRegistry_8h.html#a27e483868bc1b01ef701f001ff2bfbce">ActorDatabase</a>.Num());  </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>}</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span><span class="comment">// FActorRegistry类的成员函数Deregister的重载版本，用于根据传入的AActor指针注销对应的Actor</span></div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="comment">// 参数Actor是指向要注销的AActor类型的指针，通过这个指针来查找并移除对应的Actor注册信息</span></div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno"><a class="line" href="../../df/db5/classFActorRegistry.html#a3eea5a807755ac58637889d28eed014f">  194</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../df/db5/classFActorRegistry.html#a9d941257df9af5f171a84eb297a8d0ba">FActorRegistry::Deregister</a>(<a class="code hl_class" href="../../d1/da4/classAActor.html">AActor</a> *<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>)  </div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>{</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    <span class="comment">// 检查传入的Actor指针是否为空，确保有有效的Actor对象要注销</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    check(<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>!= <span class="keyword">nullptr</span>);  </div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    <span class="comment">// 根据传入的Actor指针查找对应的FCarlaActor对象</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <a class="code hl_class" href="../../dc/dde/classFCarlaActor.html">FCarlaActor</a>* CarlaActor = <a class="code hl_function" href="../../df/db5/classFActorRegistry.html#aad0e91aea1c0849ca9917af82d4ec0d1">FindCarlaActor</a>(<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>);  </div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <span class="comment">// 检查找到的FCarlaActor对象对应的Actor指针是否和传入的Actor指针一致（确保查找正确）</span></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    check(CarlaActor-&gt;<a class="code hl_function" href="../../dc/dde/classFCarlaActor.html#a4d2752987e47827efd488b90053ad415">GetActor</a>() == <a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>);  </div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    <span class="comment">// 调用另一个重载的Deregister函数，通过获取到的CarlaActor对象的ID来进行注销操作</span></div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    <a class="code hl_function" href="../../df/db5/classFActorRegistry.html#a9d941257df9af5f171a84eb297a8d0ba">Deregister</a>(CarlaActor-&gt;<a class="code hl_function" href="../../dc/dde/classFCarlaActor.html#aca3d1a4bfcb5e0ae1974b7206933d665">GetActorId</a>());  </div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>}</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span><span class="comment">// FActorRegistry类的成员函数MakeCarlaActor，用于创建一个新的FCarlaActor对象，返回其共享指针</span></div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span><span class="comment">// 参数Id是要创建的FCarlaActor的ID类型，用于标识这个Actor</span></div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span><span class="comment">// 参数Actor是AActor类型的引用，代表实际的游戏Actor对象，用于关联到创建的FCarlaActor上</span></div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span><span class="comment">// 参数Description是FActorDescription类型，包含了Actor的描述信息（如名称、属性等）</span></div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span><span class="comment">// 参数InState是crp::ActorState类型，用于指定Actor的初始状态（如活跃、休眠等）</span></div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno"><a class="line" href="../../da/de4/ActorRegistry_8h.html#a225b72e853e82cfa99ae57ce596b8d76">  211</a></span>TSharedPtr&lt;FCarlaActor&gt; FActorRegistry::MakeCarlaActor(</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    IdType Id,</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <a class="code hl_class" href="../../d1/da4/classAActor.html">AActor</a> &amp;<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>,</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    <a class="code hl_struct" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> Description,</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    <a class="code hl_enumeration" href="../../de/d6c/namespacecarla_1_1rpc.html#a05a30f3aa05ff2c5d120170d22c0fbf3">crp::ActorState</a> <a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#a83f2c055d62cc9e6bd0eb72d4552e333">InState</a>)<span class="keyword"> const  </span></div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    <span class="comment">// 创建一个新的FActorInfo的共享指针Info，用于存储Actor的详细信息</span></div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    <span class="keyword">auto</span> <a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#aacc2aff1804a5661b998a6c9053e4581">Info</a> = MakeShared&lt;FActorInfo&gt;();  </div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    <span class="comment">// 将传入的Description移动赋值给Info中的Description成员，转移所有权，存储Actor的描述信息</span></div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#aacc2aff1804a5661b998a6c9053e4581">Info</a>-&gt;Description = std::move(Description);  </div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    <span class="comment">// 通过ATagger的函数获取Actor的语义标签，并存储到Info的SemanticTags成员中</span></div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    <a class="code hl_function" href="../../da/d86/classATagger.html#a0b0f80c02d73e342e07bd177b6572774">ATagger::GetTagsOfTaggedActor</a>(<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>, <a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#aacc2aff1804a5661b998a6c9053e4581">Info</a>-&gt;SemanticTags);  </div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    <span class="comment">// 通过边界框计算函数获取Actor的边界框信息，并存储到Info的BoundingBox成员中</span></div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    <a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#aacc2aff1804a5661b998a6c9053e4581">Info</a>-&gt;BoundingBox = <a class="code hl_function" href="../../df/d02/classUBoundingBoxCalculator.html#af7bad4e6896754f731f278a20ab7cbff">UBoundingBoxCalculator::GetActorBoundingBox</a>(&amp;<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>);  </div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    <span class="comment">// 如果Info中的Description的ID为空字符串，说明可能缺少明确标识，进行以下伪造身份处理</span></div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#aacc2aff1804a5661b998a6c9053e4581">Info</a>-&gt;Description.Id.IsEmpty())  </div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    {</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>        <span class="comment">// 根据Actor的语义标签获取一个相关的字符串作为标识，格式为&quot;static.&quot;加上相关标签字符串</span></div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>        <a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#aacc2aff1804a5661b998a6c9053e4581">Info</a>-&gt;Description.Id = TEXT(<span class="stringliteral">&quot;static.&quot;</span>) + <a class="code hl_function" href="../../d3/df3/ActorRegistry_8cpp.html#a8abf4ba163a234c4027a897a1b5d6bd3">CarlaGetRelevantTagAsString</a>(<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#aacc2aff1804a5661b998a6c9053e4581">Info</a>-&gt;SemanticTags);  </div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    }</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span> </div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    <span class="comment">// 将当前创建的FCarlaActor的ID赋值给Info中序列化数据的ID成员</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    <a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#aacc2aff1804a5661b998a6c9053e4581">Info</a>-&gt;SerializedData.id = Id;  </div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    <span class="comment">// 将Info中的Description赋值给Info中序列化数据的描述成员，存储描述信息</span></div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    <a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#aacc2aff1804a5661b998a6c9053e4581">Info</a>-&gt;SerializedData.description = <a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#aacc2aff1804a5661b998a6c9053e4581">Info</a>-&gt;Description;  </div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    <span class="comment">// 将Info中的边界框信息赋值给Info中序列化数据的边界框成员，存储边界框信息</span></div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    <a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#aacc2aff1804a5661b998a6c9053e4581">Info</a>-&gt;SerializedData.bounding_box = <a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#aacc2aff1804a5661b998a6c9053e4581">Info</a>-&gt;BoundingBox;  </div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    <span class="comment">// 预留一定空间用于存储语义标签序列化数据，数量和Info中的语义标签集合数量一致</span></div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    <a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#aacc2aff1804a5661b998a6c9053e4581">Info</a>-&gt;SerializedData.semantic_tags.reserve(<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#aacc2aff1804a5661b998a6c9053e4581">Info</a>-&gt;SemanticTags.Num());  </div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    <span class="comment">// 遍历Info中的语义标签集合，将每个标签转换为合适的类型并添加到序列化数据的语义标签成员中</span></div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;&amp;Tag : <a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#aacc2aff1804a5661b998a6c9053e4581">Info</a>-&gt;SemanticTags)  </div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    {</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>        <span class="keyword">using </span>tag_t = <span class="keyword">decltype</span>(<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#aacc2aff1804a5661b998a6c9053e4581">Info</a>-&gt;SerializedData.semantic_tags)::value_type;  </div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>        <a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#aacc2aff1804a5661b998a6c9053e4581">Info</a>-&gt;SerializedData.semantic_tags.emplace_back(<span class="keyword">static_cast&lt;</span>tag_t<span class="keyword">&gt;</span>(Tag));  </div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    }</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    <span class="comment">// 将传入的Actor指针转换为ASensor类型指针，检查是否是传感器类型的Actor</span></div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    <span class="keyword">auto</span> *Sensor = Cast&lt;ASensor&gt;(&amp;<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>);  </div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    <span class="keywordflow">if</span> (Sensor!= <span class="keyword">nullptr</span>)  </div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    {</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>        <span class="comment">// 获取传感器的Token信息，并将其转换为合适的数据类型存储到Info中序列化数据的流Token成员中</span></div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>        <span class="keyword">const</span> <span class="keyword">auto</span> &amp;Token = Sensor-&gt;GetToken();  </div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>        <a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#aacc2aff1804a5661b998a6c9053e4581">Info</a>-&gt;SerializedData.stream_token = <span class="keyword">decltype</span>(<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#aacc2aff1804a5661b998a6c9053e4581">Info</a>-&gt;SerializedData.stream_token)(</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>            std::begin(Token.data),</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>            std::end(Token.data));  </div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    }</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    <span class="comment">// 通过函数FActorRegistry_GetActorType获取Actor的类型</span></div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    <span class="keyword">auto</span> Type = <a class="code hl_function" href="../../d3/df3/ActorRegistry_8cpp.html#ac3e95a366a763c6697781fa34a9f4064">FActorRegistry_GetActorType</a>(&amp;<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>);  </div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    <span class="comment">// 调用FCarlaActor的构造函数创建一个新的FCarlaActor对象，传入相关参数，并返回其共享指针</span></div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    TSharedPtr&lt;FCarlaActor&gt; CarlaActor =</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>        <a class="code hl_function" href="../../dc/dde/classFCarlaActor.html#a1aa065098773d4bda6b94690369ab858">FCarlaActor::ConstructCarlaActor</a>(</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>            Id, &amp;<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>,</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>            std::move(<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#aacc2aff1804a5661b998a6c9053e4581">Info</a>), Type,</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>            <a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#a83f2c055d62cc9e6bd0eb72d4552e333">InState</a>, <a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>.GetWorld());  </div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    <span class="keywordflow">return</span> CarlaActor;  </div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>}</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span> </div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span><span class="comment">// FActorRegistry类的成员函数PutActorToSleep，用于将指定ID的Actor及其子Actor设置为休眠状态</span></div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span><span class="comment">// 参数Id是要设置为休眠状态的Actor的ID类型，通过这个ID来查找对应的Actor</span></div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span><span class="comment">// 参数CarlaEpisode可能是和游戏场景、关卡等相关的对象指针，用于关联Actor与具体的游戏环境（具体依Carla架构而定）</span></div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span><span class="keywordtype">void</span> FActorRegistry::PutActorToSleep(<a class="code hl_typedef" href="../../dc/dde/classFCarlaActor.html#a53f48fc36ec77caebfba6f8ecacea5ba">FCarlaActor::IdType</a> Id, UCarlaEpisode* CarlaEpisode)  </div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>{</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    <span class="comment">// 根据传入的ID查找对应的FCarlaActor对象</span></div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    <a class="code hl_class" href="../../dc/dde/classFCarlaActor.html">FCarlaActor</a>* CarlaActor = <a class="code hl_function" href="../../df/db5/classFActorRegistry.html#aad0e91aea1c0849ca9917af82d4ec0d1">FindCarlaActor</a>(Id);  </div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span> </div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>    <span class="comment">// 更新Actors映射中指定ID对应的Actor指针为nullptr，表示该Actor进入休眠状态（从活跃关联中移除）</span></div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    <a class="code hl_variable" href="../../da/de4/ActorRegistry_8h.html#a5e542cb6ab8b541d546c15454898ae78">Actors</a>[Id] = <span class="keyword">nullptr</span>;  </div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    <span class="comment">// 获取对应的AActor指针</span></div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    <a class="code hl_class" href="../../d1/da4/classAActor.html">AActor</a>* <a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a> = CarlaActor-&gt;<a class="code hl_function" href="../../dc/dde/classFCarlaActor.html#a4d2752987e47827efd488b90053ad415">GetActor</a>();  </div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    <span class="comment">// 如果Actor指针不为空，从Ids映射中移除该Actor指针与ID的反向关联（解除关联）</span></div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>)  </div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    {</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>        <a class="code hl_variable" href="../../da/de4/ActorRegistry_8h.html#abe8170d6ab0f0c7d75e3f99b20def727">Ids</a>.Remove(<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>);  </div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    }</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span> </div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    <span class="comment">// 调用FCarlaActor对象的PutActorToSleep函数，将其自身设置为休眠状态，并传入相关游戏环境对象指针</span></div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>    CarlaActor-&gt;<a class="code hl_function" href="../../dc/dde/classFCarlaActor.html#afd3f1ceaa2f09b155da25fbd5f746f2b">PutActorToSleep</a>(CarlaEpisode);  </div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    <span class="comment">// 遍历该Actor的所有子Actor的ID列表，递归调用PutActorToSleep函数，将子Actor也设置为休眠状态</span></div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code hl_typedef" href="../../dc/dde/classFCarlaActor.html#a53f48fc36ec77caebfba6f8ecacea5ba">FCarlaActor::IdType</a>&amp; ChildId : CarlaActor-&gt;<a class="code hl_function" href="../../dc/dde/classFCarlaActor.html#afba1dec827b32b089f43eb3f12d57065">GetChildren</a>())  </div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    {</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>        <a class="code hl_function" href="../../da/de4/ActorRegistry_8h.html#ad6c567d5c73da4b5e31745d200cefbae">PutActorToSleep</a>(ChildId, CarlaEpisode);  </div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>    }</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>    <span class="comment">// TODO：更新ID映射，这里可能是后续需要完善的部分，比如进一步处理休眠状态下ID映射的一些细节调整等（目前代码未完整实现这部分功能）</span></div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>}</div>
+<div class="ttc" id="aActorData_8h_html"><div class="ttname"><a href="../../de/d7d/ActorData_8h.html">ActorData.h</a></div></div>
+<div class="ttc" id="aActorDispatcher_8cpp_html_a69d0a7232310b5ebaa51abb2b9945184"><div class="ttname"><a href="../../d0/d6a/ActorDispatcher_8cpp.html#a69d0a7232310b5ebaa51abb2b9945184">UE_LOG</a></div><div class="ttdeci">UE_LOG(LogCarla, Log, TEXT(&quot;UActorDispatcher::Destroying actor: '%s' %x&quot;), *Id, Actor)</div></div>
+<div class="ttc" id="aActorRegistry_8cpp_html_a8abf4ba163a234c4027a897a1b5d6bd3"><div class="ttname"><a href="../../d3/df3/ActorRegistry_8cpp.html#a8abf4ba163a234c4027a897a1b5d6bd3">CarlaGetRelevantTagAsString</a></div><div class="ttdeci">FString CarlaGetRelevantTagAsString(const TSet&lt; crp::CityObjectLabel &gt; &amp;SemanticTags)</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/df3/ActorRegistry_8cpp_source.html#l00081">ActorRegistry.cpp:81</a></div></div>
+<div class="ttc" id="aActorRegistry_8cpp_html_ac3e95a366a763c6697781fa34a9f4064"><div class="ttname"><a href="../../d3/df3/ActorRegistry_8cpp.html#ac3e95a366a763c6697781fa34a9f4064">FActorRegistry_GetActorType</a></div><div class="ttdeci">static FCarlaActor::ActorType FActorRegistry_GetActorType(const AActor *Actor)</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/df3/ActorRegistry_8cpp_source.html#l00039">ActorRegistry.cpp:39</a></div></div>
+<div class="ttc" id="aActorRegistry_8h_html"><div class="ttname"><a href="../../da/de4/ActorRegistry_8h.html">ActorRegistry.h</a></div></div>
+<div class="ttc" id="aActorRegistry_8h_html_a225b72e853e82cfa99ae57ce596b8d76"><div class="ttname"><a href="../../da/de4/ActorRegistry_8h.html#a225b72e853e82cfa99ae57ce596b8d76">MakeCarlaActor</a></div><div class="ttdeci">TSharedPtr&lt; FCarlaActor &gt; MakeCarlaActor(IdType Id, AActor &amp;Actor, FActorDescription Description, carla::rpc::ActorState InState) const</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/df3/ActorRegistry_8cpp_source.html#l00211">ActorRegistry.cpp:211</a></div></div>
+<div class="ttc" id="aActorRegistry_8h_html_a27e483868bc1b01ef701f001ff2bfbce"><div class="ttname"><a href="../../da/de4/ActorRegistry_8h.html#a27e483868bc1b01ef701f001ff2bfbce">ActorDatabase</a></div><div class="ttdeci">DatabaseType ActorDatabase</div><div class="ttdef"><b>Definition:</b> <a href="../../da/de4/ActorRegistry_8h_source.html#l00112">ActorRegistry.h:112</a></div></div>
+<div class="ttc" id="aActorRegistry_8h_html_a288ef410b78bccd71f1bf1bcf405e36f"><div class="ttname"><a href="../../da/de4/ActorRegistry_8h.html#a288ef410b78bccd71f1bf1bcf405e36f">ID_COUNTER</a></div><div class="ttdeci">static IdType ID_COUNTER</div><div class="ttdef"><b>Definition:</b> <a href="../../da/de4/ActorRegistry_8h_source.html#l00113">ActorRegistry.h:113</a></div></div>
+<div class="ttc" id="aActorRegistry_8h_html_a5e542cb6ab8b541d546c15454898ae78"><div class="ttname"><a href="../../da/de4/ActorRegistry_8h.html#a5e542cb6ab8b541d546c15454898ae78">Actors</a></div><div class="ttdeci">TMap&lt; IdType, AActor * &gt; Actors</div><div class="ttdef"><b>Definition:</b> <a href="../../da/de4/ActorRegistry_8h_source.html#l00110">ActorRegistry.h:110</a></div></div>
+<div class="ttc" id="aActorRegistry_8h_html_abe8170d6ab0f0c7d75e3f99b20def727"><div class="ttname"><a href="../../da/de4/ActorRegistry_8h.html#abe8170d6ab0f0c7d75e3f99b20def727">Ids</a></div><div class="ttdeci">TMap&lt; AActor *, IdType &gt; Ids</div><div class="ttdef"><b>Definition:</b> <a href="../../da/de4/ActorRegistry_8h_source.html#l00111">ActorRegistry.h:111</a></div></div>
+<div class="ttc" id="aActorRegistry_8h_html_ad6c567d5c73da4b5e31745d200cefbae"><div class="ttname"><a href="../../da/de4/ActorRegistry_8h.html#ad6c567d5c73da4b5e31745d200cefbae">PutActorToSleep</a></div><div class="ttdeci">void PutActorToSleep(IdType Id, UCarlaEpisode *CarlaEpisode)</div></div>
+<div class="ttc" id="aBoundingBoxCalculator_8h_html"><div class="ttname"><a href="../../d8/dca/BoundingBoxCalculator_8h.html">BoundingBoxCalculator.h</a></div></div>
+<div class="ttc" id="aCarlaActor_8cpp_html_a83f2c055d62cc9e6bd0eb72d4552e333"><div class="ttname"><a href="../../d3/d43/CarlaActor_8cpp.html#a83f2c055d62cc9e6bd0eb72d4552e333">InState</a></div><div class="ttdeci">TSharedPtr&lt; const FActorInfo &gt; carla::rpc::ActorState InState</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d43/CarlaActor_8cpp_source.html#l00081">CarlaActor.cpp:81</a></div></div>
+<div class="ttc" id="aCarlaActor_8cpp_html_aacc2aff1804a5661b998a6c9053e4581"><div class="ttname"><a href="../../d3/d43/CarlaActor_8cpp.html#aacc2aff1804a5661b998a6c9053e4581">Info</a></div><div class="ttdeci">TSharedPtr&lt; const FActorInfo &gt; Info</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d43/CarlaActor_8cpp_source.html#l00080">CarlaActor.cpp:80</a></div></div>
+<div class="ttc" id="aCarlaActor_8cpp_html_acf512646b33f06951fc18015682664e4"><div class="ttname"><a href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a></div><div class="ttdeci">TSharedPtr&lt; const FActorInfo &gt; carla::rpc::ActorState UWorld Actor</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d43/CarlaActor_8cpp_source.html#l00083">CarlaActor.cpp:83</a></div></div>
+<div class="ttc" id="aCarla_8h_html"><div class="ttname"><a href="../../d7/d7d/Carla_8h.html">Carla.h</a></div></div>
+<div class="ttc" id="aTagger_8h_html"><div class="ttname"><a href="../../d7/d06/Tagger_8h.html">Tagger.h</a></div></div>
+<div class="ttc" id="aToken_8h_html"><div class="ttname"><a href="../../dc/d33/Token_8h.html">Token.h</a></div></div>
+<div class="ttc" id="aTrafficLightBase_8h_html"><div class="ttname"><a href="../../d9/d29/TrafficLightBase_8h.html">TrafficLightBase.h</a></div></div>
+<div class="ttc" id="aUnreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Sensor_2Sensor_8h_html"><div class="ttname"><a href="../../d7/d7d/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Sensor_2Sensor_8h.html">Sensor.h</a></div></div>
+<div class="ttc" id="aclassAActor_html"><div class="ttname"><a href="../../d1/da4/classAActor.html">AActor</a></div></div>
+<div class="ttc" id="aclassATagger_html_a0b0f80c02d73e342e07bd177b6572774"><div class="ttname"><a href="../../da/d86/classATagger.html#a0b0f80c02d73e342e07bd177b6572774">ATagger::GetTagsOfTaggedActor</a></div><div class="ttdeci">static void GetTagsOfTaggedActor(const AActor &amp;Actor, TSet&lt; crp::CityObjectLabel &gt; &amp;Tags)</div><div class="ttdoc">检索已标记的角色的标记。CityObjectLabel：：None 为 未添加到数组中。</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d35/Tagger_8cpp_source.html#l00243">Tagger.cpp:243</a></div></div>
+<div class="ttc" id="aclassATagger_html_a2b8ab63680928bbd944deecb7e87ec23"><div class="ttname"><a href="../../da/d86/classATagger.html#a2b8ab63680928bbd944deecb7e87ec23">ATagger::GetTagAsString</a></div><div class="ttdeci">static FString GetTagAsString(crp::CityObjectLabel Tag)</div><div class="ttdoc">检索已标记的角色的标记。CityObjectLabel：：None 为 未添加到数组中。</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d35/Tagger_8cpp_source.html#l00257">Tagger.cpp:257</a></div></div>
+<div class="ttc" id="aclassFActorRegistry_html_a44792724170a49d07132f13d220f2d5c"><div class="ttname"><a href="../../df/db5/classFActorRegistry.html#a44792724170a49d07132f13d220f2d5c">FActorRegistry::IdType</a></div><div class="ttdeci">FCarlaActor::IdType IdType</div><div class="ttdef"><b>Definition:</b> <a href="../../da/de4/ActorRegistry_8h_source.html#l00020">ActorRegistry.h:20</a></div></div>
+<div class="ttc" id="aclassFActorRegistry_html_a6bd1983faa1a28db04d21cdd7fd49d2e"><div class="ttname"><a href="../../df/db5/classFActorRegistry.html#a6bd1983faa1a28db04d21cdd7fd49d2e">FActorRegistry::Register</a></div><div class="ttdeci">FCarlaActor * Register(AActor &amp;Actor, FActorDescription Description, IdType DesiredId=0)</div><div class="ttdoc">名称 参与者注册函数</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/df3/ActorRegistry_8cpp_source.html#l00103">ActorRegistry.cpp:103</a></div></div>
+<div class="ttc" id="aclassFActorRegistry_html_a9d941257df9af5f171a84eb297a8d0ba"><div class="ttname"><a href="../../df/db5/classFActorRegistry.html#a9d941257df9af5f171a84eb297a8d0ba">FActorRegistry::Deregister</a></div><div class="ttdeci">void Deregister(IdType Id)</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/df3/ActorRegistry_8cpp_source.html#l00167">ActorRegistry.cpp:167</a></div></div>
+<div class="ttc" id="aclassFActorRegistry_html_aad0e91aea1c0849ca9917af82d4ec0d1"><div class="ttname"><a href="../../df/db5/classFActorRegistry.html#aad0e91aea1c0849ca9917af82d4ec0d1">FActorRegistry::FindCarlaActor</a></div><div class="ttdeci">FCarlaActor * FindCarlaActor(IdType Id)</div><div class="ttdef"><b>Definition:</b> <a href="../../da/de4/ActorRegistry_8h_source.html#l00060">ActorRegistry.h:60</a></div></div>
+<div class="ttc" id="aclassFCarlaActor_html"><div class="ttname"><a href="../../dc/dde/classFCarlaActor.html">FCarlaActor</a></div><div class="ttdoc">查看一个参与者和它的属性</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d36/CarlaActor_8h_source.html#l00022">CarlaActor.h:23</a></div></div>
+<div class="ttc" id="aclassFCarlaActor_html_a1aa065098773d4bda6b94690369ab858"><div class="ttname"><a href="../../dc/dde/classFCarlaActor.html#a1aa065098773d4bda6b94690369ab858">FCarlaActor::ConstructCarlaActor</a></div><div class="ttdeci">static TSharedPtr&lt; FCarlaActor &gt; ConstructCarlaActor(IdType ActorId, AActor *Actor, TSharedPtr&lt; const FActorInfo &gt; Info, ActorType Type, carla::rpc::ActorState InState, UWorld *World)</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d43/CarlaActor_8cpp_source.html#l00138">CarlaActor.cpp:138</a></div></div>
+<div class="ttc" id="aclassFCarlaActor_html_a49f76353c69e02542858ed2cf6eeb000"><div class="ttname"><a href="../../dc/dde/classFCarlaActor.html#a49f76353c69e02542858ed2cf6eeb000">FCarlaActor::IsDormant</a></div><div class="ttdeci">bool IsDormant() const</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d36/CarlaActor_8h_source.html#l00059">CarlaActor.h:59</a></div></div>
+<div class="ttc" id="aclassFCarlaActor_html_a4d2752987e47827efd488b90053ad415"><div class="ttname"><a href="../../dc/dde/classFCarlaActor.html#a4d2752987e47827efd488b90053ad415">FCarlaActor::GetActor</a></div><div class="ttdeci">AActor * GetActor()</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d36/CarlaActor_8h_source.html#l00075">CarlaActor.h:75</a></div></div>
+<div class="ttc" id="aclassFCarlaActor_html_a53f48fc36ec77caebfba6f8ecacea5ba"><div class="ttname"><a href="../../dc/dde/classFCarlaActor.html#a53f48fc36ec77caebfba6f8ecacea5ba">FCarlaActor::IdType</a></div><div class="ttdeci">uint32 IdType</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d36/CarlaActor_8h_source.html#l00025">CarlaActor.h:25</a></div></div>
+<div class="ttc" id="aclassFCarlaActor_html_a633debc132e66e006af62dd1351800e2"><div class="ttname"><a href="../../dc/dde/classFCarlaActor.html#a633debc132e66e006af62dd1351800e2">FCarlaActor::TheActor</a></div><div class="ttdeci">AActor * TheActor</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d36/CarlaActor_8h_source.html#l00418">CarlaActor.h:418</a></div></div>
+<div class="ttc" id="aclassFCarlaActor_html_a68463a6ebe4a8d0364996c5d84af4279"><div class="ttname"><a href="../../dc/dde/classFCarlaActor.html#a68463a6ebe4a8d0364996c5d84af4279">FCarlaActor::ActorType</a></div><div class="ttdeci">ActorType</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d36/CarlaActor_8h_source.html#l00026">CarlaActor.h:27</a></div></div>
+<div class="ttc" id="aclassFCarlaActor_html_a68463a6ebe4a8d0364996c5d84af4279a06b185256c71c1aec263c6e22bf8ef6b"><div class="ttname"><a href="../../dc/dde/classFCarlaActor.html#a68463a6ebe4a8d0364996c5d84af4279a06b185256c71c1aec263c6e22bf8ef6b">FCarlaActor::ActorType::Sensor</a></div><div class="ttdeci">@ Sensor</div></div>
+<div class="ttc" id="aclassFCarlaActor_html_a68463a6ebe4a8d0364996c5d84af4279a6311ae17c1ee52b36e68aaf4ad066387"><div class="ttname"><a href="../../dc/dde/classFCarlaActor.html#a68463a6ebe4a8d0364996c5d84af4279a6311ae17c1ee52b36e68aaf4ad066387">FCarlaActor::ActorType::Other</a></div><div class="ttdeci">@ Other</div></div>
+<div class="ttc" id="aclassFCarlaActor_html_a68463a6ebe4a8d0364996c5d84af4279a63d457eeae119cb7c5618ff7b770a9c3"><div class="ttname"><a href="../../dc/dde/classFCarlaActor.html#a68463a6ebe4a8d0364996c5d84af4279a63d457eeae119cb7c5618ff7b770a9c3">FCarlaActor::ActorType::TrafficLight</a></div><div class="ttdeci">@ TrafficLight</div></div>
+<div class="ttc" id="aclassFCarlaActor_html_a68463a6ebe4a8d0364996c5d84af4279accc0377a8afbf50e7094f5c23a8af223"><div class="ttname"><a href="../../dc/dde/classFCarlaActor.html#a68463a6ebe4a8d0364996c5d84af4279accc0377a8afbf50e7094f5c23a8af223">FCarlaActor::ActorType::INVALID</a></div><div class="ttdeci">@ INVALID</div></div>
+<div class="ttc" id="aclassFCarlaActor_html_a68463a6ebe4a8d0364996c5d84af4279acf2604c5e6922e73ffa77da5dc026d9d"><div class="ttname"><a href="../../dc/dde/classFCarlaActor.html#a68463a6ebe4a8d0364996c5d84af4279acf2604c5e6922e73ffa77da5dc026d9d">FCarlaActor::ActorType::TrafficSign</a></div><div class="ttdeci">@ TrafficSign</div></div>
+<div class="ttc" id="aclassFCarlaActor_html_a68463a6ebe4a8d0364996c5d84af4279ad6af9c1eaff2a89ebd3f8d0c542be12b"><div class="ttname"><a href="../../dc/dde/classFCarlaActor.html#a68463a6ebe4a8d0364996c5d84af4279ad6af9c1eaff2a89ebd3f8d0c542be12b">FCarlaActor::ActorType::Vehicle</a></div><div class="ttdeci">@ Vehicle</div></div>
+<div class="ttc" id="aclassFCarlaActor_html_a68463a6ebe4a8d0364996c5d84af4279ad719083f59856e34a37e2137e2241d80"><div class="ttname"><a href="../../dc/dde/classFCarlaActor.html#a68463a6ebe4a8d0364996c5d84af4279ad719083f59856e34a37e2137e2241d80">FCarlaActor::ActorType::Walker</a></div><div class="ttdeci">@ Walker</div></div>
+<div class="ttc" id="aclassFCarlaActor_html_aca3d1a4bfcb5e0ae1974b7206933d665"><div class="ttname"><a href="../../dc/dde/classFCarlaActor.html#aca3d1a4bfcb5e0ae1974b7206933d665">FCarlaActor::GetActorId</a></div><div class="ttdeci">IdType GetActorId() const</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d36/CarlaActor_8h_source.html#l00067">CarlaActor.h:67</a></div></div>
+<div class="ttc" id="aclassFCarlaActor_html_afba1dec827b32b089f43eb3f12d57065"><div class="ttname"><a href="../../dc/dde/classFCarlaActor.html#afba1dec827b32b089f43eb3f12d57065">FCarlaActor::GetChildren</a></div><div class="ttdeci">const TArray&lt; IdType &gt; &amp; GetChildren() const</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d36/CarlaActor_8h_source.html#l00112">CarlaActor.h:112</a></div></div>
+<div class="ttc" id="aclassFCarlaActor_html_afd3f1ceaa2f09b155da25fbd5f746f2b"><div class="ttname"><a href="../../dc/dde/classFCarlaActor.html#afd3f1ceaa2f09b155da25fbd5f746f2b">FCarlaActor::PutActorToSleep</a></div><div class="ttdeci">void PutActorToSleep(UCarlaEpisode *CarlaEpisode)</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d43/CarlaActor_8cpp_source.html#l00172">CarlaActor.cpp:172</a></div></div>
+<div class="ttc" id="aclassUBoundingBoxCalculator_html_af7bad4e6896754f731f278a20ab7cbff"><div class="ttname"><a href="../../df/d02/classUBoundingBoxCalculator.html#af7bad4e6896754f731f278a20ab7cbff">UBoundingBoxCalculator::GetActorBoundingBox</a></div><div class="ttdeci">static FBoundingBox GetActorBoundingBox(const AActor *Actor, uint8 InTagQueried=0xFF)</div><div class="ttdoc">计算给定 Carla actor 的边界框。</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dd8/BoundingBoxCalculator_8cpp_source.html#l00041">BoundingBoxCalculator.cpp:41</a></div></div>
+<div class="ttc" id="adetail_2Token_8h_html"><div class="ttname"><a href="../../d9/d9d/detail_2Token_8h.html">Token.h</a></div><div class="ttdoc">包含CARLA流处理相关头文件和Boost.Asio网络库头文件。 包含CARLA的调试功能相关定义。 包含CARLA流处理的端点（EndPoint）类定义。 包含CARLA流处理的令牌（Token）类...</div></div>
+<div class="ttc" id="adisable-ue4-macros_8h_html"><div class="ttname"><a href="../../d2/d02/disable-ue4-macros_8h.html">disable-ue4-macros.h</a></div></div>
+<div class="ttc" id="aenable-ue4-macros_8h_html"><div class="ttname"><a href="../../d9/da2/enable-ue4-macros_8h.html">enable-ue4-macros.h</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1rpc_html"><div class="ttname"><a href="../../de/d6c/namespacecarla_1_1rpc.html">carla::rpc</a></div><div class="ttdef"><b>Definition:</b> <a href="../../de/d17/DebugShapeDrawer_8h_source.html#l00015">DebugShapeDrawer.h:15</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1rpc_html_a05a30f3aa05ff2c5d120170d22c0fbf3"><div class="ttname"><a href="../../de/d6c/namespacecarla_1_1rpc.html#a05a30f3aa05ff2c5d120170d22c0fbf3">carla::rpc::ActorState</a></div><div class="ttdeci">ActorState</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/d30/rpc_2ActorState_8h_source.html#l00025">rpc/ActorState.h:25</a></div></div>
+<div class="ttc" id="astructFActorDescription_html"><div class="ttname"><a href="../../d0/df6/structFActorDescription.html">FActorDescription</a></div><div class="ttdoc">carla参与者及其所有变体的描述</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/de6/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDescription_8h_source.html#l00015">Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Actor/ActorDescription.h:16</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

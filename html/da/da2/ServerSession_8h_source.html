@@ -1,0 +1,378 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: ServerSession.h 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_6d1a5b6c73cd09063239376f47f02d88.html">streaming</a></li><li class="navelem"><a class="el" href="../../dir_d64eca314ebb95b8ef9e91613b20b92b.html">detail</a></li><li class="navelem"><a class="el" href="../../dir_30b1b987a702c7bae5a754a2aaffd34a.html">tcp</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">ServerSession.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../da/da2/ServerSession_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// de Barcelona (UAB).</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// This work is licensed under the terms of the MIT license.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#pragma once</span><span class="comment"></span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> * @file</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> * @brief 包含Carla流处理模块中TCP通信相关类的头文件依赖。</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment"> * 此文件汇集了Carla流处理模块中TCP通信功能所需的头文件，包括不可复制类、时间处理、类型特征、</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment"> * 性能分析、流处理细节类型、TCP消息类以及Boost.Asio的网络编程库。</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment"> */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment"></span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment"> /**</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">  * @brief 引入Carla的不可复制类定义。</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">  *</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment">  * 此类用于确保对象不能被复制，通常用于管理唯一资源或状态的对象。</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment">  */</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &quot;<a class="code" href="../../d4/dd8/LibCarla_2source_2carla_2NonCopyable_8h.html">carla/NonCopyable.h</a>&quot;</span><span class="comment"></span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment">  /**</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">   * @brief 引入Carla的时间处理类定义。</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment">   *</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">   * 此类提供了时间点的表示、时间间隔的计算以及时间相关的功能。</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &quot;<a class="code" href="../../d2/d33/Time_8h.html">carla/Time.h</a>&quot;</span><span class="comment"></span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment">   /**</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment">    * @brief 引入Carla的类型特征库。</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment">    *</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">    * 该库提供了类型检查和转换的功能，用于在编译时进行类型安全性和一致性的检查。</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment">    */</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#include &quot;<a class="code" href="../../d0/d95/TypeTraits_8h.html">carla/TypeTraits.h</a>&quot;</span><span class="comment"></span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment">    /**</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment">     * @brief 引入Carla的性能分析类定义。</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment">     *</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment">     * 此类用于分析对象的生命周期性能，帮助开发者识别性能瓶颈。</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#include &quot;<a class="code" href="../../d9/dc4/LifetimeProfiled_8h.html">carla/profiler/LifetimeProfiled.h</a>&quot;</span><span class="comment"></span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment">     /**</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment">      * @brief 引入Carla流处理模块中的底层细节类型定义。</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment">      *</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">      * 此文件定义了流处理模块中使用的底层类型，如流ID和消息大小类型。</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment">      */</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#include &quot;<a class="code" href="../../d7/df8/Types_8h.html">carla/streaming/detail/Types.h</a>&quot;</span><span class="comment"></span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment">      /**</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">       * @brief 引入Carla流处理模块中TCP消息类的定义。</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="comment">       *</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="comment">       * 此类用于表示TCP通信中传输的消息，包括消息头和消息体。</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment">       */</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">#include &quot;<a class="code" href="../../d5/dca/Message_8h.html">carla/streaming/detail/tcp/Message.h</a>&quot;</span><span class="comment"></span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment">       /**</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="comment">        * @brief Clang编译器的警告控制区域开始。</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="comment">        *</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="comment">        * 如果使用Clang编译器，则忽略&quot;-Wshadow&quot;警告，该警告会在变量名遮蔽时触发。</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="comment">        */</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#if defined(__clang__)</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">#  pragma clang diagnostic push</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="preprocessor">#  pragma clang diagnostic ignored &quot;-Wshadow&quot;</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="preprocessor">#endif</span><span class="comment"></span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">        /**</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment">         * @brief 引入Boost.Asio的deadline_timer类。</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">         *</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment">         * 该类用于在指定的时间点或经过指定的时间间隔后触发一个回调。</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="comment">         */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="preprocessor">#include &lt;boost/asio/deadline_timer.hpp&gt;</span><span class="comment"></span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment">         /**</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment">          * @brief 引入Boost.Asio的io_context类。</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment">          *</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment">          * 该类提供了I/O服务的核心功能，包括异步操作的调度和执行。</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment">          */</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="preprocessor">#include &lt;boost/asio/io_context.hpp&gt;</span><span class="comment"></span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="comment">          /**</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="comment">           * @brief 引入Boost.Asio的TCP协议类。</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="comment">           *</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="comment">           * 该类提供了TCP协议的网络编程接口，包括套接字和端点的管理。</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="comment">           */</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="preprocessor">#include &lt;boost/asio/ip/tcp.hpp&gt;</span><span class="comment"></span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="comment">           /**</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="comment">            * @brief 引入Boost.Asio的strand类。</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="comment">            *</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="comment">            * 该类用于确保在单个I/O上下文（io_context）中异步操作的顺序执行。</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="comment">            */</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="preprocessor">#include &lt;boost/asio/strand.hpp&gt;</span><span class="comment"></span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="comment">            /**</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="comment">             * @brief Clang编译器的警告控制区域结束。</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="comment">             *</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="comment">             * 如果使用Clang编译器，则恢复之前的警告设置。</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="preprocessor">#if defined(__clang__)</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="preprocessor">#  pragma clang diagnostic pop</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="preprocessor">#endif</span><span class="comment"></span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="comment">             /**</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="comment">              * @brief 引入C++标准库中的functional头文件。</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="comment">              *</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="comment">              * 该头文件提供了函数对象、函数包装器以及标准函数适配器等功能。</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="comment">              */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="preprocessor">#include &lt;functional&gt;</span><span class="comment"></span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="comment">              /**</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="comment">               * @brief 引入C++标准库中的memory头文件。</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="comment">               *</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="comment">               * 该头文件提供了智能指针、动态内存分配和对象生命周期管理等功能。</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="comment">               */</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="preprocessor">#include &lt;memory&gt;</span><span class="comment"></span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="comment">               /**</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="comment">                * @namespace carla::streaming::detail::tcp</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="comment">                * @brief 包含Carla流处理模块中TCP通信的详细实现。</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="comment">                */</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d9/d36/namespacecarla.html">carla</a> {</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="keyword">namespace </span>streaming {</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="keyword">namespace </span>detail {</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="keyword">namespace </span>tcp {<span class="comment"></span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="comment">    /**</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="comment"> * @class Server</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="comment"> * @brief TCP服务器类的前向声明。</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="comment"> * 此类是TCP服务器类的前向声明，用于在ServerSession类中引用。</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>  <span class="keyword">class </span>Server;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="comment"></span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="comment">  /**</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="comment"> * @class ServerSession</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="comment"> * @brief TCP服务器会话类。</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="comment"> * 当会话打开时，它会从套接字读取一个流ID对象，并将自身传递给回调函数。如果在指定的不活动超时后没有活动，会话将自行关闭。</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="comment"> * 该类继承自std::enable_shared_from_this&lt;ServerSession&gt;，以便能够安全地生成自身的shared_ptr。同时，它私有继承自</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="comment"> * profiler::LifetimeProfiled用于性能分析，以及NonCopyable类以防止复制。</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html">  130</a></span>  <span class="keyword">class </span><a class="code hl_class" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html">ServerSession</a></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    : <span class="keyword">public</span> std::enable_shared_from_this&lt;ServerSession&gt;,</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>      <span class="keyword">private</span> <a class="code hl_class" href="../../df/d3e/classcarla_1_1profiler_1_1LifetimeProfiled.html">profiler::LifetimeProfiled</a>,</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>      <span class="keyword">private</span> <a class="code hl_class" href="../../d4/d8b/classcarla_1_1NonCopyable.html">NonCopyable</a> {</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="comment">      /**</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="comment">     * @brief 套接字类型别名。</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a45e64722d86e31bc50db3c0150fca880">  138</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a45e64722d86e31bc50db3c0150fca880">socket_type</a> = boost::asio::ip::tcp::socket;<span class="comment"></span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="comment">    /**</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span><span class="comment">     * @brief 回调函数类型别名。</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="comment">     *</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="comment">     * 回调函数接受一个ServerSession的shared_ptr作为参数。</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#aa7a7f5a0d48db77cdab87af295965cec">  144</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#aa7a7f5a0d48db77cdab87af295965cec">callback_function_type</a> = std::function&lt;void(std::shared_ptr&lt;ServerSession&gt;)&gt;;<span class="comment"></span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span><span class="comment">    /**</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="comment">     * @brief 构造函数。</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="comment">     *</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span><span class="comment">     * @param io_context I/O上下文，用于异步操作。</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span><span class="comment">     * @param timeout 不活动超时时间。</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span><span class="comment">     * @param server 对Server对象的引用。</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="keyword">explicit</span> <a class="code hl_class" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html">ServerSession</a>(</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        boost::asio::io_context &amp;io_context,</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        <a class="code hl_class" href="../../d2/d2e/classcarla_1_1time__duration.html">time_duration</a> timeout,</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        <a class="code hl_class" href="../../df/d4d/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Server.html">Server</a> &amp;server);</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="comment"></span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="comment">    /**</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="comment">     * @brief 启动会话。</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="comment">     *</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span><span class="comment">     * 成功读取流ID后调用@a on_opened回调，会话关闭时调用@a on_closed回调。</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="comment">     *</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="comment">     * @param on_opened 会话打开时的回调函数。</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="comment">     * @param on_closed 会话关闭时的回调函数。</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a506c21da6ede5e6189fa7713a14d13c2">Open</a>(</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>        <a class="code hl_typedef" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#aa7a7f5a0d48db77cdab87af295965cec">callback_function_type</a> on_opened,</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>        <a class="code hl_typedef" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#aa7a7f5a0d48db77cdab87af295965cec">callback_function_type</a> on_closed);</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span><span class="comment"></span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="comment">    /**</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span><span class="comment">     * @warning 此函数只能在会话打开后调用。从回调函数中调用此函数是安全的。</span></div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span><span class="comment">     *</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span><span class="comment">     * @brief 获取流ID。</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span><span class="comment">     *</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span><span class="comment">     * @return 流ID。</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno"><a class="line" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a0481fb1f059993a9b03b5b1d888cb71a">  176</a></span>    <a class="code hl_typedef" href="../../dd/dcc/namespacecarla_1_1streaming_1_1detail.html#aa375c2a4e6ec37df037554b54f12835e">stream_id_type</a> <a class="code hl_function" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a0481fb1f059993a9b03b5b1d888cb71a">get_stream_id</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a9aedaf13cbd04c27aad52802f1bd1705">_stream_id</a>;</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    }<span class="comment"></span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="comment">    /**</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="comment">     * @brief 创建消息。</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><span class="comment">     *</span></div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span><span class="comment">     * 静态模板函数，接受一个或多个BufferView类型的参数，并创建一个Message对象的shared_ptr。</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span><span class="comment">     *</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span><span class="comment">     * @param buffers 一个或多个BufferView类型的参数。</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span><span class="comment">     * @return Message对象的shared_ptr。</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span><span class="comment">     *</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span><span class="comment">     * @note 此函数仅接受BufferView类型的参数。</span></div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span>... Buffers&gt;</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno"><a class="line" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a9e5740dd86e28168fa2c8dc1dd503aee">  190</a></span>    <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a9e5740dd86e28168fa2c8dc1dd503aee">MakeMessage</a>(Buffers... buffers) {</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>      <span class="keyword">static_assert</span>(</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>          <a class="code hl_struct" href="../../dc/dcd/structcarla_1_1are__same.html">are_same</a>&lt;<a class="code hl_typedef" href="../../d9/d36/namespacecarla.html#a4afa606e4a16359b405cddea0ecbec20">SharedBufferView</a>, Buffers...&gt;::value,</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>          <span class="stringliteral">&quot;This function only accepts arguments of type BufferView.&quot;</span>);</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>      <span class="keywordflow">return</span> std::make_shared&lt;const Message&gt;(buffers...);</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    }</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span><span class="comment"></span> </div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span><span class="comment">    /// @brief 向套接字写入一些数据。</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span><span class="comment">/// </span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span><span class="comment">/// 该函数将一个包含数据的消息对象写入到套接字中。</span></div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#af5255361ee0fd1c54d54faf759f21da4">Write</a>(std::shared_ptr&lt;const Message&gt; message);</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span><span class="comment"></span> </div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span><span class="comment">    /// @brief 向套接字写入一些数据（模板函数）。</span></div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span><span class="comment"> /// </span></div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span><span class="comment"> /// 该模板函数接受任意数量的缓冲区参数，并将它们组合成一个消息对象，然后写入到套接字中。</span></div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span><span class="comment"> /// @param buffers 要写入的缓冲区，类型应为 BufferView 或其兼容类型。</span></div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span><span class="comment"></span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span>... Buffers&gt;</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno"><a class="line" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#adc3bc2f7e8cd44be17aa98c5d2570604">  207</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#adc3bc2f7e8cd44be17aa98c5d2570604">Write</a>(Buffers... buffers) {<span class="comment"></span></div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span><span class="comment">        /// @details 内部调用 Write(std::shared_ptr&lt;const Message&gt; message) 函数，</span></div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span><span class="comment">  /// 通过 MakeMessage 函数将缓冲区参数转换为消息对象。</span></div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span><span class="comment"></span>      <a class="code hl_function" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#af5255361ee0fd1c54d54faf759f21da4">Write</a>(<a class="code hl_function" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a9e5740dd86e28168fa2c8dc1dd503aee">MakeMessage</a>(buffers...));</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    }</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span><span class="comment"></span> </div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span><span class="comment">    /// @brief 发布一个关闭会话的任务。</span></div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span><span class="comment">/// </span></div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span><span class="comment">/// 该函数安排一个任务来关闭当前会话，但不会立即关闭。</span></div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a2e3dd6978b24c475419de01abd7789e0">Close</a>();</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span> </div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>  <span class="keyword">private</span>:<span class="comment"></span></div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span><span class="comment">      /// @brief 启动定时器。</span></div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span><span class="comment">/// </span></div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span><span class="comment">/// 该函数用于启动一个定时器，该定时器在会话空闲时间超过指定时长后触发关闭操作。</span></div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#ac176f4d8a841129d212d7e95e6f1bf6c">StartTimer</a>();<span class="comment"></span></div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span><span class="comment">    /// @brief 立即关闭会话。</span></div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span><span class="comment">/// </span></div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span><span class="comment">/// 该函数用于立即关闭会话，可选地接受一个错误代码参数来表示关闭的原因。</span></div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span><span class="comment">/// @param ec 关闭会话时的错误代码，默认为无错误。</span></div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a27baf23c0170b8129887425bc9bd75ff">CloseNow</a>(boost::system::error_code ec = boost::system::error_code());<span class="comment"></span></div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span><span class="comment">    /// @brief 允许 Server 类访问私有成员。</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno"><a class="line" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#ac2055578ac48afabe5af487878450f68">  229</a></span><span class="comment"></span>    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code hl_class" href="../../df/d4d/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Server.html">Server</a>;<span class="comment"></span></div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span><span class="comment">    /// @brief 对 Server 对象的引用。</span></div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno"><a class="line" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a469038380801787d9e22615df43451b6">  231</a></span><span class="comment"></span>    <a class="code hl_class" href="../../df/d4d/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Server.html">Server</a> &amp;<a class="code hl_variable" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a469038380801787d9e22615df43451b6">_server</a>;<span class="comment"></span></div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span><span class="comment">    /// @brief 会话的唯一标识符。</span></div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno"><a class="line" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#aa755c135877bb19a888b0b00deab0142">  233</a></span><span class="comment"></span>    <span class="keyword">const</span> <span class="keywordtype">size_t</span> <a class="code hl_variable" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#aa755c135877bb19a888b0b00deab0142">_session_id</a>;<span class="comment"></span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span><span class="comment">    /// @brief 流标识符，用于标识会话中传输的数据流。</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno"><a class="line" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a9aedaf13cbd04c27aad52802f1bd1705">  235</a></span><span class="comment"></span>    <a class="code hl_typedef" href="../../dd/dcc/namespacecarla_1_1streaming_1_1detail.html#aa375c2a4e6ec37df037554b54f12835e">stream_id_type</a> <a class="code hl_variable" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a9aedaf13cbd04c27aad52802f1bd1705">_stream_id</a> = 0u;<span class="comment"></span></div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span><span class="comment">    /// @brief 套接字类型，用于网络通信。</span></div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno"><a class="line" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a9672b61ba097840a886ab556e5bd0266">  237</a></span><span class="comment"></span>    <a class="code hl_typedef" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a45e64722d86e31bc50db3c0150fca880">socket_type</a> <a class="code hl_variable" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a9672b61ba097840a886ab556e5bd0266">_socket</a>;<span class="comment"></span></div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span><span class="comment">    /// @brief 会话超时时长，表示会话在多长时间内无活动将被关闭。</span></div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno"><a class="line" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#add131404e7b07a8076e155f462da1f45">  239</a></span><span class="comment"></span>    <a class="code hl_class" href="../../d2/d2e/classcarla_1_1time__duration.html">time_duration</a> <a class="code hl_variable" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#add131404e7b07a8076e155f462da1f45">_timeout</a>;<span class="comment"></span></div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span><span class="comment">    /// @brief 定时器，用于在会话超时后触发关闭操作。</span></div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno"><a class="line" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a0e806b936335fcf7c29d29813ca9b479">  241</a></span><span class="comment"></span>    boost::asio::deadline_timer <a class="code hl_variable" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a0e806b936335fcf7c29d29813ca9b479">_deadline</a>;<span class="comment"></span></div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span><span class="comment">    /// @brief 用于保证异步操作顺序的 strand 对象。</span></div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno"><a class="line" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a581f41933e239f93c43bc8f001aca80a">  243</a></span><span class="comment"></span>    boost::asio::io_context::strand <a class="code hl_variable" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a581f41933e239f93c43bc8f001aca80a">_strand</a>;<span class="comment"></span></div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span><span class="comment">    /// @brief 会话关闭时的回调函数。</span></div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno"><a class="line" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a50e90e0d67fc7fc7586d5db023b19c0c">  245</a></span><span class="comment"></span>    <a class="code hl_typedef" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#aa7a7f5a0d48db77cdab87af295965cec">callback_function_type</a> <a class="code hl_variable" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a50e90e0d67fc7fc7586d5db023b19c0c">_on_closed</a>;<span class="comment"></span></div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span><span class="comment">    /// @brief 表示当前是否正在进行写入操作的标志。</span></div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno"><a class="line" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#ae5f5430e442e5d7875fba536e53f7349">  247</a></span><span class="comment"></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#ae5f5430e442e5d7875fba536e53f7349">_is_writing</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>  };</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span> </div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>} <span class="comment">// namespace tcp</span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>} <span class="comment">// namespace detail</span></div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>} <span class="comment">// namespace streaming</span></div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>} <span class="comment">// namespace carla</span></div>
+<div class="ttc" id="aLibCarla_2source_2carla_2NonCopyable_8h_html"><div class="ttname"><a href="../../d4/dd8/LibCarla_2source_2carla_2NonCopyable_8h.html">NonCopyable.h</a></div></div>
+<div class="ttc" id="aLifetimeProfiled_8h_html"><div class="ttname"><a href="../../d9/dc4/LifetimeProfiled_8h.html">LifetimeProfiled.h</a></div></div>
+<div class="ttc" id="aMessage_8h_html"><div class="ttname"><a href="../../d5/dca/Message_8h.html">Message.h</a></div><div class="ttdoc">包含 Carla 框架中与网络流相关的类和函数的声明。</div></div>
+<div class="ttc" id="aTime_8h_html"><div class="ttname"><a href="../../d2/d33/Time_8h.html">Time.h</a></div></div>
+<div class="ttc" id="aTypeTraits_8h_html"><div class="ttname"><a href="../../d0/d95/TypeTraits_8h.html">TypeTraits.h</a></div></div>
+<div class="ttc" id="aTypes_8h_html"><div class="ttname"><a href="../../d7/df8/Types_8h.html">Types.h</a></div><div class="ttdoc">包含与Carla流处理相关的底层细节的头文件。</div></div>
+<div class="ttc" id="aclasscarla_1_1NonCopyable_html"><div class="ttname"><a href="../../d4/d8b/classcarla_1_1NonCopyable.html">carla::NonCopyable</a></div><div class="ttdoc">这个类用于禁止拷贝和移动构造函数及赋值操作</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/dd8/LibCarla_2source_2carla_2NonCopyable_8h_source.html#l00012">LibCarla/source/carla/NonCopyable.h:12</a></div></div>
+<div class="ttc" id="aclasscarla_1_1profiler_1_1LifetimeProfiled_html"><div class="ttname"><a href="../../df/d3e/classcarla_1_1profiler_1_1LifetimeProfiled.html">carla::profiler::LifetimeProfiled</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d9/dc4/LifetimeProfiled_8h_source.html#l00014">LifetimeProfiled.h:14</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession_html"><div class="ttname"><a href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html">carla::streaming::detail::tcp::ServerSession</a></div><div class="ttdoc">TCP服务器会话类。</div><div class="ttdef"><b>Definition:</b> <a href="../../da/da2/ServerSession_8h_source.html#l00130">ServerSession.h:133</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession_html_a0481fb1f059993a9b03b5b1d888cb71a"><div class="ttname"><a href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a0481fb1f059993a9b03b5b1d888cb71a">carla::streaming::detail::tcp::ServerSession::get_stream_id</a></div><div class="ttdeci">stream_id_type get_stream_id() const</div><div class="ttdoc">获取流ID。</div><div class="ttdef"><b>Definition:</b> <a href="../../da/da2/ServerSession_8h_source.html#l00176">ServerSession.h:176</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession_html_a0e806b936335fcf7c29d29813ca9b479"><div class="ttname"><a href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a0e806b936335fcf7c29d29813ca9b479">carla::streaming::detail::tcp::ServerSession::_deadline</a></div><div class="ttdeci">boost::asio::deadline_timer _deadline</div><div class="ttdoc">定时器，用于在会话超时后触发关闭操作。</div><div class="ttdef"><b>Definition:</b> <a href="../../da/da2/ServerSession_8h_source.html#l00241">ServerSession.h:241</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession_html_a27baf23c0170b8129887425bc9bd75ff"><div class="ttname"><a href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a27baf23c0170b8129887425bc9bd75ff">carla::streaming::detail::tcp::ServerSession::CloseNow</a></div><div class="ttdeci">void CloseNow(boost::system::error_code ec=boost::system::error_code())</div><div class="ttdoc">立即关闭会话。</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d1e/ServerSession_8cpp_source.html#l00154">ServerSession.cpp:154</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession_html_a2e3dd6978b24c475419de01abd7789e0"><div class="ttname"><a href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a2e3dd6978b24c475419de01abd7789e0">carla::streaming::detail::tcp::ServerSession::Close</a></div><div class="ttdeci">void Close()</div><div class="ttdoc">发布一个关闭会话的任务。</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d1e/ServerSession_8cpp_source.html#l00135">ServerSession.cpp:135</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession_html_a45e64722d86e31bc50db3c0150fca880"><div class="ttname"><a href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a45e64722d86e31bc50db3c0150fca880">carla::streaming::detail::tcp::ServerSession::socket_type</a></div><div class="ttdeci">boost::asio::ip::tcp::socket socket_type</div><div class="ttdoc">套接字类型别名。</div><div class="ttdef"><b>Definition:</b> <a href="../../da/da2/ServerSession_8h_source.html#l00138">ServerSession.h:138</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession_html_a469038380801787d9e22615df43451b6"><div class="ttname"><a href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a469038380801787d9e22615df43451b6">carla::streaming::detail::tcp::ServerSession::_server</a></div><div class="ttdeci">Server &amp; _server</div><div class="ttdoc">对 Server 对象的引用。</div><div class="ttdef"><b>Definition:</b> <a href="../../da/da2/ServerSession_8h_source.html#l00231">ServerSession.h:231</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession_html_a506c21da6ede5e6189fa7713a14d13c2"><div class="ttname"><a href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a506c21da6ede5e6189fa7713a14d13c2">carla::streaming::detail::tcp::ServerSession::Open</a></div><div class="ttdeci">void Open(callback_function_type on_opened, callback_function_type on_closed)</div><div class="ttdoc">启动会话。</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d1e/ServerSession_8cpp_source.html#l00046">ServerSession.cpp:46</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession_html_a50e90e0d67fc7fc7586d5db023b19c0c"><div class="ttname"><a href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a50e90e0d67fc7fc7586d5db023b19c0c">carla::streaming::detail::tcp::ServerSession::_on_closed</a></div><div class="ttdeci">callback_function_type _on_closed</div><div class="ttdoc">会话关闭时的回调函数。</div><div class="ttdef"><b>Definition:</b> <a href="../../da/da2/ServerSession_8h_source.html#l00245">ServerSession.h:245</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession_html_a581f41933e239f93c43bc8f001aca80a"><div class="ttname"><a href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a581f41933e239f93c43bc8f001aca80a">carla::streaming::detail::tcp::ServerSession::_strand</a></div><div class="ttdeci">boost::asio::io_context::strand _strand</div><div class="ttdoc">用于保证异步操作顺序的 strand 对象。</div><div class="ttdef"><b>Definition:</b> <a href="../../da/da2/ServerSession_8h_source.html#l00243">ServerSession.h:243</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession_html_a9672b61ba097840a886ab556e5bd0266"><div class="ttname"><a href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a9672b61ba097840a886ab556e5bd0266">carla::streaming::detail::tcp::ServerSession::_socket</a></div><div class="ttdeci">socket_type _socket</div><div class="ttdoc">套接字类型，用于网络通信。</div><div class="ttdef"><b>Definition:</b> <a href="../../da/da2/ServerSession_8h_source.html#l00237">ServerSession.h:237</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession_html_a9aedaf13cbd04c27aad52802f1bd1705"><div class="ttname"><a href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a9aedaf13cbd04c27aad52802f1bd1705">carla::streaming::detail::tcp::ServerSession::_stream_id</a></div><div class="ttdeci">stream_id_type _stream_id</div><div class="ttdoc">流标识符，用于标识会话中传输的数据流。</div><div class="ttdef"><b>Definition:</b> <a href="../../da/da2/ServerSession_8h_source.html#l00235">ServerSession.h:235</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession_html_a9e5740dd86e28168fa2c8dc1dd503aee"><div class="ttname"><a href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a9e5740dd86e28168fa2c8dc1dd503aee">carla::streaming::detail::tcp::ServerSession::MakeMessage</a></div><div class="ttdeci">static auto MakeMessage(Buffers... buffers)</div><div class="ttdoc">创建消息。</div><div class="ttdef"><b>Definition:</b> <a href="../../da/da2/ServerSession_8h_source.html#l00190">ServerSession.h:190</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession_html_aa755c135877bb19a888b0b00deab0142"><div class="ttname"><a href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#aa755c135877bb19a888b0b00deab0142">carla::streaming::detail::tcp::ServerSession::_session_id</a></div><div class="ttdeci">const size_t _session_id</div><div class="ttdoc">会话的唯一标识符。</div><div class="ttdef"><b>Definition:</b> <a href="../../da/da2/ServerSession_8h_source.html#l00233">ServerSession.h:233</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession_html_aa7a7f5a0d48db77cdab87af295965cec"><div class="ttname"><a href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#aa7a7f5a0d48db77cdab87af295965cec">carla::streaming::detail::tcp::ServerSession::callback_function_type</a></div><div class="ttdeci">std::function&lt; void(std::shared_ptr&lt; ServerSession &gt;)&gt; callback_function_type</div><div class="ttdoc">回调函数类型别名。</div><div class="ttdef"><b>Definition:</b> <a href="../../da/da2/ServerSession_8h_source.html#l00144">ServerSession.h:144</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession_html_ac176f4d8a841129d212d7e95e6f1bf6c"><div class="ttname"><a href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#ac176f4d8a841129d212d7e95e6f1bf6c">carla::streaming::detail::tcp::ServerSession::StartTimer</a></div><div class="ttdeci">void StartTimer()</div><div class="ttdoc">启动定时器。</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d1e/ServerSession_8cpp_source.html#l00139">ServerSession.cpp:139</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession_html_adc3bc2f7e8cd44be17aa98c5d2570604"><div class="ttname"><a href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#adc3bc2f7e8cd44be17aa98c5d2570604">carla::streaming::detail::tcp::ServerSession::Write</a></div><div class="ttdeci">void Write(Buffers... buffers)</div><div class="ttdoc">向套接字写入一些数据（模板函数）。</div><div class="ttdef"><b>Definition:</b> <a href="../../da/da2/ServerSession_8h_source.html#l00207">ServerSession.h:207</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession_html_add131404e7b07a8076e155f462da1f45"><div class="ttname"><a href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#add131404e7b07a8076e155f462da1f45">carla::streaming::detail::tcp::ServerSession::_timeout</a></div><div class="ttdeci">time_duration _timeout</div><div class="ttdoc">会话超时时长，表示会话在多长时间内无活动将被关闭。</div><div class="ttdef"><b>Definition:</b> <a href="../../da/da2/ServerSession_8h_source.html#l00239">ServerSession.h:239</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession_html_ae5f5430e442e5d7875fba536e53f7349"><div class="ttname"><a href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#ae5f5430e442e5d7875fba536e53f7349">carla::streaming::detail::tcp::ServerSession::_is_writing</a></div><div class="ttdeci">bool _is_writing</div><div class="ttdoc">表示当前是否正在进行写入操作的标志。</div><div class="ttdef"><b>Definition:</b> <a href="../../da/da2/ServerSession_8h_source.html#l00247">ServerSession.h:247</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession_html_af5255361ee0fd1c54d54faf759f21da4"><div class="ttname"><a href="../../d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#af5255361ee0fd1c54d54faf759f21da4">carla::streaming::detail::tcp::ServerSession::Write</a></div><div class="ttdeci">void Write(std::shared_ptr&lt; const Message &gt; message)</div><div class="ttdoc">向套接字写入一些数据。</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d1e/ServerSession_8cpp_source.html#l00092">ServerSession.cpp:92</a></div></div>
+<div class="ttc" id="aclasscarla_1_1streaming_1_1detail_1_1tcp_1_1Server_html"><div class="ttname"><a href="../../df/d4d/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Server.html">carla::streaming::detail::tcp::Server</a></div><div class="ttdoc">警告：在io_context停止之前，不能销毁这个服务器实例</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d57/streaming_2detail_2tcp_2Server_8h_source.html#l00025">streaming/detail/tcp/Server.h:25</a></div></div>
+<div class="ttc" id="aclasscarla_1_1time__duration_html"><div class="ttname"><a href="../../d2/d2e/classcarla_1_1time__duration.html">carla::time_duration</a></div><div class="ttdoc">Positive time duration up to milliseconds resolution.</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d33/Time_8h_source.html#l00019">Time.h:19</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1streaming_1_1detail_html_aa375c2a4e6ec37df037554b54f12835e"><div class="ttname"><a href="../../dd/dcc/namespacecarla_1_1streaming_1_1detail.html#aa375c2a4e6ec37df037554b54f12835e">carla::streaming::detail::stream_id_type</a></div><div class="ttdeci">uint32_t stream_id_type</div><div class="ttdoc">流ID的类型定义。</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/df8/Types_8h_source.html#l00033">Types.h:33</a></div></div>
+<div class="ttc" id="anamespacecarla_html"><div class="ttname"><a href="../../d9/d36/namespacecarla.html">carla</a></div><div class="ttdoc">CARLA模拟器的主命名空间。</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d4f/Carla_8cpp_source.html#l00139">Carla.cpp:139</a></div></div>
+<div class="ttc" id="anamespacecarla_html_a4afa606e4a16359b405cddea0ecbec20"><div class="ttname"><a href="../../d9/d36/namespacecarla.html#a4afa606e4a16359b405cddea0ecbec20">carla::SharedBufferView</a></div><div class="ttdeci">std::shared_ptr&lt; BufferView &gt; SharedBufferView</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/dee/BufferView_8h_source.html#l00163">BufferView.h:163</a></div></div>
+<div class="ttc" id="astructcarla_1_1are__same_html"><div class="ttname"><a href="../../dc/dcd/structcarla_1_1are__same.html">carla::are_same</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d95/TypeTraits_8h_source.html#l00014">TypeTraits.h:14</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

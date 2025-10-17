@@ -1,0 +1,773 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: carla::ros2::CarlaCollisionPublisher类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../d9/d36/namespacecarla.html">carla</a></li><li class="navelem"><a class="el" href="../../d1/d4b/namespacecarla_1_1ros2.html">ros2</a></li><li class="navelem"><a class="el" href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html">CarlaCollisionPublisher</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="../../d6/d5e/classcarla_1_1ros2_1_1CarlaCollisionPublisher-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">carla::ros2::CarlaCollisionPublisher类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>用于发布CARLA碰撞事件的ROS 2发布者类。  
+ <a href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../db/d6e/CarlaCollisionPublisher_8h_source.html">CarlaCollisionPublisher.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 类 carla::ros2::CarlaCollisionPublisher 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d3/d2b/classcarla_1_1ros2_1_1CarlaCollisionPublisher__inherit__graph.svg" width="182" height="124"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> carla::ros2::CarlaCollisionPublisher 的协作图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dc8/classcarla_1_1ros2_1_1CarlaCollisionPublisher__coll__graph.svg" width="611" height="147"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:abe2f8e424101f6544d98b100da0a038b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html#abe2f8e424101f6544d98b100da0a038b">CarlaCollisionPublisher</a> (<a class="el" href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html">CarlaCollisionPublisher</a> &amp;&amp;)</td></tr>
+<tr class="memdesc:abe2f8e424101f6544d98b100da0a038b"><td class="mdescLeft">&#160;</td><td class="mdescRight">移动构造函数。  <a href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html#abe2f8e424101f6544d98b100da0a038b">更多...</a><br /></td></tr>
+<tr class="separator:abe2f8e424101f6544d98b100da0a038b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b106b9a767a32ea63c77736d6250baf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html#a6b106b9a767a32ea63c77736d6250baf">CarlaCollisionPublisher</a> (const <a class="el" href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html">CarlaCollisionPublisher</a> &amp;)</td></tr>
+<tr class="memdesc:a6b106b9a767a32ea63c77736d6250baf"><td class="mdescLeft">&#160;</td><td class="mdescRight">拷贝构造函数。  <a href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html#a6b106b9a767a32ea63c77736d6250baf">更多...</a><br /></td></tr>
+<tr class="separator:a6b106b9a767a32ea63c77736d6250baf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63b314979eadd817ccdc8153bae084bb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html#a63b314979eadd817ccdc8153bae084bb">CarlaCollisionPublisher</a> (const char *ros_name=&quot;&quot;, const char *<a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a0f2175762993c5eec161b8f304c59bb5">parent</a>=&quot;&quot;)</td></tr>
+<tr class="memdesc:a63b314979eadd817ccdc8153bae084bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数，初始化CarlaCollisionPublisher。  <a href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html#a63b314979eadd817ccdc8153bae084bb">更多...</a><br /></td></tr>
+<tr class="separator:a63b314979eadd817ccdc8153bae084bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1ba8786fc7337d25b54c79e58532d55"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html#af1ba8786fc7337d25b54c79e58532d55">Init</a> ()</td></tr>
+<tr class="memdesc:af1ba8786fc7337d25b54c79e58532d55"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化发布者。  <a href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html#af1ba8786fc7337d25b54c79e58532d55">更多...</a><br /></td></tr>
+<tr class="separator:af1ba8786fc7337d25b54c79e58532d55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abaa4d5b4236ea2aad6d582d1cd87cad9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html">CarlaCollisionPublisher</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html#abaa4d5b4236ea2aad6d582d1cd87cad9">operator=</a> (<a class="el" href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html">CarlaCollisionPublisher</a> &amp;&amp;)</td></tr>
+<tr class="memdesc:abaa4d5b4236ea2aad6d582d1cd87cad9"><td class="mdescLeft">&#160;</td><td class="mdescRight">移动赋值运算符。  <a href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html#abaa4d5b4236ea2aad6d582d1cd87cad9">更多...</a><br /></td></tr>
+<tr class="separator:abaa4d5b4236ea2aad6d582d1cd87cad9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa95410e23ac5ef4e638b673030e699b0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html">CarlaCollisionPublisher</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html#aa95410e23ac5ef4e638b673030e699b0">operator=</a> (const <a class="el" href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html">CarlaCollisionPublisher</a> &amp;)</td></tr>
+<tr class="memdesc:aa95410e23ac5ef4e638b673030e699b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">赋值运算符。  <a href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html#aa95410e23ac5ef4e638b673030e699b0">更多...</a><br /></td></tr>
+<tr class="separator:aa95410e23ac5ef4e638b673030e699b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dd18adeb9e61d7709657d4609f80b76"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html#a1dd18adeb9e61d7709657d4609f80b76">Publish</a> ()</td></tr>
+<tr class="memdesc:a1dd18adeb9e61d7709657d4609f80b76"><td class="mdescLeft">&#160;</td><td class="mdescRight">发布碰撞事件信息。  <a href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html#a1dd18adeb9e61d7709657d4609f80b76">更多...</a><br /></td></tr>
+<tr class="separator:a1dd18adeb9e61d7709657d4609f80b76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a517e76eddcb8e99767db54670ed81098"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html#a517e76eddcb8e99767db54670ed81098">SetData</a> (int32_t seconds, uint32_t nanoseconds, uint32_t actor_id, float x, float y, float z)</td></tr>
+<tr class="memdesc:a517e76eddcb8e99767db54670ed81098"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置要发布的碰撞事件数据。  <a href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html#a517e76eddcb8e99767db54670ed81098">更多...</a><br /></td></tr>
+<tr class="separator:a517e76eddcb8e99767db54670ed81098"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a811c68fa35e8fb7a07f353595e88b655"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html#a811c68fa35e8fb7a07f353595e88b655">type</a> () const <a class="el" href="../../de/d7d/ActorData_8h.html#ad031bfd5a8a2ed7e66d03dafcc3b2858">override</a></td></tr>
+<tr class="memdesc:a811c68fa35e8fb7a07f353595e88b655"><td class="mdescLeft">&#160;</td><td class="mdescRight">重写基类中的type函数，返回此发布者的类型。  <a href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html#a811c68fa35e8fb7a07f353595e88b655">更多...</a><br /></td></tr>
+<tr class="separator:a811c68fa35e8fb7a07f353595e88b655"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf8798d9977e83f8e2a474a39e4360e6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html#acf8798d9977e83f8e2a474a39e4360e6">~CarlaCollisionPublisher</a> ()</td></tr>
+<tr class="memdesc:acf8798d9977e83f8e2a474a39e4360e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">析构函数，清理资源并释放内部实现。  <a href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html#acf8798d9977e83f8e2a474a39e4360e6">更多...</a><br /></td></tr>
+<tr class="separator:acf8798d9977e83f8e2a474a39e4360e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classcarla_1_1ros2_1_1CarlaPublisher')"><img src="../../closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html">carla::ros2::CarlaPublisher</a></td></tr>
+<tr class="memitem:a35f0eba9bdf0bf22524cc6dacf43f242 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a35f0eba9bdf0bf22524cc6dacf43f242">CarlaPublisher</a> ()=default</td></tr>
+<tr class="separator:a35f0eba9bdf0bf22524cc6dacf43f242 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77422f0594812a0371f8b04d70f19741 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a77422f0594812a0371f8b04d70f19741">frame_id</a> () const</td></tr>
+<tr class="separator:a77422f0594812a0371f8b04d70f19741 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9656d0fbe195ce57730f65ebb7e9e384 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a9656d0fbe195ce57730f65ebb7e9e384">frame_id</a> (std::string &amp;&amp;frame_id)</td></tr>
+<tr class="separator:a9656d0fbe195ce57730f65ebb7e9e384 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac81da28dc11b15e6ad27647887ef65bb inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#ac81da28dc11b15e6ad27647887ef65bb">name</a> () const</td></tr>
+<tr class="separator:ac81da28dc11b15e6ad27647887ef65bb inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53db6f09833e2dd625967218568f8ab4 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a53db6f09833e2dd625967218568f8ab4">name</a> (std::string &amp;&amp;name)</td></tr>
+<tr class="separator:a53db6f09833e2dd625967218568f8ab4 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f2175762993c5eec161b8f304c59bb5 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a0f2175762993c5eec161b8f304c59bb5">parent</a> () const</td></tr>
+<tr class="separator:a0f2175762993c5eec161b8f304c59bb5 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a49e93846cc2dff08ed65be07767b58 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a1a49e93846cc2dff08ed65be07767b58">parent</a> (std::string &amp;&amp;parent)</td></tr>
+<tr class="separator:a1a49e93846cc2dff08ed65be07767b58 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6448e2522e8b78dfe350aca123530089 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a6448e2522e8b78dfe350aca123530089">type</a> () const =0</td></tr>
+<tr class="separator:a6448e2522e8b78dfe350aca123530089 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52ddebcb6ae5afef2c9061bee7d6153a inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a52ddebcb6ae5afef2c9061bee7d6153a">~CarlaPublisher</a> ()=default</td></tr>
+<tr class="separator:a52ddebcb6ae5afef2c9061bee7d6153a inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:a95cb3fd57db9162949de3c0d3128d16b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html#a95cb3fd57db9162949de3c0d3128d16b">SetData</a> (int32_t seconds, uint32_t nanoseconds, uint32_t actor_id, std::vector&lt; float &gt; &amp;&amp;data)</td></tr>
+<tr class="memdesc:a95cb3fd57db9162949de3c0d3128d16b"><td class="mdescLeft">&#160;</td><td class="mdescRight">另一个版本的SetData函数，允许传递碰撞位置数据的向量。  <a href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html#a95cb3fd57db9162949de3c0d3128d16b">更多...</a><br /></td></tr>
+<tr class="separator:a95cb3fd57db9162949de3c0d3128d16b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a0de2600ba0d474c93fadd2b3d9f6317d"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="../../d0/dfa/structcarla_1_1ros2_1_1CarlaCollisionPublisherImpl.html">CarlaCollisionPublisherImpl</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html#a0de2600ba0d474c93fadd2b3d9f6317d">_impl</a></td></tr>
+<tr class="memdesc:a0de2600ba0d474c93fadd2b3d9f6317d"><td class="mdescLeft">&#160;</td><td class="mdescRight">指向内部实现结构体的智能指针。  <a href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html#a0de2600ba0d474c93fadd2b3d9f6317d">更多...</a><br /></td></tr>
+<tr class="separator:a0de2600ba0d474c93fadd2b3d9f6317d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher')"><img src="../../closed.png" alt="-"/>&#160;Protected 属性 继承自 <a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html">carla::ros2::CarlaPublisher</a></td></tr>
+<tr class="memitem:a611073f244645d4f6265a29b8a6e3b23 inherit pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a611073f244645d4f6265a29b8a6e3b23">_frame_id</a> = &quot;&quot;</td></tr>
+<tr class="separator:a611073f244645d4f6265a29b8a6e3b23 inherit pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26ab51e4d54b99c8c9347a3d245aac20 inherit pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a26ab51e4d54b99c8c9347a3d245aac20">_name</a> = &quot;&quot;</td></tr>
+<tr class="separator:a26ab51e4d54b99c8c9347a3d245aac20 inherit pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a284934d8f61aed2ddcb24c575240fb2f inherit pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a284934d8f61aed2ddcb24c575240fb2f">_parent</a> = &quot;&quot;</td></tr>
+<tr class="separator:a284934d8f61aed2ddcb24c575240fb2f inherit pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p >用于发布CARLA碰撞事件的ROS 2发布者类。 </p>
+<p >该类继承自CarlaPublisher，并专门用于发布碰撞事件信息，如碰撞时间、碰撞物体的ID和碰撞位置。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../db/d6e/CarlaCollisionPublisher_8h_source.html">CarlaCollisionPublisher.h</a> 第 <a class="el" href="../../db/d6e/CarlaCollisionPublisher_8h_source.html#l00031">31</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a63b314979eadd817ccdc8153bae084bb" name="a63b314979eadd817ccdc8153bae084bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63b314979eadd817ccdc8153bae084bb">&#9670;&#160;</a></span>CarlaCollisionPublisher() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::ros2::CarlaCollisionPublisher::CarlaCollisionPublisher </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>ros_name</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>构造函数，初始化CarlaCollisionPublisher。 </p>
+<p >CarlaCollisionPublisher类的构造函数</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ros_name</td><td>ROS 2节点的名称，默认为空字符串。 </td></tr>
+    <tr><td class="paramname">parent</td><td>父节点的名称，默认为空字符串。</td></tr>
+  </table>
+  </dd>
+</dl>
+<p >初始化CarlaCollisionPublisher对象，包括设置ROS名称、父节点以及内部实现对象。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ros_name</td><td>ROS节点名称 </td></tr>
+    <tr><td class="paramname">parent</td><td>父节点名称 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html">CarlaCollisionPublisher.cpp</a> 第 <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00312">312</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00031">carla::ros2::CarlaPublisher::_name</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00032">carla::ros2::CarlaPublisher::_parent</a> , 以及 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00017">carla::ros2::CarlaPublisher::parent()</a>.</p>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher_a63b314979eadd817ccdc8153bae084bb_cgraph.svg" width="444" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="acf8798d9977e83f8e2a474a39e4360e6" name="acf8798d9977e83f8e2a474a39e4360e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf8798d9977e83f8e2a474a39e4360e6">&#9670;&#160;</a></span>~CarlaCollisionPublisher()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::ros2::CarlaCollisionPublisher::~CarlaCollisionPublisher </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>析构函数，清理资源并释放内部实现。 </p>
+<p >CarlaCollisionPublisher类的析构函数</p>
+<p >清理资源，包括删除数据写入器、发布者、主题和参与者。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html">CarlaCollisionPublisher.cpp</a> 第 <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00322">322</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d6e/CarlaCollisionPublisher_8h_source.html#l00119">_impl</a>.</p>
+
+</div>
+</div>
+<a id="a6b106b9a767a32ea63c77736d6250baf" name="a6b106b9a767a32ea63c77736d6250baf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b106b9a767a32ea63c77736d6250baf">&#9670;&#160;</a></span>CarlaCollisionPublisher() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::ros2::CarlaCollisionPublisher::CarlaCollisionPublisher </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html">CarlaCollisionPublisher</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>拷贝构造函数。 </p>
+<p >CarlaCollisionPublisher类的拷贝构造函数</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>要拷贝的CarlaCollisionPublisher对象。</td></tr>
+  </table>
+  </dd>
+</dl>
+<p >创建并初始化一个新的CarlaCollisionPublisher对象，作为另一个CarlaCollisionPublisher对象的拷贝。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>要拷贝的CarlaCollisionPublisher对象 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html">CarlaCollisionPublisher.cpp</a> 第 <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00345">345</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00030">carla::ros2::CarlaPublisher::_frame_id</a>, <a class="el" href="../../db/d6e/CarlaCollisionPublisher_8h_source.html#l00119">_impl</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00031">carla::ros2::CarlaPublisher::_name</a> , 以及 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00032">carla::ros2::CarlaPublisher::_parent</a>.</p>
+
+</div>
+</div>
+<a id="abe2f8e424101f6544d98b100da0a038b" name="abe2f8e424101f6544d98b100da0a038b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe2f8e424101f6544d98b100da0a038b">&#9670;&#160;</a></span>CarlaCollisionPublisher() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::ros2::CarlaCollisionPublisher::CarlaCollisionPublisher </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html">CarlaCollisionPublisher</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>移动构造函数。 </p>
+<p >CarlaCollisionPublisher类的移动构造函数</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>要移动的CarlaCollisionPublisher对象。</td></tr>
+  </table>
+  </dd>
+</dl>
+<p >创建并初始化一个新的CarlaCollisionPublisher对象，作为另一个CarlaCollisionPublisher对象的移动。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>要移动的CarlaCollisionPublisher对象 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html">CarlaCollisionPublisher.cpp</a> 第 <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00374">374</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00030">carla::ros2::CarlaPublisher::_frame_id</a>, <a class="el" href="../../db/d6e/CarlaCollisionPublisher_8h_source.html#l00119">_impl</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00031">carla::ros2::CarlaPublisher::_name</a> , 以及 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00032">carla::ros2::CarlaPublisher::_parent</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="af1ba8786fc7337d25b54c79e58532d55" name="af1ba8786fc7337d25b54c79e58532d55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1ba8786fc7337d25b54c79e58532d55">&#9670;&#160;</a></span>Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::ros2::CarlaCollisionPublisher::Init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>初始化发布者。 </p>
+<p >初始化CarlaCollisionPublisher</p>
+<dl class="section return"><dt>返回</dt><dd>如果初始化成功，则返回true；否则返回false。</dd>
+<dd>
+bool 初始化成功返回true，失败返回false</dd></dl>
+<p>该函数负责初始化CarlaCollisionPublisher，包括创建DDS域参与者、发布者、主题和数据写入器，并注册消息类型。 </p>
+<p >检查类型支持是否有效</p>
+<p >如果_type为nullptr，则打印错误信息并返回false。</p>
+<p >设置域参与者QoS策略</p>
+<p >使用默认的域参与者QoS策略，并设置名称。</p>
+<p >创建域参与者</p>
+<p >使用DomainParticipantFactory创建域参与者，如果失败则打印错误信息并返回false。</p>
+<p >注册类型支持</p>
+<p >使用类型支持对象注册消息类型到域参与者。</p>
+<p >设置发布者QoS策略</p>
+<p >使用默认的发布者QoS策略。</p>
+<p >创建发布者</p>
+<p >在域参与者中创建一个发布者，如果失败则打印错误信息并返回false。</p>
+<p >设置主题QoS策略</p>
+<p >使用默认的主题QoS策略。</p>
+<p >构建主题名称</p>
+<p >根据_name和_parent成员变量构建主题名称。</p>
+<p >创建主题</p>
+<p >在域参与者中创建一个主题，如果失败则打印错误信息并返回false。</p>
+<p >设置数据写入器QoS策略</p>
+<p >使用默认的数据写入器QoS策略，并设置历史内存策略为预分配并允许重新分配。</p>
+<p >创建数据写入器</p>
+<p >在发布者中创建一个数据写入器，并关联监听器，如果失败则打印错误信息并返回false。</p>
+<p >设置帧ID</p>
+<p >将_frame_id设置为_name的值。</p>
+<p >初始化成功</p>
+<p >初始化所有DDS组件成功后返回true。</p>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html">CarlaCollisionPublisher.cpp</a> 第 <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00090">90</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00030">carla::ros2::CarlaPublisher::_frame_id</a>, <a class="el" href="../../db/d6e/CarlaCollisionPublisher_8h_source.html#l00119">_impl</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00031">carla::ros2::CarlaPublisher::_name</a> , 以及 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00032">carla::ros2::CarlaPublisher::_parent</a>.</p>
+
+</div>
+</div>
+<a id="abaa4d5b4236ea2aad6d582d1cd87cad9" name="abaa4d5b4236ea2aad6d582d1cd87cad9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abaa4d5b4236ea2aad6d582d1cd87cad9">&#9670;&#160;</a></span>operator=() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html">CarlaCollisionPublisher</a> &amp; carla::ros2::CarlaCollisionPublisher::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html">CarlaCollisionPublisher</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>移动赋值运算符。 </p>
+<p >移动赋值运算符重载</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>要移动赋值的CarlaCollisionPublisher对象。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>引用到当前对象。</dd></dl>
+<p >将当前对象设置为另一个CarlaCollisionPublisher对象的移动。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>要移动的CarlaCollisionPublisher对象 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>引用当前对象 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html">CarlaCollisionPublisher.cpp</a> 第 <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00388">388</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00030">carla::ros2::CarlaPublisher::_frame_id</a>, <a class="el" href="../../db/d6e/CarlaCollisionPublisher_8h_source.html#l00119">_impl</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00031">carla::ros2::CarlaPublisher::_name</a> , 以及 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00032">carla::ros2::CarlaPublisher::_parent</a>.</p>
+
+</div>
+</div>
+<a id="aa95410e23ac5ef4e638b673030e699b0" name="aa95410e23ac5ef4e638b673030e699b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa95410e23ac5ef4e638b673030e699b0">&#9670;&#160;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html">CarlaCollisionPublisher</a> &amp; carla::ros2::CarlaCollisionPublisher::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html">CarlaCollisionPublisher</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>赋值运算符。 </p>
+<p >赋值运算符重载</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>要赋值的CarlaCollisionPublisher对象。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>引用到当前对象。</dd></dl>
+<p >将当前对象设置为另一个CarlaCollisionPublisher对象的拷贝。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>要拷贝的CarlaCollisionPublisher对象 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>引用当前对象 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html">CarlaCollisionPublisher.cpp</a> 第 <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00359">359</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00030">carla::ros2::CarlaPublisher::_frame_id</a>, <a class="el" href="../../db/d6e/CarlaCollisionPublisher_8h_source.html#l00119">_impl</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00031">carla::ros2::CarlaPublisher::_name</a> , 以及 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00032">carla::ros2::CarlaPublisher::_parent</a>.</p>
+
+</div>
+</div>
+<a id="a1dd18adeb9e61d7709657d4609f80b76" name="a1dd18adeb9e61d7709657d4609f80b76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1dd18adeb9e61d7709657d4609f80b76">&#9670;&#160;</a></span>Publish()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::ros2::CarlaCollisionPublisher::Publish </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>发布碰撞事件信息。 </p>
+<p >发布碰撞数据</p>
+<dl class="section return"><dt>返回</dt><dd>如果发布成功，则返回true；否则返回false。</dd></dl>
+<p >此函数尝试通过Fast-RTPS发布碰撞事件数据。 根据返回码（ReturnCode_t）判断发布是否成功，并输出相应的错误信息。</p>
+<dl class="section return"><dt>返回</dt><dd>bool 如果发布成功返回true，否则返回false。 </dd></dl>
+<p >用于存储Fast-RTPS实例句柄的变量</p>
+<p >调用DataWriter的write方法尝试发布数据，并获取返回码</p>
+<p >如果返回码为RETCODE_OK，表示发布成功</p>
+<p >处理各种可能的错误返回码，并输出相应的错误信息 </p><dl class="section note"><dt>注解</dt><dd>以下分支处理不同的错误情况</dd></dl>
+<p>如果返回码未知，则输出"UNKNOWN"错误信息</p>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html">CarlaCollisionPublisher.cpp</a> 第 <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00192">192</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d6e/CarlaCollisionPublisher_8h_source.html#l00119">_impl</a>.</p>
+
+</div>
+</div>
+<a id="a517e76eddcb8e99767db54670ed81098" name="a517e76eddcb8e99767db54670ed81098"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a517e76eddcb8e99767db54670ed81098">&#9670;&#160;</a></span>SetData() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::ros2::CarlaCollisionPublisher::SetData </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>seconds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>nanoseconds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>actor_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>z</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置要发布的碰撞事件数据。 </p>
+<p >设置碰撞数据，使用单独的x, y, z坐标</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">seconds</td><td>碰撞发生的时间（秒）。 </td></tr>
+    <tr><td class="paramname">nanoseconds</td><td>碰撞发生的时间（纳秒）。 </td></tr>
+    <tr><td class="paramname">actor_id</td><td>发生碰撞的物体的ID。 </td></tr>
+    <tr><td class="paramname">x</td><td>碰撞位置的X坐标。 </td></tr>
+    <tr><td class="paramname">y</td><td>碰撞位置的Y坐标。 </td></tr>
+    <tr><td class="paramname">z</td><td>碰撞位置的Z坐标。</td></tr>
+  </table>
+  </dd>
+</dl>
+<p >该函数将时间戳（秒和纳秒）、actor_id以及碰撞的x, y, z坐标作为参数， 并将这些数据封装成向量后调用重载的SetData函数。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">seconds</td><td>时间戳的秒部分 </td></tr>
+    <tr><td class="paramname">nanoseconds</td><td>时间戳的纳秒部分 </td></tr>
+    <tr><td class="paramname">actor_id</td><td>发生碰撞的actor的ID </td></tr>
+    <tr><td class="paramname">x</td><td>碰撞点的x坐标 </td></tr>
+    <tr><td class="paramname">y</td><td>碰撞点的y坐标 </td></tr>
+    <tr><td class="paramname">z</td><td>碰撞点的z坐标 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html">CarlaCollisionPublisher.cpp</a> 第 <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00272">272</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00272">SetData()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00272">SetData()</a>.</p>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher_a517e76eddcb8e99767db54670ed81098_cgraph.svg" width="178" height="75"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher_a517e76eddcb8e99767db54670ed81098_icgraph.svg" width="178" height="75"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a95cb3fd57db9162949de3c0d3128d16b" name="a95cb3fd57db9162949de3c0d3128d16b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95cb3fd57db9162949de3c0d3128d16b">&#9670;&#160;</a></span>SetData() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::ros2::CarlaCollisionPublisher::SetData </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>seconds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>nanoseconds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>actor_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; float &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>另一个版本的SetData函数，允许传递碰撞位置数据的向量。 </p>
+<p >设置碰撞数据，使用向量数据</p>
+<p >这个函数是私有的，意味着它只能在CarlaCollisionPublisher类内部被调用。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">seconds</td><td>碰撞发生的时间（秒）。 </td></tr>
+    <tr><td class="paramname">nanoseconds</td><td>碰撞发生的时间（纳秒）。 </td></tr>
+    <tr><td class="paramname">actor_id</td><td>发生碰撞的物体的ID。 </td></tr>
+    <tr><td class="paramname">data</td><td>包含碰撞位置数据的向量（X, Y, Z）。</td></tr>
+  </table>
+  </dd>
+</dl>
+<p >该函数将时间戳（秒和纳秒）、actor_id以及包含碰撞数据的向量作为参数， 并使用这些数据填充碰撞事件的消息结构。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">seconds</td><td>时间戳的秒部分 </td></tr>
+    <tr><td class="paramname">nanoseconds</td><td>时间戳的纳秒部分 </td></tr>
+    <tr><td class="paramname">actor_id</td><td>发生碰撞的actor的ID </td></tr>
+    <tr><td class="paramname">data</td><td>包含碰撞点x, y, z坐标的向量 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html">CarlaCollisionPublisher.cpp</a> 第 <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00287">287</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00030">carla::ros2::CarlaPublisher::_frame_id</a>, <a class="el" href="../../db/d6e/CarlaCollisionPublisher_8h_source.html#l00119">_impl</a>, <a class="el" href="../../d8/d38/Time_8cpp_source.html#l00183">builtin_interfaces::msg::Time::nanosec()</a>, <a class="el" href="../../d8/d38/Time_8cpp_source.html#l00152">builtin_interfaces::msg::Time::sec()</a>, <a class="el" href="../../dd/d1f/Vector3_8cpp_source.html#l00150">geometry_msgs::msg::Vector3::x()</a>, <a class="el" href="../../dd/d1f/Vector3_8cpp_source.html#l00170">geometry_msgs::msg::Vector3::y()</a> , 以及 <a class="el" href="../../dd/d1f/Vector3_8cpp_source.html#l00189">geometry_msgs::msg::Vector3::z()</a>.</p>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher_a95cb3fd57db9162949de3c0d3128d16b_cgraph.svg" width="371" height="307"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a811c68fa35e8fb7a07f353595e88b655" name="a811c68fa35e8fb7a07f353595e88b655"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a811c68fa35e8fb7a07f353595e88b655">&#9670;&#160;</a></span>type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * carla::ros2::CarlaCollisionPublisher::type </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重写基类中的type函数，返回此发布者的类型。 </p>
+<dl class="section return"><dt>返回</dt><dd>指向类型名称的常量字符指针，此处为"collision"。 </dd></dl>
+
+<p>实现了 <a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a6448e2522e8b78dfe350aca123530089">carla::ros2::CarlaPublisher</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="../../db/d6e/CarlaCollisionPublisher_8h_source.html">CarlaCollisionPublisher.h</a> 第 <a class="el" href="../../db/d6e/CarlaCollisionPublisher_8h_source.html#l00098">98</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a0de2600ba0d474c93fadd2b3d9f6317d" name="a0de2600ba0d474c93fadd2b3d9f6317d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0de2600ba0d474c93fadd2b3d9f6317d">&#9670;&#160;</a></span>_impl</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="../../d0/dfa/structcarla_1_1ros2_1_1CarlaCollisionPublisherImpl.html">CarlaCollisionPublisherImpl</a>&gt; carla::ros2::CarlaCollisionPublisher::_impl</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>指向内部实现结构体的智能指针。 </p>
+<p >使用shared_ptr来管理CarlaCollisionPublisherImpl的生命周期，允许多个对象共享同一个实现。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../db/d6e/CarlaCollisionPublisher_8h_source.html">CarlaCollisionPublisher.h</a> 第 <a class="el" href="../../db/d6e/CarlaCollisionPublisher_8h_source.html#l00119">119</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00345">CarlaCollisionPublisher()</a>, <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00090">Init()</a>, <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00359">operator=()</a>, <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00192">Publish()</a>, <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00287">SetData()</a> , 以及 <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00322">~CarlaCollisionPublisher()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../db/d6e/CarlaCollisionPublisher_8h_source.html">CarlaCollisionPublisher.h</a></li>
+<li><a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html">CarlaCollisionPublisher.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

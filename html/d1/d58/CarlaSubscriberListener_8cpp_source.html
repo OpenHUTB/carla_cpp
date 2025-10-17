@@ -1,0 +1,285 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: CarlaSubscriberListener.cpp 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_087ce8304d10c4897e4acbeac1a6fcc8.html">ros2</a></li><li class="navelem"><a class="el" href="../../dir_0db64db9ad9f5f4669df17e5e47c971b.html">listeners</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">CarlaSubscriberListener.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d1/d58/CarlaSubscriberListener_8cpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno"><a class="line" href="../../d1/d58/CarlaSubscriberListener_8cpp.html#acbf3245277a73b810032219100559ae2">    1</a></span><span class="preprocessor">#define _GLIBCXX_USE_CXX11_ABI 0</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// 定义宏，指定使用 C++11 ABI 的版本为 0</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="../../d7/d88/CarlaSubscriberListener_8h.html">CarlaSubscriberListener.h</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">// 包含头文件，用于输入输出流</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;fastdds/dds/subscriber/DataReader.hpp&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">// 包含 Fast DDS 的数据读取器头文件</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;fastdds/dds/subscriber/DataReaderListener.hpp&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">// 包含 Fast DDS 的数据读取器监听器头文件</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;fastdds/dds/core/status/SubscriptionMatchedStatus.hpp&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">// 包含 Fast DDS 的订阅匹配状态头文件</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;fastdds/dds/subscriber/SampleInfo.hpp&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">// 包含 Fast DDS 的样本信息头文件</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;<a class="code" href="../../d0/de0/CarlaEgoVehicleControl_8h.html">carla/ros2/types/CarlaEgoVehicleControl.h</a>&quot;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">// 包含 Carla 和 ROS2 之间的自定义消息类型头文件，用于自动驾驶车辆控制</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &quot;<a class="code" href="../../de/d54/CarlaEgoVehicleControlSubscriber_8h.html">carla/ros2/subscribers/CarlaEgoVehicleControlSubscriber.h</a>&quot;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">// 包含 Carla 和 ROS2 的订阅者相关头文件</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &quot;<a class="code" href="../../d2/d6c/ROS2CallbackData_8h.html">carla/ros2/ROS2CallbackData.h</a>&quot;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment">// 包含 Carla 和 ROS2 的回调数据头文件</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d9/d36/namespacecarla.html">carla</a> {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d8/dc9/namespaceros2.html">ros2</a> {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <span class="keyword">namespace </span>efd = eprosima::fastdds::dds;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <span class="comment">// 为 eprosima::fastdds::dds 命名空间定义别名 efd</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="../../d1/d4b/namespacecarla_1_1ros2.html#a039449a937ed7a0e3405180019217dc5">   27</a></span>  <span class="keyword">using </span><a class="code hl_typedef" href="../../d1/d4b/namespacecarla_1_1ros2.html#a039449a937ed7a0e3405180019217dc5">erc</a> = eprosima::fastrtps::types::ReturnCode_t;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="comment">// 定义类型别名 erc，表示 eprosima::fastrtps 的返回码类型</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html">   30</a></span>    <span class="keyword">class </span><a class="code hl_class" href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html">CarlaSubscriberListenerImpl</a> : <span class="keyword">public</span> <a class="code hl_class" href="../../da/d7d/classeprosima_1_1fastdds_1_1dds_1_1DataReaderListener.html">efd::DataReaderListener</a> {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>      <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>      <span class="keywordtype">void</span> <a class="code hl_function" href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html#aab2e0570861e516690616390f2d8cb8f">on_subscription_matched</a>(</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>              efd::DataReader* reader,</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>              <span class="keyword">const</span> efd::SubscriptionMatchedStatus&amp; info);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>      <span class="comment">// 声明订阅匹配时的回调函数</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>      <span class="keywordtype">void</span> <a class="code hl_function" href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html#ae7d2c0427dd043359961ea9e6d91512f">on_data_available</a>(efd::DataReader* reader);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>      <span class="comment">// 声明数据可用时的回调函数</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html#af68ed902904be868930b80de4b56d38b">   39</a></span>      <span class="keywordtype">int</span> <a class="code hl_variable" href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html#af68ed902904be868930b80de4b56d38b">_matched</a> {0};</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>      <span class="comment">// 匹配的数量初始化为 0</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html#aab5d4d4f4b2a79119cdea97ac21302ec">   41</a></span>      <span class="keywordtype">bool</span> <a class="code hl_variable" href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html#aab5d4d4f4b2a79119cdea97ac21302ec">_first_connected</a> {<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>      <span class="comment">// 表示是否首次连接的标志初始化为 false</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html#a6073e2760bde0efd360707dff84dc211">   43</a></span>      <a class="code hl_class" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html">CarlaEgoVehicleControlSubscriber</a>* <a class="code hl_variable" href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html#a6073e2760bde0efd360707dff84dc211">_owner</a> {<span class="keyword">nullptr</span>};</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>      <span class="comment">// 指向订阅者的指针初始化为 nullptr</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html#ae06509d2b32416b8cb764370af4afdd7">   45</a></span>      <a class="code hl_class" href="../../dd/d4d/classcarla__msgs_1_1msg_1_1CarlaEgoVehicleControl.html">carla_msgs::msg::CarlaEgoVehicleControl</a> <a class="code hl_variable" href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html#ae06509d2b32416b8cb764370af4afdd7">_message</a> {};</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>      <span class="comment">// 用于存储接收到的消息</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    };</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html#aab2e0570861e516690616390f2d8cb8f">   49</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html#aab2e0570861e516690616390f2d8cb8f">CarlaSubscriberListenerImpl::on_subscription_matched</a>(efd::DataReader* reader, <span class="keyword">const</span> efd::SubscriptionMatchedStatus&amp; info)</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    {</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>      <span class="keywordflow">if</span> (info.current_count_change == 1) {</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>          <a class="code hl_variable" href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html#af68ed902904be868930b80de4b56d38b">_matched</a> = info.total_count;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>          <a class="code hl_variable" href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html#aab5d4d4f4b2a79119cdea97ac21302ec">_first_connected</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>      <span class="comment">// 如果当前匹配数量变化为 1，更新匹配数量并设置首次连接标志为 true</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (info.current_count_change == -1) {</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>          <a class="code hl_variable" href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html#af68ed902904be868930b80de4b56d38b">_matched</a> = info.total_count;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>          <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html#af68ed902904be868930b80de4b56d38b">_matched</a> == 0) {</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>            <a class="code hl_variable" href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html#a6073e2760bde0efd360707dff84dc211">_owner</a>-&gt;<a class="code hl_function" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#ad86aa5ed0f179bea0727b4badbb5aee7">DestroySubscriber</a>();</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>          <span class="comment">// 如果当前匹配数量变化为 -1，更新匹配数量，若匹配数量为 0，则销毁订阅者</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>          }</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>      } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>          std::cerr &lt;&lt; info.current_count_change</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>                  &lt;&lt; <span class="stringliteral">&quot; is not a valid value for PublicationMatchedStatus current count change&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>      <span class="comment">// 如果当前匹配数量变化不是 1 或 -1，则输出错误信息</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>      }</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    }</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html#ae7d2c0427dd043359961ea9e6d91512f">   68</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html#ae7d2c0427dd043359961ea9e6d91512f">CarlaSubscriberListenerImpl::on_data_available</a>(efd::DataReader* reader)</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    {</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>      efd::SampleInfo info;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>      <span class="comment">// 定义样本信息对象</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>      eprosima::fastrtps::types::ReturnCode_t rcode = reader-&gt;take_next_sample(&amp;<a class="code hl_variable" href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html#ae06509d2b32416b8cb764370af4afdd7">_message</a>, &amp;info);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>      <span class="comment">// 从数据读取器中获取下一个样本，并存储在消息对象和样本信息对象中</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>      <span class="keywordflow">if</span> (rcode == erc::ReturnCodeValue::RETCODE_OK) {</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        <a class="code hl_struct" href="../../de/d61/structcarla_1_1ros2_1_1VehicleControl.html">VehicleControl</a> control;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        control.<a class="code hl_variable" href="../../de/d61/structcarla_1_1ros2_1_1VehicleControl.html#a43fb93b610449db78a79e2dde6f91e55">throttle</a> = <a class="code hl_variable" href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html#ae06509d2b32416b8cb764370af4afdd7">_message</a>.<a class="code hl_function" href="../../dd/d4d/classcarla__msgs_1_1msg_1_1CarlaEgoVehicleControl.html#ab1afe621b60e7f9dc58156d0c7befc20">throttle</a>();</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        control.<a class="code hl_variable" href="../../de/d61/structcarla_1_1ros2_1_1VehicleControl.html#ac024ed57b6ea46c2b7ad2bbf9c57e886">steer</a> = <a class="code hl_variable" href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html#ae06509d2b32416b8cb764370af4afdd7">_message</a>.<a class="code hl_function" href="../../dd/d4d/classcarla__msgs_1_1msg_1_1CarlaEgoVehicleControl.html#adba8280f49e43e65bce2e3534f11650e">steer</a>();</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        control.<a class="code hl_variable" href="../../de/d61/structcarla_1_1ros2_1_1VehicleControl.html#a481c37893c9f5e7b2598e22ab61abbdf">brake</a> = <a class="code hl_variable" href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html#ae06509d2b32416b8cb764370af4afdd7">_message</a>.<a class="code hl_function" href="../../dd/d4d/classcarla__msgs_1_1msg_1_1CarlaEgoVehicleControl.html#ab0183cef177da6fcbd87023600f3e134">brake</a>();</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        control.<a class="code hl_variable" href="../../de/d61/structcarla_1_1ros2_1_1VehicleControl.html#a3c70f0b16ebb187de851df81d330e9d2">hand_brake</a> = <a class="code hl_variable" href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html#ae06509d2b32416b8cb764370af4afdd7">_message</a>.<a class="code hl_function" href="../../dd/d4d/classcarla__msgs_1_1msg_1_1CarlaEgoVehicleControl.html#aad0b740ba5f8b51b815960084c90c7a0">hand_brake</a>();</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        control.<a class="code hl_variable" href="../../de/d61/structcarla_1_1ros2_1_1VehicleControl.html#a0abf49435907e9b1759935445f66c66a">reverse</a> = <a class="code hl_variable" href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html#ae06509d2b32416b8cb764370af4afdd7">_message</a>.<a class="code hl_function" href="../../dd/d4d/classcarla__msgs_1_1msg_1_1CarlaEgoVehicleControl.html#a18242de28e9ce4fa18b721fedb2be497">reverse</a>();</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        control.<a class="code hl_variable" href="../../de/d61/structcarla_1_1ros2_1_1VehicleControl.html#ad88c587756bda13b1791c6bfc5a63992">gear</a> = <a class="code hl_variable" href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html#ae06509d2b32416b8cb764370af4afdd7">_message</a>.<a class="code hl_function" href="../../dd/d4d/classcarla__msgs_1_1msg_1_1CarlaEgoVehicleControl.html#acd67aeb4a3f65ecd3b8cb6b61838d4c7">gear</a>();</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        control.<a class="code hl_variable" href="../../de/d61/structcarla_1_1ros2_1_1VehicleControl.html#a2fd186c1a2c999947e98f85e6bf1e850">manual_gear_shift</a> = <a class="code hl_variable" href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html#ae06509d2b32416b8cb764370af4afdd7">_message</a>.<a class="code hl_function" href="../../dd/d4d/classcarla__msgs_1_1msg_1_1CarlaEgoVehicleControl.html#ad43aaff1b64b1c3d903e54ac4a1d4a2f">manual_gear_shift</a>();</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <a class="code hl_variable" href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html#a6073e2760bde0efd360707dff84dc211">_owner</a>-&gt;<a class="code hl_function" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#ab3969fae771594ee1880ac546e808417">ForwardMessage</a>(control);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>      <span class="comment">// 如果返回码为 RETCODE_OK，表示成功获取样本，将消息中的控制信息提取出来并转发给订阅者的所有者</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>      }</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>      <span class="keywordflow">if</span> (rcode == erc::ReturnCodeValue::RETCODE_ERROR) {</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>          std::cerr &lt;&lt; <span class="stringliteral">&quot;RETCODE_ERROR&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>      <span class="comment">// 如果返回码为 RETCODE_ERROR，输出错误信息</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>      }</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>      <span class="keywordflow">if</span> (rcode == erc::ReturnCodeValue::RETCODE_UNSUPPORTED) {</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>          std::cerr &lt;&lt; <span class="stringliteral">&quot;RETCODE_UNSUPPORTED&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>      <span class="comment">// 如果返回码为 RETCODE_UNSUPPORTED，输出错误信息</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>      }</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>      <span class="keywordflow">if</span> (rcode == erc::ReturnCodeValue::RETCODE_BAD_PARAMETER) {</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>          std::cerr &lt;&lt; <span class="stringliteral">&quot;RETCODE_BAD_PARAMETER&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>      <span class="comment">// 如果返回码为 RETCODE_BAD_PARAMETER，输出错误信息</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>      }</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>      <span class="keywordflow">if</span> (rcode == erc::ReturnCodeValue::RETCODE_PRECONDITION_NOT_MET) {</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>          std::cerr &lt;&lt; <span class="stringliteral">&quot;RETCODE_PRECONDITION_NOT_MET&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>      <span class="comment">// 如果返回码为 RETCODE_PRECONDITION_NOT_MET，输出错误信息</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>      }</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>      <span class="keywordflow">if</span> (rcode == erc::ReturnCodeValue::RETCODE_OUT_OF_RESOURCES) {</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>          std::cerr &lt;&lt; <span class="stringliteral">&quot;RETCODE_OUT_OF_RESOURCES&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>      <span class="comment">// 如果返回码为 RETCODE_OUT_OF_RESOURCES，输出错误信息</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>      }</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>      <span class="keywordflow">if</span> (rcode == erc::ReturnCodeValue::RETCODE_NOT_ENABLED) {</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>          std::cerr &lt;&lt; <span class="stringliteral">&quot;RETCODE_NOT_ENABLED&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>      <span class="comment">// 如果返回码为 RETCODE_NOT_ENABLED，输出错误信息</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>      }</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>      <span class="keywordflow">if</span> (rcode == erc::ReturnCodeValue::RETCODE_IMMUTABLE_POLICY) {</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>          std::cerr &lt;&lt; <span class="stringliteral">&quot;RETCODE_IMMUTABLE_POLICY&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>      <span class="comment">// 如果返回码为 RETCODE_IMMUTABLE_POLICY，输出错误信息</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>      }</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>      <span class="keywordflow">if</span> (rcode == erc::ReturnCodeValue::RETCODE_INCONSISTENT_POLICY) {</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>          std::cerr &lt;&lt; <span class="stringliteral">&quot;RETCODE_INCONSISTENT_POLICY&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>      <span class="comment">// 如果返回码为 RETCODE_INCONSISTENT_POLICY，输出错误信息</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>      }</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>      <span class="keywordflow">if</span> (rcode == erc::ReturnCodeValue::RETCODE_ALREADY_DELETED) {</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>          std::cerr &lt;&lt; <span class="stringliteral">&quot;RETCODE_ALREADY_DELETED&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>      <span class="comment">// 如果返回码为 RETCODE_ALREADY_DELETED，输出错误信息</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>      }</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>      <span class="keywordflow">if</span> (rcode == erc::ReturnCodeValue::RETCODE_TIMEOUT) {</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>          std::cerr &lt;&lt; <span class="stringliteral">&quot;RETCODE_TIMEOUT&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>      <span class="comment">// 如果返回码为 RETCODE_TIMEOUT，输出错误信息</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>      }</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>      <span class="keywordflow">if</span> (rcode == erc::ReturnCodeValue::RETCODE_NO_DATA) {</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>          std::cerr &lt;&lt; <span class="stringliteral">&quot;RETCODE_NO_DATA&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>      <span class="comment">// 如果返回码为 RETCODE_NO_DATA，输出错误信息</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>      }</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>      <span class="keywordflow">if</span> (rcode == erc::ReturnCodeValue::RETCODE_ILLEGAL_OPERATION) {</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>          std::cerr &lt;&lt; <span class="stringliteral">&quot;RETCODE_ILLEGAL_OPERATION&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>      <span class="comment">// 如果返回码为 RETCODE_ILLEGAL_OPERATION，输出错误信息</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>      }</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>      <span class="keywordflow">if</span> (rcode == erc::ReturnCodeValue::RETCODE_NOT_ALLOWED_BY_SECURITY) {</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>          std::cerr &lt;&lt; <span class="stringliteral">&quot;RETCODE_NOT_ALLOWED_BY_SECURITY&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>      <span class="comment">// 如果返回码为 RETCODE_NOT_ALLOWED_BY_SECURITY，输出错误信息</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>      }</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    }</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="../../d4/d6e/classcarla_1_1ros2_1_1CarlaSubscriberListener.html#ab1f67b3b3a5d8fe87f17642f4e0d09a2">  141</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d4/d6e/classcarla_1_1ros2_1_1CarlaSubscriberListener.html#ab1f67b3b3a5d8fe87f17642f4e0d09a2">CarlaSubscriberListener::SetOwner</a>(<a class="code hl_class" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html">CarlaEgoVehicleControlSubscriber</a>* owner) {</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>        <a class="code hl_variable" href="../../d4/d6e/classcarla_1_1ros2_1_1CarlaSubscriberListener.html#a7348281f73506e52e8260369fa516b7e">_impl</a>-&gt;_owner = owner;</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="comment">// 设置监听器的所有者为给定的订阅者</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    }</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="../../d4/d6e/classcarla_1_1ros2_1_1CarlaSubscriberListener.html#ac730e013bf572001c1dfdf2d5145fff1">  146</a></span>    <a class="code hl_function" href="../../d4/d6e/classcarla_1_1ros2_1_1CarlaSubscriberListener.html#ac730e013bf572001c1dfdf2d5145fff1">CarlaSubscriberListener::CarlaSubscriberListener</a>(<a class="code hl_class" href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html">CarlaEgoVehicleControlSubscriber</a>* owner) :</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    _impl(<a class="code hl_namespace" href="../../d8/dcc/namespacestd.html">std</a>::make_unique&lt;<a class="code hl_class" href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html">CarlaSubscriberListenerImpl</a>&gt;()) {</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        <a class="code hl_variable" href="../../d4/d6e/classcarla_1_1ros2_1_1CarlaSubscriberListener.html#a7348281f73506e52e8260369fa516b7e">_impl</a>-&gt;_owner = owner;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="comment">// 构造函数，创建监听器实现对象，并设置所有者为给定的订阅者</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    }</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="../../d4/d6e/classcarla_1_1ros2_1_1CarlaSubscriberListener.html#a6941bd8605d08aac00df768fb6513cc5">  152</a></span>    <a class="code hl_function" href="../../d4/d6e/classcarla_1_1ros2_1_1CarlaSubscriberListener.html#a6941bd8605d08aac00df768fb6513cc5">CarlaSubscriberListener::~CarlaSubscriberListener</a>() {}</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="comment">// 析构函数</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>}}</div>
+<div class="ttc" id="aCarlaEgoVehicleControlSubscriber_8h_html"><div class="ttname"><a href="../../de/d54/CarlaEgoVehicleControlSubscriber_8h.html">CarlaEgoVehicleControlSubscriber.h</a></div></div>
+<div class="ttc" id="aCarlaEgoVehicleControl_8h_html"><div class="ttname"><a href="../../d0/de0/CarlaEgoVehicleControl_8h.html">CarlaEgoVehicleControl.h</a></div></div>
+<div class="ttc" id="aCarlaSubscriberListener_8h_html"><div class="ttname"><a href="../../d7/d88/CarlaSubscriberListener_8h.html">CarlaSubscriberListener.h</a></div></div>
+<div class="ttc" id="aROS2CallbackData_8h_html"><div class="ttname"><a href="../../d2/d6c/ROS2CallbackData_8h.html">ROS2CallbackData.h</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber_html"><div class="ttname"><a href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html">carla::ros2::CarlaEgoVehicleControlSubscriber</a></div><div class="ttdoc">CarlaEgoVehicleControlSubscriber类，用于订阅并处理来自ROS2的自动驾驶车辆控制消息</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d54/CarlaEgoVehicleControlSubscriber_8h_source.html#l00020">CarlaEgoVehicleControlSubscriber.h:20</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber_html_ab3969fae771594ee1880ac546e808417"><div class="ttname"><a href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#ab3969fae771594ee1880ac546e808417">carla::ros2::CarlaEgoVehicleControlSubscriber::ForwardMessage</a></div><div class="ttdeci">void ForwardMessage(VehicleControl control)</div><div class="ttdoc">（内部使用）将控制消息转发给内部处理函数。</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00251">CarlaEgoVehicleControlSubscriber.cpp:251</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber_html_ad86aa5ed0f179bea0727b4badbb5aee7"><div class="ttname"><a href="../../df/d99/classcarla_1_1ros2_1_1CarlaEgoVehicleControlSubscriber.html#ad86aa5ed0f179bea0727b4badbb5aee7">carla::ros2::CarlaEgoVehicleControlSubscriber::DestroySubscriber</a></div><div class="ttdeci">void DestroySubscriber()</div><div class="ttdoc">销毁用户并释放相关资源。</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d9b/CarlaEgoVehicleControlSubscriber_8cpp_source.html#l00260">CarlaEgoVehicleControlSubscriber.cpp:260</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaSubscriberListenerImpl_html"><div class="ttname"><a href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html">carla::ros2::CarlaSubscriberListenerImpl</a></div><div class="ttdoc">CarlaSubscriberListener的内部实现类，用于隐藏实现细节。</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d58/CarlaSubscriberListener_8cpp_source.html#l00030">CarlaSubscriberListener.cpp:30</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaSubscriberListenerImpl_html_a6073e2760bde0efd360707dff84dc211"><div class="ttname"><a href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html#a6073e2760bde0efd360707dff84dc211">carla::ros2::CarlaSubscriberListenerImpl::_owner</a></div><div class="ttdeci">CarlaEgoVehicleControlSubscriber * _owner</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d58/CarlaSubscriberListener_8cpp_source.html#l00043">CarlaSubscriberListener.cpp:43</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaSubscriberListenerImpl_html_aab2e0570861e516690616390f2d8cb8f"><div class="ttname"><a href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html#aab2e0570861e516690616390f2d8cb8f">carla::ros2::CarlaSubscriberListenerImpl::on_subscription_matched</a></div><div class="ttdeci">void on_subscription_matched(efd::DataReader *reader, const efd::SubscriptionMatchedStatus &amp;info)</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d58/CarlaSubscriberListener_8cpp_source.html#l00049">CarlaSubscriberListener.cpp:49</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaSubscriberListenerImpl_html_aab5d4d4f4b2a79119cdea97ac21302ec"><div class="ttname"><a href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html#aab5d4d4f4b2a79119cdea97ac21302ec">carla::ros2::CarlaSubscriberListenerImpl::_first_connected</a></div><div class="ttdeci">bool _first_connected</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d58/CarlaSubscriberListener_8cpp_source.html#l00041">CarlaSubscriberListener.cpp:41</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaSubscriberListenerImpl_html_ae06509d2b32416b8cb764370af4afdd7"><div class="ttname"><a href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html#ae06509d2b32416b8cb764370af4afdd7">carla::ros2::CarlaSubscriberListenerImpl::_message</a></div><div class="ttdeci">carla_msgs::msg::CarlaEgoVehicleControl _message</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d58/CarlaSubscriberListener_8cpp_source.html#l00045">CarlaSubscriberListener.cpp:45</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaSubscriberListenerImpl_html_ae7d2c0427dd043359961ea9e6d91512f"><div class="ttname"><a href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html#ae7d2c0427dd043359961ea9e6d91512f">carla::ros2::CarlaSubscriberListenerImpl::on_data_available</a></div><div class="ttdeci">void on_data_available(efd::DataReader *reader)</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d58/CarlaSubscriberListener_8cpp_source.html#l00068">CarlaSubscriberListener.cpp:68</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaSubscriberListenerImpl_html_af68ed902904be868930b80de4b56d38b"><div class="ttname"><a href="../../dc/dce/classcarla_1_1ros2_1_1CarlaSubscriberListenerImpl.html#af68ed902904be868930b80de4b56d38b">carla::ros2::CarlaSubscriberListenerImpl::_matched</a></div><div class="ttdeci">int _matched</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d58/CarlaSubscriberListener_8cpp_source.html#l00039">CarlaSubscriberListener.cpp:39</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaSubscriberListener_html_a6941bd8605d08aac00df768fb6513cc5"><div class="ttname"><a href="../../d4/d6e/classcarla_1_1ros2_1_1CarlaSubscriberListener.html#a6941bd8605d08aac00df768fb6513cc5">carla::ros2::CarlaSubscriberListener::~CarlaSubscriberListener</a></div><div class="ttdeci">~CarlaSubscriberListener()</div><div class="ttdoc">析构函数，清理资源并释放内部实现。</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d58/CarlaSubscriberListener_8cpp_source.html#l00152">CarlaSubscriberListener.cpp:152</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaSubscriberListener_html_a7348281f73506e52e8260369fa516b7e"><div class="ttname"><a href="../../d4/d6e/classcarla_1_1ros2_1_1CarlaSubscriberListener.html#a7348281f73506e52e8260369fa516b7e">carla::ros2::CarlaSubscriberListener::_impl</a></div><div class="ttdeci">std::unique_ptr&lt; CarlaSubscriberListenerImpl &gt; _impl</div><div class="ttdoc">指向内部实现类的指针。</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/d88/CarlaSubscriberListener_8h_source.html#l00081">CarlaSubscriberListener.h:81</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaSubscriberListener_html_ab1f67b3b3a5d8fe87f17642f4e0d09a2"><div class="ttname"><a href="../../d4/d6e/classcarla_1_1ros2_1_1CarlaSubscriberListener.html#ab1f67b3b3a5d8fe87f17642f4e0d09a2">carla::ros2::CarlaSubscriberListener::SetOwner</a></div><div class="ttdeci">void SetOwner(CarlaEgoVehicleControlSubscriber *owner)</div><div class="ttdoc">设置此监听器的所有者。</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d58/CarlaSubscriberListener_8cpp_source.html#l00141">CarlaSubscriberListener.cpp:141</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaSubscriberListener_html_ac730e013bf572001c1dfdf2d5145fff1"><div class="ttname"><a href="../../d4/d6e/classcarla_1_1ros2_1_1CarlaSubscriberListener.html#ac730e013bf572001c1dfdf2d5145fff1">carla::ros2::CarlaSubscriberListener::CarlaSubscriberListener</a></div><div class="ttdeci">CarlaSubscriberListener(CarlaEgoVehicleControlSubscriber *owner)</div><div class="ttdoc">构造函数，初始化CarlaSubscriberListener并设置其所有者。</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d58/CarlaSubscriberListener_8cpp_source.html#l00146">CarlaSubscriberListener.cpp:146</a></div></div>
+<div class="ttc" id="aclasscarla__msgs_1_1msg_1_1CarlaEgoVehicleControl_html"><div class="ttname"><a href="../../dd/d4d/classcarla__msgs_1_1msg_1_1CarlaEgoVehicleControl.html">carla_msgs::msg::CarlaEgoVehicleControl</a></div><div class="ttdoc">该类表示用户在 IDL 文件中定义的结构 CarlaEgoVehicleControl。   &lt;&gt;</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/de0/CarlaEgoVehicleControl_8h_source.html#l00067">CarlaEgoVehicleControl.h:68</a></div></div>
+<div class="ttc" id="aclasscarla__msgs_1_1msg_1_1CarlaEgoVehicleControl_html_a18242de28e9ce4fa18b721fedb2be497"><div class="ttname"><a href="../../dd/d4d/classcarla__msgs_1_1msg_1_1CarlaEgoVehicleControl.html#a18242de28e9ce4fa18b721fedb2be497">carla_msgs::msg::CarlaEgoVehicleControl::reverse</a></div><div class="ttdeci">eProsima_user_DllExport void reverse(bool _reverse)</div><div class="ttdoc">该函数设置成员 reverse 的值。</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d9e/CarlaEgoVehicleControl_8cpp_source.html#l00363">CarlaEgoVehicleControl.cpp:363</a></div></div>
+<div class="ttc" id="aclasscarla__msgs_1_1msg_1_1CarlaEgoVehicleControl_html_aad0b740ba5f8b51b815960084c90c7a0"><div class="ttname"><a href="../../dd/d4d/classcarla__msgs_1_1msg_1_1CarlaEgoVehicleControl.html#aad0b740ba5f8b51b815960084c90c7a0">carla_msgs::msg::CarlaEgoVehicleControl::hand_brake</a></div><div class="ttdeci">eProsima_user_DllExport void hand_brake(bool _hand_brake)</div><div class="ttdoc">该函数设置成员 hand_brake 的值。</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d9e/CarlaEgoVehicleControl_8cpp_source.html#l00335">CarlaEgoVehicleControl.cpp:335</a></div></div>
+<div class="ttc" id="aclasscarla__msgs_1_1msg_1_1CarlaEgoVehicleControl_html_ab0183cef177da6fcbd87023600f3e134"><div class="ttname"><a href="../../dd/d4d/classcarla__msgs_1_1msg_1_1CarlaEgoVehicleControl.html#ab0183cef177da6fcbd87023600f3e134">carla_msgs::msg::CarlaEgoVehicleControl::brake</a></div><div class="ttdeci">eProsima_user_DllExport void brake(float _brake)</div><div class="ttdoc">该函数设置成员 brake 的值。</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d9e/CarlaEgoVehicleControl_8cpp_source.html#l00307">CarlaEgoVehicleControl.cpp:307</a></div></div>
+<div class="ttc" id="aclasscarla__msgs_1_1msg_1_1CarlaEgoVehicleControl_html_ab1afe621b60e7f9dc58156d0c7befc20"><div class="ttname"><a href="../../dd/d4d/classcarla__msgs_1_1msg_1_1CarlaEgoVehicleControl.html#ab1afe621b60e7f9dc58156d0c7befc20">carla_msgs::msg::CarlaEgoVehicleControl::throttle</a></div><div class="ttdeci">eProsima_user_DllExport void throttle(float _throttle)</div><div class="ttdoc">该函数设置成员 throttle 的值。</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d9e/CarlaEgoVehicleControl_8cpp_source.html#l00250">CarlaEgoVehicleControl.cpp:250</a></div></div>
+<div class="ttc" id="aclasscarla__msgs_1_1msg_1_1CarlaEgoVehicleControl_html_acd67aeb4a3f65ecd3b8cb6b61838d4c7"><div class="ttname"><a href="../../dd/d4d/classcarla__msgs_1_1msg_1_1CarlaEgoVehicleControl.html#acd67aeb4a3f65ecd3b8cb6b61838d4c7">carla_msgs::msg::CarlaEgoVehicleControl::gear</a></div><div class="ttdeci">eProsima_user_DllExport void gear(int32_t _gear)</div><div class="ttdoc">该函数设置成员 gear 的值。</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d9e/CarlaEgoVehicleControl_8cpp_source.html#l00391">CarlaEgoVehicleControl.cpp:391</a></div></div>
+<div class="ttc" id="aclasscarla__msgs_1_1msg_1_1CarlaEgoVehicleControl_html_ad43aaff1b64b1c3d903e54ac4a1d4a2f"><div class="ttname"><a href="../../dd/d4d/classcarla__msgs_1_1msg_1_1CarlaEgoVehicleControl.html#ad43aaff1b64b1c3d903e54ac4a1d4a2f">carla_msgs::msg::CarlaEgoVehicleControl::manual_gear_shift</a></div><div class="ttdeci">eProsima_user_DllExport void manual_gear_shift(bool _manual_gear_shift)</div><div class="ttdoc">该函数设置成员 manual_gear_shift 的值。</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d9e/CarlaEgoVehicleControl_8cpp_source.html#l00419">CarlaEgoVehicleControl.cpp:419</a></div></div>
+<div class="ttc" id="aclasscarla__msgs_1_1msg_1_1CarlaEgoVehicleControl_html_adba8280f49e43e65bce2e3534f11650e"><div class="ttname"><a href="../../dd/d4d/classcarla__msgs_1_1msg_1_1CarlaEgoVehicleControl.html#adba8280f49e43e65bce2e3534f11650e">carla_msgs::msg::CarlaEgoVehicleControl::steer</a></div><div class="ttdeci">eProsima_user_DllExport void steer(float _steer)</div><div class="ttdoc">该函数设置成员 steer 的值。</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d9e/CarlaEgoVehicleControl_8cpp_source.html#l00279">CarlaEgoVehicleControl.cpp:279</a></div></div>
+<div class="ttc" id="aclasseprosima_1_1fastdds_1_1dds_1_1DataReaderListener_html"><div class="ttname"><a href="../../da/d7d/classeprosima_1_1fastdds_1_1dds_1_1DataReaderListener.html">eprosima::fastdds::dds::DataReaderListener</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1ros2_html_a039449a937ed7a0e3405180019217dc5"><div class="ttname"><a href="../../d1/d4b/namespacecarla_1_1ros2.html#a039449a937ed7a0e3405180019217dc5">carla::ros2::erc</a></div><div class="ttdeci">eprosima::fastrtps::types::ReturnCode_t erc</div><div class="ttdoc">@using erc</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d58/CarlaSubscriberListener_8cpp_source.html#l00027">CarlaSubscriberListener.cpp:27</a></div></div>
+<div class="ttc" id="anamespacecarla_html"><div class="ttname"><a href="../../d9/d36/namespacecarla.html">carla</a></div><div class="ttdoc">CARLA模拟器的主命名空间。</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d4f/Carla_8cpp_source.html#l00139">Carla.cpp:139</a></div></div>
+<div class="ttc" id="anamespaceros2_html"><div class="ttname"><a href="../../d8/dc9/namespaceros2.html">ros2</a></div></div>
+<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="../../d8/dcc/namespacestd.html">std</a></div><div class="ttdef"><b>Definition:</b> <a href="../../df/d06/CarlaRecorderCollision_8h_source.html#l00030">CarlaRecorderCollision.h:31</a></div></div>
+<div class="ttc" id="astructcarla_1_1ros2_1_1VehicleControl_html"><div class="ttname"><a href="../../de/d61/structcarla_1_1ros2_1_1VehicleControl.html">carla::ros2::VehicleControl</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d6c/ROS2CallbackData_8h_source.html#l00022">ROS2CallbackData.h:23</a></div></div>
+<div class="ttc" id="astructcarla_1_1ros2_1_1VehicleControl_html_a0abf49435907e9b1759935445f66c66a"><div class="ttname"><a href="../../de/d61/structcarla_1_1ros2_1_1VehicleControl.html#a0abf49435907e9b1759935445f66c66a">carla::ros2::VehicleControl::reverse</a></div><div class="ttdeci">bool reverse</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d6c/ROS2CallbackData_8h_source.html#l00028">ROS2CallbackData.h:28</a></div></div>
+<div class="ttc" id="astructcarla_1_1ros2_1_1VehicleControl_html_a2fd186c1a2c999947e98f85e6bf1e850"><div class="ttname"><a href="../../de/d61/structcarla_1_1ros2_1_1VehicleControl.html#a2fd186c1a2c999947e98f85e6bf1e850">carla::ros2::VehicleControl::manual_gear_shift</a></div><div class="ttdeci">bool manual_gear_shift</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d6c/ROS2CallbackData_8h_source.html#l00030">ROS2CallbackData.h:30</a></div></div>
+<div class="ttc" id="astructcarla_1_1ros2_1_1VehicleControl_html_a3c70f0b16ebb187de851df81d330e9d2"><div class="ttname"><a href="../../de/d61/structcarla_1_1ros2_1_1VehicleControl.html#a3c70f0b16ebb187de851df81d330e9d2">carla::ros2::VehicleControl::hand_brake</a></div><div class="ttdeci">bool hand_brake</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d6c/ROS2CallbackData_8h_source.html#l00027">ROS2CallbackData.h:27</a></div></div>
+<div class="ttc" id="astructcarla_1_1ros2_1_1VehicleControl_html_a43fb93b610449db78a79e2dde6f91e55"><div class="ttname"><a href="../../de/d61/structcarla_1_1ros2_1_1VehicleControl.html#a43fb93b610449db78a79e2dde6f91e55">carla::ros2::VehicleControl::throttle</a></div><div class="ttdeci">float throttle</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d6c/ROS2CallbackData_8h_source.html#l00024">ROS2CallbackData.h:24</a></div></div>
+<div class="ttc" id="astructcarla_1_1ros2_1_1VehicleControl_html_a481c37893c9f5e7b2598e22ab61abbdf"><div class="ttname"><a href="../../de/d61/structcarla_1_1ros2_1_1VehicleControl.html#a481c37893c9f5e7b2598e22ab61abbdf">carla::ros2::VehicleControl::brake</a></div><div class="ttdeci">float brake</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d6c/ROS2CallbackData_8h_source.html#l00026">ROS2CallbackData.h:26</a></div></div>
+<div class="ttc" id="astructcarla_1_1ros2_1_1VehicleControl_html_ac024ed57b6ea46c2b7ad2bbf9c57e886"><div class="ttname"><a href="../../de/d61/structcarla_1_1ros2_1_1VehicleControl.html#ac024ed57b6ea46c2b7ad2bbf9c57e886">carla::ros2::VehicleControl::steer</a></div><div class="ttdeci">float steer</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d6c/ROS2CallbackData_8h_source.html#l00025">ROS2CallbackData.h:25</a></div></div>
+<div class="ttc" id="astructcarla_1_1ros2_1_1VehicleControl_html_ad88c587756bda13b1791c6bfc5a63992"><div class="ttname"><a href="../../de/d61/structcarla_1_1ros2_1_1VehicleControl.html#ad88c587756bda13b1791c6bfc5a63992">carla::ros2::VehicleControl::gear</a></div><div class="ttdeci">int32_t gear</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d6c/ROS2CallbackData_8h_source.html#l00029">ROS2CallbackData.h:29</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: ActorSpawnResult.h 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_2d15d0715a2692171bd03ed14a4a79af.html">Unreal</a></li><li class="navelem"><a class="el" href="../../dir_d3c1db2570616bec48bf5a6dd06bce95.html">CarlaUE4</a></li><li class="navelem"><a class="el" href="../../dir_3538576148ac14151677be9b0aee6fcc.html">Plugins</a></li><li class="navelem"><a class="el" href="../../dir_fbda5b12374c683cbdca72abb2d51944.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_18937e8f6bde63367bf26837323a9508.html">Source</a></li><li class="navelem"><a class="el" href="../../dir_8fc34afb5f07a67966c78bf5319f94ae.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_31691989b6ffa820edb06b9eb32cc520.html">Actor</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">ActorSpawnResult.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../df/d9f/ActorSpawnResult_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// 版权所有 （c） 2017 巴塞罗那自治大学 （UAB） 计算机视觉中心 （CVC）。</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">// 本作品根据 MIT 许可证的条款进行许可。</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// 有关副本，请参阅 &lt;https://opensource.org/licenses/MIT&gt;。</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">// 这是一个预处理器指令，用于确保头文件只被包含一次，避免重复定义等问题</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;ActorSpawnResult.generated.h&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">// 包含一个自动生成的头文件，通常与UE4（Unreal Engine 4）的反射系统相关，用于支持蓝图等功能</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">// 定义了一个名为EActorSpawnResultStatus的枚举类型，用于表示参与者属性的有效类型列表</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">// 并且标记为可在蓝图中使用（BlueprintType）</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>UENUM(BlueprintType)  </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="../../df/d9f/ActorSpawnResult_8h.html#a11191969c066afbcabe58982133e4d22">   15</a></span>enum class <a class="code hl_enumeration" href="../../df/d9f/ActorSpawnResult_8h.html#a11191969c066afbcabe58982133e4d22">EActorSpawnResultStatus</a> : uint8</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>{</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="comment">// 表示生成参与者成功的状态，通过元数据（UMETA）设置在蓝图中显示的名称为 &quot;Success&quot;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <a class="code hl_enumvalue" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>                      <a class="code hl_enumvalue" href="../../df/d9f/ActorSpawnResult_8h.html#a11191969c066afbcabe58982133e4d22aa3f80d8f0f1b4ffa8c475f5d60ea5635">UMETA</a>(DisplayName = <span class="stringliteral">&quot;Success&quot;</span>),  </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="comment">// 表示参与者描述无效的状态，在蓝图中显示名称为 &quot;Invalid actor description&quot;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    InvalidDescription           <a class="code hl_enumvalue" href="../../df/d9f/ActorSpawnResult_8h.html#a11191969c066afbcabe58982133e4d22aa3f80d8f0f1b4ffa8c475f5d60ea5635">UMETA</a>(DisplayName = <span class="stringliteral">&quot;Invalid actor description&quot;</span>),  </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="comment">// 表示因为在生成位置发生碰撞而导致生成失败的状态，蓝图中显示名称为相应字符串</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <a class="code hl_enumvalue" href="../../d9/d6a/CarlaRecorder_8h.html#a4c56233e0004f5c9ac481a933ab6b613a15fb6ccbd11ebebcea2b48dc477f3561">Collision</a>                    <a class="code hl_enumvalue" href="../../df/d9f/ActorSpawnResult_8h.html#a11191969c066afbcabe58982133e4d22aa3f80d8f0f1b4ffa8c475f5d60ea5635">UMETA</a>(DisplayName = <span class="stringliteral">&quot;Failed because collision at spawn position&quot;</span>),  </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="comment">// 表示未知错误的状态，蓝图中显示名称为 &quot;Unknown Error&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    UnknownError                 <a class="code hl_enumvalue" href="../../df/d9f/ActorSpawnResult_8h.html#a11191969c066afbcabe58982133e4d22aa3f80d8f0f1b4ffa8c475f5d60ea5635">UMETA</a>(DisplayName = <span class="stringliteral">&quot;Unknown Error&quot;</span>),  </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="comment">// 这个枚举成员通常用于表示枚举的大小等内部用途，标记为隐藏（Hidden），不在蓝图等外部可见</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    SIZE                         <a class="code hl_enumvalue" href="../../df/d9f/ActorSpawnResult_8h.html#a11191969c066afbcabe58982133e4d22aa3f80d8f0f1b4ffa8c475f5d60ea5635">UMETA</a>(Hidden)  </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>};</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment">// 定义了一个名为FActorSpawnResult的结构体，标记为可在蓝图中使用（BlueprintType）</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">// 该结构体用于表示参与者生成函数的结果</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>USTRUCT(BlueprintType)  </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="../../d9/df2/structFActorSpawnResult.html">   33</a></span>struct <a class="code hl_struct" href="../../d9/df2/structFActorSpawnResult.html">FActorSpawnResult</a></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>{</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    GENERATED_BODY()</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="comment">// 这是UE4的宏，用于生成支持反射等功能所需的代码，具体由引擎的代码生成工具处理</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="comment">// 默认构造函数，使用默认的初始化方式</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="../../d9/df2/structFActorSpawnResult.html#a7471c2c957ef3ff1d4acf02bce20087c">   39</a></span>    <a class="code hl_struct" href="../../d9/df2/structFActorSpawnResult.html">FActorSpawnResult</a>() = default;  </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="comment">// 显式构造函数，接受一个AActor类型的指针参数InActor</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="comment">// 根据传入的指针是否为空来初始化结构体中的成员变量Status</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="comment">// 如果传入的指针不为空，则状态设为Success，否则设为UnknownError</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="../../d9/df2/structFActorSpawnResult.html#a673cf187d547a8d2638dba2c6882b62e">   44</a></span>    explicit <a class="code hl_struct" href="../../d9/df2/structFActorSpawnResult.html">FActorSpawnResult</a>(<a class="code hl_class" href="../../d1/da4/classAActor.html">AActor</a> *InActor)</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        : <a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>(InActor),</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>          Status(<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>!= <span class="keywordtype">nullptr</span>?</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>              <a class="code hl_enumeration" href="../../df/d9f/ActorSpawnResult_8h.html#a11191969c066afbcabe58982133e4d22">EActorSpawnResultStatus</a>::<a class="code hl_enumvalue" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a> :</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>              <a class="code hl_enumeration" href="../../df/d9f/ActorSpawnResult_8h.html#a11191969c066afbcabe58982133e4d22">EActorSpawnResultStatus</a>::UnknownError) {}</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="comment">// 静态函数，用于将EActorSpawnResultStatus类型的状态转换为FString类型的字符串表示</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keyword">static</span> FString StatusToString(<a class="code hl_enumeration" href="../../df/d9f/ActorSpawnResult_8h.html#a11191969c066afbcabe58982133e4d22">EActorSpawnResultStatus</a> Status);  </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="comment">// 成员函数，用于判断当前的FActorSpawnResult对象是否有效</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="comment">// 有效条件是Actor指针不为空且状态为Success</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="../../d9/df2/structFActorSpawnResult.html#a3b3d9349361d6d02e9b2b8a7fba267e6">   55</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d9/df2/structFActorSpawnResult.html#a3b3d9349361d6d02e9b2b8a7fba267e6">IsValid</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keywordflow">return</span> (<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>!= <span class="keyword">nullptr</span>) &amp;&amp; (Status == EActorSpawnResultStatus::Success);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    }</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="comment">// 声明一个可编辑（EditAnywhere）且可在蓝图中读写（BlueprintReadWrite）的属性</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="comment">// 用于存储指向AActor的指针，初始化为nullptr</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    UPROPERTY(EditAnywhere, BlueprintReadWrite)  </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="../../d9/df2/structFActorSpawnResult.html#a448ba6405b167cd384440d0722bde652">   63</a></span>    <a class="code hl_class" href="../../d1/da4/classAActor.html">AActor</a> *<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a> = <span class="keywordtype">nullptr</span>;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="comment">// 同样声明一个可编辑且可在蓝图中读写的属性，用于存储参与者生成结果的状态</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="comment">// 初始化为UnknownError状态</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    UPROPERTY(EditAnywhere, BlueprintReadWrite)  </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="../../d9/df2/structFActorSpawnResult.html#adbf0dfc797c9eb03d576dd2cfdaa1fd3">   68</a></span>    <a class="code hl_enumeration" href="../../df/d9f/ActorSpawnResult_8h.html#a11191969c066afbcabe58982133e4d22">EActorSpawnResultStatus</a> Status = <a class="code hl_enumeration" href="../../df/d9f/ActorSpawnResult_8h.html#a11191969c066afbcabe58982133e4d22">EActorSpawnResultStatus</a>::UnknownError;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>};</div>
+<div class="ttc" id="aActorSpawnResult_8h_html_a11191969c066afbcabe58982133e4d22"><div class="ttname"><a href="../../df/d9f/ActorSpawnResult_8h.html#a11191969c066afbcabe58982133e4d22">EActorSpawnResultStatus</a></div><div class="ttdeci">EActorSpawnResultStatus</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d9f/ActorSpawnResult_8h_source.html#l00015">ActorSpawnResult.h:16</a></div></div>
+<div class="ttc" id="aActorSpawnResult_8h_html_a11191969c066afbcabe58982133e4d22aa3f80d8f0f1b4ffa8c475f5d60ea5635"><div class="ttname"><a href="../../df/d9f/ActorSpawnResult_8h.html#a11191969c066afbcabe58982133e4d22aa3f80d8f0f1b4ffa8c475f5d60ea5635">EActorSpawnResultStatus::UMETA</a></div><div class="ttdeci">@ UMETA</div></div>
+<div class="ttc" id="aCarlaActor_8cpp_html_acf512646b33f06951fc18015682664e4"><div class="ttname"><a href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a></div><div class="ttdeci">TSharedPtr&lt; const FActorInfo &gt; carla::rpc::ActorState UWorld Actor</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d43/CarlaActor_8cpp_source.html#l00083">CarlaActor.cpp:83</a></div></div>
+<div class="ttc" id="aCarlaRecorder_8h_html_a4c56233e0004f5c9ac481a933ab6b613a15fb6ccbd11ebebcea2b48dc477f3561"><div class="ttname"><a href="../../d9/d6a/CarlaRecorder_8h.html#a4c56233e0004f5c9ac481a933ab6b613a15fb6ccbd11ebebcea2b48dc477f3561">CarlaRecorderPacketId::Collision</a></div><div class="ttdeci">@ Collision</div></div>
+<div class="ttc" id="aCarlaServerResponse_8h_html_ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38"><div class="ttname"><a href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">ECarlaServerResponse::Success</a></div><div class="ttdeci">@ Success</div></div>
+<div class="ttc" id="aclassAActor_html"><div class="ttname"><a href="../../d1/da4/classAActor.html">AActor</a></div></div>
+<div class="ttc" id="astructFActorSpawnResult_html"><div class="ttname"><a href="../../d9/df2/structFActorSpawnResult.html">FActorSpawnResult</a></div><div class="ttdef"><b>Definition:</b> <a href="../../df/d9f/ActorSpawnResult_8h_source.html#l00033">ActorSpawnResult.h:34</a></div></div>
+<div class="ttc" id="astructFActorSpawnResult_html_a3b3d9349361d6d02e9b2b8a7fba267e6"><div class="ttname"><a href="../../d9/df2/structFActorSpawnResult.html#a3b3d9349361d6d02e9b2b8a7fba267e6">FActorSpawnResult::IsValid</a></div><div class="ttdeci">bool IsValid() const</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d9f/ActorSpawnResult_8h_source.html#l00055">ActorSpawnResult.h:55</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

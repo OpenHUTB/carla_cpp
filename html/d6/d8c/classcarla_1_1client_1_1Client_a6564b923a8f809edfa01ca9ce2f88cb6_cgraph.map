@@ -1,0 +1,6 @@
+<map id="carla::client::Client::LoadWorldIfDifferent" name="carla::client::Client::LoadWorldIfDifferent">
+<area shape="rect" id="node1" title="如果当前地图与请求地图不同，则加载新地图。" alt="" coords="5,37,152,77"/>
+<area shape="rect" id="node2" href="$db/d1f/classcarla_1_1client_1_1World.html#a90f244a1df3efaa63331813736a199a6" title="返回描述这个世界的地图。 返回的是一个智能指针指向的Map对象，该Map对象包含了模拟世界中的地理信息、道路布局等地图相关的数据结构， 供外部调用者进一步查询和操作地图相关的功能。" alt="" coords="200,5,327,45"/>
+<area shape="rect" id="node4" href="$d6/d8c/classcarla_1_1client_1_1Client.html#a5dab21b8e474241e722426de6cfe830b" title="获取当前模拟器中的活跃世界实例。" alt="" coords="200,69,327,109"/>
+<area shape="rect" id="node3" href="$d1/dd3/classcarla_1_1client_1_1detail_1_1EpisodeProxyImpl.html#aaca857645fbeb6546b4a03a663bb65af" title="与 TryLock 相同，但永远不会返回 nullptr。" alt="" coords="375,5,541,45"/>
+</map>

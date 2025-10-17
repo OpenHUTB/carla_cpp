@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: CarlaRGBCameraPublisher.h 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_087ce8304d10c4897e4acbeac1a6fcc8.html">ros2</a></li><li class="navelem"><a class="el" href="../../dir_383a5740fdf161cbe25505c91e409c8e.html">publishers</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">CarlaRGBCameraPublisher.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d6/dc3/CarlaRGBCameraPublisher_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2022 Computer Vision Center (CVC) at the Universitat Autonoma de Barcelona (UAB).</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// This work is licensed under the terms of the MIT license.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">// For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="../../d6/dc3/CarlaRGBCameraPublisher_8h.html#acbf3245277a73b810032219100559ae2">    6</a></span><span class="preprocessor">#define _GLIBCXX_USE_CXX11_ABI 0</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="../../de/d7a/CarlaPublisher_8h.html">CarlaPublisher.h</a>&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d9/d36/namespacecarla.html">carla</a> {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d8/dc9/namespaceros2.html">ros2</a> {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">// 前置声明结构体CarlaRGBCameraPublisherImpl，通常用于隐藏具体实现细节，可能在后续代码中有实际的结构体定义与之对应</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  <span class="keyword">struct </span>CarlaRGBCameraPublisherImpl;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  <span class="comment">// 前置声明结构体CarlaCameraInfoPublisherImpl，作用与上面类似，也是可能用于后续具体实现相关功能的结构体声明</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  <span class="keyword">struct </span>CarlaCameraInfoPublisherImpl;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> <span class="comment">// 定义CarlaRGBCameraPublisher类，它继承自CarlaPublisher类，意味着它可以使用CarlaPublisher类中的公有成员以及重写（如果需要的话）虚函数等</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html">   20</a></span>  <span class="keyword">class </span><a class="code hl_class" href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html">CarlaRGBCameraPublisher</a> : <span class="keyword">public</span> <a class="code hl_class" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html">CarlaPublisher</a> {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">public</span>: <span class="comment">// 定义CarlaRGBCameraPublisher类，它继承自CarlaPublisher类，意味着它可以使用CarlaPublisher类中的公有成员以及重写（如果需要的话）虚函数等</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>      <a class="code hl_class" href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html">CarlaRGBCameraPublisher</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* ros_name = <span class="stringliteral">&quot;&quot;</span>, <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a0f2175762993c5eec161b8f304c59bb5">parent</a> = <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">// 构造函数，用于创建CarlaRGBCameraPublisher类的对象。可以传入两个字符串参数，分别用于指定ROS中的名称（ros_name）和父节点名称（parent），如果不传参数则使用默认值（空字符串）</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>      <a class="code hl_function" href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#a505b8a4d5680809894bd6b10026c42ed">~CarlaRGBCameraPublisher</a>(); <span class="comment">// 拷贝构造函数，用于通过已有的CarlaRGBCameraPublisher对象来创建一个新的、一模一样的对象（进行深拷贝或者浅拷贝，取决于具体实现）</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>      <a class="code hl_class" href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html">CarlaRGBCameraPublisher</a>(<span class="keyword">const</span> <a class="code hl_class" href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html">CarlaRGBCameraPublisher</a>&amp;);<span class="comment">// 移动构造函数，用于通过“窃取”资源的方式，高效地创建一个新的CarlaRGBCameraPublisher对象，常用于优化对象传递时的性能，避免不必要的拷贝</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>      <a class="code hl_class" href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html">CarlaRGBCameraPublisher</a>(<a class="code hl_class" href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html">CarlaRGBCameraPublisher</a>&amp;&amp;);   / /移动赋值运算符重载函数，类似移动构造函数的作用，不过是用于赋值操作时高效地转移资源所有权     </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>      <a class="code hl_class" href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html">CarlaRGBCameraPublisher</a>&amp; <a class="code hl_function" href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#a91e6e325303fb8f373ccc6ad19236510">operator=</a>(<a class="code hl_class" href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html">CarlaRGBCameraPublisher</a>&amp;&amp;);        <span class="comment">// 用于初始化相关资源或者执行一些初始化操作，返回一个布尔值表示初始化是否成功</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>      <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#aff035b7c1f3974dc52beb672e0ba5df5">Init</a>(); <span class="comment">// 用于初始化信息数据，传入图像在水平和垂直方向上的偏移量（x_offset、y_offset）、图像的高度（height）、宽度（width）、视场角（fov）以及是否进行矫正（do_rectify）等参数</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>      <span class="keywordtype">void</span> <a class="code hl_function" href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#a68618ca9428ac25c11488a4def3e2c9e">InitInfoData</a>(uint32_t x_offset, uint32_t y_offset, uint32_t height, uint32_t width, <span class="keywordtype">float</span> fov, <span class="keywordtype">bool</span> do_rectify); <span class="comment">// 用于发布数据，返回布尔值表示发布操作是否成功</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>      <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#ae807ff24213a44358b6c109db61de55f">Publish</a>();</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> <span class="comment">// 用于检查该对象是否已经完成初始化，返回布尔值，const表示这个函数不会修改对象的状态</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>      <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#ae9dadcc0a708e217ca07eb036a447e34">HasBeenInitialized</a>() <span class="keyword">const</span>;<span class="comment">// 用于设置图像数据，传入时间相关的秒数（seconds）、纳秒数（nanoseconds）、图像的高度（height）、宽度（width）以及图像数据指针（data）</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>      <span class="keywordtype">void</span> <a class="code hl_function" href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#a2e119c04f4886519bee1db1279798817">SetImageData</a>(int32_t seconds, uint32_t nanoseconds, uint32_t height, uint32_t width, <span class="keyword">const</span> uint8_t* data); <span class="comment">// 用于设置相机信息数据，传入时间相关的秒数（seconds）和纳秒数（nanoseconds）</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>      <span class="keywordtype">void</span> <a class="code hl_function" href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#ad536942ebac09e70cd3ab8116eb89345">SetCameraInfoData</a>(int32_t seconds, uint32_t nanoseconds);<span class="comment">// 重写基类CarlaPublisher中的虚函数type，返回表示类型的字符串&quot;rgb camera&quot;，用于标识该发布者对应的是RGB相机类型</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#a5435d92f0687102e7d3dc7f3508bd769">   36</a></span>      <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#a5435d92f0687102e7d3dc7f3508bd769">type</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <span class="stringliteral">&quot;rgb camera&quot;</span>; }</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> <span class="comment">// 用于初始化图像相关的内部资源等操作，返回布尔值表示是否初始化成功</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>      <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#a6ed407c974fd5a786530c97db7ce505d">InitImage</a>(); <span class="comment">// 用于初始化信息相关的内部资源等操作，返回布尔值表示是否初始化成功</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>      <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#a197ed8578008e24485df4db45938d3af">InitInfo</a>();<span class="comment">// 用于发布图像相关的数据，返回布尔值表示发布是否成功</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>      <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#a6bcc3b2b637cb3bd9e13981eeefe201f">PublishImage</a>(); <span class="comment">// 用于发布信息相关的数据，返回布尔值表示发布是否成功</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>      <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#af0ad861890cfd20770157877e9024570">PublishInfo</a>();</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>      <span class="keywordtype">void</span> <a class="code hl_function" href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#a2e119c04f4886519bee1db1279798817">SetImageData</a>(int32_t seconds, uint32_t nanoseconds, uint32_t height, uint32_t width, std::vector&lt;uint8_t&gt;&amp;&amp; data);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>      <span class="keywordtype">void</span> <a class="code hl_function" href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#a36f258e63ce8cb32cd8d4d961907f23f">SetInfoRegionOfInterest</a>(uint32_t x_offset, uint32_t y_offset, uint32_t height, uint32_t width, <span class="keywordtype">bool</span> do_rectify);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#a2a37b0238186a0c03145ba3ef47555d4">   49</a></span>      std::shared_ptr&lt;CarlaRGBCameraPublisherImpl&gt; <a class="code hl_variable" href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#a2a37b0238186a0c03145ba3ef47555d4">_impl</a>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#a005a04bd98136b5a4c400a7cad14fd70">   50</a></span>      std::shared_ptr&lt;CarlaCameraInfoPublisherImpl&gt; <a class="code hl_variable" href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#a005a04bd98136b5a4c400a7cad14fd70">_impl_info</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  };</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>}</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>}</div>
+<div class="ttc" id="aCarlaPublisher_8h_html"><div class="ttname"><a href="../../de/d7a/CarlaPublisher_8h.html">CarlaPublisher.h</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaPublisher_html"><div class="ttname"><a href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html">carla::ros2::CarlaPublisher</a></div><div class="ttdef"><b>Definition:</b> <a href="../../de/d7a/CarlaPublisher_8h_source.html#l00013">CarlaPublisher.h:13</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaPublisher_html_a0f2175762993c5eec161b8f304c59bb5"><div class="ttname"><a href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a0f2175762993c5eec161b8f304c59bb5">carla::ros2::CarlaPublisher::parent</a></div><div class="ttdeci">const std::string &amp; parent() const</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d7a/CarlaPublisher_8h_source.html#l00017">CarlaPublisher.h:17</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaRGBCameraPublisher_html"><div class="ttname"><a href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html">carla::ros2::CarlaRGBCameraPublisher</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d6/dc3/CarlaRGBCameraPublisher_8h_source.html#l00020">CarlaRGBCameraPublisher.h:20</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaRGBCameraPublisher_html_a005a04bd98136b5a4c400a7cad14fd70"><div class="ttname"><a href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#a005a04bd98136b5a4c400a7cad14fd70">carla::ros2::CarlaRGBCameraPublisher::_impl_info</a></div><div class="ttdeci">std::shared_ptr&lt; CarlaCameraInfoPublisherImpl &gt; _impl_info</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/dc3/CarlaRGBCameraPublisher_8h_source.html#l00050">CarlaRGBCameraPublisher.h:50</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaRGBCameraPublisher_html_a197ed8578008e24485df4db45938d3af"><div class="ttname"><a href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#a197ed8578008e24485df4db45938d3af">carla::ros2::CarlaRGBCameraPublisher::InitInfo</a></div><div class="ttdeci">bool InitInfo()</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00134">CarlaRGBCameraPublisher.cpp:134</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaRGBCameraPublisher_html_a2a37b0238186a0c03145ba3ef47555d4"><div class="ttname"><a href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#a2a37b0238186a0c03145ba3ef47555d4">carla::ros2::CarlaRGBCameraPublisher::_impl</a></div><div class="ttdeci">std::shared_ptr&lt; CarlaRGBCameraPublisherImpl &gt; _impl</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/dc3/CarlaRGBCameraPublisher_8h_source.html#l00049">CarlaRGBCameraPublisher.h:49</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaRGBCameraPublisher_html_a2e119c04f4886519bee1db1279798817"><div class="ttname"><a href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#a2e119c04f4886519bee1db1279798817">carla::ros2::CarlaRGBCameraPublisher::SetImageData</a></div><div class="ttdeci">void SetImageData(int32_t seconds, uint32_t nanoseconds, uint32_t height, uint32_t width, const uint8_t *data)</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00314">CarlaRGBCameraPublisher.cpp:314</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaRGBCameraPublisher_html_a36f258e63ce8cb32cd8d4d961907f23f"><div class="ttname"><a href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#a36f258e63ce8cb32cd8d4d961907f23f">carla::ros2::CarlaRGBCameraPublisher::SetInfoRegionOfInterest</a></div><div class="ttdeci">void SetInfoRegionOfInterest(uint32_t x_offset, uint32_t y_offset, uint32_t height, uint32_t width, bool do_rectify)</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00352">CarlaRGBCameraPublisher.cpp:352</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaRGBCameraPublisher_html_a505b8a4d5680809894bd6b10026c42ed"><div class="ttname"><a href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#a505b8a4d5680809894bd6b10026c42ed">carla::ros2::CarlaRGBCameraPublisher::~CarlaRGBCameraPublisher</a></div><div class="ttdeci">~CarlaRGBCameraPublisher()</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00369">CarlaRGBCameraPublisher.cpp:369</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaRGBCameraPublisher_html_a5435d92f0687102e7d3dc7f3508bd769"><div class="ttname"><a href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#a5435d92f0687102e7d3dc7f3508bd769">carla::ros2::CarlaRGBCameraPublisher::type</a></div><div class="ttdeci">const char * type() const override</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/dc3/CarlaRGBCameraPublisher_8h_source.html#l00036">CarlaRGBCameraPublisher.h:36</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaRGBCameraPublisher_html_a68618ca9428ac25c11488a4def3e2c9e"><div class="ttname"><a href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#a68618ca9428ac25c11488a4def3e2c9e">carla::ros2::CarlaRGBCameraPublisher::InitInfoData</a></div><div class="ttdeci">void InitInfoData(uint32_t x_offset, uint32_t y_offset, uint32_t height, uint32_t width, float fov, bool do_rectify)</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00066">CarlaRGBCameraPublisher.cpp:66</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaRGBCameraPublisher_html_a6bcc3b2b637cb3bd9e13981eeefe201f"><div class="ttname"><a href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#a6bcc3b2b637cb3bd9e13981eeefe201f">carla::ros2::CarlaRGBCameraPublisher::PublishImage</a></div><div class="ttdeci">bool PublishImage()</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00189">CarlaRGBCameraPublisher.cpp:189</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaRGBCameraPublisher_html_a6ed407c974fd5a786530c97db7ce505d"><div class="ttname"><a href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#a6ed407c974fd5a786530c97db7ce505d">carla::ros2::CarlaRGBCameraPublisher::InitImage</a></div><div class="ttdeci">bool InitImage()</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00084">CarlaRGBCameraPublisher.cpp:84</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaRGBCameraPublisher_html_a91e6e325303fb8f373ccc6ad19236510"><div class="ttname"><a href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#a91e6e325303fb8f373ccc6ad19236510">carla::ros2::CarlaRGBCameraPublisher::operator=</a></div><div class="ttdeci">移动赋值运算符重载函数，类似移动构造函数的作用，不过是用于赋值操作时高效地转移资源所有权 CarlaRGBCameraPublisher &amp; operator=(CarlaRGBCameraPublisher &amp;&amp;)</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00409">CarlaRGBCameraPublisher.cpp:409</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaRGBCameraPublisher_html_ad536942ebac09e70cd3ab8116eb89345"><div class="ttname"><a href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#ad536942ebac09e70cd3ab8116eb89345">carla::ros2::CarlaRGBCameraPublisher::SetCameraInfoData</a></div><div class="ttdeci">void SetCameraInfoData(int32_t seconds, uint32_t nanoseconds)</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00341">CarlaRGBCameraPublisher.cpp:341</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaRGBCameraPublisher_html_ae807ff24213a44358b6c109db61de55f"><div class="ttname"><a href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#ae807ff24213a44358b6c109db61de55f">carla::ros2::CarlaRGBCameraPublisher::Publish</a></div><div class="ttdeci">bool Publish()</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00183">CarlaRGBCameraPublisher.cpp:183</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaRGBCameraPublisher_html_ae9dadcc0a708e217ca07eb036a447e34"><div class="ttname"><a href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#ae9dadcc0a708e217ca07eb036a447e34">carla::ros2::CarlaRGBCameraPublisher::HasBeenInitialized</a></div><div class="ttdeci">bool HasBeenInitialized() const</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00061">CarlaRGBCameraPublisher.cpp:61</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaRGBCameraPublisher_html_af0ad861890cfd20770157877e9024570"><div class="ttname"><a href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#af0ad861890cfd20770157877e9024570">carla::ros2::CarlaRGBCameraPublisher::PublishInfo</a></div><div class="ttdeci">bool PublishInfo()</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00251">CarlaRGBCameraPublisher.cpp:251</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1CarlaRGBCameraPublisher_html_aff035b7c1f3974dc52beb672e0ba5df5"><div class="ttname"><a href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#aff035b7c1f3974dc52beb672e0ba5df5">carla::ros2::CarlaRGBCameraPublisher::Init</a></div><div class="ttdeci">bool Init()</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00073">CarlaRGBCameraPublisher.cpp:73</a></div></div>
+<div class="ttc" id="anamespacecarla_html"><div class="ttname"><a href="../../d9/d36/namespacecarla.html">carla</a></div><div class="ttdoc">CARLA模拟器的主命名空间。</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d4f/Carla_8cpp_source.html#l00139">Carla.cpp:139</a></div></div>
+<div class="ttc" id="anamespaceros2_html"><div class="ttname"><a href="../../d8/dc9/namespaceros2.html">ros2</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

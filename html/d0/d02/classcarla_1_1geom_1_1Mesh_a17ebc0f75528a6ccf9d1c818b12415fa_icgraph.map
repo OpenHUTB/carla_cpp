@@ -1,0 +1,15 @@
+<map id="carla::geom::Mesh::AddVertices" name="carla::geom::Mesh::AddVertices">
+<area shape="rect" id="node1" title="将顶点附加到顶点列表。" alt="" coords="951,116,1083,156"/>
+<area shape="rect" id="node2" href="$d0/d02/classcarla_1_1geom_1_1Mesh.html#ac538d39eaf754e40b594a4e02ddab379" title="向网格添加三角形扇形，顶点顺序为逆时针。" alt="" coords="752,20,884,60"/>
+<area shape="rect" id="node3" href="$d0/d02/classcarla_1_1geom_1_1Mesh.html#afc814a912c427b43363289e6765a5ba3" title="向网格添加三角形带，顶点顺序为逆时针。" alt="" coords="752,84,884,124"/>
+<area shape="rect" id="node9" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a307f715a3e409fd5db0ce50f45c40478" title="从给定的s起始和结束生成车道的人行道网格" alt="" coords="733,148,903,188"/>
+<area shape="rect" id="node10" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#ae26205cfd730254bb1a35302386b497f" title="用更高的细分生成从给定的s起始和结束的车道网格" alt="" coords="733,227,903,267"/>
+<area shape="rect" id="node4" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a1e3c826505f82d1ddffd9f40c39cfa2a" title="从给定的s起始和结束生成车道的网格" alt="" coords="501,5,670,45"/>
+<area shape="rect" id="node5" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a202f9750d3be15d0af4b42b3a90f3662" title="在车道的左侧生成一个墙状网格" alt="" coords="501,69,670,109"/>
+<area shape="rect" id="node8" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a11c673db2f69ad3c21ebba4d068b8c6c" title="在车道的右侧生成一个墙状网格" alt="" coords="501,133,670,173"/>
+<area shape="rect" id="node6" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#aec242ce8214cea646ba254c0cfc0176a" title="生成一个网格，表示道路角落的墙，以避免车辆掉下去" alt="" coords="253,101,423,141"/>
+<area shape="rect" id="node7" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a5588f2f98ea42ade1082db0ef1c8ce7b" title="生成一个定义车道段安全墙的网格列表，限制最大长度" alt="" coords="5,101,191,141"/>
+<area shape="rect" id="node11" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#ab98f3e86a2e1abf508c132708c48e414" title="生成按顺序排列的车道段网格" alt="" coords="485,197,685,237"/>
+<area shape="rect" id="node12" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#acce620f6e7432999236d4dd2c7900e24" title="生成一个定义车道段的按顺序排列的网格列表，限制最大长度" alt="" coords="239,223,437,263"/>
+<area shape="rect" id="node13" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a27fb4c904ccf5679a3888a511609495b" title="生成定义整个车道的网格，使用更高的细分" alt="" coords="501,312,670,352"/>
+</map>

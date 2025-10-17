@@ -1,0 +1,296 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: ActorDispatcher.cpp 文件参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_2d15d0715a2692171bd03ed14a4a79af.html">Unreal</a></li><li class="navelem"><a class="el" href="../../dir_d3c1db2570616bec48bf5a6dd06bce95.html">CarlaUE4</a></li><li class="navelem"><a class="el" href="../../dir_3538576148ac14151677be9b0aee6fcc.html">Plugins</a></li><li class="navelem"><a class="el" href="../../dir_fbda5b12374c683cbdca72abb2d51944.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_18937e8f6bde63367bf26837323a9508.html">Source</a></li><li class="navelem"><a class="el" href="../../dir_8fc34afb5f07a67966c78bf5319f94ae.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_31691989b6ffa820edb06b9eb32cc520.html">Actor</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">函数</a> &#124;
+<a href="#var-members">变量</a>  </div>
+  <div class="headertitle"><div class="title">ActorDispatcher.cpp 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="../../d7/d7d/Carla_8h_source.html">Carla.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../dc/ddc/ActorDispatcher_8h_source.html">Carla/Actor/ActorDispatcher.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d7/dda/ActorBlueprintFunctionLibrary_8h_source.html">Carla/Actor/ActorBlueprintFunctionLibrary.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d0/d62/ActorROS2Handler_8h_source.html">Carla/Actor/ActorROS2Handler.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d4/d24/CarlaActorFactory_8h_source.html">Carla/Actor/CarlaActorFactory.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d7/d06/Tagger_8h_source.html">Carla/Game/Tagger.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d4/dbd/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2VehicleControl_8h_source.html">Carla/Vehicle/VehicleControl.h</a>&quot;</code><br />
+<code>#include &quot;GameFramework/Controller.h&quot;</code><br />
+<code>#include &lt;<a class="el" href="../../d2/d02/disable-ue4-macros_8h_source.html">compiler/disable-ue4-macros.h</a>&gt;</code><br />
+<code>#include &quot;<a class="el" href="../../da/db8/ROS2_8h_source.html">carla/ros2/ROS2.h</a>&quot;</code><br />
+<code>#include &lt;<a class="el" href="../../d9/da2/enable-ue4-macros_8h_source.html">compiler/enable-ue4-macros.h</a>&gt;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> ActorDispatcher.cpp 的引用(Include)关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d4/d39/ActorDispatcher_8cpp__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+</div>
+<p><a href="../../d0/d6a/ActorDispatcher_8cpp_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a71d5e0f5721eb91cbd681887274c73bd"><td class="memItemLeft" align="right" valign="top">Registry&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d6a/ActorDispatcher_8cpp.html#a71d5e0f5721eb91cbd681887274c73bd">Deregister</a> (ActorId)</td></tr>
+<tr class="separator:a71d5e0f5721eb91cbd681887274c73bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5950d8d1416b6e9468016850036b248"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d6a/ActorDispatcher_8cpp.html#aa5950d8d1416b6e9468016850036b248">if</a> (!<a class="el" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>||!<a class="el" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>-&gt;Destroy())</td></tr>
+<tr class="separator:aa5950d8d1416b6e9468016850036b248"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1272398cdaa6cc58ca265ebb4062ae5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d6a/ActorDispatcher_8cpp.html#ab1272398cdaa6cc58ca265ebb4062ae5">UE_LOG</a> (LogCarla, Log, TEXT(&quot;            %s&quot;), <a class="el" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>? *<a class="el" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>-&gt;GetName():*FString(&quot;None&quot;))</td></tr>
+<tr class="separator:ab1272398cdaa6cc58ca265ebb4062ae5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69d0a7232310b5ebaa51abb2b9945184"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d6a/ActorDispatcher_8cpp.html#a69d0a7232310b5ebaa51abb2b9945184">UE_LOG</a> (LogCarla, Log, TEXT(&quot;UActorDispatcher::Destroying actor: '%s' %x&quot;), *Id, <a class="el" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>)</td></tr>
+<tr class="separator:a69d0a7232310b5ebaa51abb2b9945184"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+变量</h2></td></tr>
+<tr class="memitem:a930920b2bc42824a5c03be681830f4b2"><td class="memItemLeft" align="right" valign="top">return&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d6a/ActorDispatcher_8cpp.html#a930920b2bc42824a5c03be681830f4b2">true</a></td></tr>
+<tr class="separator:a930920b2bc42824a5c03be681830f4b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">函数说明</h2>
+<a id="a71d5e0f5721eb91cbd681887274c73bd" name="a71d5e0f5721eb91cbd681887274c73bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71d5e0f5721eb91cbd681887274c73bd">&#9670;&#160;</a></span>Deregister()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Registry Deregister </td>
+          <td>(</td>
+          <td class="paramtype">ActorId&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa5950d8d1416b6e9468016850036b248" name="aa5950d8d1416b6e9468016850036b248"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5950d8d1416b6e9468016850036b248">&#9670;&#160;</a></span>if()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">if </td>
+          <td>(</td>
+          <td class="paramtype">!<a class="el" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>||!<a class="el" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>-&gt;&#160;</td>
+          <td class="paramname"><em>Destroy</em>()</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html">ActorDispatcher.cpp</a> 第 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00187">187</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp.html#a69d0a7232310b5ebaa51abb2b9945184">UE_LOG()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html#l00226">FCarlaServer::FPimpl::BindActions()</a>, <a class="el" href="../../de/d48/secondary_8cpp_source.html#l00081">carla::multigpu::Secondary::Connect()</a>, <a class="el" href="../../de/dc6/CarlaRecorderQuery_8cpp_source.html#l00641">CarlaRecorderQuery::QueryCollisions()</a>, <a class="el" href="../../df/d2e/PixelReader_8h_source.html#l00092">FPixelReader::SendPixelsInRenderThread()</a> , 以及 <a class="el" href="../../d5/dc8/DVSEventArray_8h_source.html#l00057">carla::sensor::data::DVSEventArray::ToImage()</a>.</p>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d0/d6a/ActorDispatcher_8cpp_aa5950d8d1416b6e9468016850036b248_cgraph.svg" width="172" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d0/d6a/ActorDispatcher_8cpp_aa5950d8d1416b6e9468016850036b248_icgraph.svg" width="494" height="331"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ab1272398cdaa6cc58ca265ebb4062ae5" name="ab1272398cdaa6cc58ca265ebb4062ae5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1272398cdaa6cc58ca265ebb4062ae5">&#9670;&#160;</a></span>UE_LOG() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UE_LOG </td>
+          <td>(</td>
+          <td class="paramtype">LogCarla&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Log&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TEXT(&quot;            %s&quot;)&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>? *<a class="el" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>-&gt;&#160;</td>
+          <td class="paramname"><em>GetName</em>):*FString(&quot;None&quot;&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a69d0a7232310b5ebaa51abb2b9945184" name="a69d0a7232310b5ebaa51abb2b9945184"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69d0a7232310b5ebaa51abb2b9945184">&#9670;&#160;</a></span>UE_LOG() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UE_LOG </td>
+          <td>(</td>
+          <td class="paramtype">LogCarla&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Log&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TEXT(&quot;UActorDispatcher::Destroying actor: '%s' %x&quot;)&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">*&#160;</td>
+          <td class="paramname"><em>Id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d43/CarlaActor_8cpp_source.html#l00514">FCarlaActor::AddActorForceAtLocation()</a>, <a class="el" href="../../d3/d43/CarlaActor_8cpp_source.html#l00470">FCarlaActor::AddActorImpulseAtLocation()</a>, <a class="el" href="../../d7/da0/VegetationManager_8cpp_source.html#l00279">AVegetationManager::AddVehicle()</a>, <a class="el" href="../../d1/d4c/CarlaSettingsDelegate_8cpp_source.html#l00072">UCarlaSettingsDelegate::ApplyQualityLevelPostRestart()</a>, <a class="el" href="../../dc/d65/CarlaWheeledVehicle_8cpp_source.html#l00588">ACarlaWheeledVehicle::ApplyVehiclePhysicsControl()</a>, <a class="el" href="../../d2/d0f/Weather_8cpp_source.html#l00070">AWeather::ApplyWeather()</a>, <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00144">ARoutePlanner::AssignRandomRoute()</a>, <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html#l03135">FCarlaServer::AsyncRun()</a>, <a class="el" href="../../d1/d4c/ActorAttacher_8cpp_source.html#l00096">UActorAttacher::AttachActors()</a>, <a class="el" href="../../dc/d65/CarlaWheeledVehicle_8cpp_source.html#l00098">ACarlaWheeledVehicle::BeginPlay()</a>, <a class="el" href="../../da/da6/BaseCarlaMovementComponent_8cpp_source.html#l00015">UBaseCarlaMovementComponent::BeginPlay()</a>, <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00031">UCarSimManagerComponent::BeginPlay()</a>, <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00024">UActorDispatcher::Bind()</a>, <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html#l00226">FCarlaServer::FPimpl::BindActions()</a>, <a class="el" href="../../d5/d25/MapGenFunctionLibrary_8cpp_source.html#l00027">UMapGenFunctionLibrary::BuildMeshDescriptionFromData()</a>, <a class="el" href="../../d4/de0/OpenDriveActor_8cpp_source.html#l00158">AOpenDriveActor::BuildRoutes()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00486">ASceneCaptureSensor::CaptureSceneExtended()</a>, <a class="el" href="../../d0/d2e/CarlaGameModeBase_8cpp_source.html#l00496">ACarlaGameModeBase::CheckForEmptyMeshes()</a>, <a class="el" href="../../dc/d65/CarlaWheeledVehicle_8cpp_source.html#l01040">ACarlaWheeledVehicle::CloseDoor()</a>, <a class="el" href="../../d8/ddc/RayCastSemanticLidar_8cpp_source.html#l00204">ARayCastSemanticLidar::ComputeRawDetection()</a>, <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00018">UCarSimManagerComponent::CreateCarsimComponent()</a>, <a class="el" href="../../db/d1c/ChronoMovementComponent_8cpp_source.html#l00021">UChronoMovementComponent::CreateChronoMovementComponent()</a>, <a class="el" href="../../df/d8a/FrameData_8cpp_source.html#l00716">FFrameData::CreateOrReuseActor()</a>, <a class="el" href="../../d7/da0/VegetationManager_8cpp_source.html#l00666">AVegetationManager::CreatePoolForBPClass()</a>, <a class="el" href="../../d3/de7/TaggedComponent_8cpp_source.html#l00078">UTaggedComponent::CreateSceneProxy()</a>, <a class="el" href="../../d9/db0/ImageUtil_8cpp_source.html#l00015">ImageUtil::DecodePixelsByFormat()</a>, <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00144">UActorDispatcher::DestroyActor()</a>, <a class="el" href="../../da/da6/BaseCarlaMovementComponent_8cpp_source.html#l00053">UBaseCarlaMovementComponent::DisableUE4VehiclePhysics()</a>, <a class="el" href="../../df/d53/CarlaHUD_8cpp_source.html#l00011">ACarlaHUD::DrawHUD()</a>, <a class="el" href="../../d7/d86/ObjectRegister_8cpp_source.html#l00108">UObjectRegister::EnableEnvironmentObjects()</a>, <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00176">UCarSimManagerComponent::EndPlay()</a>, <a class="el" href="../../df/d8a/FrameData_8cpp_source.html#l00090">for()</a>, <a class="el" href="../../d9/de7/WorldObserver_8cpp_source.html#l00030">FWorldObserver_GetActorState()</a>, <a class="el" href="../../d9/de7/WorldObserver_8cpp_source.html#l00168">FWorldObserver_GetDormantActorState()</a>, <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00106">ACityMapGenerator::GenerateGraph()</a>, <a class="el" href="../../dc/d85/OpenDriveGenerator_8cpp_source.html#l00132">AOpenDriveGenerator::GeneratePoles()</a>, <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00259">ACityMapGenerator::GenerateRoadMap()</a>, <a class="el" href="../../dc/d85/OpenDriveGenerator_8cpp_source.html#l00075">AOpenDriveGenerator::GenerateRoadMesh()</a>, <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00150">ACityMapGenerator::GenerateRoads()</a>, <a class="el" href="../../d6/d3f/TrafficLightManager_8cpp_source.html#l00255">ATrafficLightManager::GenerateSignalsAndTrafficLights()</a>, <a class="el" href="../../d0/d2e/CarlaGameModeBase_8cpp_source.html#l00439">ACarlaGameModeBase::GenerateSpawnPoints()</a>, <a class="el" href="../../dc/d85/OpenDriveGenerator_8cpp_source.html#l00143">AOpenDriveGenerator::GenerateSpawnPoints()</a>, <a class="el" href="../../d6/de7/OpenDriveMap_8cpp_source.html#l00090">UOpenDriveMap::GenerateWaypoints()</a>, <a class="el" href="../../dd/dd8/BoundingBoxCalculator_8cpp_source.html#l00041">UBoundingBoxCalculator::GetActorBoundingBox()</a>, <a class="el" href="../../dd/dd8/BoundingBoxCalculator_8cpp_source.html#l00375">UBoundingBoxCalculator::GetBBsOfSkeletalMeshComponents()</a>, <a class="el" href="../../d6/d17/LoadAssetMaterialsCommandlet_8cpp_source.html#l00330">ULoadAssetMaterialsCommandlet::GetFirstPackagePath()</a>, <a class="el" href="../../d3/d7b/DebugShapeDrawer_8cpp_source.html#l00036">FShapeVisitor::GetHUD()</a>, <a class="el" href="../../dd/dd8/BoundingBoxCalculator_8cpp_source.html#l00304">UBoundingBoxCalculator::GetISMBoundingBox()</a>, <a class="el" href="../../d6/de7/OpenDriveMap_8cpp_source.html#l00162">UOpenDriveMap::GetNext()</a>, <a class="el" href="../../db/dc7/BaseVegetationActor_8cpp_source.html#l00021">ABaseVegetationActor::GetParametersFromComponent()</a>, <a class="el" href="../../dd/db2/GraphParser_8cpp_source.html#l00039">MapGen::getRotation()</a>, <a class="el" href="../../dd/dd8/BoundingBoxCalculator_8cpp_source.html#l00259">UBoundingBoxCalculator::GetSkeletalMeshBoundingBox()</a>, <a class="el" href="../../d0/d2e/CarlaGameModeBase_8cpp_source.html#l00762">ACarlaGameModeBase::GetULevelFromName()</a>, <a class="el" href="../../dd/dd8/BoundingBoxCalculator_8cpp_source.html#l00114">UBoundingBoxCalculator::GetVehicleBoundingBox()</a>, <a class="el" href="../../d9/d30/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2OpenDrive_2OpenDrive_8cpp_source.html#l00066">UOpenDrive::GetXODR()</a>, <a class="el" href="../../d9/d30/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2OpenDrive_2OpenDrive_8cpp_source.html#l00149">UOpenDrive::GetXODRByPath()</a>, <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00187">if()</a>, <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00176">ARoutePlanner::Init()</a>, <a class="el" href="../../d1/d4f/CustomTerrainPhysicsComponent_8h_source.html#l00119">FSparseHighDetailMap::Init()</a>, <a class="el" href="../../d0/d2e/CarlaGameModeBase_8cpp_source.html#l00077">ACarlaGameModeBase::InitGame()</a>, <a class="el" href="../../d1/d59/CustomTerrainPhysicsComponent_8cpp_source.html#l00723">FSparseHighDetailMap::InitializeMap()</a>, <a class="el" href="../../d2/de5/RoadMap_8cpp_source.html#l00296">URoadMap::Intersect()</a>, <a class="el" href="../../d3/d9a/NavigationMesh_8cpp_source.html#l00013">FNavigationMesh::Load()</a>, <a class="el" href="../../d9/d4f/Carla_8cpp_source.html#l00023">FCarlaModule::LoadChronoDll()</a>, <a class="el" href="../../dc/d85/OpenDriveGenerator_8cpp_source.html#l00048">AOpenDriveGenerator::LoadOpenDrive()</a>, <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00217">UCarlaSettings::LoadSettingsFromFile()</a>, <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00179">UCarlaSettings::LoadSettingsFromString()</a>, <a class="el" href="../../d9/d30/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2OpenDrive_2OpenDrive_8cpp_source.html#l00118">UOpenDrive::LoadXODR()</a>, <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00195">UCarlaSettings::LogSettings()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01163">UActorBlueprintFunctionLibrary::MakeIMUDefinition()</a>, <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html#l03122">FCarlaServer::NotifyBeginEpisode()</a>, <a class="el" href="../../d6/da1/CarlaEngine_8cpp_source.html#l00090">FCarlaEngine::NotifyInitGame()</a>, <a class="el" href="../../da/df0/CollisionSensor_8cpp_source.html#l00080">ACollisionSensor::OnCollisionEvent()</a>, <a class="el" href="../../d8/de0/WheeledVehicleAIController_8cpp_source.html#l00116">AWheeledVehicleAIController::OnPossess()</a>, <a class="el" href="../../d0/d76/WalkerController_8cpp_source.html#l00041">AWalkerController::OnPossess()</a>, <a class="el" href="../../d3/de7/TaggedComponent_8cpp_source.html#l00025">UTaggedComponent::OnRegister()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00071">FActorDefinitionValidator::OnScreenAssert()</a>, <a class="el" href="../../dc/d65/CarlaWheeledVehicle_8cpp_source.html#l01023">ACarlaWheeledVehicle::OpenDoor()</a>, <a class="el" href="../../d0/d2e/CarlaGameModeBase_8cpp_source.html#l00459">ACarlaGameModeBase::ParseOpenDrive()</a>, <a class="el" href="../../d6/ddf/CityMapMeshHolder_8cpp_source.html#l00068">ACityMapMeshHolder::PostInitializeComponents()</a>, <a class="el" href="../../db/dba/CarlaReplayer_8cpp_source.html#l00446">CarlaReplayer::ProcessEventsAdd()</a>, <a class="el" href="../../db/dba/CarlaReplayer_8cpp_source.html#l00693">CarlaReplayer::ProcessPositions()</a>, <a class="el" href="../../df/d8a/FrameData_8cpp_source.html#l00867">FFrameData::ProcessReplayerEventDel()</a>, <a class="el" href="../../df/d8a/FrameData_8cpp_source.html#l00881">FFrameData::ProcessReplayerEventParent()</a>, <a class="el" href="../../db/dba/CarlaReplayer_8cpp_source.html#l00541">CarlaReplayer::ProcessStates()</a>, <a class="el" href="../../d3/df3/ActorRegistry_8cpp_source.html#l00103">FActorRegistry::Register()</a>, <a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html#l00025">UCarlaLightSubsystem::RegisterLight()</a>, <a class="el" href="../../d6/d3f/TrafficLightManager_8cpp_source.html#l00129">ATrafficLightManager::RegisterLightComponentFromOpenDRIVE()</a>, <a class="el" href="../../d6/d3f/TrafficLightManager_8cpp_source.html#l00211">ATrafficLightManager::RegisterLightComponentGenerated()</a>, <a class="el" href="../../d7/da0/VegetationManager_8cpp_source.html#l00288">AVegetationManager::RemoveVehicle()</a>, <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00106">UActorDispatcher::ReSpawnActor()</a>, <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html#l00166">RespondError()</a>, <a class="el" href="../../d4/d2f/IniFile_8h_source.html#l00025">FIniFile::SafeCastTo()</a>, <a class="el" href="../../d2/de5/RoadMap_8cpp_source.html#l00332">URoadMap::SaveAsPNG()</a>, <a class="el" href="../../d1/d59/CustomTerrainPhysicsComponent_8cpp_source.html#l00889">FSparseHighDetailMap::SaveMap()</a>, <a class="el" href="../../d8/d97/CustomV2XSensor_8cpp_source.html#l00068">ACustomV2XSensor::Set()</a>, <a class="el" href="../../d2/df9/V2XSensor_8cpp_source.html#l00062">AV2XSensor::Set()</a>, <a class="el" href="../../d3/d43/CarlaActor_8cpp_source.html#l01517">FWalkerActor::SetActorDead()</a>, <a class="el" href="../../d9/dbd/SoilTypeManager_8cpp_source.html#l00103">ASoilTypeManager::SetGeneralTerrainProperties()</a>, <a class="el" href="../../da/df0/CollisionSensor_8cpp_source.html#l00033">ACollisionSensor::SetOwner()</a>, <a class="el" href="../../d8/d97/CustomV2XSensor_8cpp_source.html#l00030">ACustomV2XSensor::SetOwner()</a>, <a class="el" href="../../d2/df9/V2XSensor_8cpp_source.html#l00031">AV2XSensor::SetOwner()</a>, <a class="el" href="../../d0/d8d/CaService_8cpp_source.html#l00044">CaService::SetOwner()</a>, <a class="el" href="../../db/dc7/BaseVegetationActor_8cpp_source.html#l00072">ABaseVegetationActor::SetParametersToComponent()</a>, <a class="el" href="../../d0/d8d/CaService_8cpp_source.html#l00090">CaService::SetParams()</a>, <a class="el" href="../../dc/d65/CarlaWheeledVehicle_8cpp_source.html#l00052">ACarlaWheeledVehicle::SetWheelCollision()</a>, <a class="el" href="../../dc/d65/CarlaWheeledVehicle_8cpp_source.html#l00078">ACarlaWheeledVehicle::SetWheelCollisionNW()</a>, <a class="el" href="../../dc/d65/CarlaWheeledVehicle_8cpp_source.html#l00925">ACarlaWheeledVehicle::SetWheelSteerDirection()</a>, <a class="el" href="../../dc/d65/CarlaWheeledVehicle_8cpp_source.html#l00867">ACarlaWheeledVehicle::ShowDebugTelemetry()</a>, <a class="el" href="../../d8/ddc/RayCastSemanticLidar_8cpp_source.html#l00100">ARayCastSemanticLidar::SimulateLidar()</a>, <a class="el" href="../../d7/dc4/StaticMeshFactory_8cpp_source.html#l00051">AStaticMeshFactory::SpawnActor()</a>, <a class="el" href="../../dc/df0/UtilActorFactory_8cpp_source.html#l00031">AUtilActorFactory::SpawnActor()</a>, <a class="el" href="../../d1/d50/AIControllerFactory_8cpp_source.html#l00037">AAIControllerFactory::SpawnActor()</a>, <a class="el" href="../../d0/dde/SensorFactory_8cpp_source.html#l00105">ASensorFactory::SpawnActor()</a>, <a class="el" href="../../d3/da1/TriggerFactory_8cpp_source.html#l00038">ATriggerFactory::SpawnActor()</a>, <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00059">UActorDispatcher::SpawnActor()</a>, <a class="el" href="../../d0/d2e/CarlaGameModeBase_8cpp_source.html#l00401">ACarlaGameModeBase::SpawnActorFactories()</a>, <a class="el" href="../../d7/da0/VegetationManager_8cpp_source.html#l00543">AVegetationManager::SpawnSkeletalFoliages()</a>, <a class="el" href="../../d6/d3f/TrafficLightManager_8cpp_source.html#l00482">ATrafficLightManager::SpawnTrafficLights()</a>, <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html#l03106">FCarlaServer::Start()</a>, <a class="el" href="../../d0/d2e/CarlaGameModeBase_8cpp_source.html#l00424">ACarlaGameModeBase::StoreSpawnPoints()</a>, <a class="el" href="../../d2/d35/Tagger_8cpp_source.html#l00106">ATagger::TagActor()</a>, <a class="el" href="../../d9/d4f/Carla_8cpp_source.html#l00142">carla::throw_exception()</a>, <a class="el" href="../../d9/dbd/SoilTypeManager_8cpp_source.html#l00025">ASoilTypeManager::Tick()</a>, <a class="el" href="../../d7/da0/VegetationManager_8cpp_source.html#l00241">AVegetationManager::Tick()</a>, <a class="el" href="../../d7/da0/VegetationManager_8cpp_source.html#l00412">AVegetationManager::UpdateFoliageBlueprintCache()</a>, <a class="el" href="../../d1/d59/CustomTerrainPhysicsComponent_8cpp_source.html#l00738">FSparseHighDetailMap::UpdateHeightMap()</a>, <a class="el" href="../../d6/ddf/CityMapMeshHolder_8cpp_source.html#l00242">ACityMapMeshHolder::UpdateMapScale()</a>, <a class="el" href="../../db/dc7/BaseVegetationActor_8cpp_source.html#l00115">ABaseVegetationActor::UpdateSkeletonAndParameters()</a>, <a class="el" href="../../d3/d43/CarlaActor_8cpp_source.html#l00183">FCarlaActor::WakeActorUp()</a> , 以及 <a class="el" href="../../dc/db0/PixelReader_8cpp_source.html#l00104">FPixelReader::WritePixelsToArray()</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">变量说明</h2>
+<a id="a930920b2bc42824a5c03be681830f4b2" name="a930920b2bc42824a5c03be681830f4b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a930920b2bc42824a5c03be681830f4b2">&#9670;&#160;</a></span>true</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">return true</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html">ActorDispatcher.cpp</a> 第 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00196">196</a> 行定义.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

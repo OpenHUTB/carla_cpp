@@ -1,0 +1,11 @@
+<map id="carla::time_duration::milliseconds" name="carla::time_duration::milliseconds">
+<area shape="rect" id="node1" title=" " alt="" coords="491,127,625,167"/>
+<area shape="rect" id="node2" href="$db/d1f/classcarla_1_1client_1_1World.html#a871df9427577577e83078b744f62ac34" title=" " alt="" coords="55,5,181,45"/>
+<area shape="rect" id="node3" href="$df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html#ab5481628a75cf422d65b88d557fa57ff" title=" " alt="" coords="279,127,443,167"/>
+<area shape="rect" id="node6" href="$dd/ddd/classcarla_1_1client_1_1detail_1_1Client.html#aa22e0ff05f8a788766119d68dbb790d1" title=" " alt="" coords="293,191,428,231"/>
+<area shape="rect" id="node8" href="$db/d1f/classcarla_1_1client_1_1World.html#a54001b9b89732b277c38f0682164499d" title="通知模拟器继续进行下一个节拍（仅对同步模式有效）。 在同步模拟模式下，通过调用这个函数来告知模拟器可以推进到下一个时间步了， 并且返回这个调用开始的帧的id，用于跟踪和记录模拟进度在时间轴上的位置。" alt="" coords="297,63,424,103"/>
+<area shape="rect" id="node9" href="$db/d1f/classcarla_1_1client_1_1World.html#a8224b6e84c3c01d757cf4e0dd2ce4468" title="阻塞调用线程，直到接收到一个世界刻。 世界刻（Tick）可以理解为模拟世界的时间推进的一个基本单位，通过阻塞等待一个世界刻， 可以确保在获取后续操作所需的最新世界状态时，是基于已经更新到下一个时间步的情..." alt="" coords="297,255,424,295"/>
+<area shape="rect" id="node4" href="$df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html#a9c02ba42b0f621acadcedde6cece26f7" title=" " alt="" coords="5,69,231,109"/>
+<area shape="rect" id="node5" href="$df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html#a3456d71f81301522bdfb013838bc4589" title=" " alt="" coords="31,133,205,173"/>
+<area shape="rect" id="node7" href="$df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html#aadbf261987b49516a648ab16f7f86383" title=" " alt="" coords="7,197,229,237"/>
+</map>

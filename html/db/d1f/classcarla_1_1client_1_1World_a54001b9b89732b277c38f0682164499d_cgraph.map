@@ -1,0 +1,5 @@
+<map id="carla::client::World::Tick" name="carla::client::World::Tick">
+<area shape="rect" id="node1" title="通知模拟器继续进行下一个节拍（仅对同步模式有效）。 在同步模拟模式下，通过调用这个函数来告知模拟器可以推进到下一个时间步了， 并且返回这个调用开始的帧的id，用于跟踪和记录模拟进度在时间轴上的位置。" alt="" coords="5,37,132,77"/>
+<area shape="rect" id="node2" href="$d1/dd3/classcarla_1_1client_1_1detail_1_1EpisodeProxyImpl.html#aaca857645fbeb6546b4a03a663bb65af" title="与 TryLock 相同，但永远不会返回 nullptr。" alt="" coords="180,5,347,45"/>
+<area shape="rect" id="node3" href="$d2/d2e/classcarla_1_1time__duration.html#ab6435c6f89dc71d1e33f4ac384c007ad" title=" " alt="" coords="196,69,331,109"/>
+</map>

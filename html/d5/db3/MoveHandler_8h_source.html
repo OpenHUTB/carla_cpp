@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: MoveHandler.h 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">MoveHandler.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d5/db3/MoveHandler_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// de Barcelona (UAB).</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// This work is licensed under the terms of the MIT license.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#pragma once  </span><span class="comment">// 确保此头文件仅被包含一次</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;type_traits&gt;</span>  <span class="comment">// 包含类型特征相关的头文件，提供类型特性支持</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;utility&gt;</span>  <span class="comment">// 包含通用工具函数，比如 std::move</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d9/d36/namespacecarla.html">carla</a> {  <span class="comment">// 定义命名空间 carla</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="../../d0/d58/namespacecarla_1_1detail.html">   13</a></span><span class="keyword">namespace </span>detail {   <span class="comment">// 定义命名空间 detail，用于实现细节</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> FunctorT&gt;  <span class="comment">// 定义一个模板结构体，接受任意类型 FunctorT</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="../../d6/d37/structcarla_1_1detail_1_1MoveWrapper.html">   17</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="../../d6/d37/structcarla_1_1detail_1_1MoveWrapper.html">MoveWrapper</a> : <a class="code hl_class" href="../../d5/d37/classFunctorT.html">FunctorT</a> {  <span class="comment">// MoveWrapper 继承自 FunctorT</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="../../d6/d37/structcarla_1_1detail_1_1MoveWrapper.html#a14b30f0a8701d66e27b82871c041ffff">   18</a></span>    <a class="code hl_function" href="../../d6/d37/structcarla_1_1detail_1_1MoveWrapper.html#a14b30f0a8701d66e27b82871c041ffff">MoveWrapper</a>(<a class="code hl_class" href="../../d5/d37/classFunctorT.html">FunctorT</a> &amp;&amp;f) : <a class="code hl_class" href="../../d5/d37/classFunctorT.html">FunctorT</a>(<a class="code hl_namespace" href="../../d8/dcc/namespacestd.html">std</a>::move(f)) {}  <span class="comment">// 构造函数，移动构造 FunctorT</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="../../d6/d37/structcarla_1_1detail_1_1MoveWrapper.html#a8ff30d320d64ebf77ccc81229bbea996">   20</a></span>    <a class="code hl_function" href="../../d6/d37/structcarla_1_1detail_1_1MoveWrapper.html#a8ff30d320d64ebf77ccc81229bbea996">MoveWrapper</a>(<a class="code hl_struct" href="../../d6/d37/structcarla_1_1detail_1_1MoveWrapper.html">MoveWrapper</a> &amp;&amp;) = <span class="keywordflow">default</span>;  <span class="comment">// 移动构造函数，使用默认实现</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="../../d6/d37/structcarla_1_1detail_1_1MoveWrapper.html#ad886e95dcb8351243e949dda516c31e6">   21</a></span>    <a class="code hl_struct" href="../../d6/d37/structcarla_1_1detail_1_1MoveWrapper.html">MoveWrapper</a>&amp; <a class="code hl_function" href="../../d6/d37/structcarla_1_1detail_1_1MoveWrapper.html#ad886e95dcb8351243e949dda516c31e6">operator=</a>(<a class="code hl_struct" href="../../d6/d37/structcarla_1_1detail_1_1MoveWrapper.html">MoveWrapper</a> &amp;&amp;) = <span class="keywordflow">default</span>;  <span class="comment">// 移动赋值运算符，使用默认实现</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="../../d6/d37/structcarla_1_1detail_1_1MoveWrapper.html#a2fda4543c363dea43112f1be980c20d8">   23</a></span>    <a class="code hl_function" href="../../d6/d37/structcarla_1_1detail_1_1MoveWrapper.html#a2fda4543c363dea43112f1be980c20d8">MoveWrapper</a>(<span class="keyword">const</span> <a class="code hl_struct" href="../../d6/d37/structcarla_1_1detail_1_1MoveWrapper.html">MoveWrapper</a> &amp;);  <span class="comment">// 声明复制构造函数（未定义）</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="../../d6/d37/structcarla_1_1detail_1_1MoveWrapper.html#a22919af39de0d03cf962d13ef8579c34">   24</a></span>    <a class="code hl_struct" href="../../d6/d37/structcarla_1_1detail_1_1MoveWrapper.html">MoveWrapper</a>&amp; <a class="code hl_function" href="../../d6/d37/structcarla_1_1detail_1_1MoveWrapper.html#a22919af39de0d03cf962d13ef8579c34">operator=</a>(<span class="keyword">const</span> <a class="code hl_struct" href="../../d6/d37/structcarla_1_1detail_1_1MoveWrapper.html">MoveWrapper</a> &amp;);  <span class="comment">// 声明复制赋值运算符（未定义）</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  };</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>} <span class="comment">// namespace detail</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment"></span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment">  /// 下面是一种hack，用于绕过Asio库的限制，使其能够接受仅可移动的处理程序。</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment">  /// 如果Asio试图复制一个仅可移动的处理程序，那么编译时可能不会立即报错</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">  ///</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment">  /// @see https://stackoverflow.com/a/22891509.</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment"></span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> FunctorT&gt;  <span class="comment">// 定义一个模板函数，接受任意类型 FunctorT</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="../../d9/d36/namespacecarla.html#acd3cdf36e0ce00b21de5747a97581094">   34</a></span>  <span class="keyword">auto</span> <a class="code hl_function" href="../../d9/d36/namespacecarla.html#acd3cdf36e0ce00b21de5747a97581094">MoveHandler</a>(<a class="code hl_class" href="../../d5/d37/classFunctorT.html">FunctorT</a> &amp;&amp;func) {   <span class="comment">// MoveHandler 函数返回一个移动处理器</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keyword">using </span>F = <span class="keyword">typename</span> std::decay&lt;FunctorT&gt;::type;  <span class="comment">// 使用 std::decay 处理 FunctorT 的类型</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordflow">return</span> <a class="code hl_struct" href="../../d6/d37/structcarla_1_1detail_1_1MoveWrapper.html">detail::MoveWrapper&lt;F&gt;</a>{std::move(func)};   <span class="comment">// 返回一个 MoveWrapper 实例，移动传入的 func</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  }</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>} <span class="comment">// namespace carla</span></div>
+<div class="ttc" id="aclassFunctorT_html"><div class="ttname"><a href="../../d5/d37/classFunctorT.html">FunctorT</a></div></div>
+<div class="ttc" id="anamespacecarla_html"><div class="ttname"><a href="../../d9/d36/namespacecarla.html">carla</a></div><div class="ttdoc">CARLA模拟器的主命名空间。</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d4f/Carla_8cpp_source.html#l00139">Carla.cpp:139</a></div></div>
+<div class="ttc" id="anamespacecarla_html_acd3cdf36e0ce00b21de5747a97581094"><div class="ttname"><a href="../../d9/d36/namespacecarla.html#acd3cdf36e0ce00b21de5747a97581094">carla::MoveHandler</a></div><div class="ttdeci">auto MoveHandler(FunctorT &amp;&amp;func)</div><div class="ttdoc">下面是一种hack，用于绕过Asio库的限制，使其能够接受仅可移动的处理程序。 如果Asio试图复制一个仅可移动的处理程序，那么编译时可能不会立即报错</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/db3/MoveHandler_8h_source.html#l00034">MoveHandler.h:34</a></div></div>
+<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="../../d8/dcc/namespacestd.html">std</a></div><div class="ttdef"><b>Definition:</b> <a href="../../df/d06/CarlaRecorderCollision_8h_source.html#l00030">CarlaRecorderCollision.h:31</a></div></div>
+<div class="ttc" id="astructcarla_1_1detail_1_1MoveWrapper_html"><div class="ttname"><a href="../../d6/d37/structcarla_1_1detail_1_1MoveWrapper.html">carla::detail::MoveWrapper</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d5/db3/MoveHandler_8h_source.html#l00017">MoveHandler.h:17</a></div></div>
+<div class="ttc" id="astructcarla_1_1detail_1_1MoveWrapper_html_a14b30f0a8701d66e27b82871c041ffff"><div class="ttname"><a href="../../d6/d37/structcarla_1_1detail_1_1MoveWrapper.html#a14b30f0a8701d66e27b82871c041ffff">carla::detail::MoveWrapper::MoveWrapper</a></div><div class="ttdeci">MoveWrapper(FunctorT &amp;&amp;f)</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/db3/MoveHandler_8h_source.html#l00018">MoveHandler.h:18</a></div></div>
+<div class="ttc" id="astructcarla_1_1detail_1_1MoveWrapper_html_a22919af39de0d03cf962d13ef8579c34"><div class="ttname"><a href="../../d6/d37/structcarla_1_1detail_1_1MoveWrapper.html#a22919af39de0d03cf962d13ef8579c34">carla::detail::MoveWrapper::operator=</a></div><div class="ttdeci">MoveWrapper &amp; operator=(const MoveWrapper &amp;)</div></div>
+<div class="ttc" id="astructcarla_1_1detail_1_1MoveWrapper_html_a2fda4543c363dea43112f1be980c20d8"><div class="ttname"><a href="../../d6/d37/structcarla_1_1detail_1_1MoveWrapper.html#a2fda4543c363dea43112f1be980c20d8">carla::detail::MoveWrapper::MoveWrapper</a></div><div class="ttdeci">MoveWrapper(const MoveWrapper &amp;)</div></div>
+<div class="ttc" id="astructcarla_1_1detail_1_1MoveWrapper_html_a8ff30d320d64ebf77ccc81229bbea996"><div class="ttname"><a href="../../d6/d37/structcarla_1_1detail_1_1MoveWrapper.html#a8ff30d320d64ebf77ccc81229bbea996">carla::detail::MoveWrapper::MoveWrapper</a></div><div class="ttdeci">MoveWrapper(MoveWrapper &amp;&amp;)=default</div></div>
+<div class="ttc" id="astructcarla_1_1detail_1_1MoveWrapper_html_ad886e95dcb8351243e949dda516c31e6"><div class="ttname"><a href="../../d6/d37/structcarla_1_1detail_1_1MoveWrapper.html#ad886e95dcb8351243e949dda516c31e6">carla::detail::MoveWrapper::operator=</a></div><div class="ttdeci">MoveWrapper &amp; operator=(MoveWrapper &amp;&amp;)=default</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

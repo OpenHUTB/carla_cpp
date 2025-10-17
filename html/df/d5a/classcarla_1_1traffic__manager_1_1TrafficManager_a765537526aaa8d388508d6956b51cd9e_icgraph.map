@@ -1,0 +1,44 @@
+<map id="carla::traffic_manager::TrafficManager::GetTM" name="carla::traffic_manager::TrafficManager::GetTM">
+<area shape="rect" id="node1" title="根据端口号获取交通管理器实例。" alt="" coords="495,1405,653,1445"/>
+<area shape="rect" id="node2" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#aa1bf6d822a75ca80c2da1b7447e675eb" title="获取指定参与者的动作缓冲区。" alt="" coords="213,5,423,45"/>
+<area shape="rect" id="node3" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a100e2a6f063b6cfec25deb4e06b27efb" title="获取指定参与者的下一个动作。" alt="" coords="216,69,420,109"/>
+<area shape="rect" id="node4" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#ad51d67c1ba30bd5feeb315f11bcdd84c" title="向交通管理器注册车辆。" alt="" coords="209,133,427,173"/>
+<area shape="rect" id="node6" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a338f4ccc98106c81376fff4d5947b896" title="移除路线。" alt="" coords="192,197,444,237"/>
+<area shape="rect" id="node7" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a69d6cbdc12ff0658c3028ed379e781a0" title="移除路径。" alt="" coords="201,261,435,301"/>
+<area shape="rect" id="node8" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a9fc432fc3935c5eb6bbfa9556d488cf2" title="启用/禁用车辆的自动换道功能。" alt="" coords="221,326,415,381"/>
+<area shape="rect" id="node9" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a75d48a7d0088035b88b05ec1016a2257" title="设置重生车辆的范围边界。" alt="" coords="216,405,420,459"/>
+<area shape="rect" id="node10" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a10885e1bedc1f28a1ce8a3211a0c170b" title="设置车辆之间的碰撞检测规则" alt="" coords="224,483,412,538"/>
+<area shape="rect" id="node11" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a7eac07270590a8a0f55378bfa9b1382d" title="设置自定义路径。" alt="" coords="213,563,423,603"/>
+<area shape="rect" id="node12" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#af712545b625c96a29725adf743ee911f" title="设置车辆的期望速度。" alt="" coords="208,627,428,667"/>
+<area shape="rect" id="node13" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a98e8140b91f7aaefaad0bae43db17139" title="设置车辆与前车应保持的距离。" alt="" coords="223,691,413,746"/>
+<area shape="rect" id="node14" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#ac3a9025b8c7834a6af2ef7e00db0934c" title="强制车辆换道。" alt="" coords="217,770,419,825"/>
+<area shape="rect" id="node15" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a8e88309f1b6e93a0f8ef2f4954ecab87" title="设置全局的前车距离。" alt="" coords="205,849,431,903"/>
+<area shape="rect" id="node16" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a3c8feeed1141d3612757efa42de2d455" title="设置全局车道偏移量，相对于中心线的位移。" alt="" coords="215,927,421,982"/>
+<area shape="rect" id="node17" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a3e2d1bf4b8d2de100d09708ad48eb5ca" title="设置全局速度百分比差异。" alt="" coords="197,1006,439,1061"/>
+<area shape="rect" id="node18" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a49792df62710759a39cceb779d2fe2d2" title="设置混合物理模式。" alt="" coords="191,1085,445,1125"/>
+<area shape="rect" id="node19" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#aa8777ce4f53b17ba6fd847b4eeb21d82" title="设置混合物理半径。" alt="" coords="207,1150,429,1205"/>
+<area shape="rect" id="node20" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a14b080a5395b7cc694635828d07d2bc4" title="设置导入的路线。" alt="" coords="206,1229,430,1269"/>
+<area shape="rect" id="node21" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a35e7ad940573785fddb2e5c0974bca86" title="设置车辆保持在右侧车道的百分比。" alt="" coords="219,1294,417,1349"/>
+<area shape="rect" id="node22" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a2479b878e0a372b8e0367e097bd70343" title="设置车辆相对于车道中心线的偏移量。" alt="" coords="217,1373,419,1413"/>
+<area shape="rect" id="node23" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a55c73e06e19a8525cca873f456d5d0a9" title="设置重生车辆的边界。" alt="" coords="204,1437,432,1477"/>
+<area shape="rect" id="node24" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#af9ccfb0ca619a1bb6c668d21e7ba5227" title="设置Open Street Map模式。" alt="" coords="217,1501,419,1541"/>
+<area shape="rect" id="node25" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a910bb4d5f64b0edbc666c0f5ece320cb" title="设置忽略车辆的碰撞概率。" alt="" coords="215,1566,421,1621"/>
+<area shape="rect" id="node26" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a65cc2c428faea6736e605694b35e7d01" title="设置忽略行人的碰撞概率。" alt="" coords="215,1645,421,1699"/>
+<area shape="rect" id="node27" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a6f54228c052051b618598a37dbcb35be" title="设置无视交通信号灯的概率。" alt="" coords="215,1723,421,1778"/>
+<area shape="rect" id="node28" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a1e0f7ed777eb622b2ad2b0cabfa4a7c9" title="设置无视交通标志的概率。" alt="" coords="215,1802,421,1857"/>
+<area shape="rect" id="node29" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#ac9b00bb164eae8f6b4209279722c8540" title="设置车辆相对于限速的速度百分比差异。" alt="" coords="215,1881,421,1935"/>
+<area shape="rect" id="node30" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a8709fb22312080742c4b466179b6c7bb" title="设置随机数生成器的种子。" alt="" coords="189,1960,447,2000"/>
+<area shape="rect" id="node31" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a0eb6ba0ca83f7903b601857efb1cfabf" title="设置车辆随机进行左侧车道变换的百分比。" alt="" coords="213,2025,423,2079"/>
+<area shape="rect" id="node32" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#afe86cf26c930e639c4bbb702a630e6b1" title="设置车辆随机进行右侧车道变换的百分比。" alt="" coords="209,2103,427,2158"/>
+<area shape="rect" id="node33" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#abf46c2af11832ae8bae0cec81a0a65d9" title="设置是否自动重生车辆。" alt="" coords="221,2182,415,2237"/>
+<area shape="rect" id="node34" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a651464cbdae9a814025532929c6f126c" title="将交通管理器切换为同步执行模式。" alt="" coords="195,2261,441,2301"/>
+<area shape="rect" id="node35" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#afe3ae045966f9fed31a8d4d9c11554cc" title="设置同步执行模式的滴答超时时间（以毫秒为单位）。" alt="" coords="211,2326,425,2381"/>
+<area shape="rect" id="node36" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a835b79043572ce254fae28c14b308d91" title="设置车辆灯光的自动管理" alt="" coords="206,2405,430,2459"/>
+<area shape="rect" id="node37" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a2423bb92b1715fd9f19b2c05b1372bab" title="关闭交通管理器服务或客户端。" alt="" coords="229,2484,407,2524"/>
+<area shape="rect" id="node38" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a1e2f6217b7b0d6097ca9754ba8c3776a" title="执行同步滴答。" alt="" coords="209,2548,427,2588"/>
+<area shape="rect" id="node39" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a1b59040fdd13a053f2f7fd5caa74f515" title="公有构造函数，用于单例生命周期管理。" alt="" coords="216,2612,420,2652"/>
+<area shape="rect" id="node40" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a35f4d0908c91a970fbdf0f71da24366a" title="从交通管理器注销车辆。" alt="" coords="229,2677,407,2731"/>
+<area shape="rect" id="node41" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a4ac04d76d0f6d704ed16667f3a08ffc1" title="更新已设置的路线。" alt="" coords="195,2756,441,2796"/>
+<area shape="rect" id="node42" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#ab3742d01589b5877c1beff4eb45fbc01" title="更新已设置的路径。" alt="" coords="203,2820,433,2860"/>
+<area shape="rect" id="node5" href="$d9/dc6/classcarla_1_1client_1_1Vehicle.html#afd51d896d2a994101fadaf3e23e5636e" title="开关车辆的自动驾驶仪." alt="" coords="5,1409,141,1449"/>
+</map>

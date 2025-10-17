@@ -1,0 +1,22 @@
+<map id="carla::streaming::detail::MultiStreamState" name="carla::streaming::detail::MultiStreamState">
+<area shape="rect" id="node1" title="A stream state that can hold any number of sessions." alt="" coords="1257,282,1408,322"/>
+<area shape="rect" id="node2" href="$d3/d38/classcarla_1_1streaming_1_1detail_1_1StreamStateBase.html" title="所有流副本之间的共享状态类。如果处于活动状态，则提供对底层服务器会话的访问。" alt="" coords="933,157,1084,197"/>
+<area shape="rect" id="node3" href="$d4/d8b/classcarla_1_1NonCopyable.html" title="这个类用于禁止拷贝和移动构造函数及赋值操作" alt="" coords="539,96,673,121"/>
+<area shape="rect" id="node4" href="$df/de1/classcarla_1_1streaming_1_1detail_1_1token__type.html" title="静态断言，用于确保token_data结构体的大小与Token::data的大小相同。" alt="" coords="531,146,681,186"/>
+<area shape="rect" id="node5" href="$d9/da8/structcarla_1_1streaming_1_1detail_1_1token__data.html" title=" " alt="" coords="272,146,423,186"/>
+<area shape="rect" id="node6" title=" " alt="" coords="40,5,108,31"/>
+<area shape="rect" id="node7" title=" " alt="" coords="5,55,143,80"/>
+<area shape="rect" id="node8" title=" " alt="" coords="40,104,108,129"/>
+<area shape="rect" id="node9" title=" " alt="" coords="40,153,108,179"/>
+<area shape="rect" id="node10" title=" " alt="" coords="40,203,108,228"/>
+<area shape="rect" id="node11" title=" " alt="" coords="32,252,116,277"/>
+<area shape="rect" id="node12" title=" " alt="" coords="32,301,116,327"/>
+<area shape="rect" id="node13" title=" " alt="" coords="542,210,670,250"/>
+<area shape="rect" id="node14" title=" " alt="" coords="980,225,1037,251"/>
+<area shape="rect" id="node15" href="$d2/dcf/classcarla_1_1AtomicSharedPtr.html" title=" " alt="" coords="928,275,1089,329"/>
+<area shape="rect" id="node16" href="$d5/d71/classstd_1_1shared__ptr_3_01carla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession_01_4.html" title=" " alt="" coords="536,275,676,329"/>
+<area shape="rect" id="node17" href="$d2/dcf/classcarla_1_1AtomicSharedPtr.html" title="线程安全的原子智能指针封装类" alt="" coords="513,353,699,379"/>
+<area shape="rect" id="node18" title=" " alt="" coords="291,353,404,379"/>
+<area shape="rect" id="node19" title=" " alt="" coords="911,353,1107,408"/>
+<area shape="rect" id="node20" title=" " alt="" coords="985,432,1032,457"/>
+</map>

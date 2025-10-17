@@ -1,0 +1,8 @@
+<map id="类继承关系图" name="类继承关系图">
+<area shape="rect" id="node1" href="$d2/dcf/classcarla_1_1traffic__manager_1_1Stage.html" title="阶段类型接口。" alt="" coords="5,133,149,173"/>
+<area shape="rect" id="node2" href="$d1/d26/classcarla_1_1traffic__manager_1_1CollisionStage.html" title="该类具有检测与附近演员潜在碰撞的功能。" alt="" coords="197,5,341,45"/>
+<area shape="rect" id="node3" href="$d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html" title="此类功能是维护车辆前方的路径点以供跟随。 该类还负责管理车道变更决策并适当地修改路径轨迹。" alt="" coords="197,69,341,109"/>
+<area shape="rect" id="node4" href="$dd/df9/classcarla_1_1traffic__manager_1_1MotionPlanStage.html" title=" " alt="" coords="197,133,341,173"/>
+<area shape="rect" id="node5" href="$d5/db3/classcarla_1_1traffic__manager_1_1TrafficLightStage.html" title=" " alt="" coords="197,197,341,237"/>
+<area shape="rect" id="node6" href="$dd/de2/classcarla_1_1traffic__manager_1_1VehicleLightStage.html" title="VehicleLightStage类负责根据车辆当前的状态和周围环境来开启或关闭车辆的灯光" alt="" coords="197,261,341,301"/>
+</map>

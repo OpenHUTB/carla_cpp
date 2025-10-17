@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: ProceduralCustomMesh.h 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_2d15d0715a2692171bd03ed14a4a79af.html">Unreal</a></li><li class="navelem"><a class="el" href="../../dir_d3c1db2570616bec48bf5a6dd06bce95.html">CarlaUE4</a></li><li class="navelem"><a class="el" href="../../dir_3538576148ac14151677be9b0aee6fcc.html">Plugins</a></li><li class="navelem"><a class="el" href="../../dir_fbda5b12374c683cbdca72abb2d51944.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_18937e8f6bde63367bf26837323a9508.html">Source</a></li><li class="navelem"><a class="el" href="../../dir_8fc34afb5f07a67966c78bf5319f94ae.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_c0211e659583c36c301432102f960843.html">Util</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">ProceduralCustomMesh.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d5/d30/ProceduralCustomMesh_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2020 Computer Vision Center (CVC) at the Universitat Autonoma</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// de Barcelona (UAB).</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// 版权声明，表明该代码受 MIT 许可证条款的许可，如需查看许可证内容，可通过给定的网址访问</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">// 预编译指令，确保头文件在多次被包含时只被编译一次，避免重复定义等问题</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">// 引入 &quot;ProceduralCustomMesh.generated.h&quot; 头文件，这是一个由虚幻引擎的代码生成工具生成的头文件，</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">// 通常包含了与当前结构体相关的反射等元数据信息，对于结构体能够在虚幻引擎中被正确识别、序列化、蓝图调用等操作起到关键作用</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;ProceduralCustomMesh.generated.h&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">// 使用 USTRUCT(Blueprintable) 宏定义，这是虚幻引擎中用于标记一个结构体可以被引擎的蓝图系统使用的宏，</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">// 意味着该结构体可以在蓝图中进行实例化、访问其成员等操作，方便在虚幻引擎的可视化编程（蓝图）环境中使用</span><span class="comment"></span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">/// Carla 网格的定义。</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment"></span><span class="comment">// 这里是一个简单的注释说明，表明这个结构体是对 Carla 网格（Mesh）的一种定义，后续结构体中的成员变量大概率是用于描述网格的各种属性</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>USTRUCT(Blueprintable)</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="../../d0/d01/structFProceduralCustomMesh.html">   19</a></span>struct CARLA_API <a class="code hl_struct" href="../../d0/d01/structFProceduralCustomMesh.html">FProceduralCustomMesh</a></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>{</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="comment">// 使用 GENERATED_BODY() 宏，这是虚幻引擎要求的，用于指示编译器在这里生成与反射、序列化等相关的必要代码，</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="comment">// 保证结构体在引擎中的各种特性能够正常工作</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    GENERATED_BODY()</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="comment">// 使用 UPROPERTY 宏定义了一个成员变量 Vertices 的属性，使其可以在蓝图中进行读写操作（BlueprintReadWrite），</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="comment">// 并且可以在虚幻引擎的编辑器中随意编辑（EditAnywhere），所属的分类为 &quot;VertexData&quot;，方便在编辑器界面中归类显示。</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="comment">// Vertices 成员变量的类型是 TArray&lt;FVector&gt;，即一个由 FVector 类型元素组成的数组，在虚幻引擎中，FVector 通常用于表示三维空间中的向量，</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="comment">// 这里用于存储网格的顶点坐标信息，也就是构成这个网格的各个顶点在三维空间中的位置</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category=<span class="stringliteral">&quot;VertexData&quot;</span>)</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="../../d0/d01/structFProceduralCustomMesh.html#a97c42a67e98fb8eda37e3da36d0c24f8">   30</a></span>    TArray&lt;FVector&gt; Vertices;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="comment">// 同样使用 UPROPERTY 宏定义了 Triangles 成员变量的属性，具备和 Vertices 类似的在蓝图及编辑器中的可操作性（BlueprintReadWrite、EditAnywhere，所属分类 &quot;VertexData&quot;）。</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="comment">// 其类型是 TArray&lt;int32&gt;，是一个由 32 位整数组成的数组，在图形学中，通常用于表示构成网格表面三角形的索引信息，</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="comment">// 例如每个三个连续的整数可以表示一个三角形的三个顶点在 Vertices 数组中的索引，通过这种方式来描述网格的三角面构成情况</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category=&quot;VertexData&quot;)</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="../../d0/d01/structFProceduralCustomMesh.html#a448b1bc975f7a5e60dd5af09c3b4b00b">   36</a></span>    TArray&lt;int32&gt; Triangles;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="comment">// 该 UPROPERTY 宏定义的 Normals 成员变量，同样具有在蓝图和编辑器中相应的读写、编辑属性（BlueprintReadWrite、EditAnywhere，分类 &quot;VertexData&quot;）。</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="comment">// 其类型为 TArray&lt;FVector&gt;，也是由 FVector 类型元素组成的数组，这里的 FVector 表示的是每个顶点对应的法线向量，</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="comment">// 法线向量用于描述顶点所在表面的朝向，在光照计算、碰撞检测等很多图形学相关的操作中都起着重要作用，用于定义网格表面的几何特性</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category=&quot;VertexData&quot;)</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="../../d0/d01/structFProceduralCustomMesh.html#ac0d3804afcc7e0f6eb4c684b5cac379a">   42</a></span>    TArray&lt;FVector&gt; Normals;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="comment">// 对于 UV0 成员变量，通过 UPROPERTY 宏赋予其在蓝图可读写、编辑器可编辑（BlueprintReadWrite、EditAnywhere，分类 &quot;VertexData&quot;）的属性。</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="comment">// 它的类型是 TArray&lt;FVector2D&gt;，是由二维向量（FVector2D）组成的数组，在图形学中，UV 坐标（纹理坐标）用于将二维纹理映射到三维模型表面，</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="comment">// 这里的 UV0 大概率是存储了网格顶点对应的第一套纹理坐标信息，用于指定纹理在模型上的铺贴方式等操作</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category=&quot;VertexData&quot;)</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="../../d0/d01/structFProceduralCustomMesh.html#a3c464fc6a044984bd0d258681e952c81">   48</a></span>    TArray&lt;FVector2D&gt; UV0;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="comment">// 这个 UPROPERTY 宏定义的 VertexColor 成员变量，同样具备在蓝图及编辑器中的相应操作属性（BlueprintReadWrite、EditAnywhere，分类 &quot;VertexData&quot;）。</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="comment">// 其类型为 TArray&lt;FLinearColor&gt;，是由 FLinearColor 类型元素组成的数组，在虚幻引擎中，FLinearColor 用于表示线性颜色空间下的颜色值，</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="comment">// 这里用于存储每个顶点的颜色信息，可用于实现顶点颜色绘制等功能，比如给网格的不同顶点赋予不同颜色来实现特定的视觉效果</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category=&quot;VertexData&quot;)</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="../../d0/d01/structFProceduralCustomMesh.html#a272e42d2328405d15f576c354e024d1d">   54</a></span>    TArray&lt;FLinearColor&gt; VertexColor;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="comment">// 以下这部分代码被注释掉了，注释说明提到是因为包含 ProceduralMeshComponent.h 时出现了一个奇怪的 bug。</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="comment">// 这里原本定义的 Tangents 成员变量，其类型是 TArray&lt;FProcMeshTangent&gt;，推测在未出现问题时，它可能用于存储网格顶点对应的切线向量相关信息，</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="comment">// 在一些高级的图形渲染技术（比如法线贴图等）中，切线向量和法线向量等配合使用来实现更精确的光照、纹理映射等效果，但由于当前存在 bug，暂时无法使用该成员变量</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="comment">// UPROPERTY()</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="comment">// TArray&lt;FProcMeshTangent&gt; Tangents;</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>};</div>
+<div class="ttc" id="astructFProceduralCustomMesh_html"><div class="ttname"><a href="../../d0/d01/structFProceduralCustomMesh.html">FProceduralCustomMesh</a></div><div class="ttdoc">Carla 网格的定义。</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/d30/ProceduralCustomMesh_8h_source.html#l00019">ProceduralCustomMesh.h:20</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

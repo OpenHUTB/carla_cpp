@@ -1,0 +1,2389 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: carla::client::World类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../d9/d36/namespacecarla.html">carla</a></li><li class="navelem"><a class="el" href="../../d2/daf/namespacecarla_1_1client.html">client</a></li><li class="navelem"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html">World</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="../../da/dc4/classcarla_1_1client_1_1World-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">carla::client::World类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="../../dd/d5b/World_8h_source.html">World.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> carla::client::World 的协作图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../da/dfc/classcarla_1_1client_1_1World__coll__graph.svg" width="194" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a0592a7dd0973375a6390a91b3071a395"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a0592a7dd0973375a6390a91b3071a395">ApplyColorTextureToObject</a> (const std::string &amp;actor_name, const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a160748bfd5bfdb5310f4c0d60dc3158d">rpc::MaterialParameter</a> &amp;parameter, const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#ac33c4aad791dc2a95fc9ef4ca2e3fd8c">rpc::TextureColor</a> &amp;Texture)</td></tr>
+<tr class="separator:a0592a7dd0973375a6390a91b3071a395"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a0545ffdff682b9c3f75c4cc5046039"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a9a0545ffdff682b9c3f75c4cc5046039">ApplyColorTextureToObjects</a> (const std::vector&lt; std::string &gt; &amp;objects_names, const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a160748bfd5bfdb5310f4c0d60dc3158d">rpc::MaterialParameter</a> &amp;parameter, const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#ac33c4aad791dc2a95fc9ef4ca2e3fd8c">rpc::TextureColor</a> &amp;Texture)</td></tr>
+<tr class="separator:a9a0545ffdff682b9c3f75c4cc5046039"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad684837d7848c333e11cf99f07e85ae8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#ad684837d7848c333e11cf99f07e85ae8">ApplyFloatColorTextureToObject</a> (const std::string &amp;actor_name, const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a160748bfd5bfdb5310f4c0d60dc3158d">rpc::MaterialParameter</a> &amp;parameter, const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#abe03ea85d6b3cea7ac78b7115e9bf077">rpc::TextureFloatColor</a> &amp;Texture)</td></tr>
+<tr class="separator:ad684837d7848c333e11cf99f07e85ae8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6eeb2cb3efd8ab2243c48a1cf2e7f97"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#aa6eeb2cb3efd8ab2243c48a1cf2e7f97">ApplyFloatColorTextureToObjects</a> (const std::vector&lt; std::string &gt; &amp;objects_names, const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a160748bfd5bfdb5310f4c0d60dc3158d">rpc::MaterialParameter</a> &amp;parameter, const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#abe03ea85d6b3cea7ac78b7115e9bf077">rpc::TextureFloatColor</a> &amp;Texture)</td></tr>
+<tr class="separator:aa6eeb2cb3efd8ab2243c48a1cf2e7f97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a871df9427577577e83078b744f62ac34"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a871df9427577577e83078b744f62ac34">ApplySettings</a> (const <a class="el" href="../../de/d6d/classcarla_1_1rpc_1_1EpisodeSettings.html">rpc::EpisodeSettings</a> &amp;settings, <a class="el" href="../../d2/d2e/classcarla_1_1time__duration.html">time_duration</a> timeout)</td></tr>
+<tr class="separator:a871df9427577577e83078b744f62ac34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83e566e6abb0fdf79a49a1456e153b9c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a83e566e6abb0fdf79a49a1456e153b9c">ApplyTexturesToObject</a> (const std::string &amp;actor_name, const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#ac33c4aad791dc2a95fc9ef4ca2e3fd8c">rpc::TextureColor</a> &amp;diffuse_texture, const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#abe03ea85d6b3cea7ac78b7115e9bf077">rpc::TextureFloatColor</a> &amp;emissive_texture, const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#abe03ea85d6b3cea7ac78b7115e9bf077">rpc::TextureFloatColor</a> &amp;normal_texture, const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#abe03ea85d6b3cea7ac78b7115e9bf077">rpc::TextureFloatColor</a> &amp;ao_roughness_metallic_emissive_texture)</td></tr>
+<tr class="separator:a83e566e6abb0fdf79a49a1456e153b9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb8e50fc72f6f15c98ffde1e51d525a9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#abb8e50fc72f6f15c98ffde1e51d525a9">ApplyTexturesToObjects</a> (const std::vector&lt; std::string &gt; &amp;objects_names, const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#ac33c4aad791dc2a95fc9ef4ca2e3fd8c">rpc::TextureColor</a> &amp;diffuse_texture, const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#abe03ea85d6b3cea7ac78b7115e9bf077">rpc::TextureFloatColor</a> &amp;emissive_texture, const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#abe03ea85d6b3cea7ac78b7115e9bf077">rpc::TextureFloatColor</a> &amp;normal_texture, const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#abe03ea85d6b3cea7ac78b7115e9bf077">rpc::TextureFloatColor</a> &amp;ao_roughness_metallic_emissive_texture)</td></tr>
+<tr class="separator:abb8e50fc72f6f15c98ffde1e51d525a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93885bcdef9682882f31898e6a7be0e8"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="../../d0/dac/structcarla_1_1rpc_1_1LabelledPoint.html">rpc::LabelledPoint</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a93885bcdef9682882f31898e6a7be0e8">CastRay</a> (<a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">geom::Location</a> start_location, <a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">geom::Location</a> end_location) const</td></tr>
+<tr class="separator:a93885bcdef9682882f31898e6a7be0e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20880575f15ec7cdb79342bfddcb5ea8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a20880575f15ec7cdb79342bfddcb5ea8">EnableEnvironmentObjects</a> (std::vector&lt; uint64_t &gt; env_objects_ids, bool enable) const</td></tr>
+<tr class="memdesc:a20880575f15ec7cdb79342bfddcb5ea8"><td class="mdescLeft">&#160;</td><td class="mdescRight">启用或禁用环境物体，根据传入的环境物体ID列表（env_objects_ids）以及布尔值参数enable来操作， 可以动态地控制某些环境物体在模拟世界中是否显示或者参与物理模拟等，实现灵活的场景配置。  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#a20880575f15ec7cdb79342bfddcb5ea8">更多...</a><br /></td></tr>
+<tr class="separator:a20880575f15ec7cdb79342bfddcb5ea8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a223e7d1f05bc8004b6a1b4b4629579bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a223e7d1f05bc8004b6a1b4b4629579bd">FreezeAllTrafficLights</a> (bool frozen)</td></tr>
+<tr class="memdesc:a223e7d1f05bc8004b6a1b4b4629579bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">冻结或解冻所有交通信号灯，通过传入的布尔值参数来控制， 冻结时交通信号灯状态将保持不变，常用于暂停交通灯变化来观察特定交通场景或者进行调试等情况。  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#a223e7d1f05bc8004b6a1b4b4629579bd">更多...</a><br /></td></tr>
+<tr class="separator:a223e7d1f05bc8004b6a1b4b4629579bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4695a58dcf7f3589294b95e3d04cdad7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr</a>&lt; <a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">Actor</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a4695a58dcf7f3589294b95e3d04cdad7">GetActor</a> (<a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> id) const</td></tr>
+<tr class="memdesc:a4695a58dcf7f3589294b95e3d04cdad7"><td class="mdescLeft">&#160;</td><td class="mdescRight">根据id查找actor，如果没有找到则返回nullptr。 通过传入的ActorId参数，在当前模拟世界中查找对应的参与者对象，方便快速定位特定的实体， 比如查找某一辆特定编号的车辆或者某个行人等。  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#a4695a58dcf7f3589294b95e3d04cdad7">更多...</a><br /></td></tr>
+<tr class="separator:a4695a58dcf7f3589294b95e3d04cdad7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04a22f65ea5ccd3e93b833503dda6d65"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr</a>&lt; <a class="el" href="../../da/d51/classcarla_1_1client_1_1ActorList.html">ActorList</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a04a22f65ea5ccd3e93b833503dda6d65">GetActors</a> () const</td></tr>
+<tr class="memdesc:a04a22f65ea5ccd3e93b833503dda6d65"><td class="mdescLeft">&#160;</td><td class="mdescRight">返回一个包含当前世界上所有存在的参与者（actor）的列表。 获取整个模拟世界中所有参与者的集合，便于进行批量操作、统计或者遍历所有实体执行某些通用的操作等。  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#a04a22f65ea5ccd3e93b833503dda6d65">更多...</a><br /></td></tr>
+<tr class="separator:a04a22f65ea5ccd3e93b833503dda6d65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e98eccf6a7a12be24d159ab8a1910ca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr</a>&lt; <a class="el" href="../../da/d51/classcarla_1_1client_1_1ActorList.html">ActorList</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a8e98eccf6a7a12be24d159ab8a1910ca">GetActors</a> (const std::vector&lt; <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> &gt; &amp;actor_ids) const</td></tr>
+<tr class="memdesc:a8e98eccf6a7a12be24d159ab8a1910ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">返回一个包含ActorId请求的参与者（actor）的列表。 根据传入的包含多个ActorId的vector参数，返回对应的参与者列表，实现按照指定的一组ID来查找和获取相应的参与者对象集合。  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#a8e98eccf6a7a12be24d159ab8a1910ca">更多...</a><br /></td></tr>
+<tr class="separator:a8e98eccf6a7a12be24d159ab8a1910ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b11fdf26079554adadf1621b9a71862"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr</a>&lt; <a class="el" href="../../df/dcc/classcarla_1_1client_1_1BlueprintLibrary.html">BlueprintLibrary</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a1b11fdf26079554adadf1621b9a71862">GetBlueprintLibrary</a> () const</td></tr>
+<tr class="memdesc:a1b11fdf26079554adadf1621b9a71862"><td class="mdescLeft">&#160;</td><td class="mdescRight">返回当前世界中可用的蓝图列表。 这个蓝图可以用来在世界中生成参与者(actor)。 通过这些蓝图可以在世界中生成相应的实体对象，调用者可以基于返回的蓝图库来选择合适的蓝图创建所需的参与者。  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#a1b11fdf26079554adadf1621b9a71862">更多...</a><br /></td></tr>
+<tr class="separator:a1b11fdf26079554adadf1621b9a71862"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a909dfcc9724750265397927c805ad869"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="../../de/dd6/structcarla_1_1rpc_1_1EnvironmentObject.html">rpc::EnvironmentObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a909dfcc9724750265397927c805ad869">GetEnvironmentObjects</a> (uint8_t queried_tag) const</td></tr>
+<tr class="memdesc:a909dfcc9724750265397927c805ad869"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取指定标签（queried_tag）的环境物体（EnvironmentObject）列表。 环境物体可以包括路边的障碍物、建筑物等各种非参与者但影响模拟场景的物体，通过获取它们可以进行相关的查询、操作或者场景渲染等处理。  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#a909dfcc9724750265397927c805ad869">更多...</a><br /></td></tr>
+<tr class="separator:a909dfcc9724750265397927c805ad869"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f8ac088ee306da68a4d535ed272455d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/dcd/namespacecarla_1_1client_1_1detail.html#a73fc4fabc24f68be175250c73e1da2fc">detail::EpisodeProxy</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a7f8ac088ee306da68a4d535ed272455d">GetEpisode</a> () const</td></tr>
+<tr class="memdesc:a7f8ac088ee306da68a4d535ed272455d"><td class="mdescLeft">&#160;</td><td class="mdescRight">返回当前World对象关联的detail::EpisodeProxy对象， 供外部在需要直接操作EpisodeProxy所包含的相关剧集信息或者传递给其他函数进行进一步处理时使用。  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#a7f8ac088ee306da68a4d535ed272455d">更多...</a><br /></td></tr>
+<tr class="separator:a7f8ac088ee306da68a4d535ed272455d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a435074f61ff57c04c55aba5e0363bd19"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a435074f61ff57c04c55aba5e0363bd19">GetId</a> () const</td></tr>
+<tr class="memdesc:a435074f61ff57c04c55aba5e0363bd19"><td class="mdescLeft">&#160;</td><td class="mdescRight">得到与这个世界相联系的id集。 这个ID可能是用于唯一标识该模拟世界实例的编号，在整个CARLA系统中，用于区分不同的模拟场景等用途。  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#a435074f61ff57c04c55aba5e0363bd19">更多...</a><br /></td></tr>
+<tr class="separator:a435074f61ff57c04c55aba5e0363bd19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af72a46241a91e82e6fab214df0be069b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#af72a46241a91e82e6fab214df0be069b">GetIMUISensorGravity</a> () const</td></tr>
+<tr class="memdesc:af72a46241a91e82e6fab214df0be069b"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取用于IMUI传感器加速度计计算的重力值。 在涉及到模拟车辆、机器人等带有IMUI传感器的实体时，需要获取这个重力值用于传感器相关物理量的准确计算， 以符合真实物理世界的规律或者模拟特定的物理环境。  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#af72a46241a91e82e6fab214df0be069b">更多...</a><br /></td></tr>
+<tr class="separator:af72a46241a91e82e6fab214df0be069b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b8203752d19c530a023ca436a61a937"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="../../d8/d68/classcarla_1_1geom_1_1BoundingBox.html">geom::BoundingBox</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a0b8203752d19c530a023ca436a61a937">GetLevelBBs</a> (uint8_t queried_tag) const</td></tr>
+<tr class="memdesc:a0b8203752d19c530a023ca436a61a937"><td class="mdescLeft">&#160;</td><td class="mdescRight">返回该等级中所有元素的BBs。 边界框可以描述物体在三维空间中的大致范围，通过获取所有元素的边界框， 可以用于碰撞检测、空间划分、可视化展示等多种与空间位置和范围相关的操作，这里返回的是指定标签（queried_tag）对应的元素的边界框列表。  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#a0b8203752d19c530a023ca436a61a937">更多...</a><br /></td></tr>
+<tr class="separator:a0b8203752d19c530a023ca436a61a937"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2da6a15c5f4dcf4b5c028d07f7cd341"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr</a>&lt; <a class="el" href="../../d8/d26/classcarla_1_1client_1_1LightManager.html">LightManager</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#ac2da6a15c5f4dcf4b5c028d07f7cd341">GetLightManager</a> () const</td></tr>
+<tr class="memdesc:ac2da6a15c5f4dcf4b5c028d07f7cd341"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取交通灯管理器（LightManager）的智能指针。 交通灯管理器可以用于统一管理和控制模拟世界中所有交通灯的各种操作，比如批量设置状态、定时切换等，提供更便捷的交通灯管理功能。  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#ac2da6a15c5f4dcf4b5c028d07f7cd341">更多...</a><br /></td></tr>
+<tr class="separator:ac2da6a15c5f4dcf4b5c028d07f7cd341"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90f244a1df3efaa63331813736a199a6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr</a>&lt; <a class="el" href="../../d7/db0/classMap.html">Map</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a90f244a1df3efaa63331813736a199a6">GetMap</a> () const</td></tr>
+<tr class="memdesc:a90f244a1df3efaa63331813736a199a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">返回描述这个世界的地图。 返回的是一个智能指针指向的Map对象，该Map对象包含了模拟世界中的地理信息、道路布局等地图相关的数据结构， 供外部调用者进一步查询和操作地图相关的功能。  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#a90f244a1df3efaa63331813736a199a6">更多...</a><br /></td></tr>
+<tr class="separator:a90f244a1df3efaa63331813736a199a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85a97b86514f12ad3c1c92c77fb1638d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a85a97b86514f12ad3c1c92c77fb1638d">GetNamesOfAllObjects</a> () const</td></tr>
+<tr class="separator:a85a97b86514f12ad3c1c92c77fb1638d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ebe9233abcd916bb84339457bc07539"><td class="memItemLeft" align="right" valign="top">boost::optional&lt; <a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">geom::Location</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a8ebe9233abcd916bb84339457bc07539">GetRandomLocationFromNavigation</a> () const</td></tr>
+<tr class="memdesc:a8ebe9233abcd916bb84339457bc07539"><td class="mdescLeft">&#160;</td><td class="mdescRight">从行人导航网格获得一个随机位置 在模拟行人行为等场景时，可以利用这个函数获取一个在行人导航范围内的随机地点， 比如用于生成行人的初始位置或者随机行走的目标位置等。  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#a8ebe9233abcd916bb84339457bc07539">更多...</a><br /></td></tr>
+<tr class="separator:a8ebe9233abcd916bb84339457bc07539"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb1d7a4097793754f6ac375ab6ad29c5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d6d/classcarla_1_1rpc_1_1EpisodeSettings.html">rpc::EpisodeSettings</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#afb1d7a4097793754f6ac375ab6ad29c5">GetSettings</a> () const</td></tr>
+<tr class="memdesc:afb1d7a4097793754f6ac375ab6ad29c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取当前模拟世界的设置信息，比如时间步长、同步模式等相关的参数配置情况， 返回的rpc::EpisodeSettings对象包含了这些详细的设置内容，供外部查询和可能的修改参考。  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#afb1d7a4097793754f6ac375ab6ad29c5">更多...</a><br /></td></tr>
+<tr class="separator:afb1d7a4097793754f6ac375ab6ad29c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a259343e4a40aba854336762e415a4397"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/dc6/classcarla_1_1client_1_1WorldSnapshot.html">WorldSnapshot</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a259343e4a40aba854336762e415a4397">GetSnapshot</a> () const</td></tr>
+<tr class="memdesc:a259343e4a40aba854336762e415a4397"><td class="mdescLeft">&#160;</td><td class="mdescRight">返回当前世界的快照。 快照（Snapshot）包含了模拟世界在某一时刻的整体状态信息，例如所有参与者的位置、状态，天气情况等， 可以用于记录、对比不同时刻的世界状态或者进行一些基于特定时刻状态的分析和操作。  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#a259343e4a40aba854336762e415a4397">更多...</a><br /></td></tr>
+<tr class="separator:a259343e4a40aba854336762e415a4397"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a407903a006f7c2e02bf5ae8505a22784"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr</a>&lt; <a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">Actor</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a407903a006f7c2e02bf5ae8505a22784">GetSpectator</a> () const</td></tr>
+<tr class="memdesc:a407903a006f7c2e02bf5ae8505a22784"><td class="mdescLeft">&#160;</td><td class="mdescRight">返回为旁观者的参与者.  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#a407903a006f7c2e02bf5ae8505a22784">更多...</a><br /></td></tr>
+<tr class="separator:a407903a006f7c2e02bf5ae8505a22784"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4772c8468347fcee02678a9a6a8396d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr</a>&lt; <a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">Actor</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a4772c8468347fcee02678a9a6a8396d1">GetTrafficLight</a> (const <a class="el" href="../../d3/dc1/classcarla_1_1client_1_1Landmark.html">Landmark</a> &amp;landmark) const</td></tr>
+<tr class="memdesc:a4772c8468347fcee02678a9a6a8396d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">根据提供的地标（Landmark）获取对应的交通信号灯（TrafficLight）的智能指针。 与获取交通标志类似，通过地标来查找对应的交通信号灯对象，以便获取信号灯状态、控制信号灯等相关操作，模拟交通灯变化对交通流的影响。  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#a4772c8468347fcee02678a9a6a8396d1">更多...</a><br /></td></tr>
+<tr class="separator:a4772c8468347fcee02678a9a6a8396d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae95977f3a764f0d7e669e84630565447"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr</a>&lt; <a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">Actor</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#ae95977f3a764f0d7e669e84630565447">GetTrafficLightFromOpenDRIVE</a> (const <a class="el" href="../../de/d26/namespacecarla_1_1road.html#a64d83aca9162f58ffc90932baa8fca14">road::SignId</a> &amp;sign_id) const</td></tr>
+<tr class="memdesc:ae95977f3a764f0d7e669e84630565447"><td class="mdescLeft">&#160;</td><td class="mdescRight">根据OpenDRIVE标志ID获取对应的交通灯的智能指针。 OpenDRIVE是一种用于描述道路网络等信息的标准格式，利用其中的标志ID可以准确地在模拟世界中找到对应的交通灯对象，  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#ae95977f3a764f0d7e669e84630565447">更多...</a><br /></td></tr>
+<tr class="separator:ae95977f3a764f0d7e669e84630565447"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae95977f3a764f0d7e669e84630565447"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr</a>&lt; <a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">Actor</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#ae95977f3a764f0d7e669e84630565447">GetTrafficLightFromOpenDRIVE</a> (const <a class="el" href="../../de/d26/namespacecarla_1_1road.html#a64d83aca9162f58ffc90932baa8fca14">road::SignId</a> &amp;sign_id) const</td></tr>
+<tr class="memdesc:ae95977f3a764f0d7e669e84630565447"><td class="mdescLeft">&#160;</td><td class="mdescRight">交通灯和标志，根据提供的 获取交通标志或交通信号灯。代表地图中的特定位置。  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#ae95977f3a764f0d7e669e84630565447">更多...</a><br /></td></tr>
+<tr class="separator:ae95977f3a764f0d7e669e84630565447"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a965fcaf99f563c9634c40f3b8e2910b5"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr</a>&lt; <a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">Actor</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a965fcaf99f563c9634c40f3b8e2910b5">GetTrafficLightsFromWaypoint</a> (const <a class="el" href="../../dd/dff/classcarla_1_1client_1_1Waypoint.html">Waypoint</a> &amp;waypoint, double distance) const</td></tr>
+<tr class="separator:a965fcaf99f563c9634c40f3b8e2910b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82a6e3a2fe7a3d8ccd5de3aa95049788"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr</a>&lt; <a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">Actor</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a82a6e3a2fe7a3d8ccd5de3aa95049788">GetTrafficLightsInJunction</a> (const <a class="el" href="../../de/d26/namespacecarla_1_1road.html#a459e3705665dbc8b48b8ed053e15f6f7">road::JuncId</a> junc_id) const</td></tr>
+<tr class="separator:a82a6e3a2fe7a3d8ccd5de3aa95049788"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6366a7909dc11fc8ebb883a3434a551"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr</a>&lt; <a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">Actor</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#ad6366a7909dc11fc8ebb883a3434a551">GetTrafficSign</a> (const <a class="el" href="../../d3/dc1/classcarla_1_1client_1_1Landmark.html">Landmark</a> &amp;landmark) const</td></tr>
+<tr class="memdesc:ad6366a7909dc11fc8ebb883a3434a551"><td class="mdescLeft">&#160;</td><td class="mdescRight">根据提供的地标（Landmark）获取对应的交通标志（TrafficSign）的智能指针。 地标通常代表地图中的特定位置，通过它可以定位和获取对应的交通标志对象，用于查询交通规则相关的指示信息等。  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#ad6366a7909dc11fc8ebb883a3434a551">更多...</a><br /></td></tr>
+<tr class="separator:ad6366a7909dc11fc8ebb883a3434a551"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43b644152a9115bbc4692ecd63cb9dab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#af76f2590dd232c820b5972069c683990">rpc::VehicleLightStateList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a43b644152a9115bbc4692ecd63cb9dab">GetVehiclesLightStates</a> () const</td></tr>
+<tr class="memdesc:a43b644152a9115bbc4692ecd63cb9dab"><td class="mdescLeft">&#160;</td><td class="mdescRight">返回一个元素对列表, 其中第一个元素是车辆ID,第二个元素是灯光状态.  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#a43b644152a9115bbc4692ecd63cb9dab">更多...</a><br /></td></tr>
+<tr class="separator:a43b644152a9115bbc4692ecd63cb9dab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37aa626bab25bd75381350ab687ab454"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/ddb/classcarla_1_1rpc_1_1WeatherParameters.html">rpc::WeatherParameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a37aa626bab25bd75381350ab687ab454">GetWeather</a> () const</td></tr>
+<tr class="memdesc:a37aa626bab25bd75381350ab687ab454"><td class="mdescLeft">&#160;</td><td class="mdescRight">检索当前世界上活动的天气参数。 可以获取到当前模拟世界中的天气状况相关的参数，例如晴天、雨天、雾天等天气类型对应的具体参数设置， 像光照强度、雾气浓度等，用于呈现不同天气下的模拟场景效果。  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#a37aa626bab25bd75381350ab687ab454">更多...</a><br /></td></tr>
+<tr class="separator:a37aa626bab25bd75381350ab687ab454"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2530d643ef0cacfa8b6e4192d05e8066"><td class="memItemLeft" align="right" valign="top">boost::optional&lt; <a class="el" href="../../d0/dac/structcarla_1_1rpc_1_1LabelledPoint.html">rpc::LabelledPoint</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a2530d643ef0cacfa8b6e4192d05e8066">GroundProjection</a> (<a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">geom::Location</a> location, float search_distance=10000.0) const</td></tr>
+<tr class="separator:a2530d643ef0cacfa8b6e4192d05e8066"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d9557a2883ba6f24676f09634f5f96d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a0d9557a2883ba6f24676f09634f5f96d">LoadLevelLayer</a> (<a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a64d9aac1c2a1d8e7ff5056054f80b42b">rpc::MapLayer</a> map_layers) const</td></tr>
+<tr class="memdesc:a0d9557a2883ba6f24676f09634f5f96d"><td class="mdescLeft">&#160;</td><td class="mdescRight">加载指定的地图层级（由rpc::MapLayer类型参数指定）到模拟世界中。 可以根据需要选择性地加载地图的不同部分或者功能层，比如只加载交通道路层或者建筑物层等，具体取决于MapLayer的定义。  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#a0d9557a2883ba6f24676f09634f5f96d">更多...</a><br /></td></tr>
+<tr class="separator:a0d9557a2883ba6f24676f09634f5f96d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2779e7d1c5b363b848db67f7d3fc8caa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/d64/classcarla_1_1client_1_1DebugHelper.html">DebugHelper</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a2779e7d1c5b363b848db67f7d3fc8caa">MakeDebugHelper</a> () const</td></tr>
+<tr class="memdesc:a2779e7d1c5b363b848db67f7d3fc8caa"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建并返回一个DebugHelper对象，该对象基于当前的EpisodeProxy创建， DebugHelper通常用于在模拟世界中进行调试相关的操作，比如可视化一些内部数据结构、辅助排查问题等。  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#a2779e7d1c5b363b848db67f7d3fc8caa">更多...</a><br /></td></tr>
+<tr class="separator:a2779e7d1c5b363b848db67f7d3fc8caa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3b0d8196f2b4f0fc31fdb547d5a18a5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#af3b0d8196f2b4f0fc31fdb547d5a18a5">OnTick</a> (std::function&lt; void(<a class="el" href="../../d4/dc6/classcarla_1_1client_1_1WorldSnapshot.html">WorldSnapshot</a>)&gt; callback)</td></tr>
+<tr class="memdesc:af3b0d8196f2b4f0fc31fdb547d5a18a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">注册一个 <em>回调函数，在每次接收到世界刻时调用。</em> 可以注册一个自定义的函数，在模拟世界每推进一个时间步（即接收到世界刻）时被自动调用， 便于在每个时间步执行一些自定义的逻辑，比如更新统计信息、检查特定条件等，返回的回调函数ID用于后续删除该回调函数。  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#af3b0d8196f2b4f0fc31fdb547d5a18a5">更多...</a><br /></td></tr>
+<tr class="separator:af3b0d8196f2b4f0fc31fdb547d5a18a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3761726cde477cceac243bf5652baa7a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html">World</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a3761726cde477cceac243bf5652baa7a">operator=</a> (const <a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html">World</a> &amp;)=default</td></tr>
+<tr class="separator:a3761726cde477cceac243bf5652baa7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51cadfcfe1e27ccc4dc26b2b1cbbd717"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html">World</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a51cadfcfe1e27ccc4dc26b2b1cbbd717">operator=</a> (<a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html">World</a> &amp;&amp;)=default</td></tr>
+<tr class="separator:a51cadfcfe1e27ccc4dc26b2b1cbbd717"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7798ef4c140974fa8b1465fb48cc7c3a"><td class="memItemLeft" align="right" valign="top">boost::optional&lt; <a class="el" href="../../d0/dac/structcarla_1_1rpc_1_1LabelledPoint.html">rpc::LabelledPoint</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a7798ef4c140974fa8b1465fb48cc7c3a">ProjectPoint</a> (<a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">geom::Location</a> location, <a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">geom::Vector3D</a> direction, float search_distance=10000.f) const</td></tr>
+<tr class="memdesc:a7798ef4c140974fa8b1465fb48cc7c3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">GetEnvironmentObjects获取指定标签的环境物体。 EnableEnvironmentObjects启用或禁用环境物体。  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#a7798ef4c140974fa8b1465fb48cc7c3a">更多...</a><br /></td></tr>
+<tr class="separator:a7798ef4c140974fa8b1465fb48cc7c3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8c7712a9c9cfbd77e8d138d09b69a58"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#ad8c7712a9c9cfbd77e8d138d09b69a58">RemoveOnTick</a> (<a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a> callback_id)</td></tr>
+<tr class="memdesc:ad8c7712a9c9cfbd77e8d138d09b69a58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a callback registered with OnTick.  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#ad8c7712a9c9cfbd77e8d138d09b69a58">更多...</a><br /></td></tr>
+<tr class="separator:ad8c7712a9c9cfbd77e8d138d09b69a58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a284c0150127d31d002a93bf5b27ff10b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a284c0150127d31d002a93bf5b27ff10b">ResetAllTrafficLights</a> ()</td></tr>
+<tr class="memdesc:a284c0150127d31d002a93bf5b27ff10b"><td class="mdescLeft">&#160;</td><td class="mdescRight">根据OpenDRIVE标志ID获取对应的交通灯的智能指针。 重置所有交通信号灯的状态，可能将其恢复到初始默认状态或者按照一定规则重新初始化状态， 用于在模拟过程中重新调整交通灯的整体情况，比如模拟交通拥堵后重新规划交通流时使用。  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#a284c0150127d31d002a93bf5b27ff10b">更多...</a><br /></td></tr>
+<tr class="separator:a284c0150127d31d002a93bf5b27ff10b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83970f48c835c16d9d0b4eff32512f75"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a83970f48c835c16d9d0b4eff32512f75">SetIMUISensorGravity</a> (float NewIMUISensorGravity)</td></tr>
+<tr class="memdesc:a83970f48c835c16d9d0b4eff32512f75"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置用于IMUISensor加速度计计算的重力值。 允许外部根据实际模拟需求，调整IMUI传感器加速度计计算所使用的重力值，改变模拟物理环境的相关参数。  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#a83970f48c835c16d9d0b4eff32512f75">更多...</a><br /></td></tr>
+<tr class="separator:a83970f48c835c16d9d0b4eff32512f75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51d9f5d94e76c69c37e967467e3e96df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a51d9f5d94e76c69c37e967467e3e96df">SetPedestriansCrossFactor</a> (float percentage)</td></tr>
+<tr class="memdesc:a51d9f5d94e76c69c37e967467e3e96df"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置一个代理表示在它的路径中穿过道路的概率。 0.0f表示行人不得过马路 0.5f表示50的行人可以过马路 1.0f表示所有行人在需要时都可以过马路 用于控制模拟世界中行人过马路行为的概率，通过调整这个概率值，可以模拟出不同行人遵守交通规则或者交通繁忙程度不同的场景情况。  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#a51d9f5d94e76c69c37e967467e3e96df">更多...</a><br /></td></tr>
+<tr class="separator:a51d9f5d94e76c69c37e967467e3e96df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad9eadb98abeb915e0c91c7a5c3221a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#aad9eadb98abeb915e0c91c7a5c3221a5">SetPedestriansSeed</a> (unsigned int seed)</td></tr>
+<tr class="memdesc:aad9eadb98abeb915e0c91c7a5c3221a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">在行人模块中将 seed 设置为使用随机数。 设置行人相关随机行为的种子值，相同的种子值可以使得行人模块在每次模拟时产生相同的随机行为序列，便于复现和对比不同模拟情况， 或者设置不同的种子值来获取真正的随机行为表现。  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#aad9eadb98abeb915e0c91c7a5c3221a5">更多...</a><br /></td></tr>
+<tr class="separator:aad9eadb98abeb915e0c91c7a5c3221a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afaf2d199f77ae383aaead6556d4fd4d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#afaf2d199f77ae383aaead6556d4fd4d4">SetWeather</a> (const <a class="el" href="../../db/ddb/classcarla_1_1rpc_1_1WeatherParameters.html">rpc::WeatherParameters</a> &amp;weather)</td></tr>
+<tr class="memdesc:afaf2d199f77ae383aaead6556d4fd4d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">在模拟场景中改变天气。 通过传入指定的rpc::WeatherParameters参数，来设置模拟世界的天气情况，实现模拟不同天气环境下的交通、行人等行为场景。  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#afaf2d199f77ae383aaead6556d4fd4d4">更多...</a><br /></td></tr>
+<tr class="separator:afaf2d199f77ae383aaead6556d4fd4d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad26f33b2d1d96077248782577e5add2d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr</a>&lt; <a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">Actor</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#ad26f33b2d1d96077248782577e5add2d">SpawnActor</a> (const <a class="el" href="../../d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html">ActorBlueprint</a> &amp;blueprint, const <a class="el" href="../../de/da4/classcarla_1_1geom_1_1Transform.html">geom::Transform</a> &amp;transform, <a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">Actor</a> *parent=nullptr, <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a3124bfdfcd62bda5c4fe5978ec668365">rpc::AttachmentType</a> attachment_type=<a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a3124bfdfcd62bda5c4fe5978ec668365ac7207657aba5dfd2e5b0ca3f35cd8c26">rpc::AttachmentType::Rigid</a>, const std::string &amp;socket_name=&quot;&quot;)</td></tr>
+<tr class="memdesc:ad26f33b2d1d96077248782577e5add2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">根据 <em>转换中提供的</em> <em>蓝图，在世界中生成一个参与者（actor）。</em> 如果提供了 <em>父类，则参与者（actor）被附加到</em> <em>父类。</em> 基于给定的ActorBlueprint（参与者创建蓝图）以及指定的几何变换（geom::Transform，用于确定在世界中的位置、姿态等信息）， 在模拟世界中创建一个新的参与者对象，并且可以选择将其附加到一个已有的父类参与者上，建立父子关系， 这种父子关系可能在物理模拟、行为关联等方面有相应的作用，例如车辆挂载拖车等场景。  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#ad26f33b2d1d96077248782577e5add2d">更多...</a><br /></td></tr>
+<tr class="separator:ad26f33b2d1d96077248782577e5add2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54001b9b89732b277c38f0682164499d"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a54001b9b89732b277c38f0682164499d">Tick</a> (<a class="el" href="../../d2/d2e/classcarla_1_1time__duration.html">time_duration</a> timeout)</td></tr>
+<tr class="memdesc:a54001b9b89732b277c38f0682164499d"><td class="mdescLeft">&#160;</td><td class="mdescRight">通知模拟器继续进行下一个节拍（仅对同步模式有效）。 在同步模拟模式下，通过调用这个函数来告知模拟器可以推进到下一个时间步了， 并且返回这个调用开始的帧的id，用于跟踪和记录模拟进度在时间轴上的位置。  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#a54001b9b89732b277c38f0682164499d">更多...</a><br /></td></tr>
+<tr class="separator:a54001b9b89732b277c38f0682164499d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6dfdb6c6760073bea9cf16843b1b887e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr</a>&lt; <a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">Actor</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a6dfdb6c6760073bea9cf16843b1b887e">TrySpawnActor</a> (const <a class="el" href="../../d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html">ActorBlueprint</a> &amp;blueprint, const <a class="el" href="../../de/da4/classcarla_1_1geom_1_1Transform.html">geom::Transform</a> &amp;transform, <a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">Actor</a> *parent=nullptr, <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a3124bfdfcd62bda5c4fe5978ec668365">rpc::AttachmentType</a> attachment_type=<a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a3124bfdfcd62bda5c4fe5978ec668365ac7207657aba5dfd2e5b0ca3f35cd8c26">rpc::AttachmentType::Rigid</a>, const std::string &amp;socket_name=&quot;&quot;) noexcept</td></tr>
+<tr class="memdesc:a6dfdb6c6760073bea9cf16843b1b887e"><td class="mdescLeft">&#160;</td><td class="mdescRight">和SpawnActor一样，但失败时返回nullptr而不抛出异常。 与SpawnActor功能类似，不过在创建参与者失败的情况下，不会抛出异常打断程序流程，而是安静地返回nullptr， 这样在一些需要稳健处理创建操作失败情况的场景中，调用者可以自行根据返回值进行相应的错误处理逻辑。  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#a6dfdb6c6760073bea9cf16843b1b887e">更多...</a><br /></td></tr>
+<tr class="separator:a6dfdb6c6760073bea9cf16843b1b887e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcb338398cde1803d9a26e044bae9759"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#afcb338398cde1803d9a26e044bae9759">UnloadLevelLayer</a> (<a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a64d9aac1c2a1d8e7ff5056054f80b42b">rpc::MapLayer</a> map_layers) const</td></tr>
+<tr class="memdesc:afcb338398cde1803d9a26e044bae9759"><td class="mdescLeft">&#160;</td><td class="mdescRight">卸载指定的地图层级（由rpc::MapLayer类型参数指定）。 与LoadLevelLayer相对应，用于移除已经加载的地图部分，释放相关资源或者改变模拟世界的显示内容等。  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#afcb338398cde1803d9a26e044bae9759">更多...</a><br /></td></tr>
+<tr class="separator:afcb338398cde1803d9a26e044bae9759"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8224b6e84c3c01d757cf4e0dd2ce4468"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/dc6/classcarla_1_1client_1_1WorldSnapshot.html">WorldSnapshot</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a8224b6e84c3c01d757cf4e0dd2ce4468">WaitForTick</a> (<a class="el" href="../../d2/d2e/classcarla_1_1time__duration.html">time_duration</a> timeout) const</td></tr>
+<tr class="memdesc:a8224b6e84c3c01d757cf4e0dd2ce4468"><td class="mdescLeft">&#160;</td><td class="mdescRight">阻塞调用线程，直到接收到一个世界刻。 世界刻（Tick）可以理解为模拟世界的时间推进的一个基本单位，通过阻塞等待一个世界刻， 可以确保在获取后续操作所需的最新世界状态时，是基于已经更新到下一个时间步的情况，常用于同步模拟流程与世界状态更新。  <a href="../../db/d1f/classcarla_1_1client_1_1World.html#a8224b6e84c3c01d757cf4e0dd2ce4468">更多...</a><br /></td></tr>
+<tr class="separator:a8224b6e84c3c01d757cf4e0dd2ce4468"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b3dbf212f2b74e23521d6b49b950ac7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a1b3dbf212f2b74e23521d6b49b950ac7">World</a> (const <a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html">World</a> &amp;)=default</td></tr>
+<tr class="separator:a1b3dbf212f2b74e23521d6b49b950ac7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80ea4b65c52411d146b1983884ba603e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a80ea4b65c52411d146b1983884ba603e">World</a> (<a class="el" href="../../d8/dcd/namespacecarla_1_1client_1_1detail.html#a73fc4fabc24f68be175250c73e1da2fc">detail::EpisodeProxy</a> episode)</td></tr>
+<tr class="separator:a80ea4b65c52411d146b1983884ba603e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5331b5bf07049bad213148474bb88f5f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a5331b5bf07049bad213148474bb88f5f">World</a> (<a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html">World</a> &amp;&amp;)=default</td></tr>
+<tr class="separator:a5331b5bf07049bad213148474bb88f5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5654f05d77e070c1c446ea6b71baad97"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a5654f05d77e070c1c446ea6b71baad97">~World</a> ()</td></tr>
+<tr class="separator:a5654f05d77e070c1c446ea6b71baad97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a64865e896ca9c5d48b2009da27b01de9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/dcd/namespacecarla_1_1client_1_1detail.html#a73fc4fabc24f68be175250c73e1da2fc">detail::EpisodeProxy</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html#a64865e896ca9c5d48b2009da27b01de9">_episode</a></td></tr>
+<tr class="separator:a64865e896ca9c5d48b2009da27b01de9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="../../dd/d5b/World_8h_source.html">World.h</a> 第 <a class="el" href="../../dd/d5b/World_8h_source.html#l00050">50</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a80ea4b65c52411d146b1983884ba603e" name="a80ea4b65c52411d146b1983884ba603e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80ea4b65c52411d146b1983884ba603e">&#9670;&#160;</a></span>World() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::client::World::World </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d8/dcd/namespacecarla_1_1client_1_1detail.html#a73fc4fabc24f68be175250c73e1da2fc">detail::EpisodeProxy</a>&#160;</td>
+          <td class="paramname"><em>episode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d5b/World_8h_source.html">World.h</a> 第 <a class="el" href="../../dd/d5b/World_8h_source.html#l00055">55</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5654f05d77e070c1c446ea6b71baad97" name="a5654f05d77e070c1c446ea6b71baad97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5654f05d77e070c1c446ea6b71baad97">&#9670;&#160;</a></span>~World()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::client::World::~World </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d5b/World_8h_source.html">World.h</a> 第 <a class="el" href="../../dd/d5b/World_8h_source.html#l00058">58</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1b3dbf212f2b74e23521d6b49b950ac7" name="a1b3dbf212f2b74e23521d6b49b950ac7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b3dbf212f2b74e23521d6b49b950ac7">&#9670;&#160;</a></span>World() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::client::World::World </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html">World</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5331b5bf07049bad213148474bb88f5f" name="a5331b5bf07049bad213148474bb88f5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5331b5bf07049bad213148474bb88f5f">&#9670;&#160;</a></span>World() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::client::World::World </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html">World</a> &amp;&amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a0592a7dd0973375a6390a91b3071a395" name="a0592a7dd0973375a6390a91b3071a395"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0592a7dd0973375a6390a91b3071a395">&#9670;&#160;</a></span>ApplyColorTextureToObject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::client::World::ApplyColorTextureToObject </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>actor_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a160748bfd5bfdb5310f4c0d60dc3158d">rpc::MaterialParameter</a> &amp;&#160;</td>
+          <td class="paramname"><em>parameter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#ac33c4aad791dc2a95fc9ef4ca2e3fd8c">rpc::TextureColor</a> &amp;&#160;</td>
+          <td class="paramname"><em>Texture</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00316">316</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00349">ApplyTexturesToObject()</a>.</p>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a0592a7dd0973375a6390a91b3071a395_cgraph.svg" width="412" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a0592a7dd0973375a6390a91b3071a395_icgraph.svg" width="408" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a9a0545ffdff682b9c3f75c4cc5046039" name="a9a0545ffdff682b9c3f75c4cc5046039"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a0545ffdff682b9c3f75c4cc5046039">&#9670;&#160;</a></span>ApplyColorTextureToObjects()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::client::World::ApplyColorTextureToObjects </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; std::string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>objects_names</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a160748bfd5bfdb5310f4c0d60dc3158d">rpc::MaterialParameter</a> &amp;&#160;</td>
+          <td class="paramname"><em>parameter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#ac33c4aad791dc2a95fc9ef4ca2e3fd8c">rpc::TextureColor</a> &amp;&#160;</td>
+          <td class="paramname"><em>Texture</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d5b/World_8h_source.html">World.h</a> 第 <a class="el" href="../../dd/d5b/World_8h_source.html#l00302">302</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00388">ApplyTexturesToObjects()</a>.</p>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a9a0545ffdff682b9c3f75c4cc5046039_icgraph.svg" width="423" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ad684837d7848c333e11cf99f07e85ae8" name="ad684837d7848c333e11cf99f07e85ae8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad684837d7848c333e11cf99f07e85ae8">&#9670;&#160;</a></span>ApplyFloatColorTextureToObject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::client::World::ApplyFloatColorTextureToObject </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>actor_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a160748bfd5bfdb5310f4c0d60dc3158d">rpc::MaterialParameter</a> &amp;&#160;</td>
+          <td class="paramname"><em>parameter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#abe03ea85d6b3cea7ac78b7115e9bf077">rpc::TextureFloatColor</a> &amp;&#160;</td>
+          <td class="paramname"><em>Texture</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00330">330</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00349">ApplyTexturesToObject()</a>.</p>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_ad684837d7848c333e11cf99f07e85ae8_cgraph.svg" width="440" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_ad684837d7848c333e11cf99f07e85ae8_icgraph.svg" width="436" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="aa6eeb2cb3efd8ab2243c48a1cf2e7f97" name="aa6eeb2cb3efd8ab2243c48a1cf2e7f97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6eeb2cb3efd8ab2243c48a1cf2e7f97">&#9670;&#160;</a></span>ApplyFloatColorTextureToObjects()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::client::World::ApplyFloatColorTextureToObjects </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; std::string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>objects_names</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a160748bfd5bfdb5310f4c0d60dc3158d">rpc::MaterialParameter</a> &amp;&#160;</td>
+          <td class="paramname"><em>parameter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#abe03ea85d6b3cea7ac78b7115e9bf077">rpc::TextureFloatColor</a> &amp;&#160;</td>
+          <td class="paramname"><em>Texture</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00337">337</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00388">ApplyTexturesToObjects()</a>.</p>
+<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_aa6eeb2cb3efd8ab2243c48a1cf2e7f97_cgraph.svg" width="448" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_aa6eeb2cb3efd8ab2243c48a1cf2e7f97_icgraph.svg" width="452" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a871df9427577577e83078b744f62ac34" name="a871df9427577577e83078b744f62ac34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a871df9427577577e83078b744f62ac34">&#9670;&#160;</a></span>ApplySettings()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t carla::client::World::ApplySettings </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../de/d6d/classcarla_1_1rpc_1_1EpisodeSettings.html">rpc::EpisodeSettings</a> &amp;&#160;</td>
+          <td class="paramname"><em>settings</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d2/d2e/classcarla_1_1time__duration.html">time_duration</a>&#160;</td>
+          <td class="paramname"><em>timeout</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>返回</dt><dd>应用设置时的帧id。 当应用新的模拟世界设置（通过传入的rpc::EpisodeSettings参数指定）时，返回该操作对应的帧编号， 帧编号可以用于在时间序列上定位和跟踪这个设置操作发生的时刻，在一些需要精确控制模拟进度和记录操作顺序的场景中很有用。 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00056">56</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a>, <a class="el" href="../../db/df7/LibCarla_2source_2carla_2rpc_2EpisodeSettings_8h_source.html#l00036">carla::rpc::EpisodeSettings::fixed_delta_seconds</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00102">GetSnapshot()</a>, <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>, <a class="el" href="../../de/d87/Logging_8h_source.html#l00101">carla::log_warning()</a>, <a class="el" href="../../d2/d33/Time_8h_source.html#l00026">carla::time_duration::milliseconds()</a> , 以及 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00165">Tick()</a>.</p>
+<div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a871df9427577577e83078b744f62ac34_cgraph.svg" width="527" height="247"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a83e566e6abb0fdf79a49a1456e153b9c" name="a83e566e6abb0fdf79a49a1456e153b9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83e566e6abb0fdf79a49a1456e153b9c">&#9670;&#160;</a></span>ApplyTexturesToObject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::client::World::ApplyTexturesToObject </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>actor_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#ac33c4aad791dc2a95fc9ef4ca2e3fd8c">rpc::TextureColor</a> &amp;&#160;</td>
+          <td class="paramname"><em>diffuse_texture</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#abe03ea85d6b3cea7ac78b7115e9bf077">rpc::TextureFloatColor</a> &amp;&#160;</td>
+          <td class="paramname"><em>emissive_texture</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#abe03ea85d6b3cea7ac78b7115e9bf077">rpc::TextureFloatColor</a> &amp;&#160;</td>
+          <td class="paramname"><em>normal_texture</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#abe03ea85d6b3cea7ac78b7115e9bf077">rpc::TextureFloatColor</a> &amp;&#160;</td>
+          <td class="paramname"><em>ao_roughness_metallic_emissive_texture</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00349">349</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00316">ApplyColorTextureToObject()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00330">ApplyFloatColorTextureToObject()</a>, <a class="el" href="../../d9/dbf/Texture_8h_source.html#l00033">carla::rpc::Texture&lt; T &gt;::GetHeight()</a>, <a class="el" href="../../d9/dbf/Texture_8h_source.html#l00029">carla::rpc::Texture&lt; T &gt;::GetWidth()</a>, <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a160748bfd5bfdb5310f4c0d60dc3158da1a711ed90206beb3a249371b904bd4c5">carla::rpc::Tex_Ao_Roughness_Metallic_Emissive</a>, <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a160748bfd5bfdb5310f4c0d60dc3158da5f04a658374c1d8bb51aeed2e1152481">carla::rpc::Tex_Diffuse</a>, <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a160748bfd5bfdb5310f4c0d60dc3158dab526879a8652395bca2eaa5dd97e23d5">carla::rpc::Tex_Emissive</a> , 以及 <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a160748bfd5bfdb5310f4c0d60dc3158daa6ba40bb00b8f41314f0afe751b9f90f">carla::rpc::Tex_Normal</a>.</p>
+<div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a83e566e6abb0fdf79a49a1456e153b9c_cgraph.svg" width="651" height="243"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="abb8e50fc72f6f15c98ffde1e51d525a9" name="abb8e50fc72f6f15c98ffde1e51d525a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb8e50fc72f6f15c98ffde1e51d525a9">&#9670;&#160;</a></span>ApplyTexturesToObjects()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::client::World::ApplyTexturesToObjects </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; std::string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>objects_names</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#ac33c4aad791dc2a95fc9ef4ca2e3fd8c">rpc::TextureColor</a> &amp;&#160;</td>
+          <td class="paramname"><em>diffuse_texture</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#abe03ea85d6b3cea7ac78b7115e9bf077">rpc::TextureFloatColor</a> &amp;&#160;</td>
+          <td class="paramname"><em>emissive_texture</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#abe03ea85d6b3cea7ac78b7115e9bf077">rpc::TextureFloatColor</a> &amp;&#160;</td>
+          <td class="paramname"><em>normal_texture</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#abe03ea85d6b3cea7ac78b7115e9bf077">rpc::TextureFloatColor</a> &amp;&#160;</td>
+          <td class="paramname"><em>ao_roughness_metallic_emissive_texture</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00388">388</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00302">ApplyColorTextureToObjects()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00337">ApplyFloatColorTextureToObjects()</a>, <a class="el" href="../../d9/dbf/Texture_8h_source.html#l00033">carla::rpc::Texture&lt; T &gt;::GetHeight()</a>, <a class="el" href="../../d9/dbf/Texture_8h_source.html#l00029">carla::rpc::Texture&lt; T &gt;::GetWidth()</a>, <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a160748bfd5bfdb5310f4c0d60dc3158da1a711ed90206beb3a249371b904bd4c5">carla::rpc::Tex_Ao_Roughness_Metallic_Emissive</a>, <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a160748bfd5bfdb5310f4c0d60dc3158da5f04a658374c1d8bb51aeed2e1152481">carla::rpc::Tex_Diffuse</a>, <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a160748bfd5bfdb5310f4c0d60dc3158dab526879a8652395bca2eaa5dd97e23d5">carla::rpc::Tex_Emissive</a> , 以及 <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a160748bfd5bfdb5310f4c0d60dc3158daa6ba40bb00b8f41314f0afe751b9f90f">carla::rpc::Tex_Normal</a>.</p>
+<div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_abb8e50fc72f6f15c98ffde1e51d525a9_cgraph.svg" width="667" height="243"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a93885bcdef9682882f31898e6a7be0e8" name="a93885bcdef9682882f31898e6a7be0e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93885bcdef9682882f31898e6a7be0e8">&#9670;&#160;</a></span>CastRay()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="../../d0/dac/structcarla_1_1rpc_1_1LabelledPoint.html">rpc::LabelledPoint</a> &gt; carla::client::World::CastRay </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">geom::Location</a>&#160;</td>
+          <td class="paramname"><em>start_location</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">geom::Location</a>&#160;</td>
+          <td class="paramname"><em>end_location</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00271">271</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a93885bcdef9682882f31898e6a7be0e8_cgraph.svg" width="352" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a20880575f15ec7cdb79342bfddcb5ea8" name="a20880575f15ec7cdb79342bfddcb5ea8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20880575f15ec7cdb79342bfddcb5ea8">&#9670;&#160;</a></span>EnableEnvironmentObjects()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::client::World::EnableEnvironmentObjects </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; uint64_t &gt;&#160;</td>
+          <td class="paramname"><em>env_objects_ids</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enable</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>启用或禁用环境物体，根据传入的环境物体ID列表（env_objects_ids）以及布尔值参数enable来操作， 可以动态地控制某些环境物体在模拟世界中是否显示或者参与物理模拟等，实现灵活的场景配置。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00247">247</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-12-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-12-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a20880575f15ec7cdb79342bfddcb5ea8_cgraph.svg" width="410" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a223e7d1f05bc8004b6a1b4b4629579bd" name="a223e7d1f05bc8004b6a1b4b4629579bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a223e7d1f05bc8004b6a1b4b4629579bd">&#9670;&#160;</a></span>FreezeAllTrafficLights()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::client::World::FreezeAllTrafficLights </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>frozen</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>冻结或解冻所有交通信号灯，通过传入的布尔值参数来控制， 冻结时交通信号灯状态将保持不变，常用于暂停交通灯变化来观察特定交通场景或者进行调试等情况。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00234">234</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-13" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-13-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-13-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-13-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a223e7d1f05bc8004b6a1b4b4629579bd_cgraph.svg" width="379" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a4695a58dcf7f3589294b95e3d04cdad7" name="a4695a58dcf7f3589294b95e3d04cdad7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4695a58dcf7f3589294b95e3d04cdad7">&#9670;&#160;</a></span>GetActor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr</a>&lt; <a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">Actor</a> &gt; carla::client::World::GetActor </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a>&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>根据id查找actor，如果没有找到则返回nullptr。 通过传入的ActorId参数，在当前模拟世界中查找对应的参与者对象，方便快速定位特定的实体， 比如查找某一辆特定编号的车辆或者某个行人等。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00106">106</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d2/dbb/WalkerManager_8cpp_source.html#l00278">carla::nav::WalkerManager::GetAllTrafficLightWaypoints()</a>.</p>
+<div id="dynsection-14" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-14-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-14-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-14-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a4695a58dcf7f3589294b95e3d04cdad7_cgraph.svg" width="352" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-15" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-15-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-15-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-15-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a4695a58dcf7f3589294b95e3d04cdad7_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a04a22f65ea5ccd3e93b833503dda6d65" name="a04a22f65ea5ccd3e93b833503dda6d65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04a22f65ea5ccd3e93b833503dda6d65">&#9670;&#160;</a></span>GetActors() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr</a>&lt; <a class="el" href="../../da/d51/classcarla_1_1client_1_1ActorList.html">ActorList</a> &gt; carla::client::World::GetActors </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>返回一个包含当前世界上所有存在的参与者（actor）的列表。 获取整个模拟世界中所有参与者的集合，便于进行批量操作、统计或者遍历所有实体执行某些通用的操作等。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00114">114</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d90/TrafficLight_8cpp_source.html#l00082">carla::client::TrafficLight::GetGroupTrafficLights()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00195">GetTrafficLight()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00211">GetTrafficLightFromOpenDRIVE()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00179">GetTrafficSign()</a> , 以及 <a class="el" href="../../d8/d77/LibCarla_2source_2carla_2rss_2RssSensor_8cpp_source.html#l00291">carla::client::RssSensor::TickRssSensor()</a>.</p>
+<div id="dynsection-16" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-16-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-16-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-16-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a04a22f65ea5ccd3e93b833503dda6d65_cgraph.svg" width="352" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-17" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-17-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-17-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-17-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a04a22f65ea5ccd3e93b833503dda6d65_icgraph.svg" width="650" height="307"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a8e98eccf6a7a12be24d159ab8a1910ca" name="a8e98eccf6a7a12be24d159ab8a1910ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e98eccf6a7a12be24d159ab8a1910ca">&#9670;&#160;</a></span>GetActors() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr</a>&lt; <a class="el" href="../../da/d51/classcarla_1_1client_1_1ActorList.html">ActorList</a> &gt; carla::client::World::GetActors </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>actor_ids</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>返回一个包含ActorId请求的参与者（actor）的列表。 根据传入的包含多个ActorId的vector参数，返回对应的参与者列表，实现按照指定的一组ID来查找和获取相应的参与者对象集合。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00120">120</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-18" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-18-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-18-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-18-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a8e98eccf6a7a12be24d159ab8a1910ca_cgraph.svg" width="352" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a1b11fdf26079554adadf1621b9a71862" name="a1b11fdf26079554adadf1621b9a71862"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b11fdf26079554adadf1621b9a71862">&#9670;&#160;</a></span>GetBlueprintLibrary()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr</a>&lt; <a class="el" href="../../df/dcc/classcarla_1_1client_1_1BlueprintLibrary.html">BlueprintLibrary</a> &gt; carla::client::World::GetBlueprintLibrary </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>返回当前世界中可用的蓝图列表。 这个蓝图可以用来在世界中生成参与者(actor)。 通过这些蓝图可以在世界中生成相应的实体对象，调用者可以基于返回的蓝图库来选择合适的蓝图创建所需的参与者。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00036">36</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-19" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-19-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-19-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-19-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a1b11fdf26079554adadf1621b9a71862_cgraph.svg" width="364" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a909dfcc9724750265397927c805ad869" name="a909dfcc9724750265397927c805ad869"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a909dfcc9724750265397927c805ad869">&#9670;&#160;</a></span>GetEnvironmentObjects()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="../../de/dd6/structcarla_1_1rpc_1_1EnvironmentObject.html">rpc::EnvironmentObject</a> &gt; carla::client::World::GetEnvironmentObjects </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>queried_tag</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取指定标签（queried_tag）的环境物体（EnvironmentObject）列表。 环境物体可以包括路边的障碍物、建筑物等各种非参与者但影响模拟场景的物体，通过获取它们可以进行相关的查询、操作或者场景渲染等处理。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00242">242</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-20" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-20-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-20-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-20-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a909dfcc9724750265397927c805ad869_cgraph.svg" width="392" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a7f8ac088ee306da68a4d535ed272455d" name="a7f8ac088ee306da68a4d535ed272455d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f8ac088ee306da68a4d535ed272455d">&#9670;&#160;</a></span>GetEpisode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d8/dcd/namespacecarla_1_1client_1_1detail.html#a73fc4fabc24f68be175250c73e1da2fc">detail::EpisodeProxy</a> carla::client::World::GetEpisode </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>返回当前World对象关联的detail::EpisodeProxy对象， 供外部在需要直接操作EpisodeProxy所包含的相关剧集信息或者传递给其他函数进行进一步处理时使用。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d5b/World_8h_source.html">World.h</a> 第 <a class="el" href="../../dd/d5b/World_8h_source.html#l00244">244</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a>.</p>
+
+</div>
+</div>
+<a id="a435074f61ff57c04c55aba5e0363bd19" name="a435074f61ff57c04c55aba5e0363bd19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a435074f61ff57c04c55aba5e0363bd19">&#9670;&#160;</a></span>GetId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t carla::client::World::GetId </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>得到与这个世界相联系的id集。 这个ID可能是用于唯一标识该模拟世界实例的编号，在整个CARLA系统中，用于区分不同的模拟场景等用途。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d5b/World_8h_source.html">World.h</a> 第 <a class="el" href="../../dd/d5b/World_8h_source.html#l00073">73</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a> , 以及 <a class="el" href="../../dc/dc2/EpisodeProxy_8h_source.html#l00048">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::GetId()</a>.</p>
+<div id="dynsection-21" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-21-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-21-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-21-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a435074f61ff57c04c55aba5e0363bd19_cgraph.svg" width="355" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="af72a46241a91e82e6fab214df0be069b" name="af72a46241a91e82e6fab214df0be069b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af72a46241a91e82e6fab214df0be069b">&#9670;&#160;</a></span>GetIMUISensorGravity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float carla::client::World::GetIMUISensorGravity </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取用于IMUI传感器加速度计计算的重力值。 在涉及到模拟车辆、机器人等带有IMUI传感器的实体时，需要获取这个重力值用于传感器相关物理量的准确计算， 以符合真实物理世界的规律或者模拟特定的物理环境。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00094">94</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-22" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-22-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-22-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-22-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_af72a46241a91e82e6fab214df0be069b_cgraph.svg" width="386" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a0b8203752d19c530a023ca436a61a937" name="a0b8203752d19c530a023ca436a61a937"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b8203752d19c530a023ca436a61a937">&#9670;&#160;</a></span>GetLevelBBs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="../../d8/d68/classcarla_1_1geom_1_1BoundingBox.html">geom::BoundingBox</a> &gt; carla::client::World::GetLevelBBs </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>queried_tag</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>返回该等级中所有元素的BBs。 边界框可以描述物体在三维空间中的大致范围，通过获取所有元素的边界框， 可以用于碰撞检测、空间划分、可视化展示等多种与空间位置和范围相关的操作，这里返回的是指定标签（queried_tag）对应的元素的边界框列表。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00238">238</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-23" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-23-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-23-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-23-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a0b8203752d19c530a023ca436a61a937_cgraph.svg" width="352" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ac2da6a15c5f4dcf4b5c028d07f7cd341" name="ac2da6a15c5f4dcf4b5c028d07f7cd341"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2da6a15c5f4dcf4b5c028d07f7cd341">&#9670;&#160;</a></span>GetLightManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr</a>&lt; <a class="el" href="../../d8/d26/classcarla_1_1client_1_1LightManager.html">LightManager</a> &gt; carla::client::World::GetLightManager </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取交通灯管理器（LightManager）的智能指针。 交通灯管理器可以用于统一管理和控制模拟世界中所有交通灯的各种操作，比如批量设置状态、定时切换等，提供更便捷的交通灯管理功能。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00230">230</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-24" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-24-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-24-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-24-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_ac2da6a15c5f4dcf4b5c028d07f7cd341_cgraph.svg" width="354" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a90f244a1df3efaa63331813736a199a6" name="a90f244a1df3efaa63331813736a199a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90f244a1df3efaa63331813736a199a6">&#9670;&#160;</a></span>GetMap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr</a>&lt; <a class="el" href="../../d7/db0/classMap.html">Map</a> &gt; carla::client::World::GetMap </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>返回描述这个世界的地图。 返回的是一个智能指针指向的Map对象，该Map对象包含了模拟世界中的地理信息、道路布局等地图相关的数据结构， 供外部调用者进一步查询和操作地图相关的功能。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00024">24</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00298">GetTrafficLightsInJunction()</a>, <a class="el" href="../../d8/d77/LibCarla_2source_2carla_2rss_2RssSensor_8cpp_source.html#l00043">carla::client::RssSensor::Listen()</a>, <a class="el" href="../../dd/de3/client_2Client_8h_source.html#l00094">carla::client::Client::LoadWorldIfDifferent()</a> , 以及 <a class="el" href="../../da/d53/TrafficManagerLocal_8cpp_source.html#l00119">carla::traffic_manager::TrafficManagerLocal::SetupLocalMap()</a>.</p>
+<div id="dynsection-25" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-25-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-25-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-25-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a90f244a1df3efaa63331813736a199a6_cgraph.svg" width="352" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-26" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-26-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-26-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-26-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a90f244a1df3efaa63331813736a199a6_icgraph.svg" width="559" height="259"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a85a97b86514f12ad3c1c92c77fb1638d" name="a85a97b86514f12ad3c1c92c77fb1638d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85a97b86514f12ad3c1c92c77fb1638d">&#9670;&#160;</a></span>GetNamesOfAllObjects()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::string &gt; carla::client::World::GetNamesOfAllObjects </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00344">344</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-27" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-27-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-27-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-27-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a85a97b86514f12ad3c1c92c77fb1638d_cgraph.svg" width="391" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a8ebe9233abcd916bb84339457bc07539" name="a8ebe9233abcd916bb84339457bc07539"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ebe9233abcd916bb84339457bc07539">&#9670;&#160;</a></span>GetRandomLocationFromNavigation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">boost::optional&lt; <a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">geom::Location</a> &gt; carla::client::World::GetRandomLocationFromNavigation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>从行人导航网格获得一个随机位置 在模拟行人行为等场景时，可以利用这个函数获取一个在行人导航范围内的随机地点， 比如用于生成行人的初始位置或者随机行走的目标位置等。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00044">44</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-28" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-28-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-28-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-28-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a8ebe9233abcd916bb84339457bc07539_cgraph.svg" width="464" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="afb1d7a4097793754f6ac375ab6ad29c5" name="afb1d7a4097793754f6ac375ab6ad29c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb1d7a4097793754f6ac375ab6ad29c5">&#9670;&#160;</a></span>GetSettings()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../de/d6d/classcarla_1_1rpc_1_1EpisodeSettings.html">rpc::EpisodeSettings</a> carla::client::World::GetSettings </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取当前模拟世界的设置信息，比如时间步长、同步模式等相关的参数配置情况， 返回的rpc::EpisodeSettings对象包含了这些详细的设置内容，供外部查询和可能的修改参考。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00052">52</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d8/d77/LibCarla_2source_2carla_2rss_2RssSensor_8cpp_source.html#l00291">carla::client::RssSensor::TickRssSensor()</a>.</p>
+<div id="dynsection-29" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-29-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-29-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-29-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_afb1d7a4097793754f6ac375ab6ad29c5_cgraph.svg" width="352" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-30" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-30-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-30-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-30-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_afb1d7a4097793754f6ac375ab6ad29c5_icgraph.svg" width="343" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a259343e4a40aba854336762e415a4397" name="a259343e4a40aba854336762e415a4397"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a259343e4a40aba854336762e415a4397">&#9670;&#160;</a></span>GetSnapshot()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d4/dc6/classcarla_1_1client_1_1WorldSnapshot.html">WorldSnapshot</a> carla::client::World::GetSnapshot </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>返回当前世界的快照。 快照（Snapshot）包含了模拟世界在某一时刻的整体状态信息，例如所有参与者的位置、状态，天气情况等， 可以用于记录、对比不同时刻的世界状态或者进行一些基于特定时刻状态的分析和操作。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00102">102</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00056">ApplySettings()</a>, <a class="el" href="../../da/d53/TrafficManagerLocal_8cpp_source.html#l00143">carla::traffic_manager::TrafficManagerLocal::Run()</a>, <a class="el" href="../../d4/df7/MotionPlanStage_8cpp_source.html#l00064">carla::traffic_manager::MotionPlanStage::Update()</a> , 以及 <a class="el" href="../../dc/d13/TrafficLightStage_8cpp_source.html#l00034">carla::traffic_manager::TrafficLightStage::Update()</a>.</p>
+<div id="dynsection-31" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-31-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-31-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-31-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a259343e4a40aba854336762e415a4397_cgraph.svg" width="352" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-32" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-32-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-32-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-32-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a259343e4a40aba854336762e415a4397_icgraph.svg" width="100%" height="472"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a407903a006f7c2e02bf5ae8505a22784" name="a407903a006f7c2e02bf5ae8505a22784"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a407903a006f7c2e02bf5ae8505a22784">&#9670;&#160;</a></span>GetSpectator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr</a>&lt; <a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">Actor</a> &gt; carla::client::World::GetSpectator </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>返回为旁观者的参与者. </p>
+<p >旁观者控制模拟器窗口中的视图. 方便外部查询当前模拟世界中所有车辆的灯光状态信息，例如哪些车辆的大灯开着、转向灯状态等，用于模拟交通场景中的灯光效果展示和相关逻辑判断。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00048">48</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-33" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-33-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-33-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-33-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a407903a006f7c2e02bf5ae8505a22784_cgraph.svg" width="352" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a4772c8468347fcee02678a9a6a8396d1" name="a4772c8468347fcee02678a9a6a8396d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4772c8468347fcee02678a9a6a8396d1">&#9670;&#160;</a></span>GetTrafficLight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr</a>&lt; <a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">Actor</a> &gt; carla::client::World::GetTrafficLight </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d3/dc1/classcarla_1_1client_1_1Landmark.html">Landmark</a> &amp;&#160;</td>
+          <td class="paramname"><em>landmark</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>根据提供的地标（Landmark）获取对应的交通信号灯（TrafficLight）的智能指针。 与获取交通标志类似，通过地标来查找对应的交通信号灯对象，以便获取信号灯状态、控制信号灯等相关操作，模拟交通灯变化对交通流的影响。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00195">195</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00114">GetActors()</a>, <a class="el" href="../../db/d18/Landmark_8h_source.html#l00053">carla::client::Landmark::GetId()</a>, <a class="el" href="../../d1/d40/TrafficSign_8cpp_source.html#l00014">carla::client::TrafficSign::GetSignId()</a> , 以及 <a class="el" href="../../da/dfc/StringUtil_8cpp_source.html#l00017">carla::StringUtil::Match()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00277">GetTrafficLightsFromWaypoint()</a>.</p>
+<div id="dynsection-34" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-34-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-34-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-34-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a4772c8468347fcee02678a9a6a8396d1_cgraph.svg" width="579" height="243"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-35" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-35-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-35-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-35-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a4772c8468347fcee02678a9a6a8396d1_icgraph.svg" width="388" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ae95977f3a764f0d7e669e84630565447" name="ae95977f3a764f0d7e669e84630565447"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae95977f3a764f0d7e669e84630565447">&#9670;&#160;</a></span>GetTrafficLightFromOpenDRIVE() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr</a>&lt; <a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">Actor</a> &gt; carla::client::World::GetTrafficLightFromOpenDRIVE </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../de/d26/namespacecarla_1_1road.html#a64d83aca9162f58ffc90932baa8fca14">road::SignId</a> &amp;&#160;</td>
+          <td class="paramname"><em>sign_id</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>根据OpenDRIVE标志ID获取对应的交通灯的智能指针。 OpenDRIVE是一种用于描述道路网络等信息的标准格式，利用其中的标志ID可以准确地在模拟世界中找到对应的交通灯对象， </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00211">211</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00114">GetActors()</a>, <a class="el" href="../../d1/d40/TrafficSign_8cpp_source.html#l00014">carla::client::TrafficSign::GetSignId()</a> , 以及 <a class="el" href="../../da/dfc/StringUtil_8cpp_source.html#l00017">carla::StringUtil::Match()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00298">GetTrafficLightsInJunction()</a>.</p>
+<div id="dynsection-36" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-36-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-36-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-36-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_ae95977f3a764f0d7e669e84630565447_cgraph.svg" width="642" height="179"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-37" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-37-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-37-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-37-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_ae95977f3a764f0d7e669e84630565447_icgraph.svg" width="452" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ae95977f3a764f0d7e669e84630565447" name="ae95977f3a764f0d7e669e84630565447"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae95977f3a764f0d7e669e84630565447">&#9670;&#160;</a></span>GetTrafficLightFromOpenDRIVE() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr</a>&lt; <a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">Actor</a> &gt; carla::client::World::GetTrafficLightFromOpenDRIVE </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../de/d26/namespacecarla_1_1road.html#a64d83aca9162f58ffc90932baa8fca14">road::SignId</a> &amp;&#160;</td>
+          <td class="paramname"><em>sign_id</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>交通灯和标志，根据提供的 获取交通标志或交通信号灯。代表地图中的特定位置。 </p>
+
+</div>
+</div>
+<a id="a965fcaf99f563c9634c40f3b8e2910b5" name="a965fcaf99f563c9634c40f3b8e2910b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a965fcaf99f563c9634c40f3b8e2910b5">&#9670;&#160;</a></span>GetTrafficLightsFromWaypoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr</a>&lt; <a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">Actor</a> &gt; &gt; carla::client::World::GetTrafficLightsFromWaypoint </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../dd/dff/classcarla_1_1client_1_1Waypoint.html">Waypoint</a> &amp;&#160;</td>
+          <td class="paramname"><em>waypoint</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>distance</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00277">277</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d7/def/client_2Waypoint_8cpp_source.html#l00242">carla::client::Waypoint::GetAllLandmarksInDistance()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00195">GetTrafficLight()</a> , 以及 <a class="el" href="../../d5/dfc/SignalType_8cpp_source.html#l00121">carla::road::SignalType::IsTrafficLight()</a>.</p>
+<div id="dynsection-38" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-38-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-38-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-38-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a965fcaf99f563c9634c40f3b8e2910b5_cgraph.svg" width="100%" height="482"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a82a6e3a2fe7a3d8ccd5de3aa95049788" name="a82a6e3a2fe7a3d8ccd5de3aa95049788"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82a6e3a2fe7a3d8ccd5de3aa95049788">&#9670;&#160;</a></span>GetTrafficLightsInJunction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr</a>&lt; <a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">Actor</a> &gt; &gt; carla::client::World::GetTrafficLightsInJunction </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../de/d26/namespacecarla_1_1road.html#a459e3705665dbc8b48b8ed053e15f6f7">road::JuncId</a>&#160;</td>
+          <td class="paramname"><em>junc_id</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00298">298</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html#l00099">carla::road::Junction::GetControllers()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00024">GetMap()</a> , 以及 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00211">GetTrafficLightFromOpenDRIVE()</a>.</p>
+<div id="dynsection-39" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-39-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-39-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-39-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a82a6e3a2fe7a3d8ccd5de3aa95049788_cgraph.svg" width="100%" height="514"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ad6366a7909dc11fc8ebb883a3434a551" name="ad6366a7909dc11fc8ebb883a3434a551"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6366a7909dc11fc8ebb883a3434a551">&#9670;&#160;</a></span>GetTrafficSign()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr</a>&lt; <a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">Actor</a> &gt; carla::client::World::GetTrafficSign </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d3/dc1/classcarla_1_1client_1_1Landmark.html">Landmark</a> &amp;&#160;</td>
+          <td class="paramname"><em>landmark</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>根据提供的地标（Landmark）获取对应的交通标志（TrafficSign）的智能指针。 地标通常代表地图中的特定位置，通过它可以定位和获取对应的交通标志对象，用于查询交通规则相关的指示信息等。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00179">179</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00114">GetActors()</a>, <a class="el" href="../../db/d18/Landmark_8h_source.html#l00053">carla::client::Landmark::GetId()</a>, <a class="el" href="../../d1/d40/TrafficSign_8cpp_source.html#l00014">carla::client::TrafficSign::GetSignId()</a> , 以及 <a class="el" href="../../da/dfc/StringUtil_8cpp_source.html#l00017">carla::StringUtil::Match()</a>.</p>
+<div id="dynsection-40" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-40-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-40-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-40-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_ad6366a7909dc11fc8ebb883a3434a551_cgraph.svg" width="579" height="243"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a43b644152a9115bbc4692ecd63cb9dab" name="a43b644152a9115bbc4692ecd63cb9dab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43b644152a9115bbc4692ecd63cb9dab">&#9670;&#160;</a></span>GetVehiclesLightStates()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#af76f2590dd232c820b5972069c683990">rpc::VehicleLightStateList</a> carla::client::World::GetVehiclesLightStates </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>返回一个元素对列表, 其中第一个元素是车辆ID,第二个元素是灯光状态. </p>
+<p >方便外部查询当前模拟世界中所有车辆的灯光状态信息，例如哪些车辆的大灯开着、转向灯状态等，用于模拟交通场景中的灯光效果展示和相关逻辑判断。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00040">40</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-41" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-41-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-41-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-41-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a43b644152a9115bbc4692ecd63cb9dab_cgraph.svg" width="392" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a37aa626bab25bd75381350ab687ab454" name="a37aa626bab25bd75381350ab687ab454"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37aa626bab25bd75381350ab687ab454">&#9670;&#160;</a></span>GetWeather()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/ddb/classcarla_1_1rpc_1_1WeatherParameters.html">rpc::WeatherParameters</a> carla::client::World::GetWeather </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>检索当前世界上活动的天气参数。 可以获取到当前模拟世界中的天气状况相关的参数，例如晴天、雨天、雾天等天气类型对应的具体参数设置， 像光照强度、雾气浓度等，用于呈现不同天气下的模拟场景效果。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00086">86</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-42" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-42-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-42-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-42-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a37aa626bab25bd75381350ab687ab454_cgraph.svg" width="352" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a2530d643ef0cacfa8b6e4192d05e8066" name="a2530d643ef0cacfa8b6e4192d05e8066"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2530d643ef0cacfa8b6e4192d05e8066">&#9670;&#160;</a></span>GroundProjection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">boost::optional&lt; <a class="el" href="../../d0/dac/structcarla_1_1rpc_1_1LabelledPoint.html">rpc::LabelledPoint</a> &gt; carla::client::World::GroundProjection </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">geom::Location</a>&#160;</td>
+          <td class="paramname"><em>location</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>search_distance</em> = <code>10000.0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00264">264</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00253">ProjectPoint()</a>.</p>
+<div id="dynsection-43" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-43-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-43-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-43-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a2530d643ef0cacfa8b6e4192d05e8066_cgraph.svg" width="528" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a0d9557a2883ba6f24676f09634f5f96d" name="a0d9557a2883ba6f24676f09634f5f96d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d9557a2883ba6f24676f09634f5f96d">&#9670;&#160;</a></span>LoadLevelLayer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::client::World::LoadLevelLayer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a64d9aac1c2a1d8e7ff5056054f80b42b">rpc::MapLayer</a>&#160;</td>
+          <td class="paramname"><em>map_layers</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>加载指定的地图层级（由rpc::MapLayer类型参数指定）到模拟世界中。 可以根据需要选择性地加载地图的不同部分或者功能层，比如只加载交通道路层或者建筑物层等，具体取决于MapLayer的定义。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00028">28</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-44" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-44-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-44-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-44-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a0d9557a2883ba6f24676f09634f5f96d_cgraph.svg" width="352" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a2779e7d1c5b363b848db67f7d3fc8caa" name="a2779e7d1c5b363b848db67f7d3fc8caa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2779e7d1c5b363b848db67f7d3fc8caa">&#9670;&#160;</a></span>MakeDebugHelper()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d1/d64/classcarla_1_1client_1_1DebugHelper.html">DebugHelper</a> carla::client::World::MakeDebugHelper </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>创建并返回一个DebugHelper对象，该对象基于当前的EpisodeProxy创建， DebugHelper通常用于在模拟世界中进行调试相关的操作，比如可视化一些内部数据结构、辅助排查问题等。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d5b/World_8h_source.html">World.h</a> 第 <a class="el" href="../../dd/d5b/World_8h_source.html#l00238">238</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a>.</p>
+
+</div>
+</div>
+<a id="af3b0d8196f2b4f0fc31fdb547d5a18a5" name="af3b0d8196f2b4f0fc31fdb547d5a18a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3b0d8196f2b4f0fc31fdb547d5a18a5">&#9670;&#160;</a></span>OnTick()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a> carla::client::World::OnTick </td>
+          <td>(</td>
+          <td class="paramtype">std::function&lt; void(<a class="el" href="../../d4/dc6/classcarla_1_1client_1_1WorldSnapshot.html">WorldSnapshot</a>)&gt;&#160;</td>
+          <td class="paramname"><em>callback</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>注册一个 <em>回调函数，在每次接收到世界刻时调用。</em> 可以注册一个自定义的函数，在模拟世界每推进一个时间步（即接收到世界刻）时被自动调用， 便于在每个时间步执行一些自定义的逻辑，比如更新统计信息、检查特定条件等，返回的回调函数ID用于后续删除该回调函数。 </p>
+<dl class="section return"><dt>返回</dt><dd>回调函数的ID，用它来删除回调函数。 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00157">157</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-45" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-45-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-45-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-45-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_af3b0d8196f2b4f0fc31fdb547d5a18a5_cgraph.svg" width="352" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a3761726cde477cceac243bf5652baa7a" name="a3761726cde477cceac243bf5652baa7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3761726cde477cceac243bf5652baa7a">&#9670;&#160;</a></span>operator=() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html">World</a> &amp; carla::client::World::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html">World</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a51cadfcfe1e27ccc4dc26b2b1cbbd717" name="a51cadfcfe1e27ccc4dc26b2b1cbbd717"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51cadfcfe1e27ccc4dc26b2b1cbbd717">&#9670;&#160;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html">World</a> &amp; carla::client::World::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html">World</a> &amp;&amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7798ef4c140974fa8b1465fb48cc7c3a" name="a7798ef4c140974fa8b1465fb48cc7c3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7798ef4c140974fa8b1465fb48cc7c3a">&#9670;&#160;</a></span>ProjectPoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">boost::optional&lt; <a class="el" href="../../d0/dac/structcarla_1_1rpc_1_1LabelledPoint.html">rpc::LabelledPoint</a> &gt; carla::client::World::ProjectPoint </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">geom::Location</a>&#160;</td>
+          <td class="paramname"><em>location</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">geom::Vector3D</a>&#160;</td>
+          <td class="paramname"><em>direction</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>search_distance</em> = <code>10000.f</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>GetEnvironmentObjects获取指定标签的环境物体。 EnableEnvironmentObjects启用或禁用环境物体。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00253">253</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00264">GroundProjection()</a>.</p>
+<div id="dynsection-46" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-46-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-46-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-46-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a7798ef4c140974fa8b1465fb48cc7c3a_cgraph.svg" width="352" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-47" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-47-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-47-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-47-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a7798ef4c140974fa8b1465fb48cc7c3a_icgraph.svg" width="314" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ad8c7712a9c9cfbd77e8d138d09b69a58" name="ad8c7712a9c9cfbd77e8d138d09b69a58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8c7712a9c9cfbd77e8d138d09b69a58">&#9670;&#160;</a></span>RemoveOnTick()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::client::World::RemoveOnTick </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a>&#160;</td>
+          <td class="paramname"><em>callback_id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Remove a callback registered with OnTick. </p>
+<p >根据之前注册回调函数时返回的ID，来移除对应的在每个世界刻调用的回调函数，实现对回调机制的动态管理。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00161">161</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-48" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-48-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-48-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-48-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_ad8c7712a9c9cfbd77e8d138d09b69a58_cgraph.svg" width="352" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a284c0150127d31d002a93bf5b27ff10b" name="a284c0150127d31d002a93bf5b27ff10b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a284c0150127d31d002a93bf5b27ff10b">&#9670;&#160;</a></span>ResetAllTrafficLights()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::client::World::ResetAllTrafficLights </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>根据OpenDRIVE标志ID获取对应的交通灯的智能指针。 重置所有交通信号灯的状态，可能将其恢复到初始默认状态或者按照一定规则重新初始化状态， 用于在模拟过程中重新调整交通灯的整体情况，比如模拟交通拥堵后重新规划交通流时使用。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00226">226</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-49" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-49-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-49-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-49-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a284c0150127d31d002a93bf5b27ff10b_cgraph.svg" width="374" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a83970f48c835c16d9d0b4eff32512f75" name="a83970f48c835c16d9d0b4eff32512f75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83970f48c835c16d9d0b4eff32512f75">&#9670;&#160;</a></span>SetIMUISensorGravity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::client::World::SetIMUISensorGravity </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>NewIMUISensorGravity</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置用于IMUISensor加速度计计算的重力值。 允许外部根据实际模拟需求，调整IMUI传感器加速度计计算所使用的重力值，改变模拟物理环境的相关参数。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00098">98</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-50" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-50-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-50-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-50-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a83970f48c835c16d9d0b4eff32512f75_cgraph.svg" width="384" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a51d9f5d94e76c69c37e967467e3e96df" name="a51d9f5d94e76c69c37e967467e3e96df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51d9f5d94e76c69c37e967467e3e96df">&#9670;&#160;</a></span>SetPedestriansCrossFactor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::client::World::SetPedestriansCrossFactor </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>percentage</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置一个代理表示在它的路径中穿过道路的概率。 0.0f表示行人不得过马路 0.5f表示50的行人可以过马路 1.0f表示所有行人在需要时都可以过马路 用于控制模拟世界中行人过马路行为的概率，通过调整这个概率值，可以模拟出不同行人遵守交通规则或者交通繁忙程度不同的场景情况。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00171">171</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-51" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-51-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-51-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-51-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a51d9f5d94e76c69c37e967467e3e96df_cgraph.svg" width="414" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="aad9eadb98abeb915e0c91c7a5c3221a5" name="aad9eadb98abeb915e0c91c7a5c3221a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad9eadb98abeb915e0c91c7a5c3221a5">&#9670;&#160;</a></span>SetPedestriansSeed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::client::World::SetPedestriansSeed </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>seed</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>在行人模块中将 seed 设置为使用随机数。 设置行人相关随机行为的种子值，相同的种子值可以使得行人模块在每次模拟时产生相同的随机行为序列，便于复现和对比不同模拟情况， 或者设置不同的种子值来获取真正的随机行为表现。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00175">175</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-52" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-52-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-52-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-52-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_aad9eadb98abeb915e0c91c7a5c3221a5_cgraph.svg" width="372" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="afaf2d199f77ae383aaead6556d4fd4d4" name="afaf2d199f77ae383aaead6556d4fd4d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afaf2d199f77ae383aaead6556d4fd4d4">&#9670;&#160;</a></span>SetWeather()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::client::World::SetWeather </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../db/ddb/classcarla_1_1rpc_1_1WeatherParameters.html">rpc::WeatherParameters</a> &amp;&#160;</td>
+          <td class="paramname"><em>weather</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>在模拟场景中改变天气。 通过传入指定的rpc::WeatherParameters参数，来设置模拟世界的天气情况，实现模拟不同天气环境下的交通、行人等行为场景。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00090">90</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-53" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-53-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-53-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-53-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_afaf2d199f77ae383aaead6556d4fd4d4_cgraph.svg" width="352" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ad26f33b2d1d96077248782577e5add2d" name="ad26f33b2d1d96077248782577e5add2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad26f33b2d1d96077248782577e5add2d">&#9670;&#160;</a></span>SpawnActor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr</a>&lt; <a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">Actor</a> &gt; carla::client::World::SpawnActor </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html">ActorBlueprint</a> &amp;&#160;</td>
+          <td class="paramname"><em>blueprint</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../de/da4/classcarla_1_1geom_1_1Transform.html">geom::Transform</a> &amp;&#160;</td>
+          <td class="paramname"><em>transform</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">Actor</a> *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a3124bfdfcd62bda5c4fe5978ec668365">rpc::AttachmentType</a>&#160;</td>
+          <td class="paramname"><em>attachment_type</em> = <code><a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a3124bfdfcd62bda5c4fe5978ec668365ac7207657aba5dfd2e5b0ca3f35cd8c26">rpc::AttachmentType::Rigid</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>socket_name</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>根据 <em>转换中提供的</em> <em>蓝图，在世界中生成一个参与者（actor）。</em> 如果提供了 <em>父类，则参与者（actor）被附加到</em> <em>父类。</em> 基于给定的ActorBlueprint（参与者创建蓝图）以及指定的几何变换（geom::Transform，用于确定在世界中的位置、姿态等信息）， 在模拟世界中创建一个新的参与者对象，并且可以选择将其附加到一个已有的父类参与者上，建立父子关系， 这种父子关系可能在物理模拟、行为关联等方面有相应的作用，例如车辆挂载拖车等场景。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00126">126</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a>, <a class="el" href="../../d2/daf/namespacecarla_1_1client.html#ad1cd8b4654ee7b590ce8d6ef27a6aa9eac49484faf79e2388b580e49444d6ac11">carla::client::Inherit</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-54" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-54-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-54-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-54-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_ad26f33b2d1d96077248782577e5add2d_cgraph.svg" width="352" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a54001b9b89732b277c38f0682164499d" name="a54001b9b89732b277c38f0682164499d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54001b9b89732b277c38f0682164499d">&#9670;&#160;</a></span>Tick()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t carla::client::World::Tick </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d2/d2e/classcarla_1_1time__duration.html">time_duration</a>&#160;</td>
+          <td class="paramname"><em>timeout</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>通知模拟器继续进行下一个节拍（仅对同步模式有效）。 在同步模拟模式下，通过调用这个函数来告知模拟器可以推进到下一个时间步了， 并且返回这个调用开始的帧的id，用于跟踪和记录模拟进度在时间轴上的位置。 </p>
+<dl class="section return"><dt>返回</dt><dd>这个调用开始的帧的id. </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00165">165</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a>, <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a> , 以及 <a class="el" href="../../d2/d33/Time_8h_source.html#l00026">carla::time_duration::milliseconds()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00056">ApplySettings()</a>.</p>
+<div id="dynsection-55" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-55-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-55-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-55-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a54001b9b89732b277c38f0682164499d_cgraph.svg" width="352" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-56" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-56-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-56-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-56-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a54001b9b89732b277c38f0682164499d_icgraph.svg" width="312" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a6dfdb6c6760073bea9cf16843b1b887e" name="a6dfdb6c6760073bea9cf16843b1b887e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6dfdb6c6760073bea9cf16843b1b887e">&#9670;&#160;</a></span>TrySpawnActor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr</a>&lt; <a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">Actor</a> &gt; carla::client::World::TrySpawnActor </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html">ActorBlueprint</a> &amp;&#160;</td>
+          <td class="paramname"><em>blueprint</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../de/da4/classcarla_1_1geom_1_1Transform.html">geom::Transform</a> &amp;&#160;</td>
+          <td class="paramname"><em>transform</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">Actor</a> *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a3124bfdfcd62bda5c4fe5978ec668365">rpc::AttachmentType</a>&#160;</td>
+          <td class="paramname"><em>attachment_type</em> = <code><a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a3124bfdfcd62bda5c4fe5978ec668365ac7207657aba5dfd2e5b0ca3f35cd8c26">rpc::AttachmentType::Rigid</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>socket_name</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>和SpawnActor一样，但失败时返回nullptr而不抛出异常。 与SpawnActor功能类似，不过在创建参与者失败的情况下，不会抛出异常打断程序流程，而是安静地返回nullptr， 这样在一些需要稳健处理创建操作失败情况的场景中，调用者可以自行根据返回值进行相应的错误处理逻辑。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00136">136</a> 行定义.</p>
+
+</div>
+</div>
+<a id="afcb338398cde1803d9a26e044bae9759" name="afcb338398cde1803d9a26e044bae9759"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afcb338398cde1803d9a26e044bae9759">&#9670;&#160;</a></span>UnloadLevelLayer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::client::World::UnloadLevelLayer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a64d9aac1c2a1d8e7ff5056054f80b42b">rpc::MapLayer</a>&#160;</td>
+          <td class="paramname"><em>map_layers</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>卸载指定的地图层级（由rpc::MapLayer类型参数指定）。 与LoadLevelLayer相对应，用于移除已经加载的地图部分，释放相关资源或者改变模拟世界的显示内容等。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00032">32</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-57" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-57-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-57-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-57-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_afcb338398cde1803d9a26e044bae9759_cgraph.svg" width="359" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a8224b6e84c3c01d757cf4e0dd2ce4468" name="a8224b6e84c3c01d757cf4e0dd2ce4468"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8224b6e84c3c01d757cf4e0dd2ce4468">&#9670;&#160;</a></span>WaitForTick()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d4/dc6/classcarla_1_1client_1_1WorldSnapshot.html">WorldSnapshot</a> carla::client::World::WaitForTick </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d2/d2e/classcarla_1_1time__duration.html">time_duration</a>&#160;</td>
+          <td class="paramname"><em>timeout</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>阻塞调用线程，直到接收到一个世界刻。 世界刻（Tick）可以理解为模拟世界的时间推进的一个基本单位，通过阻塞等待一个世界刻， 可以确保在获取后续操作所需的最新世界状态时，是基于已经更新到下一个时间步的情况，常用于同步模拟流程与世界状态更新。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a> 第 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00150">150</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">_episode</a>, <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a> , 以及 <a class="el" href="../../d2/d33/Time_8h_source.html#l00026">carla::time_duration::milliseconds()</a>.</p>
+<div id="dynsection-58" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-58-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-58-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-58-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d1f/classcarla_1_1client_1_1World_a8224b6e84c3c01d757cf4e0dd2ce4468_cgraph.svg" width="352" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a64865e896ca9c5d48b2009da27b01de9" name="a64865e896ca9c5d48b2009da27b01de9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64865e896ca9c5d48b2009da27b01de9">&#9670;&#160;</a></span>_episode</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d8/dcd/namespacecarla_1_1client_1_1detail.html#a73fc4fabc24f68be175250c73e1da2fc">detail::EpisodeProxy</a> carla::client::World::_episode</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d5b/World_8h_source.html">World.h</a> 第 <a class="el" href="../../dd/d5b/World_8h_source.html#l00339">339</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00316">ApplyColorTextureToObject()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00330">ApplyFloatColorTextureToObject()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00337">ApplyFloatColorTextureToObjects()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00056">ApplySettings()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00271">CastRay()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00247">EnableEnvironmentObjects()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00234">FreezeAllTrafficLights()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00106">GetActor()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00114">GetActors()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00036">GetBlueprintLibrary()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00242">GetEnvironmentObjects()</a>, <a class="el" href="../../dd/d5b/World_8h_source.html#l00244">GetEpisode()</a>, <a class="el" href="../../dd/d5b/World_8h_source.html#l00073">GetId()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00094">GetIMUISensorGravity()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00238">GetLevelBBs()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00230">GetLightManager()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00024">GetMap()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00344">GetNamesOfAllObjects()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00044">GetRandomLocationFromNavigation()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00052">GetSettings()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00102">GetSnapshot()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00048">GetSpectator()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00040">GetVehiclesLightStates()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00086">GetWeather()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00028">LoadLevelLayer()</a>, <a class="el" href="../../dd/d5b/World_8h_source.html#l00238">MakeDebugHelper()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00157">OnTick()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00253">ProjectPoint()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00161">RemoveOnTick()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00226">ResetAllTrafficLights()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00098">SetIMUISensorGravity()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00171">SetPedestriansCrossFactor()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00175">SetPedestriansSeed()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00090">SetWeather()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00126">SpawnActor()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00165">Tick()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00032">UnloadLevelLayer()</a> , 以及 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00150">WaitForTick()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../dd/d5b/World_8h_source.html">World.h</a></li>
+<li><a class="el" href="../../d7/dfe/World_8cpp_source.html">World.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

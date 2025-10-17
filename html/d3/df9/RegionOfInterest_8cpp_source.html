@@ -1,0 +1,456 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: RegionOfInterest.cpp 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_087ce8304d10c4897e4acbeac1a6fcc8.html">ros2</a></li><li class="navelem"><a class="el" href="../../dir_4ea2d91c13d1361ac1a1dbc78466282d.html">types</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">RegionOfInterest.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d3/df9/RegionOfInterest_8cpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright 2016 Proyectos y Sistemas de Mantenimiento SL (eProsima).</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// you may not use this file except in compliance with the License.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// You may obtain a copy of the License at</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//     http://www.apache.org/licenses/LICENSE-2.0</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">// Unless required by applicable law or agreed to in writing, software</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">// See the License for the specific language governing permissions and</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">// limitations under the License.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment"></span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">/*!</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment"> * @file RegionOfInterest.cpp</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment"> * This source file contains the definition of the described types in the IDL file.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment"> * This file was generated by the tool gen.</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment">// 如果定义了_WIN32宏（通常用于Windows平台相关的条件编译）</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#ifdef _WIN32</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">// 以下代码块用于移除Visual Studio中的链接器警告LNK4221</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment">// 通过定义一个匿名命名空间，在其中声明一个未使用的变量dummy来达到此目的</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">// 匿名命名空间中的内容仅在当前编译单元内可见，可避免命名冲突等问题</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment">// Remove linker warning LNK4221 on Visual Studio</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">namespace </span>{</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keywordtype">char</span> dummy;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>}  <span class="comment">// namespace</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#endif  </span><span class="comment">// _WIN32</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">// 包含 RegionOfInterest.h 头文件，可能定义了 RegionOfInterest 相关的结构体、类等声明</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#include &quot;<a class="code" href="../../d5/da2/RegionOfInterest_8h.html">RegionOfInterest.h</a>&quot;</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment">// 包含 fastcdr/Cdr.h 头文件，推测用于处理CDR（Common Data Representation）相关的功能，比如序列化、反序列化等操作</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#include &lt;fastcdr/Cdr.h&gt;</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment">// 包含 fastcdr/exceptions/BadParamException.h 头文件，用于处理 fastcdr 库中参数异常相关的情况</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#include &lt;fastcdr/exceptions/BadParamException.h&gt;</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment">// 使用 eprosima::fastcdr::exception 命名空间，这样后续可以直接使用该命名空间下的类型等，无需每次都写全限定名</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">using namespace </span>eprosima::fastcdr::exception;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment">// 包含 &lt;utility&gt; 头文件，该头文件提供了一些实用的模板和工具函数等，在C++标准库中经常用到</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#include &lt;utility&gt;</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment">// 定义一个宏，表示 sensor_msgs::msg::RegionOfInterest 类型的最大CDR序列化类型大小为17字节（无符号长整型大小）</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="../../d3/df9/RegionOfInterest_8cpp.html#a1dd498039b5b552e760f7cd8eca2c0bb">   42</a></span><span class="preprocessor">#define sensor_msgs_msg_RegionOfInterest_max_cdr_typesize 17ULL;</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">// 定义一个宏，表示 sensor_msgs::msg::RegionOfInterest 类型的最大CDR键序列化类型大小为0字节</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="../../d3/df9/RegionOfInterest_8cpp.html#ab9652535d9420954b64f52ddd57c54c6">   44</a></span><span class="preprocessor">#define sensor_msgs_msg_RegionOfInterest_max_key_cdr_typesize 0ULL;</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">// RegionOfInterest 类的默认构造函数定义</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment">// 用于初始化 RegionOfInterest 类的对象，将各个成员变量初始化为默认值</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a9a82f1e55aec9c49fb38a779c99cecb4">   47</a></span><a class="code hl_function" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a9a82f1e55aec9c49fb38a779c99cecb4">sensor_msgs::msg::RegionOfInterest::RegionOfInterest</a>()</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>{</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="comment">// 初始化成员变量 m_x_offset 为0，m_x_offset 类型可能为 unsigned long，用于表示某个偏移量（具体取决于业务逻辑）</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <a class="code hl_variable" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a6de0b2716e715ad13ffe78fd9a99230b">m_x_offset</a> = 0;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="comment">// 初始化成员变量 m_y_offset 为0，同样用于表示偏移量相关含义</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <a class="code hl_variable" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#af03b4cf729d664f243d6f46e94deb581">m_y_offset</a> = 0;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="comment">// 初始化成员变量 m_height 为0，可能用于表示区域的高度相关概念</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <a class="code hl_variable" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#ad0b422cc9300f4c7ec8446adfa5e25f9">m_height</a> = 0;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>     <span class="comment">// 初始化成员变量 m_width 为0，可能用于表示区域的宽度相关概念</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <a class="code hl_variable" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a6bade161372d851c60700952a895f009">m_width</a> = 0;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="comment">// 初始化成员变量 m_do_rectify 为 false，可能用于指示是否进行某种校正操作（具体依业务而定）</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <a class="code hl_variable" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a16d9e119784b46bd204d9d31ae4a8b86">m_do_rectify</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>}</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment">// RegionOfInterest 类的析构函数定义</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">// 通常用于释放对象占用的资源等清理工作，但此处为空实现，可能意味着该类没有需要手动释放的资源</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#ab8ff1a852c059c2b6d880f62813536c8">   62</a></span><a class="code hl_function" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#ab8ff1a852c059c2b6d880f62813536c8">sensor_msgs::msg::RegionOfInterest::~RegionOfInterest</a>()</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>{</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>}</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="comment">// RegionOfInterest 类的拷贝构造函数定义</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="comment">// 用于通过已有的 RegionOfInterest 对象 x 来创建一个新的对象，新对象的各成员变量值与 x 的对应成员变量值相同</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a50f164491319905eb3f4984fa13f3068">   67</a></span><a class="code hl_function" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a9a82f1e55aec9c49fb38a779c99cecb4">sensor_msgs::msg::RegionOfInterest::RegionOfInterest</a>(</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="keyword">const</span> <a class="code hl_class" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html">RegionOfInterest</a>&amp; x)</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>{</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    m_x_offset = x.<a class="code hl_variable" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a6de0b2716e715ad13ffe78fd9a99230b">m_x_offset</a>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    m_y_offset = x.<a class="code hl_variable" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#af03b4cf729d664f243d6f46e94deb581">m_y_offset</a>;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    m_height = x.<a class="code hl_variable" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#ad0b422cc9300f4c7ec8446adfa5e25f9">m_height</a>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    m_width = x.<a class="code hl_variable" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a6bade161372d851c60700952a895f009">m_width</a>;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    m_do_rectify = x.<a class="code hl_variable" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a16d9e119784b46bd204d9d31ae4a8b86">m_do_rectify</a>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>}</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="comment">// RegionOfInterest 类的移动构造函数定义</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="comment">// 用于通过将已有的 RegionOfInterest 对象 x 的资源“移动”到新创建的对象中（通常涉及资源所有权的转移，且不进行深拷贝等开销较大的操作），新对象获取 x 的各成员变量值</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="comment">// noexcept 表示该函数承诺不会抛出异常，有助于编译器进行一些优化等操作</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#ace3c7a8f2e68132a6a24e093b74dd641">   79</a></span><a class="code hl_function" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a9a82f1e55aec9c49fb38a779c99cecb4">sensor_msgs::msg::RegionOfInterest::RegionOfInterest</a>(</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        <a class="code hl_class" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html">RegionOfInterest</a>&amp;&amp; x) <span class="keyword">noexcept</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>{</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    m_x_offset = x.m_x_offset;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    m_y_offset = x.m_y_offset;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    m_height = x.m_height;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    m_width = x.m_width;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    m_do_rectify = x.m_do_rectify;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>}</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="comment">// RegionOfInterest 类的拷贝赋值运算符重载函数定义</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="comment">// 用于将一个 RegionOfInterest 对象 x 的各成员变量值赋值给当前对象（*this），使得当前对象的状态与 x 相同，最后返回当前对象的引用，以支持连续赋值操作</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#aa641f3772eac39ae8c6fed28943c0c76">   90</a></span><a class="code hl_class" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html">sensor_msgs::msg::RegionOfInterest</a>&amp; <a class="code hl_function" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#aa641f3772eac39ae8c6fed28943c0c76">sensor_msgs::msg::RegionOfInterest::operator =</a>(</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        <span class="keyword">const</span> <a class="code hl_class" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html">RegionOfInterest</a>&amp; x)</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>{</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    m_x_offset = x.<a class="code hl_variable" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a6de0b2716e715ad13ffe78fd9a99230b">m_x_offset</a>;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    m_y_offset = x.<a class="code hl_variable" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#af03b4cf729d664f243d6f46e94deb581">m_y_offset</a>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    m_height = x.<a class="code hl_variable" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#ad0b422cc9300f4c7ec8446adfa5e25f9">m_height</a>;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    m_width = x.<a class="code hl_variable" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a6bade161372d851c60700952a895f009">m_width</a>;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    m_do_rectify = x.<a class="code hl_variable" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a16d9e119784b46bd204d9d31ae4a8b86">m_do_rectify</a>;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>}</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="comment">// RegionOfInterest 类的移动赋值运算符重载函数定义</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="comment">// 类似移动构造函数，将另一个 RegionOfInterest 对象 x 的资源“移动”到当前对象（*this）中，实现资源所有权的转移等操作，最后返回当前对象的引用</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#abb711888505709c8763e47d54b156501">  103</a></span><a class="code hl_class" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html">sensor_msgs::msg::RegionOfInterest</a>&amp; <a class="code hl_function" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#aa641f3772eac39ae8c6fed28943c0c76">sensor_msgs::msg::RegionOfInterest::operator =</a>(</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        <a class="code hl_class" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html">RegionOfInterest</a>&amp;&amp; x) <span class="keyword">noexcept</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>{</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    m_x_offset = x.<a class="code hl_variable" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a6de0b2716e715ad13ffe78fd9a99230b">m_x_offset</a>;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    m_y_offset = x.m_y_offset;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    m_height = x.m_height;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    m_width = x.m_width;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    m_do_rectify = x.m_do_rectify;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>}</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="comment">// 重载相等运算符（==）函数定义</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="comment">// 用于比较当前 RegionOfInterest 对象与另一个 RegionOfInterest 对象 x 是否相等，通过逐个比较各成员变量的值来确定是否相等，返回比较结果（true表示相等，false表示不等）</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a74184270a0f02dba4565642ab3686fc9">  116</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a74184270a0f02dba4565642ab3686fc9">sensor_msgs::msg::RegionOfInterest::operator ==</a>(</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        <span class="keyword">const</span> <a class="code hl_class" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html">RegionOfInterest</a>&amp; x)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keywordflow">return</span> (m_x_offset == x.<a class="code hl_variable" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a6de0b2716e715ad13ffe78fd9a99230b">m_x_offset</a> &amp;&amp; m_y_offset == x.<a class="code hl_variable" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#af03b4cf729d664f243d6f46e94deb581">m_y_offset</a> &amp;&amp; m_height == x.<a class="code hl_variable" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#ad0b422cc9300f4c7ec8446adfa5e25f9">m_height</a> &amp;&amp; m_width == x.<a class="code hl_variable" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a6bade161372d851c60700952a895f009">m_width</a> &amp;&amp; m_do_rectify == x.<a class="code hl_variable" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a16d9e119784b46bd204d9d31ae4a8b86">m_do_rectify</a>);</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>}</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="comment">// 重载不等运算符（!=）函数定义</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="comment">// 通过调用相等运算符（==）取反的方式来判断当前对象与 x 是否不相等，返回比较结果（true表示不等，false表示相等）</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a76bfd18f1ef01831d6acd5ffdc71f835">  123</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a76bfd18f1ef01831d6acd5ffdc71f835">sensor_msgs::msg::RegionOfInterest::operator !=</a>(</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        <span class="keyword">const</span> <a class="code hl_class" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html">RegionOfInterest</a>&amp; x)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="keywordflow">return</span> !(*<span class="keyword">this</span> == x);</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>}</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="comment">// 获取 RegionOfInterest 对象最大CDR序列化大小的函数定义</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="comment">// 参数 current_alignment 可能用于表示当前的对齐方式等相关信息，但此处将其强制转换为 void 类型，表示未使用该参数</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="comment">// 直接返回预定义的 sensor_msgs_msg_RegionOfInterest_max_cdr_typesize 作为最大序列化大小</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#afd799bb3014ec6eaa9247ff8b596683c">  131</a></span><span class="keywordtype">size_t</span> <a class="code hl_function" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#afd799bb3014ec6eaa9247ff8b596683c">sensor_msgs::msg::RegionOfInterest::getMaxCdrSerializedSize</a>(</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        <span class="keywordtype">size_t</span> <a class="code hl_variable" href="../../db/db2/PoseWithCovariance_8cpp.html#ab0622670d2b449ae43c500e168400292">current_alignment</a>)</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>{</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="keyword">static_cast&lt;</span><span class="keywordtype">void</span><span class="keyword">&gt;</span>(<a class="code hl_variable" href="../../db/db2/PoseWithCovariance_8cpp.html#ab0622670d2b449ae43c500e168400292">current_alignment</a>);</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="keywordflow">return</span> <a class="code hl_define" href="../../d8/d7a/CameraInfo_8cpp.html#a1dd498039b5b552e760f7cd8eca2c0bb">sensor_msgs_msg_RegionOfInterest_max_cdr_typesize</a>;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>}</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span><span class="comment">// 获取 RegionOfInterest 对象实际CDR序列化大小的函数定义</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="comment">// 参数 data 为要序列化的 RegionOfInterest 对象，current_alignment 用于处理对齐相关情况</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="comment">// 函数内先记录初始的对齐值 initial_alignment，然后通过一系列计算（考虑了对齐要求以及各成员变量序列化所需空间）来更新 current_alignment</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span><span class="comment">// 最后返回当前对齐值与初始对齐值的差值，即序列化该对象实际占用的空间大小</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a400852dcf9880a96d51df7ce08cc5f83">  141</a></span><span class="keywordtype">size_t</span> <a class="code hl_function" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a400852dcf9880a96d51df7ce08cc5f83">sensor_msgs::msg::RegionOfInterest::getCdrSerializedSize</a>(</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>        <span class="keyword">const</span> <a class="code hl_class" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html">sensor_msgs::msg::RegionOfInterest</a>&amp; data,</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>        <span class="keywordtype">size_t</span> <a class="code hl_variable" href="../../db/db2/PoseWithCovariance_8cpp.html#ab0622670d2b449ae43c500e168400292">current_alignment</a>)</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>{</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    (void)data;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="keywordtype">size_t</span> <a class="code hl_variable" href="../../db/db2/PoseWithCovariance_8cpp.html#a7d42068ec3b034c764f7db0421128810">initial_alignment</a> = <a class="code hl_variable" href="../../db/db2/PoseWithCovariance_8cpp.html#ab0622670d2b449ae43c500e168400292">current_alignment</a>;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <a class="code hl_variable" href="../../db/db2/PoseWithCovariance_8cpp.html#ab0622670d2b449ae43c500e168400292">current_alignment</a> += 4 + eprosima::fastcdr::Cdr::alignment(<a class="code hl_variable" href="../../db/db2/PoseWithCovariance_8cpp.html#ab0622670d2b449ae43c500e168400292">current_alignment</a>, 4);</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <a class="code hl_variable" href="../../db/db2/PoseWithCovariance_8cpp.html#ab0622670d2b449ae43c500e168400292">current_alignment</a> += 4 + eprosima::fastcdr::Cdr::alignment(<a class="code hl_variable" href="../../db/db2/PoseWithCovariance_8cpp.html#ab0622670d2b449ae43c500e168400292">current_alignment</a>, 4);</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <a class="code hl_variable" href="../../db/db2/PoseWithCovariance_8cpp.html#ab0622670d2b449ae43c500e168400292">current_alignment</a> += 4 + eprosima::fastcdr::Cdr::alignment(<a class="code hl_variable" href="../../db/db2/PoseWithCovariance_8cpp.html#ab0622670d2b449ae43c500e168400292">current_alignment</a>, 4);</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <a class="code hl_variable" href="../../db/db2/PoseWithCovariance_8cpp.html#ab0622670d2b449ae43c500e168400292">current_alignment</a> += 4 + eprosima::fastcdr::Cdr::alignment(<a class="code hl_variable" href="../../db/db2/PoseWithCovariance_8cpp.html#ab0622670d2b449ae43c500e168400292">current_alignment</a>, 4);</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <a class="code hl_variable" href="../../db/db2/PoseWithCovariance_8cpp.html#ab0622670d2b449ae43c500e168400292">current_alignment</a> += 1 + eprosima::fastcdr::Cdr::alignment(<a class="code hl_variable" href="../../db/db2/PoseWithCovariance_8cpp.html#ab0622670d2b449ae43c500e168400292">current_alignment</a>, 1);</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="../../db/db2/PoseWithCovariance_8cpp.html#ab0622670d2b449ae43c500e168400292">current_alignment</a> - <a class="code hl_variable" href="../../db/db2/PoseWithCovariance_8cpp.html#a7d42068ec3b034c764f7db0421128810">initial_alignment</a>;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>}</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="comment">// 对 RegionOfInterest 对象进行序列化的函数定义</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="comment">// 参数 scdr 是一个 eprosima::fastcdr::Cdr 类型的对象，用于执行序列化操作，将当前 RegionOfInterest 对象的各成员变量依次序列化到 scdr 中</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno"><a class="line" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#aa2132a867396c7ff5c0afa1eda96b974">  157</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#aa2132a867396c7ff5c0afa1eda96b974">sensor_msgs::msg::RegionOfInterest::serialize</a>(</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        eprosima::fastcdr::Cdr&amp; scdr)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    scdr &lt;&lt; m_x_offset;</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    scdr &lt;&lt; m_y_offset;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    scdr &lt;&lt; m_height;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    scdr &lt;&lt; m_width;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    scdr &lt;&lt; m_do_rectify;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>}</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="comment">// 对 RegionOfInterest 对象进行反序列化的函数定义</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="comment">// 参数 dcdr 是一个 eprosima::fastcdr::Cdr 类型的对象，用于执行反序列化操作，从 dcdr 中依次读取数据并赋值给当前 RegionOfInterest 对象的各成员变量</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno"><a class="line" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a6e95b4836b52a9d830a8333d9982a819">  168</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a6e95b4836b52a9d830a8333d9982a819">sensor_msgs::msg::RegionOfInterest::deserialize</a>(</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>        eprosima::fastcdr::Cdr&amp; dcdr)</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>{</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    dcdr &gt;&gt; m_x_offset;</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    dcdr &gt;&gt; m_y_offset;</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    dcdr &gt;&gt; m_height;</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    dcdr &gt;&gt; m_width;</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    dcdr &gt;&gt; m_do_rectify;</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>}</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span><span class="comment"></span> </div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="comment">/*!</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="comment"> * @brief 此函数用于设置成员变量 x_offset 的值</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="comment"> * @param _x_offset 要赋给成员变量 m_x_offset 的新值</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno"><a class="line" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#ad1ebe7615f9cd560b6c1fe5798eea478">  182</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a11add0e83590c40a39198463d36c15b6">sensor_msgs::msg::RegionOfInterest::x_offset</a>(</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>        uint32_t _x_offset)</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>{</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    m_x_offset = _x_offset;</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>}</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span><span class="comment"></span> </div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="comment">/*!</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="comment"> * @brief 此函数用于返回成员变量 x_offset 的值</span></div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span><span class="comment"> * @return 成员变量 m_x_offset 的当前值</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno"><a class="line" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a11add0e83590c40a39198463d36c15b6">  192</a></span>uint32_t <a class="code hl_function" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a11add0e83590c40a39198463d36c15b6">sensor_msgs::msg::RegionOfInterest::x_offset</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    <span class="keywordflow">return</span> m_x_offset;</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>}</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span><span class="comment"></span> </div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span><span class="comment">/*!</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span><span class="comment"> * @brief 此函数用于返回成员变量 x_offset 的引用</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span><span class="comment"> * @return 成员变量 m_x_offset 的引用，可用于在外部直接修改该成员变量的值</span></div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno"><a class="line" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a504893d3eddf256edc65d31948fbae37">  201</a></span>uint32_t&amp; <a class="code hl_function" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a11add0e83590c40a39198463d36c15b6">sensor_msgs::msg::RegionOfInterest::x_offset</a>()</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>{</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    <span class="keywordflow">return</span> m_x_offset;</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>}</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span><span class="comment"></span> </div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span><span class="comment">/*!</span></div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span><span class="comment"> * @brief 此函数用于设置成员变量 y_offset 的值</span></div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span><span class="comment"> * @param _y_offset 要赋给成员变量 m_y_offset 的新值</span></div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno"><a class="line" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a06cee7b09a87e29aafb489713c23057f">  210</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#aafc7f923bf82e723151c78dbb7f94f66">sensor_msgs::msg::RegionOfInterest::y_offset</a>(</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>        uint32_t _y_offset)</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>{</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    m_y_offset = _y_offset;</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>}</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span><span class="comment"></span> </div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><span class="comment">/*!</span></div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span><span class="comment"> * @brief 此函数用于返回成员变量 y_offset 的值</span></div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span><span class="comment"> * @return 成员变量 m_y_offset 的当前值</span></div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno"><a class="line" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#aafc7f923bf82e723151c78dbb7f94f66">  220</a></span>uint32_t <a class="code hl_function" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#aafc7f923bf82e723151c78dbb7f94f66">sensor_msgs::msg::RegionOfInterest::y_offset</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    <span class="keywordflow">return</span> m_y_offset;</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>}</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span><span class="comment"></span> </div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span><span class="comment">/*!</span></div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span><span class="comment"> * @brief 此函数用于返回成员变量 y_offset 的引用</span></div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span><span class="comment"> * @return 成员变量 m_y_offset 的引用，可用于在外部直接修改该成员变量的值</span></div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno"><a class="line" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a35f0ef0a7937d7e0738773936c57916f">  229</a></span>uint32_t&amp; <a class="code hl_function" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#aafc7f923bf82e723151c78dbb7f94f66">sensor_msgs::msg::RegionOfInterest::y_offset</a>()</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>{</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    <span class="keywordflow">return</span> m_y_offset;</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>}</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span><span class="comment"></span> </div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span><span class="comment">/*!</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span><span class="comment"> * @brief 此函数用于设置成员变量 height 的值</span></div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span><span class="comment"> * @param _height 要赋给成员变量 m_height 的新值</span></div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno"><a class="line" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#acc3ac514644acc4d0979479da59a3dad">  238</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#ae1528294fbd19be276251ab329f57914">sensor_msgs::msg::RegionOfInterest::height</a>(</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>        uint32_t _height)</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>{</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    m_height = _height;</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>}</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span><span class="comment"></span> </div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span><span class="comment">/*!</span></div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span><span class="comment"> * @brief 此函数用于返回成员变量 height 的值</span></div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span><span class="comment"> * @return 成员变量 m_height 的当前值</span></div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno"><a class="line" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#ae1528294fbd19be276251ab329f57914">  248</a></span>uint32_t <a class="code hl_function" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#ae1528294fbd19be276251ab329f57914">sensor_msgs::msg::RegionOfInterest::height</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    <span class="keywordflow">return</span> m_height;</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>}</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span><span class="comment"></span> </div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span><span class="comment">/*!</span></div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span><span class="comment"> * @brief 此函数用于返回成员变量 height 的引用</span></div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span><span class="comment"> * @return 成员变量 m_height 的引用，可用于在外部直接修改该成员变量的值</span></div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno"><a class="line" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a23a33baa1e47bda20ddf30e5c1a6b328">  257</a></span>uint32_t&amp; <a class="code hl_function" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#ae1528294fbd19be276251ab329f57914">sensor_msgs::msg::RegionOfInterest::height</a>()</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>{</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    <span class="keywordflow">return</span> m_height;</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>}</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span><span class="comment"></span> </div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span><span class="comment">/*!</span></div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span><span class="comment"> * @brief 此函数用于设置成员变量 width 的值</span></div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span><span class="comment"> * @param _width 要赋给成员变量 m_width 的新值</span></div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno"><a class="line" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a1236eb69dc0714dc7ab48539ab954edb">  266</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a271a474f965bcbdc101dd8278cc8f850">sensor_msgs::msg::RegionOfInterest::width</a>(</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>        uint32_t _width)</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>{</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    m_width = _width;</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>}</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span><span class="comment"></span> </div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span><span class="comment">/*!</span></div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span><span class="comment"> * @brief 此函数用于返回成员变量 width 的值</span></div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span><span class="comment"> * @return 成员变量 m_width 的当前值</span></div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno"><a class="line" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a271a474f965bcbdc101dd8278cc8f850">  276</a></span>uint32_t <a class="code hl_function" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a271a474f965bcbdc101dd8278cc8f850">sensor_msgs::msg::RegionOfInterest::width</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    <span class="keywordflow">return</span> m_width;</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>}</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span><span class="comment"></span> </div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span><span class="comment">/*!</span></div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span><span class="comment"> * @brief 此函数用于返回成员变量 width 的引用</span></div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span><span class="comment"> * @return 成员变量 m_width 的引用，可用于在外部直接修改该成员变量的值</span></div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno"><a class="line" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a0583b147f5c3e7721a16731d2a2956fa">  285</a></span>uint32_t&amp; <a class="code hl_function" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a271a474f965bcbdc101dd8278cc8f850">sensor_msgs::msg::RegionOfInterest::width</a>()</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>{</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>    <span class="keywordflow">return</span> m_width;</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>}</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span><span class="comment"></span> </div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span><span class="comment">/*!</span></div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span><span class="comment"> * @brief 此函数用于设置成员变量 do_rectify 的值</span></div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span><span class="comment"> * @param _do_rectify 要赋给成员变量 m_do_rectify 的新值</span></div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno"><a class="line" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#af69df0ba047d0be706baaf4ee6e43785">  294</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a8d2f70682d60fd5d4f9c4912d0a6fa8b">sensor_msgs::msg::RegionOfInterest::do_rectify</a>(</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>        <span class="keywordtype">bool</span> _do_rectify)</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>{</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>    m_do_rectify = _do_rectify;</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>}</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span><span class="comment"></span> </div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span><span class="comment">/*!</span></div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span><span class="comment"> * @brief 此函数用于返回成员变量 do_rectify 的值</span></div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span><span class="comment"> * @return 成员变量 m_do_rectify 的当前值</span></div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno"><a class="line" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a8d2f70682d60fd5d4f9c4912d0a6fa8b">  304</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a8d2f70682d60fd5d4f9c4912d0a6fa8b">sensor_msgs::msg::RegionOfInterest::do_rectify</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>    <span class="keywordflow">return</span> m_do_rectify;</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>}</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span><span class="comment"></span> </div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span><span class="comment">/*!</span></div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span><span class="comment"> * @brief 此函数用于返回成员变量 do_rectify 的引用</span></div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span><span class="comment"> * @return 成员变量 m_do_rectify 的引用，可用于在外部直接修改该成员变量的值</span></div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno"><a class="line" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a69eddaed96d1d561a59af3892ee6ab08">  313</a></span><span class="keywordtype">bool</span>&amp; <a class="code hl_function" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a8d2f70682d60fd5d4f9c4912d0a6fa8b">sensor_msgs::msg::RegionOfInterest::do_rectify</a>()</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>{</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    <span class="keywordflow">return</span> m_do_rectify;</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>}</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span><span class="comment">// 获取 RegionOfInterest 对象键的最大CDR序列化大小的函数定义</span></div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span><span class="comment">// 类似前面获取对象最大CDR序列化大小的函数，此处忽略传入的 current_alignment 参数，直接返回预定义的键最大序列化大小</span></div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno"><a class="line" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a67f38d78c3f4c029fb6a7cd4db6dc37d">  319</a></span><span class="keywordtype">size_t</span> <a class="code hl_function" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a67f38d78c3f4c029fb6a7cd4db6dc37d">sensor_msgs::msg::RegionOfInterest::getKeyMaxCdrSerializedSize</a>(</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>        <span class="keywordtype">size_t</span> <a class="code hl_variable" href="../../db/db2/PoseWithCovariance_8cpp.html#ab0622670d2b449ae43c500e168400292">current_alignment</a>)</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>{</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>    <span class="keyword">static_cast&lt;</span><span class="keywordtype">void</span><span class="keyword">&gt;</span>(<a class="code hl_variable" href="../../db/db2/PoseWithCovariance_8cpp.html#ab0622670d2b449ae43c500e168400292">current_alignment</a>);</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>    <span class="keywordflow">return</span> <a class="code hl_define" href="../../d8/d7a/CameraInfo_8cpp.html#ab9652535d9420954b64f52ddd57c54c6">sensor_msgs_msg_RegionOfInterest_max_key_cdr_typesize</a>;</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>}</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span><span class="comment">// 判断 RegionOfInterest 对象的键是否已定义的函数定义</span></div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span><span class="comment">// 此处直接返回 false，表示键未定义，具体是否符合业务逻辑需结合实际情况判断</span></div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno"><a class="line" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#ad08e912c33af58328dd6e0a590f9cbfe">  327</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#ad08e912c33af58328dd6e0a590f9cbfe">sensor_msgs::msg::RegionOfInterest::isKeyDefined</a>()</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>{</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>}</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span><span class="comment">// 对 RegionOfInterest 对象的键进行序列化的函数定义</span></div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span><span class="comment">// 参数 scdr 为序列化相关对象，但此处直接将其忽略（通过(void) scdr 语句），可能意味着该对象的键不需要进行实际的序列化操作，具体取决于业务逻辑</span></div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno"><a class="line" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#add52ee58481ed6b1f6ead4e88eebdae8">  333</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#add52ee58481ed6b1f6ead4e88eebdae8">sensor_msgs::msg::RegionOfInterest::serializeKey</a>(</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>        eprosima::fastcdr::Cdr&amp; scdr)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>    (void) scdr;</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>}</div>
+<div class="ttc" id="aCameraInfo_8cpp_html_a1dd498039b5b552e760f7cd8eca2c0bb"><div class="ttname"><a href="../../d8/d7a/CameraInfo_8cpp.html#a1dd498039b5b552e760f7cd8eca2c0bb">sensor_msgs_msg_RegionOfInterest_max_cdr_typesize</a></div><div class="ttdeci">#define sensor_msgs_msg_RegionOfInterest_max_cdr_typesize</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d7a/CameraInfo_8cpp_source.html#l00040">CameraInfo.cpp:40</a></div></div>
+<div class="ttc" id="aCameraInfo_8cpp_html_ab9652535d9420954b64f52ddd57c54c6"><div class="ttname"><a href="../../d8/d7a/CameraInfo_8cpp.html#ab9652535d9420954b64f52ddd57c54c6">sensor_msgs_msg_RegionOfInterest_max_key_cdr_typesize</a></div><div class="ttdeci">#define sensor_msgs_msg_RegionOfInterest_max_key_cdr_typesize</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d7a/CameraInfo_8cpp_source.html#l00044">CameraInfo.cpp:44</a></div></div>
+<div class="ttc" id="aPoseWithCovariance_8cpp_html_a7d42068ec3b034c764f7db0421128810"><div class="ttname"><a href="../../db/db2/PoseWithCovariance_8cpp.html#a7d42068ec3b034c764f7db0421128810">initial_alignment</a></div><div class="ttdeci">return current_alignment initial_alignment</div><div class="ttdef"><b>Definition:</b> <a href="../../db/db2/PoseWithCovariance_8cpp_source.html#l00169">PoseWithCovariance.cpp:169</a></div></div>
+<div class="ttc" id="aPoseWithCovariance_8cpp_html_ab0622670d2b449ae43c500e168400292"><div class="ttname"><a href="../../db/db2/PoseWithCovariance_8cpp.html#ab0622670d2b449ae43c500e168400292">current_alignment</a></div><div class="ttdeci">current_alignment</div><div class="ttdef"><b>Definition:</b> <a href="../../db/db2/PoseWithCovariance_8cpp_source.html#l00162">PoseWithCovariance.cpp:162</a></div></div>
+<div class="ttc" id="aRegionOfInterest_8h_html"><div class="ttname"><a href="../../d5/da2/RegionOfInterest_8h.html">RegionOfInterest.h</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1RegionOfInterest_html"><div class="ttname"><a href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html">sensor_msgs::msg::RegionOfInterest</a></div><div class="ttdoc">This class represents the structure RegionOfInterest defined by the user in the IDL file.</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/da2/RegionOfInterest_8h_source.html#l00070">RegionOfInterest.h:71</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1RegionOfInterest_html_a11add0e83590c40a39198463d36c15b6"><div class="ttname"><a href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a11add0e83590c40a39198463d36c15b6">sensor_msgs::msg::RegionOfInterest::x_offset</a></div><div class="ttdeci">eProsima_user_DllExport uint32_t x_offset() const</div><div class="ttdoc">This function returns the value of member x_offset</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00192">RegionOfInterest.cpp:192</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1RegionOfInterest_html_a16d9e119784b46bd204d9d31ae4a8b86"><div class="ttname"><a href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a16d9e119784b46bd204d9d31ae4a8b86">sensor_msgs::msg::RegionOfInterest::m_do_rectify</a></div><div class="ttdeci">bool m_do_rectify</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/da2/RegionOfInterest_8h_source.html#l00281">RegionOfInterest.h:281</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1RegionOfInterest_html_a271a474f965bcbdc101dd8278cc8f850"><div class="ttname"><a href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a271a474f965bcbdc101dd8278cc8f850">sensor_msgs::msg::RegionOfInterest::width</a></div><div class="ttdeci">eProsima_user_DllExport uint32_t width() const</div><div class="ttdoc">This function returns the value of member width</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00276">RegionOfInterest.cpp:276</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1RegionOfInterest_html_a400852dcf9880a96d51df7ce08cc5f83"><div class="ttname"><a href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a400852dcf9880a96d51df7ce08cc5f83">sensor_msgs::msg::RegionOfInterest::getCdrSerializedSize</a></div><div class="ttdeci">static eProsima_user_DllExport size_t getCdrSerializedSize(const sensor_msgs::msg::RegionOfInterest &amp;data, size_t current_alignment=0)</div><div class="ttdoc">This function returns the serialized size of a data depending on the buffer alignment.</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00141">RegionOfInterest.cpp:141</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1RegionOfInterest_html_a67f38d78c3f4c029fb6a7cd4db6dc37d"><div class="ttname"><a href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a67f38d78c3f4c029fb6a7cd4db6dc37d">sensor_msgs::msg::RegionOfInterest::getKeyMaxCdrSerializedSize</a></div><div class="ttdeci">static eProsima_user_DllExport size_t getKeyMaxCdrSerializedSize(size_t current_alignment=0)</div><div class="ttdoc">This function returns the maximum serialized size of the Key of an object depending on the buffer ali...</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00319">RegionOfInterest.cpp:319</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1RegionOfInterest_html_a6bade161372d851c60700952a895f009"><div class="ttname"><a href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a6bade161372d851c60700952a895f009">sensor_msgs::msg::RegionOfInterest::m_width</a></div><div class="ttdeci">uint32_t m_width</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/da2/RegionOfInterest_8h_source.html#l00280">RegionOfInterest.h:280</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1RegionOfInterest_html_a6de0b2716e715ad13ffe78fd9a99230b"><div class="ttname"><a href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a6de0b2716e715ad13ffe78fd9a99230b">sensor_msgs::msg::RegionOfInterest::m_x_offset</a></div><div class="ttdeci">uint32_t m_x_offset</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/da2/RegionOfInterest_8h_source.html#l00277">RegionOfInterest.h:277</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1RegionOfInterest_html_a6e95b4836b52a9d830a8333d9982a819"><div class="ttname"><a href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a6e95b4836b52a9d830a8333d9982a819">sensor_msgs::msg::RegionOfInterest::deserialize</a></div><div class="ttdeci">eProsima_user_DllExport void deserialize(eprosima::fastcdr::Cdr &amp;cdr)</div><div class="ttdoc">This function deserializes an object using CDR serialization.</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00168">RegionOfInterest.cpp:168</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1RegionOfInterest_html_a74184270a0f02dba4565642ab3686fc9"><div class="ttname"><a href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a74184270a0f02dba4565642ab3686fc9">sensor_msgs::msg::RegionOfInterest::operator==</a></div><div class="ttdeci">eProsima_user_DllExport bool operator==(const RegionOfInterest &amp;x) const</div><div class="ttdoc">Comparison operator.</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00116">RegionOfInterest.cpp:116</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1RegionOfInterest_html_a76bfd18f1ef01831d6acd5ffdc71f835"><div class="ttname"><a href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a76bfd18f1ef01831d6acd5ffdc71f835">sensor_msgs::msg::RegionOfInterest::operator!=</a></div><div class="ttdeci">eProsima_user_DllExport bool operator!=(const RegionOfInterest &amp;x) const</div><div class="ttdoc">Comparison operator.</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00123">RegionOfInterest.cpp:123</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1RegionOfInterest_html_a8d2f70682d60fd5d4f9c4912d0a6fa8b"><div class="ttname"><a href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a8d2f70682d60fd5d4f9c4912d0a6fa8b">sensor_msgs::msg::RegionOfInterest::do_rectify</a></div><div class="ttdeci">eProsima_user_DllExport bool do_rectify() const</div><div class="ttdoc">This function returns the value of member do_rectify</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00304">RegionOfInterest.cpp:304</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1RegionOfInterest_html_a9a82f1e55aec9c49fb38a779c99cecb4"><div class="ttname"><a href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#a9a82f1e55aec9c49fb38a779c99cecb4">sensor_msgs::msg::RegionOfInterest::RegionOfInterest</a></div><div class="ttdeci">eProsima_user_DllExport RegionOfInterest()</div><div class="ttdoc">Default constructor.</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00047">RegionOfInterest.cpp:47</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1RegionOfInterest_html_aa2132a867396c7ff5c0afa1eda96b974"><div class="ttname"><a href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#aa2132a867396c7ff5c0afa1eda96b974">sensor_msgs::msg::RegionOfInterest::serialize</a></div><div class="ttdeci">eProsima_user_DllExport void serialize(eprosima::fastcdr::Cdr &amp;cdr) const</div><div class="ttdoc">This function serializes an object using CDR serialization.</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00157">RegionOfInterest.cpp:157</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1RegionOfInterest_html_aa641f3772eac39ae8c6fed28943c0c76"><div class="ttname"><a href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#aa641f3772eac39ae8c6fed28943c0c76">sensor_msgs::msg::RegionOfInterest::operator=</a></div><div class="ttdeci">eProsima_user_DllExport RegionOfInterest &amp; operator=(const RegionOfInterest &amp;x)</div><div class="ttdoc">Copy assignment.</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00090">RegionOfInterest.cpp:90</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1RegionOfInterest_html_aafc7f923bf82e723151c78dbb7f94f66"><div class="ttname"><a href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#aafc7f923bf82e723151c78dbb7f94f66">sensor_msgs::msg::RegionOfInterest::y_offset</a></div><div class="ttdeci">eProsima_user_DllExport uint32_t y_offset() const</div><div class="ttdoc">This function returns the value of member y_offset</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00220">RegionOfInterest.cpp:220</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1RegionOfInterest_html_ab8ff1a852c059c2b6d880f62813536c8"><div class="ttname"><a href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#ab8ff1a852c059c2b6d880f62813536c8">sensor_msgs::msg::RegionOfInterest::~RegionOfInterest</a></div><div class="ttdeci">eProsima_user_DllExport ~RegionOfInterest()</div><div class="ttdoc">Default destructor.</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00062">RegionOfInterest.cpp:62</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1RegionOfInterest_html_ad08e912c33af58328dd6e0a590f9cbfe"><div class="ttname"><a href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#ad08e912c33af58328dd6e0a590f9cbfe">sensor_msgs::msg::RegionOfInterest::isKeyDefined</a></div><div class="ttdeci">static eProsima_user_DllExport bool isKeyDefined()</div><div class="ttdoc">This function tells you if the Key has been defined for this type</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00327">RegionOfInterest.cpp:327</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1RegionOfInterest_html_ad0b422cc9300f4c7ec8446adfa5e25f9"><div class="ttname"><a href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#ad0b422cc9300f4c7ec8446adfa5e25f9">sensor_msgs::msg::RegionOfInterest::m_height</a></div><div class="ttdeci">uint32_t m_height</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/da2/RegionOfInterest_8h_source.html#l00279">RegionOfInterest.h:279</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1RegionOfInterest_html_add52ee58481ed6b1f6ead4e88eebdae8"><div class="ttname"><a href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#add52ee58481ed6b1f6ead4e88eebdae8">sensor_msgs::msg::RegionOfInterest::serializeKey</a></div><div class="ttdeci">eProsima_user_DllExport void serializeKey(eprosima::fastcdr::Cdr &amp;cdr) const</div><div class="ttdoc">This function serializes the key members of an object using CDR serialization.</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00333">RegionOfInterest.cpp:333</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1RegionOfInterest_html_ae1528294fbd19be276251ab329f57914"><div class="ttname"><a href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#ae1528294fbd19be276251ab329f57914">sensor_msgs::msg::RegionOfInterest::height</a></div><div class="ttdeci">eProsima_user_DllExport uint32_t height() const</div><div class="ttdoc">This function returns the value of member height</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00248">RegionOfInterest.cpp:248</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1RegionOfInterest_html_af03b4cf729d664f243d6f46e94deb581"><div class="ttname"><a href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#af03b4cf729d664f243d6f46e94deb581">sensor_msgs::msg::RegionOfInterest::m_y_offset</a></div><div class="ttdeci">uint32_t m_y_offset</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/da2/RegionOfInterest_8h_source.html#l00278">RegionOfInterest.h:278</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1RegionOfInterest_html_afd799bb3014ec6eaa9247ff8b596683c"><div class="ttname"><a href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html#afd799bb3014ec6eaa9247ff8b596683c">sensor_msgs::msg::RegionOfInterest::getMaxCdrSerializedSize</a></div><div class="ttdeci">static eProsima_user_DllExport size_t getMaxCdrSerializedSize(size_t current_alignment=0)</div><div class="ttdoc">This function returns the maximum serialized size of an object depending on the buffer alignment.</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00131">RegionOfInterest.cpp:131</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

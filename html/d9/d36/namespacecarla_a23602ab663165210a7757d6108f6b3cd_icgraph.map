@@ -1,0 +1,49 @@
+<map id="carla::throw_exception" name="carla::throw_exception">
+<area shape="rect" id="node1" title=" " alt="" coords="1249,767,1400,793"/>
+<area shape="rect" id="node2" href="$df/dcc/classcarla_1_1client_1_1BlueprintLibrary.html#af6f91755464d5b8d456c190d05b2a827" title=" " alt="" coords="1021,5,1165,45"/>
+<area shape="rect" id="node3" href="$d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html#ac5afe29e1647fd161dfafe6f3aed9508" title=" " alt="" coords="1029,69,1156,109"/>
+<area shape="rect" id="node4" href="$d0/d0a/classcarla_1_1Buffer.html#ae6d90c0671beb254ce5e9fe87dd9bc59" title="创建一个分配了 size字节的缓冲区。\ifile &#160;&quot;/github/workspace/LibCarla/source/carla/Buffer.h&quot;" alt="" coords="1027,134,1158,159"/>
+<area shape="rect" id="node5" href="$dc/de1/classcarla_1_1client_1_1detail_1_1Client_1_1Pimpl.html#adda5cd1104173f80cd8a7c9cd1e077d8" title=" " alt="" coords="753,207,931,247"/>
+<area shape="rect" id="node6" href="$dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#a940286588c681f9c696c2e4a6aef1b5b" title="构造函数。" alt="" coords="1017,299,1168,339"/>
+<area shape="rect" id="node7" href="$d1/d8b/classcarla_1_1sensor_1_1s11n_1_1NoopSerializer.html#a6e9a2546602fe66b205613f9b2d215d9" title=" " alt="" coords="1002,363,1183,403"/>
+<area shape="rect" id="node8" href="$d1/dd3/classcarla_1_1client_1_1detail_1_1EpisodeProxyImpl.html#a8690b78c1a7e35e508cb7f1f0845dc31" title=" " alt="" coords="999,427,1187,496"/>
+<area shape="rect" id="node9" href="$de/d3a/classcarla_1_1sensor_1_1data_1_1LaneInvasionEvent.html#a31f91056fa20913ecdb29421f165807e" title="获取压线车道的Actor" alt="" coords="1023,521,1162,575"/>
+<area shape="rect" id="node10" href="$d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html#a3cbc630625a77d85b0bc2472c5a9d6c3" title=" " alt="" coords="1005,600,1180,640"/>
+<area shape="rect" id="node12" href="$d7/db6/classcarla_1_1client_1_1RssSensor.html#af2dcc2b1ee4a52dbc8e1e7727e3653c4" title="注册一个回调函数，每次接收到新的测量数据时都会执行该函数。" alt="" coords="1014,664,1171,704"/>
+<area shape="rect" id="node13" href="$d2/d21/classcarla_1_1FileSystem.html#a0c350a74f452877560a7ac63c37a7b94" title="列出 folder_path 中匹配 wildcard_pattern 的常规文件 （不递归）。" alt="" coords="1029,728,1156,768"/>
+<area shape="rect" id="node16" href="$df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html#ab5481628a75cf422d65b88d557fa57ff" title=" " alt="" coords="279,828,443,868"/>
+<area shape="rect" id="node19" href="$d2/daf/namespacecarla_1_1client.html#a228b83c6429f8e3406a93a1b41eb1565" title=" " alt="" coords="1017,907,1168,933"/>
+<area shape="rect" id="node20" href="$d1/d16/classcarla_1_1streaming_1_1detail_1_1Dispatcher.html#a5f3261c348de9d2f7275b07a8a4c34b1" title=" " alt="" coords="1007,957,1178,997"/>
+<area shape="rect" id="node27" href="$df/d00/namespaceclmdep__msgpack.html#ad99ad3bb5c4d0080d2ac17ba658c80be" title=" " alt="" coords="989,1085,1196,1125"/>
+<area shape="rect" id="node28" href="$dc/de1/classcarla_1_1client_1_1detail_1_1Client_1_1Pimpl.html#a467f0f8620522ef64473a686ad43baa4" title=" " alt="" coords="1015,235,1170,275"/>
+<area shape="rect" id="node29" href="$df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html#a414d306143aa4176218dad033c46553c" title=" " alt="" coords="990,1149,1195,1189"/>
+<area shape="rect" id="node30" href="$d0/d0a/classcarla_1_1Buffer.html#ae38f48d87916e6da83253cff63542d48" title="重置缓冲区的大小。如果容量不足，当前内存将被丢弃，并分配一个新的大小为 size的内存块。 allocated." alt="" coords="1030,1214,1155,1239"/>
+<area shape="rect" id="node31" href="$df/de1/classcarla_1_1streaming_1_1detail_1_1token__type.html#a79b20aa8051e9f2baa1ef9432fa7ed9e" title="设置地址。" alt="" coords="1009,1021,1177,1061"/>
+<area shape="rect" id="node35" href="$df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html#abf453835f6d0a2adec59c68aca2457eb" title=" " alt="" coords="1031,1264,1155,1304"/>
+<area shape="rect" id="node36" href="$db/d80/classcarla_1_1traffic__manager_1_1TrafficManagerServer.html#ab33d2169176015f73a380153c05dad9b" title="默认移动赋值运算符" alt="" coords="1017,1329,1168,1383"/>
+<area shape="rect" id="node37" href="$df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html#a828a2d0b33e3746d6def8095794b8e85" title=" " alt="" coords="984,1408,1201,1448"/>
+<area shape="rect" id="node38" href="$d0/df9/classcarla_1_1RecurrentSharedFuture.html#a6fd4f82e6139340524a9d5a16f3aec3c" title="等待直到下一个值被设置。任意数量的线程可以同时等待。" alt="" coords="997,1472,1188,1512"/>
+<area shape="rect" id="node40" href="$df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html#a002b29bb5445982c00d7566e5cfa0439" title=" " alt="" coords="1013,792,1172,832"/>
+<area shape="rect" id="node11" href="$d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html#ac22afb2aed37d39cc23d07c05648c668" title="Set the value of the attribute given by id." alt="" coords="755,600,929,640"/>
+<area shape="rect" id="node14" href="$d3/d3b/classutil_1_1OpenDrive.html#a00a9ef927695cc1efc94abc1dfe5ca0b" title=" " alt="" coords="749,667,935,707"/>
+<area shape="rect" id="node15" href="$d1/dc0/test__opendrive_8cpp.html#a95337c8716f4e9d4e8bba560dbde9e34" title=" " alt="" coords="568,627,623,653"/>
+<area shape="rect" id="node17" href="$df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html#a9c02ba42b0f621acadcedde6cece26f7" title=" " alt="" coords="5,860,231,900"/>
+<area shape="rect" id="node18" href="$df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html#a3456d71f81301522bdfb013838bc4589" title=" " alt="" coords="31,796,205,836"/>
+<area shape="rect" id="node21" href="$d0/d7a/classcarla_1_1streaming_1_1low__level_1_1Server.html#af0197baff1d5393af4962cf7a4026f10" title=" " alt="" coords="752,907,932,947"/>
+<area shape="rect" id="node26" href="$d3/d36/test__streaming_8cpp.html#af96e4c48bd89c8e763b4140df650e8bf" title=" " alt="" coords="815,971,869,997"/>
+<area shape="rect" id="node22" href="$d5/de5/classcarla_1_1streaming_1_1Server.html#ac98f90e2e8efdb56eb51d5ae7f944d9a" title=" " alt="" coords="517,907,674,947"/>
+<area shape="rect" id="node25" href="$d3/d36/test__streaming_8cpp.html#a627c7e42d27ebe95f159d0bd2b7b5ef5" title=" " alt="" coords="568,971,623,997"/>
+<area shape="rect" id="node23" href="$dc/d7d/classBenchmark.html#a8f80409183101f8d64458d773d0e95f3" title=" " alt="" coords="281,1011,440,1037"/>
+<area shape="rect" id="node24" href="$d3/d36/test__streaming_8cpp.html#a911dfcbbbcdc77dca7bdfd904a2220c2" title=" " alt="" coords="333,930,388,955"/>
+<area shape="rect" id="node32" href="$da/d83/classcarla_1_1streaming_1_1low__level_1_1Client.html#a35387075fbaf2d862fee9fce4ac511d6" title=" " alt="" coords="763,1021,921,1061"/>
+<area shape="rect" id="node34" href="$df/de1/classcarla_1_1streaming_1_1detail_1_1token__type.html#a9c5ab10e967f37876975028074be5515" title="构造函数，根据给定的流ID和端点创建令牌。" alt="" coords="762,1085,922,1125"/>
+<area shape="rect" id="node33" href="$d0/daa/classcarla_1_1streaming_1_1Client.html#a8fcc50f5825c149beea4fe8f189ff4a9" title=" " alt="" coords="519,1021,671,1061"/>
+<area shape="rect" id="node39" href="$dc/d1b/test__recurrent__shared__future_8cpp.html#a2f7392528c09282ddc906c9ee33aea0b" title=" " alt="" coords="815,1479,869,1505"/>
+<area shape="rect" id="node41" href="$df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html#a57c33e4d297be5e0285a14fc8bac65b2" title=" " alt="" coords="748,755,936,810"/>
+<area shape="rect" id="node42" href="$df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html#af6e35986ac6ca31bfa0f99df4be2b8d3" title=" " alt="" coords="496,741,695,781"/>
+<area shape="rect" id="node47" href="$df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html#aae1f4ab0322223440b1f87d6024d36c3" title=" " alt="" coords="491,677,700,717"/>
+<area shape="rect" id="node43" href="$df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html#a67c2350237e7fdfabd9c08a40034f2bd" title=" " alt="" coords="289,636,432,676"/>
+<area shape="rect" id="node44" href="$df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html#a5127db735834f03f44930d0edf65527a" title="根据现有参与者的描述创建一个参与者实例。请注意，这不会生成参与者。" alt="" coords="285,700,437,740"/>
+<area shape="rect" id="node46" href="$df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html#a49a4e44139e9b01e4a16aa1f87ebf828" title="在模拟中生成一个参与者" alt="" coords="281,764,441,804"/>
+<area shape="rect" id="node45" href="$df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html#a961f59d6b4998debd50c4d5aa931806c" title=" " alt="" coords="35,700,201,740"/>
+</map>

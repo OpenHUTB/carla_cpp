@@ -1,0 +1,13 @@
+<map id="carla::client::detail::ActorFactory::MakeActor" name="carla::client::detail::ActorFactory::MakeActor">
+<area shape="rect" id="node1" title="基于提供的 actor_description 创建一个参与者。episode 必须指向该参与者所在的章节（或者说区域）" alt="" coords="655,220,825,260"/>
+<area shape="rect" id="node2" href="$d4/dad/classcarla_1_1client_1_1detail_1_1ActorVariant.html#a25d6826097625e7966794a60332994f5" title=" " alt="" coords="437,156,607,196"/>
+<area shape="rect" id="node9" href="$df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html#a5127db735834f03f44930d0edf65527a" title="根据现有参与者的描述创建一个参与者实例。请注意，这不会生成参与者。" alt="" coords="446,220,598,260"/>
+<area shape="rect" id="node11" href="$df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html#a49a4e44139e9b01e4a16aa1f87ebf828" title="在模拟中生成一个参与者" alt="" coords="442,284,602,324"/>
+<area shape="rect" id="node3" href="$d4/dad/classcarla_1_1client_1_1detail_1_1ActorVariant.html#ae07a22b0b638b4fdd580987307e13c94" title=" " alt="" coords="243,156,369,196"/>
+<area shape="rect" id="node4" href="$d5/dae/classcarla_1_1sensor_1_1data_1_1CollisionEvent.html#abb9c71fb02bc8648993e48722c4f145b" title="Get &quot;self&quot; actor. Actor that measured the collision." alt="" coords="6,5,174,45"/>
+<area shape="rect" id="node5" href="$d3/d28/classcarla_1_1sensor_1_1data_1_1ObstacleDetectionEvent.html#a198a7f860ac4f380a3d8915fa37b927d" title=" " alt="" coords="6,70,174,125"/>
+<area shape="rect" id="node6" href="$d5/dae/classcarla_1_1sensor_1_1data_1_1CollisionEvent.html#a699477ab96a078f6353f32c2f22c5dd8" title="Get the actor to which we collided." alt="" coords="5,149,175,203"/>
+<area shape="rect" id="node7" href="$d3/d28/classcarla_1_1sensor_1_1data_1_1ObstacleDetectionEvent.html#a4f1286d12ee3cc98dee95923e2790d53" title=" " alt="" coords="6,227,174,282"/>
+<area shape="rect" id="node8" href="$db/d80/classcarla_1_1traffic__manager_1_1TrafficManagerServer.html#ab33d2169176015f73a380153c05dad9b" title="默认移动赋值运算符" alt="" coords="15,306,165,361"/>
+<area shape="rect" id="node10" href="$df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html#a961f59d6b4998debd50c4d5aa931806c" title=" " alt="" coords="223,220,389,260"/>
+</map>

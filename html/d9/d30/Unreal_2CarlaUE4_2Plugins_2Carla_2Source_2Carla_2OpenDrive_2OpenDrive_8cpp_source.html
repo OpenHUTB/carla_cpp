@@ -1,0 +1,310 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: OpenDrive.cpp 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_2d15d0715a2692171bd03ed14a4a79af.html">Unreal</a></li><li class="navelem"><a class="el" href="../../dir_d3c1db2570616bec48bf5a6dd06bce95.html">CarlaUE4</a></li><li class="navelem"><a class="el" href="../../dir_3538576148ac14151677be9b0aee6fcc.html">Plugins</a></li><li class="navelem"><a class="el" href="../../dir_fbda5b12374c683cbdca72abb2d51944.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_18937e8f6bde63367bf26837323a9508.html">Source</a></li><li class="navelem"><a class="el" href="../../dir_8fc34afb5f07a67966c78bf5319f94ae.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_d0b0d7f8e453984c2ffe9ea659d3c27f.html">OpenDrive</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">Unreal/CarlaUE4/Plugins/Carla/Source/Carla/OpenDrive/OpenDrive.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d9/d30/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2OpenDrive_2OpenDrive_8cpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// de Barcelona (UAB).</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// This work is licensed under the terms of the MIT license.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="../../d7/d7d/Carla_8h.html">Carla.h</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="../../d1/d9b/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2OpenDrive_2OpenDrive_8h.html">Carla/OpenDrive/OpenDrive.h</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="../../d3/d49/CarlaGameModeBase_8h.html">Carla/Game/CarlaGameModeBase.h</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;Misc/FileHelper.h&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="../../d9/dc8/CarlaStatics_8h.html">Carla/Game/CarlaStatics.h</a>&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;GenericPlatform/GenericPlatformProcess.h&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;Runtime/Core/Public/HAL/FileManagerGeneric.h&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;Misc/FileHelper.h&quot;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="../../d1/d1b/classUOpenDrive.html#a5cbcf582e5c4ffd0d7a908e693bae76c">   17</a></span>FString <a class="code hl_function" href="../../d1/d1b/classUOpenDrive.html#a5cbcf582e5c4ffd0d7a908e693bae76c">UOpenDrive::FindPathToXODRFile</a>(<span class="keyword">const</span> FString &amp;InMapName){</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  FString MapName = InMapName;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#if WITH_EDITOR</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>      <span class="comment">// 在编辑器中游玩时，地图名称会多出一个前缀，这里我们将其移除。</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>      FString CorrectedMapName = MapName;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>      <span class="keyword">constexpr</span> <span class="keyword">auto</span> PIEPrefix = TEXT(<span class="stringliteral">&quot;UEDPIE_0_&quot;</span>);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>      CorrectedMapName.RemoveFromStart(PIEPrefix);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>      MapName = CorrectedMapName;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    }</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#endif </span><span class="comment">// WITH_EDITOR</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <span class="comment">// 向地图名称添加.xodr扩展名</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  MapName += TEXT(<span class="stringliteral">&quot;.xodr&quot;</span>);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="comment">// 定义默认文件路径，位于项目的Content目录下的Carla/Maps/OpenDrive子目录中</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <span class="keyword">const</span> FString DefaultFilePath =</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>      FPaths::ProjectContentDir() +</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>      TEXT(<span class="stringliteral">&quot;Carla/Maps/OpenDrive/&quot;</span>) +</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>      MapName;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="comment">// 获取文件管理器的引用</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="keyword">auto</span> &amp;FileManager = IFileManager::Get();</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="comment">// 检查文件管理器是否存在指定的默认文件路径</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <span class="keywordflow">if</span> (FileManager.FileExists(*DefaultFilePath))</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="comment">// 如果文件存在，则返回该路径</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordflow">return</span> DefaultFilePath;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  }</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  <span class="comment">// 创建一个字符串数组，用于存储查找到的文件</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  TArray&lt;FString&gt; FilesFound;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <span class="comment">// 递归查找项目内容目录下所有匹配MapName的文件</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  FileManager.FindFilesRecursive(</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>      FilesFound,</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>      *FPaths::ProjectContentDir(),</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>      *MapName,</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>      <span class="keyword">true</span>,<span class="comment">// 搜索子目录</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>      <span class="keyword">false</span>,<span class="comment">// 不递归查找子目录中的子目录</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>      <span class="keyword">false</span>);<span class="comment">// 只查找文件，不查找目录</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  <span class="comment">// 返回找到的第一个文件的路径，如果没有找到任何文件，则返回空字符串</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  <span class="keywordflow">return</span> FilesFound.Num() &gt; 0 ? FilesFound[0u] : FString{};</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>}</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="comment">// UOpenDrive类的成员函数，用于获取当前世界对应的OpenDrive文件路径</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="../../d1/d1b/classUOpenDrive.html#a6970e61734505fd6ee9f58041fe49dc0">   66</a></span>FString <a class="code hl_function" href="../../d1/d1b/classUOpenDrive.html#a6970e61734505fd6ee9f58041fe49dc0">UOpenDrive::GetXODR</a>(<span class="keyword">const</span> UWorld *<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#a7900ed61793880e7e50eaf1142aa6dd2">World</a>)</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>{</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  <span class="comment">// 获取世界对象的地图名称</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  <span class="keyword">auto</span> MapName = <a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#a7900ed61793880e7e50eaf1142aa6dd2">World</a>-&gt;GetMapName();</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  <span class="comment">// 在编辑器中游玩时，地图名称会多出一个前缀，这里我们将其移除。</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="preprocessor">  #if WITH_EDITOR</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  {</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    FString CorrectedMapName = MapName;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> PIEPrefix = TEXT(<span class="stringliteral">&quot;UEDPIE_0_&quot;</span>);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    CorrectedMapName.RemoveFromStart(PIEPrefix);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    MapName = CorrectedMapName;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>  }</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="preprocessor">  #endif </span><span class="comment">// WITH_EDITOR</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  <a class="code hl_class" href="../../db/de5/classACarlaGameModeBase.html">ACarlaGameModeBase</a>* GameMode = <a class="code hl_function" href="../../d7/d1e/classUCarlaStatics.html#acf94832c60579b6d161b66447719efbc">UCarlaStatics::GetGameMode</a>(<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#a7900ed61793880e7e50eaf1142aa6dd2">World</a>);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  <span class="keyword">auto</span> MapDir = GameMode-&gt;<a class="code hl_function" href="../../db/de5/classACarlaGameModeBase.html#a623a6e5b3163f78232dfb114b1524833">GetFullMapPath</a>();</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  <span class="keyword">const</span> <span class="keyword">auto</span> FolderDir = MapDir + <span class="stringliteral">&quot;/OpenDrive/&quot;</span>;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  <span class="keyword">const</span> <span class="keyword">auto</span> FileName = MapDir.EndsWith(MapName) ? <span class="stringliteral">&quot;*&quot;</span> : MapName;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  <span class="comment">// 查找地图中所有.xodr和.bin文件。</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  TArray&lt;FString&gt; Files;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>  <span class="comment">// 递归查找指定文件夹下所有.xodr文件</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>  IFileManager::Get().FindFilesRecursive(Files, *FolderDir, *FString(FileName + <span class="stringliteral">&quot;.xodr&quot;</span>), <span class="keyword">true</span>, <span class="keyword">false</span>, <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  FString Content;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>  <span class="comment">// 如果没有找到文件</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>  <span class="keywordflow">if</span> (!Files.Num())</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>  {</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="comment">// 记录错误日志，表示没有找到OpenDrive文件</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <a class="code hl_function" href="../../d0/d6a/ActorDispatcher_8cpp.html#a69d0a7232310b5ebaa51abb2b9945184">UE_LOG</a>(LogTemp, Error, TEXT(<span class="stringliteral">&quot;Failed to find OpenDrive file for map &#39;%s&#39;&quot;</span>), *MapName);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>  }</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="comment">// 如果成功加载了文件</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  <span class="keywordflow">else</span> <span class="keywordflow">if</span> (FFileHelper::LoadFileToString(Content, *Files[0]))</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>  {</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="comment">// 记录日志，表示成功加载了OpenDrive文件</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <a class="code hl_function" href="../../d0/d6a/ActorDispatcher_8cpp.html#a69d0a7232310b5ebaa51abb2b9945184">UE_LOG</a>(LogTemp, Log, TEXT(<span class="stringliteral">&quot;Loaded OpenDrive file &#39;%s&#39;&quot;</span>), *Files[0]);</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>  }</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>  <span class="comment">// 如果加载文件失败</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>  <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>  {</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="comment">// 记录错误日志，表示加载OpenDrive文件失败</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <a class="code hl_function" href="../../d0/d6a/ActorDispatcher_8cpp.html#a69d0a7232310b5ebaa51abb2b9945184">UE_LOG</a>(LogTemp, Error, TEXT(<span class="stringliteral">&quot;Failed to load OpenDrive file &#39;%s&#39;&quot;</span>), *Files[0]);</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  }</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>  <span class="comment">// 返回文件内容</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>  <span class="keywordflow">return</span> Content;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>}</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="comment">// UOpenDrive类的成员函数，用于加载指定地图的OpenDrive文件</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="../../d1/d1b/classUOpenDrive.html#a8b43e38d054303fd1353447a6514e228">  118</a></span>FString <a class="code hl_function" href="../../d1/d1b/classUOpenDrive.html#a8b43e38d054303fd1353447a6514e228">UOpenDrive::LoadXODR</a>(<span class="keyword">const</span> FString &amp;MapName)</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>{</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>  <span class="comment">// 调用FindPathToXODRFile函数查找OpenDrive文件的路径</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>  <span class="keyword">const</span> <span class="keyword">auto</span> FilePath = <a class="code hl_function" href="../../d1/d1b/classUOpenDrive.html#a5cbcf582e5c4ffd0d7a908e693bae76c">FindPathToXODRFile</a>(MapName);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>  FString Content;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>   <span class="comment">// 如果文件路径为空</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>  <span class="keywordflow">if</span> (FilePath.IsEmpty())</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>  {</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="comment">// 记录错误日志，表示没有找到OpenDrive文件</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <a class="code hl_function" href="../../d0/d6a/ActorDispatcher_8cpp.html#a69d0a7232310b5ebaa51abb2b9945184">UE_LOG</a>(LogTemp, Error, TEXT(<span class="stringliteral">&quot;Failed to find OpenDrive file for map &#39;%s&#39;&quot;</span>), *MapName);</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>  }</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="comment">// 如果成功加载了文件</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>  <span class="keywordflow">else</span> <span class="keywordflow">if</span> (FFileHelper::LoadFileToString(Content, *FilePath))</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>  {</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="comment">// 记录日志，表示成功加载了OpenDrive文件</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <a class="code hl_function" href="../../d0/d6a/ActorDispatcher_8cpp.html#a69d0a7232310b5ebaa51abb2b9945184">UE_LOG</a>(LogTemp, Log, TEXT(<span class="stringliteral">&quot;Loaded OpenDrive file &#39;%s&#39;&quot;</span>), *FilePath);</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>  }</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="comment">// 如果加载文件失败</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>  <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>  {</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <span class="comment">// 记录错误日志，表示加载OpenDrive文件失败</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <a class="code hl_function" href="../../d0/d6a/ActorDispatcher_8cpp.html#a69d0a7232310b5ebaa51abb2b9945184">UE_LOG</a>(LogTemp, Error, TEXT(<span class="stringliteral">&quot;Failed to load OpenDrive file &#39;%s&#39;&quot;</span>), *FilePath);</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>  }</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>  <span class="comment">// 返回文件内容</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>  <span class="keywordflow">return</span> Content;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>}</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span><span class="comment">// UOpenDrive类的成员函数，用于根据给定的路径和地图名称获取OpenDrive文件内容</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="../../d1/d1b/classUOpenDrive.html#acc3124631694443e18475605c58a8cad">  149</a></span>FString <a class="code hl_function" href="../../d1/d1b/classUOpenDrive.html#acc3124631694443e18475605c58a8cad">UOpenDrive::GetXODRByPath</a>(FString XODRPath, FString MapName){</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>  <span class="comment">// 在编辑器中游玩时，地图名称会多出一个前缀，这里我们将其移除。</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span><span class="preprocessor">  #if WITH_EDITOR</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>  {</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    FString CorrectedMapName = MapName;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> PIEPrefix = TEXT(<span class="stringliteral">&quot;UEDPIE_0_&quot;</span>);</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    CorrectedMapName.RemoveFromStart(PIEPrefix);</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    MapName = CorrectedMapName;</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>  }</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="preprocessor">  #endif </span><span class="comment">// WITH_EDITOR</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>  FString FileName = XODRPath.EndsWith(MapName) ? <span class="stringliteral">&quot;*&quot;</span> : MapName;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>  FString FolderDir = XODRPath;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>  FolderDir.RemoveFromEnd(MapName + <span class="stringliteral">&quot;.xodr&quot;</span>);</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>  <span class="comment">// 查找地图中所有.xodr和.bin文件。</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>  TArray&lt;FString&gt; Files;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>  IFileManager::Get().FindFilesRecursive(Files, *FolderDir, *FString(FileName + <span class="stringliteral">&quot;.xodr&quot;</span>), <span class="keyword">true</span>, <span class="keyword">false</span>, <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>  FString Content;</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>  <span class="keywordflow">if</span> (!Files.Num())</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>  {</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <a class="code hl_function" href="../../d0/d6a/ActorDispatcher_8cpp.html#a69d0a7232310b5ebaa51abb2b9945184">UE_LOG</a>(LogTemp, Error, TEXT(<span class="stringliteral">&quot;Failed to find OpenDrive file for map &#39;%s&#39;&quot;</span>), *MapName);</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>  }</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>  <span class="keywordflow">else</span> <span class="keywordflow">if</span> (FFileHelper::LoadFileToString(Content, *Files[0]))</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>  {</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    <a class="code hl_function" href="../../d0/d6a/ActorDispatcher_8cpp.html#a69d0a7232310b5ebaa51abb2b9945184">UE_LOG</a>(LogTemp, Log, TEXT(<span class="stringliteral">&quot;Loaded OpenDrive file &#39;%s&#39;&quot;</span>), *Files[0]);</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>  }</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>  <span class="keywordflow">return</span> Content;</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>}</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno"><a class="line" href="../../d1/d1b/classUOpenDrive.html#ac05b8dc3f340e373582945f9215081d9">  183</a></span><a class="code hl_class" href="../../d8/dfe/classUOpenDriveMap.html">UOpenDriveMap</a> *<a class="code hl_function" href="../../d1/d1b/classUOpenDrive.html#ac05b8dc3f340e373582945f9215081d9">UOpenDrive::LoadOpenDriveMap</a>(<span class="keyword">const</span> FString &amp;MapName)</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>{</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>  <a class="code hl_class" href="../../d8/dfe/classUOpenDriveMap.html">UOpenDriveMap</a> *<a class="code hl_class" href="../../d7/db0/classMap.html">Map</a> = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>  <span class="keyword">auto</span> XODRContent = <a class="code hl_function" href="../../d1/d1b/classUOpenDrive.html#a8b43e38d054303fd1353447a6514e228">LoadXODR</a>(MapName);</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>  <span class="keywordflow">if</span> (!XODRContent.IsEmpty())</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>  {</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <a class="code hl_class" href="../../d7/db0/classMap.html">Map</a> = NewObject&lt;UOpenDriveMap&gt;();</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <a class="code hl_class" href="../../d7/db0/classMap.html">Map</a>-&gt;Load(XODRContent);</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>  }</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>  <span class="keywordflow">return</span> <a class="code hl_class" href="../../d7/db0/classMap.html">Map</a>;</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>}</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno"><a class="line" href="../../d1/d1b/classUOpenDrive.html#a4486c7ee9d4a8bf6cd2a7ca5ad7e4ece">  195</a></span><a class="code hl_class" href="../../d8/dfe/classUOpenDriveMap.html">UOpenDriveMap</a> *<a class="code hl_function" href="../../d1/d1b/classUOpenDrive.html#a4486c7ee9d4a8bf6cd2a7ca5ad7e4ece">UOpenDrive::LoadCurrentOpenDriveMap</a>(<span class="keyword">const</span> <a class="code hl_class" href="../../df/def/classUObject.html">UObject</a> *WorldContextObject)</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>{</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>  UWorld *<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#a7900ed61793880e7e50eaf1142aa6dd2">World</a> = GEngine-&gt;GetWorldFromContextObject(WorldContextObject, EGetWorldErrorMode::LogAndReturnNull);</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>  <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#a7900ed61793880e7e50eaf1142aa6dd2">World</a> != <span class="keyword">nullptr</span> ?</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>      <a class="code hl_function" href="../../d1/d1b/classUOpenDrive.html#ac05b8dc3f340e373582945f9215081d9">LoadOpenDriveMap</a>(<a class="code hl_variable" href="../../d3/d43/CarlaActor_8cpp.html#a7900ed61793880e7e50eaf1142aa6dd2">World</a>-&gt;GetMapName()) :</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>      <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>}</div>
+<div class="ttc" id="aActorDispatcher_8cpp_html_a69d0a7232310b5ebaa51abb2b9945184"><div class="ttname"><a href="../../d0/d6a/ActorDispatcher_8cpp.html#a69d0a7232310b5ebaa51abb2b9945184">UE_LOG</a></div><div class="ttdeci">UE_LOG(LogCarla, Log, TEXT(&quot;UActorDispatcher::Destroying actor: '%s' %x&quot;), *Id, Actor)</div></div>
+<div class="ttc" id="aCarlaActor_8cpp_html_a7900ed61793880e7e50eaf1142aa6dd2"><div class="ttname"><a href="../../d3/d43/CarlaActor_8cpp.html#a7900ed61793880e7e50eaf1142aa6dd2">World</a></div><div class="ttdeci">TSharedPtr&lt; const FActorInfo &gt; carla::rpc::ActorState UWorld * World</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d43/CarlaActor_8cpp_source.html#l00082">CarlaActor.cpp:83</a></div></div>
+<div class="ttc" id="aCarlaGameModeBase_8h_html"><div class="ttname"><a href="../../d3/d49/CarlaGameModeBase_8h.html">CarlaGameModeBase.h</a></div></div>
+<div class="ttc" id="aCarlaStatics_8h_html"><div class="ttname"><a href="../../d9/dc8/CarlaStatics_8h.html">CarlaStatics.h</a></div></div>
+<div class="ttc" id="aCarla_8h_html"><div class="ttname"><a href="../../d7/d7d/Carla_8h.html">Carla.h</a></div></div>
+<div class="ttc" id="aUnreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2OpenDrive_2OpenDrive_8h_html"><div class="ttname"><a href="../../d1/d9b/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2OpenDrive_2OpenDrive_8h.html">OpenDrive.h</a></div></div>
+<div class="ttc" id="aclassACarlaGameModeBase_html"><div class="ttname"><a href="../../db/de5/classACarlaGameModeBase.html">ACarlaGameModeBase</a></div><div class="ttdoc">CARLA Game Mode 的基类。</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d49/CarlaGameModeBase_8h_source.html#l00035">CarlaGameModeBase.h:36</a></div></div>
+<div class="ttc" id="aclassACarlaGameModeBase_html_a623a6e5b3163f78232dfb114b1524833"><div class="ttname"><a href="../../db/de5/classACarlaGameModeBase.html#a623a6e5b3163f78232dfb114b1524833">ACarlaGameModeBase::GetFullMapPath</a></div><div class="ttdeci">const FString GetFullMapPath() const</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d2e/CarlaGameModeBase_8cpp_source.html#l00071">CarlaGameModeBase.cpp:71</a></div></div>
+<div class="ttc" id="aclassMap_html"><div class="ttname"><a href="../../d7/db0/classMap.html">Map</a></div><div class="ttdoc">地图类的前向声明，用于在LaneInvasionSensor类中可能的引用。</div></div>
+<div class="ttc" id="aclassUCarlaStatics_html_acf94832c60579b6d161b66447719efbc"><div class="ttname"><a href="../../d7/d1e/classUCarlaStatics.html#acf94832c60579b6d161b66447719efbc">UCarlaStatics::GetGameMode</a></div><div class="ttdeci">static ACarlaGameModeBase * GetGameMode(const UObject *WorldContextObject)</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/dc8/CarlaStatics_8h_source.html#l00078">CarlaStatics.h:78</a></div></div>
+<div class="ttc" id="aclassUObject_html"><div class="ttname"><a href="../../df/def/classUObject.html">UObject</a></div></div>
+<div class="ttc" id="aclassUOpenDriveMap_html"><div class="ttname"><a href="../../d8/dfe/classUOpenDriveMap.html">UOpenDriveMap</a></div><div class="ttdoc">将 CARLA OpenDrive API 公开给蓝图的辅助类。</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d95/OpenDriveMap_8h_source.html#l00037">OpenDriveMap.h:38</a></div></div>
+<div class="ttc" id="aclassUOpenDrive_html_a4486c7ee9d4a8bf6cd2a7ca5ad7e4ece"><div class="ttname"><a href="../../d1/d1b/classUOpenDrive.html#a4486c7ee9d4a8bf6cd2a7ca5ad7e4ece">UOpenDrive::LoadCurrentOpenDriveMap</a></div><div class="ttdeci">static UOpenDriveMap * LoadCurrentOpenDriveMap(const UObject *WorldContextObject)</div><div class="ttdoc">�����뵱ǰ���ص�ӳ�������OpenDriveMap������Ҳ����뵱ǰӳ��ƥ���XODR���򷵻�nullptr��</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d30/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2OpenDrive_2OpenDrive_8cpp_source.html#l00195">Unreal/CarlaUE4/Plugins/Carla/Source/Carla/OpenDrive/OpenDrive.cpp:195</a></div></div>
+<div class="ttc" id="aclassUOpenDrive_html_a5cbcf582e5c4ffd0d7a908e693bae76c"><div class="ttname"><a href="../../d1/d1b/classUOpenDrive.html#a5cbcf582e5c4ffd0d7a908e693bae76c">UOpenDrive::FindPathToXODRFile</a></div><div class="ttdeci">static FString FindPathToXODRFile(const FString &amp;InMapName)</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d30/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2OpenDrive_2OpenDrive_8cpp_source.html#l00017">Unreal/CarlaUE4/Plugins/Carla/Source/Carla/OpenDrive/OpenDrive.cpp:17</a></div></div>
+<div class="ttc" id="aclassUOpenDrive_html_a6970e61734505fd6ee9f58041fe49dc0"><div class="ttname"><a href="../../d1/d1b/classUOpenDrive.html#a6970e61734505fd6ee9f58041fe49dc0">UOpenDrive::GetXODR</a></div><div class="ttdeci">static FString GetXODR(const UWorld *World)</div><div class="ttdoc">������MapName������OpenDrive XML������Ҳ����ļ����򷵻ؿա�</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d30/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2OpenDrive_2OpenDrive_8cpp_source.html#l00066">Unreal/CarlaUE4/Plugins/Carla/Source/Carla/OpenDrive/OpenDrive.cpp:66</a></div></div>
+<div class="ttc" id="aclassUOpenDrive_html_a8b43e38d054303fd1353447a6514e228"><div class="ttname"><a href="../../d1/d1b/classUOpenDrive.html#a8b43e38d054303fd1353447a6514e228">UOpenDrive::LoadXODR</a></div><div class="ttdeci">static FString LoadXODR(const FString &amp;MapName)</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d30/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2OpenDrive_2OpenDrive_8cpp_source.html#l00118">Unreal/CarlaUE4/Plugins/Carla/Source/Carla/OpenDrive/OpenDrive.cpp:118</a></div></div>
+<div class="ttc" id="aclassUOpenDrive_html_ac05b8dc3f340e373582945f9215081d9"><div class="ttname"><a href="../../d1/d1b/classUOpenDrive.html#ac05b8dc3f340e373582945f9215081d9">UOpenDrive::LoadOpenDriveMap</a></div><div class="ttdeci">static UOpenDriveMap * LoadOpenDriveMap(const FString &amp;MapName)</div><div class="ttdoc">���������MapName������OpenDriveMap������Ҳ���������ͬMapName��ODR���򷵻�nullptr��</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d30/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2OpenDrive_2OpenDrive_8cpp_source.html#l00183">Unreal/CarlaUE4/Plugins/Carla/Source/Carla/OpenDrive/OpenDrive.cpp:183</a></div></div>
+<div class="ttc" id="aclassUOpenDrive_html_acc3124631694443e18475605c58a8cad"><div class="ttname"><a href="../../d1/d1b/classUOpenDrive.html#acc3124631694443e18475605c58a8cad">UOpenDrive::GetXODRByPath</a></div><div class="ttdeci">static FString GetXODRByPath(FString XODRPath, FString MapName)</div><div class="ttdoc">������MapName������OpenDrive XML������Ҳ����ļ����򷵻ؿա�</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d30/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2OpenDrive_2OpenDrive_8cpp_source.html#l00149">Unreal/CarlaUE4/Plugins/Carla/Source/Carla/OpenDrive/OpenDrive.cpp:149</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

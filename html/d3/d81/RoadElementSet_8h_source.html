@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: RoadElementSet.h 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_8afc3b5d71d319c27bc8bd38d925daae.html">road</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">RoadElementSet.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d3/d81/RoadElementSet_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// de Barcelona (UAB).</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// This work is licensed under the terms of the MIT license.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="../../d4/d50/LibCarla_2source_2carla_2ListView_8h.html">carla/ListView.h</a>&quot;</span>  <span class="comment">// 包含 ListView 头文件，可能用于处理列表视图。</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="../../d4/dd8/LibCarla_2source_2carla_2NonCopyable_8h.html">carla/NonCopyable.h</a>&quot;</span> <span class="comment">// 包含不可拷贝类的定义。</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;iterator&gt;</span>  <span class="comment">// 包含迭代器相关的标准库。</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;memory&gt;</span>    <span class="comment">// 包含智能指针相关的标准库。</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;vector&gt;</span>    <span class="comment">// 包含动态数组（向量）的标准库。</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;algorithm&gt;</span> <span class="comment">// 包含算法（如排序、查找等）的标准库。</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;type_traits&gt;</span> <span class="comment">// 包含类型特征的标准库。</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d9/d36/namespacecarla.html">carla</a> { <span class="comment">// 定义命名空间 carla</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">namespace </span>road {  <span class="comment">// 定义命名空间 road</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment"></span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment">  /// 表示按道路位置排序的元素集合。</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment"></span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html">   22</a></span>  <span class="keyword">class </span><a class="code hl_class" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html">RoadElementSet</a> : <span class="keyword">private</span> <a class="code hl_class" href="../../d7/d55/classcarla_1_1MovableNonCopyable.html">MovableNonCopyable</a> { <span class="comment">// 模板类 RoadElementSet，继承不可拷贝的类</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a9115595ca1210c045d663fbe6a07a52e">   25</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a9115595ca1210c045d663fbe6a07a52e">mapped_type</a> = T; <span class="comment">// 映射类型为模板参数 T</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a00baaef7bac7ea5cf7b7bdacd2c17409">   27</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a00baaef7bac7ea5cf7b7bdacd2c17409">key_type</a> = double; <span class="comment">// 键类型为 double</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a04a281953fdfc2ede3f0a386fc68ce9e">   29</a></span>    <a class="code hl_function" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a04a281953fdfc2ede3f0a386fc68ce9e">RoadElementSet</a>() = <span class="keywordflow">default</span>; <span class="comment">// 默认构造函数</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment"></span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">    /// 显式移动构造函数。</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment"></span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> InputTypeT&gt;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#ab108ab29d83575ebd25fd07be91f9728">   33</a></span>    <a class="code hl_function" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#ab108ab29d83575ebd25fd07be91f9728">RoadElementSet</a>(std::vector&lt;InputTypeT&gt; &amp;&amp;range)</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>      : <a class="code hl_variable" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a26dc0e70f2b836dfb1a3ca1f74370f37">_vec</a>([](auto &amp;&amp;input) { <span class="comment">// 初始化 _vec，使用 lambda 表达式</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>          <span class="keyword">static_assert</span>(!std::is_const&lt;InputTypeT&gt;::value, <span class="stringliteral">&quot;Input type cannot be const&quot;</span>); <span class="comment">// 检查输入类型不能是常量</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>          std::sort(std::begin(input), std::end(input), <a class="code hl_struct" href="../../db/d96/structcarla_1_1road_1_1RoadElementSet_1_1LessComp.html">LessComp</a>()); <span class="comment">// 按照 LessComp 排序</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>          <span class="keywordflow">return</span> <span class="keyword">decltype</span>(<a class="code hl_variable" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a26dc0e70f2b836dfb1a3ca1f74370f37">_vec</a>){ <span class="comment">// 返回 _vec 的移动迭代器</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>              std::make_move_iterator(std::begin(input)),</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>              std::make_move_iterator(std::end(input))};</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        }(std::move(range))) {} <span class="comment">// 移动输入范围并初始化</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment"></span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment">    /// 返回集合中的所有值。</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a0b11bc1f0f41c0dae31eed60cd1f6a47">   43</a></span><span class="comment"></span>    <span class="keyword">const</span> std::vector&lt;mapped_type&gt; &amp;<a class="code hl_function" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a0b11bc1f0f41c0dae31eed60cd1f6a47">GetAll</a>()<span class="keyword"> const </span>{ <span class="comment">// 返回 _vec 的常量引用</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a26dc0e70f2b836dfb1a3ca1f74370f37">_vec</a>; <span class="comment">// 返回所有元素</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    }</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment"></span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">    /// 返回键值小于等于 s 的元素的逆序列表。</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#ae868943dc543197fae1a6ca517c3a821">   48</a></span><span class="comment"></span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#ae868943dc543197fae1a6ca517c3a821">GetReverseSubset</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a00baaef7bac7ea5cf7b7bdacd2c17409">key_type</a> k)<span class="keyword"> const </span>{ <span class="comment">// 以 k 为界获取逆序子集</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>      <span class="keywordflow">return</span> MakeListView(</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>          std::make_reverse_iterator(std::upper_bound(<a class="code hl_variable" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a26dc0e70f2b836dfb1a3ca1f74370f37">_vec</a>.begin(), <a class="code hl_variable" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a26dc0e70f2b836dfb1a3ca1f74370f37">_vec</a>.end(), k, <a class="code hl_struct" href="../../db/d96/structcarla_1_1road_1_1RoadElementSet_1_1LessComp.html">LessComp</a>())), <span class="comment">// 找到大于 k 的第一个元素并反转</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>          <a class="code hl_variable" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a26dc0e70f2b836dfb1a3ca1f74370f37">_vec</a>.rend()); <span class="comment">// 返回逆序迭代器的范围</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    }</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="comment"></span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="comment">    /// 返回键值在 [min_k, max_k] 范围内的元素列表。</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a78fab095d3a68bb518e82888791f1b68">   55</a></span><span class="comment"></span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a78fab095d3a68bb518e82888791f1b68">GetSubsetInRange</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a00baaef7bac7ea5cf7b7bdacd2c17409">key_type</a> min_k, <span class="keyword">const</span> <a class="code hl_typedef" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a00baaef7bac7ea5cf7b7bdacd2c17409">key_type</a> max_k)<span class="keyword"> const </span>{ <span class="comment">// 获取范围内的子集</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>      <span class="keyword">auto</span> low_bound = (std::lower_bound(<a class="code hl_variable" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a26dc0e70f2b836dfb1a3ca1f74370f37">_vec</a>.begin(), <a class="code hl_variable" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a26dc0e70f2b836dfb1a3ca1f74370f37">_vec</a>.end(), min_k, <a class="code hl_struct" href="../../db/d96/structcarla_1_1road_1_1RoadElementSet_1_1LessComp.html">LessComp</a>())); <span class="comment">// 找到大于等于 min_k 的下界</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>      <span class="keyword">auto</span> up_bound = (std::upper_bound(<a class="code hl_variable" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a26dc0e70f2b836dfb1a3ca1f74370f37">_vec</a>.begin(), <a class="code hl_variable" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a26dc0e70f2b836dfb1a3ca1f74370f37">_vec</a>.end(), max_k, <a class="code hl_struct" href="../../db/d96/structcarla_1_1road_1_1RoadElementSet_1_1LessComp.html">LessComp</a>())); <span class="comment">// 找到大于 max_k 的上界</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>      <span class="keywordflow">return</span> MakeListView((low_bound), (up_bound)); <span class="comment">// 返回该范围内的视图</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    }</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment"></span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">    /// 返回键值在 [min_k, max_k] 范围内的元素的逆序列表。</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#ac51b76a37289ab8de642288f7eaeb808">   62</a></span><span class="comment"></span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#ac51b76a37289ab8de642288f7eaeb808">GetReverseSubsetInRange</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a00baaef7bac7ea5cf7b7bdacd2c17409">key_type</a> min_k, <span class="keyword">const</span> <a class="code hl_typedef" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a00baaef7bac7ea5cf7b7bdacd2c17409">key_type</a> max_k)<span class="keyword"> const </span>{ <span class="comment">// 获取范围内的逆序子集</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>      <span class="keyword">auto</span> low_bound = (std::lower_bound(<a class="code hl_variable" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a26dc0e70f2b836dfb1a3ca1f74370f37">_vec</a>.begin(), <a class="code hl_variable" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a26dc0e70f2b836dfb1a3ca1f74370f37">_vec</a>.end(), min_k, <a class="code hl_struct" href="../../db/d96/structcarla_1_1road_1_1RoadElementSet_1_1LessComp.html">LessComp</a>())); <span class="comment">// 找到大于等于 min_k 的下界</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>      <span class="keyword">auto</span> up_bound = (std::upper_bound(low_bound, <a class="code hl_variable" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a26dc0e70f2b836dfb1a3ca1f74370f37">_vec</a>.end(), max_k, <a class="code hl_struct" href="../../db/d96/structcarla_1_1road_1_1RoadElementSet_1_1LessComp.html">LessComp</a>())); <span class="comment">// 找到大于 max_k 的上界</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>      <span class="keywordflow">return</span> MakeListView(std::make_reverse_iterator(up_bound), std::make_reverse_iterator(low_bound)); <span class="comment">// 返回逆序视图</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    }</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#aea29d598cdee303d0874a60ed25293c5">   68</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#aea29d598cdee303d0874a60ed25293c5">empty</a>()<span class="keyword"> const </span>{ <span class="comment">// 检查集合是否为空</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a26dc0e70f2b836dfb1a3ca1f74370f37">_vec</a>.empty(); <span class="comment">// 返回 _vec 是否为空</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    }</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#ad8cc3ef46502df6107dcc4097a16a8ea">   72</a></span>    <span class="keywordtype">size_t</span> <a class="code hl_function" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#ad8cc3ef46502df6107dcc4097a16a8ea">size</a>()<span class="keyword"> const </span>{ <span class="comment">// 获取集合大小</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a26dc0e70f2b836dfb1a3ca1f74370f37">_vec</a>.size(); <span class="comment">// 返回 _vec 的大小</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    }</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a55a75aab4fe2af88a870ecad54d7d626">   76</a></span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a55a75aab4fe2af88a870ecad54d7d626">begin</a>()<span class="keyword"> const </span>{ <span class="comment">// 返回开始迭代器</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a26dc0e70f2b836dfb1a3ca1f74370f37">_vec</a>.begin(); <span class="comment">// 返回 _vec 的开始迭代器</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    }</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a6792e89b54d85baef70f56334106da34">   80</a></span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a6792e89b54d85baef70f56334106da34">end</a>()<span class="keyword"> const </span>{ <span class="comment">// 返回结束迭代器</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a26dc0e70f2b836dfb1a3ca1f74370f37">_vec</a>.end(); <span class="comment">// 返回 _vec 的结束迭代器</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    }</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a5edeb8efbb6b0d47c110a2eeafeb60a7">   86</a></span>    <span class="keyword">static</span> <a class="code hl_typedef" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a00baaef7bac7ea5cf7b7bdacd2c17409">key_type</a> <a class="code hl_function" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a5edeb8efbb6b0d47c110a2eeafeb60a7">GetDistance</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a00baaef7bac7ea5cf7b7bdacd2c17409">key_type</a> key) { <span class="comment">// 获取键值的距离</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>      <span class="keywordflow">return</span> key; <span class="comment">// 直接返回键值</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    }</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ValueT&gt;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a308417ff36430ef0cc22cf9193068b97">   91</a></span>    <span class="keyword">static</span> <a class="code hl_typedef" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a00baaef7bac7ea5cf7b7bdacd2c17409">key_type</a> <a class="code hl_function" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a308417ff36430ef0cc22cf9193068b97">GetDistance</a>(<span class="keyword">const</span> ValueT &amp;value) { <span class="comment">// 获取元素的距离（值类型）</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>      <span class="keywordflow">return</span> value.GetDistance(); <span class="comment">// 调用元素的 GetDistance 方法</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    }</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ValueT&gt;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a47598bced11c8c22bb49b7683f9d8472">   96</a></span>    <span class="keyword">static</span> <a class="code hl_typedef" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a00baaef7bac7ea5cf7b7bdacd2c17409">key_type</a> <a class="code hl_function" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a47598bced11c8c22bb49b7683f9d8472">GetDistance</a>(<span class="keyword">const</span> ValueT *value) { <span class="comment">// 获取元素的距离（指针类型）</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>      <span class="keywordflow">return</span> value-&gt;GetDistance(); <span class="comment">// 调用指针指向元素的 GetDistance 方法</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    }</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ValueT&gt;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#add4f4cd8e5bc53a1e339c08049ff11cc">  101</a></span>    <span class="keyword">static</span> <a class="code hl_typedef" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a00baaef7bac7ea5cf7b7bdacd2c17409">key_type</a> <a class="code hl_function" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#add4f4cd8e5bc53a1e339c08049ff11cc">GetDistance</a>(<span class="keyword">const</span> std::unique_ptr&lt;ValueT&gt; &amp;value) { <span class="comment">// 获取元素的距离（智能指针类型）</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>      <span class="keywordflow">return</span> value-&gt;GetDistance(); <span class="comment">// 调用智能指针指向元素的 GetDistance 方法</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    }</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="../../db/d96/structcarla_1_1road_1_1RoadElementSet_1_1LessComp.html">  105</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="../../db/d96/structcarla_1_1road_1_1RoadElementSet_1_1LessComp.html">LessComp</a> { <span class="comment">// 定义一个比较结构体</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="../../db/d96/structcarla_1_1road_1_1RoadElementSet_1_1LessComp.html#a527e24e9835aee6ec92a3ae095d1ff41">  106</a></span>      <span class="keyword">using </span><a class="code hl_typedef" href="../../db/d96/structcarla_1_1road_1_1RoadElementSet_1_1LessComp.html#a527e24e9835aee6ec92a3ae095d1ff41">is_transparent</a> = void; <span class="comment">// 使比较器支持透明比较</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>      <span class="keyword">template</span> &lt;<span class="keyword">typename</span> LhsT, <span class="keyword">typename</span> RhsT&gt;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="../../db/d96/structcarla_1_1road_1_1RoadElementSet_1_1LessComp.html#aac353781e13c70f5d295267e3eb00510">  108</a></span>      <span class="keywordtype">bool</span> <a class="code hl_function" href="../../db/d96/structcarla_1_1road_1_1RoadElementSet_1_1LessComp.html#aac353781e13c70f5d295267e3eb00510">operator()</a>( <span class="comment">// 重载比较运算符</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>          <span class="keyword">const</span> LhsT &amp;a,</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>          <span class="keyword">const</span> RhsT &amp;b)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a5edeb8efbb6b0d47c110a2eeafeb60a7">GetDistance</a>(a) &lt; <a class="code hl_function" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a5edeb8efbb6b0d47c110a2eeafeb60a7">GetDistance</a>(b); <span class="comment">// 使用 GetDistance 比较两个值</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>      }</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    };</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a26dc0e70f2b836dfb1a3ca1f74370f37">  115</a></span>    std::vector&lt;mapped_type&gt; <a class="code hl_variable" href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a26dc0e70f2b836dfb1a3ca1f74370f37">_vec</a>; <span class="comment">// 存储元素的向量</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>  };</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>} <span class="comment">// namespace road</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>} <span class="comment">// namespace carla</span></div>
+<div class="ttc" id="aLibCarla_2source_2carla_2ListView_8h_html"><div class="ttname"><a href="../../d4/d50/LibCarla_2source_2carla_2ListView_8h.html">ListView.h</a></div></div>
+<div class="ttc" id="aLibCarla_2source_2carla_2NonCopyable_8h_html"><div class="ttname"><a href="../../d4/dd8/LibCarla_2source_2carla_2NonCopyable_8h.html">NonCopyable.h</a></div></div>
+<div class="ttc" id="aclasscarla_1_1MovableNonCopyable_html"><div class="ttname"><a href="../../d7/d55/classcarla_1_1MovableNonCopyable.html">carla::MovableNonCopyable</a></div><div class="ttdoc">这个类用于禁止拷贝构造函数和赋值操作，但允许移动构造函数和赋值操作</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/dd8/LibCarla_2source_2carla_2NonCopyable_8h_source.html#l00027">LibCarla/source/carla/NonCopyable.h:27</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1RoadElementSet_html"><div class="ttname"><a href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html">carla::road::RoadElementSet</a></div><div class="ttdoc">表示按道路位置排序的元素集合。</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d81/RoadElementSet_8h_source.html#l00022">RoadElementSet.h:22</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1RoadElementSet_html_a00baaef7bac7ea5cf7b7bdacd2c17409"><div class="ttname"><a href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a00baaef7bac7ea5cf7b7bdacd2c17409">carla::road::RoadElementSet::key_type</a></div><div class="ttdeci">double key_type</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d81/RoadElementSet_8h_source.html#l00027">RoadElementSet.h:27</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1RoadElementSet_html_a04a281953fdfc2ede3f0a386fc68ce9e"><div class="ttname"><a href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a04a281953fdfc2ede3f0a386fc68ce9e">carla::road::RoadElementSet::RoadElementSet</a></div><div class="ttdeci">RoadElementSet()=default</div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1RoadElementSet_html_a0b11bc1f0f41c0dae31eed60cd1f6a47"><div class="ttname"><a href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a0b11bc1f0f41c0dae31eed60cd1f6a47">carla::road::RoadElementSet::GetAll</a></div><div class="ttdeci">const std::vector&lt; mapped_type &gt; &amp; GetAll() const</div><div class="ttdoc">返回集合中的所有值。</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d81/RoadElementSet_8h_source.html#l00043">RoadElementSet.h:43</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1RoadElementSet_html_a26dc0e70f2b836dfb1a3ca1f74370f37"><div class="ttname"><a href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a26dc0e70f2b836dfb1a3ca1f74370f37">carla::road::RoadElementSet::_vec</a></div><div class="ttdeci">std::vector&lt; mapped_type &gt; _vec</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d81/RoadElementSet_8h_source.html#l00115">RoadElementSet.h:115</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1RoadElementSet_html_a308417ff36430ef0cc22cf9193068b97"><div class="ttname"><a href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a308417ff36430ef0cc22cf9193068b97">carla::road::RoadElementSet::GetDistance</a></div><div class="ttdeci">static key_type GetDistance(const ValueT &amp;value)</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d81/RoadElementSet_8h_source.html#l00091">RoadElementSet.h:91</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1RoadElementSet_html_a47598bced11c8c22bb49b7683f9d8472"><div class="ttname"><a href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a47598bced11c8c22bb49b7683f9d8472">carla::road::RoadElementSet::GetDistance</a></div><div class="ttdeci">static key_type GetDistance(const ValueT *value)</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d81/RoadElementSet_8h_source.html#l00096">RoadElementSet.h:96</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1RoadElementSet_html_a55a75aab4fe2af88a870ecad54d7d626"><div class="ttname"><a href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a55a75aab4fe2af88a870ecad54d7d626">carla::road::RoadElementSet::begin</a></div><div class="ttdeci">auto begin() const</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d81/RoadElementSet_8h_source.html#l00076">RoadElementSet.h:76</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1RoadElementSet_html_a5edeb8efbb6b0d47c110a2eeafeb60a7"><div class="ttname"><a href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a5edeb8efbb6b0d47c110a2eeafeb60a7">carla::road::RoadElementSet::GetDistance</a></div><div class="ttdeci">static key_type GetDistance(const key_type key)</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d81/RoadElementSet_8h_source.html#l00086">RoadElementSet.h:86</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1RoadElementSet_html_a6792e89b54d85baef70f56334106da34"><div class="ttname"><a href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a6792e89b54d85baef70f56334106da34">carla::road::RoadElementSet::end</a></div><div class="ttdeci">auto end() const</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d81/RoadElementSet_8h_source.html#l00080">RoadElementSet.h:80</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1RoadElementSet_html_a78fab095d3a68bb518e82888791f1b68"><div class="ttname"><a href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a78fab095d3a68bb518e82888791f1b68">carla::road::RoadElementSet::GetSubsetInRange</a></div><div class="ttdeci">auto GetSubsetInRange(const key_type min_k, const key_type max_k) const</div><div class="ttdoc">返回键值在 [min_k, max_k] 范围内的元素列表。</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d81/RoadElementSet_8h_source.html#l00055">RoadElementSet.h:55</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1RoadElementSet_html_a9115595ca1210c045d663fbe6a07a52e"><div class="ttname"><a href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#a9115595ca1210c045d663fbe6a07a52e">carla::road::RoadElementSet::mapped_type</a></div><div class="ttdeci">T mapped_type</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d81/RoadElementSet_8h_source.html#l00025">RoadElementSet.h:25</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1RoadElementSet_html_ab108ab29d83575ebd25fd07be91f9728"><div class="ttname"><a href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#ab108ab29d83575ebd25fd07be91f9728">carla::road::RoadElementSet::RoadElementSet</a></div><div class="ttdeci">RoadElementSet(std::vector&lt; InputTypeT &gt; &amp;&amp;range)</div><div class="ttdoc">显式移动构造函数。</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d81/RoadElementSet_8h_source.html#l00033">RoadElementSet.h:33</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1RoadElementSet_html_ac51b76a37289ab8de642288f7eaeb808"><div class="ttname"><a href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#ac51b76a37289ab8de642288f7eaeb808">carla::road::RoadElementSet::GetReverseSubsetInRange</a></div><div class="ttdeci">auto GetReverseSubsetInRange(const key_type min_k, const key_type max_k) const</div><div class="ttdoc">返回键值在 [min_k, max_k] 范围内的元素的逆序列表。</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d81/RoadElementSet_8h_source.html#l00062">RoadElementSet.h:62</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1RoadElementSet_html_ad8cc3ef46502df6107dcc4097a16a8ea"><div class="ttname"><a href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#ad8cc3ef46502df6107dcc4097a16a8ea">carla::road::RoadElementSet::size</a></div><div class="ttdeci">size_t size() const</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d81/RoadElementSet_8h_source.html#l00072">RoadElementSet.h:72</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1RoadElementSet_html_add4f4cd8e5bc53a1e339c08049ff11cc"><div class="ttname"><a href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#add4f4cd8e5bc53a1e339c08049ff11cc">carla::road::RoadElementSet::GetDistance</a></div><div class="ttdeci">static key_type GetDistance(const std::unique_ptr&lt; ValueT &gt; &amp;value)</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d81/RoadElementSet_8h_source.html#l00101">RoadElementSet.h:101</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1RoadElementSet_html_ae868943dc543197fae1a6ca517c3a821"><div class="ttname"><a href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#ae868943dc543197fae1a6ca517c3a821">carla::road::RoadElementSet::GetReverseSubset</a></div><div class="ttdeci">auto GetReverseSubset(const key_type k) const</div><div class="ttdoc">返回键值小于等于 s 的元素的逆序列表。</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d81/RoadElementSet_8h_source.html#l00048">RoadElementSet.h:48</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1RoadElementSet_html_aea29d598cdee303d0874a60ed25293c5"><div class="ttname"><a href="../../dc/dcf/classcarla_1_1road_1_1RoadElementSet.html#aea29d598cdee303d0874a60ed25293c5">carla::road::RoadElementSet::empty</a></div><div class="ttdeci">bool empty() const</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d81/RoadElementSet_8h_source.html#l00068">RoadElementSet.h:68</a></div></div>
+<div class="ttc" id="anamespacecarla_html"><div class="ttname"><a href="../../d9/d36/namespacecarla.html">carla</a></div><div class="ttdoc">CARLA模拟器的主命名空间。</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d4f/Carla_8cpp_source.html#l00139">Carla.cpp:139</a></div></div>
+<div class="ttc" id="astructcarla_1_1road_1_1RoadElementSet_1_1LessComp_html"><div class="ttname"><a href="../../db/d96/structcarla_1_1road_1_1RoadElementSet_1_1LessComp.html">carla::road::RoadElementSet::LessComp</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d81/RoadElementSet_8h_source.html#l00105">RoadElementSet.h:105</a></div></div>
+<div class="ttc" id="astructcarla_1_1road_1_1RoadElementSet_1_1LessComp_html_a527e24e9835aee6ec92a3ae095d1ff41"><div class="ttname"><a href="../../db/d96/structcarla_1_1road_1_1RoadElementSet_1_1LessComp.html#a527e24e9835aee6ec92a3ae095d1ff41">carla::road::RoadElementSet::LessComp::is_transparent</a></div><div class="ttdeci">void is_transparent</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d81/RoadElementSet_8h_source.html#l00106">RoadElementSet.h:106</a></div></div>
+<div class="ttc" id="astructcarla_1_1road_1_1RoadElementSet_1_1LessComp_html_aac353781e13c70f5d295267e3eb00510"><div class="ttname"><a href="../../db/d96/structcarla_1_1road_1_1RoadElementSet_1_1LessComp.html#aac353781e13c70f5d295267e3eb00510">carla::road::RoadElementSet::LessComp::operator()</a></div><div class="ttdeci">bool operator()(const LhsT &amp;a, const RhsT &amp;b) const</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/d81/RoadElementSet_8h_source.html#l00108">RoadElementSet.h:108</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

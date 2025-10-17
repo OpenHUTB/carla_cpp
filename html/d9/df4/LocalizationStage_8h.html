@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: LocalizationStage.h 文件参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_a8dbe3691941680fc0b6dad001059c22.html">trafficmanager</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">类</a> &#124;
+<a href="#namespaces">命名空间</a> &#124;
+<a href="#typedef-members">类型定义</a>  </div>
+  <div class="headertitle"><div class="title">LocalizationStage.h 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;memory&gt;</code><br />
+<code>#include &quot;<a class="el" href="../../d0/d49/DataStructures_8h_source.html">carla/trafficmanager/DataStructures.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d3/d89/InMemoryMap_8h_source.html">carla/trafficmanager/InMemoryMap.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d2/d84/LocalizationUtils_8h_source.html">carla/trafficmanager/LocalizationUtils.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d9/dd7/Parameters_8h_source.html">carla/trafficmanager/Parameters.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../db/d7f/RandomGenerator_8h_source.html">carla/trafficmanager/RandomGenerator.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../db/d67/TrackTraffic_8h_source.html">carla/trafficmanager/TrackTraffic.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d5/d3b/SimulationState_8h_source.html">carla/trafficmanager/SimulationState.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../dd/dc3/Stage_8h_source.html">carla/trafficmanager/Stage.h</a>&quot;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> LocalizationStage.h 的引用(Include)关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../de/db8/LocalizationStage_8h__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+</div><div class="textblock"><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> 此图展示该文件直接或间接的被哪些文件引用了:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d2/daf/LocalizationStage_8h__dep__incl.svg" width="379" height="256"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</div>
+<p><a href="../../d9/df4/LocalizationStage_8h_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html">carla::traffic_manager::LocalizationStage</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">此类功能是维护车辆前方的路径点以供跟随。 该类还负责管理车道变更决策并适当地修改路径轨迹。  <a href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
+命名空间</h2></td></tr>
+<tr class="memitem:d9/d36/namespacecarla"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d36/namespacecarla.html">carla</a></td></tr>
+<tr class="memdesc:d9/d36/namespacecarla"><td class="mdescLeft">&#160;</td><td class="mdescRight">CARLA模拟器的主命名空间。 <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:d0/db7/namespacecarla_1_1traffic__manager"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html">carla::traffic_manager</a></td></tr>
+<tr class="memdesc:d0/db7/namespacecarla_1_1traffic__manager"><td class="mdescLeft">&#160;</td><td class="mdescRight">Carla项目的交通管理命名空间。 <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+类型定义</h2></td></tr>
+<tr class="memitem:ab5fe609686732a36b1ec4ead7d4a1d39"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ab5fe609686732a36b1ec4ead7d4a1d39">carla::traffic_manager::Action</a> = std::pair&lt; RoadOption, WaypointPtr &gt;</td></tr>
+<tr class="memdesc:ab5fe609686732a36b1ec4ead7d4a1d39"><td class="mdescLeft">&#160;</td><td class="mdescRight">动作类型别名。  <a href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ab5fe609686732a36b1ec4ead7d4a1d39">更多...</a><br /></td></tr>
+<tr class="separator:ab5fe609686732a36b1ec4ead7d4a1d39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3077a5917d65549595f2ccdfc98570b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae3077a5917d65549595f2ccdfc98570b">carla::traffic_manager::ActionBuffer</a> = std::vector&lt; Action &gt;</td></tr>
+<tr class="memdesc:ae3077a5917d65549595f2ccdfc98570b"><td class="mdescLeft">&#160;</td><td class="mdescRight">动作缓冲区类型别名。  <a href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae3077a5917d65549595f2ccdfc98570b">更多...</a><br /></td></tr>
+<tr class="separator:ae3077a5917d65549595f2ccdfc98570b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3fe50a324564d42cfdf4f06257e7cad"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ab3fe50a324564d42cfdf4f06257e7cad">carla::traffic_manager::LaneChangeSWptMap</a> = std::unordered_map&lt; ActorId, SimpleWaypointPtr &gt;</td></tr>
+<tr class="separator:ab3fe50a324564d42cfdf4f06257e7cad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a238485cf980d4c8095de3e6a90ed1614"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a238485cf980d4c8095de3e6a90ed1614">carla::traffic_manager::LocalMapPtr</a> = std::shared_ptr&lt; InMemoryMap &gt;</td></tr>
+<tr class="memdesc:a238485cf980d4c8095de3e6a90ed1614"><td class="mdescLeft">&#160;</td><td class="mdescRight">本地地图指针类型，使用智能指针管理InMemoryMap对象  <a href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a238485cf980d4c8095de3e6a90ed1614">更多...</a><br /></td></tr>
+<tr class="separator:a238485cf980d4c8095de3e6a90ed1614"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c7f959da28bee9cf0ea48f61b9a6bb2"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a7c7f959da28bee9cf0ea48f61b9a6bb2">carla::traffic_manager::Path</a> = std::vector&lt; <a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">cg::Location</a> &gt;</td></tr>
+<tr class="memdesc:a7c7f959da28bee9cf0ea48f61b9a6bb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">参与者的唯一标识符类型  <a href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a7c7f959da28bee9cf0ea48f61b9a6bb2">更多...</a><br /></td></tr>
+<tr class="separator:a7c7f959da28bee9cf0ea48f61b9a6bb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58761158ed79d767d06d0d36bf373bd1"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a58761158ed79d767d06d0d36bf373bd1">carla::traffic_manager::Route</a> = std::vector&lt; uint8_t &gt;</td></tr>
+<tr class="memdesc:a58761158ed79d767d06d0d36bf373bd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">路线类型，由一系列地理位置组成  <a href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a58761158ed79d767d06d0d36bf373bd1">更多...</a><br /></td></tr>
+<tr class="separator:a58761158ed79d767d06d0d36bf373bd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

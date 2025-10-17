@@ -1,0 +1,12 @@
+<map id="carla::opendrive::parser::JunctionParser::Parse" name="carla::opendrive::parser::JunctionParser::Parse">
+<area shape="rect" id="node1" title="解析XML文档中的交叉路口信息，并构建道路地图中的交叉路口部分 该函数读取XML文档中的交叉路口数据，如连接点、车道信息等 并使用这些数据来构建或更新道路地图中的交叉路口部分" alt="" coords="5,165,160,205"/>
+<area shape="rect" id="node2" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#aca70ccf621b7b40053014478bb934410" title=" " alt="" coords="211,5,363,45"/>
+<area shape="rect" id="node3" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#a7ca3a4005f3f53fdca75465b7782696b" title=" " alt="" coords="211,69,363,109"/>
+<area shape="rect" id="node4" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#a43256ab478dc6251af976c7b466b0c45" title=" " alt="" coords="210,133,365,173"/>
+<area shape="rect" id="node5" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#a8a75b8af56314c29891cb5c91a7fd00d" title=" " alt="" coords="211,197,363,237"/>
+<area shape="rect" id="node6" href="$db/d65/classpugi_1_1xml__node.html#a1e23e9720c90ef764197f1e0c71aa287" title=" " alt="" coords="217,262,357,287"/>
+<area shape="rect" id="node8" href="$db/d65/classpugi_1_1xml__node.html#a3dd84eaeb958e8262f3edb7bda013101" title=" " alt="" coords="208,311,367,337"/>
+<area shape="rect" id="node7" href="$db/d65/classpugi_1_1xml__node.html#a36ec0eb8b399d71f6b55be0e181c69f9" title=" " alt="" coords="415,262,583,287"/>
+<area shape="rect" id="node9" href="$db/d65/classpugi_1_1xml__node.html#ae42dc1a560ee36a16f907cd7aa89cc9c" title=" " alt="" coords="427,311,571,337"/>
+<area shape="rect" id="node10" href="$db/d65/classpugi_1_1xml__node.html#a6c1f42812de4e25ac72908efab842126" title=" " alt="" coords="431,361,566,386"/>
+</map>

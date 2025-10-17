@@ -1,0 +1,370 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: TrafficManager.cpp 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_a8dbe3691941680fc0b6dad001059c22.html">trafficmanager</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">TrafficManager.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../db/d04/TrafficManager_8cpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2020 Computer Vision Center (CVC) at the Universitat Autonoma</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// de Barcelona (UAB).</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// This work is licensed under the terms of the MIT license.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//#include &quot;carla/client/Client.h&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="../../d5/d1b/Sockets_8h.html">carla/Sockets.h</a>&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="../../d6/d4a/Simulator_8h.html">carla/client/detail/Simulator.h</a>&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="../../d1/d45/Constants_8h.html">carla/trafficmanager/Constants.h</a>&quot;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="../../da/dfd/TrafficManager_8h.html">carla/trafficmanager/TrafficManager.h</a>&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;<a class="code" href="../../d0/d55/TrafficManagerBase_8h.html">carla/trafficmanager/TrafficManagerBase.h</a>&quot;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="../../db/ddf/TrafficManagerLocal_8h.html">carla/trafficmanager/TrafficManagerLocal.h</a>&quot;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &quot;<a class="code" href="../../da/df6/TrafficManagerRemote_8h.html">carla/trafficmanager/TrafficManagerRemote.h</a>&quot;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="../../db/d04/TrafficManager_8cpp.html#a2c54b5ddbc14324ab9e6c1cbdf0c11ef">   19</a></span><span class="preprocessor">#define DEBUG_PRINT_TM  0</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="../../db/d04/TrafficManager_8cpp.html#a4848fcfd35f4df8c94aa6484533db803">   20</a></span><span class="preprocessor">#define IP_DATA_BUFFER_SIZE     80</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d9/d36/namespacecarla.html">carla</a> {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">namespace </span>traffic_manager {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">// 使用速度阈值和PID常量</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">using namespace </span>constants::SpeedThreshold;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">using namespace </span>constants::PID;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment">// 定义一个映射，存储TrafficManagerBase指针</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>std::map&lt;uint16_t, TrafficManagerBase*&gt; <a class="code hl_variable" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a005d53e7e05626ca01953b7bf9aa08ff">TrafficManager::_tm_map</a>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">// 定义互斥锁，用于多线程安全</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>std::mutex <a class="code hl_variable" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a4fc60e63d887db4556967adcc9360ed9">TrafficManager::_mutex</a>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment">// TrafficManager构造函数</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a1b59040fdd13a053f2f7fd5caa74f515">   35</a></span><a class="code hl_function" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#aa64df98ac9496ae303dd9515d69bf598">TrafficManager::TrafficManager</a>(</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <a class="code hl_class" href="../../d1/dd3/classcarla_1_1client_1_1detail_1_1EpisodeProxyImpl.html">carla::client::detail::EpisodeProxy</a> episode_proxy,</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    uint16_t port)</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  : _port(port) {</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="comment">// 检查是否能获取当前端口的交通管理器</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="keywordflow">if</span>(!<a class="code hl_function" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a765537526aaa8d388508d6956b51cd9e">GetTM</a>(<a class="code hl_variable" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#ae77002df580551f5159ac4a570596d7b">_port</a>)){</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="comment">// 如果没有获取到，尝试连接已存在的TM服务器</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordflow">if</span>(!<a class="code hl_function" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#ad9d527f96868d0255cad3a4d9a2150a0">CreateTrafficManagerClient</a>(episode_proxy, port)) {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>      <span class="comment">// 如果TM服务器没有运行，创建一个新的TM服务器</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>      <a class="code hl_function" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#acd7e4e02b433967e2f0e2fdd0e9c0213">CreateTrafficManagerServer</a>(episode_proxy, port);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    }</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  }</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>}</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment">// 释放资源</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#ab8b1ddabe257a4b75430eb645fdd7811">   51</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#ab8b1ddabe257a4b75430eb645fdd7811">TrafficManager::Release</a>() {</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a4fc60e63d887db4556967adcc9360ed9">_mutex</a>); <span class="comment">// 锁定互斥锁以保证线程安全</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; tm : <a class="code hl_variable" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a005d53e7e05626ca01953b7bf9aa08ff">_tm_map</a>) { <span class="comment">// 遍历所有交通管理器</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    tm.second-&gt;Release(); <span class="comment">// 调用释放方法</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <a class="code hl_class" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html">TrafficManagerBase</a> *base_ptr = tm.second; <span class="comment">// 获取指针</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keyword">delete</span> base_ptr; <span class="comment">// 删除指针，释放内存</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  }</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  <a class="code hl_variable" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a005d53e7e05626ca01953b7bf9aa08ff">_tm_map</a>.clear(); <span class="comment">// 清空映射</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>}</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">// 重置所有交通管理器</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#ae1ed940a391fc5a91d42c5a0e6e586ea">   62</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#ae1ed940a391fc5a91d42c5a0e6e586ea">TrafficManager::Reset</a>() {</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>  std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a4fc60e63d887db4556967adcc9360ed9">_mutex</a>); <span class="comment">// 锁定互斥锁</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>  <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; tm : <a class="code hl_variable" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a005d53e7e05626ca01953b7bf9aa08ff">_tm_map</a>) { <span class="comment">// 遍历所有交通管理器</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    tm.second-&gt;Reset(); <span class="comment">// 调用重置方法</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  }</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>}</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment">// 执行每个交通管理器的Tick操作</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#ab2c6feb02978392726bb256f93a4eb63">   70</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#ab2c6feb02978392726bb256f93a4eb63">TrafficManager::Tick</a>() {</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a4fc60e63d887db4556967adcc9360ed9">_mutex</a>); <span class="comment">// 锁定互斥锁</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; tm : <a class="code hl_variable" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a005d53e7e05626ca01953b7bf9aa08ff">_tm_map</a>) { <span class="comment">// 遍历所有交通管理器</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    tm.second-&gt;SynchronousTick(); <span class="comment">// 调用同步Tick方法</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  }</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>}</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="comment">// 关闭交通管理器</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a2423bb92b1715fd9f19b2c05b1372bab">   78</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a2423bb92b1715fd9f19b2c05b1372bab">TrafficManager::ShutDown</a>() {</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  <a class="code hl_class" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html">TrafficManagerBase</a>* tm_ptr = <a class="code hl_function" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a765537526aaa8d388508d6956b51cd9e">GetTM</a>(<a class="code hl_variable" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#ae77002df580551f5159ac4a570596d7b">_port</a>); <span class="comment">// 获取指定端口的交通管理器</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a4fc60e63d887db4556967adcc9360ed9">_mutex</a>); <span class="comment">// 锁定互斥锁</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  <span class="keyword">auto</span> it = <a class="code hl_variable" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a005d53e7e05626ca01953b7bf9aa08ff">_tm_map</a>.find(<a class="code hl_variable" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#ae77002df580551f5159ac4a570596d7b">_port</a>); <span class="comment">// 查找端口对应的交通管理器</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  <span class="keywordflow">if</span> (it != <a class="code hl_variable" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a005d53e7e05626ca01953b7bf9aa08ff">_tm_map</a>.end()) {</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <a class="code hl_variable" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a005d53e7e05626ca01953b7bf9aa08ff">_tm_map</a>.erase(it); <span class="comment">// 删除映射中的交通管理器</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  }</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  <span class="keywordflow">if</span>(tm_ptr != <span class="keyword">nullptr</span>) {</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    tm_ptr-&gt;<a class="code hl_function" href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#aba74767752d7ce1dc80b68bd6b8412c5">ShutDown</a>(); <span class="comment">// 调用关闭方法</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keyword">delete</span> tm_ptr; <span class="comment">// 删除指针，释放内存</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  }</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>}</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="comment">// 创建交通管理器服务器</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#acd7e4e02b433967e2f0e2fdd0e9c0213">   92</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#acd7e4e02b433967e2f0e2fdd0e9c0213">TrafficManager::CreateTrafficManagerServer</a>(</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <a class="code hl_class" href="../../d1/dd3/classcarla_1_1client_1_1detail_1_1EpisodeProxyImpl.html">carla::client::detail::EpisodeProxy</a> episode_proxy,</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    uint16_t port) {</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>  <span class="comment">// 获取本地IP地址</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>  <span class="keyword">auto</span> GetLocalIP = [=](<span class="keyword">const</span> uint16_t sport)-&gt; std::pair&lt;std::string, uint16_t&gt; {</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    std::pair&lt;std::string, uint16_t&gt; localIP; <span class="comment">// 存储本地IP和端口对</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keywordtype">int</span> sock = socket(AF_INET, SOCK_DGRAM, 0); <span class="comment">// 创建UDP socket</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordflow">if</span>(sock == <a class="code hl_define" href="../../d5/d1b/Sockets_8h.html#aa07ae02804bbec23c27c7d957ae7b228">SOCK_INVALID_INDEX</a>) {</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="preprocessor">      #if DEBUG_PRINT_TM</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>      std::cout &lt;&lt; <span class="stringliteral">&quot;Error number 1: &quot;</span> &lt;&lt; errno &lt;&lt; std::endl; <span class="comment">// 打印错误号</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>      std::cout &lt;&lt; <span class="stringliteral">&quot;Error message: &quot;</span> &lt;&lt; strerror(errno) &lt;&lt; std::endl; <span class="comment">// 打印错误信息</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="preprocessor">      #endif</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>      <span class="keywordtype">int</span> err;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>      sockaddr_in loopback; <span class="comment">// 定义回环地址结构</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>      std::memset(&amp;loopback, 0, <span class="keyword">sizeof</span>(loopback)); <span class="comment">// 清零结构体</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>      loopback.sin_family = AF_INET; <span class="comment">// 设置地址族为IPv4</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>      loopback.sin_addr.s_addr = INADDR_LOOPBACK; <span class="comment">// 设置为回环地址</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>      loopback.sin_port = htons(9); <span class="comment">// 设置端口为9（任意端口）</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>      err = connect(sock, <span class="keyword">reinterpret_cast&lt;</span>sockaddr*<span class="keyword">&gt;</span>(&amp;loopback), <span class="keyword">sizeof</span>(loopback)); <span class="comment">// 尝试连接</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>      <span class="keywordflow">if</span>(err == <a class="code hl_define" href="../../d5/d1b/Sockets_8h.html#aa07ae02804bbec23c27c7d957ae7b228">SOCK_INVALID_INDEX</a>) {</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="preprocessor">        #if DEBUG_PRINT_TM</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Error number 2: &quot;</span> &lt;&lt; errno &lt;&lt; std::endl; <span class="comment">// 打印连接错误号</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Error message: &quot;</span> &lt;&lt; strerror(errno) &lt;&lt; std::endl; <span class="comment">// 打印连接错误信息</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="preprocessor">        #endif</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>      } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        socklen_t addrlen = <span class="keyword">sizeof</span>(loopback);</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        err = getsockname(sock, <span class="keyword">reinterpret_cast&lt;</span>struct sockaddr*<span class="keyword">&gt;</span> (&amp;loopback), &amp;addrlen); <span class="comment">// 获取socket名称</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        <span class="keywordflow">if</span>(err == <a class="code hl_define" href="../../d5/d1b/Sockets_8h.html#aa07ae02804bbec23c27c7d957ae7b228">SOCK_INVALID_INDEX</a>) {</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="preprocessor">          #if DEBUG_PRINT_TM</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>          std::cout &lt;&lt; <span class="stringliteral">&quot;Error number 3: &quot;</span> &lt;&lt; errno &lt;&lt; std::endl; <span class="comment">// 打印获取socket名称错误号</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>          std::cout &lt;&lt; <span class="stringliteral">&quot;Error message: &quot;</span> &lt;&lt; strerror(errno) &lt;&lt; std::endl; <span class="comment">// 打印获取socket名称错误信息</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="preprocessor">          #endif</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>          <span class="keywordtype">char</span> buffer[<a class="code hl_define" href="../../db/d04/TrafficManager_8cpp.html#a4848fcfd35f4df8c94aa6484533db803">IP_DATA_BUFFER_SIZE</a>]; <span class="comment">// 定义缓冲区存储IP</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>          <span class="keyword">const</span> <span class="keywordtype">char</span>* p = inet_ntop(AF_INET, &amp;loopback.sin_addr, buffer, <a class="code hl_define" href="../../db/d04/TrafficManager_8cpp.html#a4848fcfd35f4df8c94aa6484533db803">IP_DATA_BUFFER_SIZE</a>); <span class="comment">// 转换IP地址</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>          <span class="keywordflow">if</span>(p != NULL) {</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>            localIP = std::pair&lt;std::string, uint16_t&gt;(std::string(buffer), sport); <span class="comment">// 保存本地IP和端口</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>          } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="preprocessor">            #if DEBUG_PRINT_TM</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;Error number 4: &quot;</span> &lt;&lt; errno &lt;&lt; std::endl; <span class="comment">// 打印转换IP地址错误号</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;Error message: &quot;</span> &lt;&lt; strerror(errno) &lt;&lt; std::endl; <span class="comment">// 打印转换IP地址错误信息</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="preprocessor">            #endif</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>          }</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>        }</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>      }</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="preprocessor">     #ifdef _WIN32</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>        closesocket(sock); <span class="comment">// 在Windows上关闭socket</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>        close(sock); <span class="comment">// 在非Windows系统上关闭socket</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    }</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="keywordflow">return</span> localIP; <span class="comment">// 返回本地IP和端口的对</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>  };</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="comment"></span> </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span><span class="comment">  /// 定义局部常量</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span><span class="comment"></span>  <span class="keyword">const</span> std::vector&lt;float&gt; longitudinal_param = <a class="code hl_variable" href="../../df/dc7/namespacecarla_1_1traffic__manager_1_1constants_1_1PID.html#a538b523d70805d21808b5e6e16093a41">LONGITUDIAL_PARAM</a>; <span class="comment">// 纵向参数</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>  <span class="keyword">const</span> std::vector&lt;float&gt; longitudinal_highway_param = <a class="code hl_variable" href="../../df/dc7/namespacecarla_1_1traffic__manager_1_1constants_1_1PID.html#a597bca50efd64828538ed42268985457">LONGITUDIAL_HIGHWAY_PARAM</a>; <span class="comment">// 纵向高速公路参数</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>  <span class="keyword">const</span> std::vector&lt;float&gt; lateral_param = <a class="code hl_variable" href="../../df/dc7/namespacecarla_1_1traffic__manager_1_1constants_1_1PID.html#ae5edd27cb616adbf71a0a32d1f2c6fba">LATERAL_PARAM</a>; <span class="comment">// 横向参数</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>  <span class="keyword">const</span> std::vector&lt;float&gt; lateral_highway_param = <a class="code hl_variable" href="../../df/dc7/namespacecarla_1_1traffic__manager_1_1constants_1_1PID.html#a508714588d67112c24cc5557ba335e66">LATERAL_HIGHWAY_PARAM</a>; <span class="comment">// 横向高速公路参数</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>  <span class="keyword">const</span> <span class="keywordtype">float</span> perc_difference_from_limit = <a class="code hl_variable" href="../../df/dfa/namespacecarla_1_1traffic__manager_1_1constants_1_1SpeedThreshold.html#af31a12936b409bad360dc60f8832c3ca">INITIAL_PERCENTAGE_SPEED_DIFFERENCE</a>; <span class="comment">// 初始速度差百分比</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>  std::pair&lt;std::string, uint16_t&gt; serverTM; <span class="comment">// 存储服务器IP和端口的对</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="comment"></span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="comment">  /// 创建交通管理器的本地实例</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="comment"></span>  <a class="code hl_class" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html">TrafficManagerLocal</a>* tm_ptr = <span class="keyword">new</span> <a class="code hl_class" href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html">TrafficManagerLocal</a>(</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    longitudinal_param, <span class="comment">// 传入纵向参数</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    longitudinal_highway_param, <span class="comment">// 传入纵向高速公路参数</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    lateral_param, <span class="comment">// 传入横向参数</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    lateral_highway_param, <span class="comment">// 传入横向高速公路参数</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    perc_difference_from_limit, <span class="comment">// 传入初始速度差百分比</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    episode_proxy, <span class="comment">// 传入剧集代理</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    port); <span class="comment">// 传入端口</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="comment"></span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="comment">  /// 获取TM服务器信息（本地IP和端口）</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span><span class="comment"></span>  serverTM = GetLocalIP(port);</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="comment"></span> </div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span><span class="comment">  /// 将此客户端设置为TM服务器</span></div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span><span class="comment"></span>  episode_proxy.<a class="code hl_function" href="../../d1/dd3/classcarla_1_1client_1_1detail_1_1EpisodeProxyImpl.html#aaca857645fbeb6546b4a03a663bb65af">Lock</a>()-&gt;AddTrafficManagerRunning(serverTM); <span class="comment">// 向剧集代理添加正在运行的交通管理器</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span><span class="preprocessor">  #if DEBUG_PRINT_TM</span><span class="comment"></span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span><span class="comment">  /// 打印状态信息</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span><span class="comment"></span>  std::cout &lt;&lt; <span class="stringliteral">&quot;NEW@: Registered TM at &quot;</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>        &lt;&lt; serverTM.first  &lt;&lt; <span class="stringliteral">&quot;:&quot;</span></div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>        &lt;&lt; serverTM.second &lt;&lt; <span class="stringliteral">&quot; ..... SUCCESS.&quot;</span> <span class="comment">// 打印成功注册的消息</span></div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>        &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="preprocessor">  #endif</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="comment"></span> </div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><span class="comment">  /// 设置实例指针</span></div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span><span class="comment"></span>  <a class="code hl_variable" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a005d53e7e05626ca01953b7bf9aa08ff">_tm_map</a>.insert(std::make_pair(port, tm_ptr)); <span class="comment">// 将交通管理器的指针存入映射</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>}</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno"><a class="line" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#ad9d527f96868d0255cad3a4d9a2150a0">  186</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#ad9d527f96868d0255cad3a4d9a2150a0">TrafficManager::CreateTrafficManagerClient</a>(</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <a class="code hl_class" href="../../d1/dd3/classcarla_1_1client_1_1detail_1_1EpisodeProxyImpl.html">carla::client::detail::EpisodeProxy</a> episode_proxy,</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    uint16_t port) {</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>  <span class="keywordtype">bool</span> result = <span class="keyword">false</span>; <span class="comment">// 初始化结果为false</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>  <span class="keywordflow">if</span>(episode_proxy.<a class="code hl_function" href="../../d1/dd3/classcarla_1_1client_1_1detail_1_1EpisodeProxyImpl.html#aaca857645fbeb6546b4a03a663bb65af">Lock</a>()-&gt;IsTrafficManagerRunning(port)) { <span class="comment">// 检查指定端口的交通管理器是否正在运行</span></div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="comment"></span> </div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span><span class="comment">    /// 获取TM服务器信息（远程IP和端口）</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span><span class="comment"></span>    std::pair&lt;std::string, uint16_t&gt; serverTM =</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>      episode_proxy.<a class="code hl_function" href="../../d1/dd3/classcarla_1_1client_1_1detail_1_1EpisodeProxyImpl.html#aaca857645fbeb6546b4a03a663bb65af">Lock</a>()-&gt;GetTrafficManagerRunning(port);</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span><span class="comment"></span> </div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span><span class="comment">    /// 设置远程TM服务器的IP和端口</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span><span class="comment"></span>    <a class="code hl_class" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html">TrafficManagerRemote</a>* tm_ptr = <span class="keyword">new</span>(std::nothrow)</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>      <a class="code hl_class" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html">TrafficManagerRemote</a>(serverTM, episode_proxy); <span class="comment">// 创建远程交通管理器实例</span></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span><span class="comment"></span> </div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span><span class="comment">    /// 尝试连接到远程TM服务器</span></div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span><span class="comment"></span>    <span class="keywordflow">try</span> {</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span><span class="comment"></span> </div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span><span class="comment">      /// 检查内存是否分配成功</span></div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span><span class="comment"></span>      <span class="keywordflow">if</span>(tm_ptr != <span class="keyword">nullptr</span>) {</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span> </div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span><span class="preprocessor">        #if DEBUG_PRINT_TM</span></div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>        <span class="comment">// 测试打印</span></div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;OLD@: Registered TM at &quot;</span></div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>              &lt;&lt; serverTM.first  &lt;&lt; <span class="stringliteral">&quot;:&quot;</span></div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>              &lt;&lt; serverTM.second &lt;&lt; <span class="stringliteral">&quot; ..... TRY &quot;</span> <span class="comment">// 打印尝试连接的消息</span></div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>              &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span><span class="preprocessor">        #endif</span><span class="comment"></span></div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span><span class="comment">        /// 尝试重置所有交通信号灯</span></div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><span class="comment"></span>        tm_ptr-&gt;<a class="code hl_function" href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#adb8e764d24050b847770f5d1be9b9cfe">HealthCheckRemoteTM</a>(); <span class="comment">// 进行健康检查</span></div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span><span class="comment"></span> </div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span><span class="comment">        /// 设置实例指针</span></div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span><span class="comment"></span>        <a class="code hl_variable" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a005d53e7e05626ca01953b7bf9aa08ff">_tm_map</a>.insert(std::make_pair(port, tm_ptr)); <span class="comment">// 将远程交通管理器的指针存入映射</span></div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>        result = <span class="keyword">true</span>; <span class="comment">// 更新结果为true，表示连接成功</span></div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>      }</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    }</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span><span class="comment"></span> </div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span><span class="comment">    /// 如果发生连接错误</span></div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span><span class="comment"></span>    <span class="keywordflow">catch</span> (...) {</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span><span class="comment"></span> </div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span><span class="comment">      /// 清除之前分配的内存</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span><span class="comment"></span>      <span class="keyword">delete</span> tm_ptr; <span class="comment">// 删除远程交通管理器实例</span></div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span> </div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span><span class="preprocessor">      #if DEBUG_PRINT_TM</span><span class="comment"></span></div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span><span class="comment">      /// 测试打印</span></div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span><span class="comment"></span>      std::cout     &lt;&lt; <span class="stringliteral">&quot;OLD@: Registered TM at &quot;</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>            &lt;&lt; serverTM.first  &lt;&lt; <span class="stringliteral">&quot;:&quot;</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>            &lt;&lt; serverTM.second &lt;&lt; <span class="stringliteral">&quot; ..... FAILED &quot;</span> <span class="comment">// 打印连接失败的消息</span></div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>            &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span><span class="preprocessor">      #endif</span></div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    }</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span> </div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>  }</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span> </div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>  <span class="keywordflow">return</span> result; <span class="comment">// 返回连接结果</span></div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>}</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span> </div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>} <span class="comment">// namespace traffic_manager</span></div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>} <span class="comment">// namespace carla</span></div>
+<div class="ttc" id="aConstants_8h_html"><div class="ttname"><a href="../../d1/d45/Constants_8h.html">Constants.h</a></div></div>
+<div class="ttc" id="aSimulator_8h_html"><div class="ttname"><a href="../../d6/d4a/Simulator_8h.html">Simulator.h</a></div></div>
+<div class="ttc" id="aSockets_8h_html"><div class="ttname"><a href="../../d5/d1b/Sockets_8h.html">Sockets.h</a></div></div>
+<div class="ttc" id="aSockets_8h_html_aa07ae02804bbec23c27c7d957ae7b228"><div class="ttname"><a href="../../d5/d1b/Sockets_8h.html#aa07ae02804bbec23c27c7d957ae7b228">SOCK_INVALID_INDEX</a></div><div class="ttdeci">#define SOCK_INVALID_INDEX</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/d1b/Sockets_8h_source.html#l00019">Sockets.h:19</a></div></div>
+<div class="ttc" id="aTrafficManagerBase_8h_html"><div class="ttname"><a href="../../d0/d55/TrafficManagerBase_8h.html">TrafficManagerBase.h</a></div></div>
+<div class="ttc" id="aTrafficManagerLocal_8h_html"><div class="ttname"><a href="../../db/ddf/TrafficManagerLocal_8h.html">TrafficManagerLocal.h</a></div></div>
+<div class="ttc" id="aTrafficManagerRemote_8h_html"><div class="ttname"><a href="../../da/df6/TrafficManagerRemote_8h.html">TrafficManagerRemote.h</a></div></div>
+<div class="ttc" id="aTrafficManager_8cpp_html_a4848fcfd35f4df8c94aa6484533db803"><div class="ttname"><a href="../../db/d04/TrafficManager_8cpp.html#a4848fcfd35f4df8c94aa6484533db803">IP_DATA_BUFFER_SIZE</a></div><div class="ttdeci">#define IP_DATA_BUFFER_SIZE</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d04/TrafficManager_8cpp_source.html#l00020">TrafficManager.cpp:20</a></div></div>
+<div class="ttc" id="aTrafficManager_8h_html"><div class="ttname"><a href="../../da/dfd/TrafficManager_8h.html">TrafficManager.h</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1detail_1_1EpisodeProxyImpl_html"><div class="ttname"><a href="../../d1/dd3/classcarla_1_1client_1_1detail_1_1EpisodeProxyImpl.html">carla::client::detail::EpisodeProxyImpl&lt; EpisodeProxyPointerType::Strong &gt;</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1detail_1_1EpisodeProxyImpl_html_aaca857645fbeb6546b4a03a663bb65af"><div class="ttname"><a href="../../d1/dd3/classcarla_1_1client_1_1detail_1_1EpisodeProxyImpl.html#aaca857645fbeb6546b4a03a663bb65af">carla::client::detail::EpisodeProxyImpl::Lock</a></div><div class="ttdeci">SharedPtrType Lock() const</div><div class="ttdoc">与 TryLock 相同，但永远不会返回 nullptr。</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">EpisodeProxy.cpp:39</a></div></div>
+<div class="ttc" id="aclasscarla_1_1traffic__manager_1_1TrafficManagerBase_html"><div class="ttname"><a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html">carla::traffic_manager::TrafficManagerBase</a></div><div class="ttdoc">/ * / *</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d55/TrafficManagerBase_8h_source.html#l00054">TrafficManagerBase.h:54</a></div></div>
+<div class="ttc" id="aclasscarla_1_1traffic__manager_1_1TrafficManagerBase_html_aba74767752d7ce1dc80b68bd6b8412c5"><div class="ttname"><a href="../../dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#aba74767752d7ce1dc80b68bd6b8412c5">carla::traffic_manager::TrafficManagerBase::ShutDown</a></div><div class="ttdeci">virtual void ShutDown()=0</div><div class="ttdoc">关闭系统。</div></div>
+<div class="ttc" id="aclasscarla_1_1traffic__manager_1_1TrafficManagerLocal_html"><div class="ttname"><a href="../../da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html">carla::traffic_manager::TrafficManagerLocal</a></div><div class="ttdoc">交通管理器本地类，通过消息传递机制整合交通管理器的各个阶段。 @inherits TrafficManagerBase</div><div class="ttdef"><b>Definition:</b> <a href="../../db/ddf/TrafficManagerLocal_8h_source.html#l00058">TrafficManagerLocal.h:58</a></div></div>
+<div class="ttc" id="aclasscarla_1_1traffic__manager_1_1TrafficManagerRemote_html"><div class="ttname"><a href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html">carla::traffic_manager::TrafficManagerRemote</a></div><div class="ttdoc">远程交通管理器类，通过消息传递机制整合交通管理的各个阶段。</div><div class="ttdef"><b>Definition:</b> <a href="../../da/df6/TrafficManagerRemote_8h_source.html#l00052">TrafficManagerRemote.h:52</a></div></div>
+<div class="ttc" id="aclasscarla_1_1traffic__manager_1_1TrafficManagerRemote_html_adb8e764d24050b847770f5d1be9b9cfe"><div class="ttname"><a href="../../d7/d5c/classcarla_1_1traffic__manager_1_1TrafficManagerRemote.html#adb8e764d24050b847770f5d1be9b9cfe">carla::traffic_manager::TrafficManagerRemote::HealthCheckRemoteTM</a></div><div class="ttdeci">void HealthCheckRemoteTM()</div><div class="ttdoc">检查服务器是否存活。</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d82/TrafficManagerRemote_8cpp_source.html#l00371">TrafficManagerRemote.cpp:371</a></div></div>
+<div class="ttc" id="aclasscarla_1_1traffic__manager_1_1TrafficManager_html_a005d53e7e05626ca01953b7bf9aa08ff"><div class="ttname"><a href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a005d53e7e05626ca01953b7bf9aa08ff">carla::traffic_manager::TrafficManager::_tm_map</a></div><div class="ttdeci">static std::map&lt; uint16_t, TrafficManagerBase * &gt; _tm_map</div><div class="ttdoc">存储交通管理器实例的静态映射表。</div><div class="ttdef"><b>Definition:</b> <a href="../../da/dfd/TrafficManager_8h_source.html#l00471">TrafficManager.h:471</a></div></div>
+<div class="ttc" id="aclasscarla_1_1traffic__manager_1_1TrafficManager_html_a2423bb92b1715fd9f19b2c05b1372bab"><div class="ttname"><a href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a2423bb92b1715fd9f19b2c05b1372bab">carla::traffic_manager::TrafficManager::ShutDown</a></div><div class="ttdeci">void ShutDown()</div><div class="ttdoc">关闭交通管理器服务或客户端。</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d04/TrafficManager_8cpp_source.html#l00078">TrafficManager.cpp:78</a></div></div>
+<div class="ttc" id="aclasscarla_1_1traffic__manager_1_1TrafficManager_html_a4fc60e63d887db4556967adcc9360ed9"><div class="ttname"><a href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a4fc60e63d887db4556967adcc9360ed9">carla::traffic_manager::TrafficManager::_mutex</a></div><div class="ttdeci">static std::mutex _mutex</div><div class="ttdoc">用于保护_tm_map的静态互斥锁。</div><div class="ttdef"><b>Definition:</b> <a href="../../da/dfd/TrafficManager_8h_source.html#l00473">TrafficManager.h:473</a></div></div>
+<div class="ttc" id="aclasscarla_1_1traffic__manager_1_1TrafficManager_html_a765537526aaa8d388508d6956b51cd9e"><div class="ttname"><a href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a765537526aaa8d388508d6956b51cd9e">carla::traffic_manager::TrafficManager::GetTM</a></div><div class="ttdeci">TrafficManagerBase * GetTM(uint16_t port) const</div><div class="ttdoc">根据端口号获取交通管理器实例。</div><div class="ttdef"><b>Definition:</b> <a href="../../da/dfd/TrafficManager_8h_source.html#l00461">TrafficManager.h:461</a></div></div>
+<div class="ttc" id="aclasscarla_1_1traffic__manager_1_1TrafficManager_html_aa64df98ac9496ae303dd9515d69bf598"><div class="ttname"><a href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#aa64df98ac9496ae303dd9515d69bf598">carla::traffic_manager::TrafficManager::TrafficManager</a></div><div class="ttdeci">TrafficManager()</div><div class="ttdoc">默认构造函数，不执行任何操作。</div><div class="ttdef"><b>Definition:</b> <a href="../../da/dfd/TrafficManager_8h_source.html#l00041">TrafficManager.h:41</a></div></div>
+<div class="ttc" id="aclasscarla_1_1traffic__manager_1_1TrafficManager_html_ab2c6feb02978392726bb256f93a4eb63"><div class="ttname"><a href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#ab2c6feb02978392726bb256f93a4eb63">carla::traffic_manager::TrafficManager::Tick</a></div><div class="ttdeci">static void Tick()</div><div class="ttdoc">执行TrafficManager的Tick操作，通常用于周期性地更新状态</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d04/TrafficManager_8cpp_source.html#l00070">TrafficManager.cpp:70</a></div></div>
+<div class="ttc" id="aclasscarla_1_1traffic__manager_1_1TrafficManager_html_ab8b1ddabe257a4b75430eb645fdd7811"><div class="ttname"><a href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#ab8b1ddabe257a4b75430eb645fdd7811">carla::traffic_manager::TrafficManager::Release</a></div><div class="ttdeci">static void Release()</div><div class="ttdoc">释放TrafficManager对象，用于单例模式的清理工作</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d04/TrafficManager_8cpp_source.html#l00051">TrafficManager.cpp:51</a></div></div>
+<div class="ttc" id="aclasscarla_1_1traffic__manager_1_1TrafficManager_html_acd7e4e02b433967e2f0e2fdd0e9c0213"><div class="ttname"><a href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#acd7e4e02b433967e2f0e2fdd0e9c0213">carla::traffic_manager::TrafficManager::CreateTrafficManagerServer</a></div><div class="ttdeci">void CreateTrafficManagerServer(carla::client::detail::EpisodeProxy episode_proxy, uint16_t port)</div><div class="ttdoc">创建交通管理器服务器。</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d04/TrafficManager_8cpp_source.html#l00092">TrafficManager.cpp:92</a></div></div>
+<div class="ttc" id="aclasscarla_1_1traffic__manager_1_1TrafficManager_html_ad9d527f96868d0255cad3a4d9a2150a0"><div class="ttname"><a href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#ad9d527f96868d0255cad3a4d9a2150a0">carla::traffic_manager::TrafficManager::CreateTrafficManagerClient</a></div><div class="ttdeci">bool CreateTrafficManagerClient(carla::client::detail::EpisodeProxy episode_proxy, uint16_t port)</div><div class="ttdoc">创建交通管理器客户端。</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d04/TrafficManager_8cpp_source.html#l00186">TrafficManager.cpp:186</a></div></div>
+<div class="ttc" id="aclasscarla_1_1traffic__manager_1_1TrafficManager_html_ae1ed940a391fc5a91d42c5a0e6e586ea"><div class="ttname"><a href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#ae1ed940a391fc5a91d42c5a0e6e586ea">carla::traffic_manager::TrafficManager::Reset</a></div><div class="ttdeci">static void Reset()</div><div class="ttdoc">重置TrafficManager对象，用于单例模式的重置操作</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d04/TrafficManager_8cpp_source.html#l00062">TrafficManager.cpp:62</a></div></div>
+<div class="ttc" id="aclasscarla_1_1traffic__manager_1_1TrafficManager_html_ae77002df580551f5159ac4a570596d7b"><div class="ttname"><a href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#ae77002df580551f5159ac4a570596d7b">carla::traffic_manager::TrafficManager::_port</a></div><div class="ttdeci">uint16_t _port</div><div class="ttdoc">当前交通管理器实例使用的端口号。</div><div class="ttdef"><b>Definition:</b> <a href="../../da/dfd/TrafficManager_8h_source.html#l00475">TrafficManager.h:475</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1traffic__manager_1_1constants_1_1PID_html_a508714588d67112c24cc5557ba335e66"><div class="ttname"><a href="../../df/dc7/namespacecarla_1_1traffic__manager_1_1constants_1_1PID.html#a508714588d67112c24cc5557ba335e66">carla::traffic_manager::constants::PID::LATERAL_HIGHWAY_PARAM</a></div><div class="ttdeci">static const std::vector&lt; float &gt; LATERAL_HIGHWAY_PARAM</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d45/Constants_8h_source.html#l00154">Constants.h:154</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1traffic__manager_1_1constants_1_1PID_html_a538b523d70805d21808b5e6e16093a41"><div class="ttname"><a href="../../df/dc7/namespacecarla_1_1traffic__manager_1_1constants_1_1PID.html#a538b523d70805d21808b5e6e16093a41">carla::traffic_manager::constants::PID::LONGITUDIAL_PARAM</a></div><div class="ttdeci">static const std::vector&lt; float &gt; LONGITUDIAL_PARAM</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d45/Constants_8h_source.html#l00151">Constants.h:151</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1traffic__manager_1_1constants_1_1PID_html_a597bca50efd64828538ed42268985457"><div class="ttname"><a href="../../df/dc7/namespacecarla_1_1traffic__manager_1_1constants_1_1PID.html#a597bca50efd64828538ed42268985457">carla::traffic_manager::constants::PID::LONGITUDIAL_HIGHWAY_PARAM</a></div><div class="ttdeci">static const std::vector&lt; float &gt; LONGITUDIAL_HIGHWAY_PARAM</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d45/Constants_8h_source.html#l00152">Constants.h:152</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1traffic__manager_1_1constants_1_1PID_html_ae5edd27cb616adbf71a0a32d1f2c6fba"><div class="ttname"><a href="../../df/dc7/namespacecarla_1_1traffic__manager_1_1constants_1_1PID.html#ae5edd27cb616adbf71a0a32d1f2c6fba">carla::traffic_manager::constants::PID::LATERAL_PARAM</a></div><div class="ttdeci">static const std::vector&lt; float &gt; LATERAL_PARAM</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d45/Constants_8h_source.html#l00153">Constants.h:153</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1traffic__manager_1_1constants_1_1SpeedThreshold_html_af31a12936b409bad360dc60f8832c3ca"><div class="ttname"><a href="../../df/dfa/namespacecarla_1_1traffic__manager_1_1constants_1_1SpeedThreshold.html#af31a12936b409bad360dc60f8832c3ca">carla::traffic_manager::constants::SpeedThreshold::INITIAL_PERCENTAGE_SPEED_DIFFERENCE</a></div><div class="ttdeci">static const float INITIAL_PERCENTAGE_SPEED_DIFFERENCE</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d45/Constants_8h_source.html#l00043">Constants.h:43</a></div></div>
+<div class="ttc" id="anamespacecarla_html"><div class="ttname"><a href="../../d9/d36/namespacecarla.html">carla</a></div><div class="ttdoc">CARLA模拟器的主命名空间。</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d4f/Carla_8cpp_source.html#l00139">Carla.cpp:139</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

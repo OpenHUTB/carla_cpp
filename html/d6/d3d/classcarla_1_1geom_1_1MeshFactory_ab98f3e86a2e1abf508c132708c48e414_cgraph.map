@@ -1,0 +1,17 @@
+<map id="carla::geom::MeshFactory::GenerateLaneSectionOrdered" name="carla::geom::MeshFactory::GenerateLaneSectionOrdered">
+<area shape="rect" id="node1" title="生成按顺序排列的车道段网格" alt="" coords="5,252,205,292"/>
+<area shape="rect" id="node2" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a15a67316be6174f196580a188edb847b" title="生成车道段的人行道网格" alt="" coords="253,45,423,85"/>
+<area shape="rect" id="node3" href="$dd/d80/classcarla_1_1road_1_1LaneSection.html#afb698c17b4d62c0df02cf8dae16b8f50" title=" " alt="" coords="471,5,631,45"/>
+<area shape="rect" id="node4" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#ae26205cfd730254bb1a35302386b497f" title="用更高的细分生成从给定的s起始和结束的车道网格" alt="" coords="253,280,423,320"/>
+<area shape="rect" id="node15" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a0969da14208e075e1414357de8183cdd" title="在给定车道类型下选择的宽度内的顶点数量" alt="" coords="253,344,423,384"/>
+<area shape="rect" id="node5" href="$d0/d02/classcarla_1_1geom_1_1Mesh.html#a07814867b5e1b31a7af31d0c8f91b90b" title="将索引附加到索引列表。" alt="" coords="485,69,617,109"/>
+<area shape="rect" id="node6" href="$d0/d02/classcarla_1_1geom_1_1Mesh.html#aa2752de6bd91ed08eeb68e015c783825" title="开始将新材质应用到新添加的三角形。" alt="" coords="485,133,617,173"/>
+<area shape="rect" id="node7" href="$d0/d02/classcarla_1_1geom_1_1Mesh.html#aa51f24b8ab582d1ad828c2561b9ca153" title="停止将材质应用到新添加的三角形。" alt="" coords="679,163,811,203"/>
+<area shape="rect" id="node8" href="$d0/d02/classcarla_1_1geom_1_1Mesh.html#a5860ad4aae3291192acaae868ce9768d" title="添加纹理映射坐标(Texture&#45;Mapping Coordinates, UV)" alt="" coords="485,248,617,288"/>
+<area shape="rect" id="node9" href="$d0/d02/classcarla_1_1geom_1_1Mesh.html#a17ebc0f75528a6ccf9d1c818b12415fa" title="将顶点附加到顶点列表。" alt="" coords="485,312,617,352"/>
+<area shape="rect" id="node10" href="$df/d85/classcarla_1_1road_1_1Lane.html#ae0d376fa422b14e54af3a702e1b8385a" title="计算给定位置s的车道边缘位置" alt="" coords="483,376,618,416"/>
+<area shape="rect" id="node11" href="$df/d85/classcarla_1_1road_1_1Lane.html#ae02c9441872377fc865c85339df51cbd" title=" " alt="" coords="489,440,612,480"/>
+<area shape="rect" id="node12" href="$df/d85/classcarla_1_1road_1_1Lane.html#ae1a5f15925f91fca2b5d759fb53901f3" title=" " alt="" coords="489,504,612,544"/>
+<area shape="rect" id="node13" href="$df/d85/classcarla_1_1road_1_1Lane.html#af158921fdf12a061967943ee2d645481" title=" " alt="" coords="489,568,612,608"/>
+<area shape="rect" id="node14" href="$df/d85/classcarla_1_1road_1_1Lane.html#aa03b1c0d6dd6988f0cbfcd63c842669b" title=" " alt="" coords="489,632,612,672"/>
+</map>

@@ -1,0 +1,20 @@
+<map id="ALaneInvasionSensor" name="ALaneInvasionSensor">
+<area shape="rect" id="node1" title="LaneInvasion传感器表示 实际位置计算在客户端完成" alt="" coords="1085,198,1236,223"/>
+<area shape="rect" id="node2" href="$d3/d01/classASensor.html" title="传感器的基类" alt="" coords="964,198,1036,223"/>
+<area shape="rect" id="node3" href="$d1/da4/classAActor.html" title=" " alt="" coords="677,6,740,31"/>
+<area shape="rect" id="node4" title=" " alt="" coords="683,55,734,81"/>
+<area shape="rect" id="node5" href="$d2/d4b/classURandomEngine.html" title=" " alt="" coords="649,105,768,130"/>
+<area shape="rect" id="node6" href="$df/def/classUObject.html" title=" " alt="" coords="329,55,400,81"/>
+<area shape="rect" id="node7" title=" " alt="" coords="318,105,411,130"/>
+<area shape="rect" id="node8" title=" " alt="" coords="685,157,732,182"/>
+<area shape="rect" id="node9" href="$d4/d9c/classFDataStreamTmpl.html" title=" " alt="" coords="625,207,792,247"/>
+<area shape="rect" id="node10" title=" " alt="" coords="5,189,164,214"/>
+<area shape="rect" id="node11" href="$d4/d9c/classFDataStreamTmpl.html" title="用于将传感器数据发送到客户端的流式处理通道。每个传感器 都有自己的 FDataStream。但请注意，此类不提供 send 函数。 为了发送数据，需要使用 “MakeAsyncDataStream” 函..." alt="" coords="285,219,444,245"/>
+<area shape="rect" id="node12" title=" " alt="" coords="647,271,770,297"/>
+<area shape="rect" id="node13" href="$d0/df6/structFActorDescription.html" title="carla参与者及其所有变体的描述" alt="" coords="645,321,772,346"/>
+<area shape="rect" id="node14" title=" " alt="" coords="336,270,393,295"/>
+<area shape="rect" id="node15" title=" " alt="" coords="333,319,397,345"/>
+<area shape="rect" id="node16" title=" " alt="" coords="285,369,445,394"/>
+<area shape="rect" id="node17" title=" " alt="" coords="257,418,472,443"/>
+<area shape="rect" id="node18" title=" " alt="" coords="633,370,784,395"/>
+</map>

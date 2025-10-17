@@ -1,0 +1,734 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: carla::ros2::CarlaRadarPublisher类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../d9/d36/namespacecarla.html">carla</a></li><li class="navelem"><a class="el" href="../../d1/d4b/namespacecarla_1_1ros2.html">ros2</a></li><li class="navelem"><a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html">CarlaRadarPublisher</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="../../d2/d0f/classcarla_1_1ros2_1_1CarlaRadarPublisher-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">carla::ros2::CarlaRadarPublisher类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="../../d6/dea/CarlaRadarPublisher_8h_source.html">CarlaRadarPublisher.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 类 carla::ros2::CarlaRadarPublisher 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d5/d34/classcarla_1_1ros2_1_1CarlaRadarPublisher__inherit__graph.svg" width="216" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> carla::ros2::CarlaRadarPublisher 的协作图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d5/dc7/classcarla_1_1ros2_1_1CarlaRadarPublisher__coll__graph.svg" width="414" height="256"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a8660f86ab9de30223aaa2cc8d1fc1269"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html#a8660f86ab9de30223aaa2cc8d1fc1269">CarlaRadarPublisher</a> (<a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html">CarlaRadarPublisher</a> &amp;&amp;)</td></tr>
+<tr class="memdesc:a8660f86ab9de30223aaa2cc8d1fc1269"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html">CarlaRadarPublisher</a> 类的移动构造函数  <a href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html#a8660f86ab9de30223aaa2cc8d1fc1269">更多...</a><br /></td></tr>
+<tr class="separator:a8660f86ab9de30223aaa2cc8d1fc1269"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5130a2e44abce7228bb90ea05537763"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html#ab5130a2e44abce7228bb90ea05537763">CarlaRadarPublisher</a> (const <a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html">CarlaRadarPublisher</a> &amp;)</td></tr>
+<tr class="memdesc:ab5130a2e44abce7228bb90ea05537763"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html">CarlaRadarPublisher</a> 类的拷贝构造函数  <a href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html#ab5130a2e44abce7228bb90ea05537763">更多...</a><br /></td></tr>
+<tr class="separator:ab5130a2e44abce7228bb90ea05537763"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11c53d50d47a1ab108bef530a213c47b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html#a11c53d50d47a1ab108bef530a213c47b">CarlaRadarPublisher</a> (const char *ros_name=&quot;&quot;, const char *<a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a0f2175762993c5eec161b8f304c59bb5">parent</a>=&quot;&quot;)</td></tr>
+<tr class="memdesc:a11c53d50d47a1ab108bef530a213c47b"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html">CarlaRadarPublisher</a> 类的构造函数  <a href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html#a11c53d50d47a1ab108bef530a213c47b">更多...</a><br /></td></tr>
+<tr class="separator:a11c53d50d47a1ab108bef530a213c47b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a4a243c7feec67b902031357be9b287"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html#a8a4a243c7feec67b902031357be9b287">Init</a> ()</td></tr>
+<tr class="memdesc:a8a4a243c7feec67b902031357be9b287"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化CarlaRadarPublisher对象。  <a href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html#a8a4a243c7feec67b902031357be9b287">更多...</a><br /></td></tr>
+<tr class="separator:a8a4a243c7feec67b902031357be9b287"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ba52c275053dd1bb60cc2ab5a30b541"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html">CarlaRadarPublisher</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html#a8ba52c275053dd1bb60cc2ab5a30b541">operator=</a> (<a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html">CarlaRadarPublisher</a> &amp;&amp;)</td></tr>
+<tr class="memdesc:a8ba52c275053dd1bb60cc2ab5a30b541"><td class="mdescLeft">&#160;</td><td class="mdescRight">移动赋值运算符  <a href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html#a8ba52c275053dd1bb60cc2ab5a30b541">更多...</a><br /></td></tr>
+<tr class="separator:a8ba52c275053dd1bb60cc2ab5a30b541"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe3e4315296662f5d7115f9facb5b7b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html">CarlaRadarPublisher</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html#abe3e4315296662f5d7115f9facb5b7b2">operator=</a> (const <a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html">CarlaRadarPublisher</a> &amp;)</td></tr>
+<tr class="memdesc:abe3e4315296662f5d7115f9facb5b7b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">拷贝赋值运算符  <a href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html#abe3e4315296662f5d7115f9facb5b7b2">更多...</a><br /></td></tr>
+<tr class="separator:abe3e4315296662f5d7115f9facb5b7b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a062019269728bbb039600b732051b5ac"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html#a062019269728bbb039600b732051b5ac">Publish</a> ()</td></tr>
+<tr class="memdesc:a062019269728bbb039600b732051b5ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">发布雷达数据  <a href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html#a062019269728bbb039600b732051b5ac">更多...</a><br /></td></tr>
+<tr class="separator:a062019269728bbb039600b732051b5ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8108951eca8c378ff78b5edf0a9502ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html#a8108951eca8c378ff78b5edf0a9502ae">SetData</a> (int32_t seconds, uint32_t nanoseconds, <a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a> height, <a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a> width, <a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a> elements, const uint8_t *data)</td></tr>
+<tr class="memdesc:a8108951eca8c378ff78b5edf0a9502ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置雷达数据  <a href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html#a8108951eca8c378ff78b5edf0a9502ae">更多...</a><br /></td></tr>
+<tr class="separator:a8108951eca8c378ff78b5edf0a9502ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac30eac71d8d48b44cdefb9e9ca152784"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html#ac30eac71d8d48b44cdefb9e9ca152784">type</a> () const <a class="el" href="../../de/d7d/ActorData_8h.html#ad031bfd5a8a2ed7e66d03dafcc3b2858">override</a></td></tr>
+<tr class="separator:ac30eac71d8d48b44cdefb9e9ca152784"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9bf771bc1fb87d23ca6dcde67037198"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html#af9bf771bc1fb87d23ca6dcde67037198">~CarlaRadarPublisher</a> ()</td></tr>
+<tr class="memdesc:af9bf771bc1fb87d23ca6dcde67037198"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html">CarlaRadarPublisher</a> 类的析构函数  <a href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html#af9bf771bc1fb87d23ca6dcde67037198">更多...</a><br /></td></tr>
+<tr class="separator:af9bf771bc1fb87d23ca6dcde67037198"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classcarla_1_1ros2_1_1CarlaPublisher')"><img src="../../closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html">carla::ros2::CarlaPublisher</a></td></tr>
+<tr class="memitem:a35f0eba9bdf0bf22524cc6dacf43f242 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a35f0eba9bdf0bf22524cc6dacf43f242">CarlaPublisher</a> ()=default</td></tr>
+<tr class="separator:a35f0eba9bdf0bf22524cc6dacf43f242 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77422f0594812a0371f8b04d70f19741 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a77422f0594812a0371f8b04d70f19741">frame_id</a> () const</td></tr>
+<tr class="separator:a77422f0594812a0371f8b04d70f19741 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9656d0fbe195ce57730f65ebb7e9e384 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a9656d0fbe195ce57730f65ebb7e9e384">frame_id</a> (std::string &amp;&amp;frame_id)</td></tr>
+<tr class="separator:a9656d0fbe195ce57730f65ebb7e9e384 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac81da28dc11b15e6ad27647887ef65bb inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#ac81da28dc11b15e6ad27647887ef65bb">name</a> () const</td></tr>
+<tr class="separator:ac81da28dc11b15e6ad27647887ef65bb inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53db6f09833e2dd625967218568f8ab4 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a53db6f09833e2dd625967218568f8ab4">name</a> (std::string &amp;&amp;name)</td></tr>
+<tr class="separator:a53db6f09833e2dd625967218568f8ab4 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f2175762993c5eec161b8f304c59bb5 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a0f2175762993c5eec161b8f304c59bb5">parent</a> () const</td></tr>
+<tr class="separator:a0f2175762993c5eec161b8f304c59bb5 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a49e93846cc2dff08ed65be07767b58 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a1a49e93846cc2dff08ed65be07767b58">parent</a> (std::string &amp;&amp;parent)</td></tr>
+<tr class="separator:a1a49e93846cc2dff08ed65be07767b58 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6448e2522e8b78dfe350aca123530089 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a6448e2522e8b78dfe350aca123530089">type</a> () const =0</td></tr>
+<tr class="separator:a6448e2522e8b78dfe350aca123530089 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52ddebcb6ae5afef2c9061bee7d6153a inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a52ddebcb6ae5afef2c9061bee7d6153a">~CarlaPublisher</a> ()=default</td></tr>
+<tr class="separator:a52ddebcb6ae5afef2c9061bee7d6153a inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:aefe48518957ec184d72371aadeba8487"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html#aefe48518957ec184d72371aadeba8487">SetData</a> (int32_t seconds, uint32_t nanoseconds, <a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a> height, <a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a> width, <a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a> elements, std::vector&lt; uint8_t &gt; &amp;&amp;data)</td></tr>
+<tr class="memdesc:aefe48518957ec184d72371aadeba8487"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置雷达数据并发布  <a href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html#aefe48518957ec184d72371aadeba8487">更多...</a><br /></td></tr>
+<tr class="separator:aefe48518957ec184d72371aadeba8487"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a7bc04ad96d0a99958b24457d317c49b7"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="../../da/d52/structcarla_1_1ros2_1_1CarlaRadarPublisherImpl.html">CarlaRadarPublisherImpl</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html#a7bc04ad96d0a99958b24457d317c49b7">_impl</a></td></tr>
+<tr class="separator:a7bc04ad96d0a99958b24457d317c49b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher')"><img src="../../closed.png" alt="-"/>&#160;Protected 属性 继承自 <a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html">carla::ros2::CarlaPublisher</a></td></tr>
+<tr class="memitem:a611073f244645d4f6265a29b8a6e3b23 inherit pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a611073f244645d4f6265a29b8a6e3b23">_frame_id</a> = &quot;&quot;</td></tr>
+<tr class="separator:a611073f244645d4f6265a29b8a6e3b23 inherit pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26ab51e4d54b99c8c9347a3d245aac20 inherit pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a26ab51e4d54b99c8c9347a3d245aac20">_name</a> = &quot;&quot;</td></tr>
+<tr class="separator:a26ab51e4d54b99c8c9347a3d245aac20 inherit pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a284934d8f61aed2ddcb24c575240fb2f inherit pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a284934d8f61aed2ddcb24c575240fb2f">_parent</a> = &quot;&quot;</td></tr>
+<tr class="separator:a284934d8f61aed2ddcb24c575240fb2f inherit pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="../../d6/dea/CarlaRadarPublisher_8h_source.html">CarlaRadarPublisher.h</a> 第 <a class="el" href="../../d6/dea/CarlaRadarPublisher_8h_source.html#l00019">19</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a11c53d50d47a1ab108bef530a213c47b" name="a11c53d50d47a1ab108bef530a213c47b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11c53d50d47a1ab108bef530a213c47b">&#9670;&#160;</a></span>CarlaRadarPublisher() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::ros2::CarlaRadarPublisher::CarlaRadarPublisher </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>ros_name</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html">CarlaRadarPublisher</a> 类的构造函数 </p>
+<p >初始化 <a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html">CarlaRadarPublisher</a> 对象，并创建一个 <a class="el" href="../../da/d52/structcarla_1_1ros2_1_1CarlaRadarPublisherImpl.html" title="CarlaRadarPublisher的内部实现结构体，封装了Fast-DDS发布雷达数据所需的对象。">CarlaRadarPublisherImpl</a> 对象的智能指针。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ros_name</td><td>ROS 节点的名称 </td></tr>
+    <tr><td class="paramname">parent</td><td>父节点的名称 </td></tr>
+  </table>
+  </dd>
+</dl>
+<p >&lt; ROS 节点的名称</p>
+<p >&lt; 父节点的名称</p>
+
+<p class="definition">在文件 <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html">CarlaRadarPublisher.cpp</a> 第 <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00398">398</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00031">carla::ros2::CarlaPublisher::_name</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00032">carla::ros2::CarlaPublisher::_parent</a> , 以及 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00017">carla::ros2::CarlaPublisher::parent()</a>.</p>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher_a11c53d50d47a1ab108bef530a213c47b_cgraph.svg" width="435" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="af9bf771bc1fb87d23ca6dcde67037198" name="af9bf771bc1fb87d23ca6dcde67037198"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9bf771bc1fb87d23ca6dcde67037198">&#9670;&#160;</a></span>~CarlaRadarPublisher()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::ros2::CarlaRadarPublisher::~CarlaRadarPublisher </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html">CarlaRadarPublisher</a> 类的析构函数 </p>
+<p >清理资源，包括删除 DataWriter、Publisher、Topic 和 Participant。 </p>
+<p >&lt; 删除 DataWriter</p>
+<p >&lt; 删除 Publisher</p>
+<p >&lt; 删除 Topic</p>
+<p >&lt; 删除 Participant</p>
+
+<p class="definition">在文件 <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html">CarlaRadarPublisher.cpp</a> 第 <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00408">408</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d6/dea/CarlaRadarPublisher_8h_source.html#l00038">_impl</a>.</p>
+
+</div>
+</div>
+<a id="ab5130a2e44abce7228bb90ea05537763" name="ab5130a2e44abce7228bb90ea05537763"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5130a2e44abce7228bb90ea05537763">&#9670;&#160;</a></span>CarlaRadarPublisher() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::ros2::CarlaRadarPublisher::CarlaRadarPublisher </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html">CarlaRadarPublisher</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html">CarlaRadarPublisher</a> 类的拷贝构造函数 </p>
+<p >使用另一个 <a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html">CarlaRadarPublisher</a> 对象来初始化当前对象。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>另一个 <a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html">CarlaRadarPublisher</a> 对象 </td></tr>
+  </table>
+  </dd>
+</dl>
+<p >&lt; 拷贝帧 ID</p>
+<p >&lt; 拷贝 ROS 节点的名称</p>
+<p >&lt; 拷贝父节点的名称</p>
+<p >&lt; 共享相同的 <a class="el" href="../../da/d52/structcarla_1_1ros2_1_1CarlaRadarPublisherImpl.html" title="CarlaRadarPublisher的内部实现结构体，封装了Fast-DDS发布雷达数据所需的对象。">CarlaRadarPublisherImpl</a> 对象</p>
+
+<p class="definition">在文件 <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html">CarlaRadarPublisher.cpp</a> 第 <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00431">431</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00030">carla::ros2::CarlaPublisher::_frame_id</a>, <a class="el" href="../../d6/dea/CarlaRadarPublisher_8h_source.html#l00038">_impl</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00031">carla::ros2::CarlaPublisher::_name</a> , 以及 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00032">carla::ros2::CarlaPublisher::_parent</a>.</p>
+
+</div>
+</div>
+<a id="a8660f86ab9de30223aaa2cc8d1fc1269" name="a8660f86ab9de30223aaa2cc8d1fc1269"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8660f86ab9de30223aaa2cc8d1fc1269">&#9670;&#160;</a></span>CarlaRadarPublisher() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::ros2::CarlaRadarPublisher::CarlaRadarPublisher </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html">CarlaRadarPublisher</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html">CarlaRadarPublisher</a> 类的移动构造函数 </p>
+<p >使用另一个 <a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html">CarlaRadarPublisher</a> 对象（右值）来初始化当前对象。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>另一个 <a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html">CarlaRadarPublisher</a> 对象（右值） </td></tr>
+  </table>
+  </dd>
+</dl>
+<p >&lt; 移动帧 ID</p>
+<p >&lt; 移动 ROS 节点的名称</p>
+<p >&lt; 移动父节点的名称</p>
+<p >&lt; 移动 <a class="el" href="../../da/d52/structcarla_1_1ros2_1_1CarlaRadarPublisherImpl.html" title="CarlaRadarPublisher的内部实现结构体，封装了Fast-DDS发布雷达数据所需的对象。">CarlaRadarPublisherImpl</a> 对象</p>
+
+<p class="definition">在文件 <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html">CarlaRadarPublisher.cpp</a> 第 <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00460">460</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00030">carla::ros2::CarlaPublisher::_frame_id</a>, <a class="el" href="../../d6/dea/CarlaRadarPublisher_8h_source.html#l00038">_impl</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00031">carla::ros2::CarlaPublisher::_name</a> , 以及 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00032">carla::ros2::CarlaPublisher::_parent</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a8a4a243c7feec67b902031357be9b287" name="a8a4a243c7feec67b902031357be9b287"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a4a243c7feec67b902031357be9b287">&#9670;&#160;</a></span>Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::ros2::CarlaRadarPublisher::Init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>初始化CarlaRadarPublisher对象。 </p>
+<p >此函数负责创建Fast-DDS域参与者、发布者、主题和数据写入器，并注册ROS 2点云消息类型。</p>
+<dl class="section return"><dt>返回</dt><dd>如果初始化成功，则返回true；否则返回false。 </dd></dl>
+<p >检查类型支持是否有效。如果_impl-&gt;_type为nullptr，表示类型支持无效，打印错误信息并返回false。</p>
+<p >设置域参与者（DomainParticipant）的质量服务（Qos）参数，使用默认值，并设置名称。</p>
+<p >检查域参与者是否创建成功。如果为nullptr，表示创建失败，打印错误信息并返回false。</p>
+<p >注册类型支持到域参与者。</p>
+<p >设置发布者（Publisher）的质量服务（Qos）参数，使用默认值。</p>
+<p >创建发布者。</p>
+<p >检查发布者是否创建成功。如果为nullptr，表示创建失败，打印错误信息并返回false。</p>
+<p >设置主题（Topic）的质量服务（Qos）参数，使用默认值。</p>
+<p >构造主题名称，根据基础名称"rt/carla/"和可能的父级名称以及本对象的名称。</p>
+<p >创建主题。</p>
+<p >检查主题是否创建成功。如果为nullptr，表示创建失败，打印错误信息并返回false。</p>
+<p >设置数据写入器（DataWriter）的质量服务（Qos）参数，使用默认值，并设置历史内存策略为预分配并重新分配模式。</p>
+<p >获取数据写入器监听器实例。</p>
+<p >创建数据写入器。</p>
+<p >检查数据写入器是否创建成功。如果为nullptr，表示创建失败，打印错误信息并返回false。</p>
+<p >初始化成功，返回true。</p>
+
+<p class="definition">在文件 <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html">CarlaRadarPublisher.cpp</a> 第 <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00104">104</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00030">carla::ros2::CarlaPublisher::_frame_id</a>, <a class="el" href="../../d6/dea/CarlaRadarPublisher_8h_source.html#l00038">_impl</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00031">carla::ros2::CarlaPublisher::_name</a> , 以及 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00032">carla::ros2::CarlaPublisher::_parent</a>.</p>
+
+</div>
+</div>
+<a id="a8ba52c275053dd1bb60cc2ab5a30b541" name="a8ba52c275053dd1bb60cc2ab5a30b541"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ba52c275053dd1bb60cc2ab5a30b541">&#9670;&#160;</a></span>operator=() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html">CarlaRadarPublisher</a> &amp; carla::ros2::CarlaRadarPublisher::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html">CarlaRadarPublisher</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>移动赋值运算符 </p>
+<p >使用另一个 <a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html">CarlaRadarPublisher</a> 对象（右值）来更新当前对象。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>另一个 <a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html">CarlaRadarPublisher</a> 对象（右值） </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd><a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html">CarlaRadarPublisher</a>&amp; 当前对象的引用 </dd></dl>
+<p >&lt; 移动帧 ID</p>
+<p >&lt; 移动 ROS 节点的名称</p>
+<p >&lt; 移动父节点的名称</p>
+<p >&lt; 移动 <a class="el" href="../../da/d52/structcarla_1_1ros2_1_1CarlaRadarPublisherImpl.html" title="CarlaRadarPublisher的内部实现结构体，封装了Fast-DDS发布雷达数据所需的对象。">CarlaRadarPublisherImpl</a> 对象</p>
+
+<p class="definition">在文件 <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html">CarlaRadarPublisher.cpp</a> 第 <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00474">474</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00030">carla::ros2::CarlaPublisher::_frame_id</a>, <a class="el" href="../../d6/dea/CarlaRadarPublisher_8h_source.html#l00038">_impl</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00031">carla::ros2::CarlaPublisher::_name</a> , 以及 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00032">carla::ros2::CarlaPublisher::_parent</a>.</p>
+
+</div>
+</div>
+<a id="abe3e4315296662f5d7115f9facb5b7b2" name="abe3e4315296662f5d7115f9facb5b7b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe3e4315296662f5d7115f9facb5b7b2">&#9670;&#160;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html">CarlaRadarPublisher</a> &amp; carla::ros2::CarlaRadarPublisher::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html">CarlaRadarPublisher</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>拷贝赋值运算符 </p>
+<p >使用另一个 <a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html">CarlaRadarPublisher</a> 对象来更新当前对象。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>另一个 <a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html">CarlaRadarPublisher</a> 对象 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd><a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html">CarlaRadarPublisher</a>&amp; 当前对象的引用 </dd></dl>
+<p >&lt; 拷贝帧 ID</p>
+<p >&lt; 拷贝 ROS 节点的名称</p>
+<p >&lt; 拷贝父节点的名称</p>
+<p >&lt; 共享相同的 <a class="el" href="../../da/d52/structcarla_1_1ros2_1_1CarlaRadarPublisherImpl.html" title="CarlaRadarPublisher的内部实现结构体，封装了Fast-DDS发布雷达数据所需的对象。">CarlaRadarPublisherImpl</a> 对象</p>
+
+<p class="definition">在文件 <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html">CarlaRadarPublisher.cpp</a> 第 <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00445">445</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00030">carla::ros2::CarlaPublisher::_frame_id</a>, <a class="el" href="../../d6/dea/CarlaRadarPublisher_8h_source.html#l00038">_impl</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00031">carla::ros2::CarlaPublisher::_name</a> , 以及 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00032">carla::ros2::CarlaPublisher::_parent</a>.</p>
+
+</div>
+</div>
+<a id="a062019269728bbb039600b732051b5ac" name="a062019269728bbb039600b732051b5ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a062019269728bbb039600b732051b5ac">&#9670;&#160;</a></span>Publish()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::ros2::CarlaRadarPublisher::Publish </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>发布雷达数据 </p>
+<p >此函数尝试通过Fast-RTPS发布雷达数据。根据返回代码，函数会返回不同的结果，并在控制台上打印相应的错误信息。</p>
+<dl class="section return"><dt>返回</dt><dd>true 如果数据成功发布 </dd>
+<dd>
+false 如果数据发布失败，并根据返回代码打印错误信息 </dd></dl>
+<p >Fast-RTPS实例句柄</p>
+<p >尝试写入雷达数据到数据写入器，并获取返回代码</p>
+<p >根据返回代码处理不同的结果</p>
+<p >数据成功发布</p>
+<p >通用错误</p>
+<p >操作不支持</p>
+<p >参数错误</p>
+<p >先决条件未满足</p>
+<p >资源不足</p>
+<p >功能未启用</p>
+<p >不可变策略</p>
+<p >策略不一致</p>
+<p >已被删除</p>
+<p >超时</p>
+<p >无数据</p>
+<p >非法操作</p>
+<p >安全策略不允许</p>
+<p >未知错误</p>
+
+<p class="definition">在文件 <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html">CarlaRadarPublisher.cpp</a> 第 <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00203">203</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d6/dea/CarlaRadarPublisher_8h_source.html#l00038">_impl</a>.</p>
+
+</div>
+</div>
+<a id="a8108951eca8c378ff78b5edf0a9502ae" name="a8108951eca8c378ff78b5edf0a9502ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8108951eca8c378ff78b5edf0a9502ae">&#9670;&#160;</a></span>SetData() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::ros2::CarlaRadarPublisher::SetData </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>seconds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>nanoseconds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a>&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a>&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a>&#160;</td>
+          <td class="paramname"><em>elements</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置雷达数据 </p>
+<p >该函数接收雷达检测数据，并将其转换为内部使用的格式，然后调用另一个重载的SetData函数来发布数据。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">seconds</td><td>时间戳的秒部分 </td></tr>
+    <tr><td class="paramname">nanoseconds</td><td>时间戳的纳秒部分 </td></tr>
+    <tr><td class="paramname">height</td><td>数据的高度（通常用于图像数据，这里可能表示雷达扫描的垂直分辨率） </td></tr>
+    <tr><td class="paramname">width</td><td>数据的宽度（通常用于图像数据，这里可能表示雷达扫描的水平分辨率） </td></tr>
+    <tr><td class="paramname">elements</td><td>数据点的数量 </td></tr>
+    <tr><td class="paramname">data</td><td>指向雷达检测数据的指针，数据格式为carla::sensor::data::RadarDetection </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html">CarlaRadarPublisher.cpp</a> 第 <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00294">294</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d5/dc7/RadarData_8h_source.html#l00030">carla::sensor::data::RadarDetection::altitude</a>, <a class="el" href="../../d5/dc7/RadarData_8h_source.html#l00029">carla::sensor::data::RadarDetection::azimuth</a>, <a class="el" href="../../d5/dc7/RadarData_8h_source.html#l00031">carla::sensor::data::RadarDetection::depth</a>, <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00095">carla::ros2::RadarDetectionWithPosition::detection</a>, <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00294">SetData()</a>, <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00083">carla::ros2::RadarDetectionWithPosition::x</a>, <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00087">carla::ros2::RadarDetectionWithPosition::y</a> , 以及 <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00091">carla::ros2::RadarDetectionWithPosition::z</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00294">SetData()</a>.</p>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher_a8108951eca8c378ff78b5edf0a9502ae_cgraph.svg" width="216" height="75"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher_a8108951eca8c378ff78b5edf0a9502ae_icgraph.svg" width="216" height="75"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="aefe48518957ec184d72371aadeba8487" name="aefe48518957ec184d72371aadeba8487"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefe48518957ec184d72371aadeba8487">&#9670;&#160;</a></span>SetData() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::ros2::CarlaRadarPublisher::SetData </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>seconds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>nanoseconds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a>&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a>&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a>&#160;</td>
+          <td class="paramname"><em>elements</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; uint8_t &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置雷达数据并发布 </p>
+<p >该函数接收时间戳、数据尺寸、数据点数量以及数据本身，然后将这些数据封装成ROS消息格式并发布。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">seconds</td><td>时间戳的秒部分 </td></tr>
+    <tr><td class="paramname">nanoseconds</td><td>时间戳的纳秒部分 </td></tr>
+    <tr><td class="paramname">height</td><td>数据的高度 </td></tr>
+    <tr><td class="paramname">width</td><td>数据的宽度 </td></tr>
+    <tr><td class="paramname">elements</td><td>数据点的数量 </td></tr>
+    <tr><td class="paramname">data</td><td>包含雷达检测数据的向量，数据格式为RadarDetectionWithPosition </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html">CarlaRadarPublisher.cpp</a> 第 <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00331">331</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00030">carla::ros2::CarlaPublisher::_frame_id</a>, <a class="el" href="../../d6/dea/CarlaRadarPublisher_8h_source.html#l00038">_impl</a>, <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00260">sensor_msgs::msg::PointField::count()</a>, <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00232">sensor_msgs::msg::PointField::datatype()</a>, <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00166">sensor_msgs::msg::PointField::name()</a>, <a class="el" href="../../d8/d38/Time_8cpp_source.html#l00183">builtin_interfaces::msg::Time::nanosec()</a>, <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00204">sensor_msgs::msg::PointField::offset()</a>, <a class="el" href="../../dc/d5c/PointField_8h_source.html#l00071">sensor_msgs::msg::PointField__FLOAT32</a> , 以及 <a class="el" href="../../d8/d38/Time_8cpp_source.html#l00152">builtin_interfaces::msg::Time::sec()</a>.</p>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher_aefe48518957ec184d72371aadeba8487_cgraph.svg" width="459" height="371"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ac30eac71d8d48b44cdefb9e9ca152784" name="ac30eac71d8d48b44cdefb9e9ca152784"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac30eac71d8d48b44cdefb9e9ca152784">&#9670;&#160;</a></span>type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * carla::ros2::CarlaRadarPublisher::type </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a6448e2522e8b78dfe350aca123530089">carla::ros2::CarlaPublisher</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="../../d6/dea/CarlaRadarPublisher_8h_source.html">CarlaRadarPublisher.h</a> 第 <a class="el" href="../../d6/dea/CarlaRadarPublisher_8h_source.html#l00032">32</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a7bc04ad96d0a99958b24457d317c49b7" name="a7bc04ad96d0a99958b24457d317c49b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7bc04ad96d0a99958b24457d317c49b7">&#9670;&#160;</a></span>_impl</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="../../da/d52/structcarla_1_1ros2_1_1CarlaRadarPublisherImpl.html">CarlaRadarPublisherImpl</a>&gt; carla::ros2::CarlaRadarPublisher::_impl</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/dea/CarlaRadarPublisher_8h_source.html">CarlaRadarPublisher.h</a> 第 <a class="el" href="../../d6/dea/CarlaRadarPublisher_8h_source.html#l00038">38</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00431">CarlaRadarPublisher()</a>, <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00104">Init()</a>, <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00445">operator=()</a>, <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00203">Publish()</a>, <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00331">SetData()</a> , 以及 <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00408">~CarlaRadarPublisher()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../d6/dea/CarlaRadarPublisher_8h_source.html">CarlaRadarPublisher.h</a></li>
+<li><a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html">CarlaRadarPublisher.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

@@ -1,0 +1,6 @@
+<map id="carla::geom::Transform::GetInverseMatrix" name="carla::geom::Transform::GetInverseMatrix">
+<area shape="rect" id="node1" title="计算逆变换的 4 矩阵形式 首先通过逆变换操作（InverseTransformPoint）得到一个用于逆变换的位置偏移向量，然后结合当前的旋转角度信息，按照特定数学规则计算出逆变换对应的 4x4 矩阵" alt="" coords="5,35,159,75"/>
+<area shape="rect" id="node2" href="$de/da4/classcarla_1_1geom_1_1Transform.html#a92a9a6fdd66eea2d1ec03b14378c7e50" title="将此变换的逆运算应用于 in_point 操作顺序为先进行位置上的逆平移（减去位置信息），然后再根据旋转的逆操作对向量进行旋转，最终将结果赋值回输入点" alt="" coords="207,5,367,45"/>
+<area shape="rect" id="node4" href="$d0/dea/classcarla_1_1geom_1_1Math.html#a2bd79912876dfbab9354c0bb841320e4" title=" " alt="" coords="609,35,739,75"/>
+<area shape="rect" id="node3" href="$d8/dba/classcarla_1_1geom_1_1Rotation.html#ad4d8bc301fba5c24b1acdc190a848703" title=" " alt="" coords="415,5,561,45"/>
+</map>

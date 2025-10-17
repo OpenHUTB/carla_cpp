@@ -1,0 +1,51 @@
+<map id="carla::streaming::detail::token_type::get_stream_id" name="carla::streaming::detail::token_type::get_stream_id">
+<area shape="rect" id="node1" title="获取流ID的引用。" alt="" coords="1175,707,1353,747"/>
+<area shape="rect" id="node2" href="$dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#aff760041c9642a988880c1ff39739fe2" title="连接到指定的流。" alt="" coords="953,93,1104,133"/>
+<area shape="rect" id="node5" href="$dd/ddd/classcarla_1_1client_1_1detail_1_1Client.html#a216c13737f72a9af2f926adff35b8ef6" title=" " alt="" coords="950,157,1107,197"/>
+<area shape="rect" id="node7" href="$dd/ddd/classcarla_1_1client_1_1detail_1_1Client.html#a97d3f719b5d2191fd408ea87747d13c2" title=" " alt="" coords="952,221,1105,261"/>
+<area shape="rect" id="node9" href="$d3/d01/classASensor.html#a1c9f916c2383430fb6a125a3d2725c76" title=" " alt="" coords="966,286,1091,311"/>
+<area shape="rect" id="node10" href="$dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#aa0fd4e9bb4bbe41806a572c4b4df8901" title="获取流的ID。" alt="" coords="946,336,1111,376"/>
+<area shape="rect" id="node11" href="$d1/d16/classcarla_1_1streaming_1_1detail_1_1Dispatcher.html#aefb9ac7e0751ffa0bd005631ed8f8823" title=" " alt="" coords="952,400,1105,440"/>
+<area shape="rect" id="node17" href="$dd/ddd/classcarla_1_1client_1_1detail_1_1Client.html#a2041d7ea00beaaf66e5e16a81288a890" title=" " alt="" coords="943,464,1114,504"/>
+<area shape="rect" id="node19" href="$d1/d16/classcarla_1_1streaming_1_1detail_1_1Dispatcher.html#a5f3261c348de9d2f7275b07a8a4c34b1" title=" " alt="" coords="943,528,1114,568"/>
+<area shape="rect" id="node26" href="$d8/de9/classACollisionSensor.html#ab4fa46f2abc1fbc290f967bb18e7e13e" title=" " alt="" coords="932,643,1125,683"/>
+<area shape="rect" id="node30" href="$d3/d93/classAObstacleDetectionSensor.html#a86daabb07d1a82d74be5ec006b1c20f4" title=" " alt="" coords="936,707,1121,747"/>
+<area shape="rect" id="node32" href="$d0/dc3/classAGnssSensor.html#a319d23bd045d2c1451f03bfacf666758" title=" " alt="" coords="933,795,1124,821"/>
+<area shape="rect" id="node33" href="$d5/de4/classARayCastLidar.html#abfd04fd0fb58051afae805f0b94f5923" title=" " alt="" coords="931,869,1127,894"/>
+<area shape="rect" id="node34" href="$d2/daf/classADVSCamera.html#af5bed25bbeaa4669ea0576fdff9ea5e3" title=" " alt="" coords="933,942,1124,967"/>
+<area shape="rect" id="node35" href="$d5/de0/classAInertialMeasurementUnit.html#aa86507b1b877834ae72c1034486b7d90" title=" " alt="" coords="942,1016,1115,1056"/>
+<area shape="rect" id="node36" href="$d9/d27/classARadar.html#a74d20d2ceebe97b11e8fc12aa8d20d0b" title=" " alt="" coords="953,1105,1105,1130"/>
+<area shape="rect" id="node37" href="$d8/d15/classARayCastSemanticLidar.html#a74775c31724f8cf3467765ae3583be5b" title=" " alt="" coords="947,1179,1111,1219"/>
+<area shape="rect" id="node38" href="$da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#ab4d09fd63dc935c297966a919eab7ba4" title=" " alt="" coords="938,1243,1119,1283"/>
+<area shape="rect" id="node41" href="$dd/d11/classFPixelReader.html#a9fcf29f1ab3802a4d7364b4435e3f498" title="方便函数，将渲染命令加入队列以通过 Sensor 的数据流发送像素。 它需要一个继承自 ASceneCaptureSensor 或兼容的传感器。" alt="" coords="943,1331,1114,1371"/>
+<area shape="rect" id="node42" href="$da/d83/classcarla_1_1streaming_1_1low__level_1_1Client.html#a35387075fbaf2d862fee9fce4ac511d6" title=" " alt="" coords="698,589,857,629"/>
+<area shape="rect" id="node44" href="$dd/ddd/classcarla_1_1client_1_1detail_1_1Client.html#a5a2c188ed3b5a3c40aa9d1a80428a518" title=" " alt="" coords="937,1395,1120,1435"/>
+<area shape="rect" id="node47" href="$da/d83/classcarla_1_1streaming_1_1low__level_1_1Client.html#ae9846cf795cf3af78e9a4aa6c157445c" title=" " alt="" coords="941,1459,1117,1499"/>
+<area shape="rect" id="node3" href="$dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#aaa78ca2b7195a84a9b0db792fa88ab79" title="从流中读取数据。" alt="" coords="702,93,853,133"/>
+<area shape="rect" id="node4" href="$dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#a2d95ef9bb8a629f93278bbd3f9deb7a6" title="重新连接流。" alt="" coords="701,5,854,45"/>
+<area shape="rect" id="node6" href="$df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html#a15d14910891abdf14f58184b4e397429" title=" " alt="" coords="688,157,867,197"/>
+<area shape="rect" id="node8" href="$df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html#a37e820807ac1f611d7e917f4ebca5880" title=" " alt="" coords="690,221,865,261"/>
+<area shape="rect" id="node12" href="$d0/d7a/classcarla_1_1streaming_1_1low__level_1_1Server.html#a8236b6272c75d88305ca2aced02b802e" title=" " alt="" coords="696,347,859,387"/>
+<area shape="rect" id="node13" href="$d5/de5/classcarla_1_1streaming_1_1Server.html#a0f1c0c16d2aea0e2b32458de31346b56" title=" " alt="" coords="453,347,610,387"/>
+<area shape="rect" id="node14" href="$d7/d97/classFCarlaServer_1_1FPimpl.html#a675a6b572112a21e8bc011dddfd0de86" title=" " alt="" coords="222,319,367,359"/>
+<area shape="rect" id="node16" href="$dc/d49/classFCarlaEngine.html#ab8d13063cde985781237dd7da308227e" title=" " alt="" coords="199,383,391,409"/>
+<area shape="rect" id="node15" href="$d7/d97/classFCarlaServer_1_1FPimpl.html#ab9ff29fc81bd2f9a14677941c7f7b62d" title=" " alt="" coords="5,319,151,359"/>
+<area shape="rect" id="node18" href="$df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html#a532e49fd50fee92dbda277450d67711c" title=" " alt="" coords="681,411,874,451"/>
+<area shape="rect" id="node20" href="$d0/d7a/classcarla_1_1streaming_1_1low__level_1_1Server.html#af0197baff1d5393af4962cf7a4026f10" title=" " alt="" coords="687,525,867,565"/>
+<area shape="rect" id="node25" href="$d3/d36/test__streaming_8cpp.html#af96e4c48bd89c8e763b4140df650e8bf" title=" " alt="" coords="750,475,805,501"/>
+<area shape="rect" id="node21" href="$d5/de5/classcarla_1_1streaming_1_1Server.html#ac98f90e2e8efdb56eb51d5ae7f944d9a" title=" " alt="" coords="453,500,610,540"/>
+<area shape="rect" id="node24" href="$d3/d36/test__streaming_8cpp.html#a627c7e42d27ebe95f159d0bd2b7b5ef5" title=" " alt="" coords="504,565,559,590"/>
+<area shape="rect" id="node22" href="$dc/d7d/classBenchmark.html#a8f80409183101f8d64458d773d0e95f3" title=" " alt="" coords="215,539,374,565"/>
+<area shape="rect" id="node23" href="$d3/d36/test__streaming_8cpp.html#a911dfcbbbcdc77dca7bdfd904a2220c2" title=" " alt="" coords="267,605,322,630"/>
+<area shape="rect" id="node27" href="$d8/de9/classACollisionSensor.html#af104d12b73c8fcefbc54027162b6463c" title=" " alt="" coords="690,653,865,693"/>
+<area shape="rect" id="node29" href="$d8/de9/classACollisionSensor.html#ad65100bbaf7d2c09ec3e5970c10be88b" title=" " alt="" coords="672,717,883,757"/>
+<area shape="rect" id="node28" href="$d8/de9/classACollisionSensor.html#a182d28935eb0b680bf28bf2a85e21355" title=" " alt="" coords="439,702,624,727"/>
+<area shape="rect" id="node31" href="$d3/d93/classAObstacleDetectionSensor.html#ab978d30f92a01a9f29c8d54947380f25" title=" " alt="" coords="688,805,867,845"/>
+<area shape="rect" id="node39" href="$da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#a5c69feeed4dba60dbf699c444a0ac401" title=" " alt="" coords="700,1243,855,1283"/>
+<area shape="rect" id="node40" href="$da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#a68a8f8ee0216b21fc3a337464b22fb01" title=" " alt="" coords="441,1243,621,1283"/>
+<area shape="rect" id="node43" href="$d0/daa/classcarla_1_1streaming_1_1Client.html#a8fcc50f5825c149beea4fe8f189ff4a9" title=" " alt="" coords="455,615,607,655"/>
+<area shape="rect" id="node45" href="$d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#afa2c9d4a111adf6575e39980cfc4b8c3" title=" " alt="" coords="715,1395,839,1435"/>
+<area shape="rect" id="node46" href="$df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html#a7dec54efa6cca84e6d319c3a5e78b56b" title=" " alt="" coords="676,1331,879,1371"/>
+<area shape="rect" id="node48" href="$d3/d36/test__streaming_8cpp.html#afa6f1357ad345fee65a3e25aac6cf373" title=" " alt="" coords="750,1523,805,1549"/>
+<area shape="rect" id="node49" href="$d0/daa/classcarla_1_1streaming_1_1Client.html#a931b8b0ae06fbc6d77676e76da527bb7" title=" " alt="" coords="701,1459,853,1499"/>
+</map>

@@ -1,0 +1,278 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: GraphGenerator.cpp 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_2d15d0715a2692171bd03ed14a4a79af.html">Unreal</a></li><li class="navelem"><a class="el" href="../../dir_d3c1db2570616bec48bf5a6dd06bce95.html">CarlaUE4</a></li><li class="navelem"><a class="el" href="../../dir_3538576148ac14151677be9b0aee6fcc.html">Plugins</a></li><li class="navelem"><a class="el" href="../../dir_fbda5b12374c683cbdca72abb2d51944.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_18937e8f6bde63367bf26837323a9508.html">Source</a></li><li class="navelem"><a class="el" href="../../dir_8fc34afb5f07a67966c78bf5319f94ae.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_3e9aec868781f29a05b56aecc37cd1a9.html">MapGen</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">GraphGenerator.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d4/d03/GraphGenerator_8cpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// de Barcelona (UAB).</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// This work is licensed under the terms of the MIT license.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="../../d7/d7d/Carla_8h.html">Carla.h</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="../../d4/d24/GraphGenerator_8h.html">GraphGenerator.h</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">// 定义一个名为MapGen的命名空间，以下所有的函数、类型定义等都在这个命名空间内</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d2/de5/namespaceMapGen.html">MapGen</a> {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>  <span class="comment">// 使用Graph作为DoublyConnectedEdgeList的别名，方便后续使用</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="../../d2/de5/namespaceMapGen.html#a862fc058378586424400f3cc4e26c8d0">   16</a></span>  <span class="keyword">using </span><a class="code hl_class" href="../../d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html">Graph</a> = <a class="code hl_class" href="../../d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html">DoublyConnectedEdgeList</a>;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  <span class="comment">// 定义一个常量表达式，用于表示一个边距值，这里设置为6</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="../../d2/de5/namespaceMapGen.html#a7d416a86ca450fc6309fc58aa0498a2b">   19</a></span>  <span class="keyword">constexpr</span> <span class="keyword">static</span> int32 <a class="code hl_variable" href="../../d2/de5/namespaceMapGen.html#a7d416a86ca450fc6309fc58aa0498a2b">MARGIN</a> = 6;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  <span class="comment">// ===========================================================================</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  <span class="comment">// -- Static local methods ---------------------------------------------------</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  <span class="comment">// ===========================================================================</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <span class="comment">// 定义一个静态函数signOf，它接受一个int32类型的参数val</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <span class="comment">// 根据val的值返回其符号，若val大于0则返回1，若val小于0则返回-1，若val等于0则返回0</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="../../d2/de5/namespaceMapGen.html#ae9fe02eda53642295d1af13c10653844">   27</a></span>  <span class="keyword">static</span> int32 <a class="code hl_function" href="../../d2/de5/namespaceMapGen.html#ae9fe02eda53642295d1af13c10653844">signOf</a>(int32 val) {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordflow">return</span> (0 &lt; val) - (val &lt; 0);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  }</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <span class="comment">// 定义一个静态函数getSourcePosition，它接受一个Graph::HalfEdge类型的参数edge</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <span class="comment">// 返回该边的源节点的位置信息，通过调用Graph::GetSource函数获取源节点，再获取其位置</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="../../d2/de5/namespaceMapGen.html#ae32dafe96bb829b6aa1983cf7a6abb2e">   33</a></span>  <span class="keyword">static</span> <span class="keyword">const</span> <a class="code hl_class" href="../../d0/dd4/classMapGen_1_1Position.html">Graph::Position</a> &amp;<a class="code hl_function" href="../../d2/de5/namespaceMapGen.html#ae32dafe96bb829b6aa1983cf7a6abb2e">getSourcePosition</a>(<span class="keyword">const</span> <a class="code hl_struct" href="../../da/d88/structMapGen_1_1DoublyConnectedEdgeList_1_1HalfEdge.html">Graph::HalfEdge</a> &amp;edge) {</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="../../d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#a801df47ea999c7f42a3bc829ad6b71b4">Graph::GetSource</a>(edge).<a class="code hl_function" href="../../de/d6b/structMapGen_1_1DoublyConnectedEdgeList_1_1Node.html#a1404bf5477f16a79bcadd8300c64fa37">GetPosition</a>();</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  }</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="comment">// 定义一个静态函数getTargetPosition，它接受一个Graph::HalfEdge类型的参数edge</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="comment">// 返回该边的目标节点的位置信息，通过调用Graph::GetTarget函数获取目标节点，再获取其位置</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="../../d2/de5/namespaceMapGen.html#aa4d7c4d9dbc0a0819427112d3a82c084">   39</a></span>  <span class="keyword">static</span> <span class="keyword">const</span> <a class="code hl_class" href="../../d0/dd4/classMapGen_1_1Position.html">Graph::Position</a> &amp;<a class="code hl_function" href="../../d2/de5/namespaceMapGen.html#aa4d7c4d9dbc0a0819427112d3a82c084">getTargetPosition</a>(<span class="keyword">const</span> <a class="code hl_struct" href="../../da/d88/structMapGen_1_1DoublyConnectedEdgeList_1_1HalfEdge.html">Graph::HalfEdge</a> &amp;edge) {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="../../d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#a492040546af8e497cddc5263a939405a">Graph::GetTarget</a>(edge).<a class="code hl_function" href="../../de/d6b/structMapGen_1_1DoublyConnectedEdgeList_1_1Node.html#a1404bf5477f16a79bcadd8300c64fa37">GetPosition</a>();</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  }</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="comment">// 定义一个静态函数getDirection，它接受一个Graph::HalfEdge类型的参数edge</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <span class="comment">// 通过目标节点位置减去源节点位置，计算并返回该边的方向向量</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="../../d2/de5/namespaceMapGen.html#afd4192eace622e317c7874a926d2c20c">   45</a></span>  <span class="keyword">static</span> <a class="code hl_class" href="../../d0/dd4/classMapGen_1_1Position.html">Graph::Position</a> <a class="code hl_function" href="../../d2/de5/namespaceMapGen.html#afd4192eace622e317c7874a926d2c20c">getDirection</a>(<span class="keyword">const</span> <a class="code hl_struct" href="../../da/d88/structMapGen_1_1DoublyConnectedEdgeList_1_1HalfEdge.html">Graph::HalfEdge</a> &amp;edge) {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="../../d2/de5/namespaceMapGen.html#aa4d7c4d9dbc0a0819427112d3a82c084">getTargetPosition</a>(edge) - <a class="code hl_function" href="../../d2/de5/namespaceMapGen.html#ae32dafe96bb829b6aa1983cf7a6abb2e">getSourcePosition</a>(edge);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  }</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="comment">// 定义一个静态函数getRandomOpposingEdges，它接受一个Graph::Face类型的参数face和一个FRandomStream类型的参数random</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  <span class="comment">// 该函数的目的是从给定的面（face）中随机获取一对相对的边</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="../../d2/de5/namespaceMapGen.html#a5fbf1d1c7632d84079b7029e838e691a">   51</a></span>  <span class="keyword">static</span> std::pair&lt;Graph::HalfEdge *, Graph::HalfEdge *&gt; <a class="code hl_function" href="../../d2/de5/namespaceMapGen.html#a5fbf1d1c7632d84079b7029e838e691a">getRandomOpposingEdges</a>(</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>      <a class="code hl_struct" href="../../dd/d77/structMapGen_1_1DoublyConnectedEdgeList_1_1Face.html">Graph::Face</a> &amp;face,</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>      FRandomStream &amp;random) {</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="comment">// 创建一个向量用于存储面中的所有边</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    std::vector&lt;Graph::HalfEdge *&gt; edges;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="comment">// 获取面的第一条半边（half-edge），这是遍历面的边的起始点</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    edges.reserve(4u);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="comment">// 将第一条半边赋值给临时指针edge，用于后续遍历</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keyword">auto</span> &amp;firstEdge = <a class="code hl_function" href="../../d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#a488e82de16efab151f153f6dc859dc2a">Graph::GetHalfEdge</a>(face);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="comment">// 开始遍历面的所有边，直到回到起始边</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keyword">auto</span> *edge = &amp;firstEdge;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordflow">do</span> {</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>      <span class="comment">// 将当前边添加到边向量中</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>      edges.emplace_back(edge);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>      <span class="comment">// 获取下一条在面中的半边，继续遍历</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>      edge = &amp;<a class="code hl_function" href="../../d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#ac627583ef2e4635a82d5582ddf6d61c2">Graph::GetNextInFace</a>(*edge);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    } <span class="keywordflow">while</span> (edge != &amp;firstEdge);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="comment">// 检查边向量的大小是否为4u，如果不是则可能存在错误</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    check(edges.size() == 4u);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="comment">// 在0到边向量大小减1的范围内随机生成一个索引值</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keyword">auto</span> randomIndex = random.RandRange(0, edges.size() - 1);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="comment">// 返回随机选择的一对相对边，其中一条是随机索引对应的边，另一条是相隔两条边的相对边</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordflow">return</span> {edges[randomIndex], edges[(randomIndex + 2u) % edges.size()]};</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  }</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  <span class="comment">// 定义一个静态函数splitFace，它接受一个Graph类型的参数graph、一个Graph::Face类型的参数face和一个FRandomStream类型的参数random</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  <span class="comment">// 该函数的目的是将给定的面（face）进行分割</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="../../d2/de5/namespaceMapGen.html#a975b7ba69fe3408db8acadb9ebf288d9">   78</a></span>  <span class="keyword">static</span> <a class="code hl_struct" href="../../dd/d77/structMapGen_1_1DoublyConnectedEdgeList_1_1Face.html">Graph::Face</a> *<a class="code hl_function" href="../../d2/de5/namespaceMapGen.html#a975b7ba69fe3408db8acadb9ebf288d9">splitFace</a>(<a class="code hl_class" href="../../d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html">Graph</a> &amp;graph, <a class="code hl_struct" href="../../dd/d77/structMapGen_1_1DoublyConnectedEdgeList_1_1Face.html">Graph::Face</a> &amp;face, FRandomStream &amp;random) {</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="comment">// 获取面中的一对随机相对边</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keyword">auto</span> edgePair = <a class="code hl_function" href="../../d2/de5/namespaceMapGen.html#a5fbf1d1c7632d84079b7029e838e691a">getRandomOpposingEdges</a>(face, random);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="comment">// 计算第一条随机边的方向向量</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keyword">auto</span> dir = <a class="code hl_function" href="../../d2/de5/namespaceMapGen.html#afd4192eace622e317c7874a926d2c20c">getDirection</a>(*edgePair.first);</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="comment">// 假设两条随机边是矩形相对的面，计算第二条随机边的方向向量</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keyword">auto</span> otherDir = <a class="code hl_function" href="../../d2/de5/namespaceMapGen.html#afd4192eace622e317c7874a926d2c20c">getDirection</a>(*edgePair.second);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="comment">// 检查两条边的方向向量在x和y方向上是否互为相反数，以此验证是否是相对边的假设成立</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    check((dir.x == -1 * otherDir.x) &amp;&amp; (dir.y == -1 * otherDir.y));</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="comment">// 如果矩形的边长小于一定的阈值，则不进行分割</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keywordflow">if</span> ((std::abs(dir.x) &lt; 2*<a class="code hl_variable" href="../../d2/de5/namespaceMapGen.html#a7d416a86ca450fc6309fc58aa0498a2b">MARGIN</a>+1) &amp;&amp; (std::abs(dir.y) &lt; 2*<a class="code hl_variable" href="../../d2/de5/namespaceMapGen.html#a7d416a86ca450fc6309fc58aa0498a2b">MARGIN</a>+1))</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>      <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="comment">// 沿着边获取一个随机点</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keyword">auto</span> randX = (dir.x != 0 ? <a class="code hl_function" href="../../d2/de5/namespaceMapGen.html#ae9fe02eda53642295d1af13c10653844">signOf</a>(dir.x) * random.RandRange(<a class="code hl_variable" href="../../d2/de5/namespaceMapGen.html#a7d416a86ca450fc6309fc58aa0498a2b">MARGIN</a>, std::abs(dir.x) - <a class="code hl_variable" href="../../d2/de5/namespaceMapGen.html#a7d416a86ca450fc6309fc58aa0498a2b">MARGIN</a>) : 0);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="comment">// 根据第一条随机边的方向向量，在其边上随机生成一个y坐标值</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keyword">auto</span> randY = (dir.y != 0 ? <a class="code hl_function" href="../../d2/de5/namespaceMapGen.html#ae9fe02eda53642295d1af13c10653844">signOf</a>(dir.y) * random.RandRange(<a class="code hl_variable" href="../../d2/de5/namespaceMapGen.html#a7d416a86ca450fc6309fc58aa0498a2b">MARGIN</a>, std::abs(dir.y) - <a class="code hl_variable" href="../../d2/de5/namespaceMapGen.html#a7d416a86ca450fc6309fc58aa0498a2b">MARGIN</a>) : 0);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="comment">// 计算在第一条随机边的源节点位置基础上，根据随机生成的坐标偏移得到的新位置</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keyword">auto</span> position0 = <a class="code hl_function" href="../../d2/de5/namespaceMapGen.html#ae32dafe96bb829b6aa1983cf7a6abb2e">getSourcePosition</a>(*edgePair.first) + <a class="code hl_class" href="../../d0/dd4/classMapGen_1_1Position.html">Graph::Position</a>{randX, randY};</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="comment">// 计算在第二条随机边的目标节点位置基础上，根据随机生成的坐标偏移得到的新位置</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keyword">auto</span> position1 = <a class="code hl_function" href="../../d2/de5/namespaceMapGen.html#aa4d7c4d9dbc0a0819427112d3a82c084">getTargetPosition</a>(*edgePair.second) + <a class="code hl_class" href="../../d0/dd4/classMapGen_1_1Position.html">Graph::Position</a>{randX, randY};</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="comment">// 拆分这些边并连接起来</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <a class="code hl_struct" href="../../de/d6b/structMapGen_1_1DoublyConnectedEdgeList_1_1Node.html">Graph::Node</a> &amp;node0 = graph.<a class="code hl_function" href="../../d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#af59d36c63351d9bcd715d5b26670b4b7">SplitEdge</a>(position0, *edgePair.first);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="comment">// 在图中根据新位置分割第二条随机边，并获取分割后产生的新节点node1</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <a class="code hl_struct" href="../../de/d6b/structMapGen_1_1DoublyConnectedEdgeList_1_1Node.html">Graph::Node</a> &amp;node1 = graph.<a class="code hl_function" href="../../d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#af59d36c63351d9bcd715d5b26670b4b7">SplitEdge</a>(position1, *edgePair.second);</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="comment">// 连接两个新节点，并返回新生成的面的指针</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="keywordflow">return</span> &amp;graph.<a class="code hl_function" href="../../d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#a1f79a55d59b75d36c5ad5bd76ae7c420">ConnectNodes</a>(node0, node1);</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>  }</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>  <span class="comment">// 定义一个静态函数randomize，它接受一个Graph类型的参数graph和一个int32类型的参数seed</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>  <span class="comment">// 该函数的目的是对给定的图（graph）进行随机化操作</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="../../d2/de5/namespaceMapGen.html#a4163fb6b1450e8a10069d7bfb54796fe">  108</a></span>  <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="../../d2/de5/namespaceMapGen.html#a4163fb6b1450e8a10069d7bfb54796fe">randomize</a>(<a class="code hl_class" href="../../d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html">Graph</a> &amp;graph, <span class="keyword">const</span> int32 seed)</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>  {</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="comment">// 检查图中的节点数量是否为4u，如果不是则可能存在错误</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    check(graph.<a class="code hl_function" href="../../d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#a96c63da29d204af66c79ec4f601fe822">CountNodes</a>() == 4u);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="comment">// 检查图中的半边数量是否为8u，如果不是则可能存在错误</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    check(graph.<a class="code hl_function" href="../../d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#acd6671bd2d667c927f006ae5b6f38949">CountHalfEdges</a>() == 8u);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="comment">// 检查图中的面数量是否为2u，如果不是则可能存在错误</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    check(graph.<a class="code hl_function" href="../../d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#afe7d824795a7447e9783340ebd69ca0e">CountFaces</a>() == 2u);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="comment">// 创建一个随机数生成流，使用传入的seed作为种子</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    FRandomStream random(seed);<span class="comment"></span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="comment">    /// @todo 我们跳过第一个面，因为它是环绕面。</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="comment">    /// 但情况并非总是如此，如果以不同的方式生成图，那可能就会是</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="comment">    /// 另一个（面需要被处理）了。</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="comment"></span>    <span class="comment">// 获取图中除了第一个面之外的第一个面的指针，这里假设第一个面是周围的面，可能需要根据实际情况调整</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <a class="code hl_struct" href="../../dd/d77/structMapGen_1_1DoublyConnectedEdgeList_1_1Face.html">Graph::Face</a> *face = &amp;*(++graph.<a class="code hl_function" href="../../d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#a136da6784ab2306f9743a1f10a87cc22">GetFaces</a>().begin());</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="keywordflow">do</span> {</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>      face = <a class="code hl_function" href="../../d2/de5/namespaceMapGen.html#a975b7ba69fe3408db8acadb9ebf288d9">splitFace</a>(graph, *face, random);</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="preprocessor">#ifdef CARLA_ROAD_GENERATOR_EXTRA_LOG</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>      graph.PrintToLog();</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="preprocessor">#endif </span><span class="comment">// CARLA_ROAD_GENERATOR_EXTRA_LOG</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    } <span class="keywordflow">while</span> (face != <span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>  }</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> <span class="comment">// =============================================================================</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> <span class="comment">// -- GraphGenerator -----------------------------------------------------------</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> <span class="comment">// =============================================================================</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>  <span class="comment">// 定义GraphGenerator类的Generate函数，它接受三个参数：SizeX（无符号32位整数）、SizeY（无符号32位整数）和Seed（int32类型）</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>  <span class="comment">// 该函数的目的是生成一个特定的图结构（DoublyConnectedEdgeList类型）</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="../../dc/d79/classMapGen_1_1GraphGenerator.html#aa6c4299ca0d9ef55d4c7d2a2ac0eb5b0">  137</a></span>  TUniquePtr&lt;DoublyConnectedEdgeList&gt; <a class="code hl_function" href="../../dc/d79/classMapGen_1_1GraphGenerator.html#aa6c4299ca0d9ef55d4c7d2a2ac0eb5b0">GraphGenerator::Generate</a>(</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>      <span class="keyword">const</span> uint32 SizeX,</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>      <span class="keyword">const</span> uint32 SizeY,</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>      <span class="keyword">const</span> int32 Seed)</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>  {</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    <span class="comment">// 使用DoublyConnectedEdgeList中的Position类型定义一个别名Position，方便后续使用</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="keyword">using </span><a class="code hl_class" href="../../d0/dd4/classMapGen_1_1Position.html">Position</a> = <span class="keyword">typename</span> <a class="code hl_typedef" href="../../d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#a99c0e6118148acd57e23b043ae75acde">DoublyConnectedEdgeList::Position</a>;</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <span class="comment">// 创建一个包含4个Position类型元素的数组box，用于表示一个矩形的四个顶点位置</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    std::array&lt;Position, 4u&gt; box;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    box[0u] = <a class="code hl_class" href="../../d0/dd4/classMapGen_1_1Position.html">Position</a>(0, 0);</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    box[1u] = <a class="code hl_class" href="../../d0/dd4/classMapGen_1_1Position.html">Position</a>(0, SizeY);</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    box[2u] = <a class="code hl_class" href="../../d0/dd4/classMapGen_1_1Position.html">Position</a>(SizeX, SizeY);</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    box[3u] = <a class="code hl_class" href="../../d0/dd4/classMapGen_1_1Position.html">Position</a>(SizeX, 0);</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="comment">// 创建一个唯一指针指向新生成的DoublyConnectedEdgeList对象，传入矩形的顶点位置数组作为初始化参数</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="keyword">auto</span> Dcel = MakeUnique&lt;DoublyConnectedEdgeList&gt;(box);</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="comment">// 对生成的图结构进行随机化操作，传入随机数种子</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <a class="code hl_function" href="../../d2/de5/namespaceMapGen.html#a4163fb6b1450e8a10069d7bfb54796fe">randomize</a>(*Dcel, Seed);</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="comment">// 返回生成并随机化后的图结构的唯一指针</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="keywordflow">return</span> Dcel;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>  }</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>} <span class="comment">// namespace MapGen</span></div>
+<div class="ttc" id="aCarla_8h_html"><div class="ttname"><a href="../../d7/d7d/Carla_8h.html">Carla.h</a></div></div>
+<div class="ttc" id="aGraphGenerator_8h_html"><div class="ttname"><a href="../../d4/d24/GraphGenerator_8h.html">GraphGenerator.h</a></div></div>
+<div class="ttc" id="aclassMapGen_1_1DoublyConnectedEdgeList_html"><div class="ttname"><a href="../../d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html">MapGen::DoublyConnectedEdgeList</a></div><div class="ttdoc">简单的双连通边链表结构。它只允许添加元素，不允许删除元素。</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/db3/DoublyConnectedEdgeList_8h_source.html#l00019">DoublyConnectedEdgeList.h:20</a></div></div>
+<div class="ttc" id="aclassMapGen_1_1DoublyConnectedEdgeList_html_a136da6784ab2306f9743a1f10a87cc22"><div class="ttname"><a href="../../d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#a136da6784ab2306f9743a1f10a87cc22">MapGen::DoublyConnectedEdgeList::GetFaces</a></div><div class="ttdeci">ListView&lt; FaceIterator &gt; GetFaces()</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/db3/DoublyConnectedEdgeList_8h_source.html#l00190">DoublyConnectedEdgeList.h:190</a></div></div>
+<div class="ttc" id="aclassMapGen_1_1DoublyConnectedEdgeList_html_a1f79a55d59b75d36c5ad5bd76ae7c420"><div class="ttname"><a href="../../d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#a1f79a55d59b75d36c5ad5bd76ae7c420">MapGen::DoublyConnectedEdgeList::ConnectNodes</a></div><div class="ttdeci">Face &amp; ConnectNodes(Node &amp;Node0, Node &amp;Node1)</div><div class="ttdoc">用一对边连接两个节点。</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/db4/DoublyConnectedEdgeList_8cpp_source.html#l00191">DoublyConnectedEdgeList.cpp:191</a></div></div>
+<div class="ttc" id="aclassMapGen_1_1DoublyConnectedEdgeList_html_a488e82de16efab151f153f6dc859dc2a"><div class="ttname"><a href="../../d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#a488e82de16efab151f153f6dc859dc2a">MapGen::DoublyConnectedEdgeList::GetHalfEdge</a></div><div class="ttdeci">static HalfEdge &amp; GetHalfEdge(Face &amp;face)</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/db3/DoublyConnectedEdgeList_8h_source.html#l00269">DoublyConnectedEdgeList.h:269</a></div></div>
+<div class="ttc" id="aclassMapGen_1_1DoublyConnectedEdgeList_html_a492040546af8e497cddc5263a939405a"><div class="ttname"><a href="../../d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#a492040546af8e497cddc5263a939405a">MapGen::DoublyConnectedEdgeList::GetTarget</a></div><div class="ttdeci">static Node &amp; GetTarget(HalfEdge &amp;halfEdge)</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/db3/DoublyConnectedEdgeList_8h_source.html#l00221">DoublyConnectedEdgeList.h:221</a></div></div>
+<div class="ttc" id="aclassMapGen_1_1DoublyConnectedEdgeList_html_a801df47ea999c7f42a3bc829ad6b71b4"><div class="ttname"><a href="../../d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#a801df47ea999c7f42a3bc829ad6b71b4">MapGen::DoublyConnectedEdgeList::GetSource</a></div><div class="ttdeci">static Node &amp; GetSource(HalfEdge &amp;halfEdge)</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/db3/DoublyConnectedEdgeList_8h_source.html#l00209">DoublyConnectedEdgeList.h:209</a></div></div>
+<div class="ttc" id="aclassMapGen_1_1DoublyConnectedEdgeList_html_a96c63da29d204af66c79ec4f601fe822"><div class="ttname"><a href="../../d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#a96c63da29d204af66c79ec4f601fe822">MapGen::DoublyConnectedEdgeList::CountNodes</a></div><div class="ttdeci">size_t CountNodes() const</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/db3/DoublyConnectedEdgeList_8h_source.html#l00148">DoublyConnectedEdgeList.h:148</a></div></div>
+<div class="ttc" id="aclassMapGen_1_1DoublyConnectedEdgeList_html_a99c0e6118148acd57e23b043ae75acde"><div class="ttname"><a href="../../d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#a99c0e6118148acd57e23b043ae75acde">MapGen::DoublyConnectedEdgeList::Position</a></div><div class="ttdeci">MapGen::Position&lt; int32 &gt; Position</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/db3/DoublyConnectedEdgeList_8h_source.html#l00027">DoublyConnectedEdgeList.h:27</a></div></div>
+<div class="ttc" id="aclassMapGen_1_1DoublyConnectedEdgeList_html_ac627583ef2e4635a82d5582ddf6d61c2"><div class="ttname"><a href="../../d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#ac627583ef2e4635a82d5582ddf6d61c2">MapGen::DoublyConnectedEdgeList::GetNextInFace</a></div><div class="ttdeci">static HalfEdge &amp; GetNextInFace(HalfEdge &amp;halfEdge)</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/db3/DoublyConnectedEdgeList_8h_source.html#l00283">DoublyConnectedEdgeList.h:283</a></div></div>
+<div class="ttc" id="aclassMapGen_1_1DoublyConnectedEdgeList_html_acd6671bd2d667c927f006ae5b6f38949"><div class="ttname"><a href="../../d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#acd6671bd2d667c927f006ae5b6f38949">MapGen::DoublyConnectedEdgeList::CountHalfEdges</a></div><div class="ttdeci">size_t CountHalfEdges() const</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/db3/DoublyConnectedEdgeList_8h_source.html#l00153">DoublyConnectedEdgeList.h:153</a></div></div>
+<div class="ttc" id="aclassMapGen_1_1DoublyConnectedEdgeList_html_af59d36c63351d9bcd715d5b26670b4b7"><div class="ttname"><a href="../../d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#af59d36c63351d9bcd715d5b26670b4b7">MapGen::DoublyConnectedEdgeList::SplitEdge</a></div><div class="ttdeci">Node &amp; SplitEdge(const Position &amp;Position, HalfEdge &amp;HalfEdge)</div><div class="ttdoc">在 位置分割 HalfEdge （和它的配对）</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/db4/DoublyConnectedEdgeList_8cpp_source.html#l00145">DoublyConnectedEdgeList.cpp:145</a></div></div>
+<div class="ttc" id="aclassMapGen_1_1DoublyConnectedEdgeList_html_afe7d824795a7447e9783340ebd69ca0e"><div class="ttname"><a href="../../d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#afe7d824795a7447e9783340ebd69ca0e">MapGen::DoublyConnectedEdgeList::CountFaces</a></div><div class="ttdeci">size_t CountFaces() const</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/db3/DoublyConnectedEdgeList_8h_source.html#l00158">DoublyConnectedEdgeList.h:158</a></div></div>
+<div class="ttc" id="aclassMapGen_1_1GraphGenerator_html_aa6c4299ca0d9ef55d4c7d2a2ac0eb5b0"><div class="ttname"><a href="../../dc/d79/classMapGen_1_1GraphGenerator.html#aa6c4299ca0d9ef55d4c7d2a2ac0eb5b0">MapGen::GraphGenerator::Generate</a></div><div class="ttdeci">static TUniquePtr&lt; DoublyConnectedEdgeList &gt; Generate(uint32 SizeX, uint32 SizeY, int32 Seed)</div><div class="ttdoc">创建一个大小为 SizeX 乘以 SizeY 的平方双连通边链表 DoublyConnectedEdgeList， 并使用固定的随机数生成种子 Seed 在内部生成随机连接。</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d03/GraphGenerator_8cpp_source.html#l00137">GraphGenerator.cpp:137</a></div></div>
+<div class="ttc" id="aclassMapGen_1_1Position_html"><div class="ttname"><a href="../../d0/dd4/classMapGen_1_1Position.html">MapGen::Position&lt; int32 &gt;</a></div></div>
+<div class="ttc" id="anamespaceMapGen_html"><div class="ttname"><a href="../../d2/de5/namespaceMapGen.html">MapGen</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d5/d44/CityAreaDescription_8h_source.html#l00014">CityAreaDescription.h:14</a></div></div>
+<div class="ttc" id="anamespaceMapGen_html_a4163fb6b1450e8a10069d7bfb54796fe"><div class="ttname"><a href="../../d2/de5/namespaceMapGen.html#a4163fb6b1450e8a10069d7bfb54796fe">MapGen::randomize</a></div><div class="ttdeci">static void randomize(Graph &amp;graph, const int32 seed)</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d03/GraphGenerator_8cpp_source.html#l00108">GraphGenerator.cpp:108</a></div></div>
+<div class="ttc" id="anamespaceMapGen_html_a5fbf1d1c7632d84079b7029e838e691a"><div class="ttname"><a href="../../d2/de5/namespaceMapGen.html#a5fbf1d1c7632d84079b7029e838e691a">MapGen::getRandomOpposingEdges</a></div><div class="ttdeci">static std::pair&lt; Graph::HalfEdge *, Graph::HalfEdge * &gt; getRandomOpposingEdges(Graph::Face &amp;face, FRandomStream &amp;random)</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d03/GraphGenerator_8cpp_source.html#l00051">GraphGenerator.cpp:51</a></div></div>
+<div class="ttc" id="anamespaceMapGen_html_a7d416a86ca450fc6309fc58aa0498a2b"><div class="ttname"><a href="../../d2/de5/namespaceMapGen.html#a7d416a86ca450fc6309fc58aa0498a2b">MapGen::MARGIN</a></div><div class="ttdeci">static constexpr int32 MARGIN</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d03/GraphGenerator_8cpp_source.html#l00019">GraphGenerator.cpp:19</a></div></div>
+<div class="ttc" id="anamespaceMapGen_html_a975b7ba69fe3408db8acadb9ebf288d9"><div class="ttname"><a href="../../d2/de5/namespaceMapGen.html#a975b7ba69fe3408db8acadb9ebf288d9">MapGen::splitFace</a></div><div class="ttdeci">static Graph::Face * splitFace(Graph &amp;graph, Graph::Face &amp;face, FRandomStream &amp;random)</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d03/GraphGenerator_8cpp_source.html#l00078">GraphGenerator.cpp:78</a></div></div>
+<div class="ttc" id="anamespaceMapGen_html_aa4d7c4d9dbc0a0819427112d3a82c084"><div class="ttname"><a href="../../d2/de5/namespaceMapGen.html#aa4d7c4d9dbc0a0819427112d3a82c084">MapGen::getTargetPosition</a></div><div class="ttdeci">static const Graph::Position &amp; getTargetPosition(const Graph::HalfEdge &amp;edge)</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d03/GraphGenerator_8cpp_source.html#l00039">GraphGenerator.cpp:39</a></div></div>
+<div class="ttc" id="anamespaceMapGen_html_ae32dafe96bb829b6aa1983cf7a6abb2e"><div class="ttname"><a href="../../d2/de5/namespaceMapGen.html#ae32dafe96bb829b6aa1983cf7a6abb2e">MapGen::getSourcePosition</a></div><div class="ttdeci">static const Graph::Position &amp; getSourcePosition(const Graph::HalfEdge &amp;edge)</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d03/GraphGenerator_8cpp_source.html#l00033">GraphGenerator.cpp:33</a></div></div>
+<div class="ttc" id="anamespaceMapGen_html_ae9fe02eda53642295d1af13c10653844"><div class="ttname"><a href="../../d2/de5/namespaceMapGen.html#ae9fe02eda53642295d1af13c10653844">MapGen::signOf</a></div><div class="ttdeci">static int32 signOf(int32 val)</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d03/GraphGenerator_8cpp_source.html#l00027">GraphGenerator.cpp:27</a></div></div>
+<div class="ttc" id="anamespaceMapGen_html_afd4192eace622e317c7874a926d2c20c"><div class="ttname"><a href="../../d2/de5/namespaceMapGen.html#afd4192eace622e317c7874a926d2c20c">MapGen::getDirection</a></div><div class="ttdeci">static Graph::Position getDirection(const Graph::HalfEdge &amp;edge)</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d03/GraphGenerator_8cpp_source.html#l00045">GraphGenerator.cpp:45</a></div></div>
+<div class="ttc" id="astructMapGen_1_1DoublyConnectedEdgeList_1_1Face_html"><div class="ttname"><a href="../../dd/d77/structMapGen_1_1DoublyConnectedEdgeList_1_1Face.html">MapGen::DoublyConnectedEdgeList::Face</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d8/db3/DoublyConnectedEdgeList_8h_source.html#l00065">DoublyConnectedEdgeList.h:66</a></div></div>
+<div class="ttc" id="astructMapGen_1_1DoublyConnectedEdgeList_1_1HalfEdge_html"><div class="ttname"><a href="../../da/d88/structMapGen_1_1DoublyConnectedEdgeList_1_1HalfEdge.html">MapGen::DoublyConnectedEdgeList::HalfEdge</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d8/db3/DoublyConnectedEdgeList_8h_source.html#l00051">DoublyConnectedEdgeList.h:52</a></div></div>
+<div class="ttc" id="astructMapGen_1_1DoublyConnectedEdgeList_1_1Node_html"><div class="ttname"><a href="../../de/d6b/structMapGen_1_1DoublyConnectedEdgeList_1_1Node.html">MapGen::DoublyConnectedEdgeList::Node</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d8/db3/DoublyConnectedEdgeList_8h_source.html#l00033">DoublyConnectedEdgeList.h:34</a></div></div>
+<div class="ttc" id="astructMapGen_1_1DoublyConnectedEdgeList_1_1Node_html_a1404bf5477f16a79bcadd8300c64fa37"><div class="ttname"><a href="../../de/d6b/structMapGen_1_1DoublyConnectedEdgeList_1_1Node.html#a1404bf5477f16a79bcadd8300c64fa37">MapGen::DoublyConnectedEdgeList::Node::GetPosition</a></div><div class="ttdeci">const DoublyConnectedEdgeList::Position &amp; GetPosition() const</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/db3/DoublyConnectedEdgeList_8h_source.html#l00041">DoublyConnectedEdgeList.h:41</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: PointPubSubTypes.h 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_087ce8304d10c4897e4acbeac1a6fcc8.html">ros2</a></li><li class="navelem"><a class="el" href="../../dir_4ea2d91c13d1361ac1a1dbc78466282d.html">types</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">PointPubSubTypes.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../de/d9a/PointPubSubTypes_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright 2016 Proyectos y Sistemas de Mantenimiento SL (eProsima).  </span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  </span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">// 根据 Apache License, Version 2.0（“许可证”）授权；  </span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// 除非遵守该许可证，否则您不得使用此文件。  </span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// 您可以在以下网址获取许可证的副本：  </span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  </span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//     http://www.apache.org/licenses/LICENSE-2.0  </span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  </span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">// 除非适用法律要求或书面同意，否则根据许可证分发的软件是以“原样”方式分发的，  </span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">// 不附带任何明示或暗示的担保或条件。  </span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">// 请参阅许可证以获取有关权限和限制的具体语言。  </span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment"></span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">/*!  </span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment"> * @file PointPubSubTypes.h  </span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment"> * 此头文件包含对点类型的序列化函数的声明。  </span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment"> *  </span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment"> * 此文件是由工具 fastcdrgen 生成的。  </span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment"> */</span>  </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#ifndef _FAST_DDS_GENERATED_GEOMETRY_MSGS_MSG_POINT_PUBSUBTYPES_H_  </span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#define _FAST_DDS_GENERATED_GEOMETRY_MSGS_MSG_POINT_PUBSUBTYPES_H_  </span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;fastdds/dds/topic/TopicDataType.hpp&gt;</span> <span class="comment">// 引入 Fast DDS 主题数据类型头文件  </span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;fastrtps/utils/md5.h&gt;</span> <span class="comment">// 引入 MD5 工具以进行校验和计算  </span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;<a class="code" href="../../d4/de5/Point_8h.html">Point.h</a>&quot;</span> <span class="comment">// 引入 Point 结构的定义  </span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment">// 检查 API 版本兼容性  </span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#if !defined(GEN_API_VER) || (GEN_API_VER != 1)  </span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#error \</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">    生成的 Point 与当前安装的 Fast DDS 不兼容。请使用 fastddsgen 重新生成。  </span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#endif  </span><span class="comment">// GEN_API_VER  </span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../db/df8/namespacegeometry__msgs.html">geometry_msgs</a>  </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>{  </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keyword">namespace </span>msg  </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    {  </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">        #ifndef SWIG  </span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="keyword">namespace </span>detail {  </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>            <span class="comment">// 辅助模板，用于检索 Point 的成员变量  </span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Tag, <span class="keyword">typename</span> Tag::type M&gt;  </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="../../d9/d02/structgeometry__msgs_1_1msg_1_1detail_1_1Point__rob.html">   43</a></span>            <span class="keyword">struct </span><a class="code hl_struct" href="../../d9/d02/structgeometry__msgs_1_1msg_1_1detail_1_1Point__rob.html">Point_rob</a>  </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>            {  </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="../../d9/d02/structgeometry__msgs_1_1msg_1_1detail_1_1Point__rob.html#ad66f11313971ee27eb3d8d89ce8bba78">   45</a></span>                <span class="keyword">friend</span> <span class="keyword">constexpr</span> <span class="keyword">typename</span> Tag::type <a class="code hl_friend" href="../../d9/d02/structgeometry__msgs_1_1msg_1_1detail_1_1Point__rob.html#ad66f11313971ee27eb3d8d89ce8bba78">get</a>(  </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>                        Tag)  </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>                {  </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                    <span class="keywordflow">return</span> M; <span class="comment">// 返回成员变量  </span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>                }  </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>            };  </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            <span class="comment">// Point 成员变量的标记结构  </span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="../../dd/d99/structgeometry__msgs_1_1msg_1_1detail_1_1Point__f.html">   53</a></span>            <span class="keyword">struct </span><a class="code hl_struct" href="../../dd/d99/structgeometry__msgs_1_1msg_1_1detail_1_1Point__f.html">Point_f</a>  </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            {  </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="../../dd/d99/structgeometry__msgs_1_1msg_1_1detail_1_1Point__f.html#ab391332d2f0e39ba1b3280f4d7895ba8">   55</a></span>                <span class="keyword">typedef</span> <span class="keywordtype">double</span> <a class="code hl_class" href="../../d5/dd5/classgeometry__msgs_1_1msg_1_1Point.html">Point</a>::* <a class="code hl_typedef" href="../../dd/d99/structgeometry__msgs_1_1msg_1_1detail_1_1Point__f.html#ab391332d2f0e39ba1b3280f4d7895ba8">type</a>; <span class="comment">// 定义类型为指向 Point 的 double 成员的指针  </span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="../../dd/d99/structgeometry__msgs_1_1msg_1_1detail_1_1Point__f.html#a5c1fc1a509db03c86a78b25718bb17fa">   56</a></span>                <span class="keyword">friend</span> <span class="keyword">constexpr</span> <a class="code hl_typedef" href="../../dd/d99/structgeometry__msgs_1_1msg_1_1detail_1_1Point__f.html#ab391332d2f0e39ba1b3280f4d7895ba8">type</a> <a class="code hl_friend" href="../../dd/d99/structgeometry__msgs_1_1msg_1_1detail_1_1Point__f.html#a5c1fc1a509db03c86a78b25718bb17fa">get</a>(  </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>                        <a class="code hl_struct" href="../../dd/d99/structgeometry__msgs_1_1msg_1_1detail_1_1Point__f.html">Point_f</a>); <span class="comment">// 友元函数以访问成员  </span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>            };  </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            <span class="comment">// 显式特化以访问 Point 的 m_z 成员  </span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            <span class="keyword">template</span> <span class="keyword">struct </span><a class="code hl_struct" href="../../d9/d02/structgeometry__msgs_1_1msg_1_1detail_1_1Point__rob.html">Point_rob&lt;Point_f, &amp;Point::m_z&gt;</a>;  </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>            <span class="comment">// 计算 Point 结构中成员变量的偏移量的函数  </span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>            <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> Tag&gt;  </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="../../d6/dea/namespacegeometry__msgs_1_1msg_1_1detail.html#a7b080a64e67fa30d544eae08a1cd704b">   65</a></span>            <span class="keyword">inline</span> <span class="keywordtype">size_t</span> <span class="keyword">constexpr</span> <a class="code hl_function" href="../../d6/dea/namespacegeometry__msgs_1_1msg_1_1detail.html#a7b080a64e67fa30d544eae08a1cd704b">Point_offset_of</a>() {  </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                <span class="keywordflow">return</span> ((<a class="code hl_typedef" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">::size_t</a>) &amp;<span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">char</span> <span class="keyword">const </span>volatile&amp;<span class="keyword">&gt;</span>((((T*)0)-&gt;*get(Tag()))));  </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>            }  </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        }  </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="preprocessor">        #endif  </span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment"></span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment">        /*!  </span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment">         * @brief 此类表示用户在 IDL 文件中定义的 Point 类型的 TopicDataType。  </span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="comment">         * @ingroup POINT  </span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="comment">         */</span>  </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="../../df/d78/classgeometry__msgs_1_1msg_1_1PointPubSubType.html">   75</a></span>        <span class="keyword">class </span><a class="code hl_class" href="../../df/d78/classgeometry__msgs_1_1msg_1_1PointPubSubType.html">PointPubSubType</a> : <span class="keyword">public</span> eprosima::fastdds::dds::TopicDataType  </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        {  </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        <span class="keyword">public</span>:  </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="../../df/d78/classgeometry__msgs_1_1msg_1_1PointPubSubType.html#a848e02a65553a3a1e74a2e4ae14162be">   79</a></span>            <span class="keyword">typedef</span> <a class="code hl_class" href="../../d5/dd5/classgeometry__msgs_1_1msg_1_1Point.html">Point</a> <a class="code hl_typedef" href="../../df/d78/classgeometry__msgs_1_1msg_1_1PointPubSubType.html#a848e02a65553a3a1e74a2e4ae14162be">type</a>; <span class="comment">// 将类型定义为 Point  </span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <a class="code hl_class" href="../../df/d78/classgeometry__msgs_1_1msg_1_1PointPubSubType.html">PointPubSubType</a>(); <span class="comment">// 构造函数  </span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keyword">virtual</span> <a class="code hl_class" href="../../df/d78/classgeometry__msgs_1_1msg_1_1PointPubSubType.html">~PointPubSubType</a>() <span class="keyword">override</span>; <span class="comment">// 析构函数  </span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            <span class="comment">// 将 Point 数据序列化到有效负载中  </span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keyword">virtual</span> <span class="keywordtype">bool</span> serialize(  </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                    <span class="keywordtype">void</span>* data,  </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>                    eprosima::fastrtps::rtps::SerializedPayload_t* payload) <span class="keyword">override</span>;  </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>            <span class="comment">// 将有效负载反序列化回 Point 数据  </span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keyword">virtual</span> <span class="keywordtype">bool</span> deserialize(  </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>                    eprosima::fastrtps::rtps::SerializedPayload_t* payload,  </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>                    <span class="keywordtype">void</span>* data) <span class="keyword">override</span>;  </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>            <span class="comment">// 提供获取序列化数据大小的函数  </span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keyword">virtual</span> std::function&lt;uint32_t()&gt; getSerializedSizeProvider(  </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>                    <span class="keywordtype">void</span>* data) <span class="keyword">override</span>;  </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>            <span class="comment">// 获取 Point 实例的键  </span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keyword">virtual</span> <span class="keywordtype">bool</span> getKey(  </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>                    <span class="keywordtype">void</span>* data,  </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>                    eprosima::fastrtps::rtps::InstanceHandle_t* ihandle,  </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>                    <span class="keywordtype">bool</span> force_md5 = <span class="keyword">false</span>) <span class="keyword">override</span>;  </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>            <span class="comment">// 创建一个新的 Point 实例  </span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keyword">virtual</span> <span class="keywordtype">void</span>* createData() <span class="keyword">override</span>;  </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>            <span class="comment">// 删除 Point 实例  </span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keyword">virtual</span> <span class="keywordtype">void</span> deleteData(  </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                    <span class="keywordtype">void</span>* data) <span class="keyword">override</span>;  </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="preprocessor">        #ifdef TOPIC_DATA_TYPE_API_HAS_IS_BOUNDED  </span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>            <span class="comment">// 检查 Point 类型是否是有界的  </span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keyword">inline</span> <span class="keywordtype">bool</span> is_bounded()<span class="keyword"> const override  </span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="keyword">            </span>{  </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>                <span class="keywordflow">return</span> <span class="keyword">true</span>; <span class="comment">// Point 是有界类型  </span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>            }  </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="preprocessor">        #endif  </span><span class="comment">// TOPIC_DATA_TYPE_API_HAS_IS_BOUNDED  </span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="preprocessor">        #ifdef TOPIC_DATA_TYPE_API_HAS_IS_PLAIN  </span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>            <span class="comment">// 检查 Point 类型是否是简单类型（没有嵌套类型）  </span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keyword">inline</span> <span class="keywordtype">bool</span> is_plain()<span class="keyword"> const override  </span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="keyword">            </span>{  </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>                <span class="keywordflow">return</span> is_plain_impl(); <span class="comment">// 调用实现函数  </span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>            }  </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="preprocessor">        #endif  </span><span class="comment">// TOPIC_DATA_TYPE_API_HAS_IS_PLAIN  </span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="preprocessor">        #ifdef TOPIC_DATA_TYPE_API_HAS_CONSTRUCT_SAMPLE  </span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>            <span class="comment">// 在提供的内存中构造 Point 的样本  </span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keyword">inline</span> <span class="keywordtype">bool</span> construct_sample(  </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>                    <span class="keywordtype">void</span>* memory)<span class="keyword"> const override  </span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="keyword">            </span>{  </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>                <span class="keyword">new</span> (memory) Point(); <span class="comment">// 在指定内存中使用 placement new 创建 Point  </span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>                <span class="keywordflow">return</span> <span class="keyword">true</span>; <span class="comment">// 表示成功  </span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>            }  </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="preprocessor">        #endif  </span><span class="comment">// TOPIC_DATA_TYPE_API_HAS_CONSTRUCT_SAMPLE  </span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="../../df/d78/classgeometry__msgs_1_1msg_1_1PointPubSubType.html#a55c047b11bbfeb4bd7a0efe1d4cc421e">  141</a></span>            MD5 <a class="code hl_variable" href="../../df/d78/classgeometry__msgs_1_1msg_1_1PointPubSubType.html#a55c047b11bbfeb4bd7a0efe1d4cc421e">m_md5</a>; <span class="comment">// 用于数据完整性的 MD5 校验和  </span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="../../df/d78/classgeometry__msgs_1_1msg_1_1PointPubSubType.html#ab51e1a252c2271320ff643e68b583958">  142</a></span>            <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* <a class="code hl_variable" href="../../df/d78/classgeometry__msgs_1_1msg_1_1PointPubSubType.html#ab51e1a252c2271320ff643e68b583958">m_keyBuffer</a>; <span class="comment">// 实例键的缓冲区  </span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>        <span class="keyword">private</span>:  </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>            <span class="comment">// 确定 Point 是否是简单类型的实现  </span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="../../df/d78/classgeometry__msgs_1_1msg_1_1PointPubSubType.html#a16444bbd5da2055e70f00c44ebbede34">  147</a></span>            <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="../../df/d78/classgeometry__msgs_1_1msg_1_1PointPubSubType.html#a16444bbd5da2055e70f00c44ebbede34">is_plain_impl</a>()  </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>            {  </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>                <span class="keywordflow">return</span> 24ULL == (detail::Point_offset_of&lt;Point, detail::Point_f&gt;() + <span class="keyword">sizeof</span>(double));  </div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>            } <span class="comment">// 检查大小是否与预期值匹配  </span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        };  </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    }  </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>}  </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="preprocessor">#endif </span><span class="comment">// _FAST_DDS_GENERATED_GEOMETRY_MSGS_MSG_POINT_PUBSUBTYPES_H_  </span></div>
+<div class="ttc" id="aCameraInfo_8h_html_abd19d82e50737e50241fe1723b1c6066"><div class="ttname"><a href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a></div><div class="ttdeci">#define eProsima_user_DllExport</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d15/CameraInfo_8h_source.html#l00044">CameraInfo.h:44</a></div></div>
+<div class="ttc" id="aConcurrentQueue_8h_html_abc08b7e2a4e588862664de9fc43fc61b"><div class="ttname"><a href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a></div><div class="ttdeci">Traits::size_t size_t</div><div class="ttdef"><b>Definition:</b> <a href="../../de/dad/ConcurrentQueue_8h_source.html#l01347">ConcurrentQueue.h:1347</a></div></div>
+<div class="ttc" id="aPoint_8h_html"><div class="ttname"><a href="../../d4/de5/Point_8h.html">Point.h</a></div></div>
+<div class="ttc" id="aclassgeometry__msgs_1_1msg_1_1PointPubSubType_html"><div class="ttname"><a href="../../df/d78/classgeometry__msgs_1_1msg_1_1PointPubSubType.html">geometry_msgs::msg::PointPubSubType</a></div><div class="ttdoc">此类表示用户在 IDL 文件中定义的 Point 类型的 TopicDataType。   &lt;&gt;</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d9a/PointPubSubTypes_8h_source.html#l00075">PointPubSubTypes.h:76</a></div></div>
+<div class="ttc" id="aclassgeometry__msgs_1_1msg_1_1PointPubSubType_html_a16444bbd5da2055e70f00c44ebbede34"><div class="ttname"><a href="../../df/d78/classgeometry__msgs_1_1msg_1_1PointPubSubType.html#a16444bbd5da2055e70f00c44ebbede34">geometry_msgs::msg::PointPubSubType::is_plain_impl</a></div><div class="ttdeci">static constexpr bool is_plain_impl()</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d9a/PointPubSubTypes_8h_source.html#l00147">PointPubSubTypes.h:147</a></div></div>
+<div class="ttc" id="aclassgeometry__msgs_1_1msg_1_1PointPubSubType_html_a55c047b11bbfeb4bd7a0efe1d4cc421e"><div class="ttname"><a href="../../df/d78/classgeometry__msgs_1_1msg_1_1PointPubSubType.html#a55c047b11bbfeb4bd7a0efe1d4cc421e">geometry_msgs::msg::PointPubSubType::m_md5</a></div><div class="ttdeci">MD5 m_md5</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d9a/PointPubSubTypes_8h_source.html#l00141">PointPubSubTypes.h:141</a></div></div>
+<div class="ttc" id="aclassgeometry__msgs_1_1msg_1_1PointPubSubType_html_a848e02a65553a3a1e74a2e4ae14162be"><div class="ttname"><a href="../../df/d78/classgeometry__msgs_1_1msg_1_1PointPubSubType.html#a848e02a65553a3a1e74a2e4ae14162be">geometry_msgs::msg::PointPubSubType::type</a></div><div class="ttdeci">Point type</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d9a/PointPubSubTypes_8h_source.html#l00079">PointPubSubTypes.h:79</a></div></div>
+<div class="ttc" id="aclassgeometry__msgs_1_1msg_1_1PointPubSubType_html_ab51e1a252c2271320ff643e68b583958"><div class="ttname"><a href="../../df/d78/classgeometry__msgs_1_1msg_1_1PointPubSubType.html#ab51e1a252c2271320ff643e68b583958">geometry_msgs::msg::PointPubSubType::m_keyBuffer</a></div><div class="ttdeci">unsigned char * m_keyBuffer</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d9a/PointPubSubTypes_8h_source.html#l00142">PointPubSubTypes.h:142</a></div></div>
+<div class="ttc" id="aclassgeometry__msgs_1_1msg_1_1Point_html"><div class="ttname"><a href="../../d5/dd5/classgeometry__msgs_1_1msg_1_1Point.html">geometry_msgs::msg::Point</a></div><div class="ttdoc">This class represents the structure Point defined by the user in the IDL file.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/de5/Point_8h_source.html#l00070">Point.h:71</a></div></div>
+<div class="ttc" id="anamespacegeometry__msgs_1_1msg_1_1detail_html_a7b080a64e67fa30d544eae08a1cd704b"><div class="ttname"><a href="../../d6/dea/namespacegeometry__msgs_1_1msg_1_1detail.html#a7b080a64e67fa30d544eae08a1cd704b">geometry_msgs::msg::detail::Point_offset_of</a></div><div class="ttdeci">size_t constexpr Point_offset_of()</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d9a/PointPubSubTypes_8h_source.html#l00065">PointPubSubTypes.h:65</a></div></div>
+<div class="ttc" id="anamespacegeometry__msgs_html"><div class="ttname"><a href="../../db/df8/namespacegeometry__msgs.html">geometry_msgs</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d4/de5/Point_8h_source.html#l00064">Point.h:64</a></div></div>
+<div class="ttc" id="astructgeometry__msgs_1_1msg_1_1detail_1_1Point__f_html"><div class="ttname"><a href="../../dd/d99/structgeometry__msgs_1_1msg_1_1detail_1_1Point__f.html">geometry_msgs::msg::detail::Point_f</a></div><div class="ttdef"><b>Definition:</b> <a href="../../de/d9a/PointPubSubTypes_8h_source.html#l00053">PointPubSubTypes.h:54</a></div></div>
+<div class="ttc" id="astructgeometry__msgs_1_1msg_1_1detail_1_1Point__f_html_a5c1fc1a509db03c86a78b25718bb17fa"><div class="ttname"><a href="../../dd/d99/structgeometry__msgs_1_1msg_1_1detail_1_1Point__f.html#a5c1fc1a509db03c86a78b25718bb17fa">geometry_msgs::msg::detail::Point_f::get</a></div><div class="ttdeci">friend constexpr type get(Point_f)</div></div>
+<div class="ttc" id="astructgeometry__msgs_1_1msg_1_1detail_1_1Point__f_html_ab391332d2f0e39ba1b3280f4d7895ba8"><div class="ttname"><a href="../../dd/d99/structgeometry__msgs_1_1msg_1_1detail_1_1Point__f.html#ab391332d2f0e39ba1b3280f4d7895ba8">geometry_msgs::msg::detail::Point_f::type</a></div><div class="ttdeci">double Point::* type</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d9a/PointPubSubTypes_8h_source.html#l00055">PointPubSubTypes.h:55</a></div></div>
+<div class="ttc" id="astructgeometry__msgs_1_1msg_1_1detail_1_1Point__rob_html"><div class="ttname"><a href="../../d9/d02/structgeometry__msgs_1_1msg_1_1detail_1_1Point__rob.html">geometry_msgs::msg::detail::Point_rob</a></div><div class="ttdef"><b>Definition:</b> <a href="../../de/d9a/PointPubSubTypes_8h_source.html#l00043">PointPubSubTypes.h:44</a></div></div>
+<div class="ttc" id="astructgeometry__msgs_1_1msg_1_1detail_1_1Point__rob_html_ad66f11313971ee27eb3d8d89ce8bba78"><div class="ttname"><a href="../../d9/d02/structgeometry__msgs_1_1msg_1_1detail_1_1Point__rob.html#ad66f11313971ee27eb3d8d89ce8bba78">geometry_msgs::msg::detail::Point_rob::get</a></div><div class="ttdeci">friend constexpr Tag::type get(Tag)</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d9a/PointPubSubTypes_8h_source.html#l00045">PointPubSubTypes.h:45</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

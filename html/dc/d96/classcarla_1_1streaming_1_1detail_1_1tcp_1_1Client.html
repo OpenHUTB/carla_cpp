@@ -1,0 +1,751 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: carla::streaming::detail::tcp::Client类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../d9/d36/namespacecarla.html">carla</a></li><li class="navelem"><a class="el" href="../../dd/dd8/namespacecarla_1_1streaming.html">streaming</a></li><li class="navelem"><a class="el" href="../../dd/dcc/namespacecarla_1_1streaming_1_1detail.html">detail</a></li><li class="navelem"><a class="el" href="../../d0/d52/namespacecarla_1_1streaming_1_1detail_1_1tcp.html">tcp</a></li><li class="navelem"><a class="el" href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html">Client</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public 类型</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="../../d6/dcd/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">carla::streaming::detail::tcp::Client类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>连接单个流的客户端。  
+ <a href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html">Client.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 类 carla::streaming::detail::tcp::Client 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../de/dba/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client__inherit__graph.svg" width="356" height="166"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> carla::streaming::detail::tcp::Client 的协作图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../df/d71/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public 类型</h2></td></tr>
+<tr class="memitem:aaad8f5c6d2c55f5785abae0d5b112930"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#aaad8f5c6d2c55f5785abae0d5b112930">callback_function_type</a> = std::function&lt; void(<a class="el" href="../../d0/d0a/classcarla_1_1Buffer.html">Buffer</a>)&gt;</td></tr>
+<tr class="memdesc:aaad8f5c6d2c55f5785abae0d5b112930"><td class="mdescLeft">&#160;</td><td class="mdescRight">回调函数类型，接收一个Buffer作为参数。  <a href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#aaad8f5c6d2c55f5785abae0d5b112930">更多...</a><br /></td></tr>
+<tr class="separator:aaad8f5c6d2c55f5785abae0d5b112930"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab13503e9211f9143f0e1ae485f2884e8"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#ab13503e9211f9143f0e1ae485f2884e8">endpoint</a> = boost::asio::ip::tcp::endpoint</td></tr>
+<tr class="memdesc:ab13503e9211f9143f0e1ae485f2884e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">TCP端点类型，用于表示TCP连接的一端。  <a href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#ab13503e9211f9143f0e1ae485f2884e8">更多...</a><br /></td></tr>
+<tr class="separator:ab13503e9211f9143f0e1ae485f2884e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af11d34966320b946601f66fea153f12c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#af11d34966320b946601f66fea153f12c">protocol_type</a> = endpoint::protocol_type</td></tr>
+<tr class="memdesc:af11d34966320b946601f66fea153f12c"><td class="mdescLeft">&#160;</td><td class="mdescRight">协议类型，表示TCP协议。  <a href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#af11d34966320b946601f66fea153f12c">更多...</a><br /></td></tr>
+<tr class="separator:af11d34966320b946601f66fea153f12c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a940286588c681f9c696c2e4a6aef1b5b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#a940286588c681f9c696c2e4a6aef1b5b">Client</a> (boost::asio::io_context &amp;io_context, const <a class="el" href="../../df/de1/classcarla_1_1streaming_1_1detail_1_1token__type.html">token_type</a> &amp;token, <a class="el" href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#aaad8f5c6d2c55f5785abae0d5b112930">callback_function_type</a> callback)</td></tr>
+<tr class="memdesc:a940286588c681f9c696c2e4a6aef1b5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数。  <a href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#a940286588c681f9c696c2e4a6aef1b5b">更多...</a><br /></td></tr>
+<tr class="separator:a940286588c681f9c696c2e4a6aef1b5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff760041c9642a988880c1ff39739fe2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#aff760041c9642a988880c1ff39739fe2">Connect</a> ()</td></tr>
+<tr class="memdesc:aff760041c9642a988880c1ff39739fe2"><td class="mdescLeft">&#160;</td><td class="mdescRight">连接到指定的流。  <a href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#aff760041c9642a988880c1ff39739fe2">更多...</a><br /></td></tr>
+<tr class="separator:aff760041c9642a988880c1ff39739fe2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0fd4e9bb4bbe41806a572c4b4df8901"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dd/dcc/namespacecarla_1_1streaming_1_1detail.html#aa375c2a4e6ec37df037554b54f12835e">stream_id_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#aa0fd4e9bb4bbe41806a572c4b4df8901">GetStreamId</a> () const</td></tr>
+<tr class="memdesc:aa0fd4e9bb4bbe41806a572c4b4df8901"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取流的ID。  <a href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#aa0fd4e9bb4bbe41806a572c4b4df8901">更多...</a><br /></td></tr>
+<tr class="separator:aa0fd4e9bb4bbe41806a572c4b4df8901"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06d1d97d9262249b1d8fe0f55e939aa7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#a06d1d97d9262249b1d8fe0f55e939aa7">Stop</a> ()</td></tr>
+<tr class="memdesc:a06d1d97d9262249b1d8fe0f55e939aa7"><td class="mdescLeft">&#160;</td><td class="mdescRight">停止客户端。  <a href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#a06d1d97d9262249b1d8fe0f55e939aa7">更多...</a><br /></td></tr>
+<tr class="separator:a06d1d97d9262249b1d8fe0f55e939aa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b1d18376957b4a56c84070e97f9ef63"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#a4b1d18376957b4a56c84070e97f9ef63">~Client</a> ()</td></tr>
+<tr class="memdesc:a4b1d18376957b4a56c84070e97f9ef63"><td class="mdescLeft">&#160;</td><td class="mdescRight">析构函数。  <a href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#a4b1d18376957b4a56c84070e97f9ef63">更多...</a><br /></td></tr>
+<tr class="separator:a4b1d18376957b4a56c84070e97f9ef63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:aaa78ca2b7195a84a9b0db792fa88ab79"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#aaa78ca2b7195a84a9b0db792fa88ab79">ReadData</a> ()</td></tr>
+<tr class="memdesc:aaa78ca2b7195a84a9b0db792fa88ab79"><td class="mdescLeft">&#160;</td><td class="mdescRight">从流中读取数据。  <a href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#aaa78ca2b7195a84a9b0db792fa88ab79">更多...</a><br /></td></tr>
+<tr class="separator:aaa78ca2b7195a84a9b0db792fa88ab79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d95ef9bb8a629f93278bbd3f9deb7a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#a2d95ef9bb8a629f93278bbd3f9deb7a6">Reconnect</a> ()</td></tr>
+<tr class="memdesc:a2d95ef9bb8a629f93278bbd3f9deb7a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">重新连接流。  <a href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#a2d95ef9bb8a629f93278bbd3f9deb7a6">更多...</a><br /></td></tr>
+<tr class="separator:a2d95ef9bb8a629f93278bbd3f9deb7a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classcarla_1_1profiler_1_1LifetimeProfiled"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classcarla_1_1profiler_1_1LifetimeProfiled')"><img src="../../closed.png" alt="-"/>&#160;Private 成员函数 继承自 <a class="el" href="../../df/d3e/classcarla_1_1profiler_1_1LifetimeProfiled.html">carla::profiler::LifetimeProfiled</a></td></tr>
+<tr class="memitem:aa2703a2efb22bbb9d9cff979278bfb05 inherit pub_methods_classcarla_1_1profiler_1_1LifetimeProfiled"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d3e/classcarla_1_1profiler_1_1LifetimeProfiled.html#aa2703a2efb22bbb9d9cff979278bfb05">LifetimeProfiled</a> ()=default</td></tr>
+<tr class="separator:aa2703a2efb22bbb9d9cff979278bfb05 inherit pub_methods_classcarla_1_1profiler_1_1LifetimeProfiled"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classcarla_1_1NonCopyable"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classcarla_1_1NonCopyable')"><img src="../../closed.png" alt="-"/>&#160;Private 成员函数 继承自 <a class="el" href="../../d4/d8b/classcarla_1_1NonCopyable.html">carla::NonCopyable</a></td></tr>
+<tr class="memitem:a3df80d9f9bef73b6b6acaf2c2fc983de inherit pub_methods_classcarla_1_1NonCopyable"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d8b/classcarla_1_1NonCopyable.html#a3df80d9f9bef73b6b6acaf2c2fc983de">NonCopyable</a> ()=default</td></tr>
+<tr class="separator:a3df80d9f9bef73b6b6acaf2c2fc983de inherit pub_methods_classcarla_1_1NonCopyable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa221c837b0190bcd85ed3fa4b6d8f99 inherit pub_methods_classcarla_1_1NonCopyable"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d8b/classcarla_1_1NonCopyable.html#aaa221c837b0190bcd85ed3fa4b6d8f99">NonCopyable</a> (const <a class="el" href="../../d4/d8b/classcarla_1_1NonCopyable.html">NonCopyable</a> &amp;)=delete</td></tr>
+<tr class="separator:aaa221c837b0190bcd85ed3fa4b6d8f99 inherit pub_methods_classcarla_1_1NonCopyable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c81bd149900ee480aca973cd7780467 inherit pub_methods_classcarla_1_1NonCopyable"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d8b/classcarla_1_1NonCopyable.html#a2c81bd149900ee480aca973cd7780467">NonCopyable</a> (<a class="el" href="../../d4/d8b/classcarla_1_1NonCopyable.html">NonCopyable</a> &amp;&amp;)=delete</td></tr>
+<tr class="separator:a2c81bd149900ee480aca973cd7780467 inherit pub_methods_classcarla_1_1NonCopyable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf98f0be313b83cdb04292b02b20c448 inherit pub_methods_classcarla_1_1NonCopyable"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/d8b/classcarla_1_1NonCopyable.html">NonCopyable</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d8b/classcarla_1_1NonCopyable.html#aaf98f0be313b83cdb04292b02b20c448">operator=</a> (const <a class="el" href="../../d4/d8b/classcarla_1_1NonCopyable.html">NonCopyable</a> &amp;)=delete</td></tr>
+<tr class="separator:aaf98f0be313b83cdb04292b02b20c448 inherit pub_methods_classcarla_1_1NonCopyable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a893b2a417b7cf3d5c02099b35c84d4b9 inherit pub_methods_classcarla_1_1NonCopyable"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/d8b/classcarla_1_1NonCopyable.html">NonCopyable</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d8b/classcarla_1_1NonCopyable.html#a893b2a417b7cf3d5c02099b35c84d4b9">operator=</a> (<a class="el" href="../../d4/d8b/classcarla_1_1NonCopyable.html">NonCopyable</a> &amp;&amp;)=delete</td></tr>
+<tr class="separator:a893b2a417b7cf3d5c02099b35c84d4b9 inherit pub_methods_classcarla_1_1NonCopyable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a7f62c61d30c582aec66afafa2457d8f0"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="../../d7/d3c/classcarla_1_1BufferPool.html">BufferPool</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#a7f62c61d30c582aec66afafa2457d8f0">_buffer_pool</a></td></tr>
+<tr class="memdesc:a7f62c61d30c582aec66afafa2457d8f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">指向缓冲区池的共享指针。  <a href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#a7f62c61d30c582aec66afafa2457d8f0">更多...</a><br /></td></tr>
+<tr class="separator:a7f62c61d30c582aec66afafa2457d8f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5959ad86ec18b9b87ae3ce54216596d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#aaad8f5c6d2c55f5785abae0d5b112930">callback_function_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#a5959ad86ec18b9b87ae3ce54216596d2">_callback</a></td></tr>
+<tr class="memdesc:a5959ad86ec18b9b87ae3ce54216596d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">回调函数类型，用于处理读取的数据。  <a href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#a5959ad86ec18b9b87ae3ce54216596d2">更多...</a><br /></td></tr>
+<tr class="separator:a5959ad86ec18b9b87ae3ce54216596d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b0384bad00b61b02b1b7c0d2595b61f"><td class="memItemLeft" align="right" valign="top">boost::asio::deadline_timer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#a7b0384bad00b61b02b1b7c0d2595b61f">_connection_timer</a></td></tr>
+<tr class="memdesc:a7b0384bad00b61b02b1b7c0d2595b61f"><td class="mdescLeft">&#160;</td><td class="mdescRight">连接超时定时器。  <a href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#a7b0384bad00b61b02b1b7c0d2595b61f">更多...</a><br /></td></tr>
+<tr class="separator:a7b0384bad00b61b02b1b7c0d2595b61f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9aa3dec71f7642f0bf00f11d360cfff8"><td class="memItemLeft" align="right" valign="top">std::atomic_bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#a9aa3dec71f7642f0bf00f11d360cfff8">_done</a> {false}</td></tr>
+<tr class="memdesc:a9aa3dec71f7642f0bf00f11d360cfff8"><td class="mdescLeft">&#160;</td><td class="mdescRight">表示客户端是否已完成工作的原子布尔值。  <a href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#a9aa3dec71f7642f0bf00f11d360cfff8">更多...</a><br /></td></tr>
+<tr class="separator:a9aa3dec71f7642f0bf00f11d360cfff8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab17b4877d82b3aa99b2707f68fdd3a92"><td class="memItemLeft" align="right" valign="top">boost::asio::ip::tcp::socket&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#ab17b4877d82b3aa99b2707f68fdd3a92">_socket</a></td></tr>
+<tr class="memdesc:ab17b4877d82b3aa99b2707f68fdd3a92"><td class="mdescLeft">&#160;</td><td class="mdescRight">TCP套接字，用于与流建立连接。  <a href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#ab17b4877d82b3aa99b2707f68fdd3a92">更多...</a><br /></td></tr>
+<tr class="separator:ab17b4877d82b3aa99b2707f68fdd3a92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a318b82ffc6970e3c7aa7077de6fb8f1d"><td class="memItemLeft" align="right" valign="top">boost::asio::io_context::strand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#a318b82ffc6970e3c7aa7077de6fb8f1d">_strand</a></td></tr>
+<tr class="memdesc:a318b82ffc6970e3c7aa7077de6fb8f1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">序列化对套接字的访问。  <a href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#a318b82ffc6970e3c7aa7077de6fb8f1d">更多...</a><br /></td></tr>
+<tr class="separator:a318b82ffc6970e3c7aa7077de6fb8f1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af703430cde7919fb0fb5e9496713dba8"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../df/de1/classcarla_1_1streaming_1_1detail_1_1token__type.html">token_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#af703430cde7919fb0fb5e9496713dba8">_token</a></td></tr>
+<tr class="memdesc:af703430cde7919fb0fb5e9496713dba8"><td class="mdescLeft">&#160;</td><td class="mdescRight">存储流的唯一标识令牌。  <a href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#af703430cde7919fb0fb5e9496713dba8">更多...</a><br /></td></tr>
+<tr class="separator:af703430cde7919fb0fb5e9496713dba8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p >连接单个流的客户端。 </p>
+<dl class="section warning"><dt>警告</dt><dd>在释放共享指针之前，应该先停止这个客户端，否则它将不会被销毁。 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html">streaming/detail/tcp/Client.h</a> 第 <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html#l00037">37</a> 行定义.</p>
+</div><h2 class="groupheader">成员类型定义说明</h2>
+<a id="aaad8f5c6d2c55f5785abae0d5b112930" name="aaad8f5c6d2c55f5785abae0d5b112930"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaad8f5c6d2c55f5785abae0d5b112930">&#9670;&#160;</a></span>callback_function_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#aaad8f5c6d2c55f5785abae0d5b112930">carla::streaming::detail::tcp::Client::callback_function_type</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>回调函数类型，接收一个Buffer作为参数。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html">streaming/detail/tcp/Client.h</a> 第 <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html#l00050">50</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab13503e9211f9143f0e1ae485f2884e8" name="ab13503e9211f9143f0e1ae485f2884e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab13503e9211f9143f0e1ae485f2884e8">&#9670;&#160;</a></span>endpoint</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#ab13503e9211f9143f0e1ae485f2884e8">carla::streaming::detail::tcp::Client::endpoint</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>TCP端点类型，用于表示TCP连接的一端。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html">streaming/detail/tcp/Client.h</a> 第 <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html#l00044">44</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af11d34966320b946601f66fea153f12c" name="af11d34966320b946601f66fea153f12c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af11d34966320b946601f66fea153f12c">&#9670;&#160;</a></span>protocol_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#af11d34966320b946601f66fea153f12c">carla::streaming::detail::tcp::Client::protocol_type</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>协议类型，表示TCP协议。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html">streaming/detail/tcp/Client.h</a> 第 <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html#l00047">47</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a940286588c681f9c696c2e4a6aef1b5b" name="a940286588c681f9c696c2e4a6aef1b5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a940286588c681f9c696c2e4a6aef1b5b">&#9670;&#160;</a></span>Client()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::streaming::detail::tcp::Client::Client </td>
+          <td>(</td>
+          <td class="paramtype">boost::asio::io_context &amp;&#160;</td>
+          <td class="paramname"><em>io_context</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../df/de1/classcarla_1_1streaming_1_1detail_1_1token__type.html">token_type</a> &amp;&#160;</td>
+          <td class="paramname"><em>token</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#aaad8f5c6d2c55f5785abae0d5b112930">callback_function_type</a>&#160;</td>
+          <td class="paramname"><em>callback</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>构造函数。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">io_context</td><td>引用boost::asio的I/O上下文对象，用于异步操作。 </td></tr>
+    <tr><td class="paramname">token</td><td>流的令牌，包含流的唯一标识等信息。 </td></tr>
+    <tr><td class="paramname">callback</td><td>回调函数，当接收到数据时调用。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html">streaming/detail/tcp/Client.cpp</a> 第 <a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html#l00073">73</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html#l00085">_token</a>, <a class="el" href="../../d9/d9d/detail_2Token_8h_source.html#l00279">carla::streaming::detail::token_type::protocol_is_tcp()</a> , 以及 <a class="el" href="../../d9/d4f/Carla_8cpp_source.html#l00142">carla::throw_exception()</a>.</p>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client_a940286588c681f9c696c2e4a6aef1b5b_cgraph.svg" width="518" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a4b1d18376957b4a56c84070e97f9ef63" name="a4b1d18376957b4a56c84070e97f9ef63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b1d18376957b4a56c84070e97f9ef63">&#9670;&#160;</a></span>~Client()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::streaming::detail::tcp::Client::~Client </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>析构函数。 </p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="aff760041c9642a988880c1ff39739fe2" name="aff760041c9642a988880c1ff39739fe2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff760041c9642a988880c1ff39739fe2">&#9670;&#160;</a></span>Connect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::streaming::detail::tcp::Client::Connect </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>连接到指定的流。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html">streaming/detail/tcp/Client.cpp</a> 第 <a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html#l00094">94</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html#l00109">_done</a>, <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html#l00093">_socket</a>, <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html#l00097">_strand</a>, <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html#l00085">_token</a>, <a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html#l00094">Connect()</a>, <a class="el" href="../../d4/deb/Debug_8h_source.html#l00068">DEBUG_ASSERT</a>, <a class="el" href="../../d4/deb/Debug_8h_source.html#l00081">DEBUG_ASSERT_EQ</a>, <a class="el" href="../../d4/deb/Debug_8h_source.html#l00055">DEBUG_ONLY</a>, <a class="el" href="../../d9/d9d/detail_2Token_8h_source.html#l00199">carla::streaming::detail::token_type::get_stream_id()</a>, <a class="el" href="../../d9/d9d/detail_2Token_8h_source.html#l00245">carla::streaming::detail::token_type::is_valid()</a>, <a class="el" href="../../de/d87/Logging_8h_source.html#l00071">carla::log_debug()</a>, <a class="el" href="../../de/d87/Logging_8h_source.html#l00086">carla::log_info()</a>, <a class="el" href="../../d9/d9d/detail_2Token_8h_source.html#l00279">carla::streaming::detail::token_type::protocol_is_tcp()</a>, <a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html#l00181">ReadData()</a>, <a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html#l00169">Reconnect()</a> , 以及 <a class="el" href="../../d9/d9d/detail_2Token_8h_source.html#l00311">carla::streaming::detail::token_type::to_tcp_endpoint()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html#l00094">Connect()</a>, <a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html#l00181">ReadData()</a> , 以及 <a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html#l00169">Reconnect()</a>.</p>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client_aff760041c9642a988880c1ff39739fe2_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client_aff760041c9642a988880c1ff39739fe2_icgraph.svg" width="363" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="aa0fd4e9bb4bbe41806a572c4b4df8901" name="aa0fd4e9bb4bbe41806a572c4b4df8901"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0fd4e9bb4bbe41806a572c4b4df8901">&#9670;&#160;</a></span>GetStreamId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../dd/dcc/namespacecarla_1_1streaming_1_1detail.html#aa375c2a4e6ec37df037554b54f12835e">stream_id_type</a> carla::streaming::detail::tcp::Client::GetStreamId </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取流的ID。 </p>
+<dl class="section return"><dt>返回</dt><dd>流的ID。 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html">streaming/detail/tcp/Client.h</a> 第 <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html#l00067">67</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html#l00085">_token</a> , 以及 <a class="el" href="../../d9/d9d/detail_2Token_8h_source.html#l00199">carla::streaming::detail::token_type::get_stream_id()</a>.</p>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client_aa0fd4e9bb4bbe41806a572c4b4df8901_cgraph.svg" width="403" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="aaa78ca2b7195a84a9b0db792fa88ab79" name="aaa78ca2b7195a84a9b0db792fa88ab79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa78ca2b7195a84a9b0db792fa88ab79">&#9670;&#160;</a></span>ReadData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::streaming::detail::tcp::Client::ReadData </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>从流中读取数据。 </p>
+<p >此方法从已连接的流中读取数据，并处理这些数据。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html">streaming/detail/tcp/Client.cpp</a> 第 <a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html#l00181">181</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html#l00105">_buffer_pool</a>, <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html#l00109">_done</a>, <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html#l00093">_socket</a>, <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html#l00097">_strand</a>, <a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html#l00094">Connect()</a>, <a class="el" href="../../d4/deb/Debug_8h_source.html#l00081">DEBUG_ASSERT_EQ</a>, <a class="el" href="../../d4/deb/Debug_8h_source.html#l00082">DEBUG_ASSERT_NE</a>, <a class="el" href="../../d4/deb/Debug_8h_source.html#l00055">DEBUG_ONLY</a>, <a class="el" href="../../de/d87/Logging_8h_source.html#l00071">carla::log_debug()</a> , 以及 <a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html#l00181">ReadData()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html#l00094">Connect()</a> , 以及 <a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html#l00181">ReadData()</a>.</p>
+<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client_aaa78ca2b7195a84a9b0db792fa88ab79_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client_aaa78ca2b7195a84a9b0db792fa88ab79_icgraph.svg" width="562" height="75"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a2d95ef9bb8a629f93278bbd3f9deb7a6" name="a2d95ef9bb8a629f93278bbd3f9deb7a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d95ef9bb8a629f93278bbd3f9deb7a6">&#9670;&#160;</a></span>Reconnect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::streaming::detail::tcp::Client::Reconnect </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重新连接流。 </p>
+<p >此方法尝试重新建立与流的连接。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html">streaming/detail/tcp/Client.cpp</a> 第 <a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html#l00169">169</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html#l00101">_connection_timer</a>, <a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html#l00094">Connect()</a> , 以及 <a class="el" href="../../d2/d33/Time_8h_source.html#l00022">carla::time_duration::seconds()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html#l00094">Connect()</a>.</p>
+<div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client_a2d95ef9bb8a629f93278bbd3f9deb7a6_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client_a2d95ef9bb8a629f93278bbd3f9deb7a6_icgraph.svg" width="562" height="75"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a06d1d97d9262249b1d8fe0f55e939aa7" name="a06d1d97d9262249b1d8fe0f55e939aa7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06d1d97d9262249b1d8fe0f55e939aa7">&#9670;&#160;</a></span>Stop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::streaming::detail::tcp::Client::Stop </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>停止客户端。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html">streaming/detail/tcp/Client.cpp</a> 第 <a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html#l00158">158</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html#l00101">_connection_timer</a>, <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html#l00109">_done</a> , 以及 <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html#l00093">_socket</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a7f62c61d30c582aec66afafa2457d8f0" name="a7f62c61d30c582aec66afafa2457d8f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f62c61d30c582aec66afafa2457d8f0">&#9670;&#160;</a></span>_buffer_pool</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="../../d7/d3c/classcarla_1_1BufferPool.html">BufferPool</a>&gt; carla::streaming::detail::tcp::Client::_buffer_pool</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>指向缓冲区池的共享指针。 </p>
+<p >这是一个指向BufferPool对象的共享指针，用于管理内存缓冲区。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html">streaming/detail/tcp/Client.h</a> 第 <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html#l00105">105</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html#l00181">ReadData()</a>.</p>
+
+</div>
+</div>
+<a id="a5959ad86ec18b9b87ae3ce54216596d2" name="a5959ad86ec18b9b87ae3ce54216596d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5959ad86ec18b9b87ae3ce54216596d2">&#9670;&#160;</a></span>_callback</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#aaad8f5c6d2c55f5785abae0d5b112930">callback_function_type</a> carla::streaming::detail::tcp::Client::_callback</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>回调函数类型，用于处理读取的数据。 </p>
+<p >当从流中读取到数据时，将调用此回调函数，并将读取到的数据作为参数传递给它。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html">streaming/detail/tcp/Client.h</a> 第 <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html#l00089">89</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7b0384bad00b61b02b1b7c0d2595b61f" name="a7b0384bad00b61b02b1b7c0d2595b61f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b0384bad00b61b02b1b7c0d2595b61f">&#9670;&#160;</a></span>_connection_timer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">boost::asio::deadline_timer carla::streaming::detail::tcp::Client::_connection_timer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>连接超时定时器。 </p>
+<p >这是一个Boost.Asio的deadline_timer对象，用于在连接尝试超过指定时间后触发超时事件。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html">streaming/detail/tcp/Client.h</a> 第 <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html#l00101">101</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html#l00169">Reconnect()</a> , 以及 <a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html#l00158">Stop()</a>.</p>
+
+</div>
+</div>
+<a id="a9aa3dec71f7642f0bf00f11d360cfff8" name="a9aa3dec71f7642f0bf00f11d360cfff8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9aa3dec71f7642f0bf00f11d360cfff8">&#9670;&#160;</a></span>_done</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::atomic_bool carla::streaming::detail::tcp::Client::_done {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>表示客户端是否已完成工作的原子布尔值。 </p>
+<p >这是一个原子布尔值，用于在线程之间安全地表示客户端是否已完成其工作。初始值为false，表示客户端仍在运行。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html">streaming/detail/tcp/Client.h</a> 第 <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html#l00109">109</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html#l00094">Connect()</a>, <a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html#l00181">ReadData()</a> , 以及 <a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html#l00158">Stop()</a>.</p>
+
+</div>
+</div>
+<a id="ab17b4877d82b3aa99b2707f68fdd3a92" name="ab17b4877d82b3aa99b2707f68fdd3a92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab17b4877d82b3aa99b2707f68fdd3a92">&#9670;&#160;</a></span>_socket</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">boost::asio::ip::tcp::socket carla::streaming::detail::tcp::Client::_socket</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>TCP套接字，用于与流建立连接。 </p>
+<p >这是一个Boost.Asio的TCP套接字对象，用于与远程服务器进行通信。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html">streaming/detail/tcp/Client.h</a> 第 <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html#l00093">93</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html#l00094">Connect()</a>, <a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html#l00181">ReadData()</a> , 以及 <a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html#l00158">Stop()</a>.</p>
+
+</div>
+</div>
+<a id="a318b82ffc6970e3c7aa7077de6fb8f1d" name="a318b82ffc6970e3c7aa7077de6fb8f1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a318b82ffc6970e3c7aa7077de6fb8f1d">&#9670;&#160;</a></span>_strand</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">boost::asio::io_context::strand carla::streaming::detail::tcp::Client::_strand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>序列化对套接字的访问。 </p>
+<p >这是一个Boost.Asio的io_context strand对象，用于确保对套接字的访问是线程安全的。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html">streaming/detail/tcp/Client.h</a> 第 <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html#l00097">97</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html#l00094">Connect()</a> , 以及 <a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html#l00181">ReadData()</a>.</p>
+
+</div>
+</div>
+<a id="af703430cde7919fb0fb5e9496713dba8" name="af703430cde7919fb0fb5e9496713dba8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af703430cde7919fb0fb5e9496713dba8">&#9670;&#160;</a></span>_token</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="../../df/de1/classcarla_1_1streaming_1_1detail_1_1token__type.html">token_type</a> carla::streaming::detail::tcp::Client::_token</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>存储流的唯一标识令牌。 </p>
+<p >这是一个常量，用于在客户端的整个生命周期内唯一标识流。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html">streaming/detail/tcp/Client.h</a> 第 <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html#l00085">85</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html#l00073">Client()</a>, <a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html#l00094">Connect()</a> , 以及 <a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html#l00067">GetStreamId()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../d6/d84/streaming_2detail_2tcp_2Client_8h_source.html">streaming/detail/tcp/Client.h</a></li>
+<li><a class="el" href="../../d0/dd1/streaming_2detail_2tcp_2Client_8cpp_source.html">streaming/detail/tcp/Client.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: ImageTmpl.h 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_8b842c0ad24262c95de16c440fd51527.html">sensor</a></li><li class="navelem"><a class="el" href="../../dir_c1cab5d7e7d14afd616fdecacd66a589.html">data</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">ImageTmpl.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d5/dca/ImageTmpl_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// de Barcelona (UAB).</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">// 表明该代码遵循MIT许可协议，可通过对应链接查看协议具体内容</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// This work is licensed under the terms of the MIT license.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">// 引入Carla项目中的Debug头文件，可能用于在代码中进行调试相关的断言操作，确保程序在特定条件下符合预期逻辑，避免出现错误情况</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="../../d4/deb/Debug_8h.html">carla/Debug.h</a>&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">// 引入Carla项目中传感器数据相关的Array头文件，ImageTmpl类继承自Array&lt;PixelT&gt;，意味着它会复用Array类已有的针对数组类型操作的相关功能和特性，在此基础上构建特定于图像数据的功能</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="../../df/dd0/Array_8h.html">carla/sensor/data/Array.h</a>&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">// 引入Carla项目中传感器序列化相关的ImageSerializer头文件，用于对图像数据进行序列化和反序列化操作，方便图像数据在存储、传输等过程中的处理</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="../../de/dbf/ImageSerializer_8h.html">carla/sensor/s11n/ImageSerializer.h</a>&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">// 引入Carla项目中传感器序列化相关的OpticalFlowImageSerializer头文件，推测用于对光流图像数据进行序列化和反序列化操作，可能针对包含光流信息的特殊图像数据进行处理</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="../../dd/d8a/OpticalFlowImageSerializer_8h.html">carla/sensor/s11n/OpticalFlowImageSerializer.h</a>&quot;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">// 引入Carla项目中传感器序列化相关的GBufferUint8Serializer头文件，大概率是用于对某种特定格式（可能是无符号8位整数类型相关的缓冲区格式）的图形缓冲区数据进行序列化和反序列化操作</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &quot;<a class="code" href="../../d4/d68/GBufferUint8Serializer_8h.html">carla/sensor/s11n/GBufferUint8Serializer.h</a>&quot;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment">// 引入Carla项目中传感器序列化相关的GBufferFloatSerializer头文件，推测是针对浮点型数据格式的图形缓冲区数据进行序列化和反序列化操作的头文件</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &quot;<a class="code" href="../../d8/d61/GBufferFloatSerializer_8h.html">carla/sensor/s11n/GBufferFloatSerializer.h</a>&quot;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment">// 引入Carla项目中传感器序列化相关的NormalsImageSerializer头文件，应该是用于对包含法线信息的图像数据进行序列化和反序列化操作，常用于图形学中与光照、渲染等相关的法线贴图等场景</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;<a class="code" href="../../dd/d9f/NormalsImageSerializer_8h.html">carla/sensor/s11n/NormalsImageSerializer.h</a>&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">// 引入Carla项目中与ROS2（机器人操作系统2）相关的头文件，虽然在此处代码中未明确体现其具体使用方式，但可能在更广泛的项目集成中用于和ROS2进行交互、发布图像数据等操作</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;<a class="code" href="../../da/db8/ROS2_8h.html">carla/ros2/ROS2.h</a>&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d9/d36/namespacecarla.html">carla</a> {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">namespace </span>sensor {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">namespace </span>data {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <span class="comment">// 定义一个模板类ImageTmpl，它是一个针对任意像素类型（由模板参数PixelT指定）的图像类，继承自Array&lt;PixelT&gt;类，以复用数组相关的操作逻辑来处理图像数据（图像可看作是像素的二维数组），并在此基础上拓展图像特有的属性和操作方法。</span><span class="comment"></span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">  /// Templated image for any type of pixel.</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment"></span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> PixelT&gt;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html">   33</a></span>  <span class="keyword">class </span><a class="code hl_class" href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html">ImageTmpl</a> : <span class="keyword">public</span> <a class="code hl_class" href="../../d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html">Array</a>&lt;PixelT&gt; {</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="comment">// 使用类型别名Super来指代Array&lt;PixelT&gt;类型，方便在后续代码中简洁地表示父类，提高代码可读性和书写便利性，清晰体现继承关系</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#ae500d61eb9690640877c67b9bcd634be">   35</a></span>    <span class="keyword">using </span><a class="code hl_class" href="../../d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html">Super</a> = <a class="code hl_class" href="../../d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html">Array&lt;PixelT&gt;</a>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="comment">// 将carla::ros2::ROS2类声明为友元类，意味着ROS2类可以访问ImageTmpl类的私有成员，可能用于在与ROS2集成时，方便ROS2相关功能对图像数据内部成员的直接操作，比如发布图像数据等情况</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#a6c24caf7be2c19c069ab932c60e5f6e7">   37</a></span>    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code hl_class" href="../../d8/d78/classcarla_1_1ros2_1_1ROS2.html">carla::ros2::ROS2</a>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="comment">// 使用类型别名Serializer来指代s11n::ImageSerializer类型，便于后续调用该序列化器相关的函数，用于处理常规图像数据的序列化和反序列化操作，保持代码在数据处理方面的清晰逻辑</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#ad3505413110a4d857209f950c6700443">   40</a></span>    <span class="keyword">using </span><a class="code hl_class" href="../../db/dba/classcarla_1_1sensor_1_1s11n_1_1ImageSerializer.html">Serializer</a> = <a class="code hl_class" href="../../db/dba/classcarla_1_1sensor_1_1s11n_1_1ImageSerializer.html">s11n::ImageSerializer</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="comment">// 使用类型别名SerializerOpticalFlow来指代s11n::OpticalFlowImageSerializer类型，方便在处理光流图像数据的序列化和反序列化操作时，更清晰地调用对应的函数，明确针对光流图像的操作逻辑</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#a985c8b1d927c541d95b28c98310d2b7e">   42</a></span>    <span class="keyword">using </span><a class="code hl_class" href="../../d1/d0f/classcarla_1_1sensor_1_1s11n_1_1OpticalFlowImageSerializer.html">SerializerOpticalFlow</a> = <a class="code hl_class" href="../../d1/d0f/classcarla_1_1sensor_1_1s11n_1_1OpticalFlowImageSerializer.html">s11n::OpticalFlowImageSerializer</a>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="comment">// 使用类型别名SerializerNormals来指代s11n::NormalsImageSerializer类型，使得在对包含法线信息的图像数据进行序列化和反序列化操作时，代码能够简洁明了地调用相关函数</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#a8eede896dfb5e6086d80e8eaa8cb683d">   44</a></span>    <span class="keyword">using </span><a class="code hl_class" href="../../d6/dcb/classcarla_1_1sensor_1_1s11n_1_1NormalsImageSerializer.html">SerializerNormals</a> = <a class="code hl_class" href="../../d6/dcb/classcarla_1_1sensor_1_1s11n_1_1NormalsImageSerializer.html">s11n::NormalsImageSerializer</a>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="comment">// 将Serializer声明为友元类，使其能够访问ImageTmpl类的私有成员，方便在进行常规图像数据的序列化和反序列化操作时，直接操作类内部的数据成员，确保数据处理的完整性和准确性</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#a26898baa7f88d34e4870e684f6c893cc">   47</a></span>    <span class="keyword">friend</span> <a class="code hl_variable" href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#a26898baa7f88d34e4870e684f6c893cc">Serializer</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="comment">// 将SerializerOpticalFlow声明为友元类，便于在处理光流图像数据时，光流图像序列化器能够访问类的私有成员进行相应的数据处理操作</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#aa6798feff3ca08cfeb370ad310fc52d1">   49</a></span>    <span class="keyword">friend</span> <a class="code hl_variable" href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#aa6798feff3ca08cfeb370ad310fc52d1">SerializerOpticalFlow</a>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="comment">// 将s11n::GBufferUint8Serializer声明为友元类，可能用于在涉及无符号8位整数格式的图形缓冲区数据处理时，允许该序列化器访问类内部成员进行数据的序列化和反序列化等操作</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keyword">friend</span> <a class="code hl_class" href="../../d9/d9a/classcarla_1_1sensor_1_1s11n_1_1GBufferUint8Serializer.html">s11n::GBufferUint8Serializer</a>;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="comment">// 将s11n::GBufferFloatSerializer声明为友元类，同理，在处理浮点型图形缓冲区数据时，方便该序列化器对类内部数据进行操作</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keyword">friend</span> <a class="code hl_class" href="../../d8/da1/classcarla_1_1sensor_1_1s11n_1_1GBufferFloatSerializer.html">s11n::GBufferFloatSerializer</a>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="comment">// 将SerializerNormals声明为友元类，使得法线图像序列化器能够访问ImageTmpl类的私有成员，以便在处理包含法线信息的图像数据时进行正确的数据处理</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#a6e244c828666d45672c862d6e701a454">   55</a></span>    <span class="keyword">friend</span> <a class="code hl_variable" href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#a6e244c828666d45672c862d6e701a454">SerializerNormals</a>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="comment">// 显式定义的模板类构造函数，接收一个右值引用类型的原始数据（RawData &amp;&amp;data），用于根据传入的原始图像数据初始化ImageTmpl对象的相关属性，创建一个有效的图像对象。</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#a5bd78e5b89873dba921d28268ed6d542">   58</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#a5bd78e5b89873dba921d28268ed6d542">ImageTmpl</a>(<a class="code hl_class" href="../../d3/da0/classcarla_1_1sensor_1_1RawData.html">RawData</a> &amp;&amp;<a class="code hl_function" href="../../d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html#aaba8587c9e8b3bfab47ab14b92fe2c11">data</a>)</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>      <span class="comment">// 调用父类（Array&lt;PixelT&gt;）的构造函数，传递序列化器的头部偏移量（Serializer::header_offset）以及移动后的原始数据（std::move(data)），完成父类部分的初始化工作，保证继承体系下的初始化顺序和完整性，同时利用父类的数组相关功能来管理图像数据</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>      : <a class="code hl_class" href="../../d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html">Super</a>(<a class="code hl_class" href="../../db/dba/classcarla_1_1sensor_1_1s11n_1_1ImageSerializer.html">Serializer</a>::header_offset, <a class="code hl_namespace" href="../../d8/dcc/namespacestd.html">std</a>::move(<a class="code hl_function" href="../../d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html#aaba8587c9e8b3bfab47ab14b92fe2c11">data</a>)) {</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>      <span class="comment">// 使用DEBUG_ASSERT进行调试断言，检查图像的宽度乘以高度是否等于父类（Array&lt;PixelT&gt;）中存储的数据元素个数（即图像像素个数），确保图像数据的一致性和正确性，如果该条件不满足，在调试模式下会触发断言失败提示，便于排查问题</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>      <a class="code hl_define" href="../../d4/deb/Debug_8h.html#a0480185f78b4135a9d05ec24bccef047">DEBUG_ASSERT</a>(<a class="code hl_function" href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#a882f2a8224953695857c2aab3d26dc7d">GetWidth</a>() * <a class="code hl_function" href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#a9862785df08e15410044833f9b5e9d1e">GetHeight</a>() == <a class="code hl_function" href="../../d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html#aa74c92285dda9ebeba4094ef12b6f50b">Super::size</a>());</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    }</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="comment">// 定义一个私有函数GetHeader，用于获取图像数据的头部信息，通过调用Serializer类的DeserializeHeader方法，从父类存储的原始数据（Super::GetRawData()）中反序列化出图像头部信息，并返回其常量引用，外部代码不能修改该头部信息，头部信息可能包含图像的尺寸、视角等关键元数据</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#afdc0f33247d9775258c2cf82a64d8d33">   67</a></span>    <span class="keyword">const</span> <span class="keyword">auto</span> &amp;<a class="code hl_function" href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#afdc0f33247d9775258c2cf82a64d8d33">GetHeader</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="../../db/dba/classcarla_1_1sensor_1_1s11n_1_1ImageSerializer.html#aa3fdfba42660f9865b1967194a34b755">Serializer::DeserializeHeader</a>(<a class="code hl_function" href="../../d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html#a983393435e9f7b95abfa923448a831bd">Super::GetRawData</a>());</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    }</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="comment">// 使用类型别名pixel_type来指代模板参数PixelT，使得在类内部可以更清晰地表示图像的像素类型，方便代码阅读和书写，例如在一些涉及像素类型相关的操作或函数参数、返回值定义中使用</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#a2e79c4abd4fbaf6c55614f4c40584742">   73</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#a2e79c4abd4fbaf6c55614f4c40584742">pixel_type</a> = PixelT;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="comment">// 获取图像的宽度（以像素为单位），通过调用GetHeader函数获取图像头部信息，然后返回其中的宽度属性（width），外部代码可以通过调用此方法获取图像在水平方向上的像素数量，用于图像显示、处理等相关操作</span><span class="comment"></span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="comment">    /// Get image width in pixels.</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#a882f2a8224953695857c2aab3d26dc7d">   77</a></span><span class="comment"></span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#a882f2a8224953695857c2aab3d26dc7d">GetWidth</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#afdc0f33247d9775258c2cf82a64d8d33">GetHeader</a>().width;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    }</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="comment">// 获取图像的高度（以像素为单位），同样借助GetHeader函数获取头部信息，并返回其中的高度属性（height），用于确定图像在垂直方向上的像素数量，在诸如图像缩放、裁剪等操作中会经常用到</span><span class="comment"></span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="comment">    /// Get image height in pixels.</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#a9862785df08e15410044833f9b5e9d1e">   83</a></span><span class="comment"></span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#a9862785df08e15410044833f9b5e9d1e">GetHeight</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#afdc0f33247d9775258c2cf82a64d8d33">GetHeader</a>().height;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    }</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="comment">// 获取图像的水平视场角（以角度为单位），通过从GetHeader函数获取的头部信息中提取视场角属性（fov_angle）并返回，该视场角信息常用于图形学中的相机模型、图像渲染等场景，反映了图像所覆盖的水平角度范围</span><span class="comment"></span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="comment">    /// Get horizontal field of view of the image in degrees.</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#a4532cc15de5d50006dd3d90d14dfca8a">   89</a></span><span class="comment"></span>    <span class="keyword">auto</span> <a class="code hl_function" href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#a4532cc15de5d50006dd3d90d14dfca8a">GetFOVAngle</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#afdc0f33247d9775258c2cf82a64d8d33">GetHeader</a>().fov_angle;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    }</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  };</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>} <span class="comment">// namespace data</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>} <span class="comment">// namespace sensor</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>} <span class="comment">// namespace carla</span></div>
+<div class="ttc" id="aArray_8h_html"><div class="ttname"><a href="../../df/dd0/Array_8h.html">Array.h</a></div></div>
+<div class="ttc" id="aDebug_8h_html"><div class="ttname"><a href="../../d4/deb/Debug_8h.html">Debug.h</a></div></div>
+<div class="ttc" id="aDebug_8h_html_a0480185f78b4135a9d05ec24bccef047"><div class="ttname"><a href="../../d4/deb/Debug_8h.html#a0480185f78b4135a9d05ec24bccef047">DEBUG_ASSERT</a></div><div class="ttdeci">#define DEBUG_ASSERT(predicate)</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/deb/Debug_8h_source.html#l00068">Debug.h:68</a></div></div>
+<div class="ttc" id="aGBufferFloatSerializer_8h_html"><div class="ttname"><a href="../../d8/d61/GBufferFloatSerializer_8h.html">GBufferFloatSerializer.h</a></div></div>
+<div class="ttc" id="aGBufferUint8Serializer_8h_html"><div class="ttname"><a href="../../d4/d68/GBufferUint8Serializer_8h.html">GBufferUint8Serializer.h</a></div></div>
+<div class="ttc" id="aImageSerializer_8h_html"><div class="ttname"><a href="../../de/dbf/ImageSerializer_8h.html">ImageSerializer.h</a></div></div>
+<div class="ttc" id="aNormalsImageSerializer_8h_html"><div class="ttname"><a href="../../dd/d9f/NormalsImageSerializer_8h.html">NormalsImageSerializer.h</a></div></div>
+<div class="ttc" id="aOpticalFlowImageSerializer_8h_html"><div class="ttname"><a href="../../dd/d8a/OpticalFlowImageSerializer_8h.html">OpticalFlowImageSerializer.h</a></div></div>
+<div class="ttc" id="aROS2_8h_html"><div class="ttname"><a href="../../da/db8/ROS2_8h.html">ROS2.h</a></div></div>
+<div class="ttc" id="aclasscarla_1_1ros2_1_1ROS2_html"><div class="ttname"><a href="../../d8/d78/classcarla_1_1ros2_1_1ROS2.html">carla::ros2::ROS2</a></div><div class="ttdef"><b>Definition:</b> <a href="../../da/db8/ROS2_8h_source.html#l00045">ROS2.h:46</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1RawData_html"><div class="ttname"><a href="../../d3/da0/classcarla_1_1sensor_1_1RawData.html">carla::sensor::RawData</a></div><div class="ttdoc">包装一个传感器生成的原始数据以及一些有用的元信息。</div><div class="ttdef"><b>Definition:</b> <a href="../../dc/d62/RawData_8h_source.html#l00020">RawData.h:20</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1data_1_1Array_html"><div class="ttname"><a href="../../d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html">carla::sensor::data::Array</a></div><div class="ttdoc">所有传感器数据的基类，包含一个项目数组。</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dd0/Array_8h_source.html#l00023">Array.h:23</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1data_1_1Array_html_a983393435e9f7b95abfa923448a831bd"><div class="ttname"><a href="../../d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html#a983393435e9f7b95abfa923448a831bd">carla::sensor::data::Array&lt; PixelT &gt;::GetRawData</a></div><div class="ttdeci">const RawData &amp; GetRawData() const</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dd0/Array_8h_source.html#l00162">Array.h:162</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1data_1_1Array_html_aa74c92285dda9ebeba4094ef12b6f50b"><div class="ttname"><a href="../../d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html#aa74c92285dda9ebeba4094ef12b6f50b">carla::sensor::data::Array&lt; PixelT &gt;::size</a></div><div class="ttdeci">size_type size() const</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dd0/Array_8h_source.html#l00103">Array.h:103</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1data_1_1Array_html_aaba8587c9e8b3bfab47ab14b92fe2c11"><div class="ttname"><a href="../../d2/dcc/classcarla_1_1sensor_1_1data_1_1Array.html#aaba8587c9e8b3bfab47ab14b92fe2c11">carla::sensor::data::Array&lt; PixelT &gt;::data</a></div><div class="ttdeci">value_type * data()</div><div class="ttdef"><b>Definition:</b> <a href="../../df/dd0/Array_8h_source.html#l00109">Array.h:109</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1data_1_1ImageTmpl_html"><div class="ttname"><a href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html">carla::sensor::data::ImageTmpl</a></div><div class="ttdoc">Templated image for any type of pixel.</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/dca/ImageTmpl_8h_source.html#l00033">ImageTmpl.h:33</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1data_1_1ImageTmpl_html_a26898baa7f88d34e4870e684f6c893cc"><div class="ttname"><a href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#a26898baa7f88d34e4870e684f6c893cc">carla::sensor::data::ImageTmpl::Serializer</a></div><div class="ttdeci">friend Serializer</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/dca/ImageTmpl_8h_source.html#l00047">ImageTmpl.h:47</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1data_1_1ImageTmpl_html_a2e79c4abd4fbaf6c55614f4c40584742"><div class="ttname"><a href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#a2e79c4abd4fbaf6c55614f4c40584742">carla::sensor::data::ImageTmpl::pixel_type</a></div><div class="ttdeci">PixelT pixel_type</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/dca/ImageTmpl_8h_source.html#l00073">ImageTmpl.h:73</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1data_1_1ImageTmpl_html_a4532cc15de5d50006dd3d90d14dfca8a"><div class="ttname"><a href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#a4532cc15de5d50006dd3d90d14dfca8a">carla::sensor::data::ImageTmpl::GetFOVAngle</a></div><div class="ttdeci">auto GetFOVAngle() const</div><div class="ttdoc">Get horizontal field of view of the image in degrees.</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/dca/ImageTmpl_8h_source.html#l00089">ImageTmpl.h:89</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1data_1_1ImageTmpl_html_a5bd78e5b89873dba921d28268ed6d542"><div class="ttname"><a href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#a5bd78e5b89873dba921d28268ed6d542">carla::sensor::data::ImageTmpl::ImageTmpl</a></div><div class="ttdeci">ImageTmpl(RawData &amp;&amp;data)</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/dca/ImageTmpl_8h_source.html#l00058">ImageTmpl.h:58</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1data_1_1ImageTmpl_html_a6e244c828666d45672c862d6e701a454"><div class="ttname"><a href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#a6e244c828666d45672c862d6e701a454">carla::sensor::data::ImageTmpl::SerializerNormals</a></div><div class="ttdeci">friend SerializerNormals</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/dca/ImageTmpl_8h_source.html#l00055">ImageTmpl.h:55</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1data_1_1ImageTmpl_html_a882f2a8224953695857c2aab3d26dc7d"><div class="ttname"><a href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#a882f2a8224953695857c2aab3d26dc7d">carla::sensor::data::ImageTmpl::GetWidth</a></div><div class="ttdeci">auto GetWidth() const</div><div class="ttdoc">Get image width in pixels.</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/dca/ImageTmpl_8h_source.html#l00077">ImageTmpl.h:77</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1data_1_1ImageTmpl_html_a9862785df08e15410044833f9b5e9d1e"><div class="ttname"><a href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#a9862785df08e15410044833f9b5e9d1e">carla::sensor::data::ImageTmpl::GetHeight</a></div><div class="ttdeci">auto GetHeight() const</div><div class="ttdoc">Get image height in pixels.</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/dca/ImageTmpl_8h_source.html#l00083">ImageTmpl.h:83</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1data_1_1ImageTmpl_html_aa6798feff3ca08cfeb370ad310fc52d1"><div class="ttname"><a href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#aa6798feff3ca08cfeb370ad310fc52d1">carla::sensor::data::ImageTmpl::SerializerOpticalFlow</a></div><div class="ttdeci">friend SerializerOpticalFlow</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/dca/ImageTmpl_8h_source.html#l00049">ImageTmpl.h:49</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1data_1_1ImageTmpl_html_afdc0f33247d9775258c2cf82a64d8d33"><div class="ttname"><a href="../../df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#afdc0f33247d9775258c2cf82a64d8d33">carla::sensor::data::ImageTmpl::GetHeader</a></div><div class="ttdeci">const auto &amp; GetHeader() const</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/dca/ImageTmpl_8h_source.html#l00067">ImageTmpl.h:67</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1s11n_1_1GBufferFloatSerializer_html"><div class="ttname"><a href="../../d8/da1/classcarla_1_1sensor_1_1s11n_1_1GBufferFloatSerializer.html">carla::sensor::s11n::GBufferFloatSerializer</a></div><div class="ttdoc">Serializes image buffers generated by camera sensors.</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d61/GBufferFloatSerializer_8h_source.html#l00023">GBufferFloatSerializer.h:23</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1s11n_1_1GBufferUint8Serializer_html"><div class="ttname"><a href="../../d9/d9a/classcarla_1_1sensor_1_1s11n_1_1GBufferUint8Serializer.html">carla::sensor::s11n::GBufferUint8Serializer</a></div><div class="ttdoc">Serializes image buffers generated by camera sensors.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d68/GBufferUint8Serializer_8h_source.html#l00023">GBufferUint8Serializer.h:23</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1s11n_1_1ImageSerializer_html"><div class="ttname"><a href="../../db/dba/classcarla_1_1sensor_1_1s11n_1_1ImageSerializer.html">carla::sensor::s11n::ImageSerializer</a></div><div class="ttdoc">Serializes image buffers generated by camera sensors.</div><div class="ttdef"><b>Definition:</b> <a href="../../de/dbf/ImageSerializer_8h_source.html#l00028">ImageSerializer.h:28</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1s11n_1_1ImageSerializer_html_aa3fdfba42660f9865b1967194a34b755"><div class="ttname"><a href="../../db/dba/classcarla_1_1sensor_1_1s11n_1_1ImageSerializer.html#aa3fdfba42660f9865b1967194a34b755">carla::sensor::s11n::ImageSerializer::DeserializeHeader</a></div><div class="ttdeci">static const ImageHeader &amp; DeserializeHeader(const RawData &amp;data)</div><div class="ttdef"><b>Definition:</b> <a href="../../de/dbf/ImageSerializer_8h_source.html#l00048">ImageSerializer.h:48</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1s11n_1_1NormalsImageSerializer_html"><div class="ttname"><a href="../../d6/dcb/classcarla_1_1sensor_1_1s11n_1_1NormalsImageSerializer.html">carla::sensor::s11n::NormalsImageSerializer</a></div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d9f/NormalsImageSerializer_8h_source.html#l00021">NormalsImageSerializer.h:21</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1s11n_1_1OpticalFlowImageSerializer_html"><div class="ttname"><a href="../../d1/d0f/classcarla_1_1sensor_1_1s11n_1_1OpticalFlowImageSerializer.html">carla::sensor::s11n::OpticalFlowImageSerializer</a></div><div class="ttdoc">Serializes image buffers generated by camera sensors.</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d8a/OpticalFlowImageSerializer_8h_source.html#l00026">OpticalFlowImageSerializer.h:26</a></div></div>
+<div class="ttc" id="anamespacecarla_html"><div class="ttname"><a href="../../d9/d36/namespacecarla.html">carla</a></div><div class="ttdoc">CARLA模拟器的主命名空间。</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d4f/Carla_8cpp_source.html#l00139">Carla.cpp:139</a></div></div>
+<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="../../d8/dcc/namespacestd.html">std</a></div><div class="ttdef"><b>Definition:</b> <a href="../../df/d06/CarlaRecorderCollision_8h_source.html#l00030">CarlaRecorderCollision.h:31</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

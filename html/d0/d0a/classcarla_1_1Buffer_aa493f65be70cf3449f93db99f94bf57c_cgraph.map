@@ -1,0 +1,10 @@
+<map id="carla::Buffer::copy_from" name="carla::Buffer::copy_from">
+<area shape="rect" id="node1" title="将 source复制到此缓冲区，在前面留出 offset字节未初始化的空间。 如果需要，则分配内存。" alt="" coords="5,56,161,81"/>
+<area shape="rect" id="node2" href="$d0/d0a/classcarla_1_1Buffer.html#a7826c8e4e69af01ed0598986049aca64" title="从这个缓冲区创建一个boost::asio::buffer。" alt="" coords="209,5,337,31"/>
+<area shape="rect" id="node5" href="$d0/d0a/classcarla_1_1Buffer.html#a3edea2e44a05d9806312e5f9e52315e4" title=" " alt="" coords="574,56,693,81"/>
+<area shape="rect" id="node6" href="$d0/d0a/classcarla_1_1Buffer.html#a23578a522b5ce30a6e821255a8f0ff5e" title="重置缓冲区的大小。如果容量不足，当前内存将被丢弃，并分配一个新的大小为 size的内存块。 allocated." alt="" coords="211,107,336,132"/>
+<area shape="rect" id="node3" href="$d0/d0a/classcarla_1_1Buffer.html#adee1ec29f3597f8585fc842072f0dcca" title="从这个缓冲区创建一个boost::asio::buffer。" alt="" coords="385,5,520,31"/>
+<area shape="rect" id="node4" href="$d0/d0a/classcarla_1_1Buffer.html#a10680a1dd5dd8718b8e871b631022cdf" title="直接访问分配的内存，如果没有分配内存则返回 nullptr。" alt="" coords="573,5,694,31"/>
+<area shape="rect" id="node7" href="$d9/d36/namespacecarla.html#afb6ca911605d1ec35bdf563de2814dba" title=" " alt="" coords="395,157,510,183"/>
+<area shape="rect" id="node8" href="$d2/d8c/namespacecarla_1_1logging.html#a4193666236852fb6a6977299a31445d8" title=" " alt="" coords="568,150,699,190"/>
+</map>

@@ -1,0 +1,10 @@
+<map id="carla::road::Lane::GetLength" name="carla::road::Lane::GetLength">
+<area shape="rect" id="node1" title=" " alt="" coords="673,133,796,173"/>
+<area shape="rect" id="node2" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a74986f0ff4c63da7c50b479dd2d0fc0e" title="生成定义整个车道的网格" alt="" coords="456,5,625,45"/>
+<area shape="rect" id="node3" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a202f9750d3be15d0af4b42b3a90f3662" title="在车道的左侧生成一个墙状网格" alt="" coords="456,69,625,109"/>
+<area shape="rect" id="node6" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a11c673db2f69ad3c21ebba4d068b8c6c" title="在车道的右侧生成一个墙状网格" alt="" coords="456,133,625,173"/>
+<area shape="rect" id="node7" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#aeb21fa89729bf57c753aed28921374b0" title="生成车道的人行道网格" alt="" coords="456,197,625,237"/>
+<area shape="rect" id="node8" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a27fb4c904ccf5679a3888a511609495b" title="生成定义整个车道的网格，使用更高的细分" alt="" coords="456,261,625,301"/>
+<area shape="rect" id="node4" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#aec242ce8214cea646ba254c0cfc0176a" title="生成一个网格，表示道路角落的墙，以避免车辆掉下去" alt="" coords="239,101,408,141"/>
+<area shape="rect" id="node5" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a5588f2f98ea42ade1082db0ef1c8ce7b" title="生成一个定义车道段安全墙的网格列表，限制最大长度" alt="" coords="5,101,191,141"/>
+</map>

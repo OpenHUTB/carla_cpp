@@ -1,0 +1,25 @@
+<map id="carla::client::LaneInvasionSensor" name="carla::client::LaneInvasionSensor">
+<area shape="rect" id="node1" title="LaneInvasionSensor类是一个检测车辆压线的传感器，继承自ClientSideSensor。" alt="" coords="2185,126,2356,166"/>
+<area shape="rect" id="node2" href="$da/d2e/classcarla_1_1client_1_1ClientSideSensor.html" title=" " alt="" coords="1909,86,2061,126"/>
+<area shape="rect" id="node3" href="$da/dec/classcarla_1_1client_1_1Sensor.html" title="传感器基类，继承自Actor类。" alt="" coords="1725,93,1860,119"/>
+<area shape="rect" id="node4" href="$d6/da5/classcarla_1_1client_1_1Actor.html" title="表示模拟中的一个行为体（Actor）。" alt="" coords="1552,93,1676,119"/>
+<area shape="rect" id="node5" href="$da/d05/classEnableSharedFromThis.html" title=" " alt="" coords="1345,22,1503,62"/>
+<area shape="rect" id="node6" href="$df/d3e/classcarla_1_1profiler_1_1LifetimeProfiled.html" title=" " alt="" coords="1351,86,1497,126"/>
+<area shape="rect" id="node7" href="$d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html" title="参与者的内部状态" alt="" coords="1362,150,1486,190"/>
+<area shape="rect" id="node8" href="$d7/d55/classcarla_1_1MovableNonCopyable.html" title="这个类用于禁止拷贝构造函数和赋值操作，但允许移动构造函数和赋值操作" alt="" coords="1041,5,1224,31"/>
+<area shape="rect" id="node9" href="$db/dfd/classcarla_1_1rpc_1_1Actor.html" title=" " alt="" coords="1077,157,1188,183"/>
+<area shape="rect" id="node10" title=" " alt="" coords="513,197,581,223"/>
+<area shape="rect" id="node11" href="$d6/d11/classcarla_1_1rpc_1_1ActorDescription.html" title=" " alt="" coords="728,157,904,183"/>
+<area shape="rect" id="node12" title=" " alt="" coords="519,68,574,93"/>
+<area shape="rect" id="node13" title=" " alt="" coords="471,129,623,169"/>
+<area shape="rect" id="node14" href="$d8/d68/classcarla_1_1geom_1_1BoundingBox.html" title=" " alt="" coords="731,287,901,312"/>
+<area shape="rect" id="node15" href="$de/d23/classcarla_1_1geom_1_1Location.html" title=" " alt="" coords="475,252,619,277"/>
+<area shape="rect" id="node16" href="$d9/dfe/classcarla_1_1geom_1_1Vector3D.html" title=" " alt="" coords="132,292,280,317"/>
+<area shape="rect" id="node17" title=" " alt="" coords="5,329,52,355"/>
+<area shape="rect" id="node18" href="$d8/dba/classcarla_1_1geom_1_1Rotation.html" title=" " alt="" coords="304,367,447,392"/>
+<area shape="rect" id="node19" title=" " alt="" coords="757,336,875,361"/>
+<area shape="rect" id="node20" title=" " alt="" coords="736,108,896,133"/>
+<area shape="rect" id="node21" title=" " alt="" coords="1041,207,1224,247"/>
+<area shape="rect" id="node22" title=" " alt="" coords="1057,271,1209,311"/>
+<area shape="rect" id="node23" title=" " alt="" coords="1934,151,2037,176"/>
+</map>

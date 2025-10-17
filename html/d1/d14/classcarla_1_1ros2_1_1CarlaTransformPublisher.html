@@ -1,0 +1,653 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: carla::ros2::CarlaTransformPublisher类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../d9/d36/namespacecarla.html">carla</a></li><li class="navelem"><a class="el" href="../../d1/d4b/namespacecarla_1_1ros2.html">ros2</a></li><li class="navelem"><a class="el" href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html">CarlaTransformPublisher</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="../../d0/dee/classcarla_1_1ros2_1_1CarlaTransformPublisher-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">carla::ros2::CarlaTransformPublisher类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>CarlaTransformPublisher类继承自CarlaPublisher，用于在CARLA中发布变换信息到ROS2。  
+ <a href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../dd/d98/CarlaTransformPublisher_8h_source.html">CarlaTransformPublisher.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 类 carla::ros2::CarlaTransformPublisher 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/dc6/classcarla_1_1ros2_1_1CarlaTransformPublisher__inherit__graph.svg" width="187" height="124"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> carla::ros2::CarlaTransformPublisher 的协作图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dd9/classcarla_1_1ros2_1_1CarlaTransformPublisher__coll__graph.svg" width="630" height="147"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a17754c0ced3779b89e24cf327941eb2f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html#a17754c0ced3779b89e24cf327941eb2f">CarlaTransformPublisher</a> (<a class="el" href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html">CarlaTransformPublisher</a> &amp;&amp;)</td></tr>
+<tr class="memdesc:a17754c0ced3779b89e24cf327941eb2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">移动构造函数，通过移动另一个CarlaTransformPublisher对象来初始化新对象。  <a href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html#a17754c0ced3779b89e24cf327941eb2f">更多...</a><br /></td></tr>
+<tr class="separator:a17754c0ced3779b89e24cf327941eb2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5acac3710848e19ef33fb96efbe2b888"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html#a5acac3710848e19ef33fb96efbe2b888">CarlaTransformPublisher</a> (const <a class="el" href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html">CarlaTransformPublisher</a> &amp;)</td></tr>
+<tr class="memdesc:a5acac3710848e19ef33fb96efbe2b888"><td class="mdescLeft">&#160;</td><td class="mdescRight">拷贝构造函数，通过拷贝另一个CarlaTransformPublisher对象来初始化新对象。  <a href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html#a5acac3710848e19ef33fb96efbe2b888">更多...</a><br /></td></tr>
+<tr class="separator:a5acac3710848e19ef33fb96efbe2b888"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac702c7a98e686c3f93cf1d2c76bcd97d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html#ac702c7a98e686c3f93cf1d2c76bcd97d">CarlaTransformPublisher</a> (const char *ros_name=&quot;&quot;, const char *<a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a0f2175762993c5eec161b8f304c59bb5">parent</a>=&quot;&quot;)</td></tr>
+<tr class="memdesc:ac702c7a98e686c3f93cf1d2c76bcd97d"><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数，初始化CarlaTransformPublisher对象。  <a href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html#ac702c7a98e686c3f93cf1d2c76bcd97d">更多...</a><br /></td></tr>
+<tr class="separator:ac702c7a98e686c3f93cf1d2c76bcd97d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08593a23fa0ca70c654cbc2ac0ca68e5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html#a08593a23fa0ca70c654cbc2ac0ca68e5">Init</a> ()</td></tr>
+<tr class="memdesc:a08593a23fa0ca70c654cbc2ac0ca68e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化函数，用于初始化CarlaTransformPublisher对象。  <a href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html#a08593a23fa0ca70c654cbc2ac0ca68e5">更多...</a><br /></td></tr>
+<tr class="separator:a08593a23fa0ca70c654cbc2ac0ca68e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdbd6d55fa2df092f5cf4886cc43f004"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html">CarlaTransformPublisher</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html#abdbd6d55fa2df092f5cf4886cc43f004">operator=</a> (<a class="el" href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html">CarlaTransformPublisher</a> &amp;&amp;)</td></tr>
+<tr class="memdesc:abdbd6d55fa2df092f5cf4886cc43f004"><td class="mdescLeft">&#160;</td><td class="mdescRight">移动赋值运算符，将另一个CarlaTransformPublisher对象的内容移动到当前对象。  <a href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html#abdbd6d55fa2df092f5cf4886cc43f004">更多...</a><br /></td></tr>
+<tr class="separator:abdbd6d55fa2df092f5cf4886cc43f004"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fa955a5c177efdc9664d0b20acb7c9b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html">CarlaTransformPublisher</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html#a6fa955a5c177efdc9664d0b20acb7c9b">operator=</a> (const <a class="el" href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html">CarlaTransformPublisher</a> &amp;)</td></tr>
+<tr class="memdesc:a6fa955a5c177efdc9664d0b20acb7c9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">拷贝赋值运算符，将另一个CarlaTransformPublisher对象的内容复制到当前对象。  <a href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html#a6fa955a5c177efdc9664d0b20acb7c9b">更多...</a><br /></td></tr>
+<tr class="separator:a6fa955a5c177efdc9664d0b20acb7c9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd9010174a557866652084ebb0c92647"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html#acd9010174a557866652084ebb0c92647">Publish</a> ()</td></tr>
+<tr class="memdesc:acd9010174a557866652084ebb0c92647"><td class="mdescLeft">&#160;</td><td class="mdescRight">发布函数，用于将变换信息发布到ROS2。  <a href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html#acd9010174a557866652084ebb0c92647">更多...</a><br /></td></tr>
+<tr class="separator:acd9010174a557866652084ebb0c92647"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d5194de16427f3bb688109ceaf3088a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html#a4d5194de16427f3bb688109ceaf3088a">SetData</a> (int32_t seconds, uint32_t nanoseconds, const float *translation, const float *rotation)</td></tr>
+<tr class="memdesc:a4d5194de16427f3bb688109ceaf3088a"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置变换数据的函数。  <a href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html#a4d5194de16427f3bb688109ceaf3088a">更多...</a><br /></td></tr>
+<tr class="separator:a4d5194de16427f3bb688109ceaf3088a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23696c1fcad30c04e0595d8d6cfca6a5"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html#a23696c1fcad30c04e0595d8d6cfca6a5">type</a> () const <a class="el" href="../../de/d7d/ActorData_8h.html#ad031bfd5a8a2ed7e66d03dafcc3b2858">override</a></td></tr>
+<tr class="memdesc:a23696c1fcad30c04e0595d8d6cfca6a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">重写type函数，返回当前对象的类型字符串。  <a href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html#a23696c1fcad30c04e0595d8d6cfca6a5">更多...</a><br /></td></tr>
+<tr class="separator:a23696c1fcad30c04e0595d8d6cfca6a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75b56c8db20e7f088825c967ade1572e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html#a75b56c8db20e7f088825c967ade1572e">~CarlaTransformPublisher</a> ()</td></tr>
+<tr class="memdesc:a75b56c8db20e7f088825c967ade1572e"><td class="mdescLeft">&#160;</td><td class="mdescRight">析构函数，释放CarlaTransformPublisher对象占用的资源。  <a href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html#a75b56c8db20e7f088825c967ade1572e">更多...</a><br /></td></tr>
+<tr class="separator:a75b56c8db20e7f088825c967ade1572e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classcarla_1_1ros2_1_1CarlaPublisher')"><img src="../../closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html">carla::ros2::CarlaPublisher</a></td></tr>
+<tr class="memitem:a35f0eba9bdf0bf22524cc6dacf43f242 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a35f0eba9bdf0bf22524cc6dacf43f242">CarlaPublisher</a> ()=default</td></tr>
+<tr class="separator:a35f0eba9bdf0bf22524cc6dacf43f242 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77422f0594812a0371f8b04d70f19741 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a77422f0594812a0371f8b04d70f19741">frame_id</a> () const</td></tr>
+<tr class="separator:a77422f0594812a0371f8b04d70f19741 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9656d0fbe195ce57730f65ebb7e9e384 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a9656d0fbe195ce57730f65ebb7e9e384">frame_id</a> (std::string &amp;&amp;frame_id)</td></tr>
+<tr class="separator:a9656d0fbe195ce57730f65ebb7e9e384 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac81da28dc11b15e6ad27647887ef65bb inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#ac81da28dc11b15e6ad27647887ef65bb">name</a> () const</td></tr>
+<tr class="separator:ac81da28dc11b15e6ad27647887ef65bb inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53db6f09833e2dd625967218568f8ab4 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a53db6f09833e2dd625967218568f8ab4">name</a> (std::string &amp;&amp;name)</td></tr>
+<tr class="separator:a53db6f09833e2dd625967218568f8ab4 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f2175762993c5eec161b8f304c59bb5 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a0f2175762993c5eec161b8f304c59bb5">parent</a> () const</td></tr>
+<tr class="separator:a0f2175762993c5eec161b8f304c59bb5 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a49e93846cc2dff08ed65be07767b58 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a1a49e93846cc2dff08ed65be07767b58">parent</a> (std::string &amp;&amp;parent)</td></tr>
+<tr class="separator:a1a49e93846cc2dff08ed65be07767b58 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6448e2522e8b78dfe350aca123530089 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a6448e2522e8b78dfe350aca123530089">type</a> () const =0</td></tr>
+<tr class="separator:a6448e2522e8b78dfe350aca123530089 inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52ddebcb6ae5afef2c9061bee7d6153a inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a52ddebcb6ae5afef2c9061bee7d6153a">~CarlaPublisher</a> ()=default</td></tr>
+<tr class="separator:a52ddebcb6ae5afef2c9061bee7d6153a inherit pub_methods_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a4ad23888d635c3e28a0afacd3cc458f4"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="../../d8/d71/structcarla_1_1ros2_1_1CarlaTransformPublisherImpl.html">CarlaTransformPublisherImpl</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html#a4ad23888d635c3e28a0afacd3cc458f4">_impl</a></td></tr>
+<tr class="memdesc:a4ad23888d635c3e28a0afacd3cc458f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">指向CarlaTransformPublisherImpl的智能指针，用于隐藏实现细节。  <a href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html#a4ad23888d635c3e28a0afacd3cc458f4">更多...</a><br /></td></tr>
+<tr class="separator:a4ad23888d635c3e28a0afacd3cc458f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher')"><img src="../../closed.png" alt="-"/>&#160;Protected 属性 继承自 <a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html">carla::ros2::CarlaPublisher</a></td></tr>
+<tr class="memitem:a611073f244645d4f6265a29b8a6e3b23 inherit pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a611073f244645d4f6265a29b8a6e3b23">_frame_id</a> = &quot;&quot;</td></tr>
+<tr class="separator:a611073f244645d4f6265a29b8a6e3b23 inherit pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26ab51e4d54b99c8c9347a3d245aac20 inherit pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a26ab51e4d54b99c8c9347a3d245aac20">_name</a> = &quot;&quot;</td></tr>
+<tr class="separator:a26ab51e4d54b99c8c9347a3d245aac20 inherit pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a284934d8f61aed2ddcb24c575240fb2f inherit pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a284934d8f61aed2ddcb24c575240fb2f">_parent</a> = &quot;&quot;</td></tr>
+<tr class="separator:a284934d8f61aed2ddcb24c575240fb2f inherit pro_attribs_classcarla_1_1ros2_1_1CarlaPublisher"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p >CarlaTransformPublisher类继承自CarlaPublisher，用于在CARLA中发布变换信息到ROS2。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d98/CarlaTransformPublisher_8h_source.html">CarlaTransformPublisher.h</a> 第 <a class="el" href="../../dd/d98/CarlaTransformPublisher_8h_source.html#l00031">31</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="ac702c7a98e686c3f93cf1d2c76bcd97d" name="ac702c7a98e686c3f93cf1d2c76bcd97d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac702c7a98e686c3f93cf1d2c76bcd97d">&#9670;&#160;</a></span>CarlaTransformPublisher() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::ros2::CarlaTransformPublisher::CarlaTransformPublisher </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>ros_name</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>构造函数，初始化CarlaTransformPublisher对象。 </p>
+<p ><a class="el" href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html" title="CarlaTransformPublisher类继承自CarlaPublisher，用于在CARLA中发布变换信息到ROS2。">CarlaTransformPublisher</a> 类的构造函数</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ros_name</td><td>ROS2节点的名称，默认为空字符串。 </td></tr>
+    <tr><td class="paramname">parent</td><td>父节点的名称，默认为空字符串。</td></tr>
+  </table>
+  </dd>
+</dl>
+<p >初始化 <a class="el" href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html" title="CarlaTransformPublisher类继承自CarlaPublisher，用于在CARLA中发布变换信息到ROS2。">CarlaTransformPublisher</a> 对象，并设置 ROS 名称和父帧ID。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ros_name</td><td>ROS 节点名称 </td></tr>
+    <tr><td class="paramname">parent</td><td>父帧ID </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html">CarlaTransformPublisher.cpp</a> 第 <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html#l00317">317</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00031">carla::ros2::CarlaPublisher::_name</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00032">carla::ros2::CarlaPublisher::_parent</a> , 以及 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00017">carla::ros2::CarlaPublisher::parent()</a>.</p>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher_ac702c7a98e686c3f93cf1d2c76bcd97d_cgraph.svg" width="455" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a75b56c8db20e7f088825c967ade1572e" name="a75b56c8db20e7f088825c967ade1572e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75b56c8db20e7f088825c967ade1572e">&#9670;&#160;</a></span>~CarlaTransformPublisher()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::ros2::CarlaTransformPublisher::~CarlaTransformPublisher </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>析构函数，释放CarlaTransformPublisher对象占用的资源。 </p>
+<p ><a class="el" href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html" title="CarlaTransformPublisher类继承自CarlaPublisher，用于在CARLA中发布变换信息到ROS2。">CarlaTransformPublisher</a> 类的析构函数</p>
+<p >清理资源，删除与 DDS（Data Distribution Service）相关的对象。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html">CarlaTransformPublisher.cpp</a> 第 <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html#l00327">327</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d98/CarlaTransformPublisher_8h_source.html#l00093">_impl</a>.</p>
+
+</div>
+</div>
+<a id="a5acac3710848e19ef33fb96efbe2b888" name="a5acac3710848e19ef33fb96efbe2b888"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5acac3710848e19ef33fb96efbe2b888">&#9670;&#160;</a></span>CarlaTransformPublisher() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::ros2::CarlaTransformPublisher::CarlaTransformPublisher </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html">CarlaTransformPublisher</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>拷贝构造函数，通过拷贝另一个CarlaTransformPublisher对象来初始化新对象。 </p>
+<p ><a class="el" href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html" title="CarlaTransformPublisher类继承自CarlaPublisher，用于在CARLA中发布变换信息到ROS2。">CarlaTransformPublisher</a> 类的拷贝构造函数</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>要拷贝的CarlaTransformPublisher对象。</td></tr>
+  </table>
+  </dd>
+</dl>
+<p >创建一个与现有对象相同的 <a class="el" href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html" title="CarlaTransformPublisher类继承自CarlaPublisher，用于在CARLA中发布变换信息到ROS2。">CarlaTransformPublisher</a> 对象。 注意：这里浅拷贝了 _impl 指针，假设 <a class="el" href="../../d8/d71/structcarla_1_1ros2_1_1CarlaTransformPublisherImpl.html" title="CarlaTransformPublisher的内部实现结构体。">CarlaTransformPublisherImpl</a> 类是正确管理其生命周期的。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>要拷贝的对象 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html">CarlaTransformPublisher.cpp</a> 第 <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html#l00351">351</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00030">carla::ros2::CarlaPublisher::_frame_id</a>, <a class="el" href="../../dd/d98/CarlaTransformPublisher_8h_source.html#l00093">_impl</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00031">carla::ros2::CarlaPublisher::_name</a> , 以及 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00032">carla::ros2::CarlaPublisher::_parent</a>.</p>
+
+</div>
+</div>
+<a id="a17754c0ced3779b89e24cf327941eb2f" name="a17754c0ced3779b89e24cf327941eb2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17754c0ced3779b89e24cf327941eb2f">&#9670;&#160;</a></span>CarlaTransformPublisher() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::ros2::CarlaTransformPublisher::CarlaTransformPublisher </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html">CarlaTransformPublisher</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>移动构造函数，通过移动另一个CarlaTransformPublisher对象来初始化新对象。 </p>
+<p ><a class="el" href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html" title="CarlaTransformPublisher类继承自CarlaPublisher，用于在CARLA中发布变换信息到ROS2。">CarlaTransformPublisher</a> 类的移动构造函数</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>要移动的CarlaTransformPublisher对象。</td></tr>
+  </table>
+  </dd>
+</dl>
+<p >创建一个新的 <a class="el" href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html" title="CarlaTransformPublisher类继承自CarlaPublisher，用于在CARLA中发布变换信息到ROS2。">CarlaTransformPublisher</a> 对象，并将现有对象的资源移动到新对象中。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>要移动的对象 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html">CarlaTransformPublisher.cpp</a> 第 <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html#l00381">381</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00030">carla::ros2::CarlaPublisher::_frame_id</a>, <a class="el" href="../../dd/d98/CarlaTransformPublisher_8h_source.html#l00093">_impl</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00031">carla::ros2::CarlaPublisher::_name</a> , 以及 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00032">carla::ros2::CarlaPublisher::_parent</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a08593a23fa0ca70c654cbc2ac0ca68e5" name="a08593a23fa0ca70c654cbc2ac0ca68e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08593a23fa0ca70c654cbc2ac0ca68e5">&#9670;&#160;</a></span>Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::ros2::CarlaTransformPublisher::Init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>初始化函数，用于初始化CarlaTransformPublisher对象。 </p>
+<p >初始化CarlaTransformPublisher对象</p>
+<dl class="section return"><dt>返回</dt><dd>如果初始化成功，则返回true；否则返回false。</dd></dl>
+<p >该函数负责初始化CarlaTransformPublisher对象，包括设置DomainParticipant、Publisher、Topic和DataWriter。 如果在初始化过程中遇到任何错误，函数将输出错误信息并返回false。</p>
+<dl class="section return"><dt>返回</dt><dd>bool 如果初始化成功，则返回true；否则返回false。 </dd></dl>
+<p >检查_type是否为nullptr。如果是，则表示TypeSupport无效，输出错误信息并返回false。</p>
+<p >设置DomainParticipant的QoS策略，并使用默认QoS创建一个DomainParticipant。 设置DomainParticipant的名称为_name。</p>
+<p >如果DomainParticipant创建失败，则输出错误信息并返回false。</p>
+<p >使用_type注册类型到DomainParticipant。</p>
+<p >设置Publisher的QoS策略，并使用默认QoS创建一个Publisher。</p>
+<p >如果Publisher创建失败，则输出错误信息并返回false。</p>
+<p >设置Topic的QoS策略，并创建一个名为"rt/tf"的Topic。</p>
+<p >如果Topic创建失败，则输出错误信息并返回false。</p>
+<p >设置DataWriter的QoS策略，并创建一个DataWriter。 将history_memory_policy设置为PREALLOCATED_WITH_REALLOC_MEMORY_MODE。</p>
+<p >如果DataWriter创建失败，则输出错误信息并返回false。</p>
+<p >设置_frame_id为_name。</p>
+<p >初始化成功，返回true。</p>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html">CarlaTransformPublisher.cpp</a> 第 <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html#l00074">74</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00030">carla::ros2::CarlaPublisher::_frame_id</a>, <a class="el" href="../../dd/d98/CarlaTransformPublisher_8h_source.html#l00093">_impl</a> , 以及 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00031">carla::ros2::CarlaPublisher::_name</a>.</p>
+
+</div>
+</div>
+<a id="abdbd6d55fa2df092f5cf4886cc43f004" name="abdbd6d55fa2df092f5cf4886cc43f004"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abdbd6d55fa2df092f5cf4886cc43f004">&#9670;&#160;</a></span>operator=() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html">CarlaTransformPublisher</a> &amp; carla::ros2::CarlaTransformPublisher::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html">CarlaTransformPublisher</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>移动赋值运算符，将另一个CarlaTransformPublisher对象的内容移动到当前对象。 </p>
+<p >移动赋值运算符重载</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>要移动的CarlaTransformPublisher对象。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>返回当前对象的引用。</dd></dl>
+<p >将现有对象的资源移动到另一个 <a class="el" href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html" title="CarlaTransformPublisher类继承自CarlaPublisher，用于在CARLA中发布变换信息到ROS2。">CarlaTransformPublisher</a> 对象。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>要移动赋值的对象 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>引用到当前对象 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html">CarlaTransformPublisher.cpp</a> 第 <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html#l00395">395</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00030">carla::ros2::CarlaPublisher::_frame_id</a>, <a class="el" href="../../dd/d98/CarlaTransformPublisher_8h_source.html#l00093">_impl</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00031">carla::ros2::CarlaPublisher::_name</a> , 以及 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00032">carla::ros2::CarlaPublisher::_parent</a>.</p>
+
+</div>
+</div>
+<a id="a6fa955a5c177efdc9664d0b20acb7c9b" name="a6fa955a5c177efdc9664d0b20acb7c9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fa955a5c177efdc9664d0b20acb7c9b">&#9670;&#160;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html">CarlaTransformPublisher</a> &amp; carla::ros2::CarlaTransformPublisher::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html">CarlaTransformPublisher</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>拷贝赋值运算符，将另一个CarlaTransformPublisher对象的内容复制到当前对象。 </p>
+<p >赋值运算符重载</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>要复制的CarlaTransformPublisher对象。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>返回当前对象的引用。</dd></dl>
+<p >将现有对象的值赋给另一个 <a class="el" href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html" title="CarlaTransformPublisher类继承自CarlaPublisher，用于在CARLA中发布变换信息到ROS2。">CarlaTransformPublisher</a> 对象。 注意：这里浅拷贝了 _impl 指针。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>要赋值的对象 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>引用到当前对象 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html">CarlaTransformPublisher.cpp</a> 第 <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html#l00366">366</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00030">carla::ros2::CarlaPublisher::_frame_id</a>, <a class="el" href="../../dd/d98/CarlaTransformPublisher_8h_source.html#l00093">_impl</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00031">carla::ros2::CarlaPublisher::_name</a> , 以及 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00032">carla::ros2::CarlaPublisher::_parent</a>.</p>
+
+</div>
+</div>
+<a id="acd9010174a557866652084ebb0c92647" name="acd9010174a557866652084ebb0c92647"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd9010174a557866652084ebb0c92647">&#9670;&#160;</a></span>Publish()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::ros2::CarlaTransformPublisher::Publish </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>发布函数，用于将变换信息发布到ROS2。 </p>
+<p >发布Carla的变换信息</p>
+<dl class="section return"><dt>返回</dt><dd>如果发布成功，则返回true；否则返回false。</dd></dl>
+<p >该函数负责使用DataWriter发布_impl-&gt;_transform中的数据。根据返回码（ReturnCode_t）处理不同的错误情况， 并输出相应的错误信息。如果发布成功，则返回true；否则返回false。</p>
+<dl class="section return"><dt>返回</dt><dd>bool 发布成功返回true，否则返回false。 </dd></dl>
+<p >声明一个InstanceHandle_t类型的变量instance_handle，用于接收write方法的返回值。</p>
+<p >调用DataWriter的write方法发布_impl-&gt;_transform数据，并获取返回码。</p>
+<p >根据返回码处理不同的错误情况。</p>
+<p >发布成功，返回true。</p>
+<p >通用错误</p>
+<p >请求的操作不受支持</p>
+<p >传递给函数的参数无效</p>
+<p >操作的前置条件未满足</p>
+<p >系统资源不足，无法完成操作</p>
+<p >实体未启用，无法执行操作</p>
+<p >试图更改不可变的QoS策略</p>
+<p >QoS策略不一致，无法设置</p>
+<p >实体已被删除</p>
+<p >操作超时</p>
+<p >请求的数据不存在</p>
+<p >执行了非法操作</p>
+<p >安全策略不允许执行此操作</p>
+<p >如果返回码不是预定义的任何值，则输出"UNKNOWN"错误信息</p>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html">CarlaTransformPublisher.cpp</a> 第 <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html#l00158">158</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d98/CarlaTransformPublisher_8h_source.html#l00093">_impl</a>.</p>
+
+</div>
+</div>
+<a id="a4d5194de16427f3bb688109ceaf3088a" name="a4d5194de16427f3bb688109ceaf3088a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d5194de16427f3bb688109ceaf3088a">&#9670;&#160;</a></span>SetData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::ros2::CarlaTransformPublisher::SetData </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>seconds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>nanoseconds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *&#160;</td>
+          <td class="paramname"><em>translation</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *&#160;</td>
+          <td class="paramname"><em>rotation</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置变换数据的函数。 </p>
+<p >设置CarlaTransformPublisher的数据</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">seconds</td><td>变换的时间戳，秒部分。 </td></tr>
+    <tr><td class="paramname">nanoseconds</td><td>变换的时间戳，纳秒部分。 </td></tr>
+    <tr><td class="paramname">translation</td><td>变换的平移部分，数组包含x, y, z三个分量。 </td></tr>
+    <tr><td class="paramname">rotation</td><td>变换的旋转部分，数组包含roll, pitch, yaw三个分量。</td></tr>
+  </table>
+  </dd>
+</dl>
+<p >此函数用于更新位置和时间信息，并计算四元数旋转。 如果传入的位置或旋转与上一次的不同，则更新内部状态，并计算新的四元数旋转。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">seconds</td><td>时间戳的秒部分 </td></tr>
+    <tr><td class="paramname">nanoseconds</td><td>时间戳的纳秒部分 </td></tr>
+    <tr><td class="paramname">translation</td><td>指向包含x, y, z位置信息的浮点数组的指针 </td></tr>
+    <tr><td class="paramname">rotation</td><td>指向包含绕x, y, z轴旋转角度（以度为单位）的浮点数组的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html">CarlaTransformPublisher.cpp</a> 第 <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html#l00256">256</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00030">carla::ros2::CarlaPublisher::_frame_id</a>, <a class="el" href="../../dd/d98/CarlaTransformPublisher_8h_source.html#l00093">_impl</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00032">carla::ros2::CarlaPublisher::_parent</a>, <a class="el" href="../../db/db9/TransformStamped_8cpp_source.html#l00186">geometry_msgs::msg::TransformStamped::child_frame_id()</a>, <a class="el" href="../../db/db9/TransformStamped_8cpp_source.html#l00153">geometry_msgs::msg::TransformStamped::header()</a>, <a class="el" href="../../d8/d38/Time_8cpp_source.html#l00183">builtin_interfaces::msg::Time::nanosec()</a>, <a class="el" href="../../d0/d59/Transform_8cpp_source.html#l00253">geometry_msgs::msg::Transform::rotation()</a>, <a class="el" href="../../d8/d38/Time_8cpp_source.html#l00152">builtin_interfaces::msg::Time::sec()</a>, <a class="el" href="../../db/db9/TransformStamped_8cpp_source.html#l00220">geometry_msgs::msg::TransformStamped::transform()</a> , 以及 <a class="el" href="../../d0/d59/Transform_8cpp_source.html#l00205">geometry_msgs::msg::Transform::translation()</a>.</p>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher_a4d5194de16427f3bb688109ceaf3088a_cgraph.svg" width="388" height="482"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a23696c1fcad30c04e0595d8d6cfca6a5" name="a23696c1fcad30c04e0595d8d6cfca6a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23696c1fcad30c04e0595d8d6cfca6a5">&#9670;&#160;</a></span>type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * carla::ros2::CarlaTransformPublisher::type </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重写type函数，返回当前对象的类型字符串。 </p>
+<dl class="section return"><dt>返回</dt><dd>返回"transform"字符串，表示当前对象发布的消息类型为变换信息。 </dd></dl>
+
+<p>实现了 <a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html#a6448e2522e8b78dfe350aca123530089">carla::ros2::CarlaPublisher</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d98/CarlaTransformPublisher_8h_source.html">CarlaTransformPublisher.h</a> 第 <a class="el" href="../../dd/d98/CarlaTransformPublisher_8h_source.html#l00087">87</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a4ad23888d635c3e28a0afacd3cc458f4" name="a4ad23888d635c3e28a0afacd3cc458f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ad23888d635c3e28a0afacd3cc458f4">&#9670;&#160;</a></span>_impl</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="../../d8/d71/structcarla_1_1ros2_1_1CarlaTransformPublisherImpl.html">CarlaTransformPublisherImpl</a>&gt; carla::ros2::CarlaTransformPublisher::_impl</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>指向CarlaTransformPublisherImpl的智能指针，用于隐藏实现细节。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d98/CarlaTransformPublisher_8h_source.html">CarlaTransformPublisher.h</a> 第 <a class="el" href="../../dd/d98/CarlaTransformPublisher_8h_source.html#l00093">93</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html#l00351">CarlaTransformPublisher()</a>, <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html#l00074">Init()</a>, <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html#l00366">operator=()</a>, <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html#l00158">Publish()</a>, <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html#l00256">SetData()</a> , 以及 <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html#l00327">~CarlaTransformPublisher()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../dd/d98/CarlaTransformPublisher_8h_source.html">CarlaTransformPublisher.h</a></li>
+<li><a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html">CarlaTransformPublisher.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

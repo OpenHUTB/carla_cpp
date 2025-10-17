@@ -1,0 +1,10 @@
+<map id="carla::client::RssSensor::TickRssSensor" name="carla::client::RssSensor::TickRssSensor">
+<area shape="rect" id="node1" title="传感器滴答（tick，可以理解为周期性触发的操作）回调函数，实际执行传感器相关逻辑的函数" alt="" coords="5,101,163,141"/>
+<area shape="rect" id="node2" href="$db/d1f/classcarla_1_1client_1_1World.html#a04a22f65ea5ccd3e93b833503dda6d65" title="返回一个包含当前世界上所有存在的参与者（actor）的列表。 获取整个模拟世界中所有参与者的集合，便于进行批量操作、统计或者遍历所有实体执行某些通用的操作等。" alt="" coords="247,5,374,45"/>
+<area shape="rect" id="node4" href="$db/d1f/classcarla_1_1client_1_1World.html#afb1d7a4097793754f6ac375ab6ad29c5" title="获取当前模拟世界的设置信息，比如时间步长、同步模式等相关的参数配置情况， 返回的rpc::EpisodeSettings对象包含了这些详细的设置内容，供外部查询和可能的修改参考。" alt="" coords="247,69,374,109"/>
+<area shape="rect" id="node5" href="$d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#ac98d447f3db74c88b3b43e80435042bc" title=" " alt="" coords="235,133,386,173"/>
+<area shape="rect" id="node6" href="$d7/db6/classcarla_1_1client_1_1RssSensor.html#afe634e278e1245d60e7e77d457657e2e" title=" " alt="" coords="211,197,411,237"/>
+<area shape="rect" id="node3" href="$d1/dd3/classcarla_1_1client_1_1detail_1_1EpisodeProxyImpl.html#aaca857645fbeb6546b4a03a663bb65af" title="与 TryLock 相同，但永远不会返回 nullptr。" alt="" coords="459,37,625,77"/>
+<area shape="rect" id="node7" href="$d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#a77b201455dd52b51bb3b1834ccf87ccc" title=" " alt="" coords="465,165,619,205"/>
+<area shape="rect" id="node8" href="$d6/da5/classcarla_1_1client_1_1Actor.html#ab5c7de9cefbe7d189c97a429ab052115" title="返回行为体的当前变换（位置和方向）。" alt="" coords="480,229,604,269"/>
+</map>

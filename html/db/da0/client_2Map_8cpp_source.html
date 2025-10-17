@@ -1,0 +1,352 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: Map.cpp 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_64d7bb605f27024d49af86070bd3f0b6.html">client</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">client/Map.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../db/da0/client_2Map_8cpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// de Barcelona (UAB).</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// This work is licensed under the terms of the MIT license.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="../../d4/d9d/client_2Map_8h.html">carla/client/Map.h</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="../../dd/d55/client_2Junction_8h.html">carla/client/Junction.h</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="../../d0/d47/client_2Waypoint_8h.html">carla/client/Waypoint.h</a>&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="../../d1/dd9/OpenDriveParser_8h.html">carla/opendrive/OpenDriveParser.h</a>&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="../../df/d64/road_2Map_8h.html">carla/road/Map.h</a>&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="../../d6/dbb/RoadTypes_8h.html">carla/road/RoadTypes.h</a>&quot;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="../../d3/d89/InMemoryMap_8h.html">carla/trafficmanager/InMemoryMap.h</a>&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;sstream&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">// 命名空间 carla</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d9/d36/namespacecarla.html">carla</a> {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment">// 命名空间 client</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d7/d1c/namespaceclient.html">client</a> {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment">// 静态函数 MakeMap，根据输入的 opendrive 内容生成地图  </span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="../../d2/daf/namespacecarla_1_1client.html#a228b83c6429f8e3406a93a1b41eb1565">   22</a></span><span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="../../d2/daf/namespacecarla_1_1client.html#a228b83c6429f8e3406a93a1b41eb1565">MakeMap</a>(<span class="keyword">const</span> std::string &amp;opendrive_contents) {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">// 创建输入字符串流   </span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> <span class="keyword">auto</span> stream = std::istringstream(opendrive_contents);</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> <span class="comment">// 调用 OpenDriveParser 类的 Load 函数加载地图，返回 boost::optional&lt;carla::road::Map&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keyword">auto</span> map = <a class="code hl_function" href="../../de/d5a/classcarla_1_1opendrive_1_1OpenDriveParser.html#a599fd6174f30aaee59590c16503afd8a">opendrive::OpenDriveParser::Load</a>(stream.str());</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> <span class="comment">// 如果 map 为空，抛出运行时异常    </span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordflow">if</span> (!map.has_value()) {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>      <a class="code hl_function" href="../../d9/d36/namespacecarla.html#a23602ab663165210a7757d6108f6b3cd">throw_exception</a>(std::runtime_error(<span class="stringliteral">&quot;failed to generate map&quot;</span>));</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    }</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">// 移动 map 的值</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordflow">return</span> std::move(*map);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  }</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> <span class="comment">// Map 类的构造函数，接受 rpc::MapInfo 和 xodr 内容</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  Map::Map(<a class="code hl_class" href="../../d1/d07/classcarla_1_1rpc_1_1MapInfo.html">rpc::MapInfo</a> description, std::string xodr_content)</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    : _description(<a class="code hl_namespace" href="../../d8/dcc/namespacestd.html">std</a>::move(description)),</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>      _map(<a class="code hl_function" href="../../d2/daf/namespacecarla_1_1client.html#a228b83c6429f8e3406a93a1b41eb1565">MakeMap</a>(xodr_content)){</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment">// 存储 xodr 内容</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    open_drive_file = xodr_content;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  }</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment">// 另一个 Map 类的构造函数，接受名称和 xodr 内容</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  Map::Map(std::string name, std::string xodr_content)</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    : <a class="code hl_class" href="../../d7/db0/classMap.html">Map</a>(rpc::MapInfo{</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <a class="code hl_namespace" href="../../d8/dcc/namespacestd.html">std</a>::move(name),</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <a class="code hl_namespace" href="../../d8/dcc/namespacestd.html">std</a>::vector&lt;geom::Transform&gt;{}}, xodr_content) {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    open_drive_file = xodr_content;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  }</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="comment">// Map 类的析构函数，使用默认析构函数</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  Map::~Map() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment">// 获取与给定位置相关的 Waypoint 的函数</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  SharedPtr&lt;Waypoint&gt; Map::GetWaypoint(</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <span class="keyword">const</span> geom::Location &amp;location,</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  <span class="keywordtype">bool</span> project_to_road,</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  int32_t lane_type)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="comment">// 定义一个可选的 road::element::Waypoint 变量</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    boost::optional&lt;road::element::Waypoint&gt; waypoint;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="comment">// 根据是否投影到道路选择不同的获取方式</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordflow">if</span> (project_to_road) {</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>      waypoint = _map.GetClosestWaypointOnRoad(location, lane_type);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>      waypoint = _map.GetWaypoint(location, lane_type);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    }</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> <span class="comment">// 如果存在 waypoint，创建一个新的 Waypoint 并返回，否则返回 nullptr</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordflow">return</span> waypoint.has_value() ?</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    SharedPtr&lt;Waypoint&gt;(<span class="keyword">new</span> Waypoint{shared_from_this(), *waypoint}) :</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  }</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment">// 根据道路 ID、车道 ID 和 s 坐标获取 Waypoint 的函数</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  SharedPtr&lt;Waypoint&gt; Map::GetWaypointXODR(</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>      <a class="code hl_typedef" href="../../de/d26/namespacecarla_1_1road.html#a9fa6f293e66647bffc1d64d59084eed7">carla::road::RoadId</a> road_id,</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>      <a class="code hl_typedef" href="../../de/d26/namespacecarla_1_1road.html#ab04570f0655cb16bd43d7cb2b939511f">carla::road::LaneId</a> lane_id,</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>      <span class="keywordtype">float</span> s)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> <span class="comment">// 定义一个可选的 road::element::Waypoint 变量</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    boost::optional&lt;road::element::Waypoint&gt; waypoint;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="comment">// 调用 _map 的 GetWaypoint 函数获取 waypoint</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    waypoint = _map.GetWaypoint(road_id, lane_id, s);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> <span class="comment">// 如果存在 waypoint，创建一个新的 Waypoint 并返回，否则返回 nullptr</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordflow">return</span> waypoint.has_value() ?</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        SharedPtr&lt;Waypoint&gt;(<span class="keyword">new</span> Waypoint{shared_from_this(), *waypoint}) :</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  }</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="comment">// 获取地图拓扑结构的函数</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  Map::TopologyList Map::GetTopology()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="comment">// 为简洁使用 re 作为 carla::road::element 的别名</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keyword">namespace </span>re = <a class="code hl_namespace" href="../../df/dc1/namespacecarla_1_1road_1_1element.html">carla::road::element</a>;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="comment">// 为简洁使用 re 作为 carla::road::element 的别名</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    std::unordered_map&lt;re::Waypoint, SharedPtr&lt;Waypoint&gt;&gt; waypoints;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> <span class="comment">// 定义一个 lambda 函数，用于获取或创建 Waypoint</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keyword">auto</span> get_or_make_waypoint = [&amp;](<span class="keyword">const</span> <span class="keyword">auto</span> &amp;waypoint) {</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>      <span class="keyword">auto</span> it = waypoints.find(waypoint);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>      <span class="keywordflow">if</span> (it == waypoints.end()) {</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        it = waypoints.emplace(</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>            waypoint,</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>            SharedPtr&lt;Waypoint&gt;(<span class="keyword">new</span> Waypoint{shared_from_this(), waypoint})).first;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>      }</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>      <span class="keywordflow">return</span> it-&gt;second;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    };</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> <span class="comment">// 存储拓扑结构的列表</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <a class="code hl_typedef" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a361e1f427bc6753d59eaa6495943a976">TopologyList</a> result;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> <span class="comment">// 生成拓扑结构</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keyword">auto</span> topology = _map.GenerateTopology();</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> <span class="comment">// 为结果预留空间</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    result.reserve(topology.size());</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> <span class="comment">// 遍历拓扑结构中的元素，创建 Waypoint 并添加到结果中</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;pair : topology) {</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>      result.emplace_back(</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>      get_or_make_waypoint(pair.first),</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>      get_or_make_waypoint(pair.second));</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    }</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  }</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="comment">// 生成间隔一定距离的 Waypoint 列表的函数</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="../../d0/d34/classcarla_1_1road_1_1Map.html#acf0868ceb0e66ff11582e701b57c1ce0">  113</a></span>  std::vector&lt;SharedPtr&lt;Waypoint&gt;&gt; Map::GenerateWaypoints(<span class="keywordtype">double</span> distance)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> <span class="comment">// 存储结果的 Waypoint 向量</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    std::vector&lt;SharedPtr&lt;Waypoint&gt;&gt; result;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="comment">// 生成 Waypoint 列表</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keyword">const</span> <span class="keyword">auto</span> waypoints = _map.GenerateWaypoints(distance);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="comment">// 为结果预留空间</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    result.reserve(waypoints.size());</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> <span class="comment">// 遍历生成的 Waypoint，创建并添加到结果中</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;waypoint : waypoints) {</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>      result.emplace_back(<a class="code hl_typedef" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr&lt;Waypoint&gt;</a>(<span class="keyword">new</span> <a class="code hl_struct" href="../../d8/de8/structcarla_1_1road_1_1element_1_1Waypoint.html">Waypoint</a>{shared_from_this(), waypoint}));</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    }</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>  }</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="comment">// 计算穿越车道的函数</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="../../d0/d34/classcarla_1_1road_1_1Map.html#a73fcc8f06832fb27b760ddc453e018ed">  127</a></span>  std::vector&lt;road::element::LaneMarking&gt; Map::CalculateCrossedLanes(</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>  <span class="keyword">const</span> <a class="code hl_class" href="../../de/d23/classcarla_1_1geom_1_1Location.html">geom::Location</a> &amp;origin,</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>  <span class="keyword">const</span> <a class="code hl_class" href="../../de/d23/classcarla_1_1geom_1_1Location.html">geom::Location</a> &amp;destination)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> <span class="comment">// 调用 _map 的 CalculateCrossedLanes 函数</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keywordflow">return</span> _map.CalculateCrossedLanes(origin, destination);</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>  }</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> <span class="comment">// 获取地理参考的函数</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>  <span class="keyword">const</span> <a class="code hl_class" href="../../d3/df4/classcarla_1_1geom_1_1GeoLocation.html">geom::GeoLocation</a> &amp;Map::GetGeoReference()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="comment">// 调用 _map 的 GetGeoReference 函数</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="keywordflow">return</span> _map.GetGeoReference();</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>  }</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> <span class="comment">// 获取所有人行横道区域的函数</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="../../d0/d34/classcarla_1_1road_1_1Map.html#a4c439f71d6b5ed44892df6703bd99f70">  139</a></span>  std::vector&lt;geom::Location&gt; Map::GetAllCrosswalkZones()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span><span class="comment">// 调用 _map 的 GetAllCrosswalkZones 函数</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="keywordflow">return</span> _map.GetAllCrosswalkZones();</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>  }</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span><span class="comment">// 获取与给定 Waypoint 相关的 Junction 的函数</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>  <a class="code hl_typedef" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr&lt;Junction&gt;</a> Map::GetJunction(<span class="keyword">const</span> Waypoint &amp;waypoint)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span><span class="comment">// 获取 Junction 指针</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="keyword">const</span> <a class="code hl_class" href="../../dd/dc6/classcarla_1_1road_1_1Junction.html">road::Junction</a> *juncptr = GetMap().GetJunction(waypoint.GetJunctionId());</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="comment">// 创建新的 Junction 并返回</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <span class="keyword">auto</span> junction = <a class="code hl_typedef" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr&lt;Junction&gt;</a>(<span class="keyword">new</span> <a class="code hl_class" href="../../dd/dc6/classcarla_1_1road_1_1Junction.html">Junction</a>(shared_from_this(), juncptr));</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="keywordflow">return</span> junction;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>  }</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> <span class="comment">// 获取 Junction 的 Waypoint 对的函数</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="../../d0/d34/classcarla_1_1road_1_1Map.html#ae777212960e99b6080493eb994c2fc24">  152</a></span>  std::vector&lt;std::pair&lt;SharedPtr&lt;Waypoint&gt;, <a class="code hl_typedef" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr&lt;Waypoint&gt;</a>&gt;&gt; Map::GetJunctionWaypoints(</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>      <a class="code hl_typedef" href="../../de/d26/namespacecarla_1_1road.html#a459e3705665dbc8b48b8ed053e15f6f7">road::JuncId</a> <span class="keywordtype">id</span>,</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>      <a class="code hl_enumeration" href="../../df/d85/classcarla_1_1road_1_1Lane.html#a7b84fedfe3ac06e2568d31de758a9247">road::Lane::LaneType</a> lane_type)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> <span class="comment">// 存储结果的向量</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    std::vector&lt;std::pair&lt;SharedPtr&lt;Waypoint&gt;, <a class="code hl_typedef" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr&lt;Waypoint&gt;</a>&gt;&gt; result;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> <span class="comment">// 获取 Junction 的 Waypoint 对</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="keyword">auto</span> junction_waypoints = GetMap().GetJunctionWaypoints(<span class="keywordtype">id</span>, lane_type);</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> <span class="comment">// 遍历并创建新的 Waypoint 对添加到结果中</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;waypoint_pair : junction_waypoints) {</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>      result.emplace_back(</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>      std::make_pair(<a class="code hl_typedef" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr&lt;Waypoint&gt;</a>(<span class="keyword">new</span> <a class="code hl_struct" href="../../d8/de8/structcarla_1_1road_1_1element_1_1Waypoint.html">Waypoint</a>(shared_from_this(), waypoint_pair.first)),</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>      <a class="code hl_typedef" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr&lt;Waypoint&gt;</a>(<span class="keyword">new</span> <a class="code hl_struct" href="../../d8/de8/structcarla_1_1road_1_1element_1_1Waypoint.html">Waypoint</a>(shared_from_this(), waypoint_pair.second))));</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    }</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>  }</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> <span class="comment">// 获取所有地标的函数</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>  std::vector&lt;SharedPtr&lt;Landmark&gt;&gt; Map::GetAllLandmarks()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> <span class="comment">// 存储结果的向量</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    std::vector&lt;SharedPtr&lt;Landmark&gt;&gt; result;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> <span class="comment">// 获取所有信号引用</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="keyword">auto</span> signal_references = _map.GetAllSignalReferences();</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span><span class="comment">// 遍历信号引用，创建新的 Landmark 并添加到结果中</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <span class="keywordflow">for</span>(<span class="keyword">auto</span>* signal_reference : signal_references) {</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>      result.emplace_back(</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>          <span class="keyword">new</span> Landmark(<span class="keyword">nullptr</span>, shared_from_this(), signal_reference, 0));</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    }</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>  }</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="comment">// 从 ID 获取地标的函数</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>  std::vector&lt;SharedPtr&lt;Landmark&gt;&gt; Map::GetLandmarksFromId(std::string <span class="keywordtype">id</span>)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span><span class="comment">// 存储结果的向量</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    std::vector&lt;SharedPtr&lt;Landmark&gt;&gt; result;</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> <span class="comment">// 获取所有信号引用</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <span class="keyword">auto</span> signal_references = _map.GetAllSignalReferences();</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span><span class="comment">// 遍历信号引用，找到符合 ID 的创建新的 Landmark 并添加到结果中</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <span class="keywordflow">for</span>(<span class="keyword">auto</span>* signal_reference : signal_references) {</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>      <span class="keywordflow">if</span>(signal_reference-&gt;GetSignalId() == <span class="keywordtype">id</span>) {</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>        result.emplace_back(</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>            <span class="keyword">new</span> Landmark(<span class="keyword">nullptr</span>, shared_from_this(), signal_reference, 0));</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>      }</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    }</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>  }</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> <span class="comment">// 从类型获取地标的函数</span></div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>  std::vector&lt;SharedPtr&lt;Landmark&gt;&gt; Map::GetAllLandmarksOfType(std::string type)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> <span class="comment">// 存储结果的向量</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    std::vector&lt;SharedPtr&lt;Landmark&gt;&gt; result;</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span> <span class="comment">// 获取所有信号引用</span></div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <span class="keyword">auto</span> signal_references = _map.GetAllSignalReferences();</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span> <span class="comment">// 遍历信号引用，找到符合类型的创建新的 Landmark 并添加到结果中</span></div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    <span class="keywordflow">for</span>(<span class="keyword">auto</span>* signal_reference : signal_references) {</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>      <span class="keywordflow">if</span>(signal_reference-&gt;GetSignal()-&gt;GetType() == type) {</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>        result.emplace_back(</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>            <span class="keyword">new</span> Landmark(<span class="keyword">nullptr</span>, shared_from_this(), signal_reference, 0));</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>      }</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    }</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>  }</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span><span class="comment">// 获取地标组的函数</span></div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>  std::vector&lt;SharedPtr&lt;Landmark&gt;&gt;</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>      Map::GetLandmarkGroup(<span class="keyword">const</span> Landmark &amp;landmark)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span> <span class="comment">// 存储结果的向量 </span></div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    std::vector&lt;SharedPtr&lt;Landmark&gt;&gt; result;</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> <span class="comment">// 获取信号的控制器</span></div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <span class="keyword">auto</span> &amp;controllers = landmark._signal-&gt;GetSignal()-&gt;GetControllers();</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span><span class="comment">// 遍历控制器和控制器中的信号，添加新的 Landmark 到结果中</span></div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; controller_id : controllers) {</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>      <span class="keyword">const</span> <span class="keyword">auto</span> &amp;controller = _map.GetControllers().at(controller_id);</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>      <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; signal_id : controller-&gt;GetSignals()) {</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>        <span class="keyword">auto</span>&amp; signal = _map.GetSignals().at(signal_id);</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>        <span class="keyword">auto</span> new_landmarks = GetLandmarksFromId(signal-&gt;GetSignalId());</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>        result.insert(result.end(), new_landmarks.begin(), new_landmarks.end());</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>      }</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    }</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>  }</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span> <span class="comment">// 烹饪内存中地图的函数</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>  <span class="keywordtype">void</span> Map::CookInMemoryMap(<span class="keyword">const</span> std::string&amp; path)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span><span class="comment">// 调用 InMemoryMap 的 Cook 函数</span></div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    traffic_manager::InMemoryMap::Cook(shared_from_this(), path);</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>  }</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span> </div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>}  <span class="comment">// 结束 client 命名空间</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>} <span class="comment">// 结束 carla 命名空间</span></div>
+<div class="ttc" id="aInMemoryMap_8h_html"><div class="ttname"><a href="../../d3/d89/InMemoryMap_8h.html">InMemoryMap.h</a></div></div>
+<div class="ttc" id="aOpenDriveParser_8h_html"><div class="ttname"><a href="../../d1/dd9/OpenDriveParser_8h.html">OpenDriveParser.h</a></div></div>
+<div class="ttc" id="aRoadTypes_8h_html"><div class="ttname"><a href="../../d6/dbb/RoadTypes_8h.html">RoadTypes.h</a></div></div>
+<div class="ttc" id="aclassMap_html"><div class="ttname"><a href="../../d7/db0/classMap.html">Map</a></div><div class="ttdoc">地图类的前向声明，用于在LaneInvasionSensor类中可能的引用。</div></div>
+<div class="ttc" id="aclasscarla_1_1geom_1_1GeoLocation_html"><div class="ttname"><a href="../../d3/df4/classcarla_1_1geom_1_1GeoLocation.html">carla::geom::GeoLocation</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d7/d86/GeoLocation_8h_source.html#l00016">GeoLocation.h:16</a></div></div>
+<div class="ttc" id="aclasscarla_1_1geom_1_1Location_html"><div class="ttname"><a href="../../de/d23/classcarla_1_1geom_1_1Location.html">carla::geom::Location</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d8b/geom_2Location_8h_source.html#l00028">geom/Location.h:28</a></div></div>
+<div class="ttc" id="aclasscarla_1_1opendrive_1_1OpenDriveParser_html_a599fd6174f30aaee59590c16503afd8a"><div class="ttname"><a href="../../de/d5a/classcarla_1_1opendrive_1_1OpenDriveParser.html#a599fd6174f30aaee59590c16503afd8a">carla::opendrive::OpenDriveParser::Load</a></div><div class="ttdeci">static boost::optional&lt; road::Map &gt; Load(const std::string &amp;opendrive)</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d5a/OpenDriveParser_8cpp_source.html#l00031">OpenDriveParser.cpp:31</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Junction_html"><div class="ttname"><a href="../../dd/dc6/classcarla_1_1road_1_1Junction.html">carla::road::Junction</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d3a/road_2Junction_8h_source.html#l00024">road/Junction.h:24</a></div></div>
+<div class="ttc" id="aclasscarla_1_1road_1_1Lane_html_a7b84fedfe3ac06e2568d31de758a9247"><div class="ttname"><a href="../../df/d85/classcarla_1_1road_1_1Lane.html#a7b84fedfe3ac06e2568d31de758a9247">carla::road::Lane::LaneType</a></div><div class="ttdeci">LaneType</div><div class="ttdoc">可以作为标志使用</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d27/Lane_8h_source.html#l00029">Lane.h:29</a></div></div>
+<div class="ttc" id="aclasscarla_1_1rpc_1_1MapInfo_html"><div class="ttname"><a href="../../d1/d07/classcarla_1_1rpc_1_1MapInfo.html">carla::rpc::MapInfo</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d5a/MapInfo_8h_source.html#l00018">MapInfo.h:18</a></div></div>
+<div class="ttc" id="aclient_2Junction_8h_html"><div class="ttname"><a href="../../dd/d55/client_2Junction_8h.html">Junction.h</a></div></div>
+<div class="ttc" id="aclient_2Map_8h_html"><div class="ttname"><a href="../../d4/d9d/client_2Map_8h.html">Map.h</a></div></div>
+<div class="ttc" id="aclient_2Waypoint_8h_html"><div class="ttname"><a href="../../d0/d47/client_2Waypoint_8h.html">Waypoint.h</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1client_html_a228b83c6429f8e3406a93a1b41eb1565"><div class="ttname"><a href="../../d2/daf/namespacecarla_1_1client.html#a228b83c6429f8e3406a93a1b41eb1565">carla::client::MakeMap</a></div><div class="ttdeci">static auto MakeMap(const std::string &amp;opendrive_contents)</div><div class="ttdef"><b>Definition:</b> <a href="../../db/da0/client_2Map_8cpp_source.html#l00022">client/Map.cpp:22</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1road_1_1element_html"><div class="ttname"><a href="../../df/dc1/namespacecarla_1_1road_1_1element.html">carla::road::element</a></div><div class="ttdef"><b>Definition:</b> <a href="../../de/d8e/SignComponent_8h_source.html#l00021">SignComponent.h:22</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1road_html_a459e3705665dbc8b48b8ed053e15f6f7"><div class="ttname"><a href="../../de/d26/namespacecarla_1_1road.html#a459e3705665dbc8b48b8ed053e15f6f7">carla::road::JuncId</a></div><div class="ttdeci">int32_t JuncId</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/dbb/RoadTypes_8h_source.html#l00023">RoadTypes.h:23</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1road_html_a9fa6f293e66647bffc1d64d59084eed7"><div class="ttname"><a href="../../de/d26/namespacecarla_1_1road.html#a9fa6f293e66647bffc1d64d59084eed7">carla::road::RoadId</a></div><div class="ttdeci">uint32_t RoadId</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/dbb/RoadTypes_8h_source.html#l00020">RoadTypes.h:20</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1road_html_ab04570f0655cb16bd43d7cb2b939511f"><div class="ttname"><a href="../../de/d26/namespacecarla_1_1road.html#ab04570f0655cb16bd43d7cb2b939511f">carla::road::LaneId</a></div><div class="ttdeci">int32_t LaneId</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/dbb/RoadTypes_8h_source.html#l00026">RoadTypes.h:26</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1traffic__manager_html_a361e1f427bc6753d59eaa6495943a976"><div class="ttname"><a href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a361e1f427bc6753d59eaa6495943a976">carla::traffic_manager::TopologyList</a></div><div class="ttdeci">std::vector&lt; std::pair&lt; WaypointPtr, WaypointPtr &gt; &gt; TopologyList</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d89/InMemoryMap_8cpp_source.html#l00020">InMemoryMap.cpp:20</a></div></div>
+<div class="ttc" id="anamespacecarla_html"><div class="ttname"><a href="../../d9/d36/namespacecarla.html">carla</a></div><div class="ttdoc">CARLA模拟器的主命名空间。</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d4f/Carla_8cpp_source.html#l00139">Carla.cpp:139</a></div></div>
+<div class="ttc" id="anamespacecarla_html_a23602ab663165210a7757d6108f6b3cd"><div class="ttname"><a href="../../d9/d36/namespacecarla.html#a23602ab663165210a7757d6108f6b3cd">carla::throw_exception</a></div><div class="ttdeci">void throw_exception(const std::exception &amp;e)</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d4f/Carla_8cpp_source.html#l00142">Carla.cpp:142</a></div></div>
+<div class="ttc" id="anamespacecarla_html_a92e3ea2d07fa7e0a2fe5d680fb0ba614"><div class="ttname"><a href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">carla::SharedPtr</a></div><div class="ttdeci">boost::shared_ptr&lt; T &gt; SharedPtr</div><div class="ttdoc">使用这个SharedPtr（boost::shared_ptr）以保持与boost::python的兼容性， 但未来如果可能的话，我们希望能为std::shared_ptr制作一个Python适配器。</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d5c/Memory_8h_source.html#l00019">Memory.h:19</a></div></div>
+<div class="ttc" id="anamespaceclient_html"><div class="ttname"><a href="../../d7/d1c/namespaceclient.html">client</a></div><div class="ttdoc">包含CARLA客户端相关类和函数的命名空间。</div></div>
+<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="../../d8/dcc/namespacestd.html">std</a></div><div class="ttdef"><b>Definition:</b> <a href="../../df/d06/CarlaRecorderCollision_8h_source.html#l00030">CarlaRecorderCollision.h:31</a></div></div>
+<div class="ttc" id="aroad_2Map_8h_html"><div class="ttname"><a href="../../df/d64/road_2Map_8h.html">Map.h</a></div></div>
+<div class="ttc" id="astructcarla_1_1road_1_1element_1_1Waypoint_html"><div class="ttname"><a href="../../d8/de8/structcarla_1_1road_1_1element_1_1Waypoint.html">carla::road::element::Waypoint</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d3/dbb/road_2element_2Waypoint_8h_source.html#l00018">road/element/Waypoint.h:18</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: TwistPubSubTypes.h 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_087ce8304d10c4897e4acbeac1a6fcc8.html">ros2</a></li><li class="navelem"><a class="el" href="../../dir_4ea2d91c13d1361ac1a1dbc78466282d.html">types</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">TwistPubSubTypes.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d4/d05/TwistPubSubTypes_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright 2016 Proyectos y Sistemas de Mantenimiento SL (eProsima).</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// you may not use this file except in compliance with the License.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// You may obtain a copy of the License at</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//     http://www.apache.org/licenses/LICENSE-2.0</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">// Unless required by applicable law or agreed to in writing, software</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">// See the License for the specific language governing permissions and</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">// limitations under the License.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment"></span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">/*!  </span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment"> * @file TwistPubSubTypes.h  </span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment"> * 此头文件包含序列化函数的声明。  </span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment"> *  </span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment"> * 此文件是由工具 fastcdrgen 生成的。  </span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment"> */</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#ifndef _FAST_DDS_GENERATED_GEOMETRY_MSGS_MSG_TWIST_PUBSUBTYPES_H_</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#define _FAST_DDS_GENERATED_GEOMETRY_MSGS_MSG_TWIST_PUBSUBTYPES_H_</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;fastdds/dds/topic/TopicDataType.hpp&gt;</span><span class="comment">// 引入 Fast DDS 主题数据类型的头文件</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;fastrtps/utils/md5.h&gt;</span><span class="comment">// 引入 MD5 哈希的头文件</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &quot;<a class="code" href="../../d0/d95/Twist_8h.html">Twist.h</a>&quot;</span><span class="comment">// 引入 Twist 类型的定义</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &quot;<a class="code" href="../../d5/dc7/Vector3PubSubTypes_8h.html">Vector3PubSubTypes.h</a>&quot;</span><span class="comment">// 引入 Vector3 类型的定义</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">// 检查生成的 API 版本是否与当前安装的 Fast DDS 兼容</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#if !defined(GEN_API_VER) || (GEN_API_VER != 1)</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#error \</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">    Generated Twist is not compatible with current installed Fast DDS. Please, regenerate it with fastddsgen.</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#endif  </span><span class="comment">// GEN_API_VER</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment">//定义了一个名为geometry_msgs的命名空间</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../db/df8/namespacegeometry__msgs.html">geometry_msgs</a></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>{</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment">//在geometry_msgs命名空间内又定义了一个名为msg的嵌套命名空间，进一步细化代码的组织结构</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">namespace </span>msg</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    {</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment">//这是一个预处理器指令 如果SWIG未被定义，那么从这一行开始到对应的# 如果SWIG已经被定义，这部分代码将被跳过。这通常用于防止头文件的多重包含</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">        #ifndef SWIG</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment">//定义了一个名为detail的嵌套命名空间，这是在msg命名空间内部的更深层次的命名空间，用于将特定功能相关的代码分组</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="keyword">namespace </span>detail {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment">// 用于获取 Twist 类中成员的偏移量</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">//定义一个模板，有两个模板参数 用于根据不同的类型来获取特定的类型信息</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>            <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Tag, <span class="keyword">typename</span> Tag::type M&gt;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>           <span class="comment">//开始定义一个名为Twist_rob的结构体模板</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="../../d6/d3c/structgeometry__msgs_1_1msg_1_1detail_1_1Twist__rob.html">   50</a></span>            <span class="keyword">struct </span><a class="code hl_struct" href="../../d6/d3c/structgeometry__msgs_1_1msg_1_1detail_1_1Twist__rob.html">Twist_rob</a></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>            {</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>             <span class="comment">//在Twist_rob结构体模板内定义了一个友元函数get，它是一个常量表达式函数（constexpr） 这里通过Tag模板类型来确定返回类型</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="../../d6/d3c/structgeometry__msgs_1_1msg_1_1detail_1_1Twist__rob.html#ad66f11313971ee27eb3d8d89ce8bba78">   53</a></span>                <span class="keyword">friend</span> <span class="keyword">constexpr</span> <span class="keyword">typename</span> Tag::type <a class="code hl_friend" href="../../d6/d3c/structgeometry__msgs_1_1msg_1_1detail_1_1Twist__rob.html#ad66f11313971ee27eb3d8d89ce8bba78">get</a>(</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>                        Tag)     <span class="comment">//接受一个类型为Tag的参数</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>                {</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>                    <span class="comment">//这里的M是在模板参数中定义的类型，它应该是与Twist类成员相关的某种类型</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>                    <span class="keywordflow">return</span> M;<span class="comment">// 返回成员 M</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>                }</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>            };</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment">// 定义 Twist_f 结构体，用于获取 Twist 类中的 Vector3 类型成员</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="../../d7/d1f/structgeometry__msgs_1_1msg_1_1detail_1_1Twist__f.html">   61</a></span>            <span class="keyword">struct </span><a class="code hl_struct" href="../../d7/d1f/structgeometry__msgs_1_1msg_1_1detail_1_1Twist__f.html">Twist_f</a></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            {</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>                <span class="comment">//定义了一个类型别名type，它表示Twist类中的geometry_msgs::msg::Vector3类型成员的指针类型</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="../../d7/d1f/structgeometry__msgs_1_1msg_1_1detail_1_1Twist__f.html#a25fc11dcfe30dc41624cece008a55a2b">   64</a></span>                <span class="keyword">typedef</span> <a class="code hl_class" href="../../df/d66/classgeometry__msgs_1_1msg_1_1Vector3.html">geometry_msgs::msg::Vector3</a> <a class="code hl_class" href="../../d0/d19/classgeometry__msgs_1_1msg_1_1Twist.html">Twist</a>::* <a class="code hl_typedef" href="../../d7/d1f/structgeometry__msgs_1_1msg_1_1detail_1_1Twist__f.html#a25fc11dcfe30dc41624cece008a55a2b">type</a>;<span class="comment">// 定义类型为 Twist 中的 Vector3 成员</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>                <span class="comment">//定义了一个友元常量表达式函数get，返回类型是前面定义的type</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="../../d7/d1f/structgeometry__msgs_1_1msg_1_1detail_1_1Twist__f.html#a6313056538dc1f39d101dca87e7da20b">   66</a></span>                <span class="keyword">friend</span> <span class="keyword">constexpr</span> <a class="code hl_typedef" href="../../d7/d1f/structgeometry__msgs_1_1msg_1_1detail_1_1Twist__f.html#a25fc11dcfe30dc41624cece008a55a2b">type</a> <a class="code hl_friend" href="../../d7/d1f/structgeometry__msgs_1_1msg_1_1detail_1_1Twist__f.html#a6313056538dc1f39d101dca87e7da20b">get</a>(</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>                        <a class="code hl_struct" href="../../d7/d1f/structgeometry__msgs_1_1msg_1_1detail_1_1Twist__f.html">Twist_f</a>);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>            };</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment">// 实例化 Twist_rob 以获取 m_angular 成员的偏移量</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>            <span class="keyword">template</span> <span class="keyword">struct </span><a class="code hl_struct" href="../../d6/d3c/structgeometry__msgs_1_1msg_1_1detail_1_1Twist__rob.html">Twist_rob&lt;Twist_f, &amp;Twist::m_angular&gt;</a>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment">// 获取类型 T 中 Tag 成员的偏移量</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment">//定义了一个名为Twist_offset_of的函数模板，有两个模板参数T和Tag</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> Tag&gt;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>           <span class="comment">//开始定义Twist_offset_of函数模板，它是一个内联（inline）的常量表达式函数（constexpr），返回类型为size_t</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="../../d6/dea/namespacegeometry__msgs_1_1msg_1_1detail.html#a9d8769bd89a9ca30bb54a8d887a8f304">   75</a></span>            <span class="keyword">inline</span> <span class="keywordtype">size_t</span> <span class="keyword">constexpr</span> <a class="code hl_function" href="../../d6/dea/namespacegeometry__msgs_1_1msg_1_1detail.html#a9d8769bd89a9ca30bb54a8d887a8f304">Twist_offset_of</a>() {</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>                <span class="comment">//计算T类型中Tag成员的偏移量 最后获取这个结果的地址并转换为size_t类型返回</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>                <span class="keywordflow">return</span> ((<a class="code hl_typedef" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">::size_t</a>) &amp;<span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">char</span> <span class="keyword">const </span>volatile&amp;<span class="keyword">&gt;</span>((((T*)0)-&gt;*get(Tag()))));</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>            }</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        }</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="preprocessor">        #endif</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="comment"></span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="comment">        /*!  </span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="comment">         * @brief 此类表示用户在 IDL 文件中定义的类型 Twist 的 TopicDataType。  </span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="comment">         * @ingroup TWIST  </span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="comment">         */</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="comment">//定义了一个名为TwistPubSubType的类，它继承自eprosima::fastdds::dds::TopicDataType类</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="../../d1/d91/classgeometry__msgs_1_1msg_1_1TwistPubSubType.html">   87</a></span>        <span class="keyword">class </span><a class="code hl_class" href="../../d1/d91/classgeometry__msgs_1_1msg_1_1TwistPubSubType.html">TwistPubSubType</a> : <span class="keyword">public</span> eprosima::fastdds::dds::TopicDataType</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        {</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="comment">//构造函数用于创建类的对象时进行初始化操作</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="../../d1/d91/classgeometry__msgs_1_1msg_1_1TwistPubSubType.html#a06c1580b17205a16f6306da2cc611d89">   92</a></span>            <span class="keyword">typedef</span> <a class="code hl_class" href="../../d0/d19/classgeometry__msgs_1_1msg_1_1Twist.html">Twist</a> <a class="code hl_typedef" href="../../d1/d91/classgeometry__msgs_1_1msg_1_1TwistPubSubType.html#a06c1580b17205a16f6306da2cc611d89">type</a>;<span class="comment">// 定义类型别名为 Twist</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <a class="code hl_class" href="../../d1/d91/classgeometry__msgs_1_1msg_1_1TwistPubSubType.html">TwistPubSubType</a>();<span class="comment">// 构造函数</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="comment">//定义了析构函数</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="comment">//析构函数用于在对象生命周期结束时进行清理操作，比如释放构造函数中分配的资源等，同样这里没有给出具体的实现细节</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keyword">virtual</span> <a class="code hl_class" href="../../d1/d91/classgeometry__msgs_1_1msg_1_1TwistPubSubType.html">~TwistPubSubType</a>() <span class="keyword">override</span>;<span class="comment">// 析构函数</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="comment">// 序列化数据</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="comment">//将data转换为一种适合传输或者存储的格式，存储到payload中</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="comment">// 它返回一个bool类型，表示序列化是否成功。如果序列化过程中出现错误，比如数据格式不正确、内存不足等，可能会返回false</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keyword">virtual</span> <span class="keywordtype">bool</span> serialize(</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>                    <span class="keywordtype">void</span>* data,</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>                    eprosima::fastrtps::rtps::SerializedPayload_t* payload) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="comment">// 反序列化数据</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="comment">// 这个函数与序列化函数相反，它将payload（已经序列化的数据）转换为原始的数据格式，并存储到data中</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="comment">//同样返回一个bool类型</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keyword">virtual</span> <span class="keywordtype">bool</span> deserialize(</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>                    eprosima::fastrtps::rtps::SerializedPayload_t* payload,</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                    <span class="keywordtype">void</span>* data) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="comment">// 获取序列化大小提供者</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="comment">//这个函数的目的是获取数据序列化后的大小 它接受一个数据指针data，根据数据内容返回序列化后的大小</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="comment">//返回值是一个std::function类型，可以用来灵活地表示一个可调用对象，计算序列化大小</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keyword">virtual</span> std::function&lt;uint32_t()&gt; getSerializedSizeProvider(</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>                    <span class="keywordtype">void</span>* data) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="comment">// 获取数据的键</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keyword">virtual</span> <span class="keywordtype">bool</span> getKey(</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>                    <span class="keywordtype">void</span>* data,</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>                    eprosima::fastrtps::rtps::InstanceHandle_t* ihandle,</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="comment">//有一个默认参数force_md5，如果设置为true，可能会强制使用MD5算法之类的方式来获取键值 </span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="comment">//函数返回一个bool值，表示是否成功获取键值</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>                    <span class="keywordtype">bool</span> force_md5 = <span class="keyword">false</span>) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="comment">// 创建数据实例 </span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="comment">//返回一个指向创建的数据实例的指针。返回的指针类型为void*，可以在后续进行类型转换来使用具体的数据类型</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keyword">virtual</span> <span class="keywordtype">void</span>* createData() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="comment">// 删除数据实例</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="comment">//它接受一个指向数据实例的指针data，释放该数据实例占用的资源</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keyword">virtual</span> <span class="keywordtype">void</span> deleteData(</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>                    <span class="keywordtype">void</span>* data) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="preprocessor">        #ifdef TOPIC_DATA_TYPE_API_HAS_IS_BOUNDED</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="comment">// 检查数据类型是否有界</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="comment">// eProsima_user_DllExport用于在动态链接库（DLL）场景下，使这个函数可以被外部模块使用  inline表示这个函数是内联函数</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keyword">inline</span> <span class="keywordtype">bool</span> is_bounded()<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="keyword">            </span>{</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>                <span class="keywordflow">return</span> <span class="keyword">true</span>;<span class="comment">// 表示此数据类型是有界的</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>            }</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="comment">//预处理器指令的结束部分</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="preprocessor">        #endif  </span><span class="comment">// TOPIC_DATA_TYPE_API_HAS_IS_BOUNDED</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="comment">//一个预处理器指令</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="preprocessor">        #ifdef TOPIC_DATA_TYPE_API_HAS_IS_PLAIN</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span><span class="comment">// 检查数据类型是否是简单类型</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keyword">inline</span> <span class="keywordtype">bool</span> is_plain()<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span><span class="keyword">            </span>{</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>                <span class="keywordflow">return</span> is_plain_impl();<span class="comment">// 调用实现函数检查</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>            }</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span><span class="comment">//与前面的#ifdef对应，结束条件编译部分</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span><span class="preprocessor">        #endif  </span><span class="comment">// TOPIC_DATA_TYPE_API_HAS_IS_PLAIN</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span><span class="comment">// 在给定内存中构造 Twist 对象</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span><span class="preprocessor">        #ifdef TOPIC_DATA_TYPE_API_HAS_CONSTRUCT_SAMPLE</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>            <a class="code hl_define" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <span class="keyword">inline</span> <span class="keywordtype">bool</span> construct_sample(</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span><span class="comment">// 函数接受一个void*类型的参数memory，这个指针可能指向一块已经分配好的内存区域 表示函数不修改成员变量且重写基类虚函数</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>                    <span class="keywordtype">void</span>* memory)<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="keyword">            </span>{</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>                <span class="keyword">new</span> (memory) Twist();<span class="comment">// 在给定内存中构造 Twist 对象</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>                <span class="keywordflow">return</span> <span class="keyword">true</span>;<span class="comment">// 返回成功</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>            }</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span><span class="preprocessor">        #endif  </span><span class="comment">// TOPIC_DATA_TYPE_API_HAS_CONSTRUCT_SAMPLE</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="comment">//定义了一个名为m_md5的MD5类型的成员变量  用于处理MD5哈希相关的操作，这个成员变量可能用于存储与数据相关的MD5哈希值</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="../../d1/d91/classgeometry__msgs_1_1msg_1_1TwistPubSubType.html#abdfe54533ce085cca1df012cb05bfe0b">  162</a></span>            MD5 <a class="code hl_variable" href="../../d1/d91/classgeometry__msgs_1_1msg_1_1TwistPubSubType.html#abdfe54533ce085cca1df012cb05bfe0b">m_md5</a>;<span class="comment">// MD5 哈希</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="comment">// 定义了一个名为m_keyBuffer的无符号字符指针类型的成员变量</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno"><a class="line" href="../../d1/d91/classgeometry__msgs_1_1msg_1_1TwistPubSubType.html#afda214553e326686f91b367638e0bb80">  164</a></span>            <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* <a class="code hl_variable" href="../../d1/d91/classgeometry__msgs_1_1msg_1_1TwistPubSubType.html#afda214553e326686f91b367638e0bb80">m_keyBuffer</a>;<span class="comment">// 键缓冲区</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>        <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="comment">// 检查此数据类型是否是简单类型的实现</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno"><a class="line" href="../../d1/d91/classgeometry__msgs_1_1msg_1_1TwistPubSubType.html#a7cc326f07995c5246c649b1c87bd27e9">  167</a></span>            <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d1/d91/classgeometry__msgs_1_1msg_1_1TwistPubSubType.html#a7cc326f07995c5246c649b1c87bd27e9">is_plain_impl</a>()</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>            {</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>                <span class="comment">//detail::Twist_f&gt;() 调用Twist_offset_of函数模传递Twist和detail::Twist_f作为模板参数用于计算Twist类型中与detail::Twist_f相关的偏移量  sizeof(geometry获取geometry相关类型的大小</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>                <span class="comment">//进行一个比较操作(48ULL是一个无符号长整型常量)</span></div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>                <span class="keywordflow">return</span> 48ULL == (detail::Twist_offset_of&lt;Twist, detail::Twist_f&gt;() + <span class="keyword">sizeof</span>(<a class="code hl_class" href="../../df/d66/classgeometry__msgs_1_1msg_1_1Vector3.html">geometry_msgs::msg::Vector3</a>));</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>            }};</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    }</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>}</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span><span class="comment">//一个预处理器指令的结束部分，与前面的#ifndef对应</span></div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="preprocessor">#endif </span><span class="comment">// _FAST_DDS_GENERATED_GEOMETRY_MSGS_MSG_TWIST_PUBSUBTYPES_H_</span></div>
+<div class="ttc" id="aCameraInfo_8h_html_abd19d82e50737e50241fe1723b1c6066"><div class="ttname"><a href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a></div><div class="ttdeci">#define eProsima_user_DllExport</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d15/CameraInfo_8h_source.html#l00044">CameraInfo.h:44</a></div></div>
+<div class="ttc" id="aConcurrentQueue_8h_html_abc08b7e2a4e588862664de9fc43fc61b"><div class="ttname"><a href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a></div><div class="ttdeci">Traits::size_t size_t</div><div class="ttdef"><b>Definition:</b> <a href="../../de/dad/ConcurrentQueue_8h_source.html#l01347">ConcurrentQueue.h:1347</a></div></div>
+<div class="ttc" id="aTwist_8h_html"><div class="ttname"><a href="../../d0/d95/Twist_8h.html">Twist.h</a></div></div>
+<div class="ttc" id="aVector3PubSubTypes_8h_html"><div class="ttname"><a href="../../d5/dc7/Vector3PubSubTypes_8h.html">Vector3PubSubTypes.h</a></div></div>
+<div class="ttc" id="aclassgeometry__msgs_1_1msg_1_1TwistPubSubType_html"><div class="ttname"><a href="../../d1/d91/classgeometry__msgs_1_1msg_1_1TwistPubSubType.html">geometry_msgs::msg::TwistPubSubType</a></div><div class="ttdoc">此类表示用户在 IDL 文件中定义的类型 Twist 的 TopicDataType。   &lt;&gt;</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d05/TwistPubSubTypes_8h_source.html#l00087">TwistPubSubTypes.h:88</a></div></div>
+<div class="ttc" id="aclassgeometry__msgs_1_1msg_1_1TwistPubSubType_html_a06c1580b17205a16f6306da2cc611d89"><div class="ttname"><a href="../../d1/d91/classgeometry__msgs_1_1msg_1_1TwistPubSubType.html#a06c1580b17205a16f6306da2cc611d89">geometry_msgs::msg::TwistPubSubType::type</a></div><div class="ttdeci">Twist type</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d05/TwistPubSubTypes_8h_source.html#l00092">TwistPubSubTypes.h:92</a></div></div>
+<div class="ttc" id="aclassgeometry__msgs_1_1msg_1_1TwistPubSubType_html_a7cc326f07995c5246c649b1c87bd27e9"><div class="ttname"><a href="../../d1/d91/classgeometry__msgs_1_1msg_1_1TwistPubSubType.html#a7cc326f07995c5246c649b1c87bd27e9">geometry_msgs::msg::TwistPubSubType::is_plain_impl</a></div><div class="ttdeci">static constexpr bool is_plain_impl()</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d05/TwistPubSubTypes_8h_source.html#l00167">TwistPubSubTypes.h:167</a></div></div>
+<div class="ttc" id="aclassgeometry__msgs_1_1msg_1_1TwistPubSubType_html_abdfe54533ce085cca1df012cb05bfe0b"><div class="ttname"><a href="../../d1/d91/classgeometry__msgs_1_1msg_1_1TwistPubSubType.html#abdfe54533ce085cca1df012cb05bfe0b">geometry_msgs::msg::TwistPubSubType::m_md5</a></div><div class="ttdeci">MD5 m_md5</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d05/TwistPubSubTypes_8h_source.html#l00162">TwistPubSubTypes.h:162</a></div></div>
+<div class="ttc" id="aclassgeometry__msgs_1_1msg_1_1TwistPubSubType_html_afda214553e326686f91b367638e0bb80"><div class="ttname"><a href="../../d1/d91/classgeometry__msgs_1_1msg_1_1TwistPubSubType.html#afda214553e326686f91b367638e0bb80">geometry_msgs::msg::TwistPubSubType::m_keyBuffer</a></div><div class="ttdeci">unsigned char * m_keyBuffer</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d05/TwistPubSubTypes_8h_source.html#l00164">TwistPubSubTypes.h:164</a></div></div>
+<div class="ttc" id="aclassgeometry__msgs_1_1msg_1_1Twist_html"><div class="ttname"><a href="../../d0/d19/classgeometry__msgs_1_1msg_1_1Twist.html">geometry_msgs::msg::Twist</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d95/Twist_8h_source.html#l00069">Twist.h:70</a></div></div>
+<div class="ttc" id="aclassgeometry__msgs_1_1msg_1_1Vector3_html"><div class="ttname"><a href="../../df/d66/classgeometry__msgs_1_1msg_1_1Vector3.html">geometry_msgs::msg::Vector3</a></div><div class="ttdoc">此类表示用户在 IDL 文件中定义的 Vector3 结构。   &lt;&gt;</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d8c/Vector3_8h_source.html#l00071">Vector3.h:72</a></div></div>
+<div class="ttc" id="anamespacegeometry__msgs_1_1msg_1_1detail_html_a9d8769bd89a9ca30bb54a8d887a8f304"><div class="ttname"><a href="../../d6/dea/namespacegeometry__msgs_1_1msg_1_1detail.html#a9d8769bd89a9ca30bb54a8d887a8f304">geometry_msgs::msg::detail::Twist_offset_of</a></div><div class="ttdeci">size_t constexpr Twist_offset_of()</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d05/TwistPubSubTypes_8h_source.html#l00075">TwistPubSubTypes.h:75</a></div></div>
+<div class="ttc" id="anamespacegeometry__msgs_html"><div class="ttname"><a href="../../db/df8/namespacegeometry__msgs.html">geometry_msgs</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d4/de5/Point_8h_source.html#l00064">Point.h:64</a></div></div>
+<div class="ttc" id="astructgeometry__msgs_1_1msg_1_1detail_1_1Twist__f_html"><div class="ttname"><a href="../../d7/d1f/structgeometry__msgs_1_1msg_1_1detail_1_1Twist__f.html">geometry_msgs::msg::detail::Twist_f</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d05/TwistPubSubTypes_8h_source.html#l00061">TwistPubSubTypes.h:62</a></div></div>
+<div class="ttc" id="astructgeometry__msgs_1_1msg_1_1detail_1_1Twist__f_html_a25fc11dcfe30dc41624cece008a55a2b"><div class="ttname"><a href="../../d7/d1f/structgeometry__msgs_1_1msg_1_1detail_1_1Twist__f.html#a25fc11dcfe30dc41624cece008a55a2b">geometry_msgs::msg::detail::Twist_f::type</a></div><div class="ttdeci">geometry_msgs::msg::Vector3 Twist::* type</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d05/TwistPubSubTypes_8h_source.html#l00064">TwistPubSubTypes.h:64</a></div></div>
+<div class="ttc" id="astructgeometry__msgs_1_1msg_1_1detail_1_1Twist__f_html_a6313056538dc1f39d101dca87e7da20b"><div class="ttname"><a href="../../d7/d1f/structgeometry__msgs_1_1msg_1_1detail_1_1Twist__f.html#a6313056538dc1f39d101dca87e7da20b">geometry_msgs::msg::detail::Twist_f::get</a></div><div class="ttdeci">friend constexpr type get(Twist_f)</div></div>
+<div class="ttc" id="astructgeometry__msgs_1_1msg_1_1detail_1_1Twist__rob_html"><div class="ttname"><a href="../../d6/d3c/structgeometry__msgs_1_1msg_1_1detail_1_1Twist__rob.html">geometry_msgs::msg::detail::Twist_rob</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d05/TwistPubSubTypes_8h_source.html#l00050">TwistPubSubTypes.h:51</a></div></div>
+<div class="ttc" id="astructgeometry__msgs_1_1msg_1_1detail_1_1Twist__rob_html_ad66f11313971ee27eb3d8d89ce8bba78"><div class="ttname"><a href="../../d6/d3c/structgeometry__msgs_1_1msg_1_1detail_1_1Twist__rob.html#ad66f11313971ee27eb3d8d89ce8bba78">geometry_msgs::msg::detail::Twist_rob::get</a></div><div class="ttdeci">friend constexpr Tag::type get(Tag)</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d05/TwistPubSubTypes_8h_source.html#l00053">TwistPubSubTypes.h:53</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

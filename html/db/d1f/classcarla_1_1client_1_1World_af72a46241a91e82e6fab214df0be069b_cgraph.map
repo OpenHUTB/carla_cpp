@@ -1,0 +1,4 @@
+<map id="carla::client::World::GetIMUISensorGravity" name="carla::client::World::GetIMUISensorGravity">
+<area shape="rect" id="node1" title="获取用于IMUI传感器加速度计计算的重力值。 在涉及到模拟车辆、机器人等带有IMUI传感器的实体时，需要获取这个重力值用于传感器相关物理量的准确计算， 以符合真实物理世界的规律或者模拟特定的物理环境。" alt="" coords="5,5,165,45"/>
+<area shape="rect" id="node2" href="$d1/dd3/classcarla_1_1client_1_1detail_1_1EpisodeProxyImpl.html#aaca857645fbeb6546b4a03a663bb65af" title="与 TryLock 相同，但永远不会返回 nullptr。" alt="" coords="213,5,380,45"/>
+</map>

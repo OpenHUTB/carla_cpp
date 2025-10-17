@@ -1,0 +1,5 @@
+<map id="carla::geom::Transform::InverseTransformPoint" name="carla::geom::Transform::InverseTransformPoint">
+<area shape="rect" id="node1" title="将此变换的逆运算应用于 in_point 操作顺序为先进行位置上的逆平移（减去位置信息），然后再根据旋转的逆操作对向量进行旋转，最终将结果赋值回输入点" alt="" coords="5,5,165,45"/>
+<area shape="rect" id="node2" href="$d8/dba/classcarla_1_1geom_1_1Rotation.html#ad4d8bc301fba5c24b1acdc190a848703" title=" " alt="" coords="213,5,360,45"/>
+<area shape="rect" id="node3" href="$d0/dea/classcarla_1_1geom_1_1Math.html#a2bd79912876dfbab9354c0bb841320e4" title=" " alt="" coords="408,5,537,45"/>
+</map>

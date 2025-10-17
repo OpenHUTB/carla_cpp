@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: TaggedComponent.h 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_2d15d0715a2692171bd03ed14a4a79af.html">Unreal</a></li><li class="navelem"><a class="el" href="../../dir_d3c1db2570616bec48bf5a6dd06bce95.html">CarlaUE4</a></li><li class="navelem"><a class="el" href="../../dir_3538576148ac14151677be9b0aee6fcc.html">Plugins</a></li><li class="navelem"><a class="el" href="../../dir_fbda5b12374c683cbdca72abb2d51944.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_18937e8f6bde63367bf26837323a9508.html">Source</a></li><li class="navelem"><a class="el" href="../../dir_8fc34afb5f07a67966c78bf5319f94ae.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_b708e75f0564cefaa95a07ef1c60fa1d.html">Game</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">TaggedComponent.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../de/d95/TaggedComponent_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// 这是一个预处理指令，用于确保头文件只被包含一次，避免重复定义的问题</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#pragma once  </span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// 包含核心最小化相关的头文件，通常包含了一些基础的UE4类型和宏等常用定义</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;CoreMinimal.h&quot;</span>  </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">// 包含材质实例动态相关的头文件，用于在运行时动态修改材质属性等操作</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;Materials/MaterialInstanceDynamic.h&quot;</span>  </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">// 包含实例化静态网格相关的头文件，用于处理场景中的实例化静态网格对象</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;Engine/InstancedStaticMesh.h&quot;</span>  </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">// 包含分层实例化静态网格组件相关的头文件，用于更复杂的实例化静态网格场景组织等</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;Components/HierarchicalInstancedStaticMeshComponent.h&quot;</span>  </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">// 这个宏用于声明一个类是可被蓝图生成的组件类，并且开启反射相关功能，以便在UE4编辑器等环境中使用</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;TaggedComponent.generated.h&quot;</span>  </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">// 定义一个名为UTaggedComponent的类，它继承自UPrimitiveComponent，意味着它可以作为一个可渲染的组件在场景中存在</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">// 并且具有UPrimitiveComponent的相关特性和功能</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>UCLASS( meta=(BlueprintSpawnableComponent) )  </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="../../d8/d9f/classUTaggedComponent.html">   19</a></span>class CARLA_API <a class="code hl_class" href="../../d8/d9f/classUTaggedComponent.html">UTaggedComponent</a> : public <a class="code hl_class" href="../../d9/d6d/classUPrimitiveComponent.html">UPrimitiveComponent</a></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>{</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="comment">// 这个宏用于生成必要的反射代码，是UE4中实现反射机制的一部分，使得类能够在编辑器等环境中被正确识别和处理</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    GENERATED_BODY()  </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="comment">// 构造函数，接受一个FObjectInitializer参数用于初始化对象的相关属性等</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <a class="code hl_class" href="../../d8/d9f/classUTaggedComponent.html">UTaggedComponent</a>(<span class="keyword">const</span> FObjectInitializer&amp; ObjectInitializer);  </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="comment">// 重写创建场景代理的虚函数，用于创建该组件对应的场景代理对象，场景代理负责将组件的数据传递给渲染管线等相关操作</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keyword">virtual</span> FPrimitiveSceneProxy * CreateSceneProxy() <span class="keyword">override</span>;  </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="comment">// 重写每帧更新组件的虚函数，在这里可以实现组件每帧需要执行的逻辑，例如根据时间变化更新状态等</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> TickComponent(<span class="keywordtype">float</span> DeltaTime, <span class="keyword">enum</span> ELevelTick TickType, FActorComponentTickFunction * ThisTickFunction) <span class="keyword">override</span>;  </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="comment">// 重写组件注册时调用的虚函数，可用于在组件注册到场景时执行一些初始化或者其他必要操作</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnRegister() <span class="keyword">override</span>;  </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="comment">// 计算组件的包围盒（边界范围）信息，根据给定的本地到世界的变换矩阵来确定其在世界空间中的边界范围</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">virtual</span> FBoxSphereBounds CalcBounds(<span class="keyword">const</span> FTransform &amp; LocalToWorld) <span class="keyword">const</span> ;  </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="comment">// 设置颜色的函数，目前的实现存在问题（FIXME注释指出），应该接受一个int32类型参数并转换为FVector4类型来设置颜色，这里使用FLinearColor类型接收颜色参数</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">void</span> SetColor(FLinearColor color);  </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="comment">// 获取当前组件颜色的函数</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    FLinearColor GetColor();  </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="comment">// 存储组件的颜色信息，使用FLinearColor类型表示颜色</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="../../d8/d9f/classUTaggedComponent.html#a4fe4903328a62c7a144ffad4ab01d638">   48</a></span>    FLinearColor <a class="code hl_variable" href="../../d8/d9f/classUTaggedComponent.html#a4fe4903328a62c7a144ffad4ab01d638">Color</a>;  </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="comment">// 一个属性，用于存储材质指针，使用UPROPERTY宏标记，这样该属性可以被UE4的反射系统识别和处理，比如可以在编辑器中进行赋值等操作</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    UPROPERTY()  </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="../../d8/d9f/classUTaggedComponent.html#a65b27504bc2ad33033cb3e9bda9ec5d1">   52</a></span>    UMaterial * TaggedMaterial;  </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="comment">// 存储材质实例动态对象的指针，用于在运行时动态修改材质相关属性，同样通过UPROPERTY宏标记以便被UE4系统正确处理</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    UPROPERTY()  </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="../../d8/d9f/classUTaggedComponent.html#ad4a9ddd2cef4c0d87ba832968686d060">   56</a></span>    UMaterialInstanceDynamic * TaggedMID;  </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="comment">// 一个布尔变量，用于标记是否是骨骼网格，初始化为false</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="../../d8/d9f/classUTaggedComponent.html#a267ceb6f6c7a872ffbcf4c7e76bca339">   59</a></span>    <span class="keywordtype">bool</span> bSkeletalMesh = false;  </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="comment">// 以下几个重载的CreateSceneProxy函数，分别用于针对不同类型的网格组件（静态网格、骨骼网格、分层实例化静态网格、实例化静态网格）创建对应的场景代理对象</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    FPrimitiveSceneProxy * CreateSceneProxy(UStaticMeshComponent * StaticMeshComponent);  </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    FPrimitiveSceneProxy * CreateSceneProxy(USkeletalMeshComponent * SkeletalMeshComponent);  </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    FPrimitiveSceneProxy * CreateSceneProxy(UHierarchicalInstancedStaticMeshComponent * MeshComponent);  </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    FPrimitiveSceneProxy * CreateSceneProxy(UInstancedStaticMeshComponent * MeshComponent);  </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="comment">// 一个小的“hack”（临时解决办法），用于让虚幻引擎在骨骼网格情况下初始化基础组件，通过控制等待帧数来实现</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="../../d8/d9f/classUTaggedComponent.html#a7e4f7d34a0b4170e14eafd09c1540196">   68</a></span>    <span class="keywordtype">bool</span> bShouldWaitFrame = <a class="code hl_variable" href="../../d0/d6a/ActorDispatcher_8cpp.html#a930920b2bc42824a5c03be681830f4b2">true</a>;  </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="../../d8/d9f/classUTaggedComponent.html#a0e149f3751ec9edeb9ef9408b72e008c">   69</a></span>    <span class="keywordtype">int</span> NumFramesToWait = 2;  </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>};</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment">// 定义一个名为FTaggedStaticMeshSceneProxy的类，它继承自FStaticMeshSceneProxy，用于处理静态网格组件的场景代理相关特定逻辑</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="../../d5/da2/classFTaggedStaticMeshSceneProxy.html">   73</a></span>class <a class="code hl_class" href="../../d5/da2/classFTaggedStaticMeshSceneProxy.html">FTaggedStaticMeshSceneProxy</a> : public <a class="code hl_class" href="../../df/d69/classFStaticMeshSceneProxy.html">FStaticMeshSceneProxy</a></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>{</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="comment">// 构造函数，接受静态网格组件指针、一个布尔值（用于控制是否强制LOD共享静态光照）以及材质实例指针作为参数，用于初始化该场景代理对象</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <a class="code hl_class" href="../../d5/da2/classFTaggedStaticMeshSceneProxy.html">FTaggedStaticMeshSceneProxy</a>(UStaticMeshComponent * Component, <span class="keywordtype">bool</span> bForceLODsShareStaticLighting, UMaterialInstance * MaterialInstance);  </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="comment">// 重写获取视图相关性的虚函数，用于确定该场景代理在给定视图下的相关性，例如是否可见、是否需要渲染等相关判断</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keyword">virtual</span> FPrimitiveViewRelevance GetViewRelevance(<span class="keyword">const</span> FSceneView * View) <span class="keyword">const override</span>;  </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="comment">// 存储材质实例指针，用于该场景代理相关的材质处理等操作</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="../../d5/da2/classFTaggedStaticMeshSceneProxy.html#afa46cd4bd4a77e0ca5d7f5ef3c4592bd">   84</a></span>    UMaterialInstance * <a class="code hl_variable" href="../../d5/da2/classFTaggedStaticMeshSceneProxy.html#afa46cd4bd4a77e0ca5d7f5ef3c4592bd">TaggedMaterialInstance</a>;  </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>};</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="comment">// 定义一个名为FTaggedSkeletalMeshSceneProxy的类，它继承自FSkeletalMeshSceneProxy，用于处理骨骼网格组件的场景代理相关特定逻辑</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="../../d3/d7a/classFTaggedSkeletalMeshSceneProxy.html">   88</a></span><span class="keyword">class </span><a class="code hl_class" href="../../d3/d7a/classFTaggedSkeletalMeshSceneProxy.html">FTaggedSkeletalMeshSceneProxy</a> : <span class="keyword">public</span> <a class="code hl_class" href="../../d4/d0e/classFSkeletalMeshSceneProxy.html">FSkeletalMeshSceneProxy</a></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>{</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="comment">// 构造函数，接受骨骼网格组件指针、骨骼网格渲染数据指针以及材质实例指针作为参数，用于初始化该场景代理对象</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <a class="code hl_class" href="../../d3/d7a/classFTaggedSkeletalMeshSceneProxy.html">FTaggedSkeletalMeshSceneProxy</a>(<span class="keyword">const</span> USkinnedMeshComponent * Component, FSkeletalMeshRenderData * InSkeletalMeshRenderData, UMaterialInstance * MaterialInstance);  </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="comment">// 重写获取视图相关性的虚函数，用于确定该场景代理在给定视图下的相关性，与上面类似，用于判断渲染相关情况</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keyword">virtual</span> FPrimitiveViewRelevance <a class="code hl_function" href="../../d3/d7a/classFTaggedSkeletalMeshSceneProxy.html#a9f73f005cc2298e42737df28c828a1d1">GetViewRelevance</a>(<span class="keyword">const</span> FSceneView * View) <span class="keyword">const override</span>;  </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="comment">// 存储材质实例指针，用于该场景代理对应的骨骼网格材质相关操作</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="../../d3/d7a/classFTaggedSkeletalMeshSceneProxy.html#ad760ca14c4235e1eaf63e1f97a925121">   99</a></span>    UMaterialInstance * <a class="code hl_variable" href="../../d3/d7a/classFTaggedSkeletalMeshSceneProxy.html#ad760ca14c4235e1eaf63e1f97a925121">TaggedMaterialInstance</a>;  </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>};</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="comment">// 定义一个名为FTaggedInstancedStaticMeshSceneProxy的类，它继承自FInstancedStaticMeshSceneProxy，用于处理实例化静态网格组件的场景代理相关特定逻辑</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="../../db/d8f/classFTaggedInstancedStaticMeshSceneProxy.html">  103</a></span><span class="keyword">class </span><a class="code hl_class" href="../../db/d8f/classFTaggedInstancedStaticMeshSceneProxy.html">FTaggedInstancedStaticMeshSceneProxy</a> : <span class="keyword">public</span> <a class="code hl_class" href="../../d9/d40/classFInstancedStaticMeshSceneProxy.html">FInstancedStaticMeshSceneProxy</a></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>{</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="comment">// 构造函数，接受实例化静态网格组件指针、渲染特性级别类型以及材质实例指针作为参数，用于初始化该场景代理对象</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <a class="code hl_class" href="../../db/d8f/classFTaggedInstancedStaticMeshSceneProxy.html">FTaggedInstancedStaticMeshSceneProxy</a>(UInstancedStaticMeshComponent * Component, ERHIFeatureLevel::Type InFeatureLevel, UMaterialInstance * MaterialInstance);  </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="comment">// 重写获取视图相关性的虚函数，用于判断该场景代理在给定视图下是否需要渲染等相关情况</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keyword">virtual</span> FPrimitiveViewRelevance <a class="code hl_function" href="../../db/d8f/classFTaggedInstancedStaticMeshSceneProxy.html#a22b72b8b0c5bbd09583050b1ca241435">GetViewRelevance</a>(<span class="keyword">const</span> FSceneView * View) <span class="keyword">const override</span>;  </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="comment">// 存储材质实例指针，用于实例化静态网格场景代理的材质相关处理</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="../../db/d8f/classFTaggedInstancedStaticMeshSceneProxy.html#a743f0c002853aee7c6648f0aad719da4">  114</a></span>    UMaterialInstance * <a class="code hl_variable" href="../../db/d8f/classFTaggedInstancedStaticMeshSceneProxy.html#a743f0c002853aee7c6648f0aad719da4">TaggedMaterialInstance</a>;  </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>};</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="comment">// 定义一个名为FTaggedHierarchicalStaticMeshSceneProxy的类，它继承自FHierarchicalStaticMeshSceneProxy，用于处理分层实例化静态网格组件的场景代理相关特定逻辑</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="../../d5/de8/classFTaggedHierarchicalStaticMeshSceneProxy.html">  118</a></span><span class="keyword">class </span><a class="code hl_class" href="../../d5/de8/classFTaggedHierarchicalStaticMeshSceneProxy.html">FTaggedHierarchicalStaticMeshSceneProxy</a> : <span class="keyword">public</span> <a class="code hl_class" href="../../d6/d94/classFHierarchicalStaticMeshSceneProxy.html">FHierarchicalStaticMeshSceneProxy</a></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>{</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="comment">// 构造函数，接受分层实例化静态网格组件指针、一个布尔值（是否是草相关标记）、渲染特性级别类型以及材质实例指针作为参数，用于初始化该场景代理对象</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <a class="code hl_class" href="../../d5/de8/classFTaggedHierarchicalStaticMeshSceneProxy.html">FTaggedHierarchicalStaticMeshSceneProxy</a>(UHierarchicalInstancedStaticMeshComponent * Component, <span class="keywordtype">bool</span> bInIsGrass, ERHIFeatureLevel::Type InFeatureLevel, UMaterialInstance * MaterialInstance);  </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="comment">// 重写获取视图相关性的虚函数，用于确定该场景代理在给定视图下的渲染相关性情况</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <span class="keyword">virtual</span> FPrimitiveViewRelevance <a class="code hl_function" href="../../d5/de8/classFTaggedHierarchicalStaticMeshSceneProxy.html#ab1db4210741474cc5cd556a8a1511f8a">GetViewRelevance</a>(<span class="keyword">const</span> FSceneView * View) <span class="keyword">const override</span>;  </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="comment">// 存储材质实例指针，用于分层实例化静态网格场景代理对应的材质处理操作</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="../../d5/de8/classFTaggedHierarchicalStaticMeshSceneProxy.html#a78663276805b27501950ae42c4c4d4bd">  129</a></span>    UMaterialInstance * <a class="code hl_variable" href="../../d5/de8/classFTaggedHierarchicalStaticMeshSceneProxy.html#a78663276805b27501950ae42c4c4d4bd">TaggedMaterialInstance</a>;  </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>};</div>
+<div class="ttc" id="aActorDispatcher_8cpp_html_a930920b2bc42824a5c03be681830f4b2"><div class="ttname"><a href="../../d0/d6a/ActorDispatcher_8cpp.html#a930920b2bc42824a5c03be681830f4b2">true</a></div><div class="ttdeci">return true</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00196">ActorDispatcher.cpp:196</a></div></div>
+<div class="ttc" id="aclassFHierarchicalStaticMeshSceneProxy_html"><div class="ttname"><a href="../../d6/d94/classFHierarchicalStaticMeshSceneProxy.html">FHierarchicalStaticMeshSceneProxy</a></div></div>
+<div class="ttc" id="aclassFInstancedStaticMeshSceneProxy_html"><div class="ttname"><a href="../../d9/d40/classFInstancedStaticMeshSceneProxy.html">FInstancedStaticMeshSceneProxy</a></div></div>
+<div class="ttc" id="aclassFSkeletalMeshSceneProxy_html"><div class="ttname"><a href="../../d4/d0e/classFSkeletalMeshSceneProxy.html">FSkeletalMeshSceneProxy</a></div></div>
+<div class="ttc" id="aclassFStaticMeshSceneProxy_html"><div class="ttname"><a href="../../df/d69/classFStaticMeshSceneProxy.html">FStaticMeshSceneProxy</a></div></div>
+<div class="ttc" id="aclassFTaggedHierarchicalStaticMeshSceneProxy_html"><div class="ttname"><a href="../../d5/de8/classFTaggedHierarchicalStaticMeshSceneProxy.html">FTaggedHierarchicalStaticMeshSceneProxy</a></div><div class="ttdef"><b>Definition:</b> <a href="../../de/d95/TaggedComponent_8h_source.html#l00118">TaggedComponent.h:119</a></div></div>
+<div class="ttc" id="aclassFTaggedHierarchicalStaticMeshSceneProxy_html_a78663276805b27501950ae42c4c4d4bd"><div class="ttname"><a href="../../d5/de8/classFTaggedHierarchicalStaticMeshSceneProxy.html#a78663276805b27501950ae42c4c4d4bd">FTaggedHierarchicalStaticMeshSceneProxy::TaggedMaterialInstance</a></div><div class="ttdeci">UMaterialInstance * TaggedMaterialInstance</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d95/TaggedComponent_8h_source.html#l00129">TaggedComponent.h:129</a></div></div>
+<div class="ttc" id="aclassFTaggedHierarchicalStaticMeshSceneProxy_html_ab1db4210741474cc5cd556a8a1511f8a"><div class="ttname"><a href="../../d5/de8/classFTaggedHierarchicalStaticMeshSceneProxy.html#ab1db4210741474cc5cd556a8a1511f8a">FTaggedHierarchicalStaticMeshSceneProxy::GetViewRelevance</a></div><div class="ttdeci">virtual FPrimitiveViewRelevance GetViewRelevance(const FSceneView *View) const override</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/de7/TaggedComponent_8cpp_source.html#l00345">TaggedComponent.cpp:345</a></div></div>
+<div class="ttc" id="aclassFTaggedInstancedStaticMeshSceneProxy_html"><div class="ttname"><a href="../../db/d8f/classFTaggedInstancedStaticMeshSceneProxy.html">FTaggedInstancedStaticMeshSceneProxy</a></div><div class="ttdef"><b>Definition:</b> <a href="../../de/d95/TaggedComponent_8h_source.html#l00103">TaggedComponent.h:104</a></div></div>
+<div class="ttc" id="aclassFTaggedInstancedStaticMeshSceneProxy_html_a22b72b8b0c5bbd09583050b1ca241435"><div class="ttname"><a href="../../db/d8f/classFTaggedInstancedStaticMeshSceneProxy.html#a22b72b8b0c5bbd09583050b1ca241435">FTaggedInstancedStaticMeshSceneProxy::GetViewRelevance</a></div><div class="ttdeci">virtual FPrimitiveViewRelevance GetViewRelevance(const FSceneView *View) const override</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/de7/TaggedComponent_8cpp_source.html#l00318">TaggedComponent.cpp:318</a></div></div>
+<div class="ttc" id="aclassFTaggedInstancedStaticMeshSceneProxy_html_a743f0c002853aee7c6648f0aad719da4"><div class="ttname"><a href="../../db/d8f/classFTaggedInstancedStaticMeshSceneProxy.html#a743f0c002853aee7c6648f0aad719da4">FTaggedInstancedStaticMeshSceneProxy::TaggedMaterialInstance</a></div><div class="ttdeci">UMaterialInstance * TaggedMaterialInstance</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d95/TaggedComponent_8h_source.html#l00114">TaggedComponent.h:114</a></div></div>
+<div class="ttc" id="aclassFTaggedSkeletalMeshSceneProxy_html"><div class="ttname"><a href="../../d3/d7a/classFTaggedSkeletalMeshSceneProxy.html">FTaggedSkeletalMeshSceneProxy</a></div><div class="ttdef"><b>Definition:</b> <a href="../../de/d95/TaggedComponent_8h_source.html#l00088">TaggedComponent.h:89</a></div></div>
+<div class="ttc" id="aclassFTaggedSkeletalMeshSceneProxy_html_a9f73f005cc2298e42737df28c828a1d1"><div class="ttname"><a href="../../d3/d7a/classFTaggedSkeletalMeshSceneProxy.html#a9f73f005cc2298e42737df28c828a1d1">FTaggedSkeletalMeshSceneProxy::GetViewRelevance</a></div><div class="ttdeci">virtual FPrimitiveViewRelevance GetViewRelevance(const FSceneView *View) const override</div><div class="ttdef"><b>Definition:</b> <a href="../../d3/de7/TaggedComponent_8cpp_source.html#l00292">TaggedComponent.cpp:292</a></div></div>
+<div class="ttc" id="aclassFTaggedSkeletalMeshSceneProxy_html_ad760ca14c4235e1eaf63e1f97a925121"><div class="ttname"><a href="../../d3/d7a/classFTaggedSkeletalMeshSceneProxy.html#ad760ca14c4235e1eaf63e1f97a925121">FTaggedSkeletalMeshSceneProxy::TaggedMaterialInstance</a></div><div class="ttdeci">UMaterialInstance * TaggedMaterialInstance</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d95/TaggedComponent_8h_source.html#l00099">TaggedComponent.h:99</a></div></div>
+<div class="ttc" id="aclassFTaggedStaticMeshSceneProxy_html"><div class="ttname"><a href="../../d5/da2/classFTaggedStaticMeshSceneProxy.html">FTaggedStaticMeshSceneProxy</a></div><div class="ttdef"><b>Definition:</b> <a href="../../de/d95/TaggedComponent_8h_source.html#l00073">TaggedComponent.h:74</a></div></div>
+<div class="ttc" id="aclassFTaggedStaticMeshSceneProxy_html_afa46cd4bd4a77e0ca5d7f5ef3c4592bd"><div class="ttname"><a href="../../d5/da2/classFTaggedStaticMeshSceneProxy.html#afa46cd4bd4a77e0ca5d7f5ef3c4592bd">FTaggedStaticMeshSceneProxy::TaggedMaterialInstance</a></div><div class="ttdeci">UMaterialInstance * TaggedMaterialInstance</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d95/TaggedComponent_8h_source.html#l00084">TaggedComponent.h:84</a></div></div>
+<div class="ttc" id="aclassUPrimitiveComponent_html"><div class="ttname"><a href="../../d9/d6d/classUPrimitiveComponent.html">UPrimitiveComponent</a></div></div>
+<div class="ttc" id="aclassUTaggedComponent_html"><div class="ttname"><a href="../../d8/d9f/classUTaggedComponent.html">UTaggedComponent</a></div><div class="ttdef"><b>Definition:</b> <a href="../../de/d95/TaggedComponent_8h_source.html#l00019">TaggedComponent.h:20</a></div></div>
+<div class="ttc" id="aclassUTaggedComponent_html_a4fe4903328a62c7a144ffad4ab01d638"><div class="ttname"><a href="../../d8/d9f/classUTaggedComponent.html#a4fe4903328a62c7a144ffad4ab01d638">UTaggedComponent::Color</a></div><div class="ttdeci">FLinearColor Color</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d95/TaggedComponent_8h_source.html#l00048">TaggedComponent.h:48</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<map id="carla::client::Actor::GetTransform" name="carla::client::Actor::GetTransform">
+<area shape="rect" id="node1" title="返回行为体的当前变换（位置和方向）。" alt="" coords="701,101,825,141"/>
+<area shape="rect" id="node2" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#a076f17bcb321e9536ca59ee06bfab858" title="calculate the speed from the actor" alt="" coords="483,37,623,77"/>
+<area shape="rect" id="node6" href="$df/def/classcarla_1_1client_1_1TrafficLight.html#ae658ff882df9b877a9730c879c028ba9" title=" " alt="" coords="475,101,632,141"/>
+<area shape="rect" id="node7" href="$d7/db6/classcarla_1_1client_1_1RssSensor.html#afe634e278e1245d60e7e77d457657e2e" title=" " alt="" coords="453,165,653,205"/>
+<area shape="rect" id="node3" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#aaaf0a0f73759f525137e227af98f5074" title="calculate ego vehicle dynamics on the route" alt="" coords="193,5,405,45"/>
+<area shape="rect" id="node5" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#a65ed15e5c2d160f84d6ae5872f8cf878" title="default constructor with default internal default actor constellation callback" alt="" coords="229,69,369,109"/>
+<area shape="rect" id="node4" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#a7ddb47aaeb4d941c95e5b2fce91186b7" title="main function to trigger the RSS check at a certain point in time" alt="" coords="5,5,145,45"/>
+<area shape="rect" id="node8" href="$d7/db6/classcarla_1_1client_1_1RssSensor.html#a8c7f3e09bcf07520a2af441a7de06092" title="传感器滴答（tick，可以理解为周期性触发的操作）回调函数，实际执行传感器相关逻辑的函数" alt="" coords="221,165,378,205"/>
+</map>

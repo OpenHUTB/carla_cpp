@@ -1,0 +1,7 @@
+<map id="carla::streaming::detail::tcp::IncomingMessage" name="carla::streaming::detail::tcp::IncomingMessage">
+<area shape="rect" id="node1" title="读取传入TCP消息的助手。在单个缓冲区中分配整个消息。" alt="" coords="5,196,164,236"/>
+<area shape="rect" id="node2" title=" " alt="" coords="24,5,92,31"/>
+<area shape="rect" id="node3" href="$d0/d0a/classcarla_1_1Buffer.html" title="一块原始数据。 请注意，如果需要更多容量，则会分配一个新的内存块，并 删除旧的内存块。这意味着默认情况下，缓冲区只能增长。要释放内存，使用 clear 或 pop。" alt="" coords="143,108,234,133"/>
+<area shape="rect" id="node4" title=" " alt="" coords="116,5,307,31"/>
+<area shape="rect" id="node5" title=" " alt="" coords="331,5,502,31"/>
+</map>

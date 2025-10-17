@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: RandomGenerator.h 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_a8dbe3691941680fc0b6dad001059c22.html">trafficmanager</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">RandomGenerator.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../db/d7f/RandomGenerator_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// 确保头文件只被包含一次，避免重复定义等问题</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// 引入C++标准库中的随机数相关头文件，用于生成随机数相关功能</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;random&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">// 引入无序映射相关头文件，虽然在此代码片段中未体现其具体使用，但可能在更广泛的上下文中会涉及</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;unordered_map&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">// 引入Carla项目中定义ActorId相关的头文件，此处代码未直接体现其使用，但可能与之相关联</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="../../d3/d89/ActorId_8h.html">carla/rpc/ActorId.h</a>&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d9/d36/namespacecarla.html">carla</a> {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span>traffic_manager {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">// 定义随机数生成器类，用于生成特定范围内的随机数</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="../../d2/df0/classcarla_1_1traffic__manager_1_1RandomGenerator.html">   16</a></span><span class="keyword">class </span><a class="code hl_class" href="../../d2/df0/classcarla_1_1traffic__manager_1_1RandomGenerator.html">RandomGenerator</a> {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="comment">// 构造函数，接收一个无符号64位整数作为随机数生成器的种子</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="comment">// 使用该种子初始化一个基于梅森旋转算法的伪随机数生成器（std::mt19937），并设定生成的随机数范围为0.0到100.0</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="../../d2/df0/classcarla_1_1traffic__manager_1_1RandomGenerator.html#a197c057f205b10f685a4f4f8bc9ddec5">   20</a></span>    <a class="code hl_function" href="../../d2/df0/classcarla_1_1traffic__manager_1_1RandomGenerator.html#a197c057f205b10f685a4f4f8bc9ddec5">RandomGenerator</a>(<span class="keyword">const</span> uint64_t seed): <a class="code hl_variable" href="../../d2/df0/classcarla_1_1traffic__manager_1_1RandomGenerator.html#ad27d9cd726f0e86c0ab1e66a6d9ede53">mt</a>(<a class="code hl_namespace" href="../../d8/dcc/namespacestd.html">std</a>::mt19937(seed)), <a class="code hl_variable" href="../../d2/df0/classcarla_1_1traffic__manager_1_1RandomGenerator.html#a875d9c5d0c14a8977ca71a8660ef9484">dist</a>(0.0, 100.0) {}</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="comment">// 生成并返回下一个随机数，通过调用std::uniform_real_distribution的操作符，利用已初始化的随机数生成器（mt）来生成符合设定范围（0.0到100.0）的随机数</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="../../d2/df0/classcarla_1_1traffic__manager_1_1RandomGenerator.html#a1ec8197b4d66c63f1ee3e207c1284bd1">   23</a></span>    <span class="keywordtype">double</span> <a class="code hl_function" href="../../d2/df0/classcarla_1_1traffic__manager_1_1RandomGenerator.html#a1ec8197b4d66c63f1ee3e207c1284bd1">next</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="../../d2/df0/classcarla_1_1traffic__manager_1_1RandomGenerator.html#a875d9c5d0c14a8977ca71a8660ef9484">dist</a>(<a class="code hl_variable" href="../../d2/df0/classcarla_1_1traffic__manager_1_1RandomGenerator.html#ad27d9cd726f0e86c0ab1e66a6d9ede53">mt</a>); }</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="comment">// 基于梅森旋转算法的伪随机数生成器对象，用于生成伪随机数序列的基础，其状态由传入的种子决定</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="../../d2/df0/classcarla_1_1traffic__manager_1_1RandomGenerator.html#ad27d9cd726f0e86c0ab1e66a6d9ede53">   27</a></span>    std::mt19937 <a class="code hl_variable" href="../../d2/df0/classcarla_1_1traffic__manager_1_1RandomGenerator.html#ad27d9cd726f0e86c0ab1e66a6d9ede53">mt</a>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="comment">// 均匀分布的实数随机数分布对象，定义了生成随机数的范围（在此为0.0到100.0），与随机数生成器（mt）配合使用来生成符合该范围的随机数</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="../../d2/df0/classcarla_1_1traffic__manager_1_1RandomGenerator.html#a875d9c5d0c14a8977ca71a8660ef9484">   29</a></span>    std::uniform_real_distribution&lt;double&gt; <a class="code hl_variable" href="../../d2/df0/classcarla_1_1traffic__manager_1_1RandomGenerator.html#a875d9c5d0c14a8977ca71a8660ef9484">dist</a>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>};</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>} <span class="comment">// namespace traffic_manager</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>} <span class="comment">// namespace carla</span></div>
+<div class="ttc" id="aActorId_8h_html"><div class="ttname"><a href="../../d3/d89/ActorId_8h.html">ActorId.h</a></div></div>
+<div class="ttc" id="aclasscarla_1_1traffic__manager_1_1RandomGenerator_html"><div class="ttname"><a href="../../d2/df0/classcarla_1_1traffic__manager_1_1RandomGenerator.html">carla::traffic_manager::RandomGenerator</a></div><div class="ttdef"><b>Definition:</b> <a href="../../db/d7f/RandomGenerator_8h_source.html#l00016">RandomGenerator.h:16</a></div></div>
+<div class="ttc" id="aclasscarla_1_1traffic__manager_1_1RandomGenerator_html_a197c057f205b10f685a4f4f8bc9ddec5"><div class="ttname"><a href="../../d2/df0/classcarla_1_1traffic__manager_1_1RandomGenerator.html#a197c057f205b10f685a4f4f8bc9ddec5">carla::traffic_manager::RandomGenerator::RandomGenerator</a></div><div class="ttdeci">RandomGenerator(const uint64_t seed)</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d7f/RandomGenerator_8h_source.html#l00020">RandomGenerator.h:20</a></div></div>
+<div class="ttc" id="aclasscarla_1_1traffic__manager_1_1RandomGenerator_html_a1ec8197b4d66c63f1ee3e207c1284bd1"><div class="ttname"><a href="../../d2/df0/classcarla_1_1traffic__manager_1_1RandomGenerator.html#a1ec8197b4d66c63f1ee3e207c1284bd1">carla::traffic_manager::RandomGenerator::next</a></div><div class="ttdeci">double next()</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d7f/RandomGenerator_8h_source.html#l00023">RandomGenerator.h:23</a></div></div>
+<div class="ttc" id="aclasscarla_1_1traffic__manager_1_1RandomGenerator_html_a875d9c5d0c14a8977ca71a8660ef9484"><div class="ttname"><a href="../../d2/df0/classcarla_1_1traffic__manager_1_1RandomGenerator.html#a875d9c5d0c14a8977ca71a8660ef9484">carla::traffic_manager::RandomGenerator::dist</a></div><div class="ttdeci">std::uniform_real_distribution&lt; double &gt; dist</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d7f/RandomGenerator_8h_source.html#l00029">RandomGenerator.h:29</a></div></div>
+<div class="ttc" id="aclasscarla_1_1traffic__manager_1_1RandomGenerator_html_ad27d9cd726f0e86c0ab1e66a6d9ede53"><div class="ttname"><a href="../../d2/df0/classcarla_1_1traffic__manager_1_1RandomGenerator.html#ad27d9cd726f0e86c0ab1e66a6d9ede53">carla::traffic_manager::RandomGenerator::mt</a></div><div class="ttdeci">std::mt19937 mt</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d7f/RandomGenerator_8h_source.html#l00027">RandomGenerator.h:27</a></div></div>
+<div class="ttc" id="anamespacecarla_html"><div class="ttname"><a href="../../d9/d36/namespacecarla.html">carla</a></div><div class="ttdoc">CARLA模拟器的主命名空间。</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d4f/Carla_8cpp_source.html#l00139">Carla.cpp:139</a></div></div>
+<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="../../d8/dcc/namespacestd.html">std</a></div><div class="ttdef"><b>Definition:</b> <a href="../../df/d06/CarlaRecorderCollision_8h_source.html#l00030">CarlaRecorderCollision.h:31</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

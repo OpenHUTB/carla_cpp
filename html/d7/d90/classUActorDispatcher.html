@@ -1,0 +1,757 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: UActorDispatcher类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public 类型</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="../../d1/d9a/classUActorDispatcher-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">UActorDispatcher类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>负责将ActorDefinitions绑定到生成函数，以及 维护所有已生成参与者的注册表  
+ <a href="../../d7/d90/classUActorDispatcher.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../dc/ddc/ActorDispatcher_8h_source.html">ActorDispatcher.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 类 UActorDispatcher 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d2/ddd/classUActorDispatcher__inherit__graph.svg" width="136" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> UActorDispatcher 的协作图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../da/d38/classUActorDispatcher__coll__graph.svg" width="486" height="250"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public 类型</h2></td></tr>
+<tr class="memitem:a145e935794ca7848dc35a3c500d11456"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d90/classUActorDispatcher.html#a145e935794ca7848dc35a3c500d11456">SpawnFunctionType</a> = TFunction&lt; <a class="el" href="../../d9/df2/structFActorSpawnResult.html">FActorSpawnResult</a>(const FTransform &amp;, const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;)&gt;</td></tr>
+<tr class="separator:a145e935794ca7848dc35a3c500d11456"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:ae8fafc943ff2c9da465f7aa21d0b2025"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d90/classUActorDispatcher.html#ae8fafc943ff2c9da465f7aa21d0b2025">Bind</a> (<a class="el" href="../../d8/d84/classACarlaActorFactory.html">ACarlaActorFactory</a> &amp;ActorFactory)</td></tr>
+<tr class="separator:ae8fafc943ff2c9da465f7aa21d0b2025"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25f7b647b7b98c3875052b042c8aca56"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d90/classUActorDispatcher.html#a25f7b647b7b98c3875052b042c8aca56">Bind</a> (<a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> Definition, <a class="el" href="../../d7/d90/classUActorDispatcher.html#a145e935794ca7848dc35a3c500d11456">SpawnFunctionType</a> SpawnFunction)</td></tr>
+<tr class="separator:a25f7b647b7b98c3875052b042c8aca56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a585b83b9b154e5005460093153889450"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d90/classUActorDispatcher.html#a585b83b9b154e5005460093153889450">DestroyActor</a> (<a class="el" href="../../d1/da4/classAActor.html">AActor</a> *<a class="el" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>)</td></tr>
+<tr class="separator:a585b83b9b154e5005460093153889450"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90615e6e8e472d1eb9c8795fd308e256"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d90/classUActorDispatcher.html#a90615e6e8e472d1eb9c8795fd308e256">DestroyActor</a> (<a class="el" href="../../dc/dde/classFCarlaActor.html#a53f48fc36ec77caebfba6f8ecacea5ba">FCarlaActor::IdType</a> ActorId)</td></tr>
+<tr class="separator:a90615e6e8e472d1eb9c8795fd308e256"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f1cec60d9ec77b5e7c28b966c5b09d2"><td class="memItemLeft" align="right" valign="top">const TArray&lt; <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d90/classUActorDispatcher.html#a2f1cec60d9ec77b5e7c28b966c5b09d2">GetActorDefinitions</a> () const</td></tr>
+<tr class="separator:a2f1cec60d9ec77b5e7c28b966c5b09d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a980be5ca21ed7e7e6c921f8815125aca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/db5/classFActorRegistry.html">FActorRegistry</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d90/classUActorDispatcher.html#a980be5ca21ed7e7e6c921f8815125aca">GetActorRegistry</a> ()</td></tr>
+<tr class="separator:a980be5ca21ed7e7e6c921f8815125aca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a104320b1e9c85e22426b1a4a59484dc3"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../df/db5/classFActorRegistry.html">FActorRegistry</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d90/classUActorDispatcher.html#a104320b1e9c85e22426b1a4a59484dc3">GetActorRegistry</a> () const</td></tr>
+<tr class="separator:a104320b1e9c85e22426b1a4a59484dc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e7bf800c49305fb8b4baee83b93787b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d90/classUActorDispatcher.html#a2e7bf800c49305fb8b4baee83b93787b">PutActorToSleep</a> (<a class="el" href="../../dc/dde/classFCarlaActor.html#a53f48fc36ec77caebfba6f8ecacea5ba">FCarlaActor::IdType</a> Id, UCarlaEpisode *CarlaEpisode)</td></tr>
+<tr class="separator:a2e7bf800c49305fb8b4baee83b93787b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a709f954e759fc202b64ef129c83ad77c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dc/dde/classFCarlaActor.html">FCarlaActor</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d90/classUActorDispatcher.html#a709f954e759fc202b64ef129c83ad77c">RegisterActor</a> (<a class="el" href="../../d1/da4/classAActor.html">AActor</a> &amp;<a class="el" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>, <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> ActorDescription, <a class="el" href="../../df/db5/classFActorRegistry.html#a44792724170a49d07132f13d220f2d5c">FActorRegistry::IdType</a> DesiredId=0)</td></tr>
+<tr class="separator:a709f954e759fc202b64ef129c83ad77c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e47f440c22a41096020913240e0842b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/da4/classAActor.html">AActor</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d90/classUActorDispatcher.html#a9e47f440c22a41096020913240e0842b">ReSpawnActor</a> (const FTransform &amp;Transform, <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> ActorDescription)</td></tr>
+<tr class="separator:a9e47f440c22a41096020913240e0842b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaeca5eeded6c2f193a445df02af113bd"><td class="memItemLeft" align="right" valign="top">TPair&lt; <a class="el" href="../../df/d9f/ActorSpawnResult_8h.html#a11191969c066afbcabe58982133e4d22">EActorSpawnResultStatus</a>, <a class="el" href="../../dc/dde/classFCarlaActor.html">FCarlaActor</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d90/classUActorDispatcher.html#aaeca5eeded6c2f193a445df02af113bd">SpawnActor</a> (const FTransform &amp;Transform, <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> ActorDescription, <a class="el" href="../../dc/dde/classFCarlaActor.html#a53f48fc36ec77caebfba6f8ecacea5ba">FCarlaActor::IdType</a> DesiredId=0)</td></tr>
+<tr class="separator:aaeca5eeded6c2f193a445df02af113bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a549cef3b17202fdf03804bf9e0df70a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d90/classUActorDispatcher.html#a549cef3b17202fdf03804bf9e0df70a5">WakeActorUp</a> (<a class="el" href="../../dc/dde/classFCarlaActor.html#a53f48fc36ec77caebfba6f8ecacea5ba">FCarlaActor::IdType</a> Id, UCarlaEpisode *CarlaEpisode)</td></tr>
+<tr class="separator:a549cef3b17202fdf03804bf9e0df70a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:a03e325e791dd0449c82c264aa223d67a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d90/classUActorDispatcher.html#a03e325e791dd0449c82c264aa223d67a">OnActorDestroyed</a> (<a class="el" href="../../d1/da4/classAActor.html">AActor</a> *<a class="el" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>)</td></tr>
+<tr class="separator:a03e325e791dd0449c82c264aa223d67a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:af01bed7af60554a6767059e9de960682"><td class="memItemLeft" align="right" valign="top">TArray&lt; TSubclassOf&lt; <a class="el" href="../../d1/da4/classAActor.html">AActor</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d90/classUActorDispatcher.html#af01bed7af60554a6767059e9de960682">Classes</a></td></tr>
+<tr class="separator:af01bed7af60554a6767059e9de960682"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac472842b6456bbfd80bb47162d14bbba"><td class="memItemLeft" align="right" valign="top">TArray&lt; <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d90/classUActorDispatcher.html#ac472842b6456bbfd80bb47162d14bbba">Definitions</a></td></tr>
+<tr class="separator:ac472842b6456bbfd80bb47162d14bbba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49d2db26b83c9ec547c8ca6c389c01bf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/db5/classFActorRegistry.html">FActorRegistry</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d90/classUActorDispatcher.html#a49d2db26b83c9ec547c8ca6c389c01bf">Registry</a></td></tr>
+<tr class="separator:a49d2db26b83c9ec547c8ca6c389c01bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb6aab295a8054801548fd662a8ca6c9"><td class="memItemLeft" align="right" valign="top">TArray&lt; <a class="el" href="../../d7/d90/classUActorDispatcher.html#a145e935794ca7848dc35a3c500d11456">SpawnFunctionType</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d90/classUActorDispatcher.html#adb6aab295a8054801548fd662a8ca6c9">SpawnFunctions</a></td></tr>
+<tr class="separator:adb6aab295a8054801548fd662a8ca6c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p >负责将ActorDefinitions绑定到生成函数，以及 维护所有已生成参与者的注册表 </p>
+
+<p class="definition">在文件 <a class="el" href="../../dc/ddc/ActorDispatcher_8h_source.html">ActorDispatcher.h</a> 第 <a class="el" href="../../dc/ddc/ActorDispatcher_8h_source.html#l00029">29</a> 行定义.</p>
+</div><h2 class="groupheader">成员类型定义说明</h2>
+<a id="a145e935794ca7848dc35a3c500d11456" name="a145e935794ca7848dc35a3c500d11456"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a145e935794ca7848dc35a3c500d11456">&#9670;&#160;</a></span>SpawnFunctionType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="../../d7/d90/classUActorDispatcher.html#a145e935794ca7848dc35a3c500d11456">UActorDispatcher::SpawnFunctionType</a> =  TFunction&lt;<a class="el" href="../../d9/df2/structFActorSpawnResult.html">FActorSpawnResult</a>(const FTransform &amp;, const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;)&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dc/ddc/ActorDispatcher_8h_source.html">ActorDispatcher.h</a> 第 <a class="el" href="../../dc/ddc/ActorDispatcher_8h_source.html#l00038">38</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="ae8fafc943ff2c9da465f7aa21d0b2025" name="ae8fafc943ff2c9da465f7aa21d0b2025"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8fafc943ff2c9da465f7aa21d0b2025">&#9670;&#160;</a></span>Bind() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UActorDispatcher::Bind </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d8/d84/classACarlaActorFactory.html">ACarlaActorFactory</a> &amp;&#160;</td>
+          <td class="paramname"><em>ActorFactory</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html">ActorDispatcher.cpp</a> 第 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00046">46</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00024">Bind()</a>, <a class="el" href="../../d4/d24/CarlaActorFactory_8h_source.html#l00044">ACarlaActorFactory::GetDefinitions()</a> , 以及 <a class="el" href="../../d4/d24/CarlaActorFactory_8h_source.html#l00053">ACarlaActorFactory::SpawnActor()</a>.</p>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d7/d90/classUActorDispatcher_ae8fafc943ff2c9da465f7aa21d0b2025_cgraph.svg" width="100%" height="488"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a25f7b647b7b98c3875052b042c8aca56" name="a25f7b647b7b98c3875052b042c8aca56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25f7b647b7b98c3875052b042c8aca56">&#9670;&#160;</a></span>Bind() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UActorDispatcher::Bind </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a>&#160;</td>
+          <td class="paramname"><em>Definition</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d7/d90/classUActorDispatcher.html#a145e935794ca7848dc35a3c500d11456">SpawnFunctionType</a>&#160;</td>
+          <td class="paramname"><em>SpawnFunction</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html">ActorDispatcher.cpp</a> 第 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00024">24</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00278">UActorBlueprintFunctionLibrary::CheckActorDefinition()</a>, <a class="el" href="../../d0/d65/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDefinition_8h_source.html#l00033">FActorDefinition::Class</a>, <a class="el" href="../../dc/ddc/ActorDispatcher_8h_source.html#l00123">Classes</a>, <a class="el" href="../../dc/ddc/ActorDispatcher_8h_source.html#l00115">Definitions</a>, <a class="el" href="../../d0/d65/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDefinition_8h_source.html#l00026">FActorDefinition::Id</a>, <a class="el" href="../../dc/ddc/ActorDispatcher_8h_source.html#l00119">SpawnFunctions</a>, <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp.html#a69d0a7232310b5ebaa51abb2b9945184">UE_LOG()</a> , 以及 <a class="el" href="../../d0/d65/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDefinition_8h_source.html#l00022">FActorDefinition::UId</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00046">Bind()</a>.</p>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d7/d90/classUActorDispatcher_a25f7b647b7b98c3875052b042c8aca56_cgraph.svg" width="100%" height="404"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d7/d90/classUActorDispatcher_a25f7b647b7b98c3875052b042c8aca56_icgraph.svg" width="374" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a585b83b9b154e5005460093153889450" name="a585b83b9b154e5005460093153889450"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a585b83b9b154e5005460093153889450">&#9670;&#160;</a></span>DestroyActor() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool UActorDispatcher::DestroyActor </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d1/da4/classAActor.html">AActor</a> *&#160;</td>
+          <td class="paramname"><em>Actor</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a90615e6e8e472d1eb9c8795fd308e256" name="a90615e6e8e472d1eb9c8795fd308e256"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90615e6e8e472d1eb9c8795fd308e256">&#9670;&#160;</a></span>DestroyActor() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool UActorDispatcher::DestroyActor </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../dc/dde/classFCarlaActor.html#a53f48fc36ec77caebfba6f8ecacea5ba">FCarlaActor::IdType</a>&#160;</td>
+          <td class="paramname"><em>ActorId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html">ActorDispatcher.cpp</a> 第 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00144">144</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d43/CarlaActor_8cpp_source.html#l00083">Actor</a>, <a class="el" href="../../d0/d4e/ActorInfo_8h_source.html#l00031">FActorInfo::Description</a>, <a class="el" href="../../da/de4/ActorRegistry_8h_source.html#l00060">FActorRegistry::FindCarlaActor()</a>, <a class="el" href="../../de/d36/CarlaActor_8h_source.html#l00075">FCarlaActor::GetActor()</a>, <a class="el" href="../../de/d36/CarlaActor_8h_source.html#l00083">FCarlaActor::GetActorInfo()</a>, <a class="el" href="../../d4/de6/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDescription_8h_source.html#l00024">FActorDescription::Id</a>, <a class="el" href="../../dc/ddc/ActorDispatcher_8h_source.html#l00127">Registry</a>, <a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a> , 以及 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp.html#a69d0a7232310b5ebaa51abb2b9945184">UE_LOG()</a>.</p>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d7/d90/classUActorDispatcher_a90615e6e8e472d1eb9c8795fd308e256_cgraph.svg" width="404" height="200"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a2f1cec60d9ec77b5e7c28b966c5b09d2" name="a2f1cec60d9ec77b5e7c28b966c5b09d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f1cec60d9ec77b5e7c28b966c5b09d2">&#9670;&#160;</a></span>GetActorDefinitions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const TArray&lt; <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &gt; &amp; UActorDispatcher::GetActorDefinitions </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dc/ddc/ActorDispatcher_8h_source.html">ActorDispatcher.h</a> 第 <a class="el" href="../../dc/ddc/ActorDispatcher_8h_source.html#l00087">87</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a980be5ca21ed7e7e6c921f8815125aca" name="a980be5ca21ed7e7e6c921f8815125aca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a980be5ca21ed7e7e6c921f8815125aca">&#9670;&#160;</a></span>GetActorRegistry() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../df/db5/classFActorRegistry.html">FActorRegistry</a> &amp; UActorDispatcher::GetActorRegistry </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dc/ddc/ActorDispatcher_8h_source.html">ActorDispatcher.h</a> 第 <a class="el" href="../../dc/ddc/ActorDispatcher_8h_source.html#l00101">101</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a104320b1e9c85e22426b1a4a59484dc3" name="a104320b1e9c85e22426b1a4a59484dc3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a104320b1e9c85e22426b1a4a59484dc3">&#9670;&#160;</a></span>GetActorRegistry() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="../../df/db5/classFActorRegistry.html">FActorRegistry</a> &amp; UActorDispatcher::GetActorRegistry </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dc/ddc/ActorDispatcher_8h_source.html">ActorDispatcher.h</a> 第 <a class="el" href="../../dc/ddc/ActorDispatcher_8h_source.html#l00094">94</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a03e325e791dd0449c82c264aa223d67a" name="a03e325e791dd0449c82c264aa223d67a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03e325e791dd0449c82c264aa223d67a">&#9670;&#160;</a></span>OnActorDestroyed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UActorDispatcher::OnActorDestroyed </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d1/da4/classAActor.html">AActor</a> *&#160;</td>
+          <td class="paramname"><em>Actor</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html">ActorDispatcher.cpp</a> 第 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00276">276</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d43/CarlaActor_8cpp_source.html#l00083">Actor</a>, <a class="el" href="../../d3/df3/ActorRegistry_8cpp_source.html#l00167">FActorRegistry::Deregister()</a>, <a class="el" href="../../da/de4/ActorRegistry_8h_source.html#l00060">FActorRegistry::FindCarlaActor()</a>, <a class="el" href="../../de/d36/CarlaActor_8h_source.html#l00067">FCarlaActor::GetActorId()</a>, <a class="el" href="../../da/db8/ROS2_8h_source.html#l00051">carla::ros2::ROS2::GetInstance()</a>, <a class="el" href="../../de/d36/CarlaActor_8h_source.html#l00055">FCarlaActor::IsActive()</a> , 以及 <a class="el" href="../../dc/ddc/ActorDispatcher_8h_source.html#l00127">Registry</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00199">RegisterActor()</a>.</p>
+<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d7/d90/classUActorDispatcher_a03e325e791dd0449c82c264aa223d67a_cgraph.svg" width="628" height="259"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d7/d90/classUActorDispatcher_a03e325e791dd0449c82c264aa223d67a_icgraph.svg" width="667" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a2e7bf800c49305fb8b4baee83b93787b" name="a2e7bf800c49305fb8b4baee83b93787b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e7bf800c49305fb8b4baee83b93787b">&#9670;&#160;</a></span>PutActorToSleep()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UActorDispatcher::PutActorToSleep </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../dc/dde/classFCarlaActor.html#a53f48fc36ec77caebfba6f8ecacea5ba">FCarlaActor::IdType</a>&#160;</td>
+          <td class="paramname"><em>Id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">UCarlaEpisode *&#160;</td>
+          <td class="paramname"><em>CarlaEpisode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html">ActorDispatcher.cpp</a> 第 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00266">266</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dc/ddc/ActorDispatcher_8h_source.html#l00127">Registry</a>.</p>
+
+</div>
+</div>
+<a id="a709f954e759fc202b64ef129c83ad77c" name="a709f954e759fc202b64ef129c83ad77c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a709f954e759fc202b64ef129c83ad77c">&#9670;&#160;</a></span>RegisterActor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../dc/dde/classFCarlaActor.html">FCarlaActor</a> * UActorDispatcher::RegisterActor </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d1/da4/classAActor.html">AActor</a> &amp;&#160;</td>
+          <td class="paramname"><em>Actor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a>&#160;</td>
+          <td class="paramname"><em>ActorDescription</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../df/db5/classFActorRegistry.html#a44792724170a49d07132f13d220f2d5c">FActorRegistry::IdType</a>&#160;</td>
+          <td class="paramname"><em>DesiredId</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html">ActorDispatcher.cpp</a> 第 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00199">199</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d43/CarlaActor_8cpp_source.html#l00083">Actor</a>, <a class="el" href="../../de/d36/CarlaActor_8h_source.html#l00067">FCarlaActor::GetActorId()</a>, <a class="el" href="../../da/db8/ROS2_8h_source.html#l00051">carla::ros2::ROS2::GetInstance()</a>, <a class="el" href="../../d4/de6/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDescription_8h_source.html#l00024">FActorDescription::Id</a>, <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00276">OnActorDestroyed()</a>, <a class="el" href="../../d3/df3/ActorRegistry_8cpp_source.html#l00103">FActorRegistry::Register()</a>, <a class="el" href="../../dc/ddc/ActorDispatcher_8h_source.html#l00127">Registry</a> , 以及 <a class="el" href="../../d4/de6/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDescription_8h_source.html#l00036">FActorDescription::Variations</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00059">SpawnActor()</a>.</p>
+<div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d7/d90/classUActorDispatcher_a709f954e759fc202b64ef129c83ad77c_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d7/d90/classUActorDispatcher_a709f954e759fc202b64ef129c83ad77c_icgraph.svg" width="440" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a9e47f440c22a41096020913240e0842b" name="a9e47f440c22a41096020913240e0842b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e47f440c22a41096020913240e0842b">&#9670;&#160;</a></span>ReSpawnActor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d1/da4/classAActor.html">AActor</a> * UActorDispatcher::ReSpawnActor </td>
+          <td>(</td>
+          <td class="paramtype">const FTransform &amp;&#160;</td>
+          <td class="paramname"><em>Transform</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a>&#160;</td>
+          <td class="paramname"><em>ActorDescription</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html">ActorDispatcher.cpp</a> 第 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00106">106</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../df/d9f/ActorSpawnResult_8h_source.html#l00063">FActorSpawnResult::Actor</a>, <a class="el" href="../../d4/de6/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDescription_8h_source.html#l00028">FActorDescription::Class</a>, <a class="el" href="../../dc/ddc/ActorDispatcher_8h_source.html#l00123">Classes</a>, <a class="el" href="../../d4/de6/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDescription_8h_source.html#l00024">FActorDescription::Id</a>, <a class="el" href="../../dc/ddc/ActorDispatcher_8h_source.html#l00119">SpawnFunctions</a>, <a class="el" href="../../df/d9f/ActorSpawnResult_8h_source.html#l00068">FActorSpawnResult::Status</a>, <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp.html#a69d0a7232310b5ebaa51abb2b9945184">UE_LOG()</a> , 以及 <a class="el" href="../../d4/de6/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDescription_8h_source.html#l00020">FActorDescription::UId</a>.</p>
+<div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d7/d90/classUActorDispatcher_a9e47f440c22a41096020913240e0842b_cgraph.svg" width="320" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="aaeca5eeded6c2f193a445df02af113bd" name="aaeca5eeded6c2f193a445df02af113bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaeca5eeded6c2f193a445df02af113bd">&#9670;&#160;</a></span>SpawnActor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TPair&lt; <a class="el" href="../../df/d9f/ActorSpawnResult_8h.html#a11191969c066afbcabe58982133e4d22">EActorSpawnResultStatus</a>, <a class="el" href="../../dc/dde/classFCarlaActor.html">FCarlaActor</a> * &gt; UActorDispatcher::SpawnActor </td>
+          <td>(</td>
+          <td class="paramtype">const FTransform &amp;&#160;</td>
+          <td class="paramname"><em>Transform</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a>&#160;</td>
+          <td class="paramname"><em>ActorDescription</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../dc/dde/classFCarlaActor.html#a53f48fc36ec77caebfba6f8ecacea5ba">FCarlaActor::IdType</a>&#160;</td>
+          <td class="paramname"><em>DesiredId</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html">ActorDispatcher.cpp</a> 第 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00059">59</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../df/d9f/ActorSpawnResult_8h_source.html#l00063">FActorSpawnResult::Actor</a>, <a class="el" href="../../d4/de6/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDescription_8h_source.html#l00028">FActorDescription::Class</a>, <a class="el" href="../../dc/ddc/ActorDispatcher_8h_source.html#l00123">Classes</a>, <a class="el" href="../../de/d36/CarlaActor_8h_source.html#l00075">FCarlaActor::GetActor()</a>, <a class="el" href="../../d4/de6/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDescription_8h_source.html#l00024">FActorDescription::Id</a>, <a class="el" href="../../df/d9f/ActorSpawnResult_8h_source.html#l00055">FActorSpawnResult::IsValid()</a>, <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00199">RegisterActor()</a>, <a class="el" href="../../dc/ddc/ActorDispatcher_8h_source.html#l00119">SpawnFunctions</a>, <a class="el" href="../../df/d9f/ActorSpawnResult_8h_source.html#l00068">FActorSpawnResult::Status</a>, <a class="el" href="../../d2/d35/Tagger_8cpp_source.html#l00106">ATagger::TagActor()</a>, <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp.html#a69d0a7232310b5ebaa51abb2b9945184">UE_LOG()</a> , 以及 <a class="el" href="../../d4/de6/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDescription_8h_source.html#l00020">FActorDescription::UId</a>.</p>
+<div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d7/d90/classUActorDispatcher_aaeca5eeded6c2f193a445df02af113bd_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a549cef3b17202fdf03804bf9e0df70a5" name="a549cef3b17202fdf03804bf9e0df70a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a549cef3b17202fdf03804bf9e0df70a5">&#9670;&#160;</a></span>WakeActorUp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UActorDispatcher::WakeActorUp </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../dc/dde/classFCarlaActor.html#a53f48fc36ec77caebfba6f8ecacea5ba">FCarlaActor::IdType</a>&#160;</td>
+          <td class="paramname"><em>Id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">UCarlaEpisode *&#160;</td>
+          <td class="paramname"><em>CarlaEpisode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html">ActorDispatcher.cpp</a> 第 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00271">271</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dc/ddc/ActorDispatcher_8h_source.html#l00127">Registry</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="af01bed7af60554a6767059e9de960682" name="af01bed7af60554a6767059e9de960682"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af01bed7af60554a6767059e9de960682">&#9670;&#160;</a></span>Classes</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TArray&lt;TSubclassOf&lt;<a class="el" href="../../d1/da4/classAActor.html">AActor</a>&gt; &gt; UActorDispatcher::Classes</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dc/ddc/ActorDispatcher_8h_source.html">ActorDispatcher.h</a> 第 <a class="el" href="../../dc/ddc/ActorDispatcher_8h_source.html#l00123">123</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00024">Bind()</a>, <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00106">ReSpawnActor()</a> , 以及 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00059">SpawnActor()</a>.</p>
+
+</div>
+</div>
+<a id="ac472842b6456bbfd80bb47162d14bbba" name="ac472842b6456bbfd80bb47162d14bbba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac472842b6456bbfd80bb47162d14bbba">&#9670;&#160;</a></span>Definitions</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TArray&lt;<a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a>&gt; UActorDispatcher::Definitions</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dc/ddc/ActorDispatcher_8h_source.html">ActorDispatcher.h</a> 第 <a class="el" href="../../dc/ddc/ActorDispatcher_8h_source.html#l00115">115</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00024">Bind()</a>.</p>
+
+</div>
+</div>
+<a id="a49d2db26b83c9ec547c8ca6c389c01bf" name="a49d2db26b83c9ec547c8ca6c389c01bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49d2db26b83c9ec547c8ca6c389c01bf">&#9670;&#160;</a></span>Registry</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../df/db5/classFActorRegistry.html">FActorRegistry</a> UActorDispatcher::Registry</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dc/ddc/ActorDispatcher_8h_source.html">ActorDispatcher.h</a> 第 <a class="el" href="../../dc/ddc/ActorDispatcher_8h_source.html#l00127">127</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00144">DestroyActor()</a>, <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00276">OnActorDestroyed()</a>, <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00266">PutActorToSleep()</a>, <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00199">RegisterActor()</a> , 以及 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00271">WakeActorUp()</a>.</p>
+
+</div>
+</div>
+<a id="adb6aab295a8054801548fd662a8ca6c9" name="adb6aab295a8054801548fd662a8ca6c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb6aab295a8054801548fd662a8ca6c9">&#9670;&#160;</a></span>SpawnFunctions</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TArray&lt;<a class="el" href="../../d7/d90/classUActorDispatcher.html#a145e935794ca7848dc35a3c500d11456">SpawnFunctionType</a>&gt; UActorDispatcher::SpawnFunctions</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dc/ddc/ActorDispatcher_8h_source.html">ActorDispatcher.h</a> 第 <a class="el" href="../../dc/ddc/ActorDispatcher_8h_source.html#l00119">119</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00024">Bind()</a>, <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00106">ReSpawnActor()</a> , 以及 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00059">SpawnActor()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../dc/ddc/ActorDispatcher_8h_source.html">ActorDispatcher.h</a></li>
+<li><a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html">ActorDispatcher.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

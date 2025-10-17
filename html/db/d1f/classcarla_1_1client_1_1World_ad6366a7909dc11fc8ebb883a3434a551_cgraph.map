@@ -1,0 +1,10 @@
+<map id="carla::client::World::GetTrafficSign" name="carla::client::World::GetTrafficSign">
+<area shape="rect" id="node1" title="根据提供的地标（Landmark）获取对应的交通标志（TrafficSign）的智能指针。 地标通常代表地图中的特定位置，通过它可以定位和获取对应的交通标志对象，用于查询交通规则相关的指示信息等。" alt="" coords="5,101,132,141"/>
+<area shape="rect" id="node2" href="$db/d1f/classcarla_1_1client_1_1World.html#a04a22f65ea5ccd3e93b833503dda6d65" title="返回一个包含当前世界上所有存在的参与者（actor）的列表。 获取整个模拟世界中所有参与者的集合，便于进行批量操作、统计或者遍历所有实体执行某些通用的操作等。" alt="" coords="194,5,321,45"/>
+<area shape="rect" id="node4" href="$d3/dc1/classcarla_1_1client_1_1Landmark.html#a6b327470a3e4ed26200893f3f4d064d5" title="获取地标的唯一标识符。 该标识符在整个系统中是唯一的，用来区分不同的地标。" alt="" coords="182,69,333,109"/>
+<area shape="rect" id="node6" href="$dc/d5c/classcarla_1_1client_1_1TrafficSign.html#a4da25f7dd11cdf6c92401145cb50ffba" title=" " alt="" coords="180,133,335,173"/>
+<area shape="rect" id="node8" href="$de/d93/classcarla_1_1StringUtil.html#a42f81d32011bf4575fa71e593596b1f3" title="Match str with the Unix shell&#45;style wildcard_pattern." alt="" coords="199,197,315,237"/>
+<area shape="rect" id="node3" href="$d1/dd3/classcarla_1_1client_1_1detail_1_1EpisodeProxyImpl.html#aaca857645fbeb6546b4a03a663bb65af" title="与 TryLock 相同，但永远不会返回 nullptr。" alt="" coords="395,5,561,45"/>
+<area shape="rect" id="node5" href="$d5/d51/classcarla_1_1road_1_1element_1_1RoadInfoSignal.html#a46a4c6561df160ade96e9d12b0e4309f" title=" " alt="" coords="383,69,573,109"/>
+<area shape="rect" id="node7" href="$d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#a520d5ef7284ded86a1d96a346f3516aa" title=" " alt="" coords="397,133,559,173"/>
+</map>

@@ -1,0 +1,253 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: SemanticLidarSerializer.h 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_8b842c0ad24262c95de16c440fd51527.html">sensor</a></li><li class="navelem"><a class="el" href="../../dir_b71b58631e6fc4802964ac57c42fdaac.html">s11n</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">SemanticLidarSerializer.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../dd/d23/SemanticLidarSerializer_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2020 Computer Vision Center (CVC) at the Universitat Autonoma</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// de Barcelona (UAB).</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// This work is licensed under the terms of the MIT license.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">// 预处理指令，确保该头文件在整个编译过程中只会被包含一次，避免重复包含导致的编译错误，如重复定义等问题</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="../../d4/deb/Debug_8h.html">carla/Debug.h</a>&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">// 引入carla项目中名为Debug的头文件</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="../../de/d5c/Memory_8h.html">carla/Memory.h</a>&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">// 引入carla项目中关于内存管理相关的头文件</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="../../dc/d62/RawData_8h.html">carla/sensor/RawData.h</a>&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">// 引入carla项目里传感器相关的RawData头文件</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="../../d0/dc1/SemanticLidarData_8h.html">carla/sensor/data/SemanticLidarData.h</a>&quot;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">// 引入carla项目中传感器数据里关于语义激光雷达数据（Semantic Lidar Data）的头文件，应该包含了语义激光雷达数据相关的结构体、类等具体定义</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d9/d36/namespacecarla.html">carla</a> {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">namespace </span>sensor {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">class </span>SensorData;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">// 前向声明SensorData类，告知编译器后续会有这个类的完整定义，先允许在这里使用该类的指针、引用等相关类型，方便代码的组织结构和编译流程</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">namespace </span>s11n {</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  <span class="comment">// ===========================================================================</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="comment">// -- SemanticLidarHeaderView --------------------------------------------------------</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <span class="comment">// ===========================================================================</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment"></span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">  /// A view over the header of a Lidar measurement.</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment"></span><span class="comment">// 类的功能注释，说明这个类用于提供对激光雷达测量数据头部信息的一种视图（也就是一种访问方式，不实际拥有数据，只是查看）</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="../../df/d52/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarHeaderView.html">   34</a></span>  <span class="keyword">class </span><a class="code hl_class" href="../../df/d52/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarHeaderView.html">SemanticLidarHeaderView</a> {</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="../../df/d52/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarHeaderView.html#ac134019ef911ec3cdacb8cb0c21471f0">   35</a></span>    <span class="keyword">using </span><a class="code hl_enumeration" href="../../d9/d27/classcarla_1_1sensor_1_1data_1_1SemanticLidarData.html#a0d0554efb807f37afef58001b1d575db">Index</a> = <a class="code hl_enumeration" href="../../d9/d27/classcarla_1_1sensor_1_1data_1_1SemanticLidarData.html#a0d0554efb807f37afef58001b1d575db">data::SemanticLidarData::Index</a>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> <span class="comment">// 使用using关键字定义一个类型别名Index，它等同于data::SemanticLidarData::Index类型，这样后续使用Index时就相当于使用那个具体的索引相关类型，方便代码书写和理解，应该是用于在访问头部数据成员时做索引定位用</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="../../df/d52/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarHeaderView.html#a1bcc9c20ddaa9c6867f9a41f221dea20">   40</a></span>    <span class="keywordtype">float</span> <a class="code hl_function" href="../../df/d52/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarHeaderView.html#a1bcc9c20ddaa9c6867f9a41f221dea20">GetHorizontalAngle</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>      <span class="keywordflow">return</span> <span class="keyword">reinterpret_cast&lt;</span><span class="keyword">const </span><span class="keywordtype">float</span> &amp;<span class="keyword">&gt;</span>(<a class="code hl_variable" href="../../df/d52/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarHeaderView.html#a30a4654d2b7194b574e38c7a5ff017d4">_begin</a>[Index::HorizontalAngle]);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment">// 定义一个常成员函数，用于获取水平角度信息。</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">// 位置的数据强制转换为float类型的引用并返回，这里使用reinterpret_cast进行强制类型转换，从底层内存角度获取对应的数据并转换为期望的类型</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> <span class="comment">// 前提是内存中对应位置存储的数据确实符合float类型的格式要求</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    }</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="../../df/d52/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarHeaderView.html#a89b65fdb27bff9d8b31f51515702fc05">   48</a></span>    uint32_t <a class="code hl_function" href="../../df/d52/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarHeaderView.html#a89b65fdb27bff9d8b31f51515702fc05">GetChannelCount</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="../../df/d52/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarHeaderView.html#a30a4654d2b7194b574e38c7a5ff017d4">_begin</a>[Index::ChannelCount];</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> <span class="comment">// 常成员函数，用于获取通道数量信息。</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    }</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="../../df/d52/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarHeaderView.html#a9ecb22a9771787700946c3c53c5f8970">   53</a></span>    uint32_t <a class="code hl_function" href="../../df/d52/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarHeaderView.html#a9ecb22a9771787700946c3c53c5f8970">GetPointCount</a>(<span class="keywordtype">size_t</span> channel)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>      <a class="code hl_define" href="../../d4/deb/Debug_8h.html#a0480185f78b4135a9d05ec24bccef047">DEBUG_ASSERT</a>(channel &lt; <a class="code hl_function" href="../../df/d52/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarHeaderView.html#a89b65fdb27bff9d8b31f51515702fc05">GetChannelCount</a>());</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="comment">// 先使用DEBUG_ASSERT宏（来自之前引入的Debug.h文件）进行断言检查，确保传入的通道索引（channel）小于获取到的总通道数量</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="comment">// 即保证访问的通道索引是合法有效的，防止越界访问等错误情况发生</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="../../df/d52/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarHeaderView.html#a30a4654d2b7194b574e38c7a5ff017d4">_begin</a>[Index::SIZE + channel]; <span class="comment">// 返回指定通道的点数量信息。</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    }</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  <span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="../../df/d52/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarHeaderView.html#a4a689ff021abb595509f1df8e7845ab4">   61</a></span>    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code hl_class" href="../../d2/ddd/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarSerializer.html">SemanticLidarSerializer</a>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment">// 声明SemanticLidarSerializer类为友元类</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> <span class="comment">// 一般用于在相关联的类之间提供一种特殊的访问权限，便于协同完成功能，比如这里可能是在序列化和反序列化过程中需要这种访问权限</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="../../df/d52/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarHeaderView.html#a090cdd7300b9540856780928296d93d5">   65</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="../../df/d52/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarHeaderView.html#a090cdd7300b9540856780928296d93d5">SemanticLidarHeaderView</a>(<span class="keyword">const</span> uint32_t *<a class="code hl_function" href="../../da/de4/ActorRegistry_8h.html#a8adba6c42fed3c86324a62968648d6a0">begin</a>) : <a class="code hl_variable" href="../../df/d52/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarHeaderView.html#a30a4654d2b7194b574e38c7a5ff017d4">_begin</a>(<a class="code hl_function" href="../../da/de4/ActorRegistry_8h.html#a8adba6c42fed3c86324a62968648d6a0">begin</a>) {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>      <a class="code hl_define" href="../../d4/deb/Debug_8h.html#a0480185f78b4135a9d05ec24bccef047">DEBUG_ASSERT</a>(<a class="code hl_variable" href="../../df/d52/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarHeaderView.html#a30a4654d2b7194b574e38c7a5ff017d4">_begin</a> != <span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment">// 在构造函数中，使用DEBUG_ASSERT宏进行断言检查，确保传入的指向头部数据起始地址的指针（begin）不为空，</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>      <span class="comment">// 保证后续基于这个指针访问数据的操作是安全可靠的</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    }</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="../../df/d52/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarHeaderView.html#a30a4654d2b7194b574e38c7a5ff017d4">   71</a></span>    <span class="keyword">const</span> uint32_t *<a class="code hl_variable" href="../../df/d52/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarHeaderView.html#a30a4654d2b7194b574e38c7a5ff017d4">_begin</a>;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> <span class="comment">// 定义一个指向uint32_t类型的常指针成员变量</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  };</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  <span class="comment">// ===========================================================================</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  <span class="comment">// -- LidarSerializer --------------------------------------------------------</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  <span class="comment">// ===========================================================================</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="comment"></span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="comment">  /// Serializes the data generated by Lidar sensors.</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="../../d2/ddd/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarSerializer.html">   80</a></span><span class="comment"></span>  <span class="keyword">class </span><a class="code hl_class" href="../../d2/ddd/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarSerializer.html">SemanticLidarSerializer</a> {</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="../../d2/ddd/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarSerializer.html#ab68ae9b756e680f15b810a9300b79d74">   83</a></span>    <span class="keyword">static</span> <a class="code hl_class" href="../../df/d52/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarHeaderView.html">SemanticLidarHeaderView</a> <a class="code hl_function" href="../../d2/ddd/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarSerializer.html#ab68ae9b756e680f15b810a9300b79d74">DeserializeHeader</a>(<span class="keyword">const</span> <a class="code hl_class" href="../../d3/da0/classcarla_1_1sensor_1_1RawData.html">RawData</a> &amp;data) {</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>      <span class="keywordflow">return</span> <a class="code hl_class" href="../../df/d52/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarHeaderView.html">SemanticLidarHeaderView</a>{<span class="keyword">reinterpret_cast&lt;</span><span class="keyword">const </span>uint32_t *<span class="keyword">&gt;</span>(data.<a class="code hl_function" href="../../d3/da0/classcarla_1_1sensor_1_1RawData.html#ad29c6a9698aa66f593286f5e6fc601ea">begin</a>())};</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="comment">// 定义一个静态函数DeserializeHeader</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    }</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="../../d2/ddd/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarSerializer.html#aa62f50268366605137597a22efc437fa">   88</a></span>    <span class="keyword">static</span> <span class="keywordtype">size_t</span> <a class="code hl_function" href="../../d2/ddd/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarSerializer.html#aa62f50268366605137597a22efc437fa">GetHeaderOffset</a>(<span class="keyword">const</span> <a class="code hl_class" href="../../d3/da0/classcarla_1_1sensor_1_1RawData.html">RawData</a> &amp;data) {</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>      <span class="keyword">auto</span> View = <a class="code hl_function" href="../../d2/ddd/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarSerializer.html#ab68ae9b756e680f15b810a9300b79d74">DeserializeHeader</a>(data);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>      <span class="keywordflow">return</span> <span class="keyword">sizeof</span>(uint32_t) * (View.GetChannelCount() + <a class="code hl_enumvalue" href="../../d9/d27/classcarla_1_1sensor_1_1data_1_1SemanticLidarData.html#a0d0554efb807f37afef58001b1d575dba0f9e9cc1dec280f7af08fdd16125d7f0">data::SemanticLidarData::Index::SIZE</a>);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> <span class="comment">// 定义一个静态函数GetHeaderOffset，用于获取原始数据中头部信息所占的偏移量（字节数）。</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="comment">// 首先调用DeserializeHeader函数获取头部信息的视图对象（View），然后根据视图对象获取的通道数量（View.GetChannelCount()）以及data::SemanticLidarData::Index::SIZE来计算总的偏移量</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="comment">// 通过将uint32_t类型的大小（sizeof(uint32_t)）乘以相应的数量得出字节数形式的偏移量</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    }</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Sensor&gt;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keyword">static</span> <a class="code hl_class" href="../../d0/d0a/classcarla_1_1Buffer.html">Buffer</a> <a class="code hl_function" href="../../d2/ddd/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarSerializer.html#a57ad0867f27342c6cf029651553688c3">Serialize</a>(</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <span class="keyword">const</span> Sensor &amp;sensor,</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        <span class="keyword">const</span> <a class="code hl_class" href="../../d9/d27/classcarla_1_1sensor_1_1data_1_1SemanticLidarData.html">data::SemanticLidarData</a> &amp;measurement,</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        <a class="code hl_class" href="../../d0/d0a/classcarla_1_1Buffer.html">Buffer</a> &amp;&amp;output);</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="comment">// 定义一个静态模板函数Serialize</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="comment">// 参数sensor是传感器对象引用，measurement是要序列化的语义激光雷达数据，output是用于存放序列化结果的缓冲区</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keyword">static</span> <a class="code hl_typedef" href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">SharedPtr&lt;SensorData&gt;</a> <a class="code hl_function" href="../../d2/ddd/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarSerializer.html#a23d881e27ab7f2b33bbfdfe8be11625f">Deserialize</a>(<a class="code hl_class" href="../../d3/da0/classcarla_1_1sensor_1_1RawData.html">RawData</a> &amp;&amp;data);</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> <span class="comment">// 定义一个静态函数Deserialize</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="comment">// 最终返回一个指向SensorData类型的共享智能指针（SharedPtr表示共享所有权，便于内存管理和对象生命周期控制），将原始数据还原为相应的传感器数据对象</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>  };</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  <span class="comment">// ===========================================================================</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>  <span class="comment">// -- LidarRawSerializer implementation -----------------------------------------</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>  <span class="comment">// ===========================================================================</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Sensor&gt;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="../../d2/ddd/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarSerializer.html#a57ad0867f27342c6cf029651553688c3">  116</a></span>  <span class="keyword">inline</span> <a class="code hl_class" href="../../d0/d0a/classcarla_1_1Buffer.html">Buffer</a> <a class="code hl_function" href="../../d2/ddd/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarSerializer.html#a57ad0867f27342c6cf029651553688c3">SemanticLidarSerializer::Serialize</a>(</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>      <span class="keyword">const</span> Sensor &amp;,</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>      <span class="keyword">const</span> <a class="code hl_class" href="../../d9/d27/classcarla_1_1sensor_1_1data_1_1SemanticLidarData.html">data::SemanticLidarData</a> &amp;measurement,</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>      <a class="code hl_class" href="../../d0/d0a/classcarla_1_1Buffer.html">Buffer</a> &amp;&amp;output) {</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    std::array&lt;boost::asio::const_buffer, 2u&gt; seq = {</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        boost::asio::buffer(measurement.<a class="code hl_variable" href="../../d9/d27/classcarla_1_1sensor_1_1data_1_1SemanticLidarData.html#acaa2a0e381eb3dcf29034462ecfc3085">_header</a>),</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        boost::asio::buffer(measurement.<a class="code hl_variable" href="../../d9/d27/classcarla_1_1sensor_1_1data_1_1SemanticLidarData.html#a15e753871a712b164faffe0ee28060a3">_ser_points</a>)};</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    output.<a class="code hl_function" href="../../d0/d0a/classcarla_1_1Buffer.html#a58ec7fcf4a9a2f70edb139f9671ebd00">copy_from</a>(seq);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="keywordflow">return</span> std::move(output);</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> <span class="comment">// 这是SemanticLidarSerializer类中Serialize函数的具体实现（针对特定模板参数Sensor的情况）。</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> <span class="comment">// 首先创建一个包含两个const_buffer类型元素的数组（seq），这两个元素分别通过boost::asio::buffer函数将语义激光雷达数据（measurement）中的</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> <span class="comment">// _header和_ser_points成员（具体含义由SemanticLidarData结构体定义决定）转换为const_buffer类型，以便后续进行数据复制操作。</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="comment">// 然后调用output缓冲区的copy_from函数，将数组seq中的数据复制到output缓冲区中，实现将语义激光雷达数据序列化到缓冲区的操作，</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> <span class="comment">// 最后通过移动语义（std::move）返回填充好数据的output缓冲区，避免不必要的拷贝开销，提高效率</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>  }</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>} <span class="comment">// namespace s11n</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>} <span class="comment">// namespace sensor</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>} <span class="comment">// namespace carla</span></div>
+<div class="ttc" id="aActorRegistry_8h_html_a8adba6c42fed3c86324a62968648d6a0"><div class="ttname"><a href="../../da/de4/ActorRegistry_8h.html#a8adba6c42fed3c86324a62968648d6a0">begin</a></div><div class="ttdeci">auto begin() const noexcept</div><div class="ttdoc">名称范围迭代支持</div><div class="ttdef"><b>Definition:</b> <a href="../../da/de4/ActorRegistry_8h_source.html#l00092">ActorRegistry.h:92</a></div></div>
+<div class="ttc" id="aDebug_8h_html"><div class="ttname"><a href="../../d4/deb/Debug_8h.html">Debug.h</a></div></div>
+<div class="ttc" id="aDebug_8h_html_a0480185f78b4135a9d05ec24bccef047"><div class="ttname"><a href="../../d4/deb/Debug_8h.html#a0480185f78b4135a9d05ec24bccef047">DEBUG_ASSERT</a></div><div class="ttdeci">#define DEBUG_ASSERT(predicate)</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/deb/Debug_8h_source.html#l00068">Debug.h:68</a></div></div>
+<div class="ttc" id="aMemory_8h_html"><div class="ttname"><a href="../../de/d5c/Memory_8h.html">Memory.h</a></div></div>
+<div class="ttc" id="aRawData_8h_html"><div class="ttname"><a href="../../dc/d62/RawData_8h.html">RawData.h</a></div></div>
+<div class="ttc" id="aSemanticLidarData_8h_html"><div class="ttname"><a href="../../d0/dc1/SemanticLidarData_8h.html">SemanticLidarData.h</a></div></div>
+<div class="ttc" id="aclasscarla_1_1Buffer_html"><div class="ttname"><a href="../../d0/d0a/classcarla_1_1Buffer.html">carla::Buffer</a></div><div class="ttdoc">一块原始数据。 请注意，如果需要更多容量，则会分配一个新的内存块，并 删除旧的内存块。这意味着默认情况下，缓冲区只能增长。要释放内存，使用 clear 或 pop。</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/dda/carla_2Buffer_8h_source.html#l00052">carla/Buffer.h:52</a></div></div>
+<div class="ttc" id="aclasscarla_1_1Buffer_html_a58ec7fcf4a9a2f70edb139f9671ebd00"><div class="ttname"><a href="../../d0/d0a/classcarla_1_1Buffer.html#a58ec7fcf4a9a2f70edb139f9671ebd00">carla::Buffer::copy_from</a></div><div class="ttdeci">void copy_from(const T &amp;source)</div><div class="ttdoc">将 source复制到此缓冲区。如果需要，则分配内存。</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/dda/carla_2Buffer_8h_source.html#l00367">carla/Buffer.h:367</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1RawData_html"><div class="ttname"><a href="../../d3/da0/classcarla_1_1sensor_1_1RawData.html">carla::sensor::RawData</a></div><div class="ttdoc">包装一个传感器生成的原始数据以及一些有用的元信息。</div><div class="ttdef"><b>Definition:</b> <a href="../../dc/d62/RawData_8h_source.html#l00020">RawData.h:20</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1RawData_html_ad29c6a9698aa66f593286f5e6fc601ea"><div class="ttname"><a href="../../d3/da0/classcarla_1_1sensor_1_1RawData.html#ad29c6a9698aa66f593286f5e6fc601ea">carla::sensor::RawData::begin</a></div><div class="ttdeci">auto begin() noexcept</div><div class="ttdoc">指向传感器生成的数据的开始迭代器。</div><div class="ttdef"><b>Definition:</b> <a href="../../dc/d62/RawData_8h_source.html#l00052">RawData.h:52</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1data_1_1SemanticLidarData_html"><div class="ttname"><a href="../../d9/d27/classcarla_1_1sensor_1_1data_1_1SemanticLidarData.html">carla::sensor::data::SemanticLidarData</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d0/dc1/SemanticLidarData_8h_source.html#l00101">SemanticLidarData.h:101</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1data_1_1SemanticLidarData_html_a0d0554efb807f37afef58001b1d575db"><div class="ttname"><a href="../../d9/d27/classcarla_1_1sensor_1_1data_1_1SemanticLidarData.html#a0d0554efb807f37afef58001b1d575db">carla::sensor::data::SemanticLidarData::Index</a></div><div class="ttdeci">Index</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/dc1/SemanticLidarData_8h_source.html#l00108">SemanticLidarData.h:108</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1data_1_1SemanticLidarData_html_a0d0554efb807f37afef58001b1d575dba0f9e9cc1dec280f7af08fdd16125d7f0"><div class="ttname"><a href="../../d9/d27/classcarla_1_1sensor_1_1data_1_1SemanticLidarData.html#a0d0554efb807f37afef58001b1d575dba0f9e9cc1dec280f7af08fdd16125d7f0">carla::sensor::data::SemanticLidarData::SIZE</a></div><div class="ttdeci">@ SIZE</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/dc1/SemanticLidarData_8h_source.html#l00115">SemanticLidarData.h:114</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1data_1_1SemanticLidarData_html_a15e753871a712b164faffe0ee28060a3"><div class="ttname"><a href="../../d9/d27/classcarla_1_1sensor_1_1data_1_1SemanticLidarData.html#a15e753871a712b164faffe0ee28060a3">carla::sensor::data::SemanticLidarData::_ser_points</a></div><div class="ttdeci">std::vector&lt; SemanticLidarDetection &gt; _ser_points</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/dc1/SemanticLidarData_8h_source.html#l00181">SemanticLidarData.h:181</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1data_1_1SemanticLidarData_html_acaa2a0e381eb3dcf29034462ecfc3085"><div class="ttname"><a href="../../d9/d27/classcarla_1_1sensor_1_1data_1_1SemanticLidarData.html#acaa2a0e381eb3dcf29034462ecfc3085">carla::sensor::data::SemanticLidarData::_header</a></div><div class="ttdeci">std::vector&lt; uint32_t &gt; _header</div><div class="ttdef"><b>Definition:</b> <a href="../../d0/dc1/SemanticLidarData_8h_source.html#l00173">SemanticLidarData.h:173</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1s11n_1_1SemanticLidarHeaderView_html"><div class="ttname"><a href="../../df/d52/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarHeaderView.html">carla::sensor::s11n::SemanticLidarHeaderView</a></div><div class="ttdoc">A view over the header of a Lidar measurement.</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d23/SemanticLidarSerializer_8h_source.html#l00034">SemanticLidarSerializer.h:34</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1s11n_1_1SemanticLidarHeaderView_html_a090cdd7300b9540856780928296d93d5"><div class="ttname"><a href="../../df/d52/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarHeaderView.html#a090cdd7300b9540856780928296d93d5">carla::sensor::s11n::SemanticLidarHeaderView::SemanticLidarHeaderView</a></div><div class="ttdeci">SemanticLidarHeaderView(const uint32_t *begin)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d23/SemanticLidarSerializer_8h_source.html#l00065">SemanticLidarSerializer.h:65</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1s11n_1_1SemanticLidarHeaderView_html_a1bcc9c20ddaa9c6867f9a41f221dea20"><div class="ttname"><a href="../../df/d52/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarHeaderView.html#a1bcc9c20ddaa9c6867f9a41f221dea20">carla::sensor::s11n::SemanticLidarHeaderView::GetHorizontalAngle</a></div><div class="ttdeci">float GetHorizontalAngle() const</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d23/SemanticLidarSerializer_8h_source.html#l00040">SemanticLidarSerializer.h:40</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1s11n_1_1SemanticLidarHeaderView_html_a30a4654d2b7194b574e38c7a5ff017d4"><div class="ttname"><a href="../../df/d52/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarHeaderView.html#a30a4654d2b7194b574e38c7a5ff017d4">carla::sensor::s11n::SemanticLidarHeaderView::_begin</a></div><div class="ttdeci">const uint32_t * _begin</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d23/SemanticLidarSerializer_8h_source.html#l00071">SemanticLidarSerializer.h:71</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1s11n_1_1SemanticLidarHeaderView_html_a89b65fdb27bff9d8b31f51515702fc05"><div class="ttname"><a href="../../df/d52/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarHeaderView.html#a89b65fdb27bff9d8b31f51515702fc05">carla::sensor::s11n::SemanticLidarHeaderView::GetChannelCount</a></div><div class="ttdeci">uint32_t GetChannelCount() const</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d23/SemanticLidarSerializer_8h_source.html#l00048">SemanticLidarSerializer.h:48</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1s11n_1_1SemanticLidarHeaderView_html_a9ecb22a9771787700946c3c53c5f8970"><div class="ttname"><a href="../../df/d52/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarHeaderView.html#a9ecb22a9771787700946c3c53c5f8970">carla::sensor::s11n::SemanticLidarHeaderView::GetPointCount</a></div><div class="ttdeci">uint32_t GetPointCount(size_t channel) const</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d23/SemanticLidarSerializer_8h_source.html#l00053">SemanticLidarSerializer.h:53</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1s11n_1_1SemanticLidarSerializer_html"><div class="ttname"><a href="../../d2/ddd/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarSerializer.html">carla::sensor::s11n::SemanticLidarSerializer</a></div><div class="ttdoc">Serializes the data generated by Lidar sensors.</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d23/SemanticLidarSerializer_8h_source.html#l00080">SemanticLidarSerializer.h:80</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1s11n_1_1SemanticLidarSerializer_html_a23d881e27ab7f2b33bbfdfe8be11625f"><div class="ttname"><a href="../../d2/ddd/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarSerializer.html#a23d881e27ab7f2b33bbfdfe8be11625f">carla::sensor::s11n::SemanticLidarSerializer::Deserialize</a></div><div class="ttdeci">static SharedPtr&lt; SensorData &gt; Deserialize(RawData &amp;&amp;data)</div><div class="ttdef"><b>Definition:</b> <a href="../../db/dad/SemanticLidarSerializer_8cpp_source.html#l00014">SemanticLidarSerializer.cpp:14</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1s11n_1_1SemanticLidarSerializer_html_a57ad0867f27342c6cf029651553688c3"><div class="ttname"><a href="../../d2/ddd/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarSerializer.html#a57ad0867f27342c6cf029651553688c3">carla::sensor::s11n::SemanticLidarSerializer::Serialize</a></div><div class="ttdeci">static Buffer Serialize(const Sensor &amp;sensor, const data::SemanticLidarData &amp;measurement, Buffer &amp;&amp;output)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d23/SemanticLidarSerializer_8h_source.html#l00116">SemanticLidarSerializer.h:116</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1s11n_1_1SemanticLidarSerializer_html_aa62f50268366605137597a22efc437fa"><div class="ttname"><a href="../../d2/ddd/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarSerializer.html#aa62f50268366605137597a22efc437fa">carla::sensor::s11n::SemanticLidarSerializer::GetHeaderOffset</a></div><div class="ttdeci">static size_t GetHeaderOffset(const RawData &amp;data)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d23/SemanticLidarSerializer_8h_source.html#l00088">SemanticLidarSerializer.h:88</a></div></div>
+<div class="ttc" id="aclasscarla_1_1sensor_1_1s11n_1_1SemanticLidarSerializer_html_ab68ae9b756e680f15b810a9300b79d74"><div class="ttname"><a href="../../d2/ddd/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarSerializer.html#ab68ae9b756e680f15b810a9300b79d74">carla::sensor::s11n::SemanticLidarSerializer::DeserializeHeader</a></div><div class="ttdeci">static SemanticLidarHeaderView DeserializeHeader(const RawData &amp;data)</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/d23/SemanticLidarSerializer_8h_source.html#l00083">SemanticLidarSerializer.h:83</a></div></div>
+<div class="ttc" id="anamespacecarla_html"><div class="ttname"><a href="../../d9/d36/namespacecarla.html">carla</a></div><div class="ttdoc">CARLA模拟器的主命名空间。</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d4f/Carla_8cpp_source.html#l00139">Carla.cpp:139</a></div></div>
+<div class="ttc" id="anamespacecarla_html_a92e3ea2d07fa7e0a2fe5d680fb0ba614"><div class="ttname"><a href="../../d9/d36/namespacecarla.html#a92e3ea2d07fa7e0a2fe5d680fb0ba614">carla::SharedPtr</a></div><div class="ttdeci">boost::shared_ptr&lt; T &gt; SharedPtr</div><div class="ttdoc">使用这个SharedPtr（boost::shared_ptr）以保持与boost::python的兼容性， 但未来如果可能的话，我们希望能为std::shared_ptr制作一个Python适配器。</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d5c/Memory_8h_source.html#l00019">Memory.h:19</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

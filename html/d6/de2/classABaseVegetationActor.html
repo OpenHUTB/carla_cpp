@@ -1,0 +1,307 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: ABaseVegetationActor类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-attribs">Public 属性</a> &#124;
+<a href="../../dc/d73/classABaseVegetationActor-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">ABaseVegetationActor类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html">BaseVegetationActor.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 类 ABaseVegetationActor 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d7/d89/classABaseVegetationActor__inherit__graph.svg" width="166" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> ABaseVegetationActor 的协作图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../df/dd3/classABaseVegetationActor__coll__graph.svg" width="656" height="476"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a4a67617612b6da43ff6e3ed458887754"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/de2/classABaseVegetationActor.html#a4a67617612b6da43ff6e3ed458887754">BeginPlay</a> () <a class="el" href="../../de/d7d/ActorData_8h.html#ad031bfd5a8a2ed7e66d03dafcc3b2858">override</a></td></tr>
+<tr class="separator:a4a67617612b6da43ff6e3ed458887754"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88f7c2873f9b6fe0d51f3042e1d902be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/de2/classABaseVegetationActor.html#a88f7c2873f9b6fe0d51f3042e1d902be">GetParametersFromComponent</a> ()</td></tr>
+<tr class="separator:a88f7c2873f9b6fe0d51f3042e1d902be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfe092852e6d31e18dd5691f21377418"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/de2/classABaseVegetationActor.html#adfe092852e6d31e18dd5691f21377418">SetParametersToComponent</a> ()</td></tr>
+<tr class="separator:adfe092852e6d31e18dd5691f21377418"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a173637925904376fc000c67d5c0414"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/de2/classABaseVegetationActor.html#a5a173637925904376fc000c67d5c0414">UpdateSkeletonAndParameters</a> ()</td></tr>
+<tr class="separator:a5a173637925904376fc000c67d5c0414"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:aa5651ef9d4b727f299f41a3d325ea702"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/d87/structFSpringBasedVegetationParameters.html">FSpringBasedVegetationParameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/de2/classABaseVegetationActor.html#aa5651ef9d4b727f299f41a3d325ea702">SpringParameters</a></td></tr>
+<tr class="separator:aa5651ef9d4b727f299f41a3d325ea702"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html">BaseVegetationActor.h</a> 第 <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00114">114</a> 行定义.</p>
+</div><h2 class="groupheader">成员函数说明</h2>
+<a id="a4a67617612b6da43ff6e3ed458887754" name="a4a67617612b6da43ff6e3ed458887754"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a67617612b6da43ff6e3ed458887754">&#9670;&#160;</a></span>BeginPlay()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ABaseVegetationActor::BeginPlay </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/dc7/BaseVegetationActor_8cpp_source.html">BaseVegetationActor.cpp</a> 第 <a class="el" href="../../db/dc7/BaseVegetationActor_8cpp_source.html#l00011">11</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/dc7/BaseVegetationActor_8cpp_source.html#l00011">BeginPlay()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/dc7/BaseVegetationActor_8cpp_source.html#l00011">BeginPlay()</a>.</p>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d6/de2/classABaseVegetationActor_a4a67617612b6da43ff6e3ed458887754_cgraph.svg" width="166" height="75"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d6/de2/classABaseVegetationActor_a4a67617612b6da43ff6e3ed458887754_icgraph.svg" width="166" height="75"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a88f7c2873f9b6fe0d51f3042e1d902be" name="a88f7c2873f9b6fe0d51f3042e1d902be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88f7c2873f9b6fe0d51f3042e1d902be">&#9670;&#160;</a></span>GetParametersFromComponent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ABaseVegetationActor::GetParametersFromComponent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/dc7/BaseVegetationActor_8cpp_source.html">BaseVegetationActor.cpp</a> 第 <a class="el" href="../../db/dc7/BaseVegetationActor_8cpp_source.html#l00021">21</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00032">FSpringBasedVegetationParameters::Alpha</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00040">FSpringBasedVegetationParameters::BaseSpringStrength</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00108">FSpringBasedVegetationParameters::bAutoComputeStrength</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00028">FSpringBasedVegetationParameters::Beta</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00088">FSpringBasedVegetationParameters::CapsuleRadius</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00068">FSpringBasedVegetationParameters::CollisionForceMinVel</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00064">FSpringBasedVegetationParameters::CollisionForceParameter</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00060">FSpringBasedVegetationParameters::DeltaTimeOverride</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00072">FSpringBasedVegetationParameters::ForceDistanceFalloffExponent</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00076">FSpringBasedVegetationParameters::ForceMaxDistance</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00036">FSpringBasedVegetationParameters::Gravity</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00048">FSpringBasedVegetationParameters::HorizontalFallof</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00084">FSpringBasedVegetationParameters::LineTraceMaxDistance</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00092">FSpringBasedVegetationParameters::MinBoneLength</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00080">FSpringBasedVegetationParameters::MinForceFactor</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00044">FSpringBasedVegetationParameters::MinSpringStrength</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00056">FSpringBasedVegetationParameters::RestFactor</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00104">FSpringBasedVegetationParameters::Skeleton</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00127">SpringParameters</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00096">FSpringBasedVegetationParameters::SpringStrengthMulFactor</a>, <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp.html#a69d0a7232310b5ebaa51abb2b9945184">UE_LOG()</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00100">FSpringBasedVegetationParameters::VehicleCenterZOffset</a> , 以及 <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00052">FSpringBasedVegetationParameters::VerticalFallof</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/dc7/BaseVegetationActor_8cpp_source.html#l00115">UpdateSkeletonAndParameters()</a>.</p>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d6/de2/classABaseVegetationActor_a88f7c2873f9b6fe0d51f3042e1d902be_cgraph.svg" width="346" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d6/de2/classABaseVegetationActor_a88f7c2873f9b6fe0d51f3042e1d902be_icgraph.svg" width="482" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="adfe092852e6d31e18dd5691f21377418" name="adfe092852e6d31e18dd5691f21377418"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfe092852e6d31e18dd5691f21377418">&#9670;&#160;</a></span>SetParametersToComponent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ABaseVegetationActor::SetParametersToComponent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/dc7/BaseVegetationActor_8cpp_source.html">BaseVegetationActor.cpp</a> 第 <a class="el" href="../../db/dc7/BaseVegetationActor_8cpp_source.html#l00072">72</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00032">FSpringBasedVegetationParameters::Alpha</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00040">FSpringBasedVegetationParameters::BaseSpringStrength</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00108">FSpringBasedVegetationParameters::bAutoComputeStrength</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00028">FSpringBasedVegetationParameters::Beta</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00088">FSpringBasedVegetationParameters::CapsuleRadius</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00068">FSpringBasedVegetationParameters::CollisionForceMinVel</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00064">FSpringBasedVegetationParameters::CollisionForceParameter</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00060">FSpringBasedVegetationParameters::DeltaTimeOverride</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00072">FSpringBasedVegetationParameters::ForceDistanceFalloffExponent</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00076">FSpringBasedVegetationParameters::ForceMaxDistance</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00036">FSpringBasedVegetationParameters::Gravity</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00048">FSpringBasedVegetationParameters::HorizontalFallof</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00084">FSpringBasedVegetationParameters::LineTraceMaxDistance</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00092">FSpringBasedVegetationParameters::MinBoneLength</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00080">FSpringBasedVegetationParameters::MinForceFactor</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00044">FSpringBasedVegetationParameters::MinSpringStrength</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00056">FSpringBasedVegetationParameters::RestFactor</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00104">FSpringBasedVegetationParameters::Skeleton</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00127">SpringParameters</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00096">FSpringBasedVegetationParameters::SpringStrengthMulFactor</a>, <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp.html#a69d0a7232310b5ebaa51abb2b9945184">UE_LOG()</a>, <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00100">FSpringBasedVegetationParameters::VehicleCenterZOffset</a> , 以及 <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00052">FSpringBasedVegetationParameters::VerticalFallof</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/dc7/BaseVegetationActor_8cpp_source.html#l00115">UpdateSkeletonAndParameters()</a>.</p>
+<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d6/de2/classABaseVegetationActor_adfe092852e6d31e18dd5691f21377418_cgraph.svg" width="330" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d6/de2/classABaseVegetationActor_adfe092852e6d31e18dd5691f21377418_icgraph.svg" width="466" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a5a173637925904376fc000c67d5c0414" name="a5a173637925904376fc000c67d5c0414"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a173637925904376fc000c67d5c0414">&#9670;&#160;</a></span>UpdateSkeletonAndParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ABaseVegetationActor::UpdateSkeletonAndParameters </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/dc7/BaseVegetationActor_8cpp_source.html">BaseVegetationActor.cpp</a> 第 <a class="el" href="../../db/dc7/BaseVegetationActor_8cpp_source.html#l00115">115</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/dc7/BaseVegetationActor_8cpp_source.html#l00021">GetParametersFromComponent()</a>, <a class="el" href="../../db/dc7/BaseVegetationActor_8cpp_source.html#l00072">SetParametersToComponent()</a> , 以及 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp.html#a69d0a7232310b5ebaa51abb2b9945184">UE_LOG()</a>.</p>
+<div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d6/de2/classABaseVegetationActor_a5a173637925904376fc000c67d5c0414_cgraph.svg" width="604" height="166"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="aa5651ef9d4b727f299f41a3d325ea702" name="aa5651ef9d4b727f299f41a3d325ea702"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5651ef9d4b727f299f41a3d325ea702">&#9670;&#160;</a></span>SpringParameters</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../df/d87/structFSpringBasedVegetationParameters.html">FSpringBasedVegetationParameters</a> ABaseVegetationActor::SpringParameters</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html">BaseVegetationActor.h</a> 第 <a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html#l00127">127</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/dc7/BaseVegetationActor_8cpp_source.html#l00021">GetParametersFromComponent()</a> , 以及 <a class="el" href="../../db/dc7/BaseVegetationActor_8cpp_source.html#l00072">SetParametersToComponent()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../df/d88/BaseVegetationActor_8h_source.html">BaseVegetationActor.h</a></li>
+<li><a class="el" href="../../db/dc7/BaseVegetationActor_8cpp_source.html">BaseVegetationActor.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

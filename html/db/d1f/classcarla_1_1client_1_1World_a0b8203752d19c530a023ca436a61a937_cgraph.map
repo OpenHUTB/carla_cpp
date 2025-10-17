@@ -1,0 +1,4 @@
+<map id="carla::client::World::GetLevelBBs" name="carla::client::World::GetLevelBBs">
+<area shape="rect" id="node1" title="返回该等级中所有元素的BBs。 边界框可以描述物体在三维空间中的大致范围，通过获取所有元素的边界框， 可以用于碰撞检测、空间划分、可视化展示等多种与空间位置和范围相关的操作，这里返回的是指定标签（que..." alt="" coords="5,5,132,45"/>
+<area shape="rect" id="node2" href="$d1/dd3/classcarla_1_1client_1_1detail_1_1EpisodeProxyImpl.html#aaca857645fbeb6546b4a03a663bb65af" title="与 TryLock 相同，但永远不会返回 nullptr。" alt="" coords="180,5,347,45"/>
+</map>

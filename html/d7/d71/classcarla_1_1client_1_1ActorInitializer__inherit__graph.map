@@ -1,0 +1,5 @@
+<map id="carla::client::ActorInitializer" name="carla::client::ActorInitializer">
+<area shape="rect" id="node1" title="用于初始化 Actor 类。只有 ActorFactory 可以创建此对象，因此只有 ActorFactory 可以创建 Actor。" alt="" coords="9,167,184,192"/>
+<area shape="rect" id="node2" href="$d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html" title="参与者的内部状态" alt="" coords="35,79,159,119"/>
+<area shape="rect" id="node3" href="$d7/d55/classcarla_1_1MovableNonCopyable.html" title="这个类用于禁止拷贝构造函数和赋值操作，但允许移动构造函数和赋值操作" alt="" coords="5,5,188,31"/>
+</map>

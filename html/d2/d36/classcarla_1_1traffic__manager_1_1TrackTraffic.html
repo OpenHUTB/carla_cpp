@@ -1,0 +1,839 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: carla::traffic_manager::TrackTraffic类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../d9/d36/namespacecarla.html">carla</a></li><li class="navelem"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html">traffic_manager</a></li><li class="navelem"><a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html">TrackTraffic</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-types">Private 类型</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="../../dd/d48/classcarla_1_1traffic__manager_1_1TrackTraffic-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">carla::traffic_manager::TrackTraffic类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="../../db/d67/TrackTraffic_8h_source.html">TrackTraffic.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> carla::traffic_manager::TrackTraffic 的协作图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../db/d4b/classcarla_1_1traffic__manager_1_1TrackTraffic__coll__graph.svg" width="100%" height="532"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:aefa1718be820876dfcb7841c703275a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#aefa1718be820876dfcb7841c703275a7">AddTakenGrid</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a5030097952c4be1d2efb7a3292a0c809">GeoGridId</a> geogrid_id, const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> actor_id)</td></tr>
+<tr class="separator:aefa1718be820876dfcb7841c703275a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab73fc4bc7cf79902e3ff6f111bdcefbe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#ab73fc4bc7cf79902e3ff6f111bdcefbe">Clear</a> ()</td></tr>
+<tr class="separator:ab73fc4bc7cf79902e3ff6f111bdcefbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3f8304d51ae8e9bcf278ec1fc1caa73"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#ad3f8304d51ae8e9bcf278ec1fc1caa73">DeleteActor</a> (<a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> actor_id)</td></tr>
+<tr class="memdesc:ad3f8304d51ae8e9bcf278ec1fc1caa73"><td class="mdescLeft">&#160;</td><td class="mdescRight">从跟踪中删除参与者数据的方法  <a href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#ad3f8304d51ae8e9bcf278ec1fc1caa73">更多...</a><br /></td></tr>
+<tr class="separator:ad3f8304d51ae8e9bcf278ec1fc1caa73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c67d2a7df92d4d114abef898676abdc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">cg::Location</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#a1c67d2a7df92d4d114abef898676abdc">GetHeroLocation</a> () const</td></tr>
+<tr class="separator:a1c67d2a7df92d4d114abef898676abdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a856482783656c84dc63362a947b91216"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a36e144174a4524310723dee7ddb8e286">ActorIdSet</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#a856482783656c84dc63362a947b91216">GetOverlappingVehicles</a> (<a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> actor_id) const</td></tr>
+<tr class="separator:a856482783656c84dc63362a947b91216"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a648d59044693f79c5d4cf00de5b30423"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a36e144174a4524310723dee7ddb8e286">ActorIdSet</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#a648d59044693f79c5d4cf00de5b30423">GetPassingVehicles</a> (uint64_t waypoint_id) const</td></tr>
+<tr class="separator:a648d59044693f79c5d4cf00de5b30423"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89659566f2e7da4d4c18bbd3b55249c3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#a89659566f2e7da4d4c18bbd3b55249c3">IsGeoGridFree</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a5030097952c4be1d2efb7a3292a0c809">GeoGridId</a> geogrid_id) const</td></tr>
+<tr class="separator:a89659566f2e7da4d4c18bbd3b55249c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa605ab90a2903ac80fae61f3eb5c159"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#aaa605ab90a2903ac80fae61f3eb5c159">RemovePassingVehicle</a> (uint64_t waypoint_id, <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> actor_id)</td></tr>
+<tr class="separator:aaa605ab90a2903ac80fae61f3eb5c159"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af08038bc9a2de4233504b2a64e40d245"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#af08038bc9a2de4233504b2a64e40d245">SetHeroLocation</a> (const <a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">cg::Location</a> location)</td></tr>
+<tr class="separator:af08038bc9a2de4233504b2a64e40d245"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad4b59981c7c83ef869f881e783963b5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#aad4b59981c7c83ef869f881e783963b5">TrackTraffic</a> ()</td></tr>
+<tr class="separator:aad4b59981c7c83ef869f881e783963b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4934fa9c7b0409e9c719125003671bfc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#a4934fa9c7b0409e9c719125003671bfc">UpdateGridPosition</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> actor_id, const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a1d6b4dc3a00ae57d565e9382690490bd">Buffer</a> &amp;buffer)</td></tr>
+<tr class="separator:a4934fa9c7b0409e9c719125003671bfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00e9170a04217225fce8d48a596f31a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#a00e9170a04217225fce8d48a596f31a6">UpdatePassingVehicle</a> (uint64_t waypoint_id, <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> actor_id)</td></tr>
+<tr class="memdesc:a00e9170a04217225fce8d48a596f31a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新、移除和检索经过某一路点车辆的方法  <a href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#a00e9170a04217225fce8d48a596f31a6">更多...</a><br /></td></tr>
+<tr class="separator:a00e9170a04217225fce8d48a596f31a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa77bd9457c2a55f1c566a68d3a12604b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#aa77bd9457c2a55f1c566a68d3a12604b">UpdateUnregisteredGridPosition</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a> actor_id, const std::vector&lt; <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#aee461a5a490f4fccca9a4aef84fab3b5">SimpleWaypointPtr</a> &gt; waypoints)</td></tr>
+<tr class="separator:aa77bd9457c2a55f1c566a68d3a12604b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-types" name="pri-types"></a>
+Private 类型</h2></td></tr>
+<tr class="memitem:a8d4090587b09cfc7c00dea478543409d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#a8d4090587b09cfc7c00dea478543409d">WaypointIdSet</a> = std::unordered_set&lt; uint64_t &gt;</td></tr>
+<tr class="memdesc:a8d4090587b09cfc7c00dea478543409d"><td class="mdescLeft">&#160;</td><td class="mdescRight">用于跟踪车辆所占用航点的结构  <a href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#a8d4090587b09cfc7c00dea478543409d">更多...</a><br /></td></tr>
+<tr class="separator:a8d4090587b09cfc7c00dea478543409d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa86120feb7bc4d5fb2881bc82af523cf"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#aa86120feb7bc4d5fb2881bc82af523cf">WaypointOccupancyMap</a> = std::unordered_map&lt; <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a>, <a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#a8d4090587b09cfc7c00dea478543409d">WaypointIdSet</a> &gt;</td></tr>
+<tr class="separator:aa86120feb7bc4d5fb2881bc82af523cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76e182d8c6afe650007e05064f7d12fc"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#a76e182d8c6afe650007e05064f7d12fc">WaypointOverlap</a> = std::unordered_map&lt; uint64_t, <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a36e144174a4524310723dee7ddb8e286">ActorIdSet</a> &gt;</td></tr>
+<tr class="memdesc:a76e182d8c6afe650007e05064f7d12fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">用于跟踪车辆间重叠航点的结构  <a href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#a76e182d8c6afe650007e05064f7d12fc">更多...</a><br /></td></tr>
+<tr class="separator:a76e182d8c6afe650007e05064f7d12fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a345b68c5514c5fe9ceafd551eae6bfaa"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a>, std::unordered_set&lt; <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a5030097952c4be1d2efb7a3292a0c809">GeoGridId</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#a345b68c5514c5fe9ceafd551eae6bfaa">actor_to_grids</a></td></tr>
+<tr class="memdesc:a345b68c5514c5fe9ceafd551eae6bfaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">参与者路径所占据的测地线网格  <a href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#a345b68c5514c5fe9ceafd551eae6bfaa">更多...</a><br /></td></tr>
+<tr class="separator:a345b68c5514c5fe9ceafd551eae6bfaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1600cb6b21306e6c37e7e557bbcc737"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a5030097952c4be1d2efb7a3292a0c809">GeoGridId</a>, <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a36e144174a4524310723dee7ddb8e286">ActorIdSet</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#af1600cb6b21306e6c37e7e557bbcc737">grid_to_actors</a></td></tr>
+<tr class="memdesc:af1600cb6b21306e6c37e7e557bbcc737"><td class="mdescLeft">&#160;</td><td class="mdescRight">参与者当前经过的网格  <a href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#af1600cb6b21306e6c37e7e557bbcc737">更多...</a><br /></td></tr>
+<tr class="separator:af1600cb6b21306e6c37e7e557bbcc737"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ed2f976120a70cd03bb74f036b14509"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">cg::Location</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#a6ed2f976120a70cd03bb74f036b14509">hero_location</a> = <a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">cg::Location</a>(0,0,0)</td></tr>
+<tr class="memdesc:a6ed2f976120a70cd03bb74f036b14509"><td class="mdescLeft">&#160;</td><td class="mdescRight">当前英雄位置  <a href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#a6ed2f976120a70cd03bb74f036b14509">更多...</a><br /></td></tr>
+<tr class="separator:a6ed2f976120a70cd03bb74f036b14509"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad80e1f1580d16bdb20583dcd8a893179"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#aa86120feb7bc4d5fb2881bc82af523cf">WaypointOccupancyMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#ad80e1f1580d16bdb20583dcd8a893179">waypoint_occupied</a></td></tr>
+<tr class="separator:ad80e1f1580d16bdb20583dcd8a893179"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c2ad98d8426830de2de2d96d42ccd9f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#a76e182d8c6afe650007e05064f7d12fc">WaypointOverlap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#a3c2ad98d8426830de2de2d96d42ccd9f">waypoint_overlap_tracker</a></td></tr>
+<tr class="separator:a3c2ad98d8426830de2de2d96d42ccd9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html">TrackTraffic.h</a> 第 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html#l00019">19</a> 行定义.</p>
+</div><h2 class="groupheader">成员类型定义说明</h2>
+<a id="a8d4090587b09cfc7c00dea478543409d" name="a8d4090587b09cfc7c00dea478543409d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d4090587b09cfc7c00dea478543409d">&#9670;&#160;</a></span>WaypointIdSet</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#a8d4090587b09cfc7c00dea478543409d">carla::traffic_manager::TrackTraffic::WaypointIdSet</a> =  std::unordered_set&lt;uint64_t&gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>用于跟踪车辆所占用航点的结构 </p>
+
+<p class="definition">在文件 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html">TrackTraffic.h</a> 第 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html#l00027">27</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa86120feb7bc4d5fb2881bc82af523cf" name="aa86120feb7bc4d5fb2881bc82af523cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa86120feb7bc4d5fb2881bc82af523cf">&#9670;&#160;</a></span>WaypointOccupancyMap</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#aa86120feb7bc4d5fb2881bc82af523cf">carla::traffic_manager::TrackTraffic::WaypointOccupancyMap</a> =  std::unordered_map&lt;<a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a>, <a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#a8d4090587b09cfc7c00dea478543409d">WaypointIdSet</a>&gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html">TrackTraffic.h</a> 第 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html#l00028">28</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a76e182d8c6afe650007e05064f7d12fc" name="a76e182d8c6afe650007e05064f7d12fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76e182d8c6afe650007e05064f7d12fc">&#9670;&#160;</a></span>WaypointOverlap</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#a76e182d8c6afe650007e05064f7d12fc">carla::traffic_manager::TrackTraffic::WaypointOverlap</a> =  std::unordered_map&lt;uint64_t, <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a36e144174a4524310723dee7ddb8e286">ActorIdSet</a>&gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>用于跟踪车辆间重叠航点的结构 </p>
+
+<p class="definition">在文件 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html">TrackTraffic.h</a> 第 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html#l00023">23</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">构造及析构函数说明</h2>
+<a id="aad4b59981c7c83ef869f881e783963b5" name="aad4b59981c7c83ef869f881e783963b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad4b59981c7c83ef869f881e783963b5">&#9670;&#160;</a></span>TrackTraffic()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::traffic_manager::TrackTraffic::TrackTraffic </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html">TrackTraffic.cpp</a> 第 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00012">12</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="aefa1718be820876dfcb7841c703275a7" name="aefa1718be820876dfcb7841c703275a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefa1718be820876dfcb7841c703275a7">&#9670;&#160;</a></span>AddTakenGrid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::traffic_manager::TrackTraffic::AddTakenGrid </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a5030097952c4be1d2efb7a3292a0c809">GeoGridId</a>&#160;</td>
+          <td class="paramname"><em>geogrid_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a>&#160;</td>
+          <td class="paramname"><em>actor_id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html">TrackTraffic.cpp</a> 第 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00098">98</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html#l00034">grid_to_actors</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d4/df7/MotionPlanStage_8cpp_source.html#l00064">carla::traffic_manager::MotionPlanStage::Update()</a>.</p>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic_aefa1718be820876dfcb7841c703275a7_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ab73fc4bc7cf79902e3ff6f111bdcefbe" name="ab73fc4bc7cf79902e3ff6f111bdcefbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab73fc4bc7cf79902e3ff6f111bdcefbe">&#9670;&#160;</a></span>Clear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::traffic_manager::TrackTraffic::Clear </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html">TrackTraffic.cpp</a> 第 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00220">220</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html#l00032">actor_to_grids</a>, <a class="el" href="../../db/d67/TrackTraffic_8h_source.html#l00034">grid_to_actors</a>, <a class="el" href="../../db/d67/TrackTraffic_8h_source.html#l00029">waypoint_occupied</a> , 以及 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html#l00024">waypoint_overlap_tracker</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/d53/TrafficManagerLocal_8cpp_source.html#l00265">carla::traffic_manager::TrafficManagerLocal::Stop()</a>.</p>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic_ab73fc4bc7cf79902e3ff6f111bdcefbe_icgraph.svg" width="382" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ad3f8304d51ae8e9bcf278ec1fc1caa73" name="ad3f8304d51ae8e9bcf278ec1fc1caa73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3f8304d51ae8e9bcf278ec1fc1caa73">&#9670;&#160;</a></span>DeleteActor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::traffic_manager::TrackTraffic::DeleteActor </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a>&#160;</td>
+          <td class="paramname"><em>actor_id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>从跟踪中删除参与者数据的方法 </p>
+
+<p class="definition">在文件 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html">TrackTraffic.cpp</a> 第 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00135">135</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html#l00032">actor_to_grids</a>, <a class="el" href="../../db/d67/TrackTraffic_8h_source.html#l00034">grid_to_actors</a>, <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00190">RemovePassingVehicle()</a> , 以及 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html#l00029">waypoint_occupied</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00014">UpdateUnregisteredGridPosition()</a>.</p>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic_ad3f8304d51ae8e9bcf278ec1fc1caa73_cgraph.svg" width="427" height="66"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic_ad3f8304d51ae8e9bcf278ec1fc1caa73_icgraph.svg" width="448" height="66"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a1c67d2a7df92d4d114abef898676abdc" name="a1c67d2a7df92d4d114abef898676abdc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c67d2a7df92d4d114abef898676abdc">&#9670;&#160;</a></span>GetHeroLocation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">cg::Location</a> carla::traffic_manager::TrackTraffic::GetHeroLocation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html">TrackTraffic.cpp</a> 第 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00111">111</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html#l00036">hero_location</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d4/df7/MotionPlanStage_8cpp_source.html#l00064">carla::traffic_manager::MotionPlanStage::Update()</a>.</p>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic_a1c67d2a7df92d4d114abef898676abdc_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a856482783656c84dc63362a947b91216" name="a856482783656c84dc63362a947b91216"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a856482783656c84dc63362a947b91216">&#9670;&#160;</a></span>GetOverlappingVehicles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a36e144174a4524310723dee7ddb8e286">ActorIdSet</a> carla::traffic_manager::TrackTraffic::GetOverlappingVehicles </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a>&#160;</td>
+          <td class="paramname"><em>actor_id</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html">TrackTraffic.cpp</a> 第 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00115">115</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html#l00032">actor_to_grids</a> , 以及 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html#l00034">grid_to_actors</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00340">carla::traffic_manager::LocalizationStage::AssignLaneChange()</a> , 以及 <a class="el" href="../../db/da2/CollisionStage_8cpp_source.html#l00036">carla::traffic_manager::CollisionStage::Update()</a>.</p>
+<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic_a856482783656c84dc63362a947b91216_icgraph.svg" width="100%" height="393"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a648d59044693f79c5d4cf00de5b30423" name="a648d59044693f79c5d4cf00de5b30423"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a648d59044693f79c5d4cf00de5b30423">&#9670;&#160;</a></span>GetPassingVehicles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a36e144174a4524310723dee7ddb8e286">ActorIdSet</a> carla::traffic_manager::TrackTraffic::GetPassingVehicles </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>waypoint_id</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html">TrackTraffic.cpp</a> 第 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00211">211</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html#l00024">waypoint_overlap_tracker</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00340">carla::traffic_manager::LocalizationStage::AssignLaneChange()</a> , 以及 <a class="el" href="../../d4/df7/MotionPlanStage_8cpp_source.html#l00278">carla::traffic_manager::MotionPlanStage::SafeAfterJunction()</a>.</p>
+<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic_a648d59044693f79c5d4cf00de5b30423_icgraph.svg" width="100%" height="408"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a89659566f2e7da4d4c18bbd3b55249c3" name="a89659566f2e7da4d4c18bbd3b55249c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89659566f2e7da4d4c18bbd3b55249c3">&#9670;&#160;</a></span>IsGeoGridFree()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::traffic_manager::TrackTraffic::IsGeoGridFree </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a5030097952c4be1d2efb7a3292a0c809">GeoGridId</a>&#160;</td>
+          <td class="paramname"><em>geogrid_id</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html">TrackTraffic.cpp</a> 第 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00091">91</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html#l00034">grid_to_actors</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d4/df7/MotionPlanStage_8cpp_source.html#l00064">carla::traffic_manager::MotionPlanStage::Update()</a>.</p>
+<div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic_a89659566f2e7da4d4c18bbd3b55249c3_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="aaa605ab90a2903ac80fae61f3eb5c159" name="aaa605ab90a2903ac80fae61f3eb5c159"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa605ab90a2903ac80fae61f3eb5c159">&#9670;&#160;</a></span>RemovePassingVehicle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::traffic_manager::TrackTraffic::RemovePassingVehicle </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>waypoint_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a>&#160;</td>
+          <td class="paramname"><em>actor_id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html">TrackTraffic.cpp</a> 第 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00190">190</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html#l00029">waypoint_occupied</a> , 以及 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html#l00024">waypoint_overlap_tracker</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00135">DeleteActor()</a> , 以及 <a class="el" href="../../d1/dd6/LocalizationUtils_8cpp_source.html#l00048">carla::traffic_manager::PopWaypoint()</a>.</p>
+<div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic_aaa605ab90a2903ac80fae61f3eb5c159_icgraph.svg" width="100%" height="484"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="af08038bc9a2de4233504b2a64e40d245" name="af08038bc9a2de4233504b2a64e40d245"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af08038bc9a2de4233504b2a64e40d245">&#9670;&#160;</a></span>SetHeroLocation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::traffic_manager::TrackTraffic::SetHeroLocation </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">cg::Location</a>&#160;</td>
+          <td class="paramname"><em>location</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html">TrackTraffic.cpp</a> 第 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00107">107</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html#l00036">hero_location</a>.</p>
+
+</div>
+</div>
+<a id="a4934fa9c7b0409e9c719125003671bfc" name="a4934fa9c7b0409e9c719125003671bfc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4934fa9c7b0409e9c719125003671bfc">&#9670;&#160;</a></span>UpdateGridPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::traffic_manager::TrackTraffic::UpdateGridPosition </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a>&#160;</td>
+          <td class="paramname"><em>actor_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a1d6b4dc3a00ae57d565e9382690490bd">Buffer</a> &amp;&#160;</td>
+          <td class="paramname"><em>buffer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html">TrackTraffic.cpp</a> 第 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00045">45</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html#l00032">actor_to_grids</a> , 以及 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html#l00034">grid_to_actors</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00039">carla::traffic_manager::LocalizationStage::Update()</a>.</p>
+<div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic_a4934fa9c7b0409e9c719125003671bfc_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a00e9170a04217225fce8d48a596f31a6" name="a00e9170a04217225fce8d48a596f31a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00e9170a04217225fce8d48a596f31a6">&#9670;&#160;</a></span>UpdatePassingVehicle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::traffic_manager::TrackTraffic::UpdatePassingVehicle </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>waypoint_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a>&#160;</td>
+          <td class="paramname"><em>actor_id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>更新、移除和检索经过某一路点车辆的方法 </p>
+
+<p class="definition">在文件 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html">TrackTraffic.cpp</a> 第 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00163">163</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html#l00029">waypoint_occupied</a> , 以及 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html#l00024">waypoint_overlap_tracker</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/dd6/LocalizationUtils_8cpp_source.html#l00040">carla::traffic_manager::PushWaypoint()</a> , 以及 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00014">UpdateUnregisteredGridPosition()</a>.</p>
+<div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic_a00e9170a04217225fce8d48a596f31a6_icgraph.svg" width="100%" height="484"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="aa77bd9457c2a55f1c566a68d3a12604b" name="aa77bd9457c2a55f1c566a68d3a12604b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa77bd9457c2a55f1c566a68d3a12604b">&#9670;&#160;</a></span>UpdateUnregisteredGridPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::traffic_manager::TrackTraffic::UpdateUnregisteredGridPosition </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a>&#160;</td>
+          <td class="paramname"><em>actor_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#aee461a5a490f4fccca9a4aef84fab3b5">SimpleWaypointPtr</a> &gt;&#160;</td>
+          <td class="paramname"><em>waypoints</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html">TrackTraffic.cpp</a> 第 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00014">14</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html#l00032">actor_to_grids</a>, <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00135">DeleteActor()</a>, <a class="el" href="../../db/d67/TrackTraffic_8h_source.html#l00034">grid_to_actors</a> , 以及 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00163">UpdatePassingVehicle()</a>.</p>
+<div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-12-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-12-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic_aa77bd9457c2a55f1c566a68d3a12604b_cgraph.svg" width="100%" height="403"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a345b68c5514c5fe9ceafd551eae6bfaa" name="a345b68c5514c5fe9ceafd551eae6bfaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a345b68c5514c5fe9ceafd551eae6bfaa">&#9670;&#160;</a></span>actor_to_grids</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unordered_map&lt;<a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a0031b3f566c364872121f8a79f27f174">ActorId</a>, std::unordered_set&lt;<a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a5030097952c4be1d2efb7a3292a0c809">GeoGridId</a>&gt; &gt; carla::traffic_manager::TrackTraffic::actor_to_grids</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>参与者路径所占据的测地线网格 </p>
+
+<p class="definition">在文件 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html">TrackTraffic.h</a> 第 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html#l00032">32</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00220">Clear()</a>, <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00135">DeleteActor()</a>, <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00115">GetOverlappingVehicles()</a>, <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00045">UpdateGridPosition()</a> , 以及 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00014">UpdateUnregisteredGridPosition()</a>.</p>
+
+</div>
+</div>
+<a id="af1600cb6b21306e6c37e7e557bbcc737" name="af1600cb6b21306e6c37e7e557bbcc737"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1600cb6b21306e6c37e7e557bbcc737">&#9670;&#160;</a></span>grid_to_actors</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unordered_map&lt;<a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a5030097952c4be1d2efb7a3292a0c809">GeoGridId</a>, <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a36e144174a4524310723dee7ddb8e286">ActorIdSet</a>&gt; carla::traffic_manager::TrackTraffic::grid_to_actors</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>参与者当前经过的网格 </p>
+
+<p class="definition">在文件 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html">TrackTraffic.h</a> 第 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html#l00034">34</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00098">AddTakenGrid()</a>, <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00220">Clear()</a>, <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00135">DeleteActor()</a>, <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00115">GetOverlappingVehicles()</a>, <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00091">IsGeoGridFree()</a>, <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00045">UpdateGridPosition()</a> , 以及 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00014">UpdateUnregisteredGridPosition()</a>.</p>
+
+</div>
+</div>
+<a id="a6ed2f976120a70cd03bb74f036b14509" name="a6ed2f976120a70cd03bb74f036b14509"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ed2f976120a70cd03bb74f036b14509">&#9670;&#160;</a></span>hero_location</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">cg::Location</a> carla::traffic_manager::TrackTraffic::hero_location = <a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">cg::Location</a>(0,0,0)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>当前英雄位置 </p>
+
+<p class="definition">在文件 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html">TrackTraffic.h</a> 第 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html#l00036">36</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00111">GetHeroLocation()</a> , 以及 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00107">SetHeroLocation()</a>.</p>
+
+</div>
+</div>
+<a id="ad80e1f1580d16bdb20583dcd8a893179" name="ad80e1f1580d16bdb20583dcd8a893179"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad80e1f1580d16bdb20583dcd8a893179">&#9670;&#160;</a></span>waypoint_occupied</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#aa86120feb7bc4d5fb2881bc82af523cf">WaypointOccupancyMap</a> carla::traffic_manager::TrackTraffic::waypoint_occupied</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html">TrackTraffic.h</a> 第 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html#l00029">29</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00220">Clear()</a>, <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00135">DeleteActor()</a>, <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00190">RemovePassingVehicle()</a> , 以及 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00163">UpdatePassingVehicle()</a>.</p>
+
+</div>
+</div>
+<a id="a3c2ad98d8426830de2de2d96d42ccd9f" name="a3c2ad98d8426830de2de2d96d42ccd9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c2ad98d8426830de2de2d96d42ccd9f">&#9670;&#160;</a></span>waypoint_overlap_tracker</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#a76e182d8c6afe650007e05064f7d12fc">WaypointOverlap</a> carla::traffic_manager::TrackTraffic::waypoint_overlap_tracker</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html">TrackTraffic.h</a> 第 <a class="el" href="../../db/d67/TrackTraffic_8h_source.html#l00024">24</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00220">Clear()</a>, <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00211">GetPassingVehicles()</a>, <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00190">RemovePassingVehicle()</a> , 以及 <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00163">UpdatePassingVehicle()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../db/d67/TrackTraffic_8h_source.html">TrackTraffic.h</a></li>
+<li><a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html">TrackTraffic.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

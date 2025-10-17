@@ -1,0 +1,17 @@
+<map id="carla::geom::MeshFactory::GenerateLaneMarksForNotCenterLine" name="carla::geom::MeshFactory::GenerateLaneMarksForNotCenterLine">
+<area shape="rect" id="node1" title="为非中心线（即ID不为0的所有线）生成车道标记" alt="" coords="5,229,255,269"/>
+<area shape="rect" id="node2" href="$d0/d02/classcarla_1_1geom_1_1Mesh.html#a07814867b5e1b31a7af31d0c8f91b90b" title="将索引附加到索引列表。" alt="" coords="333,5,465,45"/>
+<area shape="rect" id="node3" href="$d0/d02/classcarla_1_1geom_1_1Mesh.html#a10cbc49c3739b84c368b761ab29770f0" title="将顶点附加到顶点列表。" alt="" coords="333,69,465,109"/>
+<area shape="rect" id="node4" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a512234aafe71530fd0cff32d9a27a4e4" title="计算车道标记的当前s位置两侧的点" alt="" coords="303,133,496,173"/>
+<area shape="rect" id="node9" href="$dd/d80/classcarla_1_1road_1_1LaneSection.html#a2a83bca663a2b7b6388daebed95704a9" title=" " alt="" coords="319,197,479,237"/>
+<area shape="rect" id="node10" href="$df/d85/classcarla_1_1road_1_1Lane.html#a68ed9c59953314ff9437cb820c8e7db8" title=" " alt="" coords="338,261,461,301"/>
+<area shape="rect" id="node12" href="$dd/d80/classcarla_1_1road_1_1LaneSection.html#a059dcb478641cd498e3d213feb7e000d" title=" " alt="" coords="319,325,479,365"/>
+<area shape="rect" id="node14" href="$d0/d02/classcarla_1_1geom_1_1Mesh.html#afc91cfec4029e092f008404f366aaa45" title=" " alt="" coords="333,389,465,429"/>
+<area shape="rect" id="node15" href="$d0/d02/classcarla_1_1geom_1_1Mesh.html#a4aa083b7a417ca5e2fb8dc70796a19a5" title="检查网格是否有效。" alt="" coords="333,453,465,493"/>
+<area shape="rect" id="node5" href="$df/d85/classcarla_1_1road_1_1Lane.html#ae0d376fa422b14e54af3a702e1b8385a" title="计算给定位置s的车道边缘位置" alt="" coords="557,69,691,109"/>
+<area shape="rect" id="node6" href="$dd/d80/classcarla_1_1road_1_1LaneSection.html#afb698c17b4d62c0df02cf8dae16b8f50" title=" " alt="" coords="544,133,704,173"/>
+<area shape="rect" id="node7" href="$d9/dfe/classcarla_1_1geom_1_1Vector3D.html#aaa4bec48ae0734cca2c027df30ea6b34" title=" " alt="" coords="550,197,698,237"/>
+<area shape="rect" id="node8" href="$d9/dfe/classcarla_1_1geom_1_1Vector3D.html#a0bd1ef6e24532e950b455838ecd4f8cf" title=" " alt="" coords="752,197,900,237"/>
+<area shape="rect" id="node11" href="$d4/d28/classcarla_1_1road_1_1InformationSet.html#a2c183586f8f7bfebf89339f1a3845e49" title="返回给定类型和距离s的单一信息" alt="" coords="548,261,700,301"/>
+<area shape="rect" id="node13" href="$dd/d80/classcarla_1_1road_1_1LaneSection.html#a20f42f8a9aa46a316e50c2defaac1d55" title=" " alt="" coords="544,325,704,365"/>
+</map>

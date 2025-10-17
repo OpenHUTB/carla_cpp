@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: ActorBlueprint.cpp 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_64d7bb605f27024d49af86070bd3f0b6.html">client</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">ActorBlueprint.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d5/d3a/ActorBlueprint_8cpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// de Barcelona (UAB).</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// This work is licensed under the terms of the MIT license.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="../../de/de7/ActorBlueprint_8h.html">carla/client/ActorBlueprint.h</a>&quot;</span><span class="comment">//引入ActorBlueprint类相关头文件</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="../../d8/d8a/Exception_8h.html">carla/Exception.h</a>&quot;</span><span class="comment">//引入异常处理头文件</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="../../d2/d69/StringUtil_8h.html">carla/StringUtil.h</a>&quot;</span><span class="comment">//引入字符串工具头文件，用于字符串操作</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;algorithm&gt;</span><span class="comment">//引入算法库，提供算法支持</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d9/d36/namespacecarla.html">carla</a> {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d7/d1c/namespaceclient.html">client</a> {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  <span class="comment">//函数：FillMap</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  <span class="comment">//作用：将 source 容器中的元素移动到 destination map 中，并根据 item.id 作为 key</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  <span class="comment">// 参数：</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  <span class="comment">//   destination - 目标 map 容器，用于存储按 id 映射的元素</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <span class="comment">//   source - 源容器，包含待移动的元素</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Map, <span class="keyword">typename</span> Container&gt;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="../../d2/daf/namespacecarla_1_1client.html#ae5043f240c3b3eb2048fe1d8ae59fdf8">   22</a></span>  <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="../../d2/daf/namespacecarla_1_1client.html#ae5043f240c3b3eb2048fe1d8ae59fdf8">FillMap</a>(<a class="code hl_class" href="../../d7/db0/classMap.html">Map</a> &amp;destination, Container &amp;source) {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="comment">//预先为 destination map 分配空间，提高性能</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    destination.reserve(source.size());</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="comment">//遍历 source 容器中的每个元素，将元素按 id 作为键，移动到 destination map 中</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;item : source) {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>      <span class="keyword">auto</span> <span class="keywordtype">id</span> = item.id; <span class="comment">// 获取元素的 id</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>      <span class="comment">//将 item.id 作为 map 的键，并将 item 的所有权转移到 map 中去</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>      destination.emplace(<span class="keywordtype">id</span>, std::move(item));</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    }</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  }</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <span class="comment">// 构造函数：ActorBlueprint</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  <span class="comment">// 作用：根据 rpc::ActorDefinition 初始化 ActorBlueprint 对象</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="comment">// 参数：</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <span class="comment">//   definition - rpc::ActorDefinition 类型的初始化定义，包含 ActorBlueprint 的初始数据</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="../../d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html#a602ae9ea4f8e73c883d773b480750650">   36</a></span>  <a class="code hl_function" href="../../d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html#a602ae9ea4f8e73c883d773b480750650">ActorBlueprint::ActorBlueprint</a>(<a class="code hl_class" href="../../d8/d68/classcarla_1_1rpc_1_1ActorDefinition.html">rpc::ActorDefinition</a> definition)</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    : _uid(definition.uid), <span class="comment">//初始化成员变量 _uid 为传入的 uid</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>      _id(<a class="code hl_namespace" href="../../d8/dcc/namespacestd.html">std</a>::move(definition.id)) { <span class="comment">//将 definition 中的 id 移动赋值给 _id</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <a class="code hl_function" href="../../de/d93/classcarla_1_1StringUtil.html#a569d4b5443e95bffe40798627bf18385">StringUtil::Split</a>(<a class="code hl_variable" href="../../d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html#a48e7147b7fdaa671c345ceaa3dd44fdd">_tags</a>, definition.<a class="code hl_variable" href="../../d8/d68/classcarla_1_1rpc_1_1ActorDefinition.html#aded4413a4346eb14c567a504e6470db3">tags</a>, <span class="stringliteral">&quot;,&quot;</span>); <span class="comment">//将 tags 按逗号分隔，并储存到 _tags容器中</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <a class="code hl_function" href="../../d2/daf/namespacecarla_1_1client.html#ae5043f240c3b3eb2048fe1d8ae59fdf8">FillMap</a>(<a class="code hl_variable" href="../../d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html#a3b48e4841f879d23df344018387dcb6c">_attributes</a>, definition.<a class="code hl_variable" href="../../d8/d68/classcarla_1_1rpc_1_1ActorDefinition.html#aa96645bd139462b6145521575a88781a">attributes</a>); <span class="comment">// 使用 FillMap 函数将 definition 中的 attributes 按 id 映射并存储到 _attributes 中</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  }</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <span class="comment">// 函数：MatchTags</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  <span class="comment">// 作用：检查 _id 或 _tags 列表中的任意 tag 是否匹配指定的通配符模式</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  <span class="comment">// 参数：</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  <span class="comment">//   wildcard_pattern - 用于匹配的通配符模式</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  <span class="comment">// 返回值：</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="comment">//   如果 _id 或 _tags 中任意 tag 匹配模式，则返回 true；否则返回 false</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="../../d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html#ac1ce62d1b76cbc6c36ca8e4c8d80d856">   50</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html#ac1ce62d1b76cbc6c36ca8e4c8d80d856">ActorBlueprint::MatchTags</a>(<span class="keyword">const</span> std::string &amp;wildcard_pattern)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="comment">//返回结果为：_id 匹配模式或 _tags 列表中的任意一个 tag 匹配模式</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordflow">return</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <a class="code hl_function" href="../../de/d93/classcarla_1_1StringUtil.html#a42f81d32011bf4575fa71e593596b1f3">StringUtil::Match</a>(<a class="code hl_variable" href="../../d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html#a10d792ca7445da70430e03d1c0428560">_id</a>, wildcard_pattern) || <span class="comment">// 检查 _id 是否匹配通配符模式</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        std::any_of(<a class="code hl_variable" href="../../d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html#a48e7147b7fdaa671c345ceaa3dd44fdd">_tags</a>.begin(), <a class="code hl_variable" href="../../d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html#a48e7147b7fdaa671c345ceaa3dd44fdd">_tags</a>.end(), [&amp;](<span class="keyword">const</span> <span class="keyword">auto</span> &amp;tag) {</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            <span class="comment">// 遍历 _tags 列表，检查是否有任何 tag 匹配通配符模式</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>          return StringUtil::Match(tag, wildcard_pattern);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        });</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  }</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  <span class="comment">// 函数：GetAttribute</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  <span class="comment">// 作用：根据指定的属性 id 获取 ActorBlueprint 对象中的 ActorAttribute</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  <span class="comment">// 参数：</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>  <span class="comment">//   id - 要查询的属性的 id</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>  <span class="comment">// 返回值：</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  <span class="comment">//   返回指定 id 对应的 ActorAttribute</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  <span class="comment">// 异常：</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="comment">//   如果指定 id 的属性不存在，抛出 std::out_of_range 异常</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="../../d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html#a3cbc630625a77d85b0bc2472c5a9d6c3">   68</a></span>  <span class="keyword">const</span> <a class="code hl_class" href="../../dc/db1/classcarla_1_1client_1_1ActorAttribute.html">ActorAttribute</a> &amp;<a class="code hl_function" href="../../d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html#a3cbc630625a77d85b0bc2472c5a9d6c3">ActorBlueprint::GetAttribute</a>(<span class="keyword">const</span> std::string &amp;<span class="keywordtype">id</span>)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="comment">//在_attributes映射中查找 id 对应的属性</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keyword">auto</span> it = <a class="code hl_variable" href="../../d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html#a3b48e4841f879d23df344018387dcb6c">_attributes</a>.find(<span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordflow">if</span> (it == <a class="code hl_variable" href="../../d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html#a3b48e4841f879d23df344018387dcb6c">_attributes</a>.end()) {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>      <span class="comment">// 如果未找到属性，抛出异常</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>      <span class="keyword">using namespace </span>std::string_literals;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>      <a class="code hl_function" href="../../d9/d36/namespacecarla.html#a23602ab663165210a7757d6108f6b3cd">throw_exception</a>(std::out_of_range(<span class="stringliteral">&quot;attribute &#39;&quot;</span>s + <span class="keywordtype">id</span> + <span class="stringliteral">&quot;&#39; not found&quot;</span>));</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    }</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordflow">return</span> it-&gt;second; <span class="comment">//返回找到的属性</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  }</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>  <span class="comment">// 函数：SetAttribute</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  <span class="comment">// 作用：根据指定的属性 id 设置对应属性的值</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  <span class="comment">// 参数：</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  <span class="comment">//   id - 要设置的属性的 id</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  <span class="comment">//   value - 要设置的新属性值</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="../../d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html#ac22afb2aed37d39cc23d07c05648c668">   83</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="../../d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html#ac22afb2aed37d39cc23d07c05648c668">ActorBlueprint::SetAttribute</a>(<span class="keyword">const</span> std::string &amp;<span class="keywordtype">id</span>, std::string value) {</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keyword">const_cast&lt;</span><a class="code hl_class" href="../../dc/db1/classcarla_1_1client_1_1ActorAttribute.html">ActorAttribute</a> &amp;<span class="keyword">&gt;</span>(<a class="code hl_function" href="../../d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html#a3cbc630625a77d85b0bc2472c5a9d6c3">GetAttribute</a>(<span class="keywordtype">id</span>)).Set(std::move(value));</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="comment">// 使用 const_cast 去除 const 限制，修改找到的属性值</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>  }</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  <span class="comment">// 函数：MakeActorDescription</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  <span class="comment">// 作用：生成一个 rpc::ActorDescription 对象，用于描述当前的 ActorBlueprint</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>  <span class="comment">// 返回值：</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>  <span class="comment">//   返回生成的 rpc::ActorDescription 描述对象</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="../../d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html#a2378dc77cfcb8815c0c23c0e9be03f31">   91</a></span>  <a class="code hl_class" href="../../d6/d11/classcarla_1_1rpc_1_1ActorDescription.html">rpc::ActorDescription</a> <a class="code hl_function" href="../../d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html#a2378dc77cfcb8815c0c23c0e9be03f31">ActorBlueprint::MakeActorDescription</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <a class="code hl_class" href="../../d6/d11/classcarla_1_1rpc_1_1ActorDescription.html">rpc::ActorDescription</a> description;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    description.<a class="code hl_variable" href="../../d6/d11/classcarla_1_1rpc_1_1ActorDescription.html#a4daaf0e2e9dfd14789bac6fd1c0e3818">uid</a> = <a class="code hl_variable" href="../../d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html#aca24463caad98c6f3674a5974efd4c21">_uid</a>; <span class="comment">//设置唯一标识符</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    description.<a class="code hl_variable" href="../../d6/d11/classcarla_1_1rpc_1_1ActorDescription.html#ae959ef1a27e6abad12a9f3201f03f6ec">id</a> = <a class="code hl_variable" href="../../d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html#a10d792ca7445da70430e03d1c0428560">_id</a>; <span class="comment">//设置 actor 的 id</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="comment">//为属性容器预留空间，提高性能</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    description.<a class="code hl_variable" href="../../d6/d11/classcarla_1_1rpc_1_1ActorDescription.html#a4b849349ec525bef4d6575046c940b05">attributes</a>.reserve(<a class="code hl_variable" href="../../d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html#a3b48e4841f879d23df344018387dcb6c">_attributes</a>.size());</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>   <span class="comment">//将所有属性添加到描述对象的 attributes 向量中</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;attribute : *<span class="keyword">this</span>) {</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>      description.<a class="code hl_variable" href="../../d6/d11/classcarla_1_1rpc_1_1ActorDescription.html#a4b849349ec525bef4d6575046c940b05">attributes</a>.push_back(attribute);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    }</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keywordflow">return</span> description; <span class="comment">//返回生成的描述对象</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>  }</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>} <span class="comment">// namespace client</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>} <span class="comment">// namespace carla</span></div>
+<div class="ttc" id="aActorBlueprint_8h_html"><div class="ttname"><a href="../../de/de7/ActorBlueprint_8h.html">ActorBlueprint.h</a></div></div>
+<div class="ttc" id="aException_8h_html"><div class="ttname"><a href="../../d8/d8a/Exception_8h.html">Exception.h</a></div></div>
+<div class="ttc" id="aStringUtil_8h_html"><div class="ttname"><a href="../../d2/d69/StringUtil_8h.html">StringUtil.h</a></div></div>
+<div class="ttc" id="aclassMap_html"><div class="ttname"><a href="../../d7/db0/classMap.html">Map</a></div><div class="ttdoc">地图类的前向声明，用于在LaneInvasionSensor类中可能的引用。</div></div>
+<div class="ttc" id="aclasscarla_1_1StringUtil_html_a42f81d32011bf4575fa71e593596b1f3"><div class="ttname"><a href="../../de/d93/classcarla_1_1StringUtil.html#a42f81d32011bf4575fa71e593596b1f3">carla::StringUtil::Match</a></div><div class="ttdeci">static bool Match(const char *str, const char *wildcard_pattern)</div><div class="ttdoc">Match str with the Unix shell-style wildcard_pattern.</div><div class="ttdef"><b>Definition:</b> <a href="../../da/dfc/StringUtil_8cpp_source.html#l00017">StringUtil.cpp:17</a></div></div>
+<div class="ttc" id="aclasscarla_1_1StringUtil_html_a569d4b5443e95bffe40798627bf18385"><div class="ttname"><a href="../../de/d93/classcarla_1_1StringUtil.html#a569d4b5443e95bffe40798627bf18385">carla::StringUtil::Split</a></div><div class="ttdeci">static void Split(Container &amp;destination, const Range1T &amp;str, const Range2T &amp;separators)</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/d69/StringUtil_8h_source.html#l00075">StringUtil.h:75</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1ActorAttribute_html"><div class="ttname"><a href="../../dc/db1/classcarla_1_1client_1_1ActorAttribute.html">carla::client::ActorAttribute</a></div><div class="ttdoc">An attribute of an ActorBlueprint.</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/d5d/LibCarla_2source_2carla_2client_2ActorAttribute_8h_source.html#l00250">LibCarla/source/carla/client/ActorAttribute.h:250</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1ActorBlueprint_html_a10d792ca7445da70430e03d1c0428560"><div class="ttname"><a href="../../d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html#a10d792ca7445da70430e03d1c0428560">carla::client::ActorBlueprint::_id</a></div><div class="ttdeci">std::string _id</div><div class="ttdef"><b>Definition:</b> <a href="../../de/de7/ActorBlueprint_8h_source.html#l00116">ActorBlueprint.h:116</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1ActorBlueprint_html_a2378dc77cfcb8815c0c23c0e9be03f31"><div class="ttname"><a href="../../d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html#a2378dc77cfcb8815c0c23c0e9be03f31">carla::client::ActorBlueprint::MakeActorDescription</a></div><div class="ttdeci">rpc::ActorDescription MakeActorDescription() const</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/d3a/ActorBlueprint_8cpp_source.html#l00091">ActorBlueprint.cpp:91</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1ActorBlueprint_html_a3b48e4841f879d23df344018387dcb6c"><div class="ttname"><a href="../../d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html#a3b48e4841f879d23df344018387dcb6c">carla::client::ActorBlueprint::_attributes</a></div><div class="ttdeci">std::unordered_map&lt; std::string, ActorAttribute &gt; _attributes</div><div class="ttdef"><b>Definition:</b> <a href="../../de/de7/ActorBlueprint_8h_source.html#l00120">ActorBlueprint.h:120</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1ActorBlueprint_html_a3cbc630625a77d85b0bc2472c5a9d6c3"><div class="ttname"><a href="../../d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html#a3cbc630625a77d85b0bc2472c5a9d6c3">carla::client::ActorBlueprint::GetAttribute</a></div><div class="ttdeci">const ActorAttribute &amp; GetAttribute(const std::string &amp;id) const</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/d3a/ActorBlueprint_8cpp_source.html#l00068">ActorBlueprint.cpp:68</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1ActorBlueprint_html_a48e7147b7fdaa671c345ceaa3dd44fdd"><div class="ttname"><a href="../../d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html#a48e7147b7fdaa671c345ceaa3dd44fdd">carla::client::ActorBlueprint::_tags</a></div><div class="ttdeci">std::unordered_set&lt; std::string &gt; _tags</div><div class="ttdef"><b>Definition:</b> <a href="../../de/de7/ActorBlueprint_8h_source.html#l00118">ActorBlueprint.h:118</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1ActorBlueprint_html_a602ae9ea4f8e73c883d773b480750650"><div class="ttname"><a href="../../d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html#a602ae9ea4f8e73c883d773b480750650">carla::client::ActorBlueprint::ActorBlueprint</a></div><div class="ttdeci">ActorBlueprint(rpc::ActorDefinition actor_definition)</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/d3a/ActorBlueprint_8cpp_source.html#l00036">ActorBlueprint.cpp:36</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1ActorBlueprint_html_ac1ce62d1b76cbc6c36ca8e4c8d80d856"><div class="ttname"><a href="../../d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html#ac1ce62d1b76cbc6c36ca8e4c8d80d856">carla::client::ActorBlueprint::MatchTags</a></div><div class="ttdeci">bool MatchTags(const std::string &amp;wildcard_pattern) const</div><div class="ttdoc">测试是否有标签满足 wildcard_pattern。</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/d3a/ActorBlueprint_8cpp_source.html#l00050">ActorBlueprint.cpp:50</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1ActorBlueprint_html_ac22afb2aed37d39cc23d07c05648c668"><div class="ttname"><a href="../../d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html#ac22afb2aed37d39cc23d07c05648c668">carla::client::ActorBlueprint::SetAttribute</a></div><div class="ttdeci">void SetAttribute(const std::string &amp;id, std::string value)</div><div class="ttdoc">Set the value of the attribute given by id.</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/d3a/ActorBlueprint_8cpp_source.html#l00083">ActorBlueprint.cpp:83</a></div></div>
+<div class="ttc" id="aclasscarla_1_1client_1_1ActorBlueprint_html_aca24463caad98c6f3674a5974efd4c21"><div class="ttname"><a href="../../d8/dd9/classcarla_1_1client_1_1ActorBlueprint.html#aca24463caad98c6f3674a5974efd4c21">carla::client::ActorBlueprint::_uid</a></div><div class="ttdeci">uint32_t _uid</div><div class="ttdef"><b>Definition:</b> <a href="../../de/de7/ActorBlueprint_8h_source.html#l00114">ActorBlueprint.h:114</a></div></div>
+<div class="ttc" id="aclasscarla_1_1rpc_1_1ActorDefinition_html"><div class="ttname"><a href="../../d8/d68/classcarla_1_1rpc_1_1ActorDefinition.html">carla::rpc::ActorDefinition</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d9/dd9/LibCarla_2source_2carla_2rpc_2ActorDefinition_8h_source.html#l00027">LibCarla/source/carla/rpc/ActorDefinition.h:27</a></div></div>
+<div class="ttc" id="aclasscarla_1_1rpc_1_1ActorDefinition_html_aa96645bd139462b6145521575a88781a"><div class="ttname"><a href="../../d8/d68/classcarla_1_1rpc_1_1ActorDefinition.html#aa96645bd139462b6145521575a88781a">carla::rpc::ActorDefinition::attributes</a></div><div class="ttdeci">std::vector&lt; ActorAttribute &gt; attributes</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/dd9/LibCarla_2source_2carla_2rpc_2ActorDefinition_8h_source.html#l00042">LibCarla/source/carla/rpc/ActorDefinition.h:42</a></div></div>
+<div class="ttc" id="aclasscarla_1_1rpc_1_1ActorDefinition_html_aded4413a4346eb14c567a504e6470db3"><div class="ttname"><a href="../../d8/d68/classcarla_1_1rpc_1_1ActorDefinition.html#aded4413a4346eb14c567a504e6470db3">carla::rpc::ActorDefinition::tags</a></div><div class="ttdeci">std::string tags</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/dd9/LibCarla_2source_2carla_2rpc_2ActorDefinition_8h_source.html#l00039">LibCarla/source/carla/rpc/ActorDefinition.h:39</a></div></div>
+<div class="ttc" id="aclasscarla_1_1rpc_1_1ActorDescription_html"><div class="ttname"><a href="../../d6/d11/classcarla_1_1rpc_1_1ActorDescription.html">carla::rpc::ActorDescription</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d9/db9/LibCarla_2source_2carla_2rpc_2ActorDescription_8h_source.html#l00026">LibCarla/source/carla/rpc/ActorDescription.h:26</a></div></div>
+<div class="ttc" id="aclasscarla_1_1rpc_1_1ActorDescription_html_a4b849349ec525bef4d6575046c940b05"><div class="ttname"><a href="../../d6/d11/classcarla_1_1rpc_1_1ActorDescription.html#a4b849349ec525bef4d6575046c940b05">carla::rpc::ActorDescription::attributes</a></div><div class="ttdeci">std::vector&lt; ActorAttributeValue &gt; attributes</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/db9/LibCarla_2source_2carla_2rpc_2ActorDescription_8h_source.html#l00035">LibCarla/source/carla/rpc/ActorDescription.h:35</a></div></div>
+<div class="ttc" id="aclasscarla_1_1rpc_1_1ActorDescription_html_a4daaf0e2e9dfd14789bac6fd1c0e3818"><div class="ttname"><a href="../../d6/d11/classcarla_1_1rpc_1_1ActorDescription.html#a4daaf0e2e9dfd14789bac6fd1c0e3818">carla::rpc::ActorDescription::uid</a></div><div class="ttdeci">ActorId uid</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/db9/LibCarla_2source_2carla_2rpc_2ActorDescription_8h_source.html#l00031">LibCarla/source/carla/rpc/ActorDescription.h:31</a></div></div>
+<div class="ttc" id="aclasscarla_1_1rpc_1_1ActorDescription_html_ae959ef1a27e6abad12a9f3201f03f6ec"><div class="ttname"><a href="../../d6/d11/classcarla_1_1rpc_1_1ActorDescription.html#ae959ef1a27e6abad12a9f3201f03f6ec">carla::rpc::ActorDescription::id</a></div><div class="ttdeci">std::string id</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/db9/LibCarla_2source_2carla_2rpc_2ActorDescription_8h_source.html#l00033">LibCarla/source/carla/rpc/ActorDescription.h:33</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1client_html_ae5043f240c3b3eb2048fe1d8ae59fdf8"><div class="ttname"><a href="../../d2/daf/namespacecarla_1_1client.html#ae5043f240c3b3eb2048fe1d8ae59fdf8">carla::client::FillMap</a></div><div class="ttdeci">static void FillMap(Map &amp;destination, Container &amp;source)</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/d3a/ActorBlueprint_8cpp_source.html#l00022">ActorBlueprint.cpp:22</a></div></div>
+<div class="ttc" id="anamespacecarla_html"><div class="ttname"><a href="../../d9/d36/namespacecarla.html">carla</a></div><div class="ttdoc">CARLA模拟器的主命名空间。</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d4f/Carla_8cpp_source.html#l00139">Carla.cpp:139</a></div></div>
+<div class="ttc" id="anamespacecarla_html_a23602ab663165210a7757d6108f6b3cd"><div class="ttname"><a href="../../d9/d36/namespacecarla.html#a23602ab663165210a7757d6108f6b3cd">carla::throw_exception</a></div><div class="ttdeci">void throw_exception(const std::exception &amp;e)</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d4f/Carla_8cpp_source.html#l00142">Carla.cpp:142</a></div></div>
+<div class="ttc" id="anamespaceclient_html"><div class="ttname"><a href="../../d7/d1c/namespaceclient.html">client</a></div><div class="ttdoc">包含CARLA客户端相关类和函数的命名空间。</div></div>
+<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="../../d8/dcc/namespacestd.html">std</a></div><div class="ttdef"><b>Definition:</b> <a href="../../df/d06/CarlaRecorderCollision_8h_source.html#l00030">CarlaRecorderCollision.h:31</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

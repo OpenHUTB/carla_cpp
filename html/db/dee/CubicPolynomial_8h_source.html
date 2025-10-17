@@ -1,0 +1,298 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: CubicPolynomial.h 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_8b032d9d353dba85c86dc5364d785bbe.html">geom</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">CubicPolynomial.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../db/dee/CubicPolynomial_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// de Barcelona (UAB).</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// This work is licensed under the terms of the MIT license.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="../../d4/deb/Debug_8h.html">carla/Debug.h</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;array&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">// 定义名为 carla 的命名空间，在这个命名空间下组织相关的代码，有助于避免命名冲突等问题</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d9/d36/namespacecarla.html">carla</a> {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span>geom {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment"></span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">  /// 定义一个三次多项式CubicPolynomial类，用于描述和计算三次多项式 f(x) = a + b * x + c * x^2 + d * x^3 </span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html">   17</a></span><span class="comment"></span>  <span class="keyword">class </span><a class="code hl_class" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html">CubicPolynomial</a> {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>      <span class="comment">// 定义CubicPolynomial中使用的数值类型，这里选择为double，适用于需要高精度的数学计算</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ae6a43d59a52a67f920bade87ac095af2">   20</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ae6a43d59a52a67f920bade87ac095af2">value_type</a> = double;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="comment">// =========================================================================</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="comment">// -- 构造函数 --------------------------------------------------------------</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="comment">// =========================================================================</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="comment">// 默认构造函数，使用=default意味着使用编译器自动生成的默认构造函数，不执行任何操作</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a4fdebb88bed0c1254487a4f3e8633a97">   26</a></span>    <a class="code hl_function" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a4fdebb88bed0c1254487a4f3e8633a97">CubicPolynomial</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="comment">// 拷贝构造函数，同样使用=default意味着使用编译器自动生成的拷贝构造函数， 它会自动复制源对象的所有成员到新对象中</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#af9a93a003d1ac6fc6d4c1bbcb3b1d03a">   28</a></span>    <a class="code hl_function" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#af9a93a003d1ac6fc6d4c1bbcb3b1d03a">CubicPolynomial</a>(<span class="keyword">const</span> <a class="code hl_class" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html">CubicPolynomial</a> &amp;) = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <span class="comment">// 构造函数，用于创建一个 CubicPolynomial 类的对象，接受四个参数，分别对应三次多项式的系数 a、b、c、d</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <span class="comment">// 例如对于三次多项式 f(x) = a + b * x + c * x^2 + d * x^3，这里传入的参数就是各项的系数，</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <span class="comment">// 并使用初始化列表对类的成员进行初始化，将传入的系数依次放入 _v 数组中，同时将表示偏移量的 _s 初始化为 0.0</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <span class="comment">//无偏移量版本的构造函数</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#aa8acb5edb14a87a4df881c2d68b723c3">   33</a></span>    <a class="code hl_function" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#aa8acb5edb14a87a4df881c2d68b723c3">CubicPolynomial</a>(</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ae6a43d59a52a67f920bade87ac095af2">value_type</a> &amp;a,</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ae6a43d59a52a67f920bade87ac095af2">value_type</a> &amp;b,</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ae6a43d59a52a67f920bade87ac095af2">value_type</a> &amp;c,</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ae6a43d59a52a67f920bade87ac095af2">value_type</a> &amp;d)</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>      : <a class="code hl_variable" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#aff864bdd5f7abc79e8d95f68d6758902">_v</a>{ {a, b, c, d} },</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        _s(0.0) {}</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="comment">//有偏移量版本的构造函数</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a2f36907eb9e33125341787551b946feb">   42</a></span>    <a class="code hl_function" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a2f36907eb9e33125341787551b946feb">CubicPolynomial</a>(</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ae6a43d59a52a67f920bade87ac095af2">value_type</a> &amp;a,</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ae6a43d59a52a67f920bade87ac095af2">value_type</a> &amp;b,</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ae6a43d59a52a67f920bade87ac095af2">value_type</a> &amp;c,</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ae6a43d59a52a67f920bade87ac095af2">value_type</a> &amp;d,</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ae6a43d59a52a67f920bade87ac095af2">value_type</a> &amp;s) <span class="comment">// lateral offset</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>      : _v{ {a - b * s + c * s * s - d * s * s * s,</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>             b - 2 * c * s + 3 * d * s * s,</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>             c - 3 * d * s,</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>             d} },</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        _s(s) {}</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="comment">// =========================================================================</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="comment">// -- 获取值 ----------------------------------------------------------------</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="comment">// =========================================================================</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> <span class="comment">// 获取三次多项式中系数 a 的值，返回类型为 value_type（也就是 double 类型），</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> <span class="comment">// 该函数为 const 成员函数，表示不会修改类的成员变量，只是获取其值</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a3b2bab78821ffc82ea3349c15f4fb16b">   59</a></span>    <a class="code hl_typedef" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ae6a43d59a52a67f920bade87ac095af2">value_type</a> <a class="code hl_function" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a3b2bab78821ffc82ea3349c15f4fb16b">GetA</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>      <span class="keywordflow">return</span> _v[0];</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    }</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment">// 获取三次多项式中系数 b 的值，返回类型为 value_type（也就是 double 类型），</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> <span class="comment">// 该函数为 const 成员函数，表示不会修改类的成员变量，只是获取其值</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a0d3d0a27b53b7cadf9dcb6f532419d4e">   64</a></span>    <a class="code hl_typedef" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ae6a43d59a52a67f920bade87ac095af2">value_type</a> <a class="code hl_function" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a0d3d0a27b53b7cadf9dcb6f532419d4e">GetB</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>      <span class="keywordflow">return</span> _v[1];</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    }</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment">// 获取三次多项式中系数 c 的值，返回类型为 value_type（也就是 double 类型）</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment">// 该函数为 const 成员函数，表示不会修改类的成员变量，只是获取其值</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ac745c3fee337120de429d1a695770a7c">   69</a></span>    <a class="code hl_typedef" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ae6a43d59a52a67f920bade87ac095af2">value_type</a> <a class="code hl_function" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ac745c3fee337120de429d1a695770a7c">GetC</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>      <span class="keywordflow">return</span> _v[2];</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    }</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment">// 获取三次多项式中系数 d 的值，返回类型为 value_type（也就是 double 类型），</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="comment">// 该函数为 const 成员函数，表示不会修改类的成员变量，只是获取其值</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#afc0347e34ac230843746370a97f93bb5">   74</a></span>    <a class="code hl_typedef" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ae6a43d59a52a67f920bade87ac095af2">value_type</a> <a class="code hl_function" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#afc0347e34ac230843746370a97f93bb5">GetD</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>      <span class="keywordflow">return</span> _v[3];</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    }</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="comment">// 获取表示偏移量（横向偏移量等相关概念）的 _s 的值，返回类型为 value_type（也就是 double 类型），</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="comment">// 该函数为 const 成员函数，表示不会修改类的成员变量，只是获取其值</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#aaca3b596ab5b744ef4aaa4e60c9fc4ae">   79</a></span>    <a class="code hl_typedef" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ae6a43d59a52a67f920bade87ac095af2">value_type</a> <a class="code hl_function" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#aaca3b596ab5b744ef4aaa4e60c9fc4ae">GetS</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>      <span class="keywordflow">return</span> _s;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    }</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="comment">// =========================================================================</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="comment">// -- 设置值 ---------------------------------------------------------------</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="comment">// =========================================================================</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>  <span class="comment">// 设置三次多项式的系数以及偏移量的值，接受五个参数，分别对应调整后的系数 a、b、c、d 和偏移量 s，</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  <span class="comment">// 按照特定的数学计算方式（与前面构造函数中根据偏移量调整系数的方式一致）更新 _v 数组中的系数值，并将传入的偏移量 s 赋值给 _s</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a70e2e72c8e22f4f7f095d302383af5de">   88</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a70e2e72c8e22f4f7f095d302383af5de">Set</a>(</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ae6a43d59a52a67f920bade87ac095af2">value_type</a> &amp;a,</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ae6a43d59a52a67f920bade87ac095af2">value_type</a> &amp;b,</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ae6a43d59a52a67f920bade87ac095af2">value_type</a> &amp;c,</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ae6a43d59a52a67f920bade87ac095af2">value_type</a> &amp;d,</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ae6a43d59a52a67f920bade87ac095af2">value_type</a> &amp;s) { <span class="comment">// lateral offset</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>      _v = { a - b * s + c * s * s - d * s * s * s,</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>             b - 2 * c * s + 3 * d * s * s,</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>             c - 3 * d * s,</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>             d };</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>      _s = s;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    }</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="comment">// 设置三次多项式的系数的值，接受四个参数，分别对应系数 a、b、c、d，</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>   <span class="comment">// 将传入的系数依次放入 _v 数组中，并将表示偏移量的 _s 初始化为 0.0，用于在不需要考虑偏移量或者重置系数时使用</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a2ffce17ca38ecac0c0df3669960e9864">  102</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a2ffce17ca38ecac0c0df3669960e9864">Set</a>(</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ae6a43d59a52a67f920bade87ac095af2">value_type</a> &amp;a,</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ae6a43d59a52a67f920bade87ac095af2">value_type</a> &amp;b,</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ae6a43d59a52a67f920bade87ac095af2">value_type</a> &amp;c,</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ae6a43d59a52a67f920bade87ac095af2">value_type</a> &amp;d) {</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>      <span class="comment">//将系数a,b,c,d放入 _v 数组</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>      _v = {a, b, c, d};</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>      <span class="comment">//将偏移量 _s 设为 0.0</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>      _s = 0.0;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    }</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="comment">// =========================================================================</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="comment">// -- 评估方法 -------------------------------------------------------------</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="comment">// =========================================================================</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="comment"></span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="comment">    /// 评估 f(x) = a + bx + cx^2 + dx^3</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a5d270a76228a4f47ae0bcfc2c866f5cd">  118</a></span><span class="comment"></span>    <a class="code hl_typedef" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ae6a43d59a52a67f920bade87ac095af2">value_type</a> <a class="code hl_function" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a5d270a76228a4f47ae0bcfc2c866f5cd">Evaluate</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ae6a43d59a52a67f920bade87ac095af2">value_type</a> &amp;x)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>      <span class="comment">// return _v[0] + _v[1] * (x) + _v[2] * (x * x) + _v[3] * (x * x * x);</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>      <span class="keywordflow">return</span> _v[0] + x * (_v[1] + x * (_v[2] + x * _v[3]));</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    }</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="comment"></span> </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="comment">    /// 使用 df/dx = b + 2cx + 3dx^2 计算正切值</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a6b32ca488e26ca238a28d67fd411528b">  124</a></span><span class="comment"></span>    <a class="code hl_typedef" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ae6a43d59a52a67f920bade87ac095af2">value_type</a> <a class="code hl_function" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a6b32ca488e26ca238a28d67fd411528b">Tangent</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ae6a43d59a52a67f920bade87ac095af2">value_type</a> &amp;x)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>      <span class="keywordflow">return</span> _v[1] + x * (2 * _v[2] + x * 3 * _v[3]);</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    }</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="comment">// =========================================================================</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="comment">// -- 算术运算符 ------------------------------------------------------------</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="comment">// =========================================================================</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>   <span class="comment">// 复合赋值运算符 += 的重载函数，用于实现当前的 CubicPolynomial 对象与另一个同类型对象相加，并将结果赋值给当前对象，</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>  <span class="comment">// 通过遍历系数数组 _v，将对应位置的系数相加，实现多项式的相加操作，最后返回当前对象的引用，以便支持连续的复合赋值操作（如 a += b += c; 这样的语法形式）</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno"><a class="line" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a1aacfd43574bcb4f89a4d627cfdf1081">  133</a></span>    <a class="code hl_class" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html">CubicPolynomial</a> &amp;<a class="code hl_function" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a1aacfd43574bcb4f89a4d627cfdf1081">operator+=</a>(<span class="keyword">const</span> <a class="code hl_class" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html">CubicPolynomial</a> &amp;rhs) {</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>      <span class="keywordflow">for</span> (<span class="keyword">auto</span> i = 0u; i &lt; _v.size(); ++i) {</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        _v[i] += rhs.<a class="code hl_variable" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#aff864bdd5f7abc79e8d95f68d6758902">_v</a>[i];</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>      }</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>      <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    }</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="comment">// 加法运算符 + 的重载函数，以友元函数的形式实现，它创建一个当前对象的副本（通过传值参数 lhs），</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <span class="comment">// 然后调用 += 运算符重载函数将传入的另一个对象 rhs 与之相加，最后返回相加后的结果对象，这样就实现了两个 CubicPolynomial 对象相加的操作</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a78f7d5f7a5458511a0df1dff207c753d">  141</a></span>    <span class="keyword">friend</span> <a class="code hl_class" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html">CubicPolynomial</a> <a class="code hl_friend" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a78f7d5f7a5458511a0df1dff207c753d">operator+</a>(<a class="code hl_class" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html">CubicPolynomial</a> lhs, <span class="keyword">const</span> <a class="code hl_class" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html">CubicPolynomial</a> &amp;rhs) {</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>      lhs += rhs;</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>      <span class="keywordflow">return</span> lhs;</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    }</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="comment">// 复合赋值运算符 *= 的重载函数，用于实现当前的 CubicPolynomial 对象与一个数值（value_type 类型，也就是 double 类型）相乘，并将结果赋值给当前对象，</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="comment">// 通过遍历系数数组 _v，将每个系数都与传入的数值 rhs 相乘，实现多项式的数乘操作，最后返回当前对象的引用，以便支持连续的复合赋值操作（如 a *= b *= c; 这样的语法形式）</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a16632052d47e11ef87fed99d4db257a9">  147</a></span>    <a class="code hl_class" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html">CubicPolynomial</a> &amp;<a class="code hl_function" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a16632052d47e11ef87fed99d4db257a9">operator*=</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ae6a43d59a52a67f920bade87ac095af2">value_type</a> &amp;rhs) {</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>      <span class="keywordflow">for</span> (<span class="keyword">auto</span> i = 0u; i &lt; _v.size(); ++i) {</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        _v[i] *= rhs;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>      }</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>      <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    }</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="comment">// 乘法运算符 * 的重载函数，以友元函数的形式实现，它创建一个当前对象的副本（通过传值参数 lhs），</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>   <span class="comment">// 然后调用 *= 运算符重载函数将传入的数值 rhs 与之相乘，最后返回相乘后的结果对象，这样就实现了一个 CubicPolynomial 对象与一个数值相乘的操作</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a8b3ccdbdc141e58d5a33436a8daf85f6">  155</a></span>    <span class="keyword">friend</span> <a class="code hl_class" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html">CubicPolynomial</a> <a class="code hl_friend" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a8b3ccdbdc141e58d5a33436a8daf85f6">operator*</a>(<a class="code hl_class" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html">CubicPolynomial</a> lhs, <span class="keyword">const</span> <a class="code hl_typedef" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ae6a43d59a52a67f920bade87ac095af2">value_type</a> &amp;rhs) {</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>      lhs *= rhs;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>      <span class="keywordflow">return</span> lhs;</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    }</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="comment">// 乘法运算符 * 的另一种重载形式，同样以友元函数的形式实现，用于实现一个数值与一个 CubicPolynomial 对象相乘的操作，</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>   <span class="comment">// 它通过将传入的数值 lhs 与 rhs 对象调用 *= 运算符重载函数相乘，最后返回相乘后的结果对象，实现了乘法的交换律，使得数值与多项式相乘的顺序不影响结果</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a5985dc19431759f8c8ab2be5d71a3f30">  161</a></span>    <span class="keyword">friend</span> <a class="code hl_class" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html">CubicPolynomial</a> <a class="code hl_friend" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a5985dc19431759f8c8ab2be5d71a3f30">operator*</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ae6a43d59a52a67f920bade87ac095af2">value_type</a> &amp;lhs, <a class="code hl_class" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html">CubicPolynomial</a> rhs) {</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>      rhs *= lhs;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>      <span class="keywordflow">return</span> rhs;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    }</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <span class="comment">// =========================================================================</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    <span class="comment">// -- 私有数据成员 ----------------------------------------------------------</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <span class="comment">// =========================================================================</span></div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="comment">// a - 截距 elevation</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="comment">// b - 斜率</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <span class="comment">// c - 垂直曲率 vertical curvature</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="comment">// d - 曲率变化</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno"><a class="line" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#aff864bdd5f7abc79e8d95f68d6758902">  176</a></span>    std::array&lt;value_type, 4&gt; _v = {0.0, 0.0, 0.0, 0.0};</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span> </div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    <span class="comment">// s - 距离</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno"><a class="line" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a2cafd2decf8ce4eb2c37d8835fa504f8">  179</a></span>    <a class="code hl_typedef" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ae6a43d59a52a67f920bade87ac095af2">value_type</a> <a class="code hl_variable" href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a2cafd2decf8ce4eb2c37d8835fa504f8">_s</a>;</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>  };</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>} <span class="comment">// namespace geom</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>} <span class="comment">// namespace carla</span></div>
+<div class="ttc" id="aDebug_8h_html"><div class="ttname"><a href="../../d4/deb/Debug_8h.html">Debug.h</a></div></div>
+<div class="ttc" id="aclasscarla_1_1geom_1_1CubicPolynomial_html"><div class="ttname"><a href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html">carla::geom::CubicPolynomial</a></div><div class="ttdoc">定义一个三次多项式CubicPolynomial类，用于描述和计算三次多项式 f(x) = a + b * x + c * x^2 + d * x^3</div><div class="ttdef"><b>Definition:</b> <a href="../../db/dee/CubicPolynomial_8h_source.html#l00017">CubicPolynomial.h:17</a></div></div>
+<div class="ttc" id="aclasscarla_1_1geom_1_1CubicPolynomial_html_a0d3d0a27b53b7cadf9dcb6f532419d4e"><div class="ttname"><a href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a0d3d0a27b53b7cadf9dcb6f532419d4e">carla::geom::CubicPolynomial::GetB</a></div><div class="ttdeci">value_type GetB() const</div><div class="ttdef"><b>Definition:</b> <a href="../../db/dee/CubicPolynomial_8h_source.html#l00064">CubicPolynomial.h:64</a></div></div>
+<div class="ttc" id="aclasscarla_1_1geom_1_1CubicPolynomial_html_a16632052d47e11ef87fed99d4db257a9"><div class="ttname"><a href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a16632052d47e11ef87fed99d4db257a9">carla::geom::CubicPolynomial::operator*=</a></div><div class="ttdeci">CubicPolynomial &amp; operator*=(const value_type &amp;rhs)</div><div class="ttdef"><b>Definition:</b> <a href="../../db/dee/CubicPolynomial_8h_source.html#l00147">CubicPolynomial.h:147</a></div></div>
+<div class="ttc" id="aclasscarla_1_1geom_1_1CubicPolynomial_html_a1aacfd43574bcb4f89a4d627cfdf1081"><div class="ttname"><a href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a1aacfd43574bcb4f89a4d627cfdf1081">carla::geom::CubicPolynomial::operator+=</a></div><div class="ttdeci">CubicPolynomial &amp; operator+=(const CubicPolynomial &amp;rhs)</div><div class="ttdef"><b>Definition:</b> <a href="../../db/dee/CubicPolynomial_8h_source.html#l00133">CubicPolynomial.h:133</a></div></div>
+<div class="ttc" id="aclasscarla_1_1geom_1_1CubicPolynomial_html_a2cafd2decf8ce4eb2c37d8835fa504f8"><div class="ttname"><a href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a2cafd2decf8ce4eb2c37d8835fa504f8">carla::geom::CubicPolynomial::_s</a></div><div class="ttdeci">value_type _s</div><div class="ttdef"><b>Definition:</b> <a href="../../db/dee/CubicPolynomial_8h_source.html#l00179">CubicPolynomial.h:179</a></div></div>
+<div class="ttc" id="aclasscarla_1_1geom_1_1CubicPolynomial_html_a2f36907eb9e33125341787551b946feb"><div class="ttname"><a href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a2f36907eb9e33125341787551b946feb">carla::geom::CubicPolynomial::CubicPolynomial</a></div><div class="ttdeci">CubicPolynomial(const value_type &amp;a, const value_type &amp;b, const value_type &amp;c, const value_type &amp;d, const value_type &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="../../db/dee/CubicPolynomial_8h_source.html#l00042">CubicPolynomial.h:42</a></div></div>
+<div class="ttc" id="aclasscarla_1_1geom_1_1CubicPolynomial_html_a2ffce17ca38ecac0c0df3669960e9864"><div class="ttname"><a href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a2ffce17ca38ecac0c0df3669960e9864">carla::geom::CubicPolynomial::Set</a></div><div class="ttdeci">void Set(const value_type &amp;a, const value_type &amp;b, const value_type &amp;c, const value_type &amp;d)</div><div class="ttdef"><b>Definition:</b> <a href="../../db/dee/CubicPolynomial_8h_source.html#l00102">CubicPolynomial.h:102</a></div></div>
+<div class="ttc" id="aclasscarla_1_1geom_1_1CubicPolynomial_html_a3b2bab78821ffc82ea3349c15f4fb16b"><div class="ttname"><a href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a3b2bab78821ffc82ea3349c15f4fb16b">carla::geom::CubicPolynomial::GetA</a></div><div class="ttdeci">value_type GetA() const</div><div class="ttdef"><b>Definition:</b> <a href="../../db/dee/CubicPolynomial_8h_source.html#l00059">CubicPolynomial.h:59</a></div></div>
+<div class="ttc" id="aclasscarla_1_1geom_1_1CubicPolynomial_html_a4fdebb88bed0c1254487a4f3e8633a97"><div class="ttname"><a href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a4fdebb88bed0c1254487a4f3e8633a97">carla::geom::CubicPolynomial::CubicPolynomial</a></div><div class="ttdeci">CubicPolynomial()=default</div></div>
+<div class="ttc" id="aclasscarla_1_1geom_1_1CubicPolynomial_html_a5985dc19431759f8c8ab2be5d71a3f30"><div class="ttname"><a href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a5985dc19431759f8c8ab2be5d71a3f30">carla::geom::CubicPolynomial::operator*</a></div><div class="ttdeci">friend CubicPolynomial operator*(const value_type &amp;lhs, CubicPolynomial rhs)</div><div class="ttdef"><b>Definition:</b> <a href="../../db/dee/CubicPolynomial_8h_source.html#l00161">CubicPolynomial.h:161</a></div></div>
+<div class="ttc" id="aclasscarla_1_1geom_1_1CubicPolynomial_html_a5d270a76228a4f47ae0bcfc2c866f5cd"><div class="ttname"><a href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a5d270a76228a4f47ae0bcfc2c866f5cd">carla::geom::CubicPolynomial::Evaluate</a></div><div class="ttdeci">value_type Evaluate(const value_type &amp;x) const</div><div class="ttdoc">评估 f(x) = a + bx + cx^2 + dx^3</div><div class="ttdef"><b>Definition:</b> <a href="../../db/dee/CubicPolynomial_8h_source.html#l00118">CubicPolynomial.h:118</a></div></div>
+<div class="ttc" id="aclasscarla_1_1geom_1_1CubicPolynomial_html_a6b32ca488e26ca238a28d67fd411528b"><div class="ttname"><a href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a6b32ca488e26ca238a28d67fd411528b">carla::geom::CubicPolynomial::Tangent</a></div><div class="ttdeci">value_type Tangent(const value_type &amp;x) const</div><div class="ttdoc">使用 df/dx = b + 2cx + 3dx^2 计算正切值</div><div class="ttdef"><b>Definition:</b> <a href="../../db/dee/CubicPolynomial_8h_source.html#l00124">CubicPolynomial.h:124</a></div></div>
+<div class="ttc" id="aclasscarla_1_1geom_1_1CubicPolynomial_html_a70e2e72c8e22f4f7f095d302383af5de"><div class="ttname"><a href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a70e2e72c8e22f4f7f095d302383af5de">carla::geom::CubicPolynomial::Set</a></div><div class="ttdeci">void Set(const value_type &amp;a, const value_type &amp;b, const value_type &amp;c, const value_type &amp;d, const value_type &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="../../db/dee/CubicPolynomial_8h_source.html#l00088">CubicPolynomial.h:88</a></div></div>
+<div class="ttc" id="aclasscarla_1_1geom_1_1CubicPolynomial_html_a78f7d5f7a5458511a0df1dff207c753d"><div class="ttname"><a href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a78f7d5f7a5458511a0df1dff207c753d">carla::geom::CubicPolynomial::operator+</a></div><div class="ttdeci">friend CubicPolynomial operator+(CubicPolynomial lhs, const CubicPolynomial &amp;rhs)</div><div class="ttdef"><b>Definition:</b> <a href="../../db/dee/CubicPolynomial_8h_source.html#l00141">CubicPolynomial.h:141</a></div></div>
+<div class="ttc" id="aclasscarla_1_1geom_1_1CubicPolynomial_html_a8b3ccdbdc141e58d5a33436a8daf85f6"><div class="ttname"><a href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a8b3ccdbdc141e58d5a33436a8daf85f6">carla::geom::CubicPolynomial::operator*</a></div><div class="ttdeci">friend CubicPolynomial operator*(CubicPolynomial lhs, const value_type &amp;rhs)</div><div class="ttdef"><b>Definition:</b> <a href="../../db/dee/CubicPolynomial_8h_source.html#l00155">CubicPolynomial.h:155</a></div></div>
+<div class="ttc" id="aclasscarla_1_1geom_1_1CubicPolynomial_html_aa8acb5edb14a87a4df881c2d68b723c3"><div class="ttname"><a href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#aa8acb5edb14a87a4df881c2d68b723c3">carla::geom::CubicPolynomial::CubicPolynomial</a></div><div class="ttdeci">CubicPolynomial(const value_type &amp;a, const value_type &amp;b, const value_type &amp;c, const value_type &amp;d)</div><div class="ttdef"><b>Definition:</b> <a href="../../db/dee/CubicPolynomial_8h_source.html#l00033">CubicPolynomial.h:33</a></div></div>
+<div class="ttc" id="aclasscarla_1_1geom_1_1CubicPolynomial_html_aaca3b596ab5b744ef4aaa4e60c9fc4ae"><div class="ttname"><a href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#aaca3b596ab5b744ef4aaa4e60c9fc4ae">carla::geom::CubicPolynomial::GetS</a></div><div class="ttdeci">value_type GetS() const</div><div class="ttdef"><b>Definition:</b> <a href="../../db/dee/CubicPolynomial_8h_source.html#l00079">CubicPolynomial.h:79</a></div></div>
+<div class="ttc" id="aclasscarla_1_1geom_1_1CubicPolynomial_html_ac745c3fee337120de429d1a695770a7c"><div class="ttname"><a href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ac745c3fee337120de429d1a695770a7c">carla::geom::CubicPolynomial::GetC</a></div><div class="ttdeci">value_type GetC() const</div><div class="ttdef"><b>Definition:</b> <a href="../../db/dee/CubicPolynomial_8h_source.html#l00069">CubicPolynomial.h:69</a></div></div>
+<div class="ttc" id="aclasscarla_1_1geom_1_1CubicPolynomial_html_ae6a43d59a52a67f920bade87ac095af2"><div class="ttname"><a href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#ae6a43d59a52a67f920bade87ac095af2">carla::geom::CubicPolynomial::value_type</a></div><div class="ttdeci">double value_type</div><div class="ttdef"><b>Definition:</b> <a href="../../db/dee/CubicPolynomial_8h_source.html#l00020">CubicPolynomial.h:20</a></div></div>
+<div class="ttc" id="aclasscarla_1_1geom_1_1CubicPolynomial_html_af9a93a003d1ac6fc6d4c1bbcb3b1d03a"><div class="ttname"><a href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#af9a93a003d1ac6fc6d4c1bbcb3b1d03a">carla::geom::CubicPolynomial::CubicPolynomial</a></div><div class="ttdeci">CubicPolynomial(const CubicPolynomial &amp;)=default</div></div>
+<div class="ttc" id="aclasscarla_1_1geom_1_1CubicPolynomial_html_afc0347e34ac230843746370a97f93bb5"><div class="ttname"><a href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#afc0347e34ac230843746370a97f93bb5">carla::geom::CubicPolynomial::GetD</a></div><div class="ttdeci">value_type GetD() const</div><div class="ttdef"><b>Definition:</b> <a href="../../db/dee/CubicPolynomial_8h_source.html#l00074">CubicPolynomial.h:74</a></div></div>
+<div class="ttc" id="aclasscarla_1_1geom_1_1CubicPolynomial_html_aff864bdd5f7abc79e8d95f68d6758902"><div class="ttname"><a href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#aff864bdd5f7abc79e8d95f68d6758902">carla::geom::CubicPolynomial::_v</a></div><div class="ttdeci">std::array&lt; value_type, 4 &gt; _v</div><div class="ttdef"><b>Definition:</b> <a href="../../db/dee/CubicPolynomial_8h_source.html#l00176">CubicPolynomial.h:176</a></div></div>
+<div class="ttc" id="anamespacecarla_html"><div class="ttname"><a href="../../d9/d36/namespacecarla.html">carla</a></div><div class="ttdoc">CARLA模拟器的主命名空间。</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d4f/Carla_8cpp_source.html#l00139">Carla.cpp:139</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

@@ -1,0 +1,1046 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: xml_buffered_writer类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public 类型</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-attribs">Public 属性</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="../../d9/d79/classxml__buffered__writer-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">xml_buffered_writer类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> xml_buffered_writer 的协作图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../da/d57/classxml__buffered__writer__coll__graph.svg" width="100%" height="404"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public 类型</h2></td></tr>
+<tr class="memitem:afd8543a52db15e41be40f7bfcdec3e22"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="../../db/dd3/classxml__buffered__writer.html#afd8543a52db15e41be40f7bfcdec3e22a9021e7b22ef17fba93b80380f0ffbbc8">bufcapacitybytes</a>
+, <a class="el" href="../../db/dd3/classxml__buffered__writer.html#afd8543a52db15e41be40f7bfcdec3e22ab8b49b73105796783607f1f1ddd382cd">bufcapacity</a> = bufcapacitybytes / (sizeof(char_t) + 4)
+ }</td></tr>
+<tr class="separator:afd8543a52db15e41be40f7bfcdec3e22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a4789b8661f9ff4e5e4bb4226f7d45997"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dd3/classxml__buffered__writer.html#a4789b8661f9ff4e5e4bb4226f7d45997">flush</a> ()</td></tr>
+<tr class="separator:a4789b8661f9ff4e5e4bb4226f7d45997"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa733cb2cd0d5fcacec92c67a7f26c553"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dd3/classxml__buffered__writer.html#aa733cb2cd0d5fcacec92c67a7f26c553">flush</a> (const char_t *data, <a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a> size)</td></tr>
+<tr class="separator:aa733cb2cd0d5fcacec92c67a7f26c553"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1aa829bd551a69dd9005d2d46063308f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dd3/classxml__buffered__writer.html#a1aa829bd551a69dd9005d2d46063308f">write</a> (char_t d0)</td></tr>
+<tr class="separator:a1aa829bd551a69dd9005d2d46063308f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cd6e908908e17c9b07eba34f7317791"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dd3/classxml__buffered__writer.html#a4cd6e908908e17c9b07eba34f7317791">write</a> (char_t d0, char_t d1)</td></tr>
+<tr class="separator:a4cd6e908908e17c9b07eba34f7317791"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af82b277c1ef5c75d1901bb5a8eb4507f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dd3/classxml__buffered__writer.html#af82b277c1ef5c75d1901bb5a8eb4507f">write</a> (char_t d0, char_t d1, char_t d2)</td></tr>
+<tr class="separator:af82b277c1ef5c75d1901bb5a8eb4507f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af679f459dfa0af257c190b8db57e7dcb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dd3/classxml__buffered__writer.html#af679f459dfa0af257c190b8db57e7dcb">write</a> (char_t d0, char_t d1, char_t d2, char_t d3)</td></tr>
+<tr class="separator:af679f459dfa0af257c190b8db57e7dcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad4a4f18223ec3cb1ff607425119b85f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dd3/classxml__buffered__writer.html#aad4a4f18223ec3cb1ff607425119b85f">write</a> (char_t d0, char_t d1, char_t d2, char_t d3, char_t d4)</td></tr>
+<tr class="separator:aad4a4f18223ec3cb1ff607425119b85f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6af5067d768c24b9c20422f76737f29"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dd3/classxml__buffered__writer.html#ae6af5067d768c24b9c20422f76737f29">write</a> (char_t d0, char_t d1, char_t d2, char_t d3, char_t d4, char_t d5)</td></tr>
+<tr class="separator:ae6af5067d768c24b9c20422f76737f29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae62b84beff660555acb76e277f967c0d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dd3/classxml__buffered__writer.html#ae62b84beff660555acb76e277f967c0d">write_buffer</a> (const char_t *data, <a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a> length)</td></tr>
+<tr class="separator:ae62b84beff660555acb76e277f967c0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a119f9db2f60e578e69ac81177e932fb3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dd3/classxml__buffered__writer.html#a119f9db2f60e578e69ac81177e932fb3">write_direct</a> (const char_t *data, <a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a> length)</td></tr>
+<tr class="separator:a119f9db2f60e578e69ac81177e932fb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1699556c38e942f7c1db1b98ddf15642"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dd3/classxml__buffered__writer.html#a1699556c38e942f7c1db1b98ddf15642">write_string</a> (const char_t *data)</td></tr>
+<tr class="separator:a1699556c38e942f7c1db1b98ddf15642"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c22ad246e2aebb6597935baf4a223a7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dd3/classxml__buffered__writer.html#a3c22ad246e2aebb6597935baf4a223a7">xml_buffered_writer</a> (xml_writer &amp;writer_, xml_encoding user_encoding)</td></tr>
+<tr class="separator:a3c22ad246e2aebb6597935baf4a223a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:a84c87765fbdf444d981ffb0f67899dd4"><td class="memItemLeft" align="right" valign="top">char_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dd3/classxml__buffered__writer.html#a84c87765fbdf444d981ffb0f67899dd4">buffer</a> [<a class="el" href="../../db/dd3/classxml__buffered__writer.html#afd8543a52db15e41be40f7bfcdec3e22ab8b49b73105796783607f1f1ddd382cd">bufcapacity</a>]</td></tr>
+<tr class="separator:a84c87765fbdf444d981ffb0f67899dd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6bad6a93035d796939d84bee30e74ce7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dd3/classxml__buffered__writer.html#a6bad6a93035d796939d84bee30e74ce7">bufsize</a></td></tr>
+<tr class="separator:a6bad6a93035d796939d84bee30e74ce7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab810a7286598172e1549561b285f08fb"><td class="memItemLeft" align="right" valign="top">xml_encoding&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dd3/classxml__buffered__writer.html#ab810a7286598172e1549561b285f08fb">encoding</a></td></tr>
+<tr class="separator:ab810a7286598172e1549561b285f08fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a374b74368e4cd4de2178817e5e516992"><td class="memItemLeft" >union {</td></tr>
+<tr class="memitem:a685da195d3cdc047656af62a7f9d8d93"><td class="memItemLeft" >&#160;&#160;&#160;char_t&#160;&#160;&#160;<a class="el" href="../../db/dd3/classxml__buffered__writer.html#a6f21e839a1c66901995c8aae5cc9ad7b">data_char</a> [<a class="el" href="../../db/dd3/classxml__buffered__writer.html#afd8543a52db15e41be40f7bfcdec3e22ab8b49b73105796783607f1f1ddd382cd">bufcapacity</a>]</td></tr>
+<tr class="separator:a685da195d3cdc047656af62a7f9d8d93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70960a6f629cec3ec7badadc4d66fa93"><td class="memItemLeft" >&#160;&#160;&#160;uint16_t&#160;&#160;&#160;<a class="el" href="../../db/dd3/classxml__buffered__writer.html#aa969d3724efe221a68927947e3a5196d">data_u16</a> [2 *<a class="el" href="../../db/dd3/classxml__buffered__writer.html#afd8543a52db15e41be40f7bfcdec3e22ab8b49b73105796783607f1f1ddd382cd">bufcapacity</a>]</td></tr>
+<tr class="separator:a70960a6f629cec3ec7badadc4d66fa93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb966ced7302fc0f99720f5509014849"><td class="memItemLeft" >&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<a class="el" href="../../db/dd3/classxml__buffered__writer.html#afa54826d8227c4ee661e1a9cc1e1acf2">data_u32</a> [<a class="el" href="../../db/dd3/classxml__buffered__writer.html#afd8543a52db15e41be40f7bfcdec3e22ab8b49b73105796783607f1f1ddd382cd">bufcapacity</a>]</td></tr>
+<tr class="separator:abb966ced7302fc0f99720f5509014849"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebc06f81f75681b151ce057dc99f3e09"><td class="memItemLeft" >&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="../../db/dd3/classxml__buffered__writer.html#ac672c70ba0597cf94d35c352ac563891">data_u8</a> [4 *<a class="el" href="../../db/dd3/classxml__buffered__writer.html#afd8543a52db15e41be40f7bfcdec3e22ab8b49b73105796783607f1f1ddd382cd">bufcapacity</a>]</td></tr>
+<tr class="separator:aebc06f81f75681b151ce057dc99f3e09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a374b74368e4cd4de2178817e5e516992"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dd3/classxml__buffered__writer.html#a374b74368e4cd4de2178817e5e516992">scratch</a></td></tr>
+<tr class="separator:a374b74368e4cd4de2178817e5e516992"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37cdd45f867937e1978565f5a0fa318b"><td class="memItemLeft" align="right" valign="top">xml_writer &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dd3/classxml__buffered__writer.html#a37cdd45f867937e1978565f5a0fa318b">writer</a></td></tr>
+<tr class="separator:a37cdd45f867937e1978565f5a0fa318b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:a800dad2fdaa86411420366558b4344ff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/dd3/classxml__buffered__writer.html">xml_buffered_writer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dd3/classxml__buffered__writer.html#a800dad2fdaa86411420366558b4344ff">operator=</a> (const <a class="el" href="../../db/dd3/classxml__buffered__writer.html">xml_buffered_writer</a> &amp;)</td></tr>
+<tr class="separator:a800dad2fdaa86411420366558b4344ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ab927cae021733a4b2e9e7cbbb79c13"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dd3/classxml__buffered__writer.html#a6ab927cae021733a4b2e9e7cbbb79c13">xml_buffered_writer</a> (const <a class="el" href="../../db/dd3/classxml__buffered__writer.html">xml_buffered_writer</a> &amp;)</td></tr>
+<tr class="separator:a6ab927cae021733a4b2e9e7cbbb79c13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03893">3893</a> 行定义.</p>
+</div><h2 class="groupheader">成员枚举类型说明</h2>
+<a id="afd8543a52db15e41be40f7bfcdec3e22" name="afd8543a52db15e41be40f7bfcdec3e22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd8543a52db15e41be40f7bfcdec3e22">&#9670;&#160;</a></span>anonymous enum</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="afd8543a52db15e41be40f7bfcdec3e22a9021e7b22ef17fba93b80380f0ffbbc8" name="afd8543a52db15e41be40f7bfcdec3e22a9021e7b22ef17fba93b80380f0ffbbc8"></a>bufcapacitybytes&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="afd8543a52db15e41be40f7bfcdec3e22ab8b49b73105796783607f1f1ddd382cd" name="afd8543a52db15e41be40f7bfcdec3e22ab8b49b73105796783607f1f1ddd382cd"></a>bufcapacity&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04080">4080</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a6ab927cae021733a4b2e9e7cbbb79c13" name="a6ab927cae021733a4b2e9e7cbbb79c13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ab927cae021733a4b2e9e7cbbb79c13">&#9670;&#160;</a></span>xml_buffered_writer() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">xml_buffered_writer::xml_buffered_writer </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../db/dd3/classxml__buffered__writer.html">xml_buffered_writer</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3c22ad246e2aebb6597935baf4a223a7" name="a3c22ad246e2aebb6597935baf4a223a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c22ad246e2aebb6597935baf4a223a7">&#9670;&#160;</a></span>xml_buffered_writer() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">xml_buffered_writer::xml_buffered_writer </td>
+          <td>(</td>
+          <td class="paramtype">xml_writer &amp;&#160;</td>
+          <td class="paramname"><em>writer_</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">xml_encoding&#160;</td>
+          <td class="paramname"><em>user_encoding</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03899">3899</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04089">bufcapacity</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l00134">PUGI__STATIC_ASSERT</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a4789b8661f9ff4e5e4bb4226f7d45997" name="a4789b8661f9ff4e5e4bb4226f7d45997"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4789b8661f9ff4e5e4bb4226f7d45997">&#9670;&#160;</a></span>flush() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a> xml_buffered_writer::flush </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03904">3904</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04092">buffer</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04103">bufsize</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03904">flush()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03904">flush()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04008">write()</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03929">write_direct()</a>.</p>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dd3/classxml__buffered__writer_a4789b8661f9ff4e5e4bb4226f7d45997_cgraph.svg" width="146" height="75"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../db/dd3/classxml__buffered__writer_a4789b8661f9ff4e5e4bb4226f7d45997_icgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="aa733cb2cd0d5fcacec92c67a7f26c553" name="aa733cb2cd0d5fcacec92c67a7f26c553"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa733cb2cd0d5fcacec92c67a7f26c553">&#9670;&#160;</a></span>flush() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void xml_buffered_writer::flush </td>
+          <td>(</td>
+          <td class="paramtype">const char_t *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a>&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03911">3911</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03869">convert_buffer_output()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04104">encoding</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03755">get_write_native_encoding()</a>, <a class="el" href="../../db/dd3/classxml__buffered__writer.html#a374b74368e4cd4de2178817e5e516992">scratch</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04102">writer</a>.</p>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../db/dd3/classxml__buffered__writer_aa733cb2cd0d5fcacec92c67a7f26c553_cgraph.svg" width="100%" height="414"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a800dad2fdaa86411420366558b4344ff" name="a800dad2fdaa86411420366558b4344ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a800dad2fdaa86411420366558b4344ff">&#9670;&#160;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/dd3/classxml__buffered__writer.html">xml_buffered_writer</a> &amp; xml_buffered_writer::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../db/dd3/classxml__buffered__writer.html">xml_buffered_writer</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1aa829bd551a69dd9005d2d46063308f" name="a1aa829bd551a69dd9005d2d46063308f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1aa829bd551a69dd9005d2d46063308f">&#9670;&#160;</a></span>write() <span class="overload">[1/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void xml_buffered_writer::write </td>
+          <td>(</td>
+          <td class="paramtype">char_t&#160;</td>
+          <td class="paramname"><em>d0</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04008">4008</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04089">bufcapacity</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04092">buffer</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04103">bufsize</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03904">flush()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04425">node_output()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04264">node_output_attributes()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04218">node_output_comment()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04353">node_output_end()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04243">node_output_pi_value()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04363">node_output_simple()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04291">node_output_start()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04156">text_output_cdata()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04107">text_output_escaped()</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04178">text_output_indent()</a>.</p>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dd3/classxml__buffered__writer_a1aa829bd551a69dd9005d2d46063308f_cgraph.svg" width="328" height="75"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../db/dd3/classxml__buffered__writer_a1aa829bd551a69dd9005d2d46063308f_icgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a4cd6e908908e17c9b07eba34f7317791" name="a4cd6e908908e17c9b07eba34f7317791"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cd6e908908e17c9b07eba34f7317791">&#9670;&#160;</a></span>write() <span class="overload">[2/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void xml_buffered_writer::write </td>
+          <td>(</td>
+          <td class="paramtype">char_t&#160;</td>
+          <td class="paramname"><em>d0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char_t&#160;</td>
+          <td class="paramname"><em>d1</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04017">4017</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04089">bufcapacity</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04092">buffer</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04103">bufsize</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03904">flush()</a>.</p>
+<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dd3/classxml__buffered__writer_a4cd6e908908e17c9b07eba34f7317791_cgraph.svg" width="328" height="75"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="af82b277c1ef5c75d1901bb5a8eb4507f" name="af82b277c1ef5c75d1901bb5a8eb4507f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af82b277c1ef5c75d1901bb5a8eb4507f">&#9670;&#160;</a></span>write() <span class="overload">[3/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void xml_buffered_writer::write </td>
+          <td>(</td>
+          <td class="paramtype">char_t&#160;</td>
+          <td class="paramname"><em>d0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char_t&#160;</td>
+          <td class="paramname"><em>d1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char_t&#160;</td>
+          <td class="paramname"><em>d2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04027">4027</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04089">bufcapacity</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04092">buffer</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04103">bufsize</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03904">flush()</a>.</p>
+<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dd3/classxml__buffered__writer_af82b277c1ef5c75d1901bb5a8eb4507f_cgraph.svg" width="328" height="75"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="af679f459dfa0af257c190b8db57e7dcb" name="af679f459dfa0af257c190b8db57e7dcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af679f459dfa0af257c190b8db57e7dcb">&#9670;&#160;</a></span>write() <span class="overload">[4/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void xml_buffered_writer::write </td>
+          <td>(</td>
+          <td class="paramtype">char_t&#160;</td>
+          <td class="paramname"><em>d0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char_t&#160;</td>
+          <td class="paramname"><em>d1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char_t&#160;</td>
+          <td class="paramname"><em>d2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char_t&#160;</td>
+          <td class="paramname"><em>d3</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04038">4038</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04089">bufcapacity</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04092">buffer</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04103">bufsize</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03904">flush()</a>.</p>
+<div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dd3/classxml__buffered__writer_af679f459dfa0af257c190b8db57e7dcb_cgraph.svg" width="328" height="75"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="aad4a4f18223ec3cb1ff607425119b85f" name="aad4a4f18223ec3cb1ff607425119b85f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad4a4f18223ec3cb1ff607425119b85f">&#9670;&#160;</a></span>write() <span class="overload">[5/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void xml_buffered_writer::write </td>
+          <td>(</td>
+          <td class="paramtype">char_t&#160;</td>
+          <td class="paramname"><em>d0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char_t&#160;</td>
+          <td class="paramname"><em>d1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char_t&#160;</td>
+          <td class="paramname"><em>d2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char_t&#160;</td>
+          <td class="paramname"><em>d3</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char_t&#160;</td>
+          <td class="paramname"><em>d4</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04050">4050</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04089">bufcapacity</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04092">buffer</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04103">bufsize</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03904">flush()</a>.</p>
+<div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dd3/classxml__buffered__writer_aad4a4f18223ec3cb1ff607425119b85f_cgraph.svg" width="328" height="75"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ae6af5067d768c24b9c20422f76737f29" name="ae6af5067d768c24b9c20422f76737f29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6af5067d768c24b9c20422f76737f29">&#9670;&#160;</a></span>write() <span class="overload">[6/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void xml_buffered_writer::write </td>
+          <td>(</td>
+          <td class="paramtype">char_t&#160;</td>
+          <td class="paramname"><em>d0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char_t&#160;</td>
+          <td class="paramname"><em>d1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char_t&#160;</td>
+          <td class="paramname"><em>d2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char_t&#160;</td>
+          <td class="paramname"><em>d3</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char_t&#160;</td>
+          <td class="paramname"><em>d4</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char_t&#160;</td>
+          <td class="paramname"><em>d5</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04063">4063</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04089">bufcapacity</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04092">buffer</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04103">bufsize</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03904">flush()</a>.</p>
+<div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/dd3/classxml__buffered__writer_ae6af5067d768c24b9c20422f76737f29_cgraph.svg" width="328" height="75"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ae62b84beff660555acb76e277f967c0d" name="ae62b84beff660555acb76e277f967c0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae62b84beff660555acb76e277f967c0d">&#9670;&#160;</a></span>write_buffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void xml_buffered_writer::write_buffer </td>
+          <td>(</td>
+          <td class="paramtype">const char_t *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a>&#160;</td>
+          <td class="paramname"><em>length</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03968">3968</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04089">bufcapacity</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04092">buffer</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04103">bufsize</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03929">write_direct()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04218">node_output_comment()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04243">node_output_pi_value()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04156">text_output_cdata()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04107">text_output_escaped()</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04178">text_output_indent()</a>.</p>
+<div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../db/dd3/classxml__buffered__writer_ae62b84beff660555acb76e277f967c0d_cgraph.svg" width="100%" height="431"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-12-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-12-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../db/dd3/classxml__buffered__writer_ae62b84beff660555acb76e277f967c0d_icgraph.svg" width="100%" height="532"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a119f9db2f60e578e69ac81177e932fb3" name="a119f9db2f60e578e69ac81177e932fb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a119f9db2f60e578e69ac81177e932fb3">&#9670;&#160;</a></span>write_direct()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void xml_buffered_writer::write_direct </td>
+          <td>(</td>
+          <td class="paramtype">const char_t *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a>&#160;</td>
+          <td class="paramname"><em>length</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03929">3929</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04089">bufcapacity</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04092">buffer</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04103">bufsize</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04104">encoding</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03904">flush()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03853">get_valid_length()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03755">get_write_native_encoding()</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04102">writer</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03968">write_buffer()</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03983">write_string()</a>.</p>
+<div id="dynsection-13" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-13-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-13-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-13-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../db/dd3/classxml__buffered__writer_a119f9db2f60e578e69ac81177e932fb3_cgraph.svg" width="100%" height="431"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<div id="dynsection-14" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-14-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-14-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-14-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../db/dd3/classxml__buffered__writer_a119f9db2f60e578e69ac81177e932fb3_icgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a1699556c38e942f7c1db1b98ddf15642" name="a1699556c38e942f7c1db1b98ddf15642"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1699556c38e942f7c1db1b98ddf15642">&#9670;&#160;</a></span>write_string()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void xml_buffered_writer::write_string </td>
+          <td>(</td>
+          <td class="paramtype">const char_t *&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03983">3983</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04089">bufcapacity</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04092">buffer</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04103">bufsize</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03853">get_valid_length()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l00252">strlength()</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03929">write_direct()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04264">node_output_attributes()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04353">node_output_end()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04363">node_output_simple()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04291">node_output_start()</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04148">text_output()</a>.</p>
+<div id="dynsection-15" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-15-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-15-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-15-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../db/dd3/classxml__buffered__writer_a1699556c38e942f7c1db1b98ddf15642_cgraph.svg" width="100%" height="441"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<div id="dynsection-16" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-16-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-16-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-16-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../db/dd3/classxml__buffered__writer_a1699556c38e942f7c1db1b98ddf15642_icgraph.svg" width="100%" height="499"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a84c87765fbdf444d981ffb0f67899dd4" name="a84c87765fbdf444d981ffb0f67899dd4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84c87765fbdf444d981ffb0f67899dd4">&#9670;&#160;</a></span>buffer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char_t xml_buffered_writer::buffer[<a class="el" href="../../db/dd3/classxml__buffered__writer.html#afd8543a52db15e41be40f7bfcdec3e22ab8b49b73105796783607f1f1ddd382cd">bufcapacity</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04092">4092</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03904">flush()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04008">write()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03968">write_buffer()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03929">write_direct()</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03983">write_string()</a>.</p>
+
+</div>
+</div>
+<a id="a6bad6a93035d796939d84bee30e74ce7" name="a6bad6a93035d796939d84bee30e74ce7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6bad6a93035d796939d84bee30e74ce7">&#9670;&#160;</a></span>bufsize</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a> xml_buffered_writer::bufsize</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04103">4103</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03904">flush()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04008">write()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03968">write_buffer()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03929">write_direct()</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03983">write_string()</a>.</p>
+
+</div>
+</div>
+<a id="a6f21e839a1c66901995c8aae5cc9ad7b" name="a6f21e839a1c66901995c8aae5cc9ad7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f21e839a1c66901995c8aae5cc9ad7b">&#9670;&#160;</a></span>data_char</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char_t xml_buffered_writer::data_char[<a class="el" href="../../db/dd3/classxml__buffered__writer.html#afd8543a52db15e41be40f7bfcdec3e22ab8b49b73105796783607f1f1ddd382cd">bufcapacity</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04099">4099</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa969d3724efe221a68927947e3a5196d" name="aa969d3724efe221a68927947e3a5196d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa969d3724efe221a68927947e3a5196d">&#9670;&#160;</a></span>data_u16</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t xml_buffered_writer::data_u16[2 *<a class="el" href="../../db/dd3/classxml__buffered__writer.html#afd8543a52db15e41be40f7bfcdec3e22ab8b49b73105796783607f1f1ddd382cd">bufcapacity</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04097">4097</a> 行定义.</p>
+
+</div>
+</div>
+<a id="afa54826d8227c4ee661e1a9cc1e1acf2" name="afa54826d8227c4ee661e1a9cc1e1acf2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa54826d8227c4ee661e1a9cc1e1acf2">&#9670;&#160;</a></span>data_u32</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t xml_buffered_writer::data_u32[<a class="el" href="../../db/dd3/classxml__buffered__writer.html#afd8543a52db15e41be40f7bfcdec3e22ab8b49b73105796783607f1f1ddd382cd">bufcapacity</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04098">4098</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac672c70ba0597cf94d35c352ac563891" name="ac672c70ba0597cf94d35c352ac563891"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac672c70ba0597cf94d35c352ac563891">&#9670;&#160;</a></span>data_u8</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t xml_buffered_writer::data_u8[4 *<a class="el" href="../../db/dd3/classxml__buffered__writer.html#afd8543a52db15e41be40f7bfcdec3e22ab8b49b73105796783607f1f1ddd382cd">bufcapacity</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04096">4096</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab810a7286598172e1549561b285f08fb" name="ab810a7286598172e1549561b285f08fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab810a7286598172e1549561b285f08fb">&#9670;&#160;</a></span>encoding</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">xml_encoding xml_buffered_writer::encoding</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04104">4104</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03911">flush()</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03929">write_direct()</a>.</p>
+
+</div>
+</div>
+<a id="a374b74368e4cd4de2178817e5e516992" name="a374b74368e4cd4de2178817e5e516992"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a374b74368e4cd4de2178817e5e516992">&#9670;&#160;</a></span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">union  { ... }  xml_buffered_writer::scratch</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03911">flush()</a>.</p>
+
+</div>
+</div>
+<a id="a37cdd45f867937e1978565f5a0fa318b" name="a37cdd45f867937e1978565f5a0fa318b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37cdd45f867937e1978565f5a0fa318b">&#9670;&#160;</a></span>writer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">xml_writer&amp; xml_buffered_writer::writer</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l04102">4102</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03911">flush()</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03929">write_direct()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

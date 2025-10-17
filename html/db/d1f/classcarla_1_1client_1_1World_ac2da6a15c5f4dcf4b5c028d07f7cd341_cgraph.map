@@ -1,0 +1,4 @@
+<map id="carla::client::World::GetLightManager" name="carla::client::World::GetLightManager">
+<area shape="rect" id="node1" title="获取交通灯管理器（LightManager）的智能指针。 交通灯管理器可以用于统一管理和控制模拟世界中所有交通灯的各种操作，比如批量设置状态、定时切换等，提供更便捷的交通灯管理功能。" alt="" coords="5,5,133,45"/>
+<area shape="rect" id="node2" href="$d1/dd3/classcarla_1_1client_1_1detail_1_1EpisodeProxyImpl.html#aaca857645fbeb6546b4a03a663bb65af" title="与 TryLock 相同，但永远不会返回 nullptr。" alt="" coords="181,5,348,45"/>
+</map>

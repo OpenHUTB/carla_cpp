@@ -1,0 +1,404 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: ActorData.h 文件参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_2d15d0715a2692171bd03ed14a4a79af.html">Unreal</a></li><li class="navelem"><a class="el" href="../../dir_d3c1db2570616bec48bf5a6dd06bce95.html">CarlaUE4</a></li><li class="navelem"><a class="el" href="../../dir_3538576148ac14151677be9b0aee6fcc.html">Plugins</a></li><li class="navelem"><a class="el" href="../../dir_fbda5b12374c683cbdca72abb2d51944.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_18937e8f6bde63367bf26837323a9508.html">Source</a></li><li class="navelem"><a class="el" href="../../dir_8fc34afb5f07a67966c78bf5319f94ae.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_31691989b6ffa820edb06b9eb32cc520.html">Actor</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">类</a> &#124;
+<a href="#func-members">函数</a> &#124;
+<a href="#var-members">变量</a>  </div>
+  <div class="headertitle"><div class="title">ActorData.h 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="../../d0/d4e/ActorInfo_8h_source.html">Actor/ActorInfo.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d5/d94/DVector_8h_source.html">Math/DVector.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../df/d92/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2AckermannControllerSettings_8h_source.html">Carla/Vehicle/AckermannControllerSettings.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d7/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2VehicleAckermannControl_8h_source.html">Carla/Vehicle/VehicleAckermannControl.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d4/dbd/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2VehicleControl_8h_source.html">Carla/Vehicle/VehicleControl.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d6/d6c/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2VehicleLightState_8h_source.html">Carla/Vehicle/VehicleLightState.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../db/d8b/VehicleInputPriority_8h_source.html">Vehicle/VehicleInputPriority.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d3/d90/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2VehiclePhysicsControl_8h_source.html">Vehicle/VehiclePhysicsControl.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../da/dd9/DataStream_8h_source.html">Carla/Sensor/DataStream.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../df/d9b/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Traffic_2TrafficLightState_8h_source.html">Carla/Traffic/TrafficLightState.h</a>&quot;</code><br />
+<code>#include &lt;<a class="el" href="../../d2/d02/disable-ue4-macros_8h_source.html">compiler/disable-ue4-macros.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../dd/db3/LibCarla_2source_2carla_2rpc_2WalkerControl_8h_source.html">carla/rpc/WalkerControl.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d9/da2/enable-ue4-macros_8h_source.html">compiler/enable-ue4-macros.h</a>&gt;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> ActorData.h 的引用(Include)关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../df/d05/ActorData_8h__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+</div><div class="textblock"><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> 此图展示该文件直接或间接的被哪些文件引用了:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d4/db9/ActorData_8h__dep__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+</div>
+<p><a href="../../de/d7d/ActorData_8h_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d67/classFActorData.html">FActorData</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dba/classFActorSensorData.html">FActorSensorData</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d59/classFTrafficLightData.html">FTrafficLightData</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d36/classFTrafficSignData.html">FTrafficSignData</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/df6/classFVehicleData.html">FVehicleData</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d6d/classFWalkerData.html">FWalkerData</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a1d8cbe16b35e1feb77ca6fb177c8fcee"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d7d/ActorData_8h.html#a1d8cbe16b35e1feb77ca6fb177c8fcee">RecordActorData</a> (<a class="el" href="../../dc/dde/classFCarlaActor.html">FCarlaActor</a> *CarlaActor, UCarlaEpisode *CarlaEpisode) <a class="el" href="../../de/d7d/ActorData_8h.html#ad031bfd5a8a2ed7e66d03dafcc3b2858">override</a></td></tr>
+<tr class="separator:a1d8cbe16b35e1feb77ca6fb177c8fcee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4eb607ab91f78a8e8b2d01c24e433334"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d7d/ActorData_8h.html#a4eb607ab91f78a8e8b2d01c24e433334">RestoreActorData</a> (<a class="el" href="../../dc/dde/classFCarlaActor.html">FCarlaActor</a> *CarlaActor, UCarlaEpisode *CarlaEpisode) <a class="el" href="../../de/d7d/ActorData_8h.html#ad031bfd5a8a2ed7e66d03dafcc3b2858">override</a></td></tr>
+<tr class="separator:a4eb607ab91f78a8e8b2d01c24e433334"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+变量</h2></td></tr>
+<tr class="memitem:ab929cf796e44190bc0372d9b5d852da0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/d02/structFVehicleAckermannControl.html">FVehicleAckermannControl</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d7d/ActorData_8h.html#ab929cf796e44190bc0372d9b5d852da0">AckermannControl</a></td></tr>
+<tr class="separator:ab929cf796e44190bc0372d9b5d852da0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4639607baf0eb6c3994c04361cefbcd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/d57/structFAckermannControllerSettings.html">FAckermannControllerSettings</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d7d/ActorData_8h.html#ab4639607baf0eb6c3994c04361cefbcd">AckermannControllerSettings</a></td></tr>
+<tr class="separator:ab4639607baf0eb6c3994c04361cefbcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ea86b2369a68efa13075e2fdaed4d43"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d7d/ActorData_8h.html#a6ea86b2369a68efa13075e2fdaed4d43">bAckermannControlActive</a> = false</td></tr>
+<tr class="separator:a6ea86b2369a68efa13075e2fdaed4d43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d9383aec02ed02f84751cc5a6892d38"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/d4b/structFVehicleControl.html">FVehicleControl</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d7d/ActorData_8h.html#a7d9383aec02ed02f84751cc5a6892d38">Control</a></td></tr>
+<tr class="separator:a7d9383aec02ed02f84751cc5a6892d38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ea4c6a8d2f783ca7db1262b539658da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#ae24acdb5a620582353443f8b547a52bc">carla::rpc::VehicleFailureState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d7d/ActorData_8h.html#a0ea4c6a8d2f783ca7db1262b539658da">FailureState</a></td></tr>
+<tr class="separator:a0ea4c6a8d2f783ca7db1262b539658da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a688a26099ec2b5548712afd5603adbd3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d9e/structFVehicleLightState.html">FVehicleLightState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d7d/ActorData_8h.html#a688a26099ec2b5548712afd5603adbd3">LightState</a></td></tr>
+<tr class="separator:a688a26099ec2b5548712afd5603adbd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad031bfd5a8a2ed7e66d03dafcc3b2858"><td class="memItemLeft" align="right" valign="top">sode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d7d/ActorData_8h.html#ad031bfd5a8a2ed7e66d03dafcc3b2858">override</a></td></tr>
+<tr class="separator:ad031bfd5a8a2ed7e66d03dafcc3b2858"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ab7637eb71a5ae7c706988127e76780"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/dbe/structFVehiclePhysicsControl.html">FVehiclePhysicsControl</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d7d/ActorData_8h.html#a6ab7637eb71a5ae7c706988127e76780">PhysicsControl</a></td></tr>
+<tr class="separator:a6ab7637eb71a5ae7c706988127e76780"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4609df9c2a0c5cca737b725c39ad103a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d7d/ActorData_8h.html#a4609df9c2a0c5cca737b725c39ad103a">SpeedLimit</a> = 30</td></tr>
+<tr class="separator:a4609df9c2a0c5cca737b725c39ad103a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">函数说明</h2>
+<a id="a1d8cbe16b35e1feb77ca6fb177c8fcee" name="a1d8cbe16b35e1feb77ca6fb177c8fcee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d8cbe16b35e1feb77ca6fb177c8fcee">&#9670;&#160;</a></span>RecordActorData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RecordActorData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../dc/dde/classFCarlaActor.html">FCarlaActor</a> *&#160;</td>
+          <td class="paramname"><em>CarlaActor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">UCarlaEpisode *&#160;</td>
+          <td class="paramname"><em>CarlaEpisode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4eb607ab91f78a8e8b2d01c24e433334" name="a4eb607ab91f78a8e8b2d01c24e433334"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4eb607ab91f78a8e8b2d01c24e433334">&#9670;&#160;</a></span>RestoreActorData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RestoreActorData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../dc/dde/classFCarlaActor.html">FCarlaActor</a> *&#160;</td>
+          <td class="paramname"><em>CarlaActor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">UCarlaEpisode *&#160;</td>
+          <td class="paramname"><em>CarlaEpisode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">变量说明</h2>
+<a id="ab929cf796e44190bc0372d9b5d852da0" name="ab929cf796e44190bc0372d9b5d852da0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab929cf796e44190bc0372d9b5d852da0">&#9670;&#160;</a></span>AckermannControl</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d4/d02/structFVehicleAckermannControl.html">FVehicleAckermannControl</a> AckermannControl</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d7d/ActorData_8h_source.html">ActorData.h</a> 第 <a class="el" href="../../de/d7d/ActorData_8h_source.html#l00122">122</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d43/CarlaActor_8cpp_source.html#l00868">FVehicleActor::ApplyAckermannControlToVehicle()</a>, <a class="el" href="../../d3/d00/CarlaWheeledVehicle_8h_source.html#l00226">ACarlaWheeledVehicle::ApplyVehicleAckermannControl()</a> , 以及 <a class="el" href="../../d1/d47/AckermannController_8cpp_source.html#l00044">FAckermannController::SetTargetPoint()</a>.</p>
+
+</div>
+</div>
+<a id="ab4639607baf0eb6c3994c04361cefbcd" name="ab4639607baf0eb6c3994c04361cefbcd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4639607baf0eb6c3994c04361cefbcd">&#9670;&#160;</a></span>AckermannControllerSettings</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d5/d57/structFAckermannControllerSettings.html">FAckermannControllerSettings</a> AckermannControllerSettings</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d7d/ActorData_8h_source.html">ActorData.h</a> 第 <a class="el" href="../../de/d7d/ActorData_8h_source.html#l00128">128</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d00/CarlaWheeledVehicle_8h_source.html#l00182">ACarlaWheeledVehicle::ApplyAckermannControllerSettings()</a>.</p>
+
+</div>
+</div>
+<a id="a6ea86b2369a68efa13075e2fdaed4d43" name="a6ea86b2369a68efa13075e2fdaed4d43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ea86b2369a68efa13075e2fdaed4d43">&#9670;&#160;</a></span>bAckermannControlActive</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool bAckermannControlActive = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d7d/ActorData_8h_source.html">ActorData.h</a> 第 <a class="el" href="../../de/d7d/ActorData_8h_source.html#l00125">125</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d00/CarlaWheeledVehicle_8h_source.html#l00226">ACarlaWheeledVehicle::ApplyVehicleAckermannControl()</a>, <a class="el" href="../../d3/d00/CarlaWheeledVehicle_8h_source.html#l00211">ACarlaWheeledVehicle::ApplyVehicleControl()</a> , 以及 <a class="el" href="../../d3/d00/CarlaWheeledVehicle_8h_source.html#l00233">ACarlaWheeledVehicle::IsAckermannControlActive()</a>.</p>
+
+</div>
+</div>
+<a id="a7d9383aec02ed02f84751cc5a6892d38" name="a7d9383aec02ed02f84751cc5a6892d38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d9383aec02ed02f84751cc5a6892d38">&#9670;&#160;</a></span>Control</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d1/d4b/structFVehicleControl.html">FVehicleControl</a> Control</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d7d/ActorData_8h_source.html">ActorData.h</a> 第 <a class="el" href="../../de/d7d/ActorData_8h_source.html#l00119">119</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/d8a/FrameData_8cpp_source.html#l00574">FFrameData::AddPhysicsControl()</a>, <a class="el" href="../../da/d49/CarlaRecorder_8cpp_source.html#l00368">ACarlaRecorder::AddPhysicsControl()</a>, <a class="el" href="../../df/d8a/FrameData_8cpp_source.html#l00400">FFrameData::AddVehicleAnimation()</a>, <a class="el" href="../../da/d49/CarlaRecorder_8cpp_source.html#l00182">ACarlaRecorder::AddVehicleAnimation()</a>, <a class="el" href="../../df/d8a/FrameData_8cpp_source.html#l00475">FFrameData::AddWalkerAnimation()</a>, <a class="el" href="../../da/d49/CarlaRecorder_8cpp_source.html#l00257">ACarlaRecorder::AddWalkerAnimation()</a>, <a class="el" href="../../d3/d43/CarlaActor_8cpp_source.html#l00847">FVehicleActor::ApplyControlToVehicle()</a>, <a class="el" href="../../d3/d43/CarlaActor_8cpp_source.html#l01404">FWalkerActor::ApplyControlToWalker()</a>, <a class="el" href="../../d3/d00/CarlaWheeledVehicle_8h_source.html#l00211">ACarlaWheeledVehicle::ApplyVehicleControl()</a>, <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html#l00226">FCarlaServer::FPimpl::BindActions()</a>, <a class="el" href="../../da/d52/WalkerController_8h_source.html#l00046">AWalkerController::GetWalkerControl()</a>, <a class="el" href="../../d3/d43/CarlaActor_8cpp_source.html#l01319">FWalkerActor::GetWalkerControl()</a>, <a class="el" href="../../dc/def/LibCarla_2source_2carla_2rpc_2VehicleAckermannControl_8h_source.html#l00056">carla::rpc::VehicleAckermannControl::operator FVehicleAckermannControl()</a>, <a class="el" href="../../dd/d28/LibCarla_2source_2carla_2rpc_2VehicleControl_8h_source.html#l00063">carla::rpc::VehicleControl::operator FVehicleControl()</a>, <a class="el" href="../../d1/d8e/LibCarla_2source_2carla_2rpc_2VehiclePhysicsControl_8h_source.html#l00203">carla::rpc::VehiclePhysicsControl::operator FVehiclePhysicsControl()</a>, <a class="el" href="../../d8/db7/LibCarla_2source_2carla_2rpc_2WalkerBoneControlIn_8h_source.html#l00036">carla::rpc::WalkerBoneControlIn::operator FWalkerBoneControlIn()</a>, <a class="el" href="../../dd/db3/LibCarla_2source_2carla_2rpc_2WalkerControl_8h_source.html#l00046">carla::rpc::WalkerControl::operator FWalkerControl()</a>, <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00092">UCarSimManagerComponent::ProcessControl()</a>, <a class="el" href="../../d1/d60/DefaultMovementComponent_8cpp_source.html#l00029">UDefaultMovementComponent::ProcessControl()</a>, <a class="el" href="../../df/d8a/FrameData_8cpp_source.html#l00996">FFrameData::ProcessReplayerAnimVehicle()</a>, <a class="el" href="../../df/d8a/FrameData_8cpp_source.html#l01091">FFrameData::ProcessReplayerFinish()</a>, <a class="el" href="../../de/dc6/CarlaRecorderQuery_8cpp_source.html#l00065">CarlaRecorderQuery::QueryInfo()</a>, <a class="el" href="../../d1/d47/AckermannController_8cpp_source.html#l00080">FAckermannController::RunLoop()</a>, <a class="el" href="../../df/d8a/FrameData_8cpp_source.html#l01143">FFrameData::SetWalkerSpeed()</a> , 以及 <a class="el" href="../../d1/d8e/LibCarla_2source_2carla_2rpc_2VehiclePhysicsControl_8h_source.html#l00156">carla::rpc::VehiclePhysicsControl::VehiclePhysicsControl()</a>.</p>
+
+</div>
+</div>
+<a id="a0ea4c6a8d2f783ca7db1262b539658da" name="a0ea4c6a8d2f783ca7db1262b539658da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ea4c6a8d2f783ca7db1262b539658da">&#9670;&#160;</a></span>FailureState</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#ae24acdb5a620582353443f8b547a52bc">carla::rpc::VehicleFailureState</a> FailureState</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d7d/ActorData_8h_source.html">ActorData.h</a> 第 <a class="el" href="../../de/d7d/ActorData_8h_source.html#l00137">137</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d43/CarlaActor_8cpp_source.html#l00684">FVehicleActor::GetFailureState()</a>.</p>
+
+</div>
+</div>
+<a id="a688a26099ec2b5548712afd5603adbd3" name="a688a26099ec2b5548712afd5603adbd3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a688a26099ec2b5548712afd5603adbd3">&#9670;&#160;</a></span>LightState</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../de/d9e/structFVehicleLightState.html">FVehicleLightState</a> LightState</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d7d/ActorData_8h_source.html">ActorData.h</a> 第 <a class="el" href="../../de/d7d/ActorData_8h_source.html#l00131">131</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/d8a/FrameData_8cpp_source.html#l00491">FFrameData::AddTrafficLightState()</a>, <a class="el" href="../../da/d49/CarlaRecorder_8cpp_source.html#l00273">ACarlaRecorder::AddTrafficLightState()</a>, <a class="el" href="../../df/d8a/FrameData_8cpp_source.html#l00513">FFrameData::AddVehicleLight()</a>, <a class="el" href="../../da/d49/CarlaRecorder_8cpp_source.html#l00295">ACarlaRecorder::AddVehicleLight()</a>, <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html#l00226">FCarlaServer::FPimpl::BindActions()</a>, <a class="el" href="../../d7/d63/TrafficLightController_8cpp_source.html#l00173">UTrafficLightController::GetStateTime()</a>, <a class="el" href="../../d3/d43/CarlaActor_8cpp_source.html#l00703">FVehicleActor::GetVehicleLightState()</a>, <a class="el" href="../../df/d8a/FrameData_8cpp_source.html#l01038">FFrameData::ProcessReplayerLightVehicle()</a>, <a class="el" href="../../de/dc6/CarlaRecorderQuery_8cpp_source.html#l00065">CarlaRecorderQuery::QueryInfo()</a>, <a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html#l00097">UCarlaLightSubsystem::SetLights()</a>, <a class="el" href="../../d7/d63/TrafficLightController_8cpp_source.html#l00162">UTrafficLightController::SetStateTime()</a> , 以及 <a class="el" href="../../d3/d43/CarlaActor_8cpp_source.html#l00772">FVehicleActor::SetVehicleLightState()</a>.</p>
+
+</div>
+</div>
+<a id="ad031bfd5a8a2ed7e66d03dafcc3b2858" name="ad031bfd5a8a2ed7e66d03dafcc3b2858"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad031bfd5a8a2ed7e66d03dafcc3b2858">&#9670;&#160;</a></span>override</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">sode override</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d7d/ActorData_8h_source.html">ActorData.h</a> 第 <a class="el" href="../../de/d7d/ActorData_8h_source.html#l00280">280</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6ab7637eb71a5ae7c706988127e76780" name="a6ab7637eb71a5ae7c706988127e76780"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ab7637eb71a5ae7c706988127e76780">&#9670;&#160;</a></span>PhysicsControl</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d1/dbe/structFVehiclePhysicsControl.html">FVehiclePhysicsControl</a> PhysicsControl</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d7d/ActorData_8h_source.html">ActorData.h</a> 第 <a class="el" href="../../de/d7d/ActorData_8h_source.html#l00116">116</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d43/CarlaActor_8cpp_source.html#l00751">FVehicleActor::ApplyPhysicsControl()</a>, <a class="el" href="../../dc/d65/CarlaWheeledVehicle_8cpp_source.html#l00588">ACarlaWheeledVehicle::ApplyVehiclePhysicsControl()</a>, <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html#l00226">FCarlaServer::FPimpl::BindActions()</a>, <a class="el" href="../../d3/d43/CarlaActor_8cpp_source.html#l00665">FVehicleActor::GetPhysicsControl()</a>, <a class="el" href="../../dc/d65/CarlaWheeledVehicle_8cpp_source.html#l00401">ACarlaWheeledVehicle::GetVehiclePhysicsControl()</a>, <a class="el" href="../../dc/d65/CarlaWheeledVehicle_8cpp_source.html#l00052">ACarlaWheeledVehicle::SetWheelCollision()</a>, <a class="el" href="../../dc/d65/CarlaWheeledVehicle_8cpp_source.html#l00078">ACarlaWheeledVehicle::SetWheelCollisionNW()</a> , 以及 <a class="el" href="../../dd/d41/CarlaRecorderPhysicsControl_8cpp_source.html#l00088">CarlaRecorderPhysicsControls::Write()</a>.</p>
+
+</div>
+</div>
+<a id="a4609df9c2a0c5cca737b725c39ad103a" name="a4609df9c2a0c5cca737b725c39ad103a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4609df9c2a0c5cca737b725c39ad103a">&#9670;&#160;</a></span>SpeedLimit</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SpeedLimit = 30</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d7d/ActorData_8h_source.html">ActorData.h</a> 第 <a class="el" href="../../de/d7d/ActorData_8h_source.html#l00134">134</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d2/d29/WheeledVehicleAIController_8h_source.html#l00167">AWheeledVehicleAIController::GetSpeedLimit()</a> , 以及 <a class="el" href="../../d2/d29/WheeledVehicleAIController_8h_source.html#l00174">AWheeledVehicleAIController::SetSpeedLimit()</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

@@ -1,0 +1,822 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: UCarSimManagerComponent类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
+<a href="#pub-attribs">Public 属性</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="../../d9/da3/classUCarSimManagerComponent-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">UCarSimManagerComponent类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="../../d9/d84/CarSimManagerComponent_8h_source.html">CarSimManagerComponent.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 类 UCarSimManagerComponent 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/dac/classUCarSimManagerComponent__inherit__graph.svg" width="230" height="183"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> UCarSimManagerComponent 的协作图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../de/d8e/classUCarSimManagerComponent__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:ac7676e1c859f6052d4caf7ae7527eb85"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dea/classUCarSimManagerComponent.html#ac7676e1c859f6052d4caf7ae7527eb85">BeginPlay</a> () <a class="el" href="../../de/d7d/ActorData_8h.html#ad031bfd5a8a2ed7e66d03dafcc3b2858">override</a></td></tr>
+<tr class="separator:ac7676e1c859f6052d4caf7ae7527eb85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2efa8eb19aced754f167875bb25bd92c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dea/classUCarSimManagerComponent.html#a2efa8eb19aced754f167875bb25bd92c">DisableCarSimPhysics</a> ()</td></tr>
+<tr class="separator:a2efa8eb19aced754f167875bb25bd92c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f864770d706d0172e8f18abda5fd2ef"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dea/classUCarSimManagerComponent.html#a9f864770d706d0172e8f18abda5fd2ef">DisableSpecialPhysics</a> () <a class="el" href="../../de/d7d/ActorData_8h.html#ad031bfd5a8a2ed7e66d03dafcc3b2858">override</a></td></tr>
+<tr class="separator:a9f864770d706d0172e8f18abda5fd2ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45740a056d6402af67508d404ec0e1a8"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dea/classUCarSimManagerComponent.html#a45740a056d6402af67508d404ec0e1a8">EndPlay</a> (const EEndPlayReason::Type EndPlayReason) <a class="el" href="../../de/d7d/ActorData_8h.html#ad031bfd5a8a2ed7e66d03dafcc3b2858">override</a></td></tr>
+<tr class="separator:a45740a056d6402af67508d404ec0e1a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a493266056ff8bda8e22d6a54bfd36b7f"><td class="memItemLeft" align="right" valign="top">int32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dea/classUCarSimManagerComponent.html#a493266056ff8bda8e22d6a54bfd36b7f">GetVehicleCurrentGear</a> () const <a class="el" href="../../de/d7d/ActorData_8h.html#ad031bfd5a8a2ed7e66d03dafcc3b2858">override</a></td></tr>
+<tr class="separator:a493266056ff8bda8e22d6a54bfd36b7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a791584fe2dd2090305999b674945606d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dea/classUCarSimManagerComponent.html#a791584fe2dd2090305999b674945606d">GetVehicleForwardSpeed</a> () const <a class="el" href="../../de/d7d/ActorData_8h.html#ad031bfd5a8a2ed7e66d03dafcc3b2858">override</a></td></tr>
+<tr class="separator:a791584fe2dd2090305999b674945606d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af26616059331aeac1b451ae508ed40e1"><td class="memItemLeft" align="right" valign="top">FVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dea/classUCarSimManagerComponent.html#af26616059331aeac1b451ae508ed40e1">GetVelocity</a> () const <a class="el" href="../../de/d7d/ActorData_8h.html#ad031bfd5a8a2ed7e66d03dafcc3b2858">override</a></td></tr>
+<tr class="separator:af26616059331aeac1b451ae508ed40e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81cdb8f3af4914d3b5d70537e743a661"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dea/classUCarSimManagerComponent.html#a81cdb8f3af4914d3b5d70537e743a661">ProcessControl</a> (<a class="el" href="../../d1/d4b/structFVehicleControl.html">FVehicleControl</a> &amp;<a class="el" href="../../de/d7d/ActorData_8h.html#a7d9383aec02ed02f84751cc5a6892d38">Control</a>) <a class="el" href="../../de/d7d/ActorData_8h.html#ad031bfd5a8a2ed7e66d03dafcc3b2858">override</a></td></tr>
+<tr class="separator:a81cdb8f3af4914d3b5d70537e743a661"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3837a6ed235c7db93bb7ebf8162000e2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dea/classUCarSimManagerComponent.html#a3837a6ed235c7db93bb7ebf8162000e2">TickComponent</a> (float DeltaTime, ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) <a class="el" href="../../de/d7d/ActorData_8h.html#ad031bfd5a8a2ed7e66d03dafcc3b2858">override</a></td></tr>
+<tr class="separator:a3837a6ed235c7db93bb7ebf8162000e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab141d90e4c2f4f341c9328f30617c862"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dea/classUCarSimManagerComponent.html#ab141d90e4c2f4f341c9328f30617c862">UseCarSimRoad</a> (bool bEnabled)</td></tr>
+<tr class="separator:ab141d90e4c2f4f341c9328f30617c862"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ff9f9b4011c9817e6a6192e5157cea6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d48/classUBaseCarlaMovementComponent.html#a3ff9f9b4011c9817e6a6192e5157cea6">BeginPlay</a> () <a class="el" href="../../de/d7d/ActorData_8h.html#ad031bfd5a8a2ed7e66d03dafcc3b2858">override</a></td></tr>
+<tr class="separator:a3ff9f9b4011c9817e6a6192e5157cea6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0db23dd0dca5b6707a77247c9f0980d7"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d48/classUBaseCarlaMovementComponent.html#a0db23dd0dca5b6707a77247c9f0980d7">DisableSpecialPhysics</a> ()</td></tr>
+<tr class="separator:a0db23dd0dca5b6707a77247c9f0980d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7982e246873b853d6eb9a05a863fd603"><td class="memItemLeft" align="right" valign="top">virtual int32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d48/classUBaseCarlaMovementComponent.html#a7982e246873b853d6eb9a05a863fd603">GetVehicleCurrentGear</a> () const</td></tr>
+<tr class="separator:a7982e246873b853d6eb9a05a863fd603"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a974cdab518603a6b54fa3e3fd8b2c68e"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d48/classUBaseCarlaMovementComponent.html#a974cdab518603a6b54fa3e3fd8b2c68e">GetVehicleForwardSpeed</a> () const</td></tr>
+<tr class="separator:a974cdab518603a6b54fa3e3fd8b2c68e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6f038c3f307cb6e6729304521ece924"><td class="memItemLeft" align="right" valign="top">virtual FVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d48/classUBaseCarlaMovementComponent.html#ac6f038c3f307cb6e6729304521ece924">GetVelocity</a> () const</td></tr>
+<tr class="separator:ac6f038c3f307cb6e6729304521ece924"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b200f4e7e4617eedd63d8a9ed88bc97"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d48/classUBaseCarlaMovementComponent.html#a0b200f4e7e4617eedd63d8a9ed88bc97">ProcessControl</a> (<a class="el" href="../../d1/d4b/structFVehicleControl.html">FVehicleControl</a> &amp;<a class="el" href="../../de/d7d/ActorData_8h.html#a7d9383aec02ed02f84751cc5a6892d38">Control</a>)</td></tr>
+<tr class="separator:a0b200f4e7e4617eedd63d8a9ed88bc97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr class="memitem:a89fcf57d434e47251b24daf9447a383f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dea/classUCarSimManagerComponent.html#a89fcf57d434e47251b24daf9447a383f">CreateCarsimComponent</a> (<a class="el" href="../../d5/d70/classACarlaWheeledVehicle.html">ACarlaWheeledVehicle</a> *<a class="el" href="../../d0/d01/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Util_2EnvironmentObject_8h.html#a81be2176b5cc416c3b47dda8af29a6a8aba9e2366981512742f117096f4efc9b0">Vehicle</a>, FString Simfile)</td></tr>
+<tr class="separator:a89fcf57d434e47251b24daf9447a383f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:ac1fe95e8d0a383ed70c66f65f1e857f4"><td class="memItemLeft" align="right" valign="top">FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dea/classUCarSimManagerComponent.html#ac1fe95e8d0a383ed70c66f65f1e857f4">SimfilePath</a> = &quot;&quot;</td></tr>
+<tr class="separator:ac1fe95e8d0a383ed70c66f65f1e857f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:a4ccbefc433a2f4d7aafbe01685ae65f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dea/classUCarSimManagerComponent.html#a4ccbefc433a2f4d7aafbe01685ae65f2">OnCarSimEndOverlap</a> (<a class="el" href="../../d9/d6d/classUPrimitiveComponent.html">UPrimitiveComponent</a> *OverlappedComponent, <a class="el" href="../../d1/da4/classAActor.html">AActor</a> *OtherActor, <a class="el" href="../../d9/d6d/classUPrimitiveComponent.html">UPrimitiveComponent</a> *OtherComp, int32 OtherBodyIndex)</td></tr>
+<tr class="separator:a4ccbefc433a2f4d7aafbe01685ae65f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f66e5242961cd5ff69bc92ddae1848a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dea/classUCarSimManagerComponent.html#a6f66e5242961cd5ff69bc92ddae1848a">OnCarSimHit</a> (<a class="el" href="../../d1/da4/classAActor.html">AActor</a> *<a class="el" href="../../d3/d43/CarlaActor_8cpp.html#acf512646b33f06951fc18015682664e4">Actor</a>, <a class="el" href="../../d1/da4/classAActor.html">AActor</a> *OtherActor, FVector NormalImpulse, const FHitResult &amp;Hit)</td></tr>
+<tr class="separator:a6f66e5242961cd5ff69bc92ddae1848a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89f7bf19417dc86844ed50773dbf463b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dea/classUCarSimManagerComponent.html#a89f7bf19417dc86844ed50773dbf463b">OnCarSimOverlap</a> (<a class="el" href="../../d9/d6d/classUPrimitiveComponent.html">UPrimitiveComponent</a> *OverlappedComponent, <a class="el" href="../../d1/da4/classAActor.html">AActor</a> *OtherActor, <a class="el" href="../../d9/d6d/classUPrimitiveComponent.html">UPrimitiveComponent</a> *OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult &amp;SweepResult)</td></tr>
+<tr class="separator:a89f7bf19417dc86844ed50773dbf463b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pro_methods_classUBaseCarlaMovementComponent"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classUBaseCarlaMovementComponent')"><img src="../../closed.png" alt="-"/>&#160;Protected 成员函数 继承自 <a class="el" href="../../d2/d48/classUBaseCarlaMovementComponent.html">UBaseCarlaMovementComponent</a></td></tr>
+<tr class="memitem:af23ed78adbd4b25f6e2983d0d50ab747 inherit pro_methods_classUBaseCarlaMovementComponent"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d48/classUBaseCarlaMovementComponent.html#af23ed78adbd4b25f6e2983d0d50ab747">DisableUE4VehiclePhysics</a> ()</td></tr>
+<tr class="separator:af23ed78adbd4b25f6e2983d0d50ab747 inherit pro_methods_classUBaseCarlaMovementComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac579e7fcca58d6d306b9959861db99c4 inherit pro_methods_classUBaseCarlaMovementComponent"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d48/classUBaseCarlaMovementComponent.html#ac579e7fcca58d6d306b9959861db99c4">EnableUE4VehiclePhysics</a> (bool bResetVelocity=<a class="el" href="../../d0/d6a/ActorDispatcher_8cpp.html#a930920b2bc42824a5c03be681830f4b2">true</a>)</td></tr>
+<tr class="separator:ac579e7fcca58d6d306b9959861db99c4 inherit pro_methods_classUBaseCarlaMovementComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classUBaseCarlaMovementComponent"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classUBaseCarlaMovementComponent')"><img src="../../closed.png" alt="-"/>&#160;Protected 属性 继承自 <a class="el" href="../../d2/d48/classUBaseCarlaMovementComponent.html">UBaseCarlaMovementComponent</a></td></tr>
+<tr class="memitem:ad4ceb05693c6ce0c690926d6f500de58 inherit pro_attribs_classUBaseCarlaMovementComponent"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/d70/classACarlaWheeledVehicle.html">ACarlaWheeledVehicle</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d48/classUBaseCarlaMovementComponent.html#ad4ceb05693c6ce0c690926d6f500de58">CarlaVehicle</a></td></tr>
+<tr class="separator:ad4ceb05693c6ce0c690926d6f500de58 inherit pro_attribs_classUBaseCarlaMovementComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="../../d9/d84/CarSimManagerComponent_8h_source.html">CarSimManagerComponent.h</a> 第 <a class="el" href="../../d9/d84/CarSimManagerComponent_8h_source.html#l00026">26</a> 行定义.</p>
+</div><h2 class="groupheader">成员函数说明</h2>
+<a id="ac7676e1c859f6052d4caf7ae7527eb85" name="ac7676e1c859f6052d4caf7ae7527eb85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7676e1c859f6052d4caf7ae7527eb85">&#9670;&#160;</a></span>BeginPlay()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UCarSimManagerComponent::BeginPlay </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="../../d2/d48/classUBaseCarlaMovementComponent.html#a3ff9f9b4011c9817e6a6192e5157cea6">UBaseCarlaMovementComponent</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html">CarSimManagerComponent.cpp</a> 第 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00031">31</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d6/d10/BaseCarlaMovementComponent_8h_source.html#l00042">UBaseCarlaMovementComponent::CarlaVehicle</a>, <a class="el" href="../../d3/d00/CarlaWheeledVehicle_8h_source.html#l00420">ACarlaWheeledVehicle::CarSimOriginOffset</a>, <a class="el" href="../../de/d87/Logging_8h_source.html#l00101">carla::log_warning()</a>, <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00159">OnCarSimEndOverlap()</a>, <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00135">OnCarSimHit()</a>, <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00144">OnCarSimOverlap()</a>, <a class="el" href="../../d9/d84/CarSimManagerComponent_8h_source.html#l00041">SimfilePath</a> , 以及 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp.html#a69d0a7232310b5ebaa51abb2b9945184">UE_LOG()</a>.</p>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d2/dea/classUCarSimManagerComponent_ac7676e1c859f6052d4caf7ae7527eb85_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a89fcf57d434e47251b24daf9447a383f" name="a89fcf57d434e47251b24daf9447a383f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89fcf57d434e47251b24daf9447a383f">&#9670;&#160;</a></span>CreateCarsimComponent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UCarSimManagerComponent::CreateCarsimComponent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d5/d70/classACarlaWheeledVehicle.html">ACarlaWheeledVehicle</a> *&#160;</td>
+          <td class="paramname"><em>Vehicle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FString&#160;</td>
+          <td class="paramname"><em>Simfile</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html">CarSimManagerComponent.cpp</a> 第 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00018">18</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d9/d84/CarSimManagerComponent_8h_source.html#l00041">SimfilePath</a>, <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp.html#a69d0a7232310b5ebaa51abb2b9945184">UE_LOG()</a> , 以及 <a class="el" href="../../d0/d01/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Util_2EnvironmentObject_8h_source.html#l00032">Vehicle</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d43/CarlaActor_8cpp_source.html#l01026">FVehicleActor::EnableCarSim()</a>.</p>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d2/dea/classUCarSimManagerComponent_a89fcf57d434e47251b24daf9447a383f_cgraph.svg" width="324" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d2/dea/classUCarSimManagerComponent_a89fcf57d434e47251b24daf9447a383f_icgraph.svg" width="442" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a2efa8eb19aced754f167875bb25bd92c" name="a2efa8eb19aced754f167875bb25bd92c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2efa8eb19aced754f167875bb25bd92c">&#9670;&#160;</a></span>DisableCarSimPhysics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UCarSimManagerComponent::DisableCarSimPhysics </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html">CarSimManagerComponent.cpp</a> 第 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00106">106</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d6/d10/BaseCarlaMovementComponent_8h_source.html#l00042">UBaseCarlaMovementComponent::CarlaVehicle</a>, <a class="el" href="../../d1/d60/DefaultMovementComponent_8cpp_source.html#l00012">UDefaultMovementComponent::CreateDefaultMovementComponent()</a>, <a class="el" href="../../de/d87/Logging_8h_source.html#l00101">carla::log_warning()</a> , 以及 <a class="el" href="../../dc/d65/CarlaWheeledVehicle_8cpp_source.html#l00583">ACarlaWheeledVehicle::RestoreVehiclePhysicsControl()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00130">DisableSpecialPhysics()</a>, <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00135">OnCarSimHit()</a> , 以及 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00144">OnCarSimOverlap()</a>.</p>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d2/dea/classUCarSimManagerComponent_a2efa8eb19aced754f167875bb25bd92c_cgraph.svg" width="100%" height="589"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d2/dea/classUCarSimManagerComponent_a2efa8eb19aced754f167875bb25bd92c_icgraph.svg" width="100%" height="434"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a9f864770d706d0172e8f18abda5fd2ef" name="a9f864770d706d0172e8f18abda5fd2ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f864770d706d0172e8f18abda5fd2ef">&#9670;&#160;</a></span>DisableSpecialPhysics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UCarSimManagerComponent::DisableSpecialPhysics </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="../../d2/d48/classUBaseCarlaMovementComponent.html#a0db23dd0dca5b6707a77247c9f0980d7">UBaseCarlaMovementComponent</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html">CarSimManagerComponent.cpp</a> 第 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00130">130</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00106">DisableCarSimPhysics()</a>.</p>
+<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d2/dea/classUCarSimManagerComponent_a9f864770d706d0172e8f18abda5fd2ef_cgraph.svg" width="100%" height="589"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a45740a056d6402af67508d404ec0e1a8" name="a45740a056d6402af67508d404ec0e1a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45740a056d6402af67508d404ec0e1a8">&#9670;&#160;</a></span>EndPlay()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UCarSimManagerComponent::EndPlay </td>
+          <td>(</td>
+          <td class="paramtype">const EEndPlayReason::Type&#160;</td>
+          <td class="paramname"><em>EndPlayReason</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html">CarSimManagerComponent.cpp</a> 第 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00176">176</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d6/d10/BaseCarlaMovementComponent_8h_source.html#l00042">UBaseCarlaMovementComponent::CarlaVehicle</a>, <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00159">OnCarSimEndOverlap()</a>, <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00135">OnCarSimHit()</a>, <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00144">OnCarSimOverlap()</a> , 以及 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp.html#a69d0a7232310b5ebaa51abb2b9945184">UE_LOG()</a>.</p>
+<div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d2/dea/classUCarSimManagerComponent_a45740a056d6402af67508d404ec0e1a8_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a493266056ff8bda8e22d6a54bfd36b7f" name="a493266056ff8bda8e22d6a54bfd36b7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a493266056ff8bda8e22d6a54bfd36b7f">&#9670;&#160;</a></span>GetVehicleCurrentGear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32 UCarSimManagerComponent::GetVehicleCurrentGear </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="../../d2/d48/classUBaseCarlaMovementComponent.html#a7982e246873b853d6eb9a05a863fd603">UBaseCarlaMovementComponent</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html">CarSimManagerComponent.cpp</a> 第 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00207">207</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a791584fe2dd2090305999b674945606d" name="a791584fe2dd2090305999b674945606d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a791584fe2dd2090305999b674945606d">&#9670;&#160;</a></span>GetVehicleForwardSpeed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float UCarSimManagerComponent::GetVehicleForwardSpeed </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="../../d2/d48/classUBaseCarlaMovementComponent.html#a974cdab518603a6b54fa3e3fd8b2c68e">UBaseCarlaMovementComponent</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html">CarSimManagerComponent.cpp</a> 第 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00216">216</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af26616059331aeac1b451ae508ed40e1" name="af26616059331aeac1b451ae508ed40e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af26616059331aeac1b451ae508ed40e1">&#9670;&#160;</a></span>GetVelocity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FVector UCarSimManagerComponent::GetVelocity </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="../../d2/d48/classUBaseCarlaMovementComponent.html#ac6f038c3f307cb6e6729304521ece924">UBaseCarlaMovementComponent</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html">CarSimManagerComponent.cpp</a> 第 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00198">198</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4ccbefc433a2f4d7aafbe01685ae65f2" name="a4ccbefc433a2f4d7aafbe01685ae65f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ccbefc433a2f4d7aafbe01685ae65f2">&#9670;&#160;</a></span>OnCarSimEndOverlap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UCarSimManagerComponent::OnCarSimEndOverlap </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/d6d/classUPrimitiveComponent.html">UPrimitiveComponent</a> *&#160;</td>
+          <td class="paramname"><em>OverlappedComponent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d1/da4/classAActor.html">AActor</a> *&#160;</td>
+          <td class="paramname"><em>OtherActor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d6d/classUPrimitiveComponent.html">UPrimitiveComponent</a> *&#160;</td>
+          <td class="paramname"><em>OtherComp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32&#160;</td>
+          <td class="paramname"><em>OtherBodyIndex</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html">CarSimManagerComponent.cpp</a> 第 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00159">159</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00031">BeginPlay()</a> , 以及 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00176">EndPlay()</a>.</p>
+<div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d2/dea/classUCarSimManagerComponent_a4ccbefc433a2f4d7aafbe01685ae65f2_icgraph.svg" width="440" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a6f66e5242961cd5ff69bc92ddae1848a" name="a6f66e5242961cd5ff69bc92ddae1848a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f66e5242961cd5ff69bc92ddae1848a">&#9670;&#160;</a></span>OnCarSimHit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UCarSimManagerComponent::OnCarSimHit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d1/da4/classAActor.html">AActor</a> *&#160;</td>
+          <td class="paramname"><em>Actor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d1/da4/classAActor.html">AActor</a> *&#160;</td>
+          <td class="paramname"><em>OtherActor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FVector&#160;</td>
+          <td class="paramname"><em>NormalImpulse</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FHitResult &amp;&#160;</td>
+          <td class="paramname"><em>Hit</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html">CarSimManagerComponent.cpp</a> 第 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00135">135</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00106">DisableCarSimPhysics()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00031">BeginPlay()</a> , 以及 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00176">EndPlay()</a>.</p>
+<div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d2/dea/classUCarSimManagerComponent_a6f66e5242961cd5ff69bc92ddae1848a_cgraph.svg" width="100%" height="589"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d2/dea/classUCarSimManagerComponent_a6f66e5242961cd5ff69bc92ddae1848a_icgraph.svg" width="440" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a89f7bf19417dc86844ed50773dbf463b" name="a89f7bf19417dc86844ed50773dbf463b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89f7bf19417dc86844ed50773dbf463b">&#9670;&#160;</a></span>OnCarSimOverlap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UCarSimManagerComponent::OnCarSimOverlap </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/d6d/classUPrimitiveComponent.html">UPrimitiveComponent</a> *&#160;</td>
+          <td class="paramname"><em>OverlappedComponent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d1/da4/classAActor.html">AActor</a> *&#160;</td>
+          <td class="paramname"><em>OtherActor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d6d/classUPrimitiveComponent.html">UPrimitiveComponent</a> *&#160;</td>
+          <td class="paramname"><em>OtherComp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32&#160;</td>
+          <td class="paramname"><em>OtherBodyIndex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bFromSweep</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FHitResult &amp;&#160;</td>
+          <td class="paramname"><em>SweepResult</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html">CarSimManagerComponent.cpp</a> 第 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00144">144</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00106">DisableCarSimPhysics()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00031">BeginPlay()</a> , 以及 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00176">EndPlay()</a>.</p>
+<div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-12-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-12-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d2/dea/classUCarSimManagerComponent_a89f7bf19417dc86844ed50773dbf463b_cgraph.svg" width="100%" height="589"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<div id="dynsection-13" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-13-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-13-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-13-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d2/dea/classUCarSimManagerComponent_a89f7bf19417dc86844ed50773dbf463b_icgraph.svg" width="440" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a81cdb8f3af4914d3b5d70537e743a661" name="a81cdb8f3af4914d3b5d70537e743a661"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81cdb8f3af4914d3b5d70537e743a661">&#9670;&#160;</a></span>ProcessControl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UCarSimManagerComponent::ProcessControl </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d1/d4b/structFVehicleControl.html">FVehicleControl</a> &amp;&#160;</td>
+          <td class="paramname"><em>Control</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="../../d2/d48/classUBaseCarlaMovementComponent.html#a0b200f4e7e4617eedd63d8a9ed88bc97">UBaseCarlaMovementComponent</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html">CarSimManagerComponent.cpp</a> 第 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00092">92</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d4/dbd/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2VehicleControl_8h_source.html#l00039">FVehicleControl::bHandBrake</a>, <a class="el" href="../../d4/dbd/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2VehicleControl_8h_source.html#l00034">FVehicleControl::Brake</a>, <a class="el" href="../../de/d7d/ActorData_8h_source.html#l00119">Control</a>, <a class="el" href="../../d4/dbd/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2VehicleControl_8h_source.html#l00055">FVehicleControl::Gear</a>, <a class="el" href="../../d4/dbd/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2VehicleControl_8h_source.html#l00029">FVehicleControl::Steer</a> , 以及 <a class="el" href="../../d4/dbd/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2VehicleControl_8h_source.html#l00024">FVehicleControl::Throttle</a>.</p>
+
+</div>
+</div>
+<a id="a3837a6ed235c7db93bb7ebf8162000e2" name="a3837a6ed235c7db93bb7ebf8162000e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3837a6ed235c7db93bb7ebf8162000e2">&#9670;&#160;</a></span>TickComponent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UCarSimManagerComponent::TickComponent </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>DeltaTime</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ELevelTick&#160;</td>
+          <td class="paramname"><em>TickType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FActorComponentTickFunction *&#160;</td>
+          <td class="paramname"><em>ThisTickFunction</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html">CarSimManagerComponent.cpp</a> 第 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00088">88</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab141d90e4c2f4f341c9328f30617c862" name="ab141d90e4c2f4f341c9328f30617c862"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab141d90e4c2f4f341c9328f30617c862">&#9670;&#160;</a></span>UseCarSimRoad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UCarSimManagerComponent::UseCarSimRoad </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bEnabled</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html">CarSimManagerComponent.cpp</a> 第 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00166">166</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d43/CarlaActor_8cpp_source.html#l01043">FVehicleActor::UseCarSimRoad()</a>.</p>
+<div id="dynsection-14" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-14-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-14-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-14-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d2/dea/classUCarSimManagerComponent_ab141d90e4c2f4f341c9328f30617c862_icgraph.svg" width="456" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="ac1fe95e8d0a383ed70c66f65f1e857f4" name="ac1fe95e8d0a383ed70c66f65f1e857f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1fe95e8d0a383ed70c66f65f1e857f4">&#9670;&#160;</a></span>SimfilePath</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">FString UCarSimManagerComponent::SimfilePath = &quot;&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/d84/CarSimManagerComponent_8h_source.html">CarSimManagerComponent.h</a> 第 <a class="el" href="../../d9/d84/CarSimManagerComponent_8h_source.html#l00041">41</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00031">BeginPlay()</a> , 以及 <a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html#l00018">CreateCarsimComponent()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../d9/d84/CarSimManagerComponent_8h_source.html">CarSimManagerComponent.h</a></li>
+<li><a class="el" href="../../d2/d56/CarSimManagerComponent_8cpp_source.html">CarSimManagerComponent.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

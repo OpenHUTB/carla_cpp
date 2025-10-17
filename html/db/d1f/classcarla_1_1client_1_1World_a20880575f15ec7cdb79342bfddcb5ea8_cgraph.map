@@ -1,0 +1,4 @@
+<map id="carla::client::World::EnableEnvironmentObjects" name="carla::client::World::EnableEnvironmentObjects">
+<area shape="rect" id="node1" title="启用或禁用环境物体，根据传入的环境物体ID列表（env_objects_ids）以及布尔值参数enable来操作， 可以动态地控制某些环境物体在模拟世界中是否显示或者参与物理模拟等，实现灵活的场景配置。" alt="" coords="5,5,189,45"/>
+<area shape="rect" id="node2" href="$d1/dd3/classcarla_1_1client_1_1detail_1_1EpisodeProxyImpl.html#aaca857645fbeb6546b4a03a663bb65af" title="与 TryLock 相同，但永远不会返回 nullptr。" alt="" coords="237,5,404,45"/>
+</map>

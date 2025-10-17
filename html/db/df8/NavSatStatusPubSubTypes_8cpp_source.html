@@ -1,0 +1,340 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: NavSatStatusPubSubTypes.cpp 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_087ce8304d10c4897e4acbeac1a6fcc8.html">ros2</a></li><li class="navelem"><a class="el" href="../../dir_4ea2d91c13d1361ac1a1dbc78466282d.html">types</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">NavSatStatusPubSubTypes.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../db/df8/NavSatStatusPubSubTypes_8cpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright 2016 Proyectos y Sistemas de Mantenimiento SL (eProsima).</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// you may not use this file except in compliance with the License.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// You may obtain a copy of the License at</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//     http://www.apache.org/licenses/LICENSE-2.0</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">// Unless required by applicable law or agreed to in writing, software</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">// See the License for the specific language governing permissions and</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">// limitations under the License.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment"></span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">/*!</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment"> * @file NavSatStatusPubSubTypes.cpp</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment"> * This header file contains the implementation of the serialization functions.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment"> * This file was generated by the tool fastcdrgen.</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;fastcdr/FastBuffer.h&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;fastcdr/Cdr.h&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;<a class="code" href="../../d9/d1b/NavSatStatusPubSubTypes_8h.html">NavSatStatusPubSubTypes.h</a>&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="../../db/df8/NavSatStatusPubSubTypes_8cpp.html#ae7818c4670abc053fbadaed455b07b1f">   27</a></span><span class="keyword">using </span><a class="code hl_typedef" href="../../d6/d4c/CameraInfoPubSubTypes_8cpp.html#ae7818c4670abc053fbadaed455b07b1f">SerializedPayload_t</a> = eprosima::fastrtps::rtps::SerializedPayload_t;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="../../db/df8/NavSatStatusPubSubTypes_8cpp.html#a894129904d0a4f471bea9c0440bb3ddd">   28</a></span><span class="keyword">using </span><a class="code hl_typedef" href="../../d6/d4c/CameraInfoPubSubTypes_8cpp.html#a894129904d0a4f471bea9c0440bb3ddd">InstanceHandle_t</a> = eprosima::fastrtps::rtps::InstanceHandle_t;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment">// 引入了fastcdr库中的FastBuffer.h和Cdr.h头文件，以及自定义的NavSatStatusPubSubTypes.h头文件。</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">// 同时定义了两个类型别名SerializedPayload_t和InstanceHandle_t，分别对应特定的类型，用于后续处理序列化数据和实例句柄相关操作。</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d9/d7d/namespacesensor__msgs.html">sensor_msgs</a> {</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">namespace </span>msg {</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#ae7fc9f422fc241636691fde0306cf089">   35</a></span>        <a class="code hl_function" href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#ae7fc9f422fc241636691fde0306cf089">NavSatStatusPubSubType::NavSatStatusPubSubType</a>()</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>            setName(<span class="stringliteral">&quot;sensor_msgs::msg::dds_::NavSatStatus_&quot;</span>);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>            <span class="comment">// 设置这个类型的名称为 &quot;sensor_msgs::msg::dds_::NavSatStatus_&quot;，可能用于在发布/订阅系统等场景中标识该类型。</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>            <span class="keyword">auto</span> type_size = <a class="code hl_function" href="../../d6/dc8/classsensor__msgs_1_1msg_1_1NavSatStatus.html#a6570c3e85015983be74a129e057df197">NavSatStatus::getMaxCdrSerializedSize</a>();</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>            <span class="comment">// 获取NavSatStatus类型数据最大的CDR（一种数据序列化格式相关概念）序列化大小，并赋值给type_size变量。</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>            type_size += eprosima::fastcdr::Cdr::alignment(type_size, 4); <span class="comment">/* possible submessage alignment */</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>            <span class="comment">// 对type_size变量增加通过eprosima::fastcdr::Cdr::alignment函数计算得到的值，此处注释“可能的子消息对齐”表示这是为了让序列化后的子消息按照一定规则（可能与内存对齐等相关，便于后续处理）进行对齐，以符合数据格式要求，传入的参数是type_size和4。</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            m_typeSize = <span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(type_size) + 4; <span class="comment">/*encapsulation*/</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>            <span class="comment">// 将调整后的type_size转换为uint32_t类型后再加上4赋值给m_typeSize变量，注释“封装”意味着这增加的4字节与数据封装相关，比如在整个数据结构序列化时额外添加用于标识封装边界等的字节，保障数据传输或存储时的完整性与可识别性。</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>            m_isGetKeyDefined = <a class="code hl_function" href="../../d6/dc8/classsensor__msgs_1_1msg_1_1NavSatStatus.html#aa558831fb3a3eeb3a2774bcb7fe1670a">NavSatStatus::isKeyDefined</a>();</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>            <span class="comment">// 根据NavSatStatus类型中是否定义了获取键（Key）的相关机制，来初始化m_isGetKeyDefined变量，后续用于判断能否获取该类型数据对应的键。</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            <span class="keywordtype">size_t</span> keyLength = <a class="code hl_function" href="../../d6/dc8/classsensor__msgs_1_1msg_1_1NavSatStatus.html#a24c71ebe11b215a3265d8a9e85f6aed2">NavSatStatus::getKeyMaxCdrSerializedSize</a>() &gt; 16?</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>                    <a class="code hl_function" href="../../d6/dc8/classsensor__msgs_1_1msg_1_1NavSatStatus.html#a24c71ebe11b215a3265d8a9e85f6aed2">NavSatStatus::getKeyMaxCdrSerializedSize</a>() : 16;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            <span class="comment">// 根据NavSatStatus类型获取键的最大CDR序列化大小来确定keyLength变量的值，如果该大小大于16，则keyLength就等于这个最大序列化大小，否则keyLength取值为16，以便后续分配合适大小的缓冲区来存储键相关的数据。</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            <a class="code hl_variable" href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#aaec86bae101bc61ea282d3bf9e179e8f">m_keyBuffer</a> = <span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(malloc(keyLength));</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            <span class="comment">// 通过malloc函数分配keyLength字节大小的内存空间，并将其转换为unsigned char*类型指针赋值给m_keyBuffer，用于存储与键相关的数据。</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>            memset(<a class="code hl_variable" href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#aaec86bae101bc61ea282d3bf9e179e8f">m_keyBuffer</a>, 0, keyLength);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            <span class="comment">// 将刚刚分配的m_keyBuffer所指向的内存空间的每个字节都初始化为0，确保其初始状态正确。</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        }</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#a41baf760d747bc08cc848149ebb625fb">   63</a></span>        <a class="code hl_function" href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#a41baf760d747bc08cc848149ebb625fb">NavSatStatusPubSubType::~NavSatStatusPubSubType</a>()</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        {</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>            <span class="keywordflow">if</span> (<a class="code hl_variable" href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#aaec86bae101bc61ea282d3bf9e179e8f">m_keyBuffer</a>!= <span class="keyword">nullptr</span>)</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>            {</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>                free(<a class="code hl_variable" href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#aaec86bae101bc61ea282d3bf9e179e8f">m_keyBuffer</a>);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>            }</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>            <span class="comment">// 这是NavSatStatusPubSubType类的析构函数，当对象被销毁时执行。如果m_keyBuffer指针不为空（即之前成功分配了内存），就通过free函数释放它所指向的内存空间，防止内存泄漏，也就是回收之前在构造函数中为存储键相关数据而分配的内存。</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        }</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#abdf3c173db9747ebc7c0f9b11ff529ef">   72</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#abdf3c173db9747ebc7c0f9b11ff529ef">NavSatStatusPubSubType::serialize</a>(</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>                <span class="keywordtype">void</span>* data,</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>                <a class="code hl_typedef" href="../../d6/d4c/CameraInfoPubSubTypes_8cpp.html#ae7818c4670abc053fbadaed455b07b1f">SerializedPayload_t</a>* payload)</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        {</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>            <a class="code hl_class" href="../../d6/dc8/classsensor__msgs_1_1msg_1_1NavSatStatus.html">NavSatStatus</a>* p_type = <span class="keyword">static_cast&lt;</span><a class="code hl_class" href="../../d6/dc8/classsensor__msgs_1_1msg_1_1NavSatStatus.html">NavSatStatus</a>*<span class="keyword">&gt;</span>(data);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>            <span class="comment">// 将传入的void*类型的data指针强制转换为NavSatStatus*类型指针，方便后续针对NavSatStatus类型数据进行特定操作。</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>            <span class="comment">// Object that manages the raw buffer.</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>            eprosima::fastcdr::FastBuffer fastbuffer(<span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(payload-&gt;data), payload-&gt;max_size);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>            <span class="comment">// 定义一个eprosima::fastcdr::FastBuffer类型的对象fastbuffer，它用于管理原始缓冲区，缓冲区的数据来源是payload-&gt;data，其最大容量由payload-&gt;max_size指定，后续序列化操作会基于此缓冲区进行数据的读写等操作。</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>            <span class="comment">// Object that serializes the data.</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>            eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            <span class="comment">// 创建一个eprosima::fastcdr::Cdr类型的对象ser，它负责对数据进行序列化操作，会按照特定的字节序（由DEFAULT_ENDIAN指定，并且符合DDS_CDR相关要求）将内存中的数据结构转换为可传输或存储的序列化格式，使用之前定义的fastbuffer所管理的缓冲区。</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>            payload-&gt;encapsulation = ser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS? CDR_BE : CDR_LE;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>            <span class="comment">// 根据ser对象的字节序（endianness）情况来设置payload的封装格式（encapsulation），如果是大端字节序（BIG_ENDIANNESS）就设置为CDR_BE，否则设置为CDR_LE。</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>            <span class="comment">// Serialize encapsulation</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>            ser.serialize_encapsulation();</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>            <span class="comment">// 调用ser对象的serialize_encapsulation方法对数据的封装部分进行序列化，例如添加一些头部、尾部等标识信息，使数据符合相应的封装格式要求，方便后续在接收端进行解包（反序列化）操作时能正确还原数据。</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>            <span class="keywordflow">try</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>            {</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>                <span class="comment">// Serialize the object.</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>                p_type-&gt;<a class="code hl_function" href="../../d6/dc8/classsensor__msgs_1_1msg_1_1NavSatStatus.html#a297035be64af0927df90d6fa1e9ea05a">serialize</a>(ser);</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>                <span class="comment">// 调用NavSatStatus类型对象（p_type）的serialize方法，通过ser对象将NavSatStatus类型的数据进行序列化，将其转换为符合格式要求的序列化数据存放在之前定义的缓冲区中。</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>            }</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>            <span class="keywordflow">catch</span> (eprosima::fastcdr::exception::NotEnoughMemoryException&amp; <span class="comment">/*exception*/</span>)</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>            {</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>                <span class="comment">// 捕获eprosima::fastcdr::exception命名空间下的NotEnoughMemoryException异常（此处注释掉了异常对象名），如果在序列化NavSatStatus对象过程中出现内存不足的情况，函数直接返回false，表示序列化操作失败。</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>            }</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>            <span class="comment">// Get the serialized length</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>            payload-&gt;length = <span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(ser.getSerializedDataLength());</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>            <span class="comment">// 获取经过序列化后的数据长度（字节数），并将其赋值给payload的length成员变量，用于记录序列化数据的实际长度。</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>            <span class="comment">// 如果序列化过程没有出现内存不足等异常情况，函数正常返回true，表示序列化操作成功完成。</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        }</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#a34f82eb608fc842a793751a1cd610bf3">  114</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#a34f82eb608fc842a793751a1cd610bf3">NavSatStatusPubSubType::deserialize</a>(</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>                <a class="code hl_typedef" href="../../d6/d4c/CameraInfoPubSubTypes_8cpp.html#ae7818c4670abc053fbadaed455b07b1f">SerializedPayload_t</a>* payload,</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>                <span class="keywordtype">void</span>* data)</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        {</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>            <span class="keywordflow">try</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>            {</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>                <span class="comment">//Convert DATA to pointer of your type</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>                <a class="code hl_class" href="../../d6/dc8/classsensor__msgs_1_1msg_1_1NavSatStatus.html">NavSatStatus</a>* p_type = <span class="keyword">static_cast&lt;</span><a class="code hl_class" href="../../d6/dc8/classsensor__msgs_1_1msg_1_1NavSatStatus.html">NavSatStatus</a>*<span class="keyword">&gt;</span>(data);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>                <span class="comment">// 将传入的void*类型的data指针强制转换为NavSatStatus*类型指针，目的是为了后续能够针对NavSatStatus类型的数据进行特定的反序列化操作，确保操作的类型安全性和正确性。</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>                <span class="comment">// Object that manages the raw buffer.</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>                eprosima::fastcdr::FastBuffer fastbuffer(<span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(payload-&gt;data), payload-&gt;length);</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>                <span class="comment">// 定义一个eprosima::fastcdr::FastBuffer类型的对象fastbuffer，用于管理原始缓冲区，不过此时缓冲区的数据长度由payload-&gt;length指定，也就是要处理的已经序列化后的数据的实际长度，与序列化时使用最大长度payload-&gt;max_size有所不同，该缓冲区包含了待反序列化的数据。</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>                <span class="comment">// Object that deserializes the data.</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>                eprosima::fastcdr::Cdr deser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>                <span class="comment">// 创建一个eprosima::fastcdr::Cdr类型的对象deser，它负责按照指定的字节序（由DEFAULT_ENDIAN指定，并且符合DDS_CDR相关要求）将缓冲区中的序列化数据还原为原本的NavSatStatus类型的数据结构，即执行反序列化操作，使用由fastbuffer管理的缓冲区数据。</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>                <span class="comment">// Deserialize encapsulation.</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>                deser.read_encapsulation();</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>                <span class="comment">// 调用deser对象的read_encapsulation方法对之前序列化时添加的封装部分进行解析，比如读取头部、尾部等相关标识信息，以便后续能准确无误地还原出原始的NavSatStatus类型的数据，这是反序列化过程中一个关键的步骤，用于处理数据的封装结构。</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>                payload-&gt;encapsulation = deser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS? CDR_BE : CDR_LE;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>                <span class="comment">// 根据deser对象的字节序（endianness）情况来更新payload的封装格式（encapsulation），如果是大端字节序（BIG_ENDIANNESS）就设置为CDR_BE，否则设置为CDR_LE。</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>                <span class="comment">// Deserialize the object.</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>                p_type-&gt;<a class="code hl_function" href="../../d6/dc8/classsensor__msgs_1_1msg_1_1NavSatStatus.html#adabcba0d9f9769404863de9fd1709e17">deserialize</a>(deser);</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>                <span class="comment">// 调用NavSatStatus类型对象（p_type）的deserialize方法，通过deser对象将缓冲区中的序列化数据还原为NavSatStatus类型的原始数据结构，完成反序列化操作。</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>            }</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>            <span class="keywordflow">catch</span> (eprosima::fastcdr::exception::NotEnoughMemoryException&amp; <span class="comment">/*exception*/</span>)</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>            {</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>                <span class="comment">// 捕获eprosima::fastcdr::exception命名空间下的NotEnoughMemoryException异常（此处注释掉了异常对象名），如果在反序列化NavSatStatus对象过程中出现内存不足的情况，函数直接返回false，表示反序列化操作失败。</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>            }</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>            <span class="comment">// 如果反序列化过程没有出现内存不足等异常情况，函数正常返回true，表示反序列化操作成功完成。</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        }</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#a8c6b90520f21b9c8b71fffc8ef41d54f">  153</a></span>        std::function&lt;uint32_t()&gt; <a class="code hl_function" href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#a8c6b90520f21b9c8b71fffc8ef41d54f">NavSatStatusPubSubType::getSerializedSizeProvider</a>(</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>                <span class="keywordtype">void</span>* data)</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        {</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>            <span class="keywordflow">return</span> [data]() -&gt; uint32_t</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>                   {</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>                       <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(<a class="code hl_function" href="../../d6/dc8/classsensor__msgs_1_1msg_1_1NavSatStatus.html#af368693f6d4454f78ab70d3c9e127267">type::getCdrSerializedSize</a>(*<span class="keyword">static_cast&lt;</span><a class="code hl_class" href="../../d6/dc8/classsensor__msgs_1_1msg_1_1NavSatStatus.html">NavSatStatus</a>*<span class="keyword">&gt;</span>(data))) +</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>                              4u <span class="comment">/*encapsulation*/</span>;</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>                   };</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>            <span class="comment">// 返回一个lambda表达式，该表达式返回NavSatStatus类型数据序列化后的大小（字节数）。具体是先获取NavSatStatus类型对象（通过将传入的void*类型指针转换为NavSatStatus*类型指针来获取对应对象）的CDR序列化大小，然后加上4字节（注释“封装”表示这是考虑到数据封装所占用的额外空间，与前面提到的封装概念对应，在获取序列化数据总大小时需把封装部分字节数算在内），最终返回这个总大小作为序列化后的数据长度。</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>        }</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno"><a class="line" href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#a519970aaf18693d4875cb0939e1be238">  164</a></span>        <span class="keywordtype">void</span>* <a class="code hl_function" href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#a519970aaf18693d4875cb0939e1be238">NavSatStatusPubSubType::createData</a>()</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>        {</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>            <span class="keywordflow">return</span> <span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">void</span>*<span class="keyword">&gt;</span>(<span class="keyword">new</span> <a class="code hl_class" href="../../d6/dc8/classsensor__msgs_1_1msg_1_1NavSatStatus.html">NavSatStatus</a>());</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>            <span class="comment">// 创建一个NavSatStatus类型的对象，并将其指针转换为void*类型返回。通常用于在需要准备该类型数据（比如后续要进行序列化等操作）时获取相应的数据内存空间。</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>        }</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#a4e3e70c8ff085154ec4a2d5e3600f6f0">  170</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#a4e3e70c8ff085154ec4a2d5e3600f6f0">NavSatStatusPubSubType::deleteData</a>(</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>                <span class="keywordtype">void</span>* data)</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>        {</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>            <span class="keyword">delete</span>(<span class="keyword">reinterpret_cast&lt;</span><a class="code hl_class" href="../../d6/dc8/classsensor__msgs_1_1msg_1_1NavSatStatus.html">NavSatStatus</a>*<span class="keyword">&gt;</span>(data));</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>            <span class="comment">// 释放之前通过createData函数等方式动态分配的NavSatStatus类型对象所占用的内存空间。通过将传入的void*类型指针强制转换回NavSatStatus*类型指针，然后调用delete操作符来完成内存的释放，避免出现内存泄漏等问题。</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>        }</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno"><a class="line" href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#a90a968266d108c075d8896accabb7313">  177</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#a90a968266d108c075d8896accabb7313">NavSatStatusPubSubType::getKey</a>(</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>                <span class="keywordtype">void</span>* data,</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>                <a class="code hl_typedef" href="../../d6/d4c/CameraInfoPubSubTypes_8cpp.html#a894129904d0a4f471bea9c0440bb3ddd">InstanceHandle_t</a>* handle,</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>                <span class="keywordtype">bool</span> force_md5)</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>        {</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>            <span class="keywordflow">if</span> (!m_isGetKeyDefined)</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>            {</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>            }</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>            <span class="comment">// 如果没有定义获取键（Key）的相关机制（通过m_isGetKeyDefined变量判断），则直接返回false，表示无法获取键。</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>            <a class="code hl_class" href="../../d6/dc8/classsensor__msgs_1_1msg_1_1NavSatStatus.html">NavSatStatus</a>* p_type = <span class="keyword">static_cast&lt;</span><a class="code hl_class" href="../../d6/dc8/classsensor__msgs_1_1msg_1_1NavSatStatus.html">NavSatStatus</a>*<span class="keyword">&gt;</span>(data);</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>            <span class="comment">// 将传入的void*类型的data指针强制转换为NavSatStatus*类型指针，方便后续针对NavSatStatus类型数据进行获取键相关的操作。</span></div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>            <span class="comment">// Object that manages the raw buffer.</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>            eprosima::fastcdr::FastBuffer fastbuffer(<span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(<a class="code hl_variable" href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#aaec86bae101bc61ea282d3bf9e179e8f">m_keyBuffer</a>),</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>                    <a class="code hl_function" href="../../d6/dc8/classsensor__msgs_1_1msg_1_1NavSatStatus.html#a24c71ebe11b215a3265d8a9e85f6aed2">NavSatStatus::getKeyMaxCdrSerializedSize</a>());</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>            <span class="comment">// 定义一个eprosima::fastcdr::FastBuffer类型的对象fastbuffer，它用于管理原始缓冲区，这里缓冲区的数据来源是m_keyBuffer，其大小由NavSatStatus::getKeyMaxCdrSerializedSize()确定，后续会基于这个缓冲区进行与获取键（Key）相关的数据操作。</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>            <span class="comment">// Object that serializes the data.</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>            eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::BIG_ENDIANNESS);</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>            <span class="comment">// 创建一个eprosima::fastcdr::Cdr类型的对象ser，它会按照大端字节序（BIG_ENDIANNESS）对数据进行序列化操作，特别是针对用于生成键的数据进行序列化，以便后续根据情况生成合适的键值。</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span> </div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>            p_type-&gt;<a class="code hl_function" href="../../d6/dc8/classsensor__msgs_1_1msg_1_1NavSatStatus.html#a8942bd199ab3438d07a32231ede50291">serializeKey</a>(ser);</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>            <span class="comment">// 调用NavSatStatus类型对象（p_type）的serializeKey方法，通过ser对象对用于生成键的数据进行序列化操作，将相关数据按照指定字节序等要求转换为合适格式存放在缓冲区中。</span></div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span> </div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>            <span class="keywordflow">if</span> (force_md5 || <a class="code hl_function" href="../../d6/dc8/classsensor__msgs_1_1msg_1_1NavSatStatus.html#a24c71ebe11b215a3265d8a9e85f6aed2">NavSatStatus::getKeyMaxCdrSerializedSize</a>() &gt; 16)</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>            {</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>                <a class="code hl_variable" href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#a7361e3e85ff320464c3f1c2594b950ab">m_md5</a>.init();</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>                <a class="code hl_variable" href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#a7361e3e85ff320464c3f1c2594b950ab">m_md5</a>.update(<a class="code hl_variable" href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#aaec86bae101bc61ea282d3bf9e179e8f">m_keyBuffer</a>, <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">int</span><span class="keyword">&gt;</span>(ser.getSerializedDataLength()));</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>                <a class="code hl_variable" href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#a7361e3e85ff320464c3f1c2594b950ab">m_md5</a>.finalize();</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>                <span class="keywordflow">for</span> (uint8_t i = 0; i &lt; 16; ++i)</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>                {</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>                    handle-&gt;value[i] = <a class="code hl_variable" href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#a7361e3e85ff320464c3f1c2594b950ab">m_md5</a>.digest[i];</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>                }</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>            }</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>            <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>            {</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>                <span class="keywordflow">for</span> (uint8_t i = 0; i &lt; 16; ++i)</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>                {</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>                    handle-&gt;value[i] = <a class="code hl_variable" href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#aaec86bae101bc61ea282d3bf9e179e8f">m_keyBuffer</a>[i];</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>                }</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>            }</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>            <span class="comment">// 根据条件判断，如果force_md5为真或者NavSatStatus类型获取键的最大CDR序列化大小大于16，就使用MD5算法相关操作来生成键值。先初始化m_md5对象，然后用它对缓冲区中的数据（其长度由ser对象获取的序列化数据长度确定）进行更新操作，最后完成MD5计算并将生成的16字节的摘要（digest）赋值给handle对象的value数组，作为键值。</span></div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>            <span class="comment">// 否则，直接将缓冲区（m_keyBuffer）中的前16个字节数据赋值给handle对象的value数组，作为键值。</span></div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span> </div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>            <span class="comment">// 表示成功获取键值（前提是前面的操作都顺利执行，没有因条件不满足等导致无法获取的情况），函数返回true。</span></div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>        }</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    } <span class="comment">//End of namespace msg</span></div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>} <span class="comment">//End of namespace sensor_msgs</span></div>
+<div class="ttc" id="aCameraInfoPubSubTypes_8cpp_html_a894129904d0a4f471bea9c0440bb3ddd"><div class="ttname"><a href="../../d6/d4c/CameraInfoPubSubTypes_8cpp.html#a894129904d0a4f471bea9c0440bb3ddd">InstanceHandle_t</a></div><div class="ttdeci">eprosima::fastrtps::rtps::InstanceHandle_t InstanceHandle_t</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d4c/CameraInfoPubSubTypes_8cpp_source.html#l00029">CameraInfoPubSubTypes.cpp:29</a></div></div>
+<div class="ttc" id="aCameraInfoPubSubTypes_8cpp_html_ae7818c4670abc053fbadaed455b07b1f"><div class="ttname"><a href="../../d6/d4c/CameraInfoPubSubTypes_8cpp.html#ae7818c4670abc053fbadaed455b07b1f">SerializedPayload_t</a></div><div class="ttdeci">eprosima::fastrtps::rtps::SerializedPayload_t SerializedPayload_t</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d4c/CameraInfoPubSubTypes_8cpp_source.html#l00027">CameraInfoPubSubTypes.cpp:27</a></div></div>
+<div class="ttc" id="aNavSatStatusPubSubTypes_8h_html"><div class="ttname"><a href="../../d9/d1b/NavSatStatusPubSubTypes_8h.html">NavSatStatusPubSubTypes.h</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1NavSatStatusPubSubType_html_a34f82eb608fc842a793751a1cd610bf3"><div class="ttname"><a href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#a34f82eb608fc842a793751a1cd610bf3">sensor_msgs::msg::NavSatStatusPubSubType::deserialize</a></div><div class="ttdeci">virtual eProsima_user_DllExport bool deserialize(eprosima::fastrtps::rtps::SerializedPayload_t *payload, void *data) override</div><div class="ttdef"><b>Definition:</b> <a href="../../db/df8/NavSatStatusPubSubTypes_8cpp_source.html#l00114">NavSatStatusPubSubTypes.cpp:114</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1NavSatStatusPubSubType_html_a41baf760d747bc08cc848149ebb625fb"><div class="ttname"><a href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#a41baf760d747bc08cc848149ebb625fb">sensor_msgs::msg::NavSatStatusPubSubType::~NavSatStatusPubSubType</a></div><div class="ttdeci">virtual eProsima_user_DllExport ~NavSatStatusPubSubType() override</div><div class="ttdef"><b>Definition:</b> <a href="../../db/df8/NavSatStatusPubSubTypes_8cpp_source.html#l00063">NavSatStatusPubSubTypes.cpp:63</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1NavSatStatusPubSubType_html_a4e3e70c8ff085154ec4a2d5e3600f6f0"><div class="ttname"><a href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#a4e3e70c8ff085154ec4a2d5e3600f6f0">sensor_msgs::msg::NavSatStatusPubSubType::deleteData</a></div><div class="ttdeci">virtual eProsima_user_DllExport void deleteData(void *data) override</div><div class="ttdef"><b>Definition:</b> <a href="../../db/df8/NavSatStatusPubSubTypes_8cpp_source.html#l00170">NavSatStatusPubSubTypes.cpp:170</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1NavSatStatusPubSubType_html_a519970aaf18693d4875cb0939e1be238"><div class="ttname"><a href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#a519970aaf18693d4875cb0939e1be238">sensor_msgs::msg::NavSatStatusPubSubType::createData</a></div><div class="ttdeci">virtual eProsima_user_DllExport void * createData() override</div><div class="ttdef"><b>Definition:</b> <a href="../../db/df8/NavSatStatusPubSubTypes_8cpp_source.html#l00164">NavSatStatusPubSubTypes.cpp:164</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1NavSatStatusPubSubType_html_a7361e3e85ff320464c3f1c2594b950ab"><div class="ttname"><a href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#a7361e3e85ff320464c3f1c2594b950ab">sensor_msgs::msg::NavSatStatusPubSubType::m_md5</a></div><div class="ttdeci">MD5 m_md5</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d1b/NavSatStatusPubSubTypes_8h_source.html#l00128">NavSatStatusPubSubTypes.h:128</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1NavSatStatusPubSubType_html_a8c6b90520f21b9c8b71fffc8ef41d54f"><div class="ttname"><a href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#a8c6b90520f21b9c8b71fffc8ef41d54f">sensor_msgs::msg::NavSatStatusPubSubType::getSerializedSizeProvider</a></div><div class="ttdeci">virtual eProsima_user_DllExport std::function&lt; uint32_t()&gt; getSerializedSizeProvider(void *data) override</div><div class="ttdef"><b>Definition:</b> <a href="../../db/df8/NavSatStatusPubSubTypes_8cpp_source.html#l00153">NavSatStatusPubSubTypes.cpp:153</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1NavSatStatusPubSubType_html_a90a968266d108c075d8896accabb7313"><div class="ttname"><a href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#a90a968266d108c075d8896accabb7313">sensor_msgs::msg::NavSatStatusPubSubType::getKey</a></div><div class="ttdeci">virtual eProsima_user_DllExport bool getKey(void *data, eprosima::fastrtps::rtps::InstanceHandle_t *ihandle, bool force_md5=false) override</div><div class="ttdef"><b>Definition:</b> <a href="../../db/df8/NavSatStatusPubSubTypes_8cpp_source.html#l00177">NavSatStatusPubSubTypes.cpp:177</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1NavSatStatusPubSubType_html_aaec86bae101bc61ea282d3bf9e179e8f"><div class="ttname"><a href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#aaec86bae101bc61ea282d3bf9e179e8f">sensor_msgs::msg::NavSatStatusPubSubType::m_keyBuffer</a></div><div class="ttdeci">unsigned char * m_keyBuffer</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d1b/NavSatStatusPubSubTypes_8h_source.html#l00129">NavSatStatusPubSubTypes.h:129</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1NavSatStatusPubSubType_html_abdf3c173db9747ebc7c0f9b11ff529ef"><div class="ttname"><a href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#abdf3c173db9747ebc7c0f9b11ff529ef">sensor_msgs::msg::NavSatStatusPubSubType::serialize</a></div><div class="ttdeci">virtual eProsima_user_DllExport bool serialize(void *data, eprosima::fastrtps::rtps::SerializedPayload_t *payload) override</div><div class="ttdef"><b>Definition:</b> <a href="../../db/df8/NavSatStatusPubSubTypes_8cpp_source.html#l00072">NavSatStatusPubSubTypes.cpp:72</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1NavSatStatusPubSubType_html_ae7fc9f422fc241636691fde0306cf089"><div class="ttname"><a href="../../d5/db1/classsensor__msgs_1_1msg_1_1NavSatStatusPubSubType.html#ae7fc9f422fc241636691fde0306cf089">sensor_msgs::msg::NavSatStatusPubSubType::NavSatStatusPubSubType</a></div><div class="ttdeci">eProsima_user_DllExport NavSatStatusPubSubType()</div><div class="ttdef"><b>Definition:</b> <a href="../../db/df8/NavSatStatusPubSubTypes_8cpp_source.html#l00035">NavSatStatusPubSubTypes.cpp:35</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1NavSatStatus_html"><div class="ttname"><a href="../../d6/dc8/classsensor__msgs_1_1msg_1_1NavSatStatus.html">sensor_msgs::msg::NavSatStatus</a></div><div class="ttdoc">This class represents the structure NavSatStatus defined by the user in the IDL file.</div><div class="ttdef"><b>Definition:</b> <a href="../../db/dae/NavSatStatus_8h_source.html#l00078">NavSatStatus.h:79</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1NavSatStatus_html_a24c71ebe11b215a3265d8a9e85f6aed2"><div class="ttname"><a href="../../d6/dc8/classsensor__msgs_1_1msg_1_1NavSatStatus.html#a24c71ebe11b215a3265d8a9e85f6aed2">sensor_msgs::msg::NavSatStatus::getKeyMaxCdrSerializedSize</a></div><div class="ttdeci">static eProsima_user_DllExport size_t getKeyMaxCdrSerializedSize(size_t current_alignment=0)</div><div class="ttdoc">This function returns the maximum serialized size of the Key of an object depending on the buffer ali...</div><div class="ttdef"><b>Definition:</b> <a href="../../df/db8/NavSatStatus_8cpp_source.html#l00217">NavSatStatus.cpp:217</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1NavSatStatus_html_a297035be64af0927df90d6fa1e9ea05a"><div class="ttname"><a href="../../d6/dc8/classsensor__msgs_1_1msg_1_1NavSatStatus.html#a297035be64af0927df90d6fa1e9ea05a">sensor_msgs::msg::NavSatStatus::serialize</a></div><div class="ttdeci">eProsima_user_DllExport void serialize(eprosima::fastcdr::Cdr &amp;cdr) const</div><div class="ttdoc">This function serializes an object using CDR serialization.</div><div class="ttdef"><b>Definition:</b> <a href="../../df/db8/NavSatStatus_8cpp_source.html#l00139">NavSatStatus.cpp:139</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1NavSatStatus_html_a6570c3e85015983be74a129e057df197"><div class="ttname"><a href="../../d6/dc8/classsensor__msgs_1_1msg_1_1NavSatStatus.html#a6570c3e85015983be74a129e057df197">sensor_msgs::msg::NavSatStatus::getMaxCdrSerializedSize</a></div><div class="ttdeci">static eProsima_user_DllExport size_t getMaxCdrSerializedSize(size_t current_alignment=0)</div><div class="ttdoc">This function returns the maximum serialized size of an object depending on the buffer alignment.</div><div class="ttdef"><b>Definition:</b> <a href="../../df/db8/NavSatStatus_8cpp_source.html#l00113">NavSatStatus.cpp:113</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1NavSatStatus_html_a8942bd199ab3438d07a32231ede50291"><div class="ttname"><a href="../../d6/dc8/classsensor__msgs_1_1msg_1_1NavSatStatus.html#a8942bd199ab3438d07a32231ede50291">sensor_msgs::msg::NavSatStatus::serializeKey</a></div><div class="ttdeci">eProsima_user_DllExport void serializeKey(eprosima::fastcdr::Cdr &amp;cdr) const</div><div class="ttdoc">This function serializes the key members of an object using CDR serialization.</div><div class="ttdef"><b>Definition:</b> <a href="../../df/db8/NavSatStatus_8cpp_source.html#l00232">NavSatStatus.cpp:232</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1NavSatStatus_html_aa558831fb3a3eeb3a2774bcb7fe1670a"><div class="ttname"><a href="../../d6/dc8/classsensor__msgs_1_1msg_1_1NavSatStatus.html#aa558831fb3a3eeb3a2774bcb7fe1670a">sensor_msgs::msg::NavSatStatus::isKeyDefined</a></div><div class="ttdeci">static eProsima_user_DllExport bool isKeyDefined()</div><div class="ttdoc">This function tells you if the Key has been defined for this type</div><div class="ttdef"><b>Definition:</b> <a href="../../df/db8/NavSatStatus_8cpp_source.html#l00225">NavSatStatus.cpp:225</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1NavSatStatus_html_adabcba0d9f9769404863de9fd1709e17"><div class="ttname"><a href="../../d6/dc8/classsensor__msgs_1_1msg_1_1NavSatStatus.html#adabcba0d9f9769404863de9fd1709e17">sensor_msgs::msg::NavSatStatus::deserialize</a></div><div class="ttdeci">eProsima_user_DllExport void deserialize(eprosima::fastcdr::Cdr &amp;cdr)</div><div class="ttdoc">This function deserializes an object using CDR serialization.</div><div class="ttdef"><b>Definition:</b> <a href="../../df/db8/NavSatStatus_8cpp_source.html#l00148">NavSatStatus.cpp:148</a></div></div>
+<div class="ttc" id="aclasssensor__msgs_1_1msg_1_1NavSatStatus_html_af368693f6d4454f78ab70d3c9e127267"><div class="ttname"><a href="../../d6/dc8/classsensor__msgs_1_1msg_1_1NavSatStatus.html#af368693f6d4454f78ab70d3c9e127267">sensor_msgs::msg::NavSatStatus::getCdrSerializedSize</a></div><div class="ttdeci">static eProsima_user_DllExport size_t getCdrSerializedSize(const sensor_msgs::msg::NavSatStatus &amp;data, size_t current_alignment=0)</div><div class="ttdoc">This function returns the serialized size of a data depending on the buffer alignment.</div><div class="ttdef"><b>Definition:</b> <a href="../../df/db8/NavSatStatus_8cpp_source.html#l00122">NavSatStatus.cpp:122</a></div></div>
+<div class="ttc" id="anamespacesensor__msgs_html"><div class="ttname"><a href="../../d9/d7d/namespacesensor__msgs.html">sensor_msgs</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d15/CameraInfo_8h_source.html#l00068">CameraInfo.h:68</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

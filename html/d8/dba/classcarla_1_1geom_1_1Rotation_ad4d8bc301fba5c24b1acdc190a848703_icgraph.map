@@ -1,0 +1,11 @@
+<map id="carla::geom::Rotation::InverseRotateVector" name="carla::geom::Rotation::InverseRotateVector">
+<area shape="rect" id="node1" title=" " alt="" coords="661,133,808,173"/>
+<area shape="rect" id="node2" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#a076f17bcb321e9536ca59ee06bfab858" title="calculate the speed from the actor" alt="" coords="463,69,603,109"/>
+<area shape="rect" id="node6" href="$de/da4/classcarla_1_1geom_1_1Transform.html#a92a9a6fdd66eea2d1ec03b14378c7e50" title="将此变换的逆运算应用于 in_point 操作顺序为先进行位置上的逆平移（减去位置信息），然后再根据旋转的逆操作对向量进行旋转，最终将结果赋值回输入点" alt="" coords="453,165,613,205"/>
+<area shape="rect" id="node3" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#aaaf0a0f73759f525137e227af98f5074" title="calculate ego vehicle dynamics on the route" alt="" coords="193,5,405,45"/>
+<area shape="rect" id="node5" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#a65ed15e5c2d160f84d6ae5872f8cf878" title="default constructor with default internal default actor constellation callback" alt="" coords="229,69,369,109"/>
+<area shape="rect" id="node4" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#a7ddb47aaeb4d941c95e5b2fce91186b7" title="main function to trigger the RSS check at a certain point in time" alt="" coords="5,5,145,45"/>
+<area shape="rect" id="node7" href="$d8/d68/classcarla_1_1geom_1_1BoundingBox.html#aa9aa09f487239f74ccc27fae7d5be085" title="检查给定的世界空间中的点是否在边界框内。" alt="" coords="214,133,385,173"/>
+<area shape="rect" id="node8" href="$de/da4/classcarla_1_1geom_1_1Transform.html#a68c63bc41afb72db22e52109e4db824d" title="计算逆变换的 4 矩阵形式 首先通过逆变换操作（InverseTransformPoint）得到一个用于逆变换的位置偏移向量，然后结合当前的旋转角度信息，按照特定数学规则计算出逆变换对应的 4x4 矩阵" alt="" coords="223,197,376,237"/>
+<area shape="rect" id="node9" href="$d6/dd9/test__geom_8cpp.html#acfbdbb2cd19d012a24efb35615b59025" title=" " alt="" coords="272,262,327,287"/>
+</map>

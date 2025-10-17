@@ -1,0 +1,571 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: UCarlaLightSubsystem类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="../../d8/dab/classUCarlaLightSubsystem-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">UCarlaLightSubsystem类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="../../d1/d0d/CarlaLightSubsystem_8h_source.html">CarlaLightSubsystem.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 类 UCarlaLightSubsystem 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../df/d74/classUCarlaLightSubsystem__inherit__graph.svg" width="167" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> UCarlaLightSubsystem 的协作图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/d7d/classUCarlaLightSubsystem__coll__graph.svg" width="516" height="124"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a55d880a75a21784161549dbb6493b746"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df0/classUCarlaLightSubsystem.html#a55d880a75a21784161549dbb6493b746">Deinitialize</a> () <a class="el" href="../../de/d7d/ActorData_8h.html#ad031bfd5a8a2ed7e66d03dafcc3b2858">override</a></td></tr>
+<tr class="separator:a55d880a75a21784161549dbb6493b746"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5df2e77d6d08c3707939d17276a6706"><td class="memItemLeft" align="right" valign="top">UCarlaLight *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df0/classUCarlaLightSubsystem.html#af5df2e77d6d08c3707939d17276a6706">GetLight</a> (int Id)</td></tr>
+<tr class="separator:af5df2e77d6d08c3707939d17276a6706"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34ba1254b1a57d22ce60fe41ba8c8f67"><td class="memItemLeft" align="right" valign="top">TMap&lt; int, UCarlaLight * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df0/classUCarlaLightSubsystem.html#a34ba1254b1a57d22ce60fe41ba8c8f67">GetLights</a> ()</td></tr>
+<tr class="separator:a34ba1254b1a57d22ce60fe41ba8c8f67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ebb6a397199d247837fa7d926b85c91"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="../../d3/d13/classcarla_1_1rpc_1_1LightState.html">carla::rpc::LightState</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df0/classUCarlaLightSubsystem.html#a1ebb6a397199d247837fa7d926b85c91">GetLights</a> (FString Client)</td></tr>
+<tr class="separator:a1ebb6a397199d247837fa7d926b85c91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b8e0d97ec34f7fb6653559358c88b6b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df0/classUCarlaLightSubsystem.html#a2b8e0d97ec34f7fb6653559358c88b6b">Initialize</a> (FSubsystemCollectionBase &amp;Collection) <a class="el" href="../../de/d7d/ActorData_8h.html#ad031bfd5a8a2ed7e66d03dafcc3b2858">override</a></td></tr>
+<tr class="separator:a2b8e0d97ec34f7fb6653559358c88b6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2ad8afab94443de2a75348a8684cd41"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df0/classUCarlaLightSubsystem.html#ab2ad8afab94443de2a75348a8684cd41">IsUpdatePending</a> () const</td></tr>
+<tr class="separator:ab2ad8afab94443de2a75348a8684cd41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c04ed207d6a87e2ece6c3f3c762977c"><td class="memItemLeft" align="right" valign="top">int32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df0/classUCarlaLightSubsystem.html#a9c04ed207d6a87e2ece6c3f3c762977c">NumLights</a> () const</td></tr>
+<tr class="separator:a9c04ed207d6a87e2ece6c3f3c762977c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69bd35b72d272a6a753cc6b1326455ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df0/classUCarlaLightSubsystem.html#a69bd35b72d272a6a753cc6b1326455ba">RegisterLight</a> (UCarlaLight *CarlaLight)</td></tr>
+<tr class="separator:a69bd35b72d272a6a753cc6b1326455ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3be450530ec33aec705223ae56669c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df0/classUCarlaLightSubsystem.html#aa3be450530ec33aec705223ae56669c4">SetDayNightCycle</a> (const bool active)</td></tr>
+<tr class="separator:aa3be450530ec33aec705223ae56669c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66d33d15955eeb0329f4696c82a604d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df0/classUCarlaLightSubsystem.html#a66d33d15955eeb0329f4696c82a604d7">SetLights</a> (FString Client, std::vector&lt; <a class="el" href="../../d3/d13/classcarla_1_1rpc_1_1LightState.html">carla::rpc::LightState</a> &gt; LightsToSet, bool DiscardClient=false)</td></tr>
+<tr class="separator:a66d33d15955eeb0329f4696c82a604d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80cd500e0330350c33799030434aa828"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df0/classUCarlaLightSubsystem.html#a80cd500e0330350c33799030434aa828">UnregisterLight</a> (UCarlaLight *CarlaLight)</td></tr>
+<tr class="separator:a80cd500e0330350c33799030434aa828"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:a0ca84293d71eb112b8319d09c3ff2602"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df0/classUCarlaLightSubsystem.html#a0ca84293d71eb112b8319d09c3ff2602">SetClientStatesdirty</a> (FString ClientThatUpdate)</td></tr>
+<tr class="separator:a0ca84293d71eb112b8319d09c3ff2602"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a5de6e1cef74b7870381a4d869544607c"><td class="memItemLeft" align="right" valign="top">TMap&lt; FString, bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df0/classUCarlaLightSubsystem.html#a5de6e1cef74b7870381a4d869544607c">ClientStates</a></td></tr>
+<tr class="separator:a5de6e1cef74b7870381a4d869544607c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d37a32b7633c827f828d07021ff5a38"><td class="memItemLeft" align="right" valign="top">TMap&lt; int, UCarlaLight * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df0/classUCarlaLightSubsystem.html#a2d37a32b7633c827f828d07021ff5a38">Lights</a></td></tr>
+<tr class="separator:a2d37a32b7633c827f828d07021ff5a38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="../../d1/d0d/CarlaLightSubsystem_8h_source.html">CarlaLightSubsystem.h</a> 第 <a class="el" href="../../d1/d0d/CarlaLightSubsystem_8h_source.html#l00026">26</a> 行定义.</p>
+</div><h2 class="groupheader">成员函数说明</h2>
+<a id="a55d880a75a21784161549dbb6493b746" name="a55d880a75a21784161549dbb6493b746"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55d880a75a21784161549dbb6493b746">&#9670;&#160;</a></span>Deinitialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UCarlaLightSubsystem::Deinitialize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html">CarlaLightSubsystem.cpp</a> 第 <a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html#l00019">19</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af5df2e77d6d08c3707939d17276a6706" name="af5df2e77d6d08c3707939d17276a6706"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5df2e77d6d08c3707939d17276a6706">&#9670;&#160;</a></span>GetLight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UCarlaLight * UCarlaLightSubsystem::GetLight </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>Id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html">CarlaLightSubsystem.cpp</a> 第 <a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html#l00130">130</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d1/d0d/CarlaLightSubsystem_8h_source.html#l00071">Lights</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/d8a/FrameData_8cpp_source.html#l01049">FFrameData::ProcessReplayerLightScene()</a>.</p>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/df0/classUCarlaLightSubsystem_af5df2e77d6d08c3707939d17276a6706_icgraph.svg" width="414" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a34ba1254b1a57d22ce60fe41ba8c8f67" name="a34ba1254b1a57d22ce60fe41ba8c8f67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34ba1254b1a57d22ce60fe41ba8c8f67">&#9670;&#160;</a></span>GetLights() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TMap&lt; int, UCarlaLight * &gt; &amp; UCarlaLightSubsystem::GetLights </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/d0d/CarlaLightSubsystem_8h_source.html">CarlaLightSubsystem.h</a> 第 <a class="el" href="../../d1/d0d/CarlaLightSubsystem_8h_source.html#l00060">60</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1ebb6a397199d247837fa7d926b85c91" name="a1ebb6a397199d247837fa7d926b85c91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ebb6a397199d247837fa7d926b85c91">&#9670;&#160;</a></span>GetLights() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="../../d3/d13/classcarla_1_1rpc_1_1LightState.html">carla::rpc::LightState</a> &gt; UCarlaLightSubsystem::GetLights </td>
+          <td>(</td>
+          <td class="paramtype">FString&#160;</td>
+          <td class="paramname"><em>Client</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html">CarlaLightSubsystem.cpp</a> 第 <a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html#l00076">76</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d1/d0d/CarlaLightSubsystem_8h_source.html#l00074">ClientStates</a> , 以及 <a class="el" href="../../d1/d0d/CarlaLightSubsystem_8h_source.html#l00071">Lights</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/d49/CarlaRecorder_8cpp_source.html#l00707">ACarlaRecorder::AddExistingActors()</a>.</p>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/df0/classUCarlaLightSubsystem_a1ebb6a397199d247837fa7d926b85c91_icgraph.svg" width="596" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a2b8e0d97ec34f7fb6653559358c88b6b" name="a2b8e0d97ec34f7fb6653559358c88b6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b8e0d97ec34f7fb6653559358c88b6b">&#9670;&#160;</a></span>Initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UCarlaLightSubsystem::Initialize </td>
+          <td>(</td>
+          <td class="paramtype">FSubsystemCollectionBase &amp;&#160;</td>
+          <td class="paramname"><em>Collection</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html">CarlaLightSubsystem.cpp</a> 第 <a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html#l00013">13</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab2ad8afab94443de2a75348a8684cd41" name="ab2ad8afab94443de2a75348a8684cd41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2ad8afab94443de2a75348a8684cd41">&#9670;&#160;</a></span>IsUpdatePending()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool UCarlaLightSubsystem::IsUpdatePending </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html">CarlaLightSubsystem.cpp</a> 第 <a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html#l00060">60</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d1/d0d/CarlaLightSubsystem_8h_source.html#l00074">ClientStates</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d6/da1/CarlaEngine_8cpp_source.html#l00348">FCarlaEngine::OnPostTick()</a>.</p>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/df0/classUCarlaLightSubsystem_ab2ad8afab94443de2a75348a8684cd41_icgraph.svg" width="630" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a9c04ed207d6a87e2ece6c3f3c762977c" name="a9c04ed207d6a87e2ece6c3f3c762977c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c04ed207d6a87e2ece6c3f3c762977c">&#9670;&#160;</a></span>NumLights()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32 UCarlaLightSubsystem::NumLights </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/d0d/CarlaLightSubsystem_8h_source.html">CarlaLightSubsystem.h</a> 第 <a class="el" href="../../d1/d0d/CarlaLightSubsystem_8h_source.html#l00047">47</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a69bd35b72d272a6a753cc6b1326455ba" name="a69bd35b72d272a6a753cc6b1326455ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69bd35b72d272a6a753cc6b1326455ba">&#9670;&#160;</a></span>RegisterLight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UCarlaLightSubsystem::RegisterLight </td>
+          <td>(</td>
+          <td class="paramtype">UCarlaLight *&#160;</td>
+          <td class="paramname"><em>CarlaLight</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html">CarlaLightSubsystem.cpp</a> 第 <a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html#l00025">25</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d1/d0d/CarlaLightSubsystem_8h_source.html#l00071">Lights</a>, <a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html#l00160">SetClientStatesdirty()</a> , 以及 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp.html#a69d0a7232310b5ebaa51abb2b9945184">UE_LOG()</a>.</p>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/df0/classUCarlaLightSubsystem_a69bd35b72d272a6a753cc6b1326455ba_cgraph.svg" width="371" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a0ca84293d71eb112b8319d09c3ff2602" name="a0ca84293d71eb112b8319d09c3ff2602"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ca84293d71eb112b8319d09c3ff2602">&#9670;&#160;</a></span>SetClientStatesdirty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UCarlaLightSubsystem::SetClientStatesdirty </td>
+          <td>(</td>
+          <td class="paramtype">FString&#160;</td>
+          <td class="paramname"><em>ClientThatUpdate</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html">CarlaLightSubsystem.cpp</a> 第 <a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html#l00160">160</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d1/d0d/CarlaLightSubsystem_8h_source.html#l00074">ClientStates</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html#l00025">RegisterLight()</a> , 以及 <a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html#l00047">UnregisterLight()</a>.</p>
+<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/df0/classUCarlaLightSubsystem_a0ca84293d71eb112b8319d09c3ff2602_icgraph.svg" width="371" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="aa3be450530ec33aec705223ae56669c4" name="aa3be450530ec33aec705223ae56669c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3be450530ec33aec705223ae56669c4">&#9670;&#160;</a></span>SetDayNightCycle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UCarlaLightSubsystem::SetDayNightCycle </td>
+          <td>(</td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>active</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html">CarlaLightSubsystem.cpp</a> 第 <a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html#l00143">143</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a66d33d15955eeb0329f4696c82a604d7" name="a66d33d15955eeb0329f4696c82a604d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66d33d15955eeb0329f4696c82a604d7">&#9670;&#160;</a></span>SetLights()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UCarlaLightSubsystem::SetLights </td>
+          <td>(</td>
+          <td class="paramtype">FString&#160;</td>
+          <td class="paramname"><em>Client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="../../d3/d13/classcarla_1_1rpc_1_1LightState.html">carla::rpc::LightState</a> &gt;&#160;</td>
+          <td class="paramname"><em>LightsToSet</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>DiscardClient</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html">CarlaLightSubsystem.cpp</a> 第 <a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html#l00097">97</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d1/d0d/CarlaLightSubsystem_8h_source.html#l00074">ClientStates</a>, <a class="el" href="../../d1/d0d/CarlaLightSubsystem_8h_source.html#l00071">Lights</a> , 以及 <a class="el" href="../../de/d7d/ActorData_8h_source.html#l00131">LightState</a>.</p>
+
+</div>
+</div>
+<a id="a80cd500e0330350c33799030434aa828" name="a80cd500e0330350c33799030434aa828"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80cd500e0330350c33799030434aa828">&#9670;&#160;</a></span>UnregisterLight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UCarlaLightSubsystem::UnregisterLight </td>
+          <td>(</td>
+          <td class="paramtype">UCarlaLight *&#160;</td>
+          <td class="paramname"><em>CarlaLight</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html">CarlaLightSubsystem.cpp</a> 第 <a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html#l00047">47</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d1/d0d/CarlaLightSubsystem_8h_source.html#l00071">Lights</a> , 以及 <a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html#l00160">SetClientStatesdirty()</a>.</p>
+<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../db/df0/classUCarlaLightSubsystem_a80cd500e0330350c33799030434aa828_cgraph.svg" width="371" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a5de6e1cef74b7870381a4d869544607c" name="a5de6e1cef74b7870381a4d869544607c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5de6e1cef74b7870381a4d869544607c">&#9670;&#160;</a></span>ClientStates</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TMap&lt;FString, bool&gt; UCarlaLightSubsystem::ClientStates</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/d0d/CarlaLightSubsystem_8h_source.html">CarlaLightSubsystem.h</a> 第 <a class="el" href="../../d1/d0d/CarlaLightSubsystem_8h_source.html#l00074">74</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html#l00076">GetLights()</a>, <a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html#l00060">IsUpdatePending()</a>, <a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html#l00160">SetClientStatesdirty()</a> , 以及 <a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html#l00097">SetLights()</a>.</p>
+
+</div>
+</div>
+<a id="a2d37a32b7633c827f828d07021ff5a38" name="a2d37a32b7633c827f828d07021ff5a38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d37a32b7633c827f828d07021ff5a38">&#9670;&#160;</a></span>Lights</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TMap&lt;int, UCarlaLight* &gt; UCarlaLightSubsystem::Lights</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/d0d/CarlaLightSubsystem_8h_source.html">CarlaLightSubsystem.h</a> 第 <a class="el" href="../../d1/d0d/CarlaLightSubsystem_8h_source.html#l00071">71</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html#l00130">GetLight()</a>, <a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html#l00076">GetLights()</a>, <a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html#l00025">RegisterLight()</a>, <a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html#l00097">SetLights()</a> , 以及 <a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html#l00047">UnregisterLight()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../d1/d0d/CarlaLightSubsystem_8h_source.html">CarlaLightSubsystem.h</a></li>
+<li><a class="el" href="../../d3/d13/CarlaLightSubsystem_8cpp_source.html">CarlaLightSubsystem.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

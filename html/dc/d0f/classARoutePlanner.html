@@ -1,0 +1,665 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: ARoutePlanner类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-attribs">Public 属性</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="../../d9/d43/classARoutePlanner-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">ARoutePlanner类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>为每个进入触发体积的 <a class="el" href="../../d5/d70/classACarlaWheeledVehicle.html" title="CARLA轮式车辆的基类.">ACarlaWheeledVehicle</a> 分配一条随机路线。 将此参与者放入世界后，必须在编辑器中添加路线。样条线切线将被忽略，仅考虑位置来制定路线。  
+ <a href="../../dc/d0f/classARoutePlanner.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../d3/d24/RoutePlanner_8h_source.html">RoutePlanner.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 类 ARoutePlanner 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d5/d8d/classARoutePlanner__inherit__graph.svg" width="120" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> ARoutePlanner 的协作图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../de/dfc/classARoutePlanner__coll__graph.svg" width="656" height="124"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a45dd8c5a9ef6a16e0d592bbff8e231f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d0f/classARoutePlanner.html#a45dd8c5a9ef6a16e0d592bbff8e231f3">AddRoute</a> (float probability, const TArray&lt; FVector &gt; &amp;routePoints)</td></tr>
+<tr class="separator:a45dd8c5a9ef6a16e0d592bbff8e231f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49817687625aa82877d76aaf7bea6d99"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d0f/classARoutePlanner.html#a49817687625aa82877d76aaf7bea6d99">ARoutePlanner</a> (const FObjectInitializer &amp;ObjectInitializer)</td></tr>
+<tr class="separator:a49817687625aa82877d76aaf7bea6d99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92310180fe5bcd5987dc9d7df410b7c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d0f/classARoutePlanner.html#a92310180fe5bcd5987dc9d7df410b7c1">AssignRandomRoute</a> (<a class="el" href="../../dd/dea/classAWheeledVehicleAIController.html">AWheeledVehicleAIController</a> &amp;Controller) const</td></tr>
+<tr class="separator:a92310180fe5bcd5987dc9d7df410b7c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23dfad2c984eb6fe19fff32b0148eb53"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d0f/classARoutePlanner.html#a23dfad2c984eb6fe19fff32b0148eb53">BeginDestroy</a> () <a class="el" href="../../de/d7d/ActorData_8h.html#ad031bfd5a8a2ed7e66d03dafcc3b2858">override</a></td></tr>
+<tr class="separator:a23dfad2c984eb6fe19fff32b0148eb53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0878d36f121c5848168bfe9e5b91b008"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d0f/classARoutePlanner.html#a0878d36f121c5848168bfe9e5b91b008">CleanRoute</a> ()</td></tr>
+<tr class="separator:a0878d36f121c5848168bfe9e5b91b008"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c358859f66ead053941cc8951651d84"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d0f/classARoutePlanner.html#a0c358859f66ead053941cc8951651d84">DrawRoutes</a> ()</td></tr>
+<tr class="separator:a0c358859f66ead053941cc8951651d84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26d76fc968a2d28f2c0ef50d3a98c1fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d0f/classARoutePlanner.html#a26d76fc968a2d28f2c0ef50d3a98c1fc">Init</a> ()</td></tr>
+<tr class="separator:a26d76fc968a2d28f2c0ef50d3a98c1fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a481b1e3a166a756b97949c06c243be8c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d0f/classARoutePlanner.html#a481b1e3a166a756b97949c06c243be8c">SetBoxExtent</a> (const FVector &amp;Extent)</td></tr>
+<tr class="separator:a481b1e3a166a756b97949c06c243be8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:a4f9bdaaa2c6ad97b7829f2edd76cd27d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d0f/classARoutePlanner.html#a4f9bdaaa2c6ad97b7829f2edd76cd27d">bIsIntersection</a> = false</td></tr>
+<tr class="separator:a4f9bdaaa2c6ad97b7829f2edd76cd27d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5b9376e6876614e701f9fb5308e2ce0"><td class="memItemLeft" align="right" valign="top">TArray&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d0f/classARoutePlanner.html#ac5b9376e6876614e701f9fb5308e2ce0">Probabilities</a></td></tr>
+<tr class="separator:ac5b9376e6876614e701f9fb5308e2ce0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab825e1a190e5ec97045b16c156f2e0b2"><td class="memItemLeft" align="right" valign="top">TArray&lt; USplineComponent * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d0f/classARoutePlanner.html#ab825e1a190e5ec97045b16c156f2e0b2">Routes</a></td></tr>
+<tr class="separator:ab825e1a190e5ec97045b16c156f2e0b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48b0a84a6571ba61ba1f9ad371b19506"><td class="memItemLeft" align="right" valign="top">UBoxComponent *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d0f/classARoutePlanner.html#a48b0a84a6571ba61ba1f9ad371b19506">TriggerVolume</a></td></tr>
+<tr class="separator:a48b0a84a6571ba61ba1f9ad371b19506"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a0c5a8636b4116a8e3027d480e55ebf10"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d0f/classARoutePlanner.html#a0c5a8636b4116a8e3027d480e55ebf10">BeginPlay</a> () <a class="el" href="../../de/d7d/ActorData_8h.html#ad031bfd5a8a2ed7e66d03dafcc3b2858">override</a></td></tr>
+<tr class="separator:a0c5a8636b4116a8e3027d480e55ebf10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af896beeae97a3f8cc1e0ba5072214737"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d0f/classARoutePlanner.html#af896beeae97a3f8cc1e0ba5072214737">EndPlay</a> (EEndPlayReason::Type EndPlayReason) <a class="el" href="../../de/d7d/ActorData_8h.html#ad031bfd5a8a2ed7e66d03dafcc3b2858">override</a></td></tr>
+<tr class="separator:af896beeae97a3f8cc1e0ba5072214737"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa21655e46a7c9c7cd6f18ab89ecf66d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d0f/classARoutePlanner.html#aa21655e46a7c9c7cd6f18ab89ecf66d5">OnTriggerBeginOverlap</a> (<a class="el" href="../../d9/d6d/classUPrimitiveComponent.html">UPrimitiveComponent</a> *OverlappedComp, <a class="el" href="../../d1/da4/classAActor.html">AActor</a> *OtherActor, <a class="el" href="../../d9/d6d/classUPrimitiveComponent.html">UPrimitiveComponent</a> *OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult &amp;SweepResult)</td></tr>
+<tr class="separator:aa21655e46a7c9c7cd6f18ab89ecf66d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p >为每个进入触发体积的 <a class="el" href="../../d5/d70/classACarlaWheeledVehicle.html" title="CARLA轮式车辆的基类.">ACarlaWheeledVehicle</a> 分配一条随机路线。 将此参与者放入世界后，必须在编辑器中添加路线。样条线切线将被忽略，仅考虑位置来制定路线。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d24/RoutePlanner_8h_source.html">RoutePlanner.h</a> 第 <a class="el" href="../../d3/d24/RoutePlanner_8h_source.html#l00021">21</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a49817687625aa82877d76aaf7bea6d99" name="a49817687625aa82877d76aaf7bea6d99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49817687625aa82877d76aaf7bea6d99">&#9670;&#160;</a></span>ARoutePlanner()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ARoutePlanner::ARoutePlanner </td>
+          <td>(</td>
+          <td class="paramtype">const FObjectInitializer &amp;&#160;</td>
+          <td class="paramname"><em>ObjectInitializer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html">RoutePlanner.cpp</a> 第 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00056">56</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d24/RoutePlanner_8h_source.html#l00069">TriggerVolume</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a45dd8c5a9ef6a16e0d592bbff8e231f3" name="a45dd8c5a9ef6a16e0d592bbff8e231f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45dd8c5a9ef6a16e0d592bbff8e231f3">&#9670;&#160;</a></span>AddRoute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ARoutePlanner::AddRoute </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>probability</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TArray&lt; FVector &gt; &amp;&#160;</td>
+          <td class="paramname"><em>routePoints</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html">RoutePlanner.cpp</a> 第 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00111">111</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d24/RoutePlanner_8h_source.html#l00075">Probabilities</a> , 以及 <a class="el" href="../../d3/d24/RoutePlanner_8h_source.html#l00072">Routes</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d4/de0/OpenDriveActor_8cpp_source.html#l00158">AOpenDriveActor::BuildRoutes()</a>.</p>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d0f/classARoutePlanner_a45dd8c5a9ef6a16e0d592bbff8e231f3_icgraph.svg" width="430" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a92310180fe5bcd5987dc9d7df410b7c1" name="a92310180fe5bcd5987dc9d7df410b7c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92310180fe5bcd5987dc9d7df410b7c1">&#9670;&#160;</a></span>AssignRandomRoute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ARoutePlanner::AssignRandomRoute </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../dd/dea/classAWheeledVehicleAIController.html">AWheeledVehicleAIController</a> &amp;&#160;</td>
+          <td class="paramname"><em>Controller</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html">RoutePlanner.cpp</a> 第 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00144">144</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d2/d29/WheeledVehicleAIController_8h_source.html#l00118">AWheeledVehicleAIController::GetRandomEngine()</a>, <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00038">PickARoute()</a>, <a class="el" href="../../d3/d24/RoutePlanner_8h_source.html#l00075">Probabilities</a>, <a class="el" href="../../d3/d24/RoutePlanner_8h_source.html#l00072">Routes</a>, <a class="el" href="../../d8/de0/WheeledVehicleAIController_8cpp_source.html#l00201">AWheeledVehicleAIController::SetFixedRoute()</a> , 以及 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp.html#a69d0a7232310b5ebaa51abb2b9945184">UE_LOG()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00221">OnTriggerBeginOverlap()</a>.</p>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../dc/d0f/classARoutePlanner_a92310180fe5bcd5987dc9d7df410b7c1_cgraph.svg" width="100%" height="462"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../dc/d0f/classARoutePlanner_a92310180fe5bcd5987dc9d7df410b7c1_icgraph.svg" width="100%" height="364"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a23dfad2c984eb6fe19fff32b0148eb53" name="a23dfad2c984eb6fe19fff32b0148eb53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23dfad2c984eb6fe19fff32b0148eb53">&#9670;&#160;</a></span>BeginDestroy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ARoutePlanner::BeginDestroy </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html">RoutePlanner.cpp</a> 第 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00077">77</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00136">CleanRoute()</a>.</p>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d0f/classARoutePlanner_a23dfad2c984eb6fe19fff32b0148eb53_cgraph.svg" width="434" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a0c5a8636b4116a8e3027d480e55ebf10" name="a0c5a8636b4116a8e3027d480e55ebf10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c5a8636b4116a8e3027d480e55ebf10">&#9670;&#160;</a></span>BeginPlay()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ARoutePlanner::BeginPlay </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html">RoutePlanner.cpp</a> 第 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00201">201</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00176">Init()</a>.</p>
+<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../dc/d0f/classARoutePlanner_a0c5a8636b4116a8e3027d480e55ebf10_cgraph.svg" width="100%" height="462"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a0878d36f121c5848168bfe9e5b91b008" name="a0878d36f121c5848168bfe9e5b91b008"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0878d36f121c5848168bfe9e5b91b008">&#9670;&#160;</a></span>CleanRoute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ARoutePlanner::CleanRoute </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html">RoutePlanner.cpp</a> 第 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00136">136</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d24/RoutePlanner_8h_source.html#l00075">Probabilities</a> , 以及 <a class="el" href="../../d3/d24/RoutePlanner_8h_source.html#l00072">Routes</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00077">BeginDestroy()</a>.</p>
+<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d0f/classARoutePlanner_a0878d36f121c5848168bfe9e5b91b008_icgraph.svg" width="434" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a0c358859f66ead053941cc8951651d84" name="a0c358859f66ead053941cc8951651d84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c358859f66ead053941cc8951651d84">&#9670;&#160;</a></span>DrawRoutes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ARoutePlanner::DrawRoutes </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html">RoutePlanner.cpp</a> 第 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00238">238</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d24/RoutePlanner_8h_source.html#l00078">bIsIntersection</a> , 以及 <a class="el" href="../../d3/d24/RoutePlanner_8h_source.html#l00072">Routes</a>.</p>
+
+</div>
+</div>
+<a id="af896beeae97a3f8cc1e0ba5072214737" name="af896beeae97a3f8cc1e0ba5072214737"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af896beeae97a3f8cc1e0ba5072214737">&#9670;&#160;</a></span>EndPlay()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ARoutePlanner::EndPlay </td>
+          <td>(</td>
+          <td class="paramtype">EEndPlayReason::Type&#160;</td>
+          <td class="paramname"><em>EndPlayReason</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html">RoutePlanner.cpp</a> 第 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00208">208</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00221">OnTriggerBeginOverlap()</a> , 以及 <a class="el" href="../../d3/d24/RoutePlanner_8h_source.html#l00069">TriggerVolume</a>.</p>
+<div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../dc/d0f/classARoutePlanner_af896beeae97a3f8cc1e0ba5072214737_cgraph.svg" width="100%" height="462"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a26d76fc968a2d28f2c0ef50d3a98c1fc" name="a26d76fc968a2d28f2c0ef50d3a98c1fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26d76fc968a2d28f2c0ef50d3a98c1fc">&#9670;&#160;</a></span>Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ARoutePlanner::Init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html">RoutePlanner.cpp</a> 第 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00176">176</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00018">IsSplineValid()</a>, <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00221">OnTriggerBeginOverlap()</a>, <a class="el" href="../../d3/d24/RoutePlanner_8h_source.html#l00072">Routes</a>, <a class="el" href="../../d3/d24/RoutePlanner_8h_source.html#l00069">TriggerVolume</a> , 以及 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp.html#a69d0a7232310b5ebaa51abb2b9945184">UE_LOG()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00201">BeginPlay()</a>.</p>
+<div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../dc/d0f/classARoutePlanner_a26d76fc968a2d28f2c0ef50d3a98c1fc_cgraph.svg" width="100%" height="462"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d0f/classARoutePlanner_a26d76fc968a2d28f2c0ef50d3a98c1fc_icgraph.svg" width="366" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="aa21655e46a7c9c7cd6f18ab89ecf66d5" name="aa21655e46a7c9c7cd6f18ab89ecf66d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa21655e46a7c9c7cd6f18ab89ecf66d5">&#9670;&#160;</a></span>OnTriggerBeginOverlap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ARoutePlanner::OnTriggerBeginOverlap </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/d6d/classUPrimitiveComponent.html">UPrimitiveComponent</a> *&#160;</td>
+          <td class="paramname"><em>OverlappedComp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d1/da4/classAActor.html">AActor</a> *&#160;</td>
+          <td class="paramname"><em>OtherActor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d6d/classUPrimitiveComponent.html">UPrimitiveComponent</a> *&#160;</td>
+          <td class="paramname"><em>OtherComp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32&#160;</td>
+          <td class="paramname"><em>OtherBodyIndex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bFromSweep</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FHitResult &amp;&#160;</td>
+          <td class="paramname"><em>SweepResult</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html">RoutePlanner.cpp</a> 第 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00221">221</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00144">AssignRandomRoute()</a> , 以及 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00026">GetVehicleController()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00208">EndPlay()</a> , 以及 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00176">Init()</a>.</p>
+<div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../dc/d0f/classARoutePlanner_aa21655e46a7c9c7cd6f18ab89ecf66d5_cgraph.svg" width="100%" height="462"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-12-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-12-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d0f/classARoutePlanner_aa21655e46a7c9c7cd6f18ab89ecf66d5_icgraph.svg" width="615" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a481b1e3a166a756b97949c06c243be8c" name="a481b1e3a166a756b97949c06c243be8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a481b1e3a166a756b97949c06c243be8c">&#9670;&#160;</a></span>SetBoxExtent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ARoutePlanner::SetBoxExtent </td>
+          <td>(</td>
+          <td class="paramtype">const FVector &amp;&#160;</td>
+          <td class="paramname"><em>Extent</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d24/RoutePlanner_8h_source.html">RoutePlanner.h</a> 第 <a class="el" href="../../d3/d24/RoutePlanner_8h_source.html#l00033">33</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d9/d6a/CarlaRecorder_8h.html#a4c56233e0004f5c9ac481a933ab6b613a9a2da47823f71d0d70d5c78a53a71f7c">TriggerVolume</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d4/de0/OpenDriveActor_8cpp_source.html#l00158">AOpenDriveActor::BuildRoutes()</a>.</p>
+<div id="dynsection-13" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-13-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-13-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-13-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dc/d0f/classARoutePlanner_a481b1e3a166a756b97949c06c243be8c_icgraph.svg" width="451" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a4f9bdaaa2c6ad97b7829f2edd76cd27d" name="a4f9bdaaa2c6ad97b7829f2edd76cd27d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f9bdaaa2c6ad97b7829f2edd76cd27d">&#9670;&#160;</a></span>bIsIntersection</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ARoutePlanner::bIsIntersection = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d24/RoutePlanner_8h_source.html">RoutePlanner.h</a> 第 <a class="el" href="../../d3/d24/RoutePlanner_8h_source.html#l00078">78</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d4/de0/OpenDriveActor_8cpp_source.html#l00158">AOpenDriveActor::BuildRoutes()</a> , 以及 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00238">DrawRoutes()</a>.</p>
+
+</div>
+</div>
+<a id="ac5b9376e6876614e701f9fb5308e2ce0" name="ac5b9376e6876614e701f9fb5308e2ce0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5b9376e6876614e701f9fb5308e2ce0">&#9670;&#160;</a></span>Probabilities</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TArray&lt;float&gt; ARoutePlanner::Probabilities</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d24/RoutePlanner_8h_source.html">RoutePlanner.h</a> 第 <a class="el" href="../../d3/d24/RoutePlanner_8h_source.html#l00075">75</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00111">AddRoute()</a>, <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00144">AssignRandomRoute()</a> , 以及 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00136">CleanRoute()</a>.</p>
+
+</div>
+</div>
+<a id="ab825e1a190e5ec97045b16c156f2e0b2" name="ab825e1a190e5ec97045b16c156f2e0b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab825e1a190e5ec97045b16c156f2e0b2">&#9670;&#160;</a></span>Routes</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TArray&lt;USplineComponent *&gt; ARoutePlanner::Routes</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d24/RoutePlanner_8h_source.html">RoutePlanner.h</a> 第 <a class="el" href="../../d3/d24/RoutePlanner_8h_source.html#l00072">72</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00111">AddRoute()</a>, <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00144">AssignRandomRoute()</a>, <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00136">CleanRoute()</a>, <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00238">DrawRoutes()</a> , 以及 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00176">Init()</a>.</p>
+
+</div>
+</div>
+<a id="a48b0a84a6571ba61ba1f9ad371b19506" name="a48b0a84a6571ba61ba1f9ad371b19506"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48b0a84a6571ba61ba1f9ad371b19506">&#9670;&#160;</a></span>TriggerVolume</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UBoxComponent* ARoutePlanner::TriggerVolume</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d24/RoutePlanner_8h_source.html">RoutePlanner.h</a> 第 <a class="el" href="../../d3/d24/RoutePlanner_8h_source.html#l00069">69</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00056">ARoutePlanner()</a>, <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00208">EndPlay()</a> , 以及 <a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html#l00176">Init()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../d3/d24/RoutePlanner_8h_source.html">RoutePlanner.h</a></li>
+<li><a class="el" href="../../de/d45/RoutePlanner_8cpp_source.html">RoutePlanner.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>
