@@ -166,7 +166,7 @@ namespace rpc {
       return !(*this != rhs);
     }
 
-    //定义 WeatherParameters对象的序列化顺序，便于打包和解包
+    // 定义 WeatherParameters 对象的序列化顺序，便于打包和解包
     MSGPACK_DEFINE_ARRAY(
         cloudiness,
         precipitation,

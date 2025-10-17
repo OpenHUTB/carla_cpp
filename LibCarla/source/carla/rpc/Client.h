@@ -63,7 +63,7 @@ namespace carla {
 
             // 此方法用于发起一个异步的远程过程调用（RPC）。
             // 同样接受一个函数名（function，类型为const std::string &）以及任意数量的其他参数（Args &&... args），
-            // 调用底层 _client 的 async_call 方法时，传入函数名、Metadata::MakeAsync()（推测是用于告知底层此次调用是异步的，同时传递相关元数据）
+            // 调用底层 rpc::client 的 async_call 方法时，传入函数名、Metadata::MakeAsync()（推测是用于告知底层此次调用是异步的，同时传递异步调用相关的元数据）
             // 和转发的参数，以此实现异步调用的发起，而该方法本身无返回值，因为异步调用结果通常需要通过其他方式（比如回调函数等）来获取。
             template <typename... Args>
             void async_call(const std::string &function, Args &&... args) {

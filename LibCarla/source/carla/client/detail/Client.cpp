@@ -4,7 +4,7 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#include "carla/client/detail/Client.h"
+#include "carla/client/detail/Client.h"  // 包含当前目录下的Client.h
 
 #include "carla/Exception.h"
 #include "carla/Version.h"
@@ -13,7 +13,7 @@
 #include "carla/rpc/AckermannControllerSettings.h"
 #include "carla/rpc/ActorDescription.h"
 #include "carla/rpc/BoneTransformDataIn.h"
-#include "carla/rpc/Client.h"
+#include "carla/rpc/Client.h"  // 包含rpc模块中的Client.h（便于开始远程调用服务器）
 #include "carla/rpc/DebugShape.h"
 #include "carla/rpc/Response.h"
 #include "carla/rpc/VehicleAckermannControl.h"
@@ -79,7 +79,9 @@ namespace detail {
 
     template <typename ... Args>
     void AsyncCall(const std::string &function, Args && ... args) {
-      // Discard returned future.
+      // 丢弃返回的 future（std::async 是 C++11 引入的异步任务执行工具，它返回一个 std::future 对象，用于获取异步任务的返回值）
+      // 从当前客户端开始rpc模块的异步调用
+      // std::forward 确保参数在传递过程中保持其原始的左值或右值属性（完美转发），保持args的值类别
       rpc_client.async_call(function, std::forward<Args>(args) ...);
     }
 
