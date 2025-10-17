@@ -1,5 +1,5 @@
 
-name: compute involvement degree
+name: C++ documentation
 
 on: [push]
     
@@ -18,11 +18,10 @@ jobs:
         # This is the version of the action for setting up Python, not the Python version.
         uses: mattnotmitt/doxygen-action@v1.9.5
         with:
-          working-directory: 'submodule/'
           enable-latex: true
       
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./submodule
+          publish_dir: .
